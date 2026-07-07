@@ -1,0 +1,10 @@
+date,event,modality,scope,source
+2024-09-17,Voice georouting launched for cellular 988 calls in the 988 Lifeline network,voice calls,"national launch, carrier implementation not fully state-specific in public data",988 Lifeline About page
+2024-10-18,FCC adopted rules requiring georouting for all wireless calls to 988,voice calls,all covered wireless carriers,FCC 24-111
+2024-12-12,FCC 988 voice georouting rules became effective,voice calls,regulatory effective date,FCC DA-25-233
+2025-01-13,Nationwide CMRS providers required to comply with 988 voice georouting,voice calls,nationwide carriers,FCC DA-25-233
+2026-12-14,Non-nationwide CMRS providers required to comply with 988 voice georouting,voice calls,smaller/non-nationwide carriers,FCC DA-25-233
+2025-07-24,FCC approved rules requiring georouting for text messages to 988,text,covered wireless text providers; implementation follows effective date,FCC DOC-413211
+2025-10-16,Text-to-988 georouting rules effective,text,regulatory effective date,FCC DA-25-879
+2027-04-16,Nationwide CMRS text-to-988 georouting compliance deadline,text,future relative to current outcome window,FCC DA-25-879
+2028-10-16,Non-nationwide text-to-988 georouting compliance deadline,text,future relative to current outcome window,FCC DA-25-879

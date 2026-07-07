@@ -1,0 +1,10 @@
+metric,value
+raw_jurisdictions,56
+state_dc_jurisdictions,51
+primary_sample_rows,2936
+primary_sample_states,51
+observed_source_months,58
+calendar_window,2021-07-01 to 2026-05-01
+missing_calendar_months,2025-02
+post2025_monitor_rows_excluded_from_primary,22
+post2025_monitor_states_excluded_from_primary,IL;NM

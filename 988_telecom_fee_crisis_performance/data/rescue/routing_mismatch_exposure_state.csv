@@ -1,0 +1,2 @@
+state,state_name,proxy_note
+,,"ACS proxy download failed: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))"
