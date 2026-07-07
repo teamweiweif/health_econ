@@ -1,0 +1,30 @@
+# Local raw data and rebuildable heavy artifacts
+data/
+*/data/
+*/temp/raw_downloads/
+*/temp/intermediate/
+*/temp/model_scratch/
+*/script/__pycache__/
+
+# Large generated formats
+*.parquet
+*.zip
+*.pyc
+*.rds
+*.RData
+*.rda
+*.dta
+*.sas7bdat
+*.ssp
+
+# Raw webpage snapshots can contain embedded service tokens.
+*.html
+
+# Keep GitHub-friendly data audit layers.
+!*/data_metadata/
+!*/data_metadata/**
+
+# OS/editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini
