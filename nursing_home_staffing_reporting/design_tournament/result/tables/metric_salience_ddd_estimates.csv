@@ -1,0 +1,3 @@
+estimand,n,mean_delta,se,outcome,group,treated_n,control_n,diff,p
+overall_post_pre_change_in_targeted_minus_rn_weekend_gap,14836,0.015839157441740442,0.003066183190491499,,,,,,
+high_shadow_price_heterogeneity,14573,,0.006224388860575095,delta_targeted_minus_rn_gap,high_shadow_price,2098.0,12475.0,-0.0050112854890129056,0.4207723299924524

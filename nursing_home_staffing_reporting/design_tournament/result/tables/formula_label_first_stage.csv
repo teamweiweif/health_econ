@@ -1,0 +1,4 @@
+outcome,group,n,treated_n,control_n,diff,se,p
+predicted_formula_loss_size,formula_induced_overall_star_loss,14689,1547,13142,1.0,0.0,
+actual_overall_change_apr_to_jul,formula_induced_overall_star_loss,14653,1544,13109,-0.48148080443092334,0.020822427920169986,0.0
+actual_staffing_change_apr_to_jul,formula_induced_overall_star_loss,14369,1526,12843,0.5555821393338993,0.024142461000500326,0.0

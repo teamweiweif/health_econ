@@ -1,0 +1,2 @@
+design,local_pbj_source_start,feasible_with_current_local_sources,decision,reason
+2018 no-RN downgrade validation,2019-01-01/2019-03-31,False,attempted_infeasible,"Existing PBJ daily source inventory starts in 2019, after the 2018 validation event."

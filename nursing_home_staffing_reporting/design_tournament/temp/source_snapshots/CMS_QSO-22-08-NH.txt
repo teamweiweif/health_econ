@@ -1,0 +1,214 @@
+ DEPARTMENT OF HEALTH & HUMAN SERVICES
+ Centers for Medicare & Medicaid Services
+ 7500 Security Boulevard, Mail Stop C2-21-16
+ Baltimore, Maryland 21244-1850
+
+
+ Center for Clinical Standards and Quality/Quality, Safety and Oversight Group
+
+                                                                               Ref: QSO-22-08-NH
+ DATE:            January 07, 2022
+
+ TO:              CMS Certified Nursing Home Operators
+
+ FROM:            Director
+                  Quality, Safety and Oversight Group
+
+ SUBJECT:         Nursing Home Staff Turnover and Weekend Staffing Levels
+
+                                    Memorandum    Summary
+                                    Memorandum Summary
+   •    CMS will begin posting the following information for each nursing home on the
+        Medicare.gov Care Compare website:
+              o    Weekend Staffing: The level of total nurse and registered nurse (RN) staffing
+                   on weekends provided by each nursing home over a quarter.
+              o    Staff Turnover: The percent of nursing staff and number of administrators that
+                   stopped working at the nursing home over a 12-month period.
+              This information will be added to the Care Compare website in January 2022 and
+              used in the Nursing Home Five Star Quality Rating System in July 2022.
+    •   Posting Detailed Staffing Data: CMS will begin posting the submitted employee-level
+        staffing data for all nursing homes.
+    •   Reminder for Nursing Homes to Link Employee Identifiers when they are changed due
+        to the changes in the facility’s staffing data systems.
+
+
+Background
+Staffing in nursing homes has a substantial impact on the quality of care and outcomes residents
+experience. For more than ten years, CMS has been posting information on facility staffing
+measures on the Medicare.gov website Nursing Home Compare (now known as Care Compare),
+including the average number of hours worked reported for nursing staff, per resident per day.
+These staffing measures are also used to calculate each nursing home’s star rating for the staffing
+rating domain as part of the Nursing Home Five Star Quality Rating System. Over the last several
+years, CMS has made several improvements to the information reported, most notably,
+transitioning to using data electronically submitted through the Payroll-Based Journal (PBJ)
+system, as required under section 1128I(g) of the Social Security Act (the Act) and 42 CFR
+§483.70(q).
+
+After the transition to the use of PBJ data, CMS continued to implement enhancements to the
+information posted on the Care Compare website and used in the Nursing Home Five Star
+Quality Rating System. For example, due to concerns related to low staffing on weekends, in
+November 2018, CMS began identifying facilities with reported low weekend staffing to state
+                                                                                          Page 1 of 5
+agencies and requiring state agencies to conduct surveys in a portion of these facilities on
+weekends (see QSO 19-02-NH). Also, in April 2019, CMS encouraged facilities to improve their
+staffing by adjusting the staffing rating’s methodology by adding new thresholds for staffing
+levels and to increase the weight registered nurse (RN) staffing has on the staffing rating (see
+QSO 19-08-NH).
+
+The information announced in this memorandum further enhances the information available to
+consumers, residents, and families to help support their healthcare decisions and incentivizes
+quality improvement among nursing homes.
+
+Weekend Nurse Staffing
+Since nursing homes submit the number of hours that direct care staff work each day, the data can
+also be used to analyze differences between the level of staffing provided on weekends as compared
+to weekdays. As indicated above, CMS has had concerns related to low staffing on weekends. Also,
+the Office of Inspector General (OIG) analyzed the level of staffing from day to day and raised
+concerns that consumers may not be aware that some nursing homes have considerable variation in
+their daily staffing levels. In August 2020, the OIG recommended that CMS explore ways to
+provide consumers with additional information on nursing homes’ daily staffing levels and
+variability, such as how nursing homes’ weekend staffing compares to that of other nursing homes
+with the same Staffing Star Rating. Furthermore, in April 2021, the OIG noted the impact that
+COVID-19 has had on CMS’ oversight of nursing homes and recommended CMS report measures
+of nurse turnover as soon as practicable.
+
+CMS acknowledged the concerns raised by the OIG and is also concerned that consumers may not
+have a clear understanding of how nursing homes’ staffing levels may change from day to day,
+particularly on weekends. Therefore, CMS will begin posting data on the level of weekend RN and
+total nurse (e.g., RN, licensed practical nurse (LPN), certified nurse aide (CNA)) staffing for all
+nursing homes on the Care Compare website in January 2022. This will be reported in terms of the
+average number of RN and total nurse hours worked per resident per day on weekends.
+Furthermore, to encourage facilities to increase nurse staffing on weekends, CMS will also add the
+measure of total nurse staffing on weekends to the staffing rating domain of the Nursing Home Five
+Star Quality Rating System in July 2022.
+
+Nursing Home Staff Turnover
+In addition to the number of hours of care nursing homes are required to submit, under section
+1128I(g) of the Act, nursing homes are also required to include information on employee
+turnover and tenure. We believe making this information available to consumers will help
+them understand more about each facility’s staffing environment. CMS has previously stated
+that we plan to develop staff turnover measures and post them on Care Compare (see QSO 18-
+17-NH). In doing so, we explored the relationship between staff turnover and quality. For
+example, preliminary (unadjusted) analysis indicates that lower RN, total nurse, and
+administrator turnover are associated with higher Five Star Ratings. The below figure shows
+that the average turnover decreases as overall star ratings increase, suggesting that lower
+turnover is associated with higher overall quality (see Figure 1).
+
+
+
+
+                                                                                        Page 2 of 5
+Figure 1.
+
+
+
+
+This association may be due to a number of factors. For example, facilities with lower nurse
+turnover may have more staff that are familiar with each resident’s condition and may
+therefore be more able to identify a resident’s change in condition sooner. In doing so, the
+facility may be able to implement an intervention to avoid an adverse event, such as a fall,
+acute infection, or hospitalization, which are indicators of quality. Similarly, facilities with
+lower nurse turnover may be more familiar with the facility’s policies and procedures and can
+potentially operate more efficiently and swiftly to deliver a higher quality of care to residents.
+Lastly, facilities with lower administrator turnover may have greater leadership stability,
+direction, and operations, which may help staff provide care more consistently or effectively to
+residents.
+
+That being said, regardless of the cause, the association between turnover and quality is
+important and is valuable to consumers. Therefore, CMS plans to post the following measures
+of staff turnover in January 2022 and include these measures in the staffing domain of the
+Nursing Home Five Star Quality Rating System in July 2022:
+
+   •   The percent of RN staff that left the facility over the last year.
+   •   The percent of total nurse staff that have left the facility over the last year.
+   •   The number of administrators that have left the facility over the last year.
+
+The technical specifications for weekend staffing and staff turnover measures will be included
+in the Five Star Rating System Technical Users’ Guide on January 14, 2022.
+
+Posting Additional Staffing Data
+CMS has a long-standing commitment to transparency. This includes making data available
+for all stakeholders to support their efforts for consumer or resident advocacy, nursing home
+quality improvement, academic research, or other analysis to inform actions for our collective
+efforts to improve residents’ health and safety. For example, after requiring nursing homes to
+submit staffing data through the PBJ system in 2016, CMS quickly began releasing the data in
+2017 (see QSO 17-45-NH). The data posted includes the number of hours staff are reported to
+have worked each day, aggregated by job category and staff type. This information is located
+in the Quality of Care section on the data.cms.gov website and is updated quarterly.
+
+While the current staffing data posted allow stakeholders to conduct a variety of analyses, it
+does not include the level of detail that would enable stakeholders to analyze staff turnover.
+Specifically, it does not include the employee-level data that are needed to identify when a
+staff member begins and ends work at a facility. Therefore, CMS will be posting the
+employee-level staffing data in January 2022 for stakeholders to conduct their own analysis to
+                                                                                           Page 3 of 5
+help improve nursing home staffing.
+
+The employee-level data will be posted in the PBJ section of data.cms.gov on January 26,
+2022. Additionally, CMS will add the measures of turnover and weekend staffing to the
+facility-level files posted on the Provider Data Catalog, in the section for “Nursing homes
+including rehab services.”
+
+Linking Employee Identifiers
+CMS is aware of situations when a facility changes its employee identifiers. For example,
+when facilities change their payroll or time-keeping system, it may be necessary to change its
+employee identifiers. Employee identifiers are used to calculate each facility’s staff turnover
+measures by identifying when each employee starts and stops working at a facility. If a facility
+changes an employee’s identifier, that event is viewed the same as an employee ending their
+work at a facility. Therefore, it is critical that facilities use the methodology to link old and
+new employee identifiers together when these identifiers change. If a facility does not do this,
+it will artificially increase its staff turnover measures, which can be viewed as worse
+performance.
+
+Facilities must link employee identifiers to ensure their turnover measures are accurate. Instructions
+and templates for linking employee identifiers are listed here:
+
+   •   The technical submission XML file template and instructions to create linked IDs can be
+       found here. Depending on your machine settings, this may open as a download and not
+       open in Excel directly.
+
+   •   An XML Schema Definition (XSD) file can be located here. The XSD defines the layout of
+       the XML document, acting as a "data contract" so those providing the XML know what
+       format is to be expected.
+
+   •   Detailed instructions for submitting the XML file are located in section 4 of the PBJ
+       Provider User's Guide located here.
+
+   •   The Linking Methodology document in the downloads section shows examples of when and
+       how the linking is used and some FAQs. This document can be found here.
+
+Closing
+CMS recognizes that each resident, family, or individual seeking nursing home care has their
+own specific needs and goals. The Care Compare website and Nursing Home Five Star
+Quality Rating System are one source of information about nursing homes, but individuals
+should seek other sources as well. For example, we encourage families to visit facilities and
+speak to the administrator, other staff, current residents, or the family or resident councils.
+Through a variety of sources, consumers can find the nursing home that is most suited for their
+needs or the needs of a loved one.
+
+Improving nursing home staffing is a top priority for CMS. There are many different factors
+that impact how nursing homes are staffed, and the PBJ program aims to help us understand
+these factors, how nursing homes are staffed, and how staffing relates to nursing home quality.
+This information can then be used to inform future actions aimed at improving staffing to
+protect and enhance the health and safety of nursing home residents.
+
+                                                                                          Page 4 of 5
+    Contact:
+•   For questions on this memorandum, please email: NHStaffing@cms.hhs.gov.
+•   Technical questions from vendors or software developers related to the data submission
+    specifications should be sent to: NursingHomePBJTechIssues@cms.hhs.gov.
+•   The PBJ website, Policy Manual, and Frequently Asked Questions is available at
+    https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-
+    Instruments/NursingHomeQualityInits/Staffing-Data-Submission-PBJ.html.
+
+    Effective Date: Immediately. This policy should be communicated with all survey and
+    certification staff, their managers, and the State/Regional Office training coordinators within 30
+    days of this memorandum.
+                                                 /s/
+                                           David R. Wright
+
+
+
+
+                                                                                               Page 5 of 5
+

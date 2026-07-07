@@ -1,0 +1,1592 @@
+       Design for Care Compare
+Nursing Home Five-Star Quality Rating
+               System:
+
+       Technical Users’ Guide
+
+
+
+
+            October 2022
+Table of Contents
+    October 2022 Revisions                                                                     iii
+
+          Quality Measure Rating Threshold changes                                             iii
+
+    July 2022 Revisions                                                                        iii
+
+          Changes to the Methodology for the Staffing Rating                                   iii
+
+          Changes to the Methodology for the Overall Quality Rating                            iii
+
+    April 2022 Revisions                                                                       iv
+
+          Quality Measure Rating Threshold changes                                             iv
+
+    January 2022 Revisions                                                                     iv
+
+          Public Reporting of Turnover and Weekend Staffing Information on Medicare.gov Care
+          Compare Website:                                                                     iv
+
+          Changes to Exclusion Rules for Reported Staffing:                                    iv
+
+    Introduction                                                                                1
+
+    Methodology for Constructing Ratings                                                        2
+
+          Health Inspection Domain                                                              2
+
+          Staffing Domain                                                                       6
+
+          Quality Measure Domain                                                               15
+
+    Overall Nursing Home Rating (Composite Measure)                                            22
+
+          Special Focus Facilities                                                             22
+
+          Change in Nursing Home Rating                                                        22
+
+    Appendices                                                                                 24
+
+
+
+
+                                                ii
+October 2022 Revisions
+
+Quality Measure Rating Threshold changes
+
+Effective with the October 2022 refresh, CMS is implementing the planned, regular increases to the
+Quality Measure (QM) rating thresholds, increasing each rating threshold by one-half of the average
+improvement in QM scores since the last time the thresholds were set. For the October 2022 refresh, the
+average improvement was determined from the period of January 2022 – July 2022. The new rating
+thresholds are shown in Table 5 of this document. Note that the point thresholds for individual QMs did
+not change. CMS plans to implement these regular increases every six months.
+
+
+
+July 2022 Revisions
+
+Changes to the Methodology for the Staffing Rating
+
+Effective with the July 2022 refresh, CMS revised the methodology for calculating the Staffing star
+rating. The new rating is based on six separate staffing measures. Similar to the Quality Measure (QM)
+rating, points are assigned based on the performance on each of these six measures. The points are then
+summed and the total staffing score is compared to staffing rating point thresholds to assign a rating of
+one to five stars. The six measures are as follows:
+     • Case-mix adjusted total nurse (RN, LPN/LVN, aide) staffing levels (hours per resident per day)
+     • Case-mix adjusted RN staffing levels (hours per resident per day)
+     • Case-mix adjusted total nurse (RN, LPN/LVN, aide) staffing levels (hours per resident per day)
+         on the weekend
+     • Total nurse turnover, defined as the percentage of nursing staff that left the nursing home over a
+         twelve-month period
+     • Registered Nurse (RN) turnover, defined as the percentage of RN staff that left the nursing home
+         over a twelve-month period
+     • Administrator turnover, defined as the number of administrators who left the nursing home over a
+         twelve-month period.
+Details on the definition of each of these measures and how the staffing rating is calculated based on
+facility performance on these measures are provided in the Staffing Domain section of this document.
+
+
+Changes to the Methodology for the Overall Quality Rating
+
+Effective with the July 2022 refresh, CMS revised the methodology for assigning the overall quality star
+rating. Previously, facilities that obtained a four- or five-star staffing rating, received an additional star in
+their overall star rating. Effective July 2022, only nursing homes with a five-star staffing rating will get an
+increase in their overall star rating. The full methodology for assigning the overall quality star rating
+based on the health inspection rating, the staffing rating and the QM rating is described in the Overall
+Nursing Home Rating section of this document.
+
+                                                       iii
+April 2022 Revisions
+
+Quality Measure Rating Threshold changes
+
+Effective with the April 2022 refresh, CMS implemented the planned, regular increases to the Quality
+Measure (QM) rating thresholds, increasing each rating threshold by one-half of the average improvement
+in QM scores since the last time the thresholds were set. For the April 2022 refresh, the average
+improvement was determined from the period of April 2019 – January 2022. The new rating thresholds
+are shown in Table 5 of this document. Note that the point thresholds for individual QMs did not change.
+
+
+
+January 2022 Revisions
+
+Public Reporting of Turnover and Weekend Staffing Information on Medicare.gov
+Care Compare Website:
+
+Effective with the January 2022 refresh, CMS began posting the following information for each nursing
+home on the Medicare.gov Care Compare website:
+Weekend Staffing: The level of total nurse and registered nurse (RN) staffing on weekends (Saturdays
+and Sundays) provided by each nursing home over a quarter.
+
+Staff Turnover: The percentage of nursing staff and number of administrators that stopped working at the
+nursing home over a 12-month period.
+
+
+Changes to Exclusion Rules for Reported Staffing:
+
+Effective with the January 2022 refresh, several changes were made to the exclusion rules for the total
+nursing and RN hours per resident day measures. These changes do not affect many nursing homes and
+were made to allow staffing levels and staffing ratings to be reported for more nursing homes.
+
+
+
+
+                                                    iv
+Introduction
+In December 2008, the Centers for Medicare & Medicaid Services (CMS) enhanced its Nursing Home
+Compare 1 public reporting site to include a set of quality ratings for each nursing home that participates
+in Medicare or Medicaid. The ratings take the form of several “star” ratings for each nursing home. The
+primary goal of this rating system is to provide residents and their families with an easy way to
+understand assessment of nursing home quality, making meaningful distinctions between high and low
+performing nursing homes.
+
+This document provides a comprehensive description of the design for the Nursing Home Five-Star
+Quality Rating System. This design was developed by CMS with assistance from Abt Associates,
+invaluable advice from leading researchers in the long-term care field who comprise the Technical Expert
+Panel (TEP) for this project, and numerous ideas contributed by consumer and provider groups. All of
+these organizations and groups have continued to contribute their input as the rating system has been
+refined and updated to incorporate newly available data. We believe the rating system offers valuable and
+comprehensible information to consumers based on the best data available. It features an Overall Quality
+Rating of one to five stars based on nursing home performance on three domains, each of which has its
+own rating:
+
+        •   Health Inspections - Measures based on outcomes from state health inspections: Ratings
+            for the health inspections domain are based on the number, scope, and severity of deficiencies
+            identified during the three most recent annual inspection surveys, as well as substantiated
+            findings from the most recent 36 months of complaint investigations and focused infection
+            control surveys. All deficiency findings are weighted by scope and severity. The health
+            inspections rating also takes into account the number of revisits required to ensure that
+            deficiencies identified during health inspection surveys have been corrected.
+        •   Staffing - Measures based on nursing home staffing levels and staff turnover: Ratings for
+            the staffing domain are based on six measures. This includes three nurse staffing level
+            measures (hours per resident per day) and three measures of staff turnover. The staffing
+            measures are derived from data submitted each quarter through the Payroll-Based Journal
+            (PBJ) System, along with daily resident census derived from Minimum Data Set, Version 3.0
+            (MDS 3.0) assessments. The nurse staffing level measures are case-mix adjusted based on the
+            distribution of MDS 3.0 assessments by Resource Utilization Groups, version IV (RUG-IV
+            groups) and cover a single quarter. The turnover measures use six consecutive quarters of
+            PBJ data to define annual turnover for nursing staff and administrators.
+        •   Quality Measures - Measures based on MDS and claims-based quality measures (QMs):
+            Ratings for the quality measures are based on performance on 15 of the QMs that are
+            currently posted on the Care Compare website. These include nine long-stay measures and
+            six short-stay measures. Note that not all the quality measures that are reported on Care
+
+
+
+
+1
+    Nursing Home Compare was retired on December 1, 2020 and replaced with Care Compare, which can be
+    accessed at https://www.medicare.gov/care-compare/.
+
+                                                      1
+            Compare are included in the rating calculations. In addition to an overall quality measure
+            rating, separate QM ratings for short-stay measures and long-stay measures are also reported.
+
+In recognition of the multi-dimensional nature of nursing home quality, Care Compare displays ratings
+for each of these domains along with an overall rating.
+
+A companion document to this Technical Users’ Guide (Nursing Home Compare–Five Star Quality
+Rating System: Technical Users’ Guide–State-Level Cut Point Tables) provides the data for the state-
+level cut points for the health inspection star ratings. The data table in the companion document is
+updated monthly. The cut points for the staffing rating are listed in Table 3 of this Technical Users’
+Guide, and the cut points for the individual staffing measures included in the staffing rating are in
+Appendix Table A2. Table 5 provides the cut points for the QM ratings, and the cut points for the
+individual QMs are in Appendix Table A3.
+
+
+
+Methodology for Constructing Ratings
+
+Health Inspection Domain
+
+Nursing homes that participate in the Medicare and/or Medicaid programs have an onsite recertification
+(standard) “comprehensive” inspection annually on average, with very rarely more than fifteen months
+elapsing between inspections for any one particular nursing home. Inspections are unannounced and are
+conducted by a team of health care professionals who spend several days in the nursing home to assess
+whether the nursing home is in compliance with federal requirements. These inspections provide a
+comprehensive assessment of the nursing home, reviewing facility practice and policies in such areas as
+resident rights, quality of life, medication management, skin care, resident assessment, nursing home
+administration, environment, and kitchen/food services. The methodology for constructing the health
+inspection rating is based on the three most recent recertification surveys for each nursing home,
+complaint deficiencies during the most recent three-year period, deficiencies cited on focused infection
+control surveys in the most recent three-year period, and any repeat revisits needed to verify that required
+corrections have brought the facility back into compliance. The Five-Star Quality Rating System uses
+nearly 400,000 records for the health inspection domain alone.
+
+Scoring Rules
+CMS calculates a health inspection score based on points assigned to deficiencies identified in each active
+provider’s three most recent recertification health inspections, as well as on deficiency findings from the
+most recent three years of complaint inspections and findings from focused infection control surveys.
+
+    •   Health Inspection Results: Points are assigned to individual health deficiencies according to their
+        scope and severity –more serious, widespread deficiencies receive more points, with additional
+        points assigned for substandard quality of care (see Table 1). If the status of the deficiency is
+        “past non-compliance” and the severity is “immediate jeopardy” (i.e., J-, K- or L-level), then
+        points associated with a G- level deficiency are assigned. Two types of health citations – F731
+        (Waiver of requirement to provide licensed nurses on a 24-hour basis) and F884 (COVID-19
+        reporting to the Centers for Disease Control) -- are not considered in the health inspection score
+        calculation (nor are these reported on Nursing Home Care Compare). Additionally, other health
+        citations with a deficiency status code indicating that a waiver has been granted, while displayed
+
+                                                     2
+             on the website, are not included in the health inspection score. Deficiencies from Life Safety
+             surveys are not included in the Five-Star rating calculations. Deficiencies from Federal
+             Comparative Surveys are not reported on Care Compare or included in rating calculations,
+             though the results of State Survey Agency determinations made during a Federal Oversight
+             Survey are included.
+
+        •    Repeat Revisits - Number of repeat revisits required to confirm that correction of deficiencies
+             have restored compliance: No points are assigned for the first revisit; points are assigned only for
+             the second, third, and fourth revisits and are proportional to the health inspection score for the
+             survey cycle (Table 2). If a provider fails to correct deficiencies by the time of the first revisit,
+             then these additional revisit points are assigned up to 85 percent of the health inspection score for
+             the fourth revisit. CMS’ experience is that providers who fail to demonstrate restored compliance
+             with safety and quality of care requirements during the first revisit have lower quality of care than
+             other nursing homes. More revisits are associated with more serious quality problems.
+
+Table 1
+Health Inspection Score: Weights for Different Types of Deficiencies
+                                                                                          Scope
+ Severity
+                                                                 Isolated           Pattern                 Widespread
+ Immediate jeopardy to resident health or safety                 J                  K                       L
+                                                                 50 points*         100 points*             150 points*
+                                                                 (75 points)        (125 points)            (175 points)
+ Actual harm that is not immediate jeopardy                      G                  H                       I
+                                                                 20 points          35 points               45 points
+                                                                                    (40 points)             (50 points)
+ No actual harm with potential for more than minimal harm        D                  E                       F
+ that is not immediate jeopardy                                  4 points           8 points                16 points
+                                                                                                            (20 points)
+ No actual harm with potential for minimal harm                  A                  B                       C
+                                                                 0 point            0 points                0 points
+ Note: Figures in parentheses indicate points for deficiencies that are for substandard quality of care.
+ Shaded cells denote deficiency scope/severity levels that constitute substandard quality of care. See the Electronic Code
+ of Federal Regulations (https://www.ecfr.gov/cgi-bin/text-
+ idx?SID=9c4d022241818fef427dc79565aba4b5&mc=true&node=pt42.5.488&rgn=div5#se42.5.488_1301) for a definition
+ of substandard quality of care.
+ * If the status of the deficiency is “past non-compliance” and the severity is Immediate Jeopardy, then points associated
+ with a ‘G-level” deficiency (i.e., 20 points) are assigned.
+ Source: Centers for Medicare & Medicaid Services
+
+
+
+   Table 2
+   Weights for Repeat Revisits
+    Revisit Number                                   Noncompliance Points
+    First                                            0
+    Second                                           50 percent of health inspection score
+    Third                                            70 percent of health inspection score
+    Fourth                                           85 percent of health inspection score
+    Note: The health inspection score includes points from deficiencies cited on the standard health inspection and
+    complaint inspections during a given survey cycle.
+
+
+                                                             3
+CMS calculates a total weighted health inspection score for each facility (including any repeat revisits).
+Note that a lower survey score corresponds to fewer deficiencies and revisits, and thus better performance
+on the health inspection domain. In calculating the total weighted score, more recent standard surveys are
+weighted more heavily than earlier surveys with the most recent period (rating cycle 1) being assigned a
+weighting factor of 1/2, the previous period (rating cycle 2) having a weighting factor of 1/3, and the
+second prior period (rating cycle 3) having a weighting factor of 1/6. The individual weighted scores for
+each cycle are then summed (after including complaint surveys, focused infection control surveys, and
+revisit points) to create the total weighted health inspection score for each facility.
+
+Complaint inspections and focused infection control surveys are assigned to a time period based on the
+12-month period in which the complaint or infection control survey occurred. Complaint or focused
+infection control surveys that occurred within the most recent 12 months from when the data are uploaded
+receive a weighting factor of 1/2; those from 13-24 months ago have a weighting factor of 1/3, and those
+from 25-36 months ago have a weighting factor of 1/6. There are some deficiencies that appear on both
+standard and complaint inspections. To avoid potential double-counting, deficiencies that appear on
+complaint inspections that are conducted within 15 days of a recertification inspection (either prior to or
+after the recertification inspection) are counted only once. If the scope or severity differs between the two
+inspections, the highest scope-severity combination is used. Deficiencies cited on focused infection
+control surveys are treated slightly differently. If two or more infection control inspections cite the same
+deficiency within a 15-day period, all are included; however, if one or more of these deficiencies was also
+cited on a recertification survey and/or a complaint inspection within the same 15-day window, only the
+infection control citations are included. Points from complaint deficiencies and deficiencies cited on
+infection control surveys from a given period are added to the health inspection score before calculating
+revisit points, if applicable.
+
+For facilities missing data for one period, the health inspection score is determined based on the periods
+for which data are available, using the same relative weights, with the missing (third) survey weight
+distributed proportionately to the existing two inspections using two survey cycles. Specifically, when
+there are only two recertification inspections, the most recent survey cycle receives 60 percent weight and
+the prior cycle receives 40 percent weight. Facilities with only one standard health inspection are
+considered to have insufficient data to determine a health inspection rating and their rating is set to
+missing for the health inspection domain. For these facilities, no overall quality rating is assigned, and no
+ratings are reported for the staffing or QM domains even if data for these domains are available. Care
+Compare will display “Not Available” for these facilities.
+
+Rating Methodology
+Health inspections are based on federal regulations, which surveyors implement using national
+interpretive guidance and a federally specified survey process. Federal staff train state inspectors and
+oversee state performance. The federal oversight includes quality checks based on a 5 percent sample of
+the health inspections performed by states, in which federal inspectors either accompany state inspectors
+or replicate the inspection within 60 days of the state and then compare results. These control systems are
+designed to improve consistency in the survey process. Nonetheless there remains variation among states
+in both inspection process and outcomes. Such variation derives from many factors, including:
+
+        •   Survey Management: Variation among states in the skill sets of inspectors, supervision of
+            inspectors, and the inspection processes;
+        •   State Licensure: State licensing laws set forth different expectations for nursing homes and
+            affect the interaction between state enforcement and federal enforcement (for example, a few
+                                                      4
+            states conduct many complaint investigations based on state licensure, and issue citations
+            based on state licensure rather than on the federal regulations);
+        •   Medicaid Policy: Medicaid pays for the largest proportion of long-term care in nursing
+            homes. Nursing home eligibility rules, payment, and other policies in the state-administered
+            Medicaid program may be associated with differences in survey outcomes.
+For the above reasons, CMS bases Five-Star quality ratings in the health inspection domain on the relative
+performance of facilities within a state. This approach helps control for variation among states. CMS
+determines facility ratings using these criteria:
+
+        •   The top 10 percent (with the lowest health inspection weighted scores) in each state receive a
+            health inspection rating of five stars.
+        •   The middle 70 percent of facilities receive a rating of two, three, or four stars, with an equal
+            number (approximately 23.33 percent) in each rating category.
+        •   The bottom 20 percent receive a one-star rating.
+
+Rating thresholds are re-calibrated each month so that the distribution of star ratings within states remains
+relatively constant over time. However, the rating for a given facility is held constant until there is a
+change in the weighted health inspection score for that facility, regardless of changes in the statewide
+distribution. Items that could change the health inspection score include the following:
+
+        •   A new health inspection
+        •   A complaint investigation or focused infection control survey that results in one or more
+            deficiency citations
+        •   A second, third, or fourth revisit
+        •   Resolution of Informal Dispute Resolutions (IDR) or Independent Informal Dispute
+            Resolutions (IIDR) resulting in changes to the scope and/or severity of deficiencies
+
+        •   The “aging” of complaint and/or focused infection control deficiencies. Specifically, as noted
+            above, findings from complaint and infection control surveys are assigned to a time period
+            based on the 12-month period in which the survey occurred; thus, when a citation from a
+            complaint or infection control survey ages into a different cycle, it receives less weight in the
+            scoring process, resulting in a lower health inspection score and potentially a change in health
+            inspection rating.
+
+In the very rare case that a state or territory has fewer than five facilities upon which to generate the cut
+points, the national distribution of health inspection scores is used. Cut points for the health inspection
+ratings can be found in the Cut Point Table in the companion document to this Technical Users’ Guide:
+Five Star Quality Rating System State-Level Cut Point Tables available in the ‘downloads’ section at:
+https://www.cms.gov/medicare/provider-enrollment-and-
+certification/certificationandcomplianc/fsqrs.html.
+
+
+
+
+                                                       5
+Rating Methodology for Facilities with Abuse Citation(s) To make it easier for consumers to
+identify facilities with instances of non-compliance related to abuse, Care Compare includes an
+icon that identifies facilities that meet either of the following criteria:
+    1) Harm-level abuse citation in the most recent survey cycle: Facilities cited for abuse 2 where
+       residents were found to be harmed (Scope/Severity of G or higher) on the most recent standard
+       survey or on a complaint or focused infection control survey within the past 12 months.
+    2) Repeat abuse citations: Facilities cited for abuse where residents were found to be potentially
+       harmed (Scope/Severity of D or higher) on the most recent standard survey or on a complaint or
+       focused infection control survey within the past 12 months and on the previous (i.e., second most
+       recent) standard survey or on a complaint survey in the prior 12 months (i.e., from 13 to 24
+       months ago).
+
+Nursing homes that receive the abuse icon have their health inspection rating capped at a maximum of
+two stars. Due to the methodology used to calculate the overall rating, the best overall rating a facility that
+receives the abuse icon can have is four stars. The abuse icon (and the cap on the health inspection rating)
+will be removed as of the first monthly website refresh following when a nursing home no longer meets
+the abuse icon criteria.
+
+Staffing Domain
+
+There is considerable evidence of a relationship between nursing home staffing levels and resident
+outcomes. The CMS Staffing Study 3, among other research, found a clear association between nurse
+staffing ratios and nursing home quality of care. There is also a growing body of evidence on the
+relationship between staff turnover and resident outcomes, with higher turnover associated with poorer
+quality of care. 4
+
+The rating for staffing is based on six measures. Detailed specifications for each of these measures is
+provided below. The six measures are as follows:
+
+    •   Case-mix adjusted total nursing hours per resident day (registered nurse (RN) + licensed practical
+        nurse (LPN) + nurse aide hours) for a quarter averaged across all days (weekdays and weekends)
+
+    •   Case-mix adjusted RN hours per resident day for a quarter, averaged across all days (weekdays
+        and weekends)
+
+
+2
+    Note that abuse is identified as having received a deficiency of any of these tags: F600 (Protect each resident
+    from all types of abuse, such as physical, mental, sexual abuse, physical punishment, and neglect by anybody);
+    F602 (Protect each resident from the wrongful use of the resident's belongings or money); F603 (Protect each
+    resident from separation from other residents, his/her room, or confinement to his/her room); F223 (Protect each
+    resident from all abuse, physical punishment, and involuntary separation from others); and F224 (Protect each
+    resident from mistreatment, neglect, and misappropriation of personal property).
+3
+    Kramer AM, Fish R. “The Relationship Between Nurse Staffing Levels and the Quality of Nursing Home
+    Care.” Chapter 2 in Appropriateness of Minimum Nurse Staffing Ratios in Nursing Homes: Phase II Final
+    Report. Abt Associates, Inc., Winter 2001.
+4
+    Zheng Q, Williams CS, Shulman ET, White AJ. Association between staff turnover and nursing home quality -
+    evidence from payroll-based journal data. Journal of the American Geriatrics Society. May 2022.
+    doi:10.1111/jgs.17843
+
+                                                         6
+    •   Case-mix adjusted total nursing hours per resident day (RN + LPN + nurse aide hours) for a
+        quarter averaged across all weekend days (Saturdays and Sundays)
+
+    •   The percentage of nursing staff that left the nursing home over a twelve-month period.
+
+    •   The percentage of RNs that left the nursing home over a twelve-month period.
+
+    •   The number of administrators that left the nursing home over a twelve-month period.
+
+The source for reported staffing hours is the Payroll-Based Journal (PBJ) system. 5 These data are
+submitted quarterly and are due 45 days after the end of each reporting period. Only data submitted and
+accepted by the deadline are used by CMS for staffing calculations and in the Five-Star Rating System.
+The resident census is based on a daily resident census measure that is calculated by CMS using MDS
+assessments.
+
+Specifications for the nurse staffing level measures
+
+The specific PBJ job codes that are used in the RN, LPN, and nurse aide hour calculations are:
+
+        •   RN hours: Includes RN director of nursing (job code 5), registered nurses with administrative
+            duties (job code 6), and registered nurses (job code 7).
+        •   LPN hours: Includes licensed practical/licensed vocational nurses with administrative duties
+            (job code 8) and licensed practical/vocational nurses (job code 9)
+        •   Nurse aide hours: Includes certified nurse aides (job code 10), aides in training (job code 11),
+            and medication aides/technicians (job code 12)
+
+Note that the PBJ staffing data include both facility employees (full-time and part-time) and individuals
+under an organization (agency) contract or an individual contract. The PBJ staffing data do not include
+“private duty” nursing staff reimbursed by a resident or his/her family. Also not included are hospice staff
+and feeding assistants.
+
+The daily resident census, used in the denominator of the reported nurse staffing ratios, is derived
+from MDS resident assessments and is calculated as follows:
+
+    1. Identify the reporting period (quarter) for which the census will be calculated (e.g., CY 2021 Q2:
+       April 1–June 30, 2021).
+
+    2. Extract MDS assessment data for all residents of a facility beginning one year prior to the
+       reporting period to identify all residents that may reside in the facility (i.e., any resident with an
+       MDS assessment may still reside in the facility). For example, for the CY 2021 Q2 reporting
+       period, extract MDS data from April 1, 2020 through June 30, 2021.
+
+    3. Identify discharged/deceased residents using the following criteria:
+            a) If a resident has an MDS Discharge assessment or Death in Facility tracking record, use
+               the date reported on that assessment and assume that the resident no longer resides in the
+               facility as of the date of discharge/death on the last assessment. In the case of discharges,
+
+5
+    More detailed information about the PBJ system is available at: https://www.cms.gov/Medicare/Quality-
+    Initiatives-Patient-Assessment-Instruments/NursingHomeQualityInits/Staffing-Data-Submission-PBJ.html
+
+                                                       7
+                if there is a subsequent admission assessment, then assume that the resident re-entered the
+                nursing home on the entry date indicated on the entry assessment.
+            b) For any resident with an interval of 150 days or more with no assessments, assume the
+               resident no longer resides in the facility as of the 150th day from the last assessment.
+               (This assumption is based on the requirement for facilities to complete MDS assessments
+               on all residents at least quarterly). If no assessment is present, assume the resident was
+               discharged, but the facility did not transmit a Discharge assessment.
+
+For any particular date, residents whose assessments do not meet the criteria in #3 above prior to that date
+are assumed to reside in the facility. The count of these residents is the census for that particular day.
+
+MDS assessments for a given resident are linked using the Resident Internal ID. The Resident Internal ID
+is a unique number, assigned by the Quality Improvement Evaluation System (QIES) Assessment
+Submission and Processing (ASAP) system, which identifies a resident. The combination of state and
+Resident Internal ID uniquely identifies a resident in the national repository. The process by which the
+Resident Internal ID is created is described by the MDS 3.0 Provider User’s Guide - Appendix B
+(https://qtso.cms.gov/system/files/qtso/Users_AppB.pdf ). The following MDS items are used to define
+the Resident Internal ID:
+
+        •   State ID
+        •   Facility Internal ID (QIES ASAP system number)
+        •   Social Security Number (SSN)
+        •   Last Name
+        •   First Name
+        •   Date of Birth
+        •   Gender
+
+Therefore, in order to achieve an accurate census, it is imperative that, in addition to having complete
+assessment data for each resident including Discharge assessment data, residents are assigned correct
+Resident Internal IDs. To facilitate this, providers must ensure that MDS items, in particular the items
+indicated above, are entered correctly on each assessment. Providers must also carefully monitor the Final
+Validation Report, generated upon MDS submission, for any errors. Providers should work with their
+State RAI Coordinator or State Automation Coordinator to correct any errors that arise during assessment
+submission. In addition to using their Final Validation Report to validate the file structure and data
+content of each successful MDS submission, providers can monitor their MDS data using additional
+Certification and Survey Provider Enhanced Reports (CASPER) Reports. There are CASPER Reports for
+MDS Census Summary (returns resident count per day), MDS Census Detail (returns list of Resident
+Internal IDs counted per day), Admissions, Discharges, Duplicate Residents, Errors, and Daily Rosters,
+among others. Full descriptions of these reports are available in Section 6 of the CASPER Reporting
+MDS Provider User’s Guide available at the following link: https://qtso.cms.gov/system/files/2018-
+03/cspr_sec6_mds_prvdr.pdf. Information about Final Validation Reports and error messages in the
+reports is available in Sections 4 and 5 of the MDS 3.0 Provider User's Guide
+(https://qtso.cms.gov/reference-and-manuals/mds-30-provider-users-guide).
+
+The nurse staffing hours reported through PBJ and the daily MDS census are both aggregated (summed)
+across the quarterly reporting period. The quarterly reported nurse staffing hours per resident day are then
+                                                     8
+calculated by dividing the aggregate reported hours by the aggregate resident census. Only days that have
+at least one resident are included in the calculations. Total nurse staffing on the weekends is similarly
+calculated with both the numerator (reported nurse staffing hours) and the denominator (resident census)
+aggregated (summed) across all weekend days (Saturdays and Sundays) in the quarterly reporting period.
+
+CMS uses a set of exclusion criteria to identify facilities with highly improbable PBJ staffing data and
+nurse staffing levels are not reported for these facilities (“Not Available” is displayed on the Care
+Compare website). Some of these nursing homes will also not receive a staffing rating; however, some
+will receive a one-star staffing rating due to scoring exceptions. The exclusion criteria are as follows:
+
+         •   Total nurse staffing (job codes 5-12), aggregated over all days in the quarter with at least one
+             resident, is zero (0 hours per resident per day). 6
+         •   Total nurse staffing (job codes 5-12), aggregated over all weekend days in the quarter with at
+             least one resident, is zero (0 hours per resident per day).
+         •   Total nurse staffing (job codes 5-12), aggregated over all days in the quarter with at least one
+             resident, is excessively high (>12 hours per resident day).
+         •   Total nurse staffing (job codes 5-12), aggregated over all weekend days in the quarter with at
+             least one resident, is excessively high (>12 hours per resident day).
+         •   Nurse aide staffing (job codes 10-12), aggregated over all days in the quarter with at least one
+             resident, is excessively high (>5.25 hours per resident day).
+
+         •   Nurse aide staffing (job codes 10-12), aggregated over all weekend days in the quarter with at
+             least one resident, is excessively high (>5.25 hours per resident day).
+
+Case-Mix Adjustment
+CMS adjusts the reported staffing ratios for case-mix, using the Resource Utilization Group (RUG-IV)
+case-mix system. The CMS Staff Time Resource Intensity Verification (STRIVE) Study measured the
+average number of RN, LPN, and nurse aide minutes associated with each RUG-IV group (using the 66
+group version of RUG-IV). These are referred to as “case-mix hours”. 7
+
+CMS calculates case-mix adjusted hours per resident day for each facility for each staff type using this
+formula:
+
+                     Hours Adjusted = (Hours Reported/Hours Case-Mix) * Hours National Average
+
+The reported hours are those reported by the facility through PBJ as described above. National average
+hours for a given staff type represent the national mean of case-mix hours across all facilities active on the
+last day of the quarter that submitted valid nurse staffing data for the quarter. The National Average
+Hours are updated every quarter and will be available in the State US Averages table in the Provider Data
+Catalog on CMS.gov (https://data.cms.gov/provider-data/ ).
+
+
+
+
+6
+    Note that, prior to January 2022, nursing homes with total nurse staffing < 1.5 hours per resident day were
+    excluded.
+7
+    Note that the term “case-mix hours” replaces the term “expected hours” that was used prior to April 2019.
+
+                                                          9
+The case-mix values for each nursing home are based on the daily distribution of residents by RUG-IV
+group in the quarter covered by the PBJ reported staffing and estimates of daily RN, LPN, and nurse aide
+hours from the CMS STRIVE Study (see Table A1). Specifically, case-mix nurse staffing hours per
+resident day for a given nursing home are calculated as follows:
+
+    1) The MDS is used to assign a RUG-IV group to each resident for each day in the quarter. The
+       method is similar to that used for calculating the daily MDS census and is described below.
+    2) This information is aggregated to generate a count of residents in each of the 66 RUG-IV groups
+       in the nursing home for each day in the quarter. RUG-IV groups that are not represented on a
+       given day are assigned a count of zero. Residents for whom there is insufficient MDS information
+       to assign a RUG-IV category are not included.
+    3) Based on the number of residents in each RUG-IV group, case-mix total nursing and RN hours
+       are calculated by multiplying by nursing time estimates for each RUG-IV group from the
+       STRIVE study (Table A1).
+    4) Aggregate case-mix nursing and RN hours for the quarter are calculated by summing across all
+       days and RUG-IV groups. These are the numerators in the calculations of case-mix total nursing
+       and RN hours per resident day. The denominator for these calculations is the count of the total
+       number of resident-days in the quarter for which there is a valid RUG-IV group.
+    5) Case-mix total nursing and RN hours per resident day for each nursing home are calculated by
+       dividing aggregate case-mix hours (total nursing or RN) by the number of resident-days. Due to
+       an extremely high correlation (>0.99) between facility case-mix values on the weekends and that
+       calculated for all days in the quarter, the case-mix value for all days in the quarter is used for
+       calculating the case-mix adjusted total nurse staffing on the weekends.
+
+To determine the number of residents in each RUG-IV grouping for each day of the quarter for each
+nursing home, the same algorithm is used as that used to generate the daily MDS census (with slight
+adjustment to count RUG-IV groupings specifically, instead of just counting residents):
+
+    1) Identify the reporting period (quarter) for which the RUG groupings will be collected (e.g., CY
+       2021 Q2: April 1–June 30, 2021).
+    2) Extract MDS assessment data (including RUG-IV 66 Hierarchical group) for all residents of a
+       facility beginning one year prior to the reporting period to identify all residents that may reside in
+       the nursing home (i.e., any resident with an MDS assessment may still reside in the nursing
+       home). For example, for the CY 2021 Q2 reporting period, MDS data from April 1, 2020 through
+       June 30, 2021 were extracted.
+    3) Identify discharged/deceased residents using the following criteria:
+        a) If a resident has an MDS Discharge assessment or Death in Facility tracking record, use the
+           date reported on that assessment and assume that the resident no longer resides in the nursing
+           home as of the date of discharge/death on the last assessment. In the case of discharges, if
+           there is a subsequent admission assessment, then assume that the resident re-entered the
+           nursing home on the entry date indicated on the admission assessment.
+        b) For any resident with an interval of 150 days or more with no MDS assessments, assume the
+           resident no longer resides in the nursing home as of the 150th day from the last assessment.
+           (This assumption is based on the requirement for facilities to complete MDS assessments on
+           all residents at least quarterly). If no assessment is present, it is assumed the resident was
+           discharged, but the nursing home did not transmit a Discharge assessment.
+
+
+
+                                                     10
+For any particular date, residents whose assessments do not meet the criteria in #3 above prior to that date
+are assumed to reside in the nursing home. The RUG IV 66 Hierarchical group assigned to those residents
+on their most recent assessments as of that date are used to determine the RUG-IV distribution for that
+nursing home on that date. The calculations of “case-mix”, “reported”, and “national average” hours are
+made separately for RNs and for all nursing staff (both for the full week and for weekends). Adjusted
+hours are also calculated for both groups using the formula provided earlier in this section.
+
+A downloadable file that contains the “case-mix”, “reported” and “adjusted" hours used in the staffing
+calculations is included in the nursing home provider information data table available in the Provider Data
+Catalog on CMS.gov (https://data.cms.gov/provider-data/).
+
+Specifications for Staff Turnover Measures
+
+Three staff turnover measures are reported on the Care Compare website and included in the staffing
+rating: total nurse, registered nurse (RN), and nursing home administrator turnover.
+The turnover measures are derived based on data from the Centers for Medicare and Medicaid Services
+(CMS) Payroll-Based Journal (PBJ) System. Using data submitted through PBJ, annual turnover
+measures for RNs, total nurses (RNs, licensed practical/licensed vocational nurses (LPNs), and nurse
+aides), and nursing home administrators are constructed. The PBJ job codes included in turnover
+measures for RNs and total nurses are consistent with those used for the staffing level measures reported
+on the Medicare.gov Care Compare website. Specifically, below are the definitions that are used for the
+staff types included in the turnover measures:
+    •   RNs: Includes RN director of nursing (job code 5), RNs with administrative duties (job code 6),
+        and RNs (job code 7)
+
+    •   Total Nurses: Includes RN director of nursing (job code 5), RNs with administrative duties (job
+        code 6), RNs (job code 7), LPNs with administrative duties (job code 8), LPNs (job code 9),
+        certified nurse aides (job code 10), aides in training (job code 11), and medication
+        aides/technicians (job code 12)
+
+    •   Nursing home administrators (job code 1)
+
+
+Note that the calculation of the annual turnover measures requires six consecutive quarters of PBJ data
+(See Figure 1). Data from a baseline quarter (prior to the first quarter covered by the turnover measures)
+along with the first two quarters covered by the turnover measures are used for identifying employees
+who are eligible to be included in the turnover measure. Data from the quarter after the four-quarter
+period covered by the turnover measures are used to identify the gaps in days worked in the last 60 days
+of the fourth quarter used for the turnover measure.
+
+
+
+
+                                                    11
+        Figure 1: Time Period Used for Calculating Turnover Measures
+
+
+
+
+Staff turnover measures are constructed using the daily staffing information submitted through the PBJ
+system. Turnover is identified based on gaps in days worked, allowing the creation of a turnover measure
+that is defined the same way across all nursing homes and that does not depend on termination dates
+reported by nursing homes. Individuals are identified based on the employee system ID and nursing home
+identifiers in the PBJ data.
+
+    •   Denominator: The turnover measures include only individuals who work at least 120 hours in a
+        90-day period across the baseline quarter (the quarter prior to the first quarter used in the turnover
+        calculation) and the first two quarters used in the turnover calculation. For example, the turnover
+        calculation for calendar year 2021 includes in the denominator, individuals who worked 120 or
+        more hours in any 90-day period with the first workday of the 90-day period occurring in
+        2020Q4-2021Q2 (October 1, 2020 through June 30, 2021). This specification excludes
+        individuals who work infrequently (e.g., occasionally covering shifts at a nursing home). Note
+        that both regular employees and agency staff are included in the turnover measure if they work
+        sufficient hours to be eligible for the denominator.
+
+    •   Numerator: Individuals who no longer work at the nursing home are defined as eligible
+        individuals who have a period of at least 60 consecutive days in which they do not work at all.
+        The 60-day gap must start during the period covered by the turnover measure. This lengthy period
+        without any reported work hours suggests that the individual is no longer working at the nursing
+        home. For example, the numerator for turnover in 2021 includes eligible employees who had a
+        60-day gap that started anytime during the year. The turnover date is defined as the last workday
+        prior to the start of the 60-day gap. Note that data from the quarter after the period covered by the
+        turnover measure are required to identify gaps that start within 60 days of the end of the period
+        covered by the turnover measure. For example, data from 2022Q1 are used to identify 60-day
+        gaps that started between November 2, 2021 and December 31, 2021.
+
+Note that individuals who return to the nursing home after a gap of more than 60 days can have multiple
+‘employment spells’ used in the turnover calculation if they meet the eligibility requirement for
+subsequent employment spell(s). Essentially, they are treated as new employees.
+
+    •   Exclusions: Several types of nursing-home level exclusion criteria are applied:
+                                                     12
+            o   Nursing homes that failed to submit staffing data or submitted data that are considered
+                invalid (using the current exclusion rules for the staffing domain) for one or more of the
+                quarters used to calculate the turnover measures are excluded (see staffing domain
+                section above for more details). Turnover measures will not be reported or used in the
+                staffing rating until the quarter(s) with missing or invalid data are no longer included in
+                the turnover measure calculation period (six quarters). Additionally, if a nursing home
+                has no resident census information (derived from MDS assessments and needed for the
+                calculation of staffing levels), the nursing home is excluded. These are the same
+                exclusion rules used for the nurse staffing measures described above. Additionally,
+                nursing homes that failed an audit of the PBJ staffing data for one of the covered quarters
+                are excluded.
+
+            o   Nursing homes are excluded from the total nurse staffing and RN turnover measures if
+                they have fewer than five eligible nurses (RNs, LPNs, and nurse aides) in the
+                denominator. The purpose of this exclusion rule is to increase the stability of the turnover
+                measures. Note that for the nursing home administrator turnover measure, the minimum
+                requirement is one eligible administrator since most nursing homes have only one nursing
+                home administrator.
+
+            o   For the total nurse staffing and RN turnover measures, nursing homes with 100 percent
+                daily total nurse staffing turnover for any day in the six quarter period on which there
+                were at least five eligible nurse staff are excluded. 100 percent daily turnover is typically
+                the result of changes in the employee IDs used by nursing homes. Since gaps in days
+                worked are identified based on the employee and nursing home IDs reported in the PBJ
+                data, a change in employee IDs can result in a 100 percent turnover rate on a particular
+                day (i.e., the day that the nursing home started using the new identifier), which reflects
+                the change in the employee IDs and not actual staff turnover.
+
+            o   For the administrator turnover measure, nursing homes that submitted no administrator
+                data for one or more of the six required quarters are excluded.
+
+            o   For the administrator turnover measure, nursing homes that submitted PBJ data
+                suggesting an erroneously high number of administrators are excluded. Specifically, if a
+                nursing home reports administrator hours (job code 1) for five or more individuals (based
+                on employee IDs) on 12 or more days during the three-quarter denominator eligibility
+                period, the administrator turnover measure will be excluded.
+
+    •   Turnover calculation: Annual turnover measures are constructed. For the total nurse and RN
+        turnover measures, the annual turnover percentage is calculated using this formula:
+
+(Total number of employment spells that ended in turnover)/(Total number of eligible employment spells)
+
+        Using this specification, the maximum turnover rate is 100 percent.
+
+Nursing home administrator turnover is measured as the total number of administrators that left the
+nursing home during the period covered by the turnover measures.
+
+
+                                                     13
+Scoring Rules for the Staffing Measures
+Points are assigned to each of the six staffing measures. For five of the measures (all except administrator
+turnover), the points are determined based on deciles. For the staffing level measures, more points are
+assigned for higher case-mix adjusted staffing levels. For the turnover measures, more points are assigned
+for lower turnover. Weights for the measures (maximum possible points) are as follows:
+
+    •   For case-mix adjusted total nurse staffing and case-mix adjusted RN staffing, a maximum of
+        100 points is assigned. Nursing homes are grouped into deciles based on the national distribution of
+        each measure. Nursing homes in the lowest decile receive 10 points. Points are increased in 10-
+        point increments so that nursing homes in the highest decile receive 100 points.
+
+    •   For case-mix adjusted total nurse staffing on the weekends, a maximum of 50 points is assigned.
+        Nursing homes are grouped into deciles based on the national distribution of each measure.
+        Nursing homes in the lowest decile receive 5 points. Points are increased in 5-point increments so
+        that nursing homes in the highest decile receive 50 points.
+
+    •   For total nurse turnover and RN turnover, a maximum of 50 points is assigned. Nursing homes
+        are grouped into deciles based on the national distribution of each measure. Nursing homes in the
+        decile with the highest turnover receive 5 points. Points are increased in 5-point increments so that
+        nursing homes in the decile with the lowest turnover receive 50 points.
+
+    •   For administrator turnover, a maximum of 30 points is assigned. Nursing homes with no
+        administrator departures during the measurement period receive 30 points; nursing homes with one
+        administrator departure receive 25 points; and nursing homes with two or more administrator
+        departures during the annual measurement period receive 10 points.
+
+The cut points for each of the staffing measures are based on the national distribution of the measures
+including data through the first calendar quarter of 2022. These cut points are listed in Appendix Table A2.
+
+Rating Methodology
+Once points are assigned for each of the six staffing measures, these points are summed to provide a total
+staffing score for each nursing home. There is a maximum of 380 possible points. No staffing rating is
+assigned to nursing homes with reported nurse staffing levels for the quarter that are considered invalid
+according to the staffing level exclusion rules described previously. However, if a nursing home has valid
+data for the nurse staffing level measures but is missing one or more of the turnover measures, a rating will
+be assigned based on the staffing level measures and any available turnover measures. These nursing homes
+will have a maximum possible score of less than 380 points; thus, their staffing score is rescaled according
+to the following formula:
+
+Total staffing points for available measures X (380/maximum possible points based on available measures)
+
+Note that this formula rescales a nursing home’s score so that the rescaled score has a maximum of 380
+points and is equivalent to assigning the nursing home’s average points on the available measures to the
+measures that are missing. After any necessary rescaling, the staffing rating is assigned based on the point
+thresholds shown in Table 3.
+
+
+
+
+                                                      14
+Table 3
+Point Ranges for the Staffing Rating (maximum possible score = 380 points)
+        1 star                2 stars                 3 stars                4 stars                 5 stars
+
+        < 155                155 - 204               205 - 254              255 - 319               320 - 380
+
+Note: These cut points are applied after any necessary rescaling of the staffing score to have a maximum possible
+value of 380 points. The rescaled score is rounded to the nearest integer. Cut points for each of the six measures
+that contribute to the total staffing Score are shown in Appendix Table A2.
+
+
+
+Scoring Exceptions
+The following are exceptions to the scoring rules (described previously) for assigning the staffing rating:
+
+        •   Providers that fail to submit any staffing data by the required deadline will receive a one-star
+            staffing rating for the quarter.
+        •   Providers that submit staffing data indicating that there were four or more days in the quarter
+            with no RN staffing hours (job codes 5-7) on days when there were one or more residents in
+            the nursing home will receive a one-star staffing rating for the quarter.
+        •   CMS conducts audits of nursing homes to verify the data submitted and to ensure accuracy.
+            Facilities that fail to respond to these audits and those for which the audit identifies
+            significant discrepancies between the hours reported and the hours verified will receive a one-
+            star staffing rating for three months from the time at which the deadline to respond to audit
+            requests passes or discrepancies are identified. If repeat audits identify the same discrepancy,
+            the timeframe for the staffing rating downgrade may be extended.
+
+Quality Measure Domain
+
+A set of quality measures (QMs) has been developed from Minimum Data Set (MDS) and Medicare
+claims data to describe the quality of care provided in nursing homes. These measures address a broad
+range of function and health status indicators. Most nursing homes will have three QM ratings–an overall
+QM rating, a long-stay QM rating, and a short-stay QM rating. For nursing homes that have only long-
+stay or only short-stay QMs, the overall QM rating is equal to their long-stay or short-stay QM rating.
+QM ratings are based on performance on a subset of 10 MDS-based QMs and five measures that are
+created using Medicare claims. These measures were selected for use in the rating system based on their
+validity and reliability, the extent to which nursing home practice may affect the measures, statistical
+performance, and the importance of the measures.
+
+Measures for Long-Stay residents (defined as residents who are in the nursing home for greater than 100
+days) that are derived from MDS assessments:
+
+    •   Percentage of long-stay residents whose need for help with daily activities has increased
+    •   Percentage of long-stay residents whose ability to move independently worsened
+    •   Percentage of long-stay high-risk residents with pressure ulcers
+    •   Percentage of long-stay residents who have or had a catheter inserted and left in their bladder
+    •   Percentage of long-stay residents with a urinary tract infection
+
+                                                        15
+    •   Percentage of long-stay residents experiencing one or more falls with major injury
+    •   Percentage of long-stay residents who got an antipsychotic medication
+
+Measures for Long-Stay residents that are derived from claims data:
+
+    •   Number of hospitalizations per 1,000 long-stay resident days
+
+    •   Number of outpatient emergency department (ED) visits per 1,000 long-stay resident days
+
+Measures for Short-Stay residents that are derived from MDS assessments:
+
+    •   Percentage of short-stay residents who improved in their ability to move around on their own
+    •   Percentage of Skilled Nursing Facility (SNF) residents with pressure ulcers/pressure injuries that
+        are new or worsened
+    •   Percentage of short-stay residents who got antipsychotic medication for the first time
+Measures for Short-Stay residents that are derived from claims data:
+
+    •   Percentage of short-stay residents who were re-hospitalized after a nursing home admission
+        •   Percentage of short-stay residents who have had an outpatient emergency department (ED)
+            visit
+        •   Rate of successful return to home and community from a SNF
+
+Table 4 contains more detailed information on these measures. Technical specifications for all of the
+measures are available in the downloads section at https://www.cms.gov/medicare/quality-initiatives-
+patient-assessment-instruments/nursinghomequalityinits/nhqiqualitymeasures.html.
+
+Values for four of the MDS-based QMs (Percentage of long-stay residents whose ability to move
+independently, Percentage of long-stay residents who have or had a catheter inserted and left in their
+bladder, Percentage of short-stay residents who improved in their ability to move around on their own,
+Percentage of SNF residents with pressure ulcers/pressure injuries that are new or worsened) are risk
+adjusted, using resident-level covariates that adjust for resident factors associated with differences in the
+performance on the QM. For example, the catheter risk-adjustment model takes into account whether or
+not residents had bowel incontinence or pressure sores on the prior assessment. All of the claims-based
+measures are risk adjusted. Risk-adjustment for the hospitalization and ED visit measures incorporates
+items from Medicare enrollment data and Part A claims and information from the first MDS assessment
+associated with the nursing home stay. Risk adjustment for the rate of successful return to home and
+community from a SNF measure uses data derived from Medicare enrollment data and Part A claims. The
+risk-adjustment methodology is described in more detail in the technical specification documents
+referenced above. CMS calculates ratings for the QM domain using the four most recent quarters for
+which data are available (except the rate of successful return to home and community from a SNF that
+uses a two-year period). The time period specifications were selected to increase the number of
+assessments available for calculating the QM rating. This increases the stability of estimates and reduces
+the amount of missing data. The adjusted four-quarter QM values for each of the MDS-based QMs used
+in the five-star algorithm, except the short-stay pressure ulcer/injury measure are computed as follows:
+
+
+
+                                                     16
+Where QM Q1, QM Q2, QM Q3, and QM Q4 correspond to the adjusted QM values for the four most recent
+quarters and DQ1, DQ2, and DQ3 DQ4 are the denominators (number of eligible residents for the particular
+QM) for the same four quarters.
+
+Values for the claims-based measures and the short-stay pressure ulcer/pressure injury measure are
+calculated in a similar manner, except that the data used to calculate the measures use a full year (or two
+years) of data rather than being broken out separately by quarter.
+
+Table 4 Quality Measures Used in the Five-Star Quality Measure Rating Calculation
+ Measure                          Comments
+ MDS Long-Stay Measures
+ Percentage of residents          This measure is a change measure that reports the percentage of long-stay
+ whose ability to move            residents who have demonstrated a decline in independence of locomotion when
+ independently worsened           comparing the target assessment to a prior assessment. Residents who lose
+                                  mobility may also lose the ability to perform other activities of daily living, like
+                                  eating, dressing, or getting to the bathroom.
+ Percentage of residents          This measure reports the percentage of long-stay residents whose need for help
+ whose need for help with         with late-loss Activities of Daily Living (ADLs) has increased when compared to
+ daily activities has             the prior assessment. This is a change measure that reflects worsening
+ increased                        performance on at least two late loss ADLs by one functional level or on one late
+                                  loss ADL by more than one functional level compared to the prior assessment.
+                                  The late loss ADLs are bed mobility, transfer, eating, and toileting. Maintenance
+                                  of ADLs is related to an environment in which the resident is up and out of bed
+                                  and engaged in activities. The CMS Staffing Study found that higher staffing
+                                  levels were associated with lower rates of increasing ADL dependence.
+ Percentage of high-risk          This measure captures the percentage of long-stay, high-risk residents with
+ residents with pressure          Stage II-IV or unstageable pressure ulcers. Residents at high risk for pressure
+ ulcers                           ulcers are those who are impaired in bed mobility or transfer, who are comatose,
+                                  or who suffer from malnutrition.
+ Percentage of residents          This measure reports the percentage of residents who have had an indwelling
+ who have/had a catheter          catheter in the last seven days. Indwelling catheter use may result in
+ inserted and left in their       complications, like urinary tract or blood infections, physical injury, skin problems,
+ bladder                          bladder stones, or blood in the urine.
+ Percentage of residents          This measure reports the percentage of long-stay residents who have had a
+ with a urinary tract infection   urinary tract infection within the past 30 days. Urinary tract infections can often be
+                                  prevented through hygiene and drinking enough fluid. Urinary tract infections are
+                                  relatively minor but can lead to more serious problems and cause complications
+                                  like delirium if not treated.
+ Percentage of residents          This measure reports the percentage of long-stay residents who have
+ experiencing one or more         experienced one or more falls with major injury reported in the target period or
+ falls with major injury          look-back period (one full calendar year).
+ Percentage of residents          This measure reports the percentage of long-stay residents who are receiving
+ who got an antipsychotic         antipsychotic drugs in the target period. Reducing the rate of antipsychotic
+ medication                       medication use has been the focus of several CMS initiatives.
+
+
+
+
+                                                          17
+Table 4 Quality Measures Used in the Five-Star Quality Measure Rating Calculation
+ Measure                         Comments
+ Claims-Based Long-Stay Measures
+ Number of hospitalizations      This measures the number of unplanned inpatient admissions or outpatient
+ per 1,000 resident days         observation stays that occurred among long-stay residents of a nursing home
+                                 during a one-year period, expressed as the number of unplanned hospitalizations
+                                 for every 1,000 days that the long-stay residents were admitted to the nursing
+                                 home.
+ Number of outpatient            This measures the number of outpatient ED visits that occurred among long-stay
+ emergency department (ED)       residents of a nursing home during a one-year period, expressed as the number
+ visits per 1,000 resident       of outpatient ED visits for every 1,000 days that the long-stay residents were
+ days                            admitted to the nursing home.
+ MDS Short-Stay Measures
+ Percentage of residents         This measure assesses the percentage of short-stay residents whose
+ who improved in their           independence in three mobility functions (i.e., transfer, locomotion, and walking)
+ ability to move around on       increases over the course of the nursing home care episode.
+ their own
+ Percentage of SNF               This measure captures the percentage of short-stay residents with pressure
+ residents with pressure         ulcers that are new or whose existing pressure ulcers worsened during their stay
+ ulcers/pressure injuries that   in the SNF and includes unstageable ulcers.
+ are new or worsened
+ Percentage of residents         This measure reports the percentage of short-stay residents who are receiving an
+ who antipsychotic               antipsychotic medication during the target period but not on their initial
+ medication for the first time   assessment.
+ Claims-Based Short-Stay Measures
+ Percentage of short-stay     This measure reports the percentage of all new admissions or readmissions to a
+ residents who were re-       nursing home from a hospital where the resident was re-admitted to a hospital for
+ hospitalized after a nursing an inpatient or observation stay within 30 days of entry or reentry.
+ home admission
+ Percentage of short-stay     This measure reports the percentage of all new admissions or readmissions to a
+ residents who have had an    nursing home from a hospital where the resident had an outpatient ED visit (i.e.,
+ outpatient emergency         an ED visit not resulting in an inpatient hospital admission) within 30 days of
+ department (ED) visit        entry or reentry.
+ Rate of successful return to This measure reports the rate at which residents returned to home and
+ home and community from      community with no unplanned hospitalizations and no deaths in the 31 days
+ a SNF                        following discharge from the SNF.
+
+
+Missing Data and Imputation
+MDS-based measures are reported if the measure can be calculated for at least 20 residents’ assessments
+(summed across four quarters of data to enhance measurement stability) for both the long- and short-stay
+QMs. The short-stay claims-based measures are reported if the measure can be calculated for at least 20
+nursing home stays over the course of the year. The long-stay claims-based measures are reported if the
+measure can be calculated for at least 20 nursing home stays over the course of the year.
+
+For facilities with missing data or an inadequate denominator size for one or more QMs meeting the
+criteria described below, all available data from the nursing home are used. The remaining assessments
+(or stays) are imputed to get the nursing home to the minimum required sample size of 20. Missing values
+are imputed based on the statewide average for the measure. For example, if a nursing home had actual
+data for 12 resident assessments, the data for those 12 assessments would be used and the remaining eight
+assessments would be imputed using the state average to get to the minimum sample size required to
+include the measure in the scoring for the QM rating. The imputation strategy for the missing values
+depends on the pattern of missing data.
+
+                                                        18
+        •   For facilities that have an adequate denominator size for at least five of the nine long-stay
+            QMs, values are imputed for the long-stay measures with fewer than 20 assessments or
+            residents as described above. Points are then assigned for all nine long-stay QMs according to
+            the scoring rules described below.
+        •   For facilities that have an adequate denominator size for at least four of the six short-stay
+            QMs, values are imputed for the short-stay measures with smaller denominators as described
+            above. Points are then assigned for all six short-stay QMs according to the scoring rules
+            described below.
+        •   For facilities that do not have an adequate denominator size for at least five long-stay QMs
+            but that have an adequate denominator size for four or more short-stay QMs, the QM rating is
+            based on the short-stay measures only. Values for the missing long-stay QMs are not
+            imputed. No long-stay QM rating is reported, and no long-stay measures are used in
+            determining the overall QM rating.
+        •   Similarly, for facilities that do not have an adequate denominator size for at least four short-
+            stay QMs but that have an adequate denominator size for five or more long-stay QMs, the
+            QM rating is based on the long-stay measures only. Values for the missing short-stay QMs
+            are not imputed. No short-stay QM rating is reported, and no short-stay measures are used in
+            determining the overall QM rating.
+
+Note that while values are imputed according to the rules described above for the purposes of assigning
+points for the QM score, data for QMs that use imputed data are not reported on the Care Compare
+website nor included in the downloadable databases available at https://data.cms.gov/provider-data/. QM
+values are publicly reported only for providers meeting the minimum denominator requirements prior to
+any imputation. 8
+
+Scoring Rules for the Individual QMs
+Two different sets of weights are used for assigning QM points to individual QMs. Some measures have a
+maximum score of 150 points while the maximum number of points for other measures is 100. The
+weight for each measure was determined based on the opportunity for nursing homes to improve on the
+measure and the clinical significance of the measure based on expert feedback. For measures that have a
+maximum score of 150 points, the points are determined based on deciles. Quintiles are used for measures
+that have a maximum score of 100 points. For all measures, points are calculated based on performance
+relative to the national distribution of the measure. Points are assigned after any needed imputation of
+individual QM values, with the points determined using this methodology:
+
+        •   For long-stay ADL worsening, long-stay antipsychotic medication, long-stay mobility
+            decline, the two claims-based long-stay measures, the percentage of short-stay residents who
+            improved in their ability to move around on their own, and the three claims-based short-stay
+            measures: nursing homes are grouped into deciles based on the national distribution of the
+            QM. Nursing homes in the lowest performing decile receive 15 points for the measure. Points
+            are increased in 15-point intervals for each decile so that nursing homes in the highest
+            performing decile receive 150 points.
+
+
+8
+    Note that for the rate of successful return to home and community from a SNF, the minimum sample size for
+    publicly reporting the measure is 25.
+
+                                                      19
+        •   For long-stay pressure ulcer, long-stay catheter, long-stay urinary tract infections, long-stay
+            falls, short-stay pressure ulcer/pressure injury, and short-stay antipsychotic medication:
+            nursing homes are grouped into quintiles based on the national distribution of the QM. The
+            quintiles are assigned 20 points for the lowest performing quintile, 100 points for the highest
+            performing quintile, and 40, 60 or 80 points for the second, third and fourth quintiles
+            respectively.
+        •   For two 100-point measures that have more than 20 percent of nursing homes with a QM
+            value of 0 (short-stay pressure ulcers/injuries and short-stay antipsychotic measures), all
+            nursing homes with a QM value of 0 are awarded 100 points, and the remaining nursing
+            homes are divided to maintain as close to even quintiles as possible.
+Note that, for all of the measures, the groupings are based on the national distribution of the QMs, prior to
+any imputation. For most of the MDS-derived QMs, the cut points are based on the QM distributions
+averaged across the four quarters from Quarter 4 of 2017 to Quarter 3 of 2018. For short-stay pressure
+ulcers/pressure injuries, the cut points are based on the national distribution of the measure calculated for
+the period of Quarter 1 2019 through Quarter 4 2019. For the rate of successful return to home and
+community from a SNF measure, the cut points are based on the national distribution of the measure
+calculated for the period Quarter 4 of 2016 through Quarter 3 of 2017. For the other four claims-based
+QMs (except rate of successful return to home and community from a SNF), the cut points are based on
+the national distribution of the measures calculated for the period of Quarter 4 of 2017 through Quarter 3
+of 2018. The points associated with each individual QM are listed in Appendix Table A2.
+
+Quality Measures with a maximum score of 150 points:
+Long-stay
+Percentage of residents whose need for help with daily activities increased
+Percentage of residents who received an antipsychotic medication
+Percentage of residents whose ability to move independently worsened
+Number of hospitalizations per 1,000 resident days
+Number of outpatient emergency department (ED) visits per 1,000 resident days
+Short-stay
+Percentage of residents who improved in their ability to move around on their own
+Rate of successful return to home and community from a SNF
+Percentage of short-stay residents who were re-hospitalized after a nursing home admission
+Percentage of short-stay residents who have had an outpatient emergency department (ED) visit
+Quality Measures with maximum score of 100 points:
+Long-stay
+Percentage of residents experiencing one or more falls with major injury
+Percentage of high-risk residents with pressure ulcers
+Percentage of residents with a urinary tract infection
+Percentage of residents who have or had a catheter inserted and left in their bladder
+Short-stay
+Percentage of residents who got an antipsychotic medication for the first time
+Percentage of SNF residents with pressure ulcers/pressure injuries that are new or worsened
+Rating Methodology
+After any needed imputation for individual QMs, points are summed across all of the long-stay QMs, all
+of short-stay QMs, as well as across all QMs based upon the scoring rules described above to create a
+                                                     20
+long-stay QM score, a short-stay QM score, and a total QM score for each nursing home. The long-stay
+QM score ranges between 155 and 1,150. Due to differences in number of measures and weights, the
+unadjusted short-stay QM score has a maximum of 800 points. So that the long- and short-stay measures
+can count equally in the calculation of the total QM score, an adjustment factor of 1,150/800 is applied to
+the unadjusted total short-stay score. After applying this adjustment, the adjusted short-stay score ranges
+from 144 to 1,150 9. The total overall QM score, which sums the total long-stay score and the total
+adjusted short-stay score, ranges between 299 and 2,300.
+
+Facilities that receive an overall QM rating are in one of the following categories:
+
+        •   They have points for all of the QMs.
+        •   They have points for only the nine long-stay QMs (long-stay facilities).
+        •   They have points for only the six short-stay QMs (short-stay facilities).
+        •   They do not have sufficient data for either the long-stay or the short-stay QMs. No QM
+            ratings are generated for these nursing homes.
+
+Once the long-stay, short-stay, and overall QM scores are computed for each nursing home as described
+above, a long-stay QM rating is assigned to nursing homes that have long-stay QM scores; a short-stay
+QM rating is assigned to nursing homes that have short-stay QM scores, and an overall QM star rating is
+assigned using the methodology previously described using the point thresholds shown in Table 5. CMS
+plans to raise these thresholds every six months by 50% of the increase in scores over that time period.
+
+            Table 5
+            Point Ranges for the QM Ratings (as of October 2022)
+            QM Rating                    Long-Stay QM            Short-Stay QM              Overall QM
+                                            Rating                   Rating                   Rating
+                                          Thresholds               Thresholds               Thresholds
+
+            ★                                155–483                 144–491                 299–975
+
+            ★★                               484–581                 492–588                976–1,170
+
+            ★★★                              582–663                 589–678               1,171–1,342
+
+            ★★★★                             664–755                 679–766               1,343–1,522
+
+            ★★★★★                           756–1,150               767–1,150              1,523–2,300
+            Note: the short-stay QM rating thresholds are based on the adjusted scores (after applying the
+            factor of 1,150/800 to the unadjusted scores)
+
+
+
+
+9
+    The unadjusted total short-stay score ranges from 100 to 800.
+
+                                                           21
+Overall Nursing Home Rating (Composite Measure)
+
+Based on the star ratings for the health inspection domain, the staffing domain and the quality measure
+domain, CMS assigns the overall Five-Star rating in three steps:
+
+    Step 1: Start with the health inspection rating.
+
+    Step 2: Add one star to the Step 1 result if the staffing rating is five stars; subtract one star if the
+    staffing rating is one star. The overall rating cannot be more than five stars or less than one star.
+
+    Step 3: Add one star to the Step 2 result if the quality measure rating is five stars; subtract one star if
+    the quality measure rating is one star. The overall rating cannot be more than five stars or less than
+    one star.
+
+    Note: If the health inspection rating is one star, then the overall rating cannot be upgraded by more
+    than one star based on the staffing and quality measure ratings.
+
+The rationale for limiting star rating upgrades is that the staffing and quality measure domains should not
+significantly outweigh the rating from actual onsite visits from trained surveyors who may have found
+very serious quality of care problems. Since the health inspection rating is heavily weighted toward the
+most recent findings, a health inspection rating of one star reflects both a serious and recent finding.
+
+The method for determining the overall nursing home rating does not assign specific weights to the health
+inspection, staffing, and QM domains. The health inspection rating is the most important dimension in
+determining the overall rating; however, depending on the performance on the staffing and QM domains,
+the overall rating for a nursing home may be increased or decreased by up to two stars.
+
+If a nursing home has no health inspection rating, then no overall rating is assigned. If a nursing home has
+no health inspection rating because it is too new to have two standard surveys, then no ratings for any
+domain are displayed.
+
+Special Focus Facilities
+
+Nursing homes that are current participants in the Special Focus Facility (SFF) program will not be
+assigned overall ratings or ratings in any domain. A yellow warning sign is displayed instead of the
+overall rating and “Not Available” is displayed in place of the ratings for all other domains.
+
+Change in Nursing Home Rating
+
+Facilities may see a change in their overall rating for a number of reasons. Since the overall rating is
+based on three individual domains, a change in any one of the domains can affect the overall rating. Any
+new data for a nursing home could potentially change a star rating domain.
+
+Health inspection rating changes: Events that could change the health inspection score include:
+
+        •   A new health inspection.
+        •   New complaint deficiencies.
+        •   New focused infection control survey deficiencies.
+
+                                                       22
+        •   A second, third, or fourth revisit.
+        •   Resolution of Informal Dispute Resolutions (IDR) or Independent Informal Dispute
+            Resolutions (IIDR) resulting in changes to the scope and/or severity of deficiencies.
+        •   The “aging” of complaint and focused infection control survey deficiencies. Another reason
+            the health inspection data (and therefore the rating) for a nursing home may change is the
+            “aging” of one or more complaint or focused infection control survey deficiencies.
+            Specifically, these citations are assigned to a time period based on the 12-month period in
+            which the complaint investigation or focused infection control survey occurred. Thus, when a
+            complaint or focused infection control survey deficiency ages into a prior period, it receives
+            less weight in the scoring process and thus the weighted health inspection score may change
+            and be compared to the state distribution at that time.
+        •   If a nursing home newly qualifies for the abuse icon, the health inspection rating is capped at
+            two stars, and this may cause a change in the overall rating. Similarly, when a nursing home
+            no longer qualifies for the abuse icon, the health inspection rating may change.
+
+Health inspection data will be included as soon as they become part of the CMS database. The timing for
+this can vary by state and depends on having the complete survey package for the State Survey Agency to
+upload to the national database. Additional inspection data may be added to the database at any time
+because of complaint investigations, outcomes of revisits, Informal Dispute Resolutions (IDR), or
+Independent Informal Dispute Resolutions (IIDR). These data may not be added in the same cycle as the
+standard inspection data.
+
+Since the cut-points between star categories for the health inspection rating are based on percentile
+distributions that are not fixed, those cut-points may vary slightly depending on the current nursing home
+distribution in the database. However, while the cut-points for the health inspection ratings may change
+from month to month, the rating for a given facility is held constant until there is a change in the weighted
+health inspection score for that nursing home.
+
+Staffing rating changes: PBJ staffing data are reported quarterly, so new staffing measures and ratings
+are calculated and posted quarterly. Changes in a nursing home’s staffing measure or rating may be due to
+differences in the number of hours submitted for staff, changes in the daily census, changes in resident
+case-mix from the previous quarter, or changes in staff turnover. Additionally, the audit process may lead
+to a change in the staffing rating for a facility.
+
+Quality Measure rating changes: Data for the MDS-based QMs and the claims-based hospitalization and
+ED visit measures are updated quarterly, and the QM rating is updated at the same time. The updates
+typically occur in January, April, July, and October at the time of the Care Compare website refresh.
+Changes in the quality measures may change the star ratings.
+
+
+
+
+                                                     23
+                                 Appendices
+                                 Table A1
+      Case-Mix Nursing Minutes by RUG-IV Group and Nursing Staff Type
+                                   STRIVE Study Average Times (Minutes)
+Major RUG      RUG-IV                            Total                      Total Nurse
+ Group         Code      RN         LPN        Licensed    Nurse Aide     (RN+LPN+Aide)
+               RUX      68.37      111.44       179.81       131.11          310.92
+               RUL      109.06     63.87        172.93       199.94          372.87
+               RVX      29.24      95.88        125.12       145.94          271.06
+               RVL      67.74      97.39        165.13       139.99          305.12
+Rehab Plus
+               RHX      128.79     51.92        180.71       155.24          335.95
+ Extensive
+               RHL      67.28      48.41        115.69       135.32          251.01
+               RMX      97.54      74.61        172.15       148.44          320.59
+               RML      133.82     84.01        217.83       153.24          371.07
+               RLX      133.82     84.01        217.83       153.24          371.07
+               RUC      27.80      66.41        94.21        148.95          243.16
+               RUB      45.01      71.09        116.10       141.03          257.13
+               RUA      35.18      54.55        89.73        101.01          190.74
+               RVC      34.22      68.45        102.67       156.53          259.20
+               RVB      28.86      56.56        85.42        119.90          205.32
+               RVA      31.30      59.35        90.65        113.73          204.38
+               RHC      36.62      54.88        91.50        156.14          247.64
+  Rehab
+               RHB      36.42      47.88        84.30        119.48          203.78
+               RHA      27.09      51.76        78.85        99.82           178.67
+               RMC      32.58      56.05        88.63        148.87          237.50
+               RMB      32.10      55.47        87.57        134.74          222.31
+               RMA      25.99      48.79        74.78        98.81           173.59
+               RLB      33.86      44.58        78.44        185.83          264.27
+               RLA      15.46      43.58        59.04        118.93          177.97
+               ES3      130.49     58.49        188.98       152.12          341.10
+ Extensive
+               ES2      65.19      75.23        140.42       146.65          287.07
+  Services
+               ES1      72.81      49.49        122.30       127.62          249.92
+               HE2      21.25      67.93        89.18        190.47          279.65
+               HD2      41.89      70.63        112.52       153.76          266.28
+               HC2      35.13      53.63        88.76        154.72          243.48
+Special Care   HB2      60.64      67.91        128.55       133.86          262.41
+   High        HE1      19.20      67.73        86.93        149.47          236.40
+               HD1      16.89      54.54        71.43        141.80          213.23
+               HC1      22.43      54.17        76.60        135.33          211.93
+               HB1      21.65      50.50        72.15        106.77          178.92
+
+                                       24
+                                 STRIVE Study Average Times (Minutes)
+ Major RUG      RUG-IV                         Total                      Total Nurse
+  Group         Code      RN      LPN        Licensed    Nurse Aide     (RN+LPN+Aide)
+                LE2      22.16   58.83        80.99        176.15          257.14
+                LD2      19.59   58.10        77.69        153.29          230.98
+                LC2      27.44   47.80        75.24        116.12          191.36
+Special Care    LB2      29.52   50.73        80.25        128.44          208.69
+   Low          LE1      22.11   52.25        74.36        143.41          217.77
+                LD1      11.78   43.94        55.72        130.80          186.52
+                LC1      15.72   46.56        62.28        124.77          187.05
+                LB1      18.99   48.66        67.65        106.16          173.81
+                CE2      21.05   44.13        65.18        162.70          227.88
+                CD2      20.01   45.17        65.18        175.51          240.69
+                CC2      19.77   36.95        56.72        132.92          189.64
+                CB2      23.50   36.46        59.96        114.97          174.93
+  Clinically    CA2      20.69   44.63        65.32        80.92           146.24
+  Complex       CE1      21.26   33.75        55.01        159.10          214.11
+                CD1      15.31   41.90        57.21        151.40          208.61
+                CC1      16.00   35.10        51.10        126.91          178.01
+                CB1      16.17   34.99        51.16        118.45          169.61
+                CA1      22.39   40.22        62.61        72.76           135.37
+ Behavioral     BB2      11.30   33.26        44.56        117.96          162.52
+ Symptoms       BA2      18.34   41.18        59.52        101.56          161.08
+and Cognitive   BB1      14.93   32.83        47.76        114.30          162.06
+Performance     BA1      13.60   31.57        45.17        86.06           131.23
+                PE2      15.11   39.76        54.87        163.58          218.45
+                PD2      12.09   38.01        50.10        163.38          213.48
+                PC2      8.14    33.51        41.65        124.90          166.55
+                PB2      15.49   38.95        54.44        118.83          173.27
+ Reduced
+                PA2      5.50    35.91        41.41        73.16           114.57
+  Physical
+Functioning     PE1      19.91   36.07        55.98        161.23          217.21
+                PD1      16.18   33.58        49.76        147.31          197.07
+                PC1      14.07   36.94        51.01        123.74          174.75
+                PB1      12.49   31.80        44.29        95.60           139.89
+                PA1      14.32   32.42        46.74        70.77           117.51
+
+
+
+
+                                     25
+             Table A2. Ranges for Point Values for Staffing Measures1
+
+Staffing Measure                        Points          Min               Max
+Adjusted RN Staffing (Hours per          100           1.298            Or higher
+Resident per Day)                        90            0.992             1.297
+                                         80            0.819             0.991
+                                         70            0.692             0.818
+                                         60            0.591             0.691
+                                         50            0.505             0.590
+                                         40            0.426             0.504
+                                         30            0.352             0.425
+                                         20            0.261             0.351
+                                         10            0.000             0.260
+Adjusted Total Nurse Staffing (Hours     100           4.954            Or higher
+per Resident per Day)                    90            4.429             4.953
+                                         80            4.105             4.428
+                                         70            3.869             4.104
+                                         60            3.653             3.868
+                                         50            3.445             3.652
+                                         40            3.248             3.444
+                                         30            3.030             3.247
+                                         20            2.747             3.029
+                                         10            0.000             2.746
+Adjusted Total Nurse Staffing on         50            4.328            Or higher
+weekends (Hours per Resident per Day)    45            3.896             4.327
+                                         40            3.623             3.895
+                                         35            3.382             3.622
+                                         30            3.174             3.381
+                                         25            2.985             3.173
+                                         20            2.810             2.984
+                                         15            2.613             2.809
+                                         10            2.350             2.612
+                                          5            0.000             2.349
+
+                                        26
+    Staffing Measure                                   Points                  Min                  Max
+    RN Turnover (%)                                      50                   0.000                24.528
+                                                         45                  24.529                33.108
+                                                         40                  33.109                39.623
+                                                         35                  39.624                45.161
+                                                         30                  45.162                49.123
+                                                         25                  49.124                56.977
+                                                         20                  56.978                62.963
+                                                         15                  62.964                71.053
+                                                         10                  71.054                81.081
+                                                          5                  81.082               100.000
+    Total Nurse Turnover (%)                             50                   0.000                34.416
+                                                         45                  34.417                40.594
+                                                         40                  40.595                44.848
+                                                         35                  44.849                48.696
+                                                         30                  48.697                52.353
+                                                         25                  52.354                56.391
+                                                         20                  56.392                60.699
+                                                         15                  60.700                65.741
+                                                         10                  65.742                72.678
+                                                          5                  72.679               100.000
+    Number of Administrator Departures                   30                     0                     0
+                                                         25                     1                     1
+                                                         10                     2                 Or more
+1
+ For all measures except for Number of Administrator Departures, these cut points are based on the national
+distribution of data through 2022Q1. For the staffing level measures, the cut points are based on deciles of case-
+mix adjusted staffing for 2022Q1. For the total nurse and RN turnover measures, these cut points are based on the
+national distribution of turnover for calendar year 2021. As described in the specifications for the turnover
+measures in this document, data from 2022Q1 is used to identify staff that left the nursing home during the last
+quarter of 2021.
+
+
+
+
+                                                        27
+                                   Table A3
+   Ranges for Point Values for Quality Measures, Using Four Quarter Average
+                                 Distributions1
+                                            For QM values …
+           Quality Measure                                      Number of QM points is…
+                                         Between…       And…
+Percentage of SNF residents with          0.0000       0.0000            100
+pressure ulcers/pressure injuries that    0.0001       0.0219             80
+are new or worsened (short-stay)
+                                          0.0220       0.0395             60
+                                          0.0396       0.0647             40
+                                          0.0648       1.0000             20
+Rate of successful return to home and     0.6336       1.0000            150
+community from a SNF (short-stay)         0.5976       0.6335            135
+                                          0.5697       0.5975            120
+                                          0.5453       0.5696            105
+                                          0.5173       0.5452             90
+                                          0.4917       0.5172             75
+                                          0.4609       0.4916             60
+                                          0.4262       0.4608             45
+                                          0.3763       0.4261             30
+                                          0.0000       0.3762             15
+Percentage of residents whose need        0.0000       0.0719            150
+for help with daily activities has        0.0720       0.0956            135
+increased (long-stay)
+                                          0.0957       0.1141            120
+                                          0.1142       0.1296            105
+                                          0.1297       0.1441             90
+                                          0.1442       0.1589             75
+                                          0.1590       0.1759             60
+                                          0.1760       0.1978             45
+                                          0.1979       0.2323             30
+                                          0.2324       1.0000             15
+
+
+
+
+                                             28
+                                            For QM values …
+           Quality Measure                                      Number of QM points is…
+                                         Between…       And…
+Percentage of residents who have/had      0.0000       0.0050            100
+a catheter inserted and left in their     0.0051       0.0126             80
+bladder (long-stay)
+                                          0.0127       0.0217             60
+                                          0.0218       0.0356             40
+                                          0.0357       1.0000             20
+Percentage of residents with a urinary    0.0000       0.0070            100
+tract infection (long-stay)               0.0071       0.0160             80
+                                          0.0161       0.0272             60
+                                          0.0273       0.0452             40
+                                          0.0453       1.0000             20
+Percentage of residents experiencing      0.0000       0.0134            100
+one or more falls with major injury       0.0135       0.0246             80
+(long-stay)
+                                          0.0247       0.0356             60
+                                          0.0357       0.0514             40
+                                          0.0515       1.0000             20
+Percentage of residents who got an        0.0000       0.0478            150
+antipsychotic medication (long-stay)      0.0479       0.0749            135
+                                          0.0750       0.0960            120
+                                          0.0961       0.1137            105
+                                          0.1138       0.1321             90
+                                          0.1322       0.1508             75
+                                          0.1509       0.1746             60
+                                          0.1747       0.2039             45
+                                          0.2040       0.2538             30
+                                          0.2539       1.0000             15
+Percentage of residents who got           0.0000       0.0000            100
+antipsychotic medication for the first    0.0001       0.0096             80
+time (short-stay)
+                                          0.0097       0.0168             60
+                                          0.0169       0.0289             40
+                                          0.0290       1.0000             20
+
+
+                                             29
+                                              For QM values …
+           Quality Measure                                        Number of QM points is…
+                                           Between…       And…
+Percentage of residents whose ability       0.0000       0.0821            150
+to move independently worsened              0.0822       0.1121            135
+(long-stay)
+                                            0.1122       0.1350            120
+                                            0.1351       0.1568            105
+                                            0.1569       0.1760             90
+                                            0.1761       0.1955             75
+                                            0.1956       0.2153             60
+                                            0.2154       0.2394             45
+                                            0.2395       0.2747             30
+                                            0.2748       1.0000             15
+Percentage of high-risk residents with      0.0000       0.0377            100
+pressure ulcers (long-stay)                 0.0378       0.0584             80
+                                            0.0585       0.0783             60
+                                            0.0784       0.1057             40
+                                            0.1058       1.0000             20
+Percentage of residents who improved        0.8276       1.0000            150
+in their ability to move around on their    0.7745       0.8275            135
+own (short-stay)
+                                            0.7365       0.7744            120
+                                            0.7039       0.7364            105
+                                            0.6738       0.7038             90
+                                            0.6428       0.6737             75
+                                            0.6091       0.6427             60
+                                            0.5664       0.6090             45
+                                            0.5015       0.5663             30
+                                            0.0000       0.5014             15
+
+
+
+
+                                               30
+                                            For QM values …
+           Quality Measure                                      Number of QM points is…
+                                         Between…       And…
+Percentage of short-stay residents who    0.0000       0.1500            150
+were re-hospitalized after a nursing      0.1501       0.1770            135
+home admission (short-stay)
+                                          0.1771       0.1956            120
+                                          0.1957       0.2115            105
+                                          0.2116       0.2260             90
+                                          0.2261       0.2403             75
+                                          0.2404       0.2557             60
+                                          0.2558       0.2743             45
+                                          0.2744       0.3032             30
+                                          0.3033       1.0000             15
+Percentage of short-stay residents who    0.0000       0.0475            150
+have had an outpatient emergency          0.0476       0.0640            135
+department (ED) visit (short-stay)
+                                          0.0641       0.0768            120
+                                          0.0769       0.0887            105
+                                          0.0888       0.1000             90
+                                          0.1001       0.1124             75
+                                          0.1125       0.1271             60
+                                          0.1272       0.1465             45
+                                          0.1466       0.1759             30
+                                          0.1760       1.0000             15
+
+
+
+
+                                             31
+                                                   For QM values …
+               Quality Measure                                                 Number of QM points is…
+                                              Between…            And…
+    Number of hospitalizations per 1,000         0.0000           0.8514                   150
+    resident days (long-stay)                    0.8515           1.1167                   135
+                                                 1.1168           1.3112                   120
+                                                 1.3113           1.4931                   105
+                                                 1.4932           1.6759                    90
+                                                 1.6760           1.8622                    75
+                                                 1.8623           2.0642                    60
+                                                 2.0643           2.3236                    45
+                                                 2.3237           2.7286                    30
+                                                 2.7287         1000.000                    15
+    Number of outpatient emergency               0.0000           0.3468                   150
+    department (ED) visits per 1,000             0.3469           0.4968                   135
+    resident days (long-stay)
+                                                 0.4969           0.6214                   120
+                                                 0.6215           0.7381                   105
+                                                 0.7382           0.8749                    90
+                                                 0.8750           1.0265                    75
+                                                 1.0266           1.2088                    60
+                                                 1.2089           1.4696                    45
+                                                 1.4697           1.9080                    30
+                                                 1.9081         1000.000                    15
+1
+ For the hospitalization and ED visit measures, points are based on data from 2017Q4–2018Q3. For MDS-based
+measures except for the short-stay pressure ulcer/pressure injury measure, points are based on data from
+2017Q4–2018Q3. For the short-stay pressure ulcer/pressure injury measure, points are based on data from
+2019Q1–2019Q4. For the successful return to home and community from a SNF measure, points are based on data
+from 2016Q4 through 2017Q3.
+Having a greater number of QM points corresponds to better performance. More points are awarded for having a
+lower QM rate for all measures except functional improvement and successful community discharge where higher
+rates correspond to better performance.
+
+
+
+
+                                                     32
+
