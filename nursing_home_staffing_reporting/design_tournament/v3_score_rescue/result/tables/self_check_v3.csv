@@ -1,0 +1,26 @@
+check,target,pass,value,n,sample_definition
+v2_input_report_exists,report\final_breakthrough_report.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\design_tournament_scorecard.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\rating_algorithm_emulation_audit.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\rd_threshold_results.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\formula_label_shock_results.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\metric_salience_ddd_results.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\official_policy_algorithm_audit.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\outcome_reconstruction_audit.md,True,True,1,self-check requirement row
+v2_input_report_exists,report\identification_audit_v2.md,True,True,1,self-check requirement row
+v2_input_report_exists,temp\rejected_designs_v2.md,True,True,1,self-check requirement row
+v2_input_report_exists,temp\self_test_v2.md,True,True,1,self-check requirement row
+official_source_field_inventory_exists,result\tables\official_score_field_inventory.csv,True,510944,1,self-check requirement row
+emulator_validation_exists,result\tables\emulator_validation_v3.csv,True,1530,1,self-check requirement row
+july_2022_match_rate_recorded,result\tables\emulator_validation_v3.csv,True,0.963453,1,self-check requirement row
+rd_report_consistent_with_running_variable_status,report/03,True,july_match=0.9634532779381734,1,self-check requirement row
+formula_report_has_required_sections_and_tables,report\04_formula_label_shock_rescue_results.md,True,True,1,self-check requirement row
+metric_salience_uses_day_or_week_panel_or_documents_infeasibility,report\05_metric_salience_ddd_rescue_results.md,True,True,1,self-check requirement row
+2018_validation_results_or_infeasibility,report\06_2018_validation_rescue_results.md,True,True,1,self-check requirement row
+final_report_design_decisions_present,report\final_score_rescue_report.md,True,True,1,self-check requirement row
+no_strong_causal_claim_without_diagnostics,all v3 reports,True,strong_go_claimed=False; diagnostics_pass=False,1,self-check requirement row
+no_clinical_quality_improvement_claim,all v3 reports,True,False,1,self-check requirement row
+old_composite_did_not_primary,all v3 reports,True,False,1,self-check requirement row
+all_result_tables_have_row_counts_and_sample_definitions,result/tables/*.csv,True,22/22,1,self-check requirement row
+scripts_runnable_from_project_or_v3_root,script,True,True,1,self-check requirement row
+failed_downloads_or_missing_official_files_documented,temp/audit_logs,True,failure_files=0,1,self-check requirement row

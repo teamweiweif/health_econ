@@ -1,0 +1,19 @@
+outcome,group,n,sample_definition,treated_n,control_n,diff,se,p,method
+delta_avg_daily_census,formula_induced_overall_star_loss,14521,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,12996,-1.0424534240305272,0.3319939210605693,0.0016929966326137968,raw
+delta_avg_daily_census,formula_induced_overall_star_loss,14135,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1505,12630,0.21728641646505142,,,iptw
+delta_avg_daily_census,matched_treat,2667,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,1142,-0.12865392060886816,0.4791240894017625,0.7883206363923043,nearest_neighbor_state_fallback
+delta_weekend_rn_lt8_day_share,formula_induced_overall_star_loss,14521,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,12996,0.008479003833990289,0.002426692620025559,0.0004771557794285286,raw
+delta_weekend_rn_lt8_day_share,formula_induced_overall_star_loss,14135,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1505,12630,-0.002589731205840655,,,iptw
+delta_weekend_rn_lt8_day_share,matched_treat,2667,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,1142,-0.0004956566951157971,0.003841866514543312,0.8973558680489999,nearest_neighbor_state_fallback
+delta_zero_rn_day_share,formula_induced_overall_star_loss,14521,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,12996,0.0010436775985495235,0.0009702828572365164,0.2821049905721216,raw
+delta_zero_rn_day_share,formula_induced_overall_star_loss,14135,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1505,12630,-0.0011121836952427883,,,iptw
+delta_zero_rn_day_share,matched_treat,2667,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,1142,0.0001771837304925018,0.0016260004244784763,0.9132352380537156,nearest_neighbor_state_fallback
+delta_weekend_p10_total_hprd,formula_induced_overall_star_loss,14521,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,12996,-0.08061072598637693,0.0131258054932665,8.393357120439759e-10,raw
+delta_weekend_p10_total_hprd,formula_induced_overall_star_loss,14135,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1505,12630,-0.0301360522923919,,,iptw
+delta_weekend_p10_total_hprd,matched_treat,2667,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,1142,-0.02752361951517679,0.01942642791142039,0.15665443165879767,nearest_neighbor_state_fallback
+delta_weekend_share_total_hours,formula_induced_overall_star_loss,14521,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,12996,-0.0007871072171219714,0.000327896985905808,0.01638649288219729,raw
+delta_weekend_share_total_hours,formula_induced_overall_star_loss,14135,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1505,12630,-0.0015146850124743193,,,iptw
+delta_weekend_share_total_hours,matched_treat,2667,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,1142,-0.0006531203682820347,0.0004946074126507188,0.18678740774055025,nearest_neighbor_state_fallback
+delta_contract_share_total_hours,formula_induced_overall_star_loss,14521,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,12996,0.01416141014156157,0.0028229878831064962,5.325358258811974e-07,raw
+delta_contract_share_total_hours,formula_induced_overall_star_loss,14135,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1505,12630,0.009180835909323656,,,iptw
+delta_contract_share_total_hours,matched_treat,2667,post 2022Q4-2023Q4 minus pre 2021Q1-2021Q3 outcome changes,1525,1142,0.011008632919451637,0.0041431085430160405,0.007928756345349841,nearest_neighbor_state_fallback

@@ -1,0 +1,6 @@
+outcome,group,n,sample_definition,treated_n,control_n,diff,se,p
+predicted_formula_loss_size,formula_induced_overall_star_loss,14689,"July facilities, treated if old overall formula exceeds July 2022 formula",1547,13142,1.0,0.0,
+actual_overall_change_apr_to_jul,formula_induced_overall_star_loss,14653,"July facilities, treated if old overall formula exceeds July 2022 formula",1544,13109,-0.48148080443092334,0.020822427920169986,0.0
+actual_staffing_change_apr_to_jul,formula_induced_overall_star_loss,14369,"July facilities, treated if old overall formula exceeds July 2022 formula",1526,12843,0.5555821393338993,0.024142461000500326,0.0
+actual_health_change_apr_to_jul,formula_induced_overall_star_loss,14653,"July facilities, treated if old overall formula exceeds July 2022 formula",1544,13109,-0.036303866307093535,0.01299565768344317,0.005220253819703702
+actual_qm_change_apr_to_jul,formula_induced_overall_star_loss,14593,"July facilities, treated if old overall formula exceeds July 2022 formula",1544,13049,-0.009646730120863686,0.017990245733285858,0.5918146657440428

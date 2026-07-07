@@ -1,0 +1,4 @@
+outcome,n,mean_delta,sample_definition
+total_weekly_nursing_hours,14682,107.26395798712683,weekly total nursing hours reallocation diagnostic
+weekend_total_nurse_hprd,14679,-0.04982870934511131,score-targeted weekend total nurse HPRD diagnostic
+weekday_total_nurse_hprd,14679,-0.08909427979748868,weekday offset diagnostic

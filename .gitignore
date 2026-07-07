@@ -2,6 +2,7 @@
 data/
 */data/
 */temp/raw_downloads/
+**/temp/raw_downloads/
 */temp/intermediate/
 */temp/model_scratch/
 */script/__pycache__/

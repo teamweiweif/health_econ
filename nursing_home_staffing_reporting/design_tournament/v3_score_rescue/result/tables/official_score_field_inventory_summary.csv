@@ -1,0 +1,7 @@
+check,result,n,sample_definition
+official_0_380_staffing_score_found,False,6,field hunt summary across official CMS sources
+explicit_july_adjusted_weekend_total_nurse_hprd_found,False,6,field hunt summary across official CMS sources
+reported_weekend_total_component_found,True,6,field hunt summary across official CMS sources
+reported_total_component_found,True,6,field hunt summary across official CMS sources
+adjusted_total_component_found,True,6,field hunt summary across official CMS sources
+conclusion,enough official components found to reconstruct without proxy substitution,6,field hunt summary across official CMS sources

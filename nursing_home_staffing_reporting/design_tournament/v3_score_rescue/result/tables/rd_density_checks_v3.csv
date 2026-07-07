@@ -1,0 +1,21 @@
+cutoff,bandwidth,below_n,above_n,n,binomial_density_p,sample_definition
+155,5,308,485,793,3.487426732101857e-10,facilities within bandwidth around V3 reconstructed staffing score cutoff
+155,10,541,745,1286,1.4092422295167165e-08,facilities within bandwidth around V3 reconstructed staffing score cutoff
+155,15,797,1047,1844,6.354573099960439e-09,facilities within bandwidth around V3 reconstructed staffing score cutoff
+155,20,1059,1326,2385,4.9741948955267684e-08,facilities within bandwidth around V3 reconstructed staffing score cutoff
+155,30,1510,2014,3524,2.1105569248259252e-17,facilities within bandwidth around V3 reconstructed staffing score cutoff
+205,5,297,560,857,1.8635027054867812e-19,facilities within bandwidth around V3 reconstructed staffing score cutoff
+205,10,630,868,1498,8.465543864597128e-10,facilities within bandwidth around V3 reconstructed staffing score cutoff
+205,15,968,1190,2158,1.922973074756274e-06,facilities within bandwidth around V3 reconstructed staffing score cutoff
+205,20,1227,1515,2742,4.118128500716285e-08,facilities within bandwidth around V3 reconstructed staffing score cutoff
+205,30,1879,2093,3972,0.0007237642945285718,facilities within bandwidth around V3 reconstructed staffing score cutoff
+255,5,291,499,790,1.2904248061824125e-13,facilities within bandwidth around V3 reconstructed staffing score cutoff
+255,10,501,739,1240,1.4718143550635502e-11,facilities within bandwidth around V3 reconstructed staffing score cutoff
+255,15,815,985,1800,6.716292171907418e-05,facilities within bandwidth around V3 reconstructed staffing score cutoff
+255,20,1115,1260,2375,0.0031204105597765243,facilities within bandwidth around V3 reconstructed staffing score cutoff
+255,30,1742,1777,3519,0.5665484278867837,facilities within bandwidth around V3 reconstructed staffing score cutoff
+320,5,190,268,458,0.00031110353588625005,facilities within bandwidth around V3 reconstructed staffing score cutoff
+320,10,351,440,791,0.0017372031621203916,facilities within bandwidth around V3 reconstructed staffing score cutoff
+320,15,528,598,1126,0.03970925373688256,facilities within bandwidth around V3 reconstructed staffing score cutoff
+320,20,753,732,1485,0.6037760914185212,facilities within bandwidth around V3 reconstructed staffing score cutoff
+320,30,1191,1011,2202,0.00013534700086896117,facilities within bandwidth around V3 reconstructed staffing score cutoff

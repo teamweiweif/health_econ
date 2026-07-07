@@ -1,0 +1,6 @@
+snapshot_date,v3_star_match_rate,v2_star_match_rate,v3_minus_v2,n,sample_definition
+2022-01-27,0.5536683836836976,0.5487261589864959,0.004942224697201736,5,snapshot-level V2 versus V3 emulator validation
+2022-04-27,0.54700007083658,0.541899837075866,0.005100233760714001,5,snapshot-level V2 versus V3 emulator validation
+2022-07-27,0.9634532779381734,0.8988803605379903,0.06457291740018312,5,snapshot-level V2 versus V3 emulator validation
+2022-10-27,0.9672189181534976,0.9672189181534976,0.0,5,snapshot-level V2 versus V3 emulator validation
+2023-01-02,0.9664859536717595,0.9664859536717596,-1.1102230246251565e-16,5,snapshot-level V2 versus V3 emulator validation

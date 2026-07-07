@@ -1,0 +1,4 @@
+estimand,n,mean_delta,se,sample_definition,outcome,group,treated_n,control_n,diff,p
+post_minus_pre_targeted_weekend_total_minus_weekend_rn_gap,14679,0.01891224487424514,0.0024724383392431917,"facility-week by metric panel, post Aug 2022 versus pre 2021Q1-2022Q2 excluding 2021Q4",,,,,,
+formula_loss_heterogeneity,14677,,0.005671342596008931,two-group post-minus-pre comparison,delta_score_targeted_minus_rn_gap,formula_induced_overall_star_loss,1540.0,13137.0,-0.008289024877790702,0.1438823930488402
+high_rating_incentive_heterogeneity,14677,,0.004787182417739173,two-group post-minus-pre comparison,delta_score_targeted_minus_rn_gap,high_shadow_price,2015.0,12662.0,0.0032855173985522935,0.49252503267980385
