@@ -1,0 +1,48 @@
+{
+  "@type": "dcat:Dataset",
+  "accessLevel": "public",
+  "accrualPeriodicity": "R/P1M",
+  "bureauCode": [
+    "009:38"
+  ],
+  "contactPoint": {
+    "fn": "Medicaid.gov",
+    "hasEmail": "mailto:Medicaid.gov@cms.hhs.gov"
+  },
+  "description": "All states (including the District of Columbia) are required to provide data to The Centers for Medicare &amp; Medicaid Services (CMS) on a range of Medicaid and Children\u2019s Health Insurance Program (CHIP) indicators related to key application, eligibility, enrollment and call center processes. These data reflect enrollment activity for all populations receiving comprehensive Medicaid and CHIP benefits in all states, as well as state program performance.<br />\nStates submit this data via the Performance Indicator dataset. Further information about this dataset is available at:  <a href=\"https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-chip-enrollment-data/performance-indicator-technical-assistance/index.html\">https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-chip-enrollment-data/performance-indicator-technical-assistance/index.html</a>.",
+  "distribution": [
+    {
+      "@type": "dcat:Distribution",
+      "describedBy": "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/7d80cfd8-3266-4c55-8436-948b7c55b9dd",
+      "describedByType": "application/vnd.tableschema+json",
+      "downloadURL": "https://download.medicaid.gov/data/pi-dataset-june-2026-release.csv",
+      "format": "csv",
+      "mediaType": "text/csv"
+    }
+  ],
+  "identifier": "6165f45b-ca93-5bb5-9d06-db29c692a360",
+  "issued": "2017-09-08T21:42:09+00:00",
+  "keyword": [
+    "child enrollment",
+    "eligibility determinations",
+    "applications",
+    "chip",
+    "enrollment",
+    "medicaid",
+    "magi application processing",
+    "call center"
+  ],
+  "license": "https://www.usa.gov/government-works",
+  "modified": "2026-06-26T18:00:00+00:00",
+  "programCode": [
+    "009:000"
+  ],
+  "publisher": {
+    "@type": "org:Organization",
+    "name": "data.medicaid.gov"
+  },
+  "theme": [
+    "Enrollment"
+  ],
+  "title": "State Medicaid and CHIP Applications, Eligibility Determinations, and Enrollment Data"
+}

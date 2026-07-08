@@ -1,0 +1,4 @@
+validation_outcome,term,estimate,std_error,t_stat,n,clusters,outcome,fixed_effects
+medicaid_percent,ddd_any_newly_treated,0.5934343434343439,0.666421133369564,0.8904794786951252,510,51,medicaid_percent,state_age_fe;state_year_fe;age_year_fe
+public_insurance_percent,ddd_any_newly_treated,0.4611111111111108,0.6789823833605112,0.6791208761984626,510,51,public_insurance_percent,state_age_fe;state_year_fe;age_year_fe
+uninsured_percent,ddd_any_newly_treated,-0.36919191919191907,0.3704839162670154,-0.9965126770195197,510,51,uninsured_percent,state_age_fe;state_year_fe;age_year_fe

@@ -1,0 +1,9 @@
+project,dataset_path,format,size_mb,row_count,column_count,profile_basis,profile_rows,status,error
+children_medicaid_chip_ce,data/acs_state_age_year.parquet,parquet,0.0339,510,19,full_file,510,ok,
+children_medicaid_chip_ce,data/analysis_metadata.json,json,0.0004,11,4,full_file,11,ok,
+children_medicaid_chip_ce,data/enrollment_state_group_month.parquet,parquet,0.683,10098,21,full_file,10098,ok,
+children_medicaid_chip_ce,data/main_ddd_panel.parquet,parquet,0.7924,10098,55,full_file,10098,ok,
+children_medicaid_chip_ce,data/mechanism_panel.parquet,parquet,0.2407,1887,29,full_file,1887,ok,
+children_medicaid_chip_ce,data/renewal_state_month.parquet,parquet,0.2373,1887,24,full_file,1887,ok,
+children_medicaid_chip_ce,data/state_policy_month.parquet,parquet,0.0223,5049,28,full_file,5049,ok,
+children_medicaid_chip_ce,data/validation_panel.parquet,parquet,0.0366,510,23,full_file,510,ok,

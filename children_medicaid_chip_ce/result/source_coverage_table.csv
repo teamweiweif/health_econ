@@ -1,0 +1,5 @@
+group,treatment_group,rows,nonmissing_enrollment,states,first_month,last_month,missing_rate
+adult,already_or_partly_compliant,3267,3267,33,2018-01-01,2026-03-01,0.0
+adult,newly_treated,1782,1782,18,2018-01-01,2026-03-01,0.0
+child,already_or_partly_compliant,3267,3267,33,2018-01-01,2026-03-01,0.0
+child,newly_treated,1782,1782,18,2018-01-01,2026-03-01,0.0

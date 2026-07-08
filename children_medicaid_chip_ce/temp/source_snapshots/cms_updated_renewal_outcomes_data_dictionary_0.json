@@ -1,0 +1,50 @@
+{
+  "data": {
+    "fields": [
+      {
+        "description": "State.",
+        "format": "default",
+        "name": "state",
+        "title": "State",
+        "type": "string"
+      },
+      {
+        "description": "The data reporting month.",
+        "format": "default",
+        "name": "reporting_period",
+        "title": "Reporting period",
+        "type": "integer"
+      },
+      {
+        "description": "The month in which the data was released.",
+        "format": "default",
+        "name": "release_date",
+        "title": "Release date",
+        "type": "integer"
+      },
+      {
+        "description": "Name of the metric.",
+        "format": "default",
+        "name": "metric_name",
+        "title": "Metric name",
+        "type": "string"
+      },
+      {
+        "description": "Indicates that the value has been updated.",
+        "format": "default",
+        "name": "data_type",
+        "title": "Data Type",
+        "type": "string"
+      },
+      {
+        "description": "Data value associated with the metric.",
+        "format": "default",
+        "name": "value",
+        "title": "Value",
+        "type": "string"
+      }
+    ],
+    "title": "Unwinding: Medicaid and CHIP Updated Renewal Outcomes"
+  },
+  "identifier": "15e1a5b4-0fc1-4278-b5d8-d5d1b498c704"
+}

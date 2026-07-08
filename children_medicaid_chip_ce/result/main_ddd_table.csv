@@ -1,0 +1,6 @@
+spec,term,estimate,std_error,t_stat,n,clusters,outcome,fixed_effects
+main_any_newly_treated_gap,did_any_newly_treated,-0.05529656382300867,0.05476405453324423,-1.0097237009623015,4367,51,log_child_adult_gap,state_fe;month_fe
+medicaid_newly_treated_gap,did_medicaid_newly_treated,-0.028245854553467058,0.04253506563953042,-0.6640604435136094,4367,51,log_child_adult_gap,state_fe;month_fe
+partial_or_new_gap,did_partial_or_new,-0.028245854553467058,0.04253506563953042,-0.6640604435136094,4367,51,log_child_adult_gap,state_fe;month_fe
+aggregate_instability_gap,did_any_newly_treated,0.0012826270219845907,0.0015003238509552785,0.8549001078453315,4362,51,instability_child_adult_gap,state_fe;month_fe
+net_loss_rate_gap,did_any_newly_treated,-0.0003263444062085919,0.0010915961415308936,-0.29896075461655147,4437,51,loss_rate_child_adult_gap,state_fe;month_fe

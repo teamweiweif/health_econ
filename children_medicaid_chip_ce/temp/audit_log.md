@@ -1,0 +1,25 @@
+# Audit Log
+
+- 2026-07-08: ACS HI05 download failed for 2018: HTTP Error 404: Not Found
+- 2026-07-08: source acquisition completed
+- 2026-07-08: policy panel built from KFF Table 5 and CMS federal timeline
+- 2026-07-08: enrollment panel built with child and adult groups
+- 2026-07-08: renewal mechanism panel built; outcomes are not child-specific
+- 2026-07-08: ACS validation panel built from Census HI-05 tables; Census API probe required key
+- 2026-07-08: design and outcome panels constructed
+- 2026-07-08: descriptive diagnostics completed
+- 2026-07-08: main DDD and dynamic event-study models estimated
+- 2026-07-08: robustness, leave-one-state-out, renewal mechanism, and ACS validation models attempted
+- 2026-07-08: final report and manuscript skeleton written
+- 2026-07-08: source acquisition completed
+- 2026-07-08: policy panel built from KFF Table 5 and CMS federal timeline
+- 2026-07-08: enrollment panel built with child and adult/non-child proxy groups
+- 2026-07-08: renewal mechanism panel built; outcomes are not child-specific
+- 2026-07-08: ACS HI05 2018 legacy XLS source found but not parsed by current XLSX parser
+- 2026-07-08: ACS validation panel built from Census HI-05 XLSX tables; Census API probe required key
+- 2026-07-08: design and outcome panels constructed
+- 2026-07-08: descriptive diagnostics completed
+- 2026-07-08: main DDD estimated using child-adult/non-child gap implementation and dynamic event-study models
+- 2026-07-08: robustness, leave-one-state-out, renewal mechanism, and ACS validation models attempted
+- 2026-07-08: final report and manuscript skeleton written
+- 2026-07-08: final report and manuscript skeleton written

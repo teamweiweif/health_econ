@@ -1,0 +1,5 @@
+mechanism_outcome,term,estimate,std_error,t_stat,n,clusters,outcome,fixed_effects
+ex_parte_renewal_rate_due,did_any_newly_treated,0.00961174408555946,0.035471705662086364,0.2709693234693502,1781,51,ex_parte_renewal_rate_due,state_fe;month_fe
+procedural_termination_rate_due,did_any_newly_treated,0.01022235665525068,0.02353582454458419,0.4343317836979261,1781,51,procedural_termination_rate_due,state_fe;month_fe
+procedural_termination_share,did_any_newly_treated,0.013921315452824996,0.047985652708402465,0.2901141209315534,1780,51,procedural_termination_share,state_fe;month_fe
+pending_renewal_share,did_any_newly_treated,-0.006086106419396974,0.013945285513016747,-0.4364275233888978,1781,51,pending_renewal_share,state_fe;month_fe
