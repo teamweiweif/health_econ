@@ -11,7 +11,7 @@ lightweight outputs, and a GitHub-friendly data metadata layer.
 | `988_telecom_fee_crisis_performance/` | State 988 telecom fee funding and crisis-line performance | Conditional go for exploratory policy-audit evidence |
 | `ccbhc_expansion_capacity/` | 2024 CCBHC Medicaid Demonstration expansion and behavioral-health capacity | Monitoring package; no-go for a current causal paper |
 | `nursing_home_staffing_reporting/` | CMS 2022 nursing-home staffing transparency and Five-Star rating changes | Large staffing panel; weak current causal design because pretrends/placebo fail |
-| `climate_uhc_ml/` | Climate shocks, UHC financial protection, and diagnostic ML targeting feasibility | Objective audit workspace complete; empirical manuscript claims remain fail-closed |
+| `climate_uhc_ml/` | Climate shocks, UHC financial protection, and household-climate dataset promotion | Dataset-promotion registry active; modeling remains blocked until raw packages and climate-linkage gates pass |
 
 ## Data Policy
 

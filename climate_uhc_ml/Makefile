@@ -1,4 +1,4 @@
-.PHONY: setup verify inventory acquire schema phase1 all gated validate
+.PHONY: setup verify inventory acquire schema phase1 all gated promotion validate
 
 PYTHON ?= python
 
@@ -27,10 +27,6 @@ schema: acquire
 	$(PYTHON) script/18_probe_climate_sources.py
 	$(PYTHON) script/07_merge_microdata_climate.py
 	$(PYTHON) script/08_descriptive_diagnostics.py
-	$(PYTHON) script/09_predictive_ml.py
-	$(PYTHON) script/10_causal_models.py
-	$(PYTHON) script/11_causal_ml_policy_learning.py
-	$(PYTHON) script/12_robustness.py
 	$(PYTHON) script/13_write_reports.py
 	$(PYTHON) script/16_snapshot_public_documentation.py
 	$(PYTHON) script/15_prepare_manual_request_packet.py
@@ -137,6 +133,7 @@ schema: acquire
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/28_audit_python_environment.py
+	$(PYTHON) script/121_build_country_wave_promotion_registry.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py
 	$(PYTHON) script/13_write_reports.py
 	$(PYTHON) script/14_validate_workspace.py
@@ -157,10 +154,6 @@ gated:
 	$(PYTHON) script/18_probe_climate_sources.py
 	$(PYTHON) script/07_merge_microdata_climate.py
 	$(PYTHON) script/08_descriptive_diagnostics.py
-	$(PYTHON) script/09_predictive_ml.py
-	$(PYTHON) script/10_causal_models.py
-	$(PYTHON) script/11_causal_ml_policy_learning.py
-	$(PYTHON) script/12_robustness.py
 	$(PYTHON) script/13_write_reports.py
 	$(PYTHON) script/16_snapshot_public_documentation.py
 	$(PYTHON) script/15_prepare_manual_request_packet.py
@@ -267,11 +260,24 @@ gated:
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/28_audit_python_environment.py
+	$(PYTHON) script/121_build_country_wave_promotion_registry.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py
 	$(PYTHON) script/13_write_reports.py
+	$(PYTHON) script/14_validate_workspace.py
+
+promotion:
+	$(PYTHON) script/30_build_minimum_viable_acquisition_plan.py
+	$(PYTHON) script/17_audit_raw_downloads.py
+	$(PYTHON) script/22_build_raw_ingestion_plan.py
+	$(PYTHON) script/29_build_raw_variable_verification_protocol.py
+	$(PYTHON) script/33_build_harmonization_recipe_gate.py
+	$(PYTHON) script/121_build_country_wave_promotion_registry.py
+	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
+	$(PYTHON) script/36_build_direct_read_audit_bundle.py
+	$(PYTHON) script/26_build_objective_traceability_audit.py
 	$(PYTHON) script/14_validate_workspace.py
 
 validate:
 	$(PYTHON) script/14_validate_workspace.py
 
-all: schema
+all: promotion

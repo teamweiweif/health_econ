@@ -127,6 +127,7 @@ REQUIRED_REPORTS = [
     "alb2008_fallback_blocker_resolution_matrix.md",
     "first_batch_raw_verification_workbook.md",
     "direct_read_audit_bundle.md",
+    "country_wave_promotion_registry.md",
 ]
 REQUIRED_TEMP = [
     "source_inventory.csv",
@@ -258,6 +259,7 @@ REQUIRED_SCRIPTS = [
     "119_promote_alb2002_limited_financial_outcomes.py",
     "118_promote_alb2002_limited_climate_exposures.py",
     "120_promote_alb2002_limited_climate_linked.py",
+    "121_build_country_wave_promotion_registry.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -656,6 +658,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "direct_read_audit_bundle": row_count(RESULT_DIR / "direct_read_audit_bundle.csv"),
         "direct_read_artifact_manifest": row_count(RESULT_DIR / "direct_read_artifact_manifest.csv"),
         "direct_read_audit_bundle_summary": row_count(RESULT_DIR / "direct_read_audit_bundle_summary.csv"),
+        "promoted_country_wave_registry": row_count(RESULT_DIR / "promoted_country_wave_registry.csv"),
+        "country_wave_promotion_gate_audit": row_count(RESULT_DIR / "country_wave_promotion_gate_audit.csv"),
+        "country_wave_promotion_summary": row_count(RESULT_DIR / "country_wave_promotion_summary.csv"),
+        "priority_country_wave_download_queue": row_count(RESULT_DIR / "priority_country_wave_download_queue.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
         "design_scorecard_current_audit": row_count(RESULT_DIR / "design_scorecard_current_audit.csv"),
         "design_no_go_threshold_audit": row_count(RESULT_DIR / "design_no_go_threshold_audit.csv"),
@@ -3753,6 +3759,34 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["direct_read_artifact_manifest"] > 0
         and counts["direct_read_audit_bundle_summary"] > 0
         else "Run script/36_build_direct_read_audit_bundle.py after empirical readiness dashboard generation.",
+    )
+    promotion_registry = read_csv_dicts(RESULT_DIR / "promoted_country_wave_registry.csv")
+    promotion_summary = read_csv_dicts(RESULT_DIR / "country_wave_promotion_summary.csv")
+    promoted_rows = sum(1 for row in promotion_registry if row.get("analysis_ready_status") == "promoted_analysis_ready")
+    priority_rows = sum(1 for row in promotion_registry if row.get("priority_country") == "1")
+    packet_count = len(list((REPORT_DIR / "country_wave_promotion_packets").glob("*.md"))) if (REPORT_DIR / "country_wave_promotion_packets").exists() else 0
+    modeling_gate = next((row.get("value", "") for row in promotion_summary if row.get("metric") == "modeling_gate_status"), "")
+    add(
+        rows,
+        "dataset_promotion",
+        "Country-wave promotion registry exists and remains fail-closed until verified raw data pass gates",
+        status(
+            counts["promoted_country_wave_registry"] > 0
+            and counts["country_wave_promotion_gate_audit"] > 0
+            and counts["country_wave_promotion_summary"] > 0
+            and counts["priority_country_wave_download_queue"] > 0
+            and packet_count > 0
+            and modeling_gate == "blocked"
+        ),
+        f"registry_rows={counts['promoted_country_wave_registry']}; gate_rows={counts['country_wave_promotion_gate_audit']}; summary_rows={counts['country_wave_promotion_summary']}; queue_rows={counts['priority_country_wave_download_queue']}; priority_rows={priority_rows}; promoted_rows={promoted_rows}; packets={packet_count}; modeling_gate={modeling_gate}",
+        ""
+        if counts["promoted_country_wave_registry"] > 0
+        and counts["country_wave_promotion_gate_audit"] > 0
+        and counts["country_wave_promotion_summary"] > 0
+        and counts["priority_country_wave_download_queue"] > 0
+        and packet_count > 0
+        and modeling_gate == "blocked"
+        else "Run script/121_build_country_wave_promotion_registry.py and keep modeling blocked until registry thresholds pass.",
     )
     objective_trace = read_csv_dicts(RESULT_DIR / "objective_requirement_traceability.csv")
     objective_guardrails = read_csv_dicts(RESULT_DIR / "objective_guardrail_audit.csv")

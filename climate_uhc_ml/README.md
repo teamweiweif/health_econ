@@ -1,52 +1,44 @@
 # Climate UHC ML
 
-This is a GitHub-readable export of the `climate_uhc_ml` audit workspace.
+This is the current dataset-promotion workspace for the climate shocks and UHC
+failure project.
 
-The project tests whether public household microdata can support a multi-country
-climate shock, universal health coverage failure, and policy-targeting study.
-The current export is intentionally evidence-first: it includes reports, scripts,
-machine-readable audits, and the small limited diagnostic datasets, while raw
-downloads, extracted archives, web caches, and source snapshots stay local.
+The active objective is not to run more ML. The active objective is to promote
+country-waves from metadata-only candidates into verified household by climate
+analysis datasets. Modeling remains blocked until the promotion registry passes
+the required thresholds.
 
 ## Read First
 
-- `report/final_report.md` - final empirical judgment and go/no-go status.
-- `report/direct_read_audit_bundle.md` - compact GPT-readable evidence bundle.
-- `result/completion_criteria_audit.csv` - formal 16-item objective completion audit.
-- `report/modeling_report.md` - predictive ML, reduced-form, causal ML, and robustness status.
-- `metadata/country_wave_screening.csv` - broad country-wave screening table.
+- `report/README.md` - current reproduction instructions and active guardrails.
+- `report/country_wave_promotion_registry.md` - human-readable promotion status.
+- `result/promoted_country_wave_registry.csv` - machine-readable gate registry.
+- `result/priority_country_wave_download_queue.csv` - priority raw-data action queue.
+- `report/country_wave_promotion_packets/` - one packet per target country-wave.
+- `report/direct_read_audit_bundle.md` - compact Web-GPT-readable audit bundle.
 
-## Current Data Status
+## Current Status
 
-The original target was a multi-country, multi-wave household microdata by
-climate exposure dataset. The current analysis-ready diagnostic data are limited
-to Albania 2002 LSMS:
+- Registry rows: 24 country-waves.
+- Priority-country rows: 16 rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda.
+- Promoted analysis-ready rows: 0.
+- Financial-protection-ready countries: 0 of 6 required.
+- Double-failure-ready country-waves: 0 of 10 required.
+- Accepted CHIRPS/ERA5 climate-linkage routes: 0 of 1 required.
 
-- `data/harmonized_household.csv`
-- `data/household_outcomes.csv`
-- `data/climate_exposures_nasa_power.csv`
-- `data/climate_linked_household.csv`
-
-These files support CHE10/CHE25 financial-protection diagnostics only. They do
-not support SDG 3.8.2, deployable prediction, causal climate effects, causal ML,
-or policy-learning claims.
+Albania 2002 remains a diagnostic template only. It is not the main empirical
+case unless its timing, geography, and outcome gates are resolved.
 
 ## Included
 
-- `report/` - human-readable reports and audits.
-- `result/` - machine-readable outputs, model diagnostics, validation, and completion audits.
-- `script/` - reusable pipeline scripts.
-- `data/` - small current limited diagnostic CSVs.
-- `metadata/` - source inventory, country-wave screening, manual-download manifest, and variable maps.
-- `data_metadata/` - generated GitHub-readable metadata for the included data files.
+- `script/` - reusable pipeline and promotion-gate scripts.
+- `report/` - human-readable audit reports and country-wave packets.
+- `result/` - machine-readable registries, queues, validation, and summaries.
+- `data/` - small legacy Albania diagnostic CSVs only.
 
 ## Excluded
 
-- raw downloaded archives;
-- extracted raw files;
-- Stata/SPSS/SAS files;
-- web snapshots and API caches;
-- temporary scratch files.
-
-Those exclusions are deliberate so this repository remains readable by GitHub
-and Web GPT connectors without shipping raw or bulky data.
+Raw downloads, extracted archives, web/API caches, Stata/SPSS/SAS files, and
+temporary scratch files are deliberately excluded from the GitHub-readable
+package. Put manual raw packages under `temp/raw_downloads/` locally, then rerun
+the promotion pipeline.

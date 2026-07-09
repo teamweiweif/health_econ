@@ -1,7 +1,7 @@
-metric,value,interpretation
+﻿metric,value,interpretation
 bundle_rows,119,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,453,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,453,Curated artifacts present and non-empty.
+manifest_rows,458,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,458,Curated artifacts present and non-empty.
 manifest_missing_or_empty,0,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.

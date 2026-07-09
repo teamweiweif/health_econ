@@ -1,0 +1,8 @@
+﻿metric,value,interpretation
+registry_rows,24,"Country-waves currently tracked for promotion, including Albania diagnostic template if present."
+priority_country_rows,16,"Rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda."
+promoted_analysis_ready_rows,0,Rows allowed into promoted analysis data.
+financial_protection_ready_countries,0,Countries meeting value-verified CHE financial-protection requirements.
+double_failure_ready_country_waves,0,Country-waves with both financial protection and access/forgone-care ready.
+accepted_chirps_era5_climate_linkage_rows,0,Country-waves with accepted CHIRPS or ERA5 linkage route.
+modeling_gate_status,blocked,"Do not run predictive, reduced-form, causal ML, or policy-learning models until registry thresholds pass."
