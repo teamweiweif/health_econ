@@ -131,6 +131,7 @@ REQUIRED_REPORTS = [
     "priority_promotion_acquisition_plan.md",
     "priority_official_raw_access_probe.md",
     "priority_raw_intake_gate.md",
+    "priority_climate_linkage_preflight.md",
 ]
 REQUIRED_TEMP = [
     "source_inventory.csv",
@@ -266,6 +267,7 @@ REQUIRED_SCRIPTS = [
     "122_build_priority_promotion_acquisition_plan.py",
     "123_probe_priority_official_raw_access.py",
     "124_build_priority_raw_intake_gate.py",
+    "125_build_priority_climate_linkage_preflight.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -676,6 +678,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_raw_intake_gate": row_count(TEMP_DIR / "priority_raw_intake_gate.csv"),
         "priority_raw_file_targets": row_count(TEMP_DIR / "priority_raw_file_targets.csv"),
         "priority_raw_intake_gate_summary": row_count(RESULT_DIR / "priority_raw_intake_gate_summary.csv"),
+        "priority_climate_linkage_preflight": row_count(TEMP_DIR / "priority_climate_linkage_preflight.csv"),
+        "priority_climate_linkage_requirements": row_count(TEMP_DIR / "priority_climate_linkage_requirements.csv"),
+        "priority_climate_linkage_preflight_summary": row_count(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
         "design_scorecard_current_audit": row_count(RESULT_DIR / "design_scorecard_current_audit.csv"),
         "design_no_go_threshold_audit": row_count(RESULT_DIR / "design_no_go_threshold_audit.csv"),
@@ -3914,6 +3919,62 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_handoff_existing >= priority_raw_gate_rows
         and priority_raw_modeling_gate == "blocked"
         else "Run script/124_build_priority_raw_intake_gate.py after priority access probing and raw-download intake auditing.",
+    )
+    priority_climate_summary = read_csv_dicts(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv")
+    priority_climate_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_preflight_rows"), "0"), 0)
+    priority_climate_batch_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_preflight_priority_10_rows"), "0"), 0)
+    priority_climate_countries = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_preflight_priority_10_countries"), "0"), 0)
+    priority_climate_backup_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_preflight_backup_rows"), "0"), 0)
+    priority_climate_requirements = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_requirement_rows"), "0"), 0)
+    priority_climate_source_ready_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_chirps_era5_source_route_ready_rows"), "0"), 0)
+    priority_accepted_chirps_era5_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_accepted_chirps_era5_route_rows"), "0"), 0)
+    priority_climate_blocked_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_blocked_raw_timing_geography_rows"), "0"), 0)
+    priority_climate_handoff_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_handoff_readmes_written"), "0"), 0)
+    priority_climate_source_groups_ready = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "climate_source_route_groups_ready"), "0"), 0)
+    priority_climate_modeling_gate = next((row.get("value", "") for row in priority_climate_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_climate_preflight = read_csv_dicts(TEMP_DIR / "priority_climate_linkage_preflight.csv")
+    priority_climate_handoff_existing = sum(1 for row in priority_climate_preflight if row.get("handoff_readme") and file_ok(PROJECT_ROOT / row.get("handoff_readme", "")))
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority climate linkage preflight maps CHIRPS/ERA5 routes to raw timing/geography gates while keeping accepted climate linkage closed",
+        status(
+            counts["priority_climate_linkage_preflight"] >= counts["priority_promotion_acquisition_wave_plan"]
+            and counts["priority_climate_linkage_requirements"] >= counts["priority_promotion_acquisition_wave_plan"]
+            and counts["priority_climate_linkage_preflight_summary"] > 0
+            and file_ok(REPORT_DIR / "priority_climate_linkage_preflight.md")
+            and priority_climate_rows >= 10
+            and priority_climate_batch_rows >= 10
+            and priority_climate_countries >= 5
+            and priority_climate_backup_rows >= 1
+            and priority_climate_requirements >= priority_climate_rows
+            and priority_climate_source_ready_rows >= priority_climate_rows
+            and priority_accepted_chirps_era5_rows == 0
+            and priority_climate_blocked_rows >= priority_climate_rows
+            and priority_climate_handoff_rows >= priority_climate_rows
+            and priority_climate_handoff_existing >= priority_climate_rows
+            and priority_climate_source_groups_ready >= 3
+            and priority_climate_modeling_gate == "blocked"
+        ),
+        f"preflight_rows={counts['priority_climate_linkage_preflight']}; requirement_rows={counts['priority_climate_linkage_requirements']}; summary_rows={counts['priority_climate_linkage_preflight_summary']}; reported_rows={priority_climate_rows}; priority_10_rows={priority_climate_batch_rows}; priority_countries={priority_climate_countries}; backup_rows={priority_climate_backup_rows}; reported_requirements={priority_climate_requirements}; source_ready_rows={priority_climate_source_ready_rows}; accepted_chirps_era5_rows={priority_accepted_chirps_era5_rows}; blocked_raw_timing_geo_rows={priority_climate_blocked_rows}; handoff_rows={priority_climate_handoff_rows}; handoff_existing={priority_climate_handoff_existing}; source_groups_ready={priority_climate_source_groups_ready}; modeling_gate={priority_climate_modeling_gate}",
+        ""
+        if counts["priority_climate_linkage_preflight"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_climate_linkage_requirements"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_climate_linkage_preflight_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_climate_linkage_preflight.md")
+        and priority_climate_rows >= 10
+        and priority_climate_batch_rows >= 10
+        and priority_climate_countries >= 5
+        and priority_climate_backup_rows >= 1
+        and priority_climate_requirements >= priority_climate_rows
+        and priority_climate_source_ready_rows >= priority_climate_rows
+        and priority_accepted_chirps_era5_rows == 0
+        and priority_climate_blocked_rows >= priority_climate_rows
+        and priority_climate_handoff_rows >= priority_climate_rows
+        and priority_climate_handoff_existing >= priority_climate_rows
+        and priority_climate_source_groups_ready >= 3
+        and priority_climate_modeling_gate == "blocked"
+        else "Run script/125_build_priority_climate_linkage_preflight.py after climate validation protocol and priority raw intake gate exist.",
     )
     objective_trace = read_csv_dicts(RESULT_DIR / "objective_requirement_traceability.csv")
     objective_guardrails = read_csv_dicts(RESULT_DIR / "objective_guardrail_audit.csv")

@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 120 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 470 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 470 | Curated artifacts present and non-empty. |
+| bundle_rows | 121 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 475 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 475 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 0 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -388,7 +388,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 11 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 12 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -446,6 +446,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_questionnaire_gps_fields_not_present_as_raw_coordinate_artifacts | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_questionnaire_timing_fields_not_in_raw_household_values | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_raw_microdata | 14 | Direct-read bundle status count. |
+| bundle_status_blocked_raw_timing_geography_not_verified | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns | 3 | Direct-read bundle status count. |
 | bundle_status_complete | 4 | Direct-read bundle status count. |
 | bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready | 2 | Direct-read bundle status count. |
@@ -487,7 +488,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 |---|---:|
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
-| priority_bundle | 11 |
+| priority_bundle | 12 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
 | coverage | 5 |
@@ -519,6 +520,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | manual_download_required | 1 |
 | manual_review_required | 1 |
 | manual_raw_package_required | 1 |
+| blocked_raw_timing_geography_not_verified | 1 |
 | raw_archives_available_requires_value_verification | 1 |
 | raw_value_summary_available_manual_review_required | 1 |
 | temp_candidate_timing_geography_observed_outcome_semantics_pending | 1 |
@@ -611,6 +613,7 @@ No incomplete completion criteria were found.
 | item | status | value | interpretation |
 |---|---|---|---|
 | priority_raw_intake_gate | manual_raw_package_required | gate_rows=13; priority_10_rows=10; backup_rows=3; file_targets=156; manual_blocked=13; schema_ready=0; handoffs=13 | Priority 10-wave and backup raw-intake gate converts the acquisition plan into per-folder handoff files and fail-clos... |
+| priority_climate_linkage_preflight | blocked_raw_timing_geography_not_verified | preflight_rows=13; priority_10_rows=10; backup_rows=3; requirements=143; source_ready=13; accepted_routes=0; handoffs=13 | Priority climate preflight keeps CHIRPS/ERA5 linkage fail-closed until raw timing/geography, geolocation quality, uni... |
 | 1: Albania 2005 ALB_2005_LSMS_v01_M | harmonization_value_audit_required | raw_schema_claims_only_no_analysis_dataset_claims | complete harmonization value/unit/recall/key audits and assemble verified recipe candidates |
 | 2: Ethiopia 2021-2022 ETH_2021_ESPS-W5_v02_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
 | 3: Ethiopia 2018-2019 ETH_2018_ESS_v04_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
@@ -619,13 +622,12 @@ No incomplete completion criteria were found.
 | 6: Malawi 2007-2009 MWI_2007-2009_MTM_v01_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
 | 7: Malawi 2004-2005 MWI_2004_IHS-II_v01_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
 | 8: Nepal 2010-2011 NPL_2010_LSS-III_v01_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
-| 9: Nigeria 2012-2013 NGA_2012_GHSP-W2_v02_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
 
 ## Artifact Manifest
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 470 |
+| present_nonempty | 475 |
 
 Missing or empty curated artifacts:
 

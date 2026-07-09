@@ -43,6 +43,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_raw_intake_gate.csv", "priority raw package intake gate rows"),
     ("dataset_promotion", "temp/priority_raw_file_targets.csv", "priority raw file target gate rows"),
     ("dataset_promotion", "result/priority_raw_intake_gate_summary.csv", "priority raw package intake gate summary"),
+    ("dataset_promotion", "report/priority_climate_linkage_preflight.md", "priority climate linkage preflight report"),
+    ("dataset_promotion", "temp/priority_climate_linkage_preflight.csv", "priority climate linkage preflight rows"),
+    ("dataset_promotion", "temp/priority_climate_linkage_requirements.csv", "priority climate linkage requirement rows"),
+    ("dataset_promotion", "result/priority_climate_linkage_preflight_summary.csv", "priority climate linkage preflight summary"),
     ("raw_access", "temp/source_inventory.csv", "source inventory"),
     ("raw_access", "temp/country_wave_screening.csv", "broad candidate country-wave screening"),
     ("raw_access", "temp/manual_download_manifest.csv", "manual raw-data access manifest"),
@@ -412,6 +416,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/38_build_first_batch_raw_verification_workbook.py", "first-batch raw verification workbook generator"),
     ("reproducibility", "script/39_probe_first_batch_official_raw_access.py", "first-batch official raw access probe generator"),
     ("reproducibility", "script/124_build_priority_raw_intake_gate.py", "priority raw package intake gate generator"),
+    ("reproducibility", "script/125_build_priority_climate_linkage_preflight.py", "priority climate linkage preflight generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
     ("reproducibility", "script/41_build_first_batch_public_documentation_audit.py", "first-batch public documentation audit generator"),
     ("reproducibility", "script/42_build_first_batch_file_source_traceability.py", "first-batch file source traceability generator"),
@@ -601,6 +606,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     first_batch = read_csv_dicts(TEMP_DIR / "first_batch_raw_acquisition_checklist.csv")
     first_batch_access_summary = read_csv_dicts(RESULT_DIR / "first_batch_official_raw_access_summary.csv")
     priority_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_raw_intake_gate_summary.csv")
+    priority_climate_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv")
     public_external_summary = read_csv_dicts(RESULT_DIR / "public_external_raw_candidate_download_summary.csv")
     first_batch_handoff_summary = read_csv_dicts(RESULT_DIR / "first_batch_manual_download_handoff_summary.csv")
     first_batch_documentation_summary = read_csv_dicts(RESULT_DIR / "first_batch_public_documentation_summary.csv")
@@ -794,6 +800,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"gate_rows={csv_value(priority_raw_intake_summary, 'priority_raw_intake_gate_rows', '0')}; priority_10_rows={csv_value(priority_raw_intake_summary, 'priority_raw_intake_priority_10_rows', '0')}; backup_rows={csv_value(priority_raw_intake_summary, 'priority_raw_intake_backup_rows', '0')}; file_targets={csv_value(priority_raw_intake_summary, 'priority_raw_file_target_rows', '0')}; manual_blocked={csv_value(priority_raw_intake_summary, 'priority_raw_gate_blocked_manual_rows', '0')}; schema_ready={csv_value(priority_raw_intake_summary, 'priority_raw_gate_schema_ready_rows', '0')}; handoffs={csv_value(priority_raw_intake_summary, 'priority_raw_handoff_readmes_written', '0')}",
         [TEMP_DIR / "priority_raw_intake_gate.csv", TEMP_DIR / "priority_raw_file_targets.csv", RESULT_DIR / "priority_raw_intake_gate_summary.csv", REPORT_DIR / "priority_raw_intake_gate.md"],
         "Priority 10-wave and backup raw-intake gate converts the acquisition plan into per-folder handoff files and fail-closed post-download promotion checks.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_climate_linkage_preflight",
+        "blocked_raw_timing_geography_not_verified",
+        f"preflight_rows={csv_value(priority_climate_preflight_summary, 'priority_climate_preflight_rows', '0')}; priority_10_rows={csv_value(priority_climate_preflight_summary, 'priority_climate_preflight_priority_10_rows', '0')}; backup_rows={csv_value(priority_climate_preflight_summary, 'priority_climate_preflight_backup_rows', '0')}; requirements={csv_value(priority_climate_preflight_summary, 'priority_climate_requirement_rows', '0')}; source_ready={csv_value(priority_climate_preflight_summary, 'priority_chirps_era5_source_route_ready_rows', '0')}; accepted_routes={csv_value(priority_climate_preflight_summary, 'priority_accepted_chirps_era5_route_rows', '0')}; handoffs={csv_value(priority_climate_preflight_summary, 'priority_climate_handoff_readmes_written', '0')}",
+        [TEMP_DIR / "priority_climate_linkage_preflight.csv", TEMP_DIR / "priority_climate_linkage_requirements.csv", RESULT_DIR / "priority_climate_linkage_preflight_summary.csv", REPORT_DIR / "priority_climate_linkage_preflight.md"],
+        "Priority climate preflight keeps CHIRPS/ERA5 linkage fail-closed until raw timing/geography, geolocation quality, units, lag windows, and source validation pass.",
     )
     add_bundle(
         rows,
