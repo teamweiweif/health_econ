@@ -30,6 +30,7 @@ Post-download validation commands:
 - `python script/126_build_priority_raw_verification_workbook.py`
 - `python script/129_build_priority_manual_verification_decision_gate.py`
 - `python script/140_build_priority_first_pass_variable_review_queue.py`
+- `python script/141_build_priority_download_execution_packet.py`
 - `python script/132_build_priority_analysis_dataset_synthesis_blueprint.py`
 - `python script/134_build_priority_country_wave_promotion_packets.py`
 - `python script/127_enforce_promoted_data_gate.py`

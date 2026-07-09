@@ -144,6 +144,7 @@ REQUIRED_REPORTS = [
     "priority_core_file_endpoint_matrix.md",
     "priority_threshold_acquisition_campaign.md",
     "priority_first_pass_variable_review_queue.md",
+    "priority_download_execution_packet.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "promoted_data_gate.md",
@@ -296,6 +297,7 @@ REQUIRED_SCRIPTS = [
     "138_probe_priority_core_file_endpoint_matrix.py",
     "139_build_priority_threshold_acquisition_campaign.py",
     "140_build_priority_first_pass_variable_review_queue.py",
+    "141_build_priority_download_execution_packet.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
@@ -755,6 +757,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_first_pass_variable_review_queue": row_count(TEMP_DIR / "priority_first_pass_variable_review_queue.csv"),
         "priority_first_pass_requirement_coverage": row_count(TEMP_DIR / "priority_first_pass_requirement_coverage.csv"),
         "priority_first_pass_variable_review_summary": row_count(RESULT_DIR / "priority_first_pass_variable_review_summary.csv"),
+        "priority_download_execution_packet": row_count(TEMP_DIR / "priority_download_execution_packet.csv"),
+        "priority_download_file_acceptance_matrix": row_count(TEMP_DIR / "priority_download_file_acceptance_matrix.csv"),
+        "priority_download_execution_packet_summary": row_count(RESULT_DIR / "priority_download_execution_packet_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4575,6 +4580,45 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_first_pass_gate_ok),
         f"queue_rows={counts['priority_first_pass_variable_review_queue']}; coverage_rows={counts['priority_first_pass_requirement_coverage']}; summary_rows={counts['priority_first_pass_variable_review_summary']}; reported_datasets={priority_first_pass_dataset_rows}; requirements={priority_first_pass_requirement_rows}; selected_variables={priority_first_pass_selected_rows}; countries={priority_first_pass_countries}; priority_waves={priority_first_pass_priority_rows}; backup_waves={priority_first_pass_backup_rows}; missing_coverage={priority_first_pass_missing_coverage}; raw_received={priority_first_pass_raw_received}; ready_after_download={priority_first_pass_ready_after_download}; blocked_status_rows={priority_first_pass_blocked_status_rows}; requirement_blocked_rows={priority_first_pass_requirement_blocked_rows}; handoffs={priority_first_pass_handoffs}; modeling_gate={priority_first_pass_modeling_gate}",
         "" if priority_first_pass_gate_ok else "Run script/140_build_priority_first_pass_variable_review_queue.py after the threshold campaign and raw verification workbook are current.",
+    )
+    priority_download_summary = read_csv_dicts(RESULT_DIR / "priority_download_execution_packet_summary.csv")
+    priority_download_packet_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_packet_rows"), "0"), 0)
+    priority_download_priority_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_priority_10_wave_rows"), "0"), 0)
+    priority_download_backup_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_backup_wave_rows"), "0"), 0)
+    priority_download_countries = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_distinct_countries"), "0"), 0)
+    priority_download_core_file_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_core_file_rows"), "0"), 0)
+    priority_download_requirement_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_first_pass_requirement_rows"), "0"), 0)
+    priority_download_variable_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_first_pass_variable_rows"), "0"), 0)
+    priority_download_raw_received = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_raw_package_received_rows"), "0"), 0)
+    priority_download_handoffs = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "priority_download_execution_handoff_readmes_written"), "0"), 0)
+    priority_download_ready_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "download_execution_status_ready_for_manual_credentialed_download_no_raw_receipt"), "0"), 0)
+    priority_download_file_blocked_rows = safe_int(next((row.get("value", "0") for row in priority_download_summary if row.get("metric") == "download_file_acceptance_status_blocked_no_raw_or_archive_file"), "0"), 0)
+    priority_download_modeling_gate = next((row.get("value", "") for row in priority_download_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_download_gate_ok = (
+        counts["priority_download_execution_packet"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_download_file_acceptance_matrix"] >= counts["priority_promotion_acquisition_wave_plan"] * 12
+        and counts["priority_download_execution_packet_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_download_execution_packet.md")
+        and priority_download_packet_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_download_priority_rows >= 10
+        and priority_download_backup_rows >= 3
+        and priority_download_countries >= 8
+        and priority_download_core_file_rows >= counts["priority_promotion_acquisition_wave_plan"] * 12
+        and priority_download_requirement_rows >= counts["priority_promotion_acquisition_wave_plan"] * 8
+        and priority_download_variable_rows >= priority_first_pass_selected_rows
+        and priority_download_raw_received == 0
+        and priority_download_ready_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_download_file_blocked_rows >= priority_download_core_file_rows
+        and priority_download_handoffs >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_download_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority download execution packet links official credentialed URLs, target folders, core-file acceptance, and first-pass variable review before raw receipt",
+        status(priority_download_gate_ok),
+        f"packet_rows={counts['priority_download_execution_packet']}; file_rows={counts['priority_download_file_acceptance_matrix']}; summary_rows={counts['priority_download_execution_packet_summary']}; reported_packets={priority_download_packet_rows}; priority_waves={priority_download_priority_rows}; backup_waves={priority_download_backup_rows}; countries={priority_download_countries}; core_files={priority_download_core_file_rows}; requirements={priority_download_requirement_rows}; variables={priority_download_variable_rows}; raw_received={priority_download_raw_received}; ready_download_rows={priority_download_ready_rows}; blocked_file_rows={priority_download_file_blocked_rows}; handoffs={priority_download_handoffs}; modeling_gate={priority_download_modeling_gate}",
+        "" if priority_download_gate_ok else "Run script/141_build_priority_download_execution_packet.py after first-pass review queue and credentialed acquisition ledgers are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

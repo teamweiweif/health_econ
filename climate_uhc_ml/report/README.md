@@ -41,6 +41,7 @@ python script/137_probe_priority_official_endpoint_matrix.py
 python script/138_probe_priority_core_file_endpoint_matrix.py
 python script/139_build_priority_threshold_acquisition_campaign.py
 python script/140_build_priority_first_pass_variable_review_queue.py
+python script/141_build_priority_download_execution_packet.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 python script/134_build_priority_country_wave_promotion_packets.py
 python script/127_enforce_promoted_data_gate.py
@@ -82,6 +83,7 @@ Current status:
 - The priority core-file endpoint matrix is `result/priority_core_file_endpoint_matrix_summary.csv`.
 - The priority threshold acquisition campaign is `result/priority_threshold_acquisition_campaign_summary.csv`.
 - The priority first-pass variable review queue is `result/priority_first_pass_variable_review_summary.csv`.
+- The priority download execution packet is `result/priority_download_execution_packet_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.
 - The promoted-data gate is `result/promoted_data_gate_summary.csv`; if the registry has zero promoted rows, diagnostic CSVs are kept in `temp/diagnostic_data_quarantine/current/` rather than `data/`.

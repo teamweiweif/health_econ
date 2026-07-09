@@ -1529,3 +1529,11 @@
 - 2026-07-09T21:22:59+00:00 - Built priority first-pass variable review queue rows=465 requirements=104.
 - 2026-07-09T21:23:04+00:00 - Direct-read audit bundle rows=136 manifest_rows=559.
 - 2026-07-09T21:23:06+00:00 - Workspace validation complete=418 incomplete_or_failed=0.
+- 2026-07-09T21:32:25+00:00 - Built priority raw package receipt ledger datasets=13 original_files=0 missing_targets=156.
+- 2026-07-09T21:32:25+00:00 - Built priority official download dossier datasets=13 full_file_rows=965 links=100.
+- 2026-07-09T21:32:25+00:00 - Built priority credentialed raw acquisition ledger datasets=13 full_files=965 core_files=156.
+- 2026-07-09T21:32:25+00:00 - Built priority threshold acquisition campaign rows=13 countries=8.
+- 2026-07-09T21:32:25+00:00 - Built priority first-pass variable review queue rows=465 requirements=104.
+- 2026-07-09T21:32:25+00:00 - Built priority download execution packet rows=13 file_acceptance_rows=156.
+- 2026-07-09T21:32:30+00:00 - Direct-read audit bundle rows=137 manifest_rows=564.
+- 2026-07-09T21:32:32+00:00 - Workspace validation complete=421 incomplete_or_failed=0.

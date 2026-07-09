@@ -103,6 +103,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_first_pass_variable_review_queue.csv", "priority first-pass selected variable review queue"),
     ("dataset_promotion", "temp/priority_first_pass_requirement_coverage.csv", "priority first-pass requirement coverage"),
     ("dataset_promotion", "result/priority_first_pass_variable_review_summary.csv", "priority first-pass variable review summary"),
+    ("dataset_promotion", "report/priority_download_execution_packet.md", "priority manual download execution packet report"),
+    ("dataset_promotion", "temp/priority_download_execution_packet.csv", "priority manual download execution packet"),
+    ("dataset_promotion", "temp/priority_download_file_acceptance_matrix.csv", "priority core-file acceptance matrix"),
+    ("dataset_promotion", "result/priority_download_execution_packet_summary.csv", "priority manual download execution packet summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -499,6 +503,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/138_probe_priority_core_file_endpoint_matrix.py", "priority core file endpoint matrix probe"),
     ("reproducibility", "script/139_build_priority_threshold_acquisition_campaign.py", "priority threshold acquisition campaign generator"),
     ("reproducibility", "script/140_build_priority_first_pass_variable_review_queue.py", "priority first-pass variable review queue generator"),
+    ("reproducibility", "script/141_build_priority_download_execution_packet.py", "priority manual download execution packet generator"),
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/134_build_priority_country_wave_promotion_packets.py", "priority country-wave promotion packet generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
@@ -703,6 +708,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_core_file_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv")
     priority_threshold_campaign_summary = read_csv_dicts(RESULT_DIR / "priority_threshold_acquisition_campaign_summary.csv")
     priority_first_pass_summary = read_csv_dicts(RESULT_DIR / "priority_first_pass_variable_review_summary.csv")
+    priority_download_execution_summary = read_csv_dicts(RESULT_DIR / "priority_download_execution_packet_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
@@ -1016,6 +1022,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_first_pass_summary, 'priority_first_pass_dataset_rows', '0')}; requirements={csv_value(priority_first_pass_summary, 'priority_first_pass_requirement_rows', '0')}; selected_variables={csv_value(priority_first_pass_summary, 'priority_first_pass_selected_variable_rows', '0')}; countries={csv_value(priority_first_pass_summary, 'priority_first_pass_distinct_countries', '0')}; priority_waves={csv_value(priority_first_pass_summary, 'priority_first_pass_priority_10_wave_rows', '0')}; backup_waves={csv_value(priority_first_pass_summary, 'priority_first_pass_backup_wave_rows', '0')}; missing_requirement_coverage={csv_value(priority_first_pass_summary, 'priority_first_pass_missing_requirement_coverage_rows', '0')}; raw_received={csv_value(priority_first_pass_summary, 'priority_first_pass_raw_package_received_rows', '0')}; ready_after_download={csv_value(priority_first_pass_summary, 'priority_first_pass_ready_after_download_rows', '0')}; handoffs={csv_value(priority_first_pass_summary, 'priority_first_pass_handoff_readmes_written', '0')}; modeling_gate={csv_value(priority_first_pass_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_first_pass_variable_review_queue.csv", TEMP_DIR / "priority_first_pass_requirement_coverage.csv", RESULT_DIR / "priority_first_pass_variable_review_summary.csv", REPORT_DIR / "priority_first_pass_variable_review_queue.md"],
         "First-pass queue compresses the large metadata candidate workbook into a per-requirement list of variables to inspect after official raw packages are received; it is review guidance, not raw-value verification.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_download_execution_packet",
+        "download_execution_ready_raw_missing" if csv_value(priority_download_execution_summary, "priority_download_execution_packet_rows", "0") != "0" and csv_value(priority_download_execution_summary, "priority_download_execution_raw_package_received_rows", "0") == "0" else "download_execution_needs_review",
+        f"packets={csv_value(priority_download_execution_summary, 'priority_download_execution_packet_rows', '0')}; priority_waves={csv_value(priority_download_execution_summary, 'priority_download_execution_priority_10_wave_rows', '0')}; backup_waves={csv_value(priority_download_execution_summary, 'priority_download_execution_backup_wave_rows', '0')}; countries={csv_value(priority_download_execution_summary, 'priority_download_execution_distinct_countries', '0')}; core_files={csv_value(priority_download_execution_summary, 'priority_download_execution_core_file_rows', '0')}; requirements={csv_value(priority_download_execution_summary, 'priority_download_execution_first_pass_requirement_rows', '0')}; first_pass_variables={csv_value(priority_download_execution_summary, 'priority_download_execution_first_pass_variable_rows', '0')}; raw_received={csv_value(priority_download_execution_summary, 'priority_download_execution_raw_package_received_rows', '0')}; handoffs={csv_value(priority_download_execution_summary, 'priority_download_execution_handoff_readmes_written', '0')}; modeling_gate={csv_value(priority_download_execution_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_download_execution_packet.csv", TEMP_DIR / "priority_download_file_acceptance_matrix.csv", RESULT_DIR / "priority_download_execution_packet_summary.csv", REPORT_DIR / "priority_download_execution_packet.md"],
+        "Download execution packet is the credentialed manual-acquisition control sheet: official URL, target folder, 12-file acceptance matrix, first-pass verification load, and post-download command chain per wave.",
     )
     add_bundle(
         rows,
@@ -1916,6 +1931,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_core_file_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv")
     priority_threshold_campaign_summary = read_csv_dicts(RESULT_DIR / "priority_threshold_acquisition_campaign_summary.csv")
     priority_first_pass_summary = read_csv_dicts(RESULT_DIR / "priority_first_pass_variable_review_summary.csv")
+    priority_download_execution_summary = read_csv_dicts(RESULT_DIR / "priority_download_execution_packet_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     data_dataset_files = [
@@ -1978,6 +1994,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_first_pass_selected_variable_rows", "value": csv_value(priority_first_pass_summary, "priority_first_pass_selected_variable_rows", "0"), "interpretation": "Selected metadata candidate variables queued for first-pass raw-value review after download."},
         {"metric": "priority_first_pass_raw_package_received_rows", "value": csv_value(priority_first_pass_summary, "priority_first_pass_raw_package_received_rows", "0"), "interpretation": "First-pass queue datasets with complete or target-covered original raw package receipt."},
         {"metric": "priority_first_pass_ready_after_download_rows", "value": csv_value(priority_first_pass_summary, "priority_first_pass_ready_after_download_rows", "0"), "interpretation": "Selected variable rows ready for immediate first-pass raw-value review."},
+        {"metric": "priority_download_execution_packet_rows", "value": csv_value(priority_download_execution_summary, "priority_download_execution_packet_rows", "0"), "interpretation": "Manual credentialed download execution packet rows."},
+        {"metric": "priority_download_execution_core_file_rows", "value": csv_value(priority_download_execution_summary, "priority_download_execution_core_file_rows", "0"), "interpretation": "Core file acceptance rows carried into the download execution packet."},
+        {"metric": "priority_download_execution_first_pass_variable_rows", "value": csv_value(priority_download_execution_summary, "priority_download_execution_first_pass_variable_rows", "0"), "interpretation": "First-pass selected variable rows carried into the download execution packet."},
+        {"metric": "priority_download_execution_raw_package_received_rows", "value": csv_value(priority_download_execution_summary, "priority_download_execution_raw_package_received_rows", "0"), "interpretation": "Download execution packet datasets with original raw package receipt."},
         {"metric": "priority_synthesis_blueprint_schema_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_schema_rows", "0"), "interpretation": "Target output-column rows for promoted household-climate dataset synthesis."},
         {"metric": "priority_synthesis_blueprint_blocked_required_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_blocked_required_rows", "0"), "interpretation": "Required promoted-dataset output columns still blocked."},
         {"metric": "priority_synthesis_blueprint_join_ready_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0"), "interpretation": "Priority country-waves ready for promoted dataset build joins."},

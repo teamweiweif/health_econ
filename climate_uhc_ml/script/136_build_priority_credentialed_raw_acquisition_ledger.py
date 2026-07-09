@@ -25,6 +25,25 @@ REPORT_PATH = REPORT_DIR / "priority_credentialed_raw_acquisition_ledger.md"
 
 RAW_ROOT = TEMP_DIR / "raw_downloads"
 
+POST_DOWNLOAD_COMMANDS = [
+    "python script/17_audit_raw_downloads.py",
+    "python script/128_build_priority_archive_member_preflight.py",
+    "python script/130_build_priority_raw_package_receipt_ledger.py",
+    "python script/03_inspect_raw_schemas.py",
+    "python script/29_build_raw_variable_verification_protocol.py",
+    "python script/33_build_harmonization_recipe_gate.py",
+    "python script/125_build_priority_climate_linkage_preflight.py",
+    "python script/126_build_priority_raw_verification_workbook.py",
+    "python script/140_build_priority_first_pass_variable_review_queue.py",
+    "python script/141_build_priority_download_execution_packet.py",
+    "python script/129_build_priority_manual_verification_decision_gate.py",
+    "python script/132_build_priority_analysis_dataset_synthesis_blueprint.py",
+    "python script/134_build_priority_country_wave_promotion_packets.py",
+    "python script/127_enforce_promoted_data_gate.py",
+    "python script/36_build_direct_read_audit_bundle.py",
+    "python script/14_validate_workspace.py",
+]
+
 LEDGER_COLUMNS = [
     "acquisition_batch_rank",
     "batch_role",
@@ -281,7 +300,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "download_scope": "complete_official_raw_package_plus_all_documentation",
             "credentialed_acquisition_status": credentialed_status,
             "next_manual_action": "Open official_get_microdata_url, log in or register if required, accept official terms/Data Access Agreement, download the complete unchanged raw package plus all documentation, and place all files in local_target_folder.",
-            "post_download_validation_commands": dossier.get("post_download_commands", ""),
+            "post_download_validation_commands": clean(dossier.get("post_download_commands")) or "; ".join(POST_DOWNLOAD_COMMANDS),
             "handoff_readme": "",
         }
 

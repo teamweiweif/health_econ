@@ -17,7 +17,7 @@ handoff files are ignored as original package evidence.
 | priority_raw_receipt_priority_targets_covered | 0 | Priority targets covered by direct files or archive members. |
 | priority_raw_receipt_priority_targets_missing | 156 | Priority targets still missing from direct/archive receipt coverage. |
 | priority_raw_receipt_missing_target_rows | 156 | Missing target rows written for reviewer follow-up. |
-| priority_raw_receipt_generated_files_ignored | 78 | Generated handoff/placeholder files ignored as original package evidence. |
+| priority_raw_receipt_generated_files_ignored | 208 | Generated handoff/placeholder files ignored as original package evidence. |
 | priority_raw_receipt_complete_package_candidates | 0 | Datasets with original raw/package receipt and all priority targets covered. |
 | priority_raw_receipt_partial_package_candidates | 0 | Datasets with some original raw/package receipt but remaining receipt or documentation gaps. |
 | priority_raw_receipt_missing_package_rows | 13 | Datasets with no original raw package/tabular receipt yet. |

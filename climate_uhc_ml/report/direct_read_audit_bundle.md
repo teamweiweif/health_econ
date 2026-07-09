@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 136 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 559 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 555 | Curated artifacts present and non-empty. |
+| bundle_rows | 137 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 564 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 560 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -67,6 +67,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_first_pass_selected_variable_rows | 465 | Selected metadata candidate variables queued for first-pass raw-value review after download. |
 | priority_first_pass_raw_package_received_rows | 0 | First-pass queue datasets with complete or target-covered original raw package receipt. |
 | priority_first_pass_ready_after_download_rows | 0 | Selected variable rows ready for immediate first-pass raw-value review. |
+| priority_download_execution_packet_rows | 13 | Manual credentialed download execution packet rows. |
+| priority_download_execution_core_file_rows | 156 | Core file acceptance rows carried into the download execution packet. |
+| priority_download_execution_first_pass_variable_rows | 465 | First-pass selected variable rows carried into the download execution packet. |
+| priority_download_execution_raw_package_received_rows | 0 | Download execution packet datasets with original raw package receipt. |
 | priority_synthesis_blueprint_schema_rows | 572 | Target output-column rows for promoted household-climate dataset synthesis. |
 | priority_synthesis_blueprint_blocked_required_rows | 325 | Required promoted-dataset output columns still blocked. |
 | priority_synthesis_blueprint_join_ready_rows | 0 | Priority country-waves ready for promoted dataset build joins. |
@@ -446,7 +450,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 27 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 28 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -517,6 +521,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_core_public_documentation_saved_raw_gate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready | 2 | Direct-read bundle status count. |
 | bundle_status_documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready | 1 | Direct-read bundle status count. |
+| bundle_status_download_execution_ready_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning | 1 | Direct-read bundle status count. |
 | bundle_status_file_level_routes_confirmed_non_public_raw | 1 | Direct-read bundle status count. |
 | bundle_status_first_pass_queue_ready_raw_missing | 1 | Direct-read bundle status count. |
@@ -560,7 +565,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 27 |
+| priority_bundle | 28 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -606,6 +611,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | file_level_routes_confirmed_non_public_raw | 1 |
 | threshold_campaign_ready_raw_missing | 1 |
 | first_pass_queue_ready_raw_missing | 1 |
+| download_execution_ready_raw_missing | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | closed_no_promoted_rows | 1 |
@@ -715,7 +721,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 555 |
+| present_nonempty | 560 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

@@ -495,6 +495,7 @@ not promote any dataset.
    semantics.
 3. Fill the existing requirement, concept, and variable verification templates.
 4. Rerun `python script/129_build_priority_manual_verification_decision_gate.py`,
+   `python script/141_build_priority_download_execution_packet.py`,
    `python script/132_build_priority_analysis_dataset_synthesis_blueprint.py`,
    `python script/134_build_priority_country_wave_promotion_packets.py`, and
    `python script/127_enforce_promoted_data_gate.py`.
