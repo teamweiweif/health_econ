@@ -1,0 +1,122 @@
+{
+  "@type": "dcat:Dataset",
+  "accessLevel": "public",
+  "bureauCode": [
+    "009:00"
+  ],
+  "contactPoint": {
+    "fn": "Medicaid.gov",
+    "hasEmail": "mailto:Medicaid.gov@cms.hhs.gov"
+  },
+  "description": "State-reported data on Medicaid and CHIP eligibility renewals that reflect the outcomes of previously pending renewals three months after the renewal was due and also any corrections to the original renewal data submitted to CMS. <a href=\"https://data.medicaid.gov/dataset/ebcfc16f-8291-4c61-82a4-055846d72f3a/data?conditions%5B0%5D%5Bproperty%5D=reporting_period&amp;conditions%5B0%5D%5Bvalue%5D=202312&amp;conditions%5B0%5D%5Boperator%5D=%3D\">See here</a> for original renewal data.<br />\nCMS <a href=\"https://www.medicaid.gov/resources-for-states/coronavirus-disease-2019-covid-19/unwinding-and-returning-regular-operations-after-covid-19/data-reporting/data-reporting-tools/index.html\">renewal data specifications</a> require states to update and submit to CMS their monthly renewal outcome metrics - metric 5 data and its submetrics (monthly metrics 5a, 5a(1), 5a(2), 5b, 5c, and 5d) - after the original monthly report submission. The \u201cupdated\u201d renewal data reflect the outcomes of renewals previously reported as pending (monthly metric 5d of the original monthly report) as of three months after the renewal was due. For more information about this data set and considerations for users when reviewing, please see the Medicaid and CHIP Unwinding: Data Sources and Metrics Definitions Overview <a href=\"https://www.medicaid.gov/media/160271\">found here</a>.\n<br /><b>Sources:</b> <br />(1) March 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on March 05, 2024, representing the updated disposition of renewals due in March 2023 as of June 2023. April 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on March 05, 2024, representing the updated disposition of renewals due in April 2023 as of July 2023. May 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on March 05, 2024, representing the updated disposition of renewals due in May 2023 as of August 2023. June 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on March 05, 2024, representing the updated disposition of renewals due in June 2023 as of September 2023. July 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on March 05, 2024, representing the updated disposition of renewals due in July 2023 as of October 2023. August 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on March 05, 2024, representing the updated disposition of renewals due in August 2023 as of November 2023. September 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on April 02, 2024, representing the updated disposition of renewals due in September 2023 as of December 2023. October 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on April 02, 2024, representing the updated disposition of renewals due in October 2023 as of January 2024. November 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on May 07, 2024, representing the updated disposition of renewals due in November 2023 as of February 2024. December 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on June 11, 2024, representing the updated disposition of renewals due in December 2023 as of March 2024. New Hampshire\u2019s December 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on April 09, 2024, representing the updated disposition of renewals due in December 2023 as of March 2024. New York\u2019s December 2023 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on April 22, 2024, representing the updated disposition of renewals due in December 2023 as of March 2024. January 2024 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on July 02, 2024, representing the updated disposition of renewals due in January 2024 as of April 2024. February 2024 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on August 06, 2024, representing the updated disposition of renewals due in February 2024 as of May 2024. March 2024 state Medicaid and CHIP Renewal and Termination Data for the Unwinding Data Report pulled on September 09, 2024, representing the updated disposition of renewals due in March 2024 as of June 2024.<br />\t\n<b>Notes:</b> States report updated renewal outcomes for a cohort as of three months after the month renewals are scheduled for completion, unless otherwise noted. In the March 2023 \u2013 October 2023 reporting periods, Oklahoma included outcomes for some individuals who returned their renewal form during the reconsideration period. See the Data Sources and Definitions Overview document for a full description of the metric definitions and how they relate to each other.<br />\t\nApril 2023: Ohio reported updated renewal outcomes for the cohort as of 10/31/2023. Arkansas and Pennsylvania reported the eligibility status of the cohort, and data may include outcomes of eligibility actions that occurred after the renewal. <br />\nMay 2023: The following states reported updated renewal outcomes for the cohort as of a different date: Ohio (outcomes as of 10/31/2023), Rhode Island (outcomes as of 11/1/2023), South Carolina (outcomes as of 12/20/2023), and Texas (outcomes as of 9/8/2023). Pennsylvania, Rhode Island, and South Carolina updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. <br />\nJune 2023: The following states reported updated renewal outcomes for the cohort as of a different date: Kansas (outcomes as of 8/31/23), Minnesota (outcomes as of 12/2023), Ohio (outcomes as of 10/31/2023), North Carolina (outcomes as of 12/1/2023), Rhode Island (outcomes as of 11/1/2023), and South Carolina (outcomes as of 12/20/2023). Pennsylvania, Rhode Island, and South Carolina updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. <br />\nJuly 2023: The following states reported updated renewal outcomes for the cohort as of a different date: Minnesota (outcomes as of 12/2023), North Carolina (outcomes as of 12/1/2023), Rhode Island (outcomes as of 11/1/2023), and Texas (outcomes as of 11/9/2023). California, Pennsylvania, and Rhode Island updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. <br />\nAugust 2023: The following states reported updated renewal outcomes for the cohort as of a different date: Minnesota (outcomes as of 12/2023), North Carolina (outcomes as of 12/1/2023), Rhode Island (outcomes as of 12/4/2023), and South Carolina (outcomes as of 12/20/2023). California, Pennsylvania, Rhode Island, and South Carolina updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. <br /> \nSeptember 2023: The following states reported updated renewal outcomes for the cohort as of a different date: Minnesota (outcomes as of 1/8/2024), North Carolina (1/2/2024), Rhode Island (1/1/2024), and South Carolina (outcomes as of 1/8/2024). California, Pennsylvania, Rhode Island, and South Carolina updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. Vermont excluded renewal outcomes for some individuals who requested voluntary terminations or who were deceased. <br />\nOctober 2023: The following states reported updated renewal outcomes for the cohort as of a different date: Minnesota (outcomes as of 2/12/2024), North Carolina (outcomes as of 2/1/2024), Rhode Island (outcomes as of 2/15/2024), and South Carolina (outcomes as 2/1/2024). California, Pennsylvania, and South Carolina updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. Rhode Island\u2019s updated data includes some individuals reported as pending whose renewal was completed.<br />\nNovember 2023: The following states reported updated renewal outcomes for the cohort as of a different date: Minnesota (outcomes as of 3/4/2024), New York (outcomes as of 3/31/2024), North Carolina (outcomes as of 3/1/2024), Rhode Island (outcomes as of 4/1/2024), and South Carolina (outcomes as of 3/1/2024). Pennsylvania and South Carolina updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. Rhode Island\u2019s updated data includes some individuals reported as pending whose renewal was completed. California included outcomes for some individuals whose eligibility was redetermined based on a change in circumstances after the renewal was processed. <br /> \nDecember 2023: The following states reported updated renewal outcomes for the cohort as of a different date: North Carolina (outcomes as of 4/1/2024) and Minnesota (outcomes as of 4/2/2024). Pennsylvania updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal. California included outcomes for some individuals whose eligibility was redetermined based on a change in circumstances after the renewal was processed.<br />\nJanuary 2024: The following states reported updated renewal outcomes for the cohort as of a different date: North Carolina (outcomes as of 5/1/2024) and Minnesota (outcomes as of 5/6/2024). Pennsylvania updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal.<br />\nFebruary 2024: The following states reported updated renewal outcomes for the cohort as of a different date: North Carolina (outcomes as of 6/3/2024) and Minnesota (outcomes as of 6/5/2024). Pennsylvania and Wyoming updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal.<br />\nMarch 2024: The following states reported updated renewal outcomes for the cohort as of a different date: North Carolina (outcomes as of 7/1/2024) and Texas (outcomes as of 7/1/2024). Pennsylvania and Wyoming updated the eligibility status of the cohort, and data may include eligibility actions that occurred after the renewal.\n<br /><b>Metric summation note:</b> Total number of beneficiaries due for renewal in the reporting month (Metric 5) = Total number of beneficiaries due for renewal in the reporting month whose coverage was renewed (Metric 5a) + Total beneficiaries determined ineligible for Medicaid and CHIP  based on the return of a renewal form (Metric 5b) + Total beneficiaries whose coverage was terminated for a procedural or administrative reason (Metric 5c) + Total number of beneficiaries due for renewal in the reporting month whose renewal was pending at the end of the month (Metric 5d); Total number of beneficiaries due for renewal in the reporting month whose coverage was renewed (Metric 5a) = Total beneficiaries renewed on an ex parte basis (i.e., based on available information) (Metric 5a1) + Total beneficiaries renewed based on the return of a renewal form (Metric 5a2).<br />\nThis document includes state updates to their monthly Medicaid and CHIP renewal outcome data submitted to CMS from the Unwinding Data Report. These data include updates to reporting metrics required under section 1902(tt)(1) of the Social Security Act and additional state-submitted renewal metrics.",
+  "distribution": [
+    {
+      "@type": "dcat:Distribution",
+      "describedBy": "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/15e1a5b4-0fc1-4278-b5d8-d5d1b498c704",
+      "describedByType": "application/vnd.tableschema+json",
+      "downloadURL": "https://download.medicaid.gov/data/updated-renewal-outcomes-october-2024-releasefinal.csv",
+      "format": "csv"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/march-2024-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "March 2024 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/february-2024-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "February 2024 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/january-2024-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "January 2024 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/december-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "December 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/november-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "November 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/october-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "October 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/september-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "September 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/august-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "August 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/july-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "July 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/june-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "June 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/may-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "May 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/april-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "April 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    },
+    {
+      "@type": "dcat:Distribution",
+      "downloadURL": "https://download.medicaid.gov/data/march-2023-updated-renewal-outcomes.xlsx",
+      "format": "xlsx",
+      "title": "March 2023 Updated Medicaid and CHIP Renewal Outcomes"
+    }
+  ],
+  "identifier": "e6205a51-e6d7-4849-9882-4483b8a28c41",
+  "issued": "2024-04-30T15:07:23+00:00",
+  "keyword": [
+    "program enrollment",
+    "child enrollment",
+    "eligibility determinations",
+    "applications",
+    "chip",
+    "enrollment",
+    "medicaid"
+  ],
+  "modified": "2024-11-01T00:05:00+00:00",
+  "programCode": [
+    "009:000"
+  ],
+  "publisher": {
+    "@type": "org:Organization",
+    "name": "data.medicaid.gov"
+  },
+  "theme": [
+    "Unwinding"
+  ],
+  "title": "Medicaid and CHIP Updated Renewal Outcomes"
+}

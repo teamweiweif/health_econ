@@ -1,0 +1,164 @@
+{
+  "data": {
+    "fields": [
+      {
+        "description": "State abbreviation.",
+        "format": "default",
+        "name": "state_abbreviation",
+        "title": "State Abbreviation",
+        "type": "string"
+      },
+      {
+        "description": "State name.",
+        "format": "default",
+        "name": "state_name",
+        "title": "State Name",
+        "type": "string"
+      },
+      {
+        "description": "Reporting period. States did not submit the Eligibility Processing Data Report until the start of their state-specific unwinding period in 2023. For the March 2023 to June 2023 reporting periods, the \u201cBeneficiaries with a Renewal Initiated\u201d metric is blank for states that had not initiated a renewal cohort for the purposes of unwinding, and other metrics are blank for states that did not have a cohort due for renewal in the given month.",
+        "format": "default",
+        "name": "reporting_period",
+        "title": "Reporting Period",
+        "type": "integer"
+      },
+      {
+        "description": "Indicates whether data are from an original or updated monthly report (O=Original, U=Updated).",
+        "format": "default",
+        "format_other": "",
+        "name": "original_updated",
+        "title": "Original or Updated",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, with a renewal that was initiated between the first and last day of the reporting period. States do not report this information in the updated reports. Therefore, this metric is blank for updated report records. This metric is set equal to Eligibility Processing Data Report Metric 4.",
+        "format": "default",
+        "name": "beneficiaries_with_a_renewal_initiated",
+        "title": "Beneficiaries with a Renewal Initiated",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, with a renewal that was initiated between the first and last day of the reporting period (Eligibility Processing Data Report Metric 4).",
+        "format": "default",
+        "name": "beneficiaries_with_a_renewal_initiated_footnotes",
+        "title": "Beneficiaries with a Renewal Initiated - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, with a renewal due, or scheduled for completion, in the reporting period. This metric is set equal to Eligibility Processing Data Report Metric 5.",
+        "format": "default",
+        "name": "beneficiaries_with_a_renewal_due",
+        "title": "Beneficiaries with a Renewal Due",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, with a renewal due, or scheduled for completion, in the reporting period (Eligibility Processing Data Report Metric 5).",
+        "format": "default",
+        "name": "beneficiaries_with_a_renewal_due_footnotes",
+        "title": "Beneficiaries with a Renewal Due - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period who were renewed and retained in Medicaid or CHIP at the end of the reporting period. This metric is set equal to Eligibility Processing Data Report Metric 5a.",
+        "format": "default",
+        "name": "beneficiaries_whose_coverage_was_renewed_total",
+        "title": "Beneficiaries Whose Coverage Was Renewed (Total)",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period who were renewed and retained in Medicaid or CHIP at the end of the reporting period (Eligibility Processing Data Report Metric 5a).",
+        "format": "default",
+        "name": "beneficiaries_whose_coverage_was_renewed_total_footnotes",
+        "title": "Beneficiaries Whose Coverage Was Renewed (Total) - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period who were renewed and retained in Medicaid or CHIP in the reporting period on an ex parte basis. This metric is set equal to Eligibility Processing Data Report Metric 5a1.",
+        "format": "default",
+        "name": "beneficiaries_whose_coverage_was_renewed_on_an_ex_parte_basis",
+        "title": "Beneficiaries Whose Coverage Was Renewed on an Ex Parte Basis",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period who were renewed and retained in Medicaid or CHIP in the reporting period on an ex parte basis (Eligibility Processing Data Report Metric 5a1).",
+        "format": "default",
+        "name": "beneficiaries_whose_coverage_was_renewed_on_an_ex_parte_basis_footnotes",
+        "title": "Beneficiaries Whose Coverage Was Renewed on an Ex Parte Basis - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period who were renewed and retained in Medicaid or CHIP in the reporting period using a renewal form. This metric is set equal to Eligibility Processing Data Report Metric 5a2.",
+        "format": "default",
+        "name": "beneficiaries_whose_coverage_was_renewed_based_on_a_renewal_form",
+        "title": "Beneficiaries Whose Coverage Was Renewed based on a Renewal Form",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period who were renewed and retained in Medicaid or CHIP in the reporting period using a renewal form (Eligibility Processing Data Report Metric 5a2).",
+        "format": "default",
+        "name": "beneficiaries_whose_coverage_was_renewed_based_on_a_renewal_form_footnotes",
+        "title": "Beneficiaries Whose Coverage Was Renewed based on a Renewal Form - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period whose coverage was terminated at the end of the reporting period. This metric is set equal to the sum of Eligibility Processing Data Report Metrics 5b and 5c.",
+        "format": "default",
+        "name": "beneficiaries_disenrolled_at_renewal_total ",
+        "title": "Beneficiaries Disenrolled at Renewal (Total)",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period whose coverage was terminated at the end of the reporting period (Eligibility Processing Data Report Metrics 5b + 5c).",
+        "format": "default",
+        "name": "beneficiaries_disenrolled_at_renewal_total_footnotes",
+        "title": "Beneficiaries Disenrolled at Renewal (Total) - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period and who were determined ineligible for Medicaid or CHIP. This metric is set equal to Eligibility Processing Data Report Metric 5b.",
+        "format": "default",
+        "name": "beneficiaries_determined_ineligible_at_renewal",
+        "title": "Beneficiaries Determined Ineligible at Renewal",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period and who were determined ineligible for Medicaid or CHIP (Eligibility Processing Data Report Metric 5b).",
+        "format": "default",
+        "name": "beneficiaries_determined_ineligible_at_renewal_footnotes",
+        "title": "Beneficiaries Determined Ineligible at Renewal - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period and whose coverage ended because the state has insufficient information to complete an eligibility determination, also known as procedural reasons. This metric is set equal to Eligibility Processing Data Report Metric 5c.",
+        "format": "default",
+        "name": "beneficiaries_disenrolled_for_procedural_reasons_at_renewal",
+        "title": "Beneficiaries Disenrolled for Procedural Reasons at Renewal",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, whose renewal was due in the reporting period and whose coverage ended because the state has insufficient information to complete an eligibility determination, also known as procedural reasons (Eligibility Processing Data Report Metric 5c).",
+        "format": "default",
+        "name": "beneficiaries_disenrolled_for_procedural_reasons_at_renewal_footnotes",
+        "title": "Beneficiaries Disenrolled for Procedural Reasons at Renewal - footnotes",
+        "type": "string"
+      },
+      {
+        "description": "The total number of beneficiaries, including those receiving full or limited benefits, whose renewals were due in the reporting period but were not completed by the end of the reporting period. This metric is set equal to Eligibility Processing Data Report Metric 5d.",
+        "format": "default",
+        "name": "beneficiaries_with_a_pending_renewal",
+        "title": "Beneficiaries with a Pending Renewal",
+        "type": "integer"
+      },
+      {
+        "description": "Footnotes for the total number of beneficiaries, including those receiving full or limited benefits, whose renewals were due in the reporting period but were not completed by the end of the reporting period (Eligibility Processing Data Report Metric 5d).",
+        "format": "default",
+        "name": "beneficiaries_with_a_pending_renewal_footnotes",
+        "title": "Beneficiaries with a Pending Renewal - footnotes",
+        "type": "string"
+      }
+    ],
+    "indexes": [],
+    "title": "Renewal dataset data dictionary"
+  },
+  "identifier": "0c98be2c-4c51-42b3-a0d6-2667f54c9ef6"
+}

@@ -1,0 +1,61 @@
+            Table 5: State Adoption of 12-Month Continuous Eligibility for Selected Populations, January 2023
+                                                              12-Month Continuous Eligibility for:
+                                        Children's
+                  State                 Medicaid           CHIP          PostpartumEnrollees       Other MAGI Groups
+         Total                        26                24                37                   5
+         Alabama                     Y                 Y                 Y
+         Alaska                       Y           N/A (M-CHIP)
+         Arizona                                                           Y
+         Arkansas                                       Y
+         California                     Y           N/A (M-CHIP)           Y
+         Colorado                     Y                 Y                 Y
+         Connecticut                                                       Y
+         Delaware                                       Y                 Y
+         District of Columbia                         N/A (M-CHIP)           Y
+         Florida ¹                Under Age 5            Y                 Y
+         Georgia                                                           Y
+         Hawaii                                    N/A (M-CHIP)           Y
+         Idaho                        Y                 Y
+         Illinois                        Y           N/A (M-CHIP)           Y
+         Indiana ²                Under Age 3       Under Age 3            Y
+         Iowa                         Y                 Y
+         Kansas                      Y                 Y                 Y         1931 Parents/Caretakers
+         Kentucky                                                          Y
+         Louisiana                    Y                 Y                 Y
+         Maine                        Y                 Y                 Y
+         Maryland                                 N/A (M-CHIP)           Y
+         Massachusetts ³                                                   Y            Targeted Groups
+         Michigan                     Y           N/A (M-CHIP)           Y
+         Minnesota                                N/A (M-CHIP)           Y
+         Mississippi                   Y                 Y
+         Missouri
+         Montana ⁴                    Y                 Y                 Y
+         Nebraska                                 N/A (M-CHIP)
+         Nevada                                        Y
+         New Hampshire                           N/A (M-CHIP)
+         New Jersey                                     Y                 Y
+         New Mexico                  Y           N/A (M-CHIP)           Y
+         New York                     Y                 Y                 Y                   Y
+         North Carolina                Y                 Y                 Y
+         North Dakota                 Y           N/A (M-CHIP)           Y
+         Ohio                         Y           N/A (M-CHIP)           Y
+         Oklahoma                                 N/A (M-CHIP)           Y
+         Oregon ⁵                     Y                 Y                 Y                   Y
+         Pennsylvania ⁶           Under Age 4            Y                 Y
+         Rhode Island                              N/A (M-CHIP)           Y
+         South Carolina               Y           N/A (M-CHIP)           Y
+         South Dakota
+         Tennessee                                      Y                 Y
+         Texas ⁷                                         Y
+         Utah ⁸                                          Y                               Targeted Groups
+         Vermont                                   N/A (M-CHIP)           Y
+         Virginia                                                            Y
+         Washington                   Y                 Y                 Y
+         West Virginia                 Y                 Y                 Y
+         Wisconsin
+         Wyoming                    Y           N/A (M-CHIP)
+         SOURCE: Based on a national survey conducted by KFF with the Georgetown University Center for Children
+         and Families, 2023; table presents rules in effect as of January 1, 2023.
+Medicaid and CHIP Eligibility, Enrollment , and  Renewal Policies as States Prepare for the Unwinding of the
+                                       Pandemic-Era Continuous Enrollment Provision
+                                                                     52

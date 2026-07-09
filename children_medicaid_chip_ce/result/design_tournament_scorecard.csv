@@ -1,0 +1,6 @@
+candidate_design,treatment_clarity,data_availability,outcome_proximity_to_policy,comparison_credibility,pretrend_performance,robustness_to_unwinding_controls,interpretability,publication_novelty,risk_of_replicating_enrollment_only,final_rank
+Main child-vs-adult DDD using any-program newly treated states,4,5,4,4,,4,5,4,3,1
+Medicaid-only child-vs-adult DDD,4,5,3,4,,4,4,3,3,2
+CHIP-only DDD for separate CHIP states,3,2,4,3,,3,3,4,2,5
+Renewal-mechanism DID,3,4,5,2,,2,4,4,1,3
+ACS state-age-year DDD,4,3,3,3,,2,4,3,2,4

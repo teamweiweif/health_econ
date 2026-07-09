@@ -1,6 +1,6 @@
 # Health Economics Project Workspace
 
-This repository contains three public-data health economics project workspaces.
+This repository contains four public-data health economics project workspaces.
 Each project is kept as a separate top-level folder with scripts, reports,
 lightweight outputs, and a GitHub-friendly data metadata layer.
 
@@ -11,6 +11,7 @@ lightweight outputs, and a GitHub-friendly data metadata layer.
 | `988_telecom_fee_crisis_performance/` | State 988 telecom fee funding and crisis-line performance | Conditional go for exploratory policy-audit evidence |
 | `ccbhc_expansion_capacity/` | 2024 CCBHC Medicaid Demonstration expansion and behavioral-health capacity | Monitoring package; no-go for a current causal paper |
 | `nursing_home_staffing_reporting/` | CMS 2022 nursing-home staffing transparency and Five-Star rating changes | Large staffing panel; weak current causal design because pretrends/placebo fail |
+| `children_medicaid_chip_ce/` | January 2024 mandatory 12-month Medicaid/CHIP continuous eligibility for children | Conditional go for continued empirical development; not yet a finished causal paper |
 
 ## Data Policy
 
@@ -33,8 +34,8 @@ Each `data_metadata/` folder contains:
 - `README.md`: generation notes for the metadata profile.
 
 The full local download audit summary is stored in
-`download_audit_summary.csv`. At the time of this push all 422 source files
-across the three local project folders were readable with zero read errors.
+`download_audit_summary.csv`. At the time of this push all 500 source files
+across the four local project folders were readable with zero read errors.
 
 ## Refreshing Metadata
 

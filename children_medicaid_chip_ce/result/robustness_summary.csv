@@ -1,0 +1,5 @@
+term,estimate,std_error,t_stat,n,clusters,outcome,fixed_effects,robustness_spec
+did_any_newly_treated,-0.05529656382300867,0.05476405453324423,-1.0097237009623015,4367,51,log_child_adult_gap,state_fe;month_fe,full_2019plus
+did_any_newly_treated,-0.05939254380855435,0.05949669648438768,-0.9982494376664987,3917,51,log_child_adult_gap,state_fe;month_fe,exclude_unwinding_transition_2023_04_to_2023_12
+did_any_newly_treated,-0.04746578284930871,0.05320552707756437,-0.892121278680538,2667,51,log_child_adult_gap,state_fe;month_fe,exclude_pandemic_2020_03_to_2022_12
+did_any_newly_treated,-0.05921340543256736,0.07571722625608038,-0.7820334732324179,2067,51,log_child_adult_gap,state_fe;month_fe,post_unwinding_pre_and_post_only

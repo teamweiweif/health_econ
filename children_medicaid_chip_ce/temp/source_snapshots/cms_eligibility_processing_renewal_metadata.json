@@ -1,0 +1,46 @@
+{
+  "@type": "dcat:Dataset",
+  "accessLevel": "public",
+  "accrualPeriodicity": "R/P1M",
+  "bureauCode": [
+    "009:00"
+  ],
+  "contactPoint": {
+    "fn": "Medicaid.gov",
+    "hasEmail": "mailto:Medicaid.gov@cms.hhs.gov"
+  },
+  "description": "All states (including the District of Columbia) provide data to the Centers for Medicare &amp; Medicaid Services (CMS) on a range of Medicaid and Children\u2019s Health Insurance Program (CHIP) eligibility and enrollment metrics. These data reflect state-reported information on Medicaid and CHIP eligibility renewals initiated and scheduled for completion during the reporting period. In addition to reporting the outcomes of renewals at the end of each reporting period, states also provide an update on renewals that were reported pending as of the end of a reporting period. For more information on these data, see Sections II and III of the <a href=\"https://www.medicaid.gov/resources-for-states/downloads/eligibility-processing-data-specs-august-2024.pdf\">Eligibility Processing Data Report specifications</a>. <br />\n<b>Notes:</b><br /> Georgia reported data for individuals who continue to be eligible following a change in circumstances and were granted a new 12-month eligibility period during the reporting period, along with data on individuals due for renewal in the month.<br />\nNorth Carolina reports renewal outcomes for only initiated renewals scheduled for completion in the report month, and as such, the data do not reflect renewals that should have been completed in the reporting period that the state was unable to initiate by the end of the report month.",
+  "distribution": [
+    {
+      "@type": "dcat:Distribution",
+      "describedBy": "https://data.medicaid.gov/api/1/metastore/schemas/data-dictionary/items/0c98be2c-4c51-42b3-a0d6-2667f54c9ef6",
+      "describedByType": "application/vnd.tableschema+json",
+      "downloadURL": "https://download.medicaid.gov/data/renewal-dataset-june-2026-release.csv",
+      "format": "csv"
+    }
+  ],
+  "identifier": "5abea2e0-3f8e-4b49-a50d-d63d5fd9103c",
+  "issued": "2024-11-27T19:17:56+00:00",
+  "keyword": [
+    "medicaid",
+    "enrollment",
+    "child enrollment",
+    "eligibility determinations",
+    "chip",
+    "program enrollment",
+    "renewals"
+  ],
+  "license": "https://www.usa.gov/publicdomain/label/1.0/",
+  "modified": "2026-06-26T18:00:00+00:00",
+  "programCode": [
+    "009:000"
+  ],
+  "publisher": {
+    "@type": "org:Organization",
+    "name": "data.medicaid.gov"
+  },
+  "theme": [
+    "Enrollment"
+  ],
+  "title": "State Medicaid and CHIP Eligibility Processing Data"
+}
