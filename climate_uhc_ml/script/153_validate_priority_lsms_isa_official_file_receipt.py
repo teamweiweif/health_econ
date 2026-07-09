@@ -29,6 +29,7 @@ POST_RECEIPT_COMMANDS = (
     "python script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py; "
     "python script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py; "
     "python script/153_validate_priority_lsms_isa_official_file_receipt.py; "
+    "python script/154_build_priority_lsms_isa_threshold_download_sequence.py; "
     "python script/149_build_priority_lsms_isa_raw_value_verification_workbook.py; "
     "python script/132_build_priority_analysis_dataset_synthesis_blueprint.py; "
     "python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py; "

@@ -1592,3 +1592,10 @@
 - 2026-07-09T23:42:12+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
 - 2026-07-09T23:42:17+00:00 - Direct-read audit bundle rows=148 manifest_rows=631.
 - 2026-07-09T23:42:19+00:00 - Workspace validation complete=455 incomplete_or_failed=0.
+- 2026-07-09T23:49:41+00:00 - Priority LSMS/ISA threshold download sequence rows=19 minimum_rows=11 countries=8.
+- 2026-07-09T23:50:37+00:00 - Priority LSMS/ISA threshold download sequence rows=19 minimum_rows=11 countries=8.
+- 2026-07-09T23:54:14+00:00 - Built priority LSMS/ISA credentialed raw acquisition workbench datasets=19 core_files=629.
+- 2026-07-09T23:54:15+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-09T23:54:15+00:00 - Priority LSMS/ISA threshold download sequence rows=19 minimum_rows=11 countries=8.
+- 2026-07-09T23:54:20+00:00 - Direct-read audit bundle rows=149 manifest_rows=637.
+- 2026-07-09T23:54:22+00:00 - Workspace validation complete=458 incomplete_or_failed=0.

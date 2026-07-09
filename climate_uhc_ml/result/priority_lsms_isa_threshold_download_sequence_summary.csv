@@ -1,0 +1,25 @@
+﻿metric,value,interpretation
+priority_lsms_threshold_sequence_dataset_rows,19,Refocused LSMS/ISA country-waves ordered for threshold-oriented manual download.
+priority_lsms_threshold_sequence_country_rows,8,Countries represented in the threshold download sequence.
+priority_lsms_threshold_sequence_priority_country_rows,16,"Rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda."
+priority_lsms_threshold_sequence_minimum_download_rows,11,Minimum manual downloads: 10 core waves plus the highest-ranked sixth-country candidate if every wave passes raw/value/climate gates.
+priority_lsms_threshold_sequence_minimum_country_rows,6,Distinct countries represented by the minimum threshold batch.
+priority_lsms_threshold_sequence_recommended_download_rows,13,Recommended threshold downloads: 10 core waves plus all sixth-country candidates to reduce failure risk.
+priority_lsms_threshold_sequence_recommended_country_rows,8,Distinct countries represented by the recommended threshold batch.
+priority_lsms_threshold_sequence_full_download_rows,19,Full refocused acquisition queue including same-country replacement backups.
+priority_lsms_threshold_sequence_expected_file_rows,1597,Official DDI files expected across the full refocused queue.
+priority_lsms_threshold_sequence_expected_file_matched_rows,0,Expected official files currently matched locally.
+priority_lsms_threshold_sequence_core_file_rows,629,Core official file rows across the full refocused queue.
+priority_lsms_threshold_sequence_core_file_matched_rows,0,Core official files currently matched locally.
+priority_lsms_threshold_sequence_raw_package_received_rows,0,Rows with any non-blocked official file receipt status.
+priority_lsms_threshold_sequence_promoted_analysis_ready_rows,0,Rows analysis-ready in the promoted registry.
+priority_lsms_threshold_sequence_handoff_readmes_written,19,Per-wave threshold download sequence handoffs written.
+priority_lsms_threshold_sequence_data_write_status,blocked_no_promoted_rows,Threshold sequencing never writes promoted data.
+modeling_gate_status,blocked,"Models remain blocked until 6 countries, 10 country-waves, and accepted CHIRPS/ERA5 linkage are value-verified."
+priority_lsms_threshold_sequence_phase_phase_1_core_10_wave_double_failure_base,10,Threshold sequence row count by phase.
+priority_lsms_threshold_sequence_phase_phase_2_sixth_country_financial_protection_candidate,3,Threshold sequence row count by phase.
+priority_lsms_threshold_sequence_phase_phase_3_same_country_replacement_backup_after_primary_failure,6,Threshold sequence row count by phase.
+priority_lsms_threshold_sequence_role_minimum_10_wave_core,10,Threshold sequence row count by download role.
+priority_lsms_threshold_sequence_role_minimum_6th_country_financial_protection_candidate,1,Threshold sequence row count by download role.
+priority_lsms_threshold_sequence_role_same_country_primary_failure_backup,6,Threshold sequence row count by download role.
+priority_lsms_threshold_sequence_role_sixth_country_failure_backup,2,Threshold sequence row count by download role.

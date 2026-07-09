@@ -157,6 +157,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_official_file_receipt_file_match.csv", "priority LSMS/ISA official file receipt full-file match table"),
     ("dataset_promotion", "temp/priority_lsms_isa_official_file_receipt_core_match.csv", "priority LSMS/ISA official file receipt core-file match table"),
     ("dataset_promotion", "result/priority_lsms_isa_official_file_receipt_validator_summary.csv", "priority LSMS/ISA official file receipt validator summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_threshold_download_sequence.md", "priority LSMS/ISA threshold download sequence report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_threshold_download_sequence.csv", "priority LSMS/ISA threshold download sequence"),
+    ("dataset_promotion", "temp/priority_lsms_isa_threshold_minimum_batch.csv", "priority LSMS/ISA threshold minimum batch"),
+    ("dataset_promotion", "temp/priority_lsms_isa_threshold_country_coverage.csv", "priority LSMS/ISA threshold country coverage"),
+    ("dataset_promotion", "result/priority_lsms_isa_threshold_download_sequence_summary.csv", "priority LSMS/ISA threshold download sequence summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -569,6 +574,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
+    ("reproducibility", "script/154_build_priority_lsms_isa_threshold_download_sequence.py", "priority LSMS/ISA threshold download sequence generator"),
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/134_build_priority_country_wave_promotion_packets.py", "priority country-wave promotion packet generator"),
     ("reproducibility", "script/148_build_priority_lsms_isa_country_wave_promotion_packets.py", "priority LSMS/ISA country-wave promotion packet generator"),
@@ -786,6 +792,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
+    priority_lsms_threshold_sequence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_download_sequence_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -1199,6 +1206,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_dataset_rows', '0')}; expected_files={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_expected_file_rows', '0')}; expected_matched={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_expected_file_matched_rows', '0')}; expected_missing={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_expected_file_missing_rows', '0')}; core_files={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_core_file_rows', '0')}; core_matched={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_core_file_matched_rows', '0')}; core_missing={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_core_file_missing_rows', '0')}; handoffs={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_handoff_readmes_written', '0')}; data_write={csv_value(priority_lsms_official_file_receipt_summary, 'priority_lsms_official_file_receipt_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_official_file_receipt_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_official_file_receipt_validation.csv", TEMP_DIR / "priority_lsms_isa_official_file_receipt_file_match.csv", TEMP_DIR / "priority_lsms_isa_official_file_receipt_core_match.csv", RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv", REPORT_DIR / "priority_lsms_isa_official_file_receipt_validator.md"],
         "Official file receipt validator compares local direct files and readable archive members against official DDI file names before any schema, value, climate, or data-write gate can pass.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_threshold_download_sequence",
+        "ready_for_manual_threshold_downloads" if csv_value(priority_lsms_threshold_sequence_summary, "priority_lsms_threshold_sequence_dataset_rows", "0") != "0" and csv_value(priority_lsms_threshold_sequence_summary, "priority_lsms_threshold_sequence_raw_package_received_rows", "0") == "0" else "threshold_sequence_needs_review",
+        f"datasets={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_dataset_rows', '0')}; countries={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_country_rows', '0')}; minimum_downloads={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_minimum_download_rows', '0')}; minimum_countries={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_minimum_country_rows', '0')}; recommended_downloads={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_recommended_download_rows', '0')}; expected_files={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_expected_file_rows', '0')}; expected_matched={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_expected_file_matched_rows', '0')}; core_files={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_core_file_rows', '0')}; core_matched={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_core_file_matched_rows', '0')}; raw_received={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_raw_package_received_rows', '0')}; promoted={csv_value(priority_lsms_threshold_sequence_summary, 'priority_lsms_threshold_sequence_promoted_analysis_ready_rows', '0')}; modeling_gate={csv_value(priority_lsms_threshold_sequence_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_threshold_download_sequence.csv", TEMP_DIR / "priority_lsms_isa_threshold_minimum_batch.csv", TEMP_DIR / "priority_lsms_isa_threshold_country_coverage.csv", RESULT_DIR / "priority_lsms_isa_threshold_download_sequence_summary.csv", REPORT_DIR / "priority_lsms_isa_threshold_download_sequence.md"],
+        "Threshold download sequence orders the 19-wave refocused queue into a minimum 11-download path, a recommended 13-download threshold batch, and six same-country backup waves while preserving no-data-write gates.",
     )
     add_bundle(
         rows,
@@ -2119,6 +2135,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
+    priority_lsms_threshold_sequence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_download_sequence_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2156,6 +2173,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_official_file_receipt_expected_file_rows", "value": csv_value(priority_lsms_official_file_receipt_summary, "priority_lsms_official_file_receipt_expected_file_rows", "0"), "interpretation": "Official DDI files expected after package receipt."},
         {"metric": "priority_lsms_isa_official_file_receipt_expected_file_matched_rows", "value": csv_value(priority_lsms_official_file_receipt_summary, "priority_lsms_official_file_receipt_expected_file_matched_rows", "0"), "interpretation": "Expected official DDI files matched locally."},
         {"metric": "priority_lsms_isa_official_file_receipt_core_file_missing_rows", "value": csv_value(priority_lsms_official_file_receipt_summary, "priority_lsms_official_file_receipt_core_file_missing_rows", "0"), "interpretation": "Core expected files still missing locally."},
+        {"metric": "priority_lsms_isa_threshold_sequence_minimum_download_rows", "value": csv_value(priority_lsms_threshold_sequence_summary, "priority_lsms_threshold_sequence_minimum_download_rows", "0"), "interpretation": "Minimum downloads needed to test 10-wave and 6-country thresholds if every wave passes verification."},
+        {"metric": "priority_lsms_isa_threshold_sequence_recommended_download_rows", "value": csv_value(priority_lsms_threshold_sequence_summary, "priority_lsms_threshold_sequence_recommended_download_rows", "0"), "interpretation": "Recommended threshold downloads including all sixth-country candidates."},
+        {"metric": "priority_lsms_isa_threshold_sequence_raw_package_received_rows", "value": csv_value(priority_lsms_threshold_sequence_summary, "priority_lsms_threshold_sequence_raw_package_received_rows", "0"), "interpretation": "Threshold sequence rows with non-blocked official file receipt status."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},
