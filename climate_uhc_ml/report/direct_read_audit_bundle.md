@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 142 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 595 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 591 | Curated artifacts present and non-empty. |
+| bundle_rows | 143 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 601 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 597 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -26,6 +26,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_public_documentation_core_complete_rows | 19 | Refocused LSMS/ISA waves with all core public metadata/documentation resources saved. |
 | priority_lsms_isa_public_documentation_file_inventory_rows | 1597 | Official DDI file-description rows extracted into a compact GPT-readable table. |
 | priority_lsms_isa_public_documentation_access_gate_rows | 19 | Refocused LSMS/ISA waves whose official get-microdata page still shows credentialed access language. |
+| priority_lsms_isa_variable_evidence_candidate_rows | 1531 | Concept-level official metadata candidate variables shortlisted for raw review. |
+| priority_lsms_isa_variable_evidence_requirement_rows | 152 | Requirement-by-wave variable evidence coverage rows. |
+| priority_lsms_isa_variable_evidence_file_shortlist_rows | 629 | Official DDI files shortlisted by concept for raw package checking. |
 | priority_archive_preflight_targets | 156 | Priority file targets checked against direct files and archive members. |
 | priority_archive_preflight_missing_targets | 156 | Priority file targets still missing after direct/archive member preflight. |
 | priority_manual_verification_dataset_rows | 13 | Priority waves evaluated by the manual verification decision gate. |
@@ -474,7 +477,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 33 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 34 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -564,6 +567,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_manual_raw_package_required | 1 | Direct-read bundle status count. |
 | bundle_status_manual_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_metadata_only_requires_raw_verification | 4 | Direct-read bundle status count. |
+| bundle_status_metadata_variable_candidates_ready_raw_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_not_available | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_outcome_semantics_climate_crosswalk_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_timing_geography_recall_blocked | 2 | Direct-read bundle status count. |
@@ -594,7 +598,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 33 |
+| priority_bundle | 34 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -644,6 +648,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | core_wave_replacement_needed_before_download_execution | 1 |
 | refocused_manual_download_queue_ready_raw_missing | 1 |
 | public_documentation_complete_raw_still_blocked | 1 |
+| metadata_variable_candidates_ready_raw_review_required | 1 |
 | raw_package_intake_ready_no_original_files | 1 |
 | archive_preflight_ready_no_original_files | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
@@ -755,7 +760,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 591 |
+| present_nonempty | 597 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

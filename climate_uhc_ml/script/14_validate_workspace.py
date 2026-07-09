@@ -148,6 +148,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_alignment_audit.md",
     "priority_lsms_isa_refocused_acquisition_queue.md",
     "priority_lsms_isa_public_documentation_receipt.md",
+    "priority_lsms_isa_variable_evidence_matrix.md",
     "priority_lsms_isa_raw_package_intake_packet.md",
     "priority_lsms_isa_archive_member_preflight.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
@@ -306,6 +307,7 @@ REQUIRED_SCRIPTS = [
     "142_build_priority_lsms_isa_alignment_audit.py",
     "143_build_priority_lsms_isa_refocused_acquisition_queue.py",
     "146_build_priority_lsms_isa_public_documentation_receipt.py",
+    "147_build_priority_lsms_isa_variable_evidence_matrix.py",
     "144_build_priority_lsms_isa_raw_package_intake_packet.py",
     "145_build_priority_lsms_isa_archive_member_preflight.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
@@ -782,6 +784,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_public_documentation_catalog_digest": row_count(TEMP_DIR / "priority_lsms_isa_public_documentation_catalog_digest.csv"),
         "priority_lsms_isa_public_documentation_file_inventory": row_count(TEMP_DIR / "priority_lsms_isa_public_documentation_file_inventory.csv"),
         "priority_lsms_isa_public_documentation_receipt_summary": row_count(RESULT_DIR / "priority_lsms_isa_public_documentation_receipt_summary.csv"),
+        "priority_lsms_isa_variable_evidence_matrix": row_count(TEMP_DIR / "priority_lsms_isa_variable_evidence_matrix.csv"),
+        "priority_lsms_isa_requirement_variable_coverage": row_count(TEMP_DIR / "priority_lsms_isa_requirement_variable_coverage.csv"),
+        "priority_lsms_isa_concept_file_shortlist": row_count(TEMP_DIR / "priority_lsms_isa_concept_file_shortlist.csv"),
+        "priority_lsms_isa_variable_evidence_summary": row_count(RESULT_DIR / "priority_lsms_isa_variable_evidence_summary.csv"),
         "priority_lsms_isa_raw_package_intake_ledger": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger.csv"),
         "priority_lsms_isa_raw_package_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_file_manifest.csv"),
         "priority_lsms_isa_raw_package_acceptance_matrix": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_acceptance_matrix.csv"),
@@ -4766,6 +4772,44 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_public_docs_gate_ok),
         f"receipt_rows={counts['priority_lsms_isa_public_documentation_receipt']}; dataset_rows={counts['priority_lsms_isa_public_documentation_dataset_receipt']}; catalog_digest_rows={counts['priority_lsms_isa_public_documentation_catalog_digest']}; file_inventory_rows={counts['priority_lsms_isa_public_documentation_file_inventory']}; summary_rows={counts['priority_lsms_isa_public_documentation_receipt_summary']}; reported_datasets={priority_lsms_public_docs_dataset_rows}; resources={priority_lsms_public_docs_resource_rows}; saved={priority_lsms_public_docs_saved_rows}; failed={priority_lsms_public_docs_failed_rows}; core_complete={priority_lsms_public_docs_core_complete}; reported_catalog_digest={priority_lsms_public_docs_catalog_digest}; reported_file_inventory={priority_lsms_public_docs_file_inventory}; access_gates={priority_lsms_public_docs_access_gates}; handoffs={priority_lsms_public_docs_handoffs}; data_write={priority_lsms_public_docs_data_write}; modeling_gate={priority_lsms_public_docs_modeling_gate}",
         "" if priority_lsms_public_docs_gate_ok else "Run script/146_build_priority_lsms_isa_public_documentation_receipt.py after the refocused acquisition queue is current.",
+    )
+    priority_lsms_variable_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_variable_evidence_summary.csv")
+    priority_lsms_variable_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_dataset_rows"), "0"), 0)
+    priority_lsms_variable_requirement_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_requirement_rows"), "0"), 0)
+    priority_lsms_variable_candidate_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_candidate_variable_rows"), "0"), 0)
+    priority_lsms_variable_file_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_file_shortlist_rows"), "0"), 0)
+    priority_lsms_variable_strong_requirement_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_strong_requirement_rows"), "0"), 0)
+    priority_lsms_variable_docs_only_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_documentation_only_requirement_rows"), "0"), 0)
+    priority_lsms_variable_no_candidate_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_no_candidate_requirement_rows"), "0"), 0)
+    priority_lsms_variable_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_handoff_readmes_written"), "0"), 0)
+    priority_lsms_variable_raw_verified = safe_int(next((row.get("value", "0") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_raw_value_verified_rows"), "0"), 0)
+    priority_lsms_variable_data_write = next((row.get("value", "") for row in priority_lsms_variable_summary if row.get("metric") == "priority_lsms_variable_evidence_data_write_status"), "")
+    priority_lsms_variable_modeling_gate = next((row.get("value", "") for row in priority_lsms_variable_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_variable_gate_ok = (
+        counts["priority_lsms_isa_variable_evidence_matrix"] >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 7
+        and counts["priority_lsms_isa_requirement_variable_coverage"] >= counts["priority_lsms_isa_refocused_requirement_matrix"]
+        and counts["priority_lsms_isa_concept_file_shortlist"] >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 7
+        and counts["priority_lsms_isa_variable_evidence_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_variable_evidence_matrix.md")
+        and priority_lsms_variable_dataset_rows >= priority_refocused_queue_rows
+        and priority_lsms_variable_requirement_rows >= priority_refocused_requirement_rows
+        and priority_lsms_variable_candidate_rows == counts["priority_lsms_isa_variable_evidence_matrix"]
+        and priority_lsms_variable_file_rows == counts["priority_lsms_isa_concept_file_shortlist"]
+        and priority_lsms_variable_strong_requirement_rows >= priority_lsms_variable_dataset_rows * 6
+        and priority_lsms_variable_docs_only_rows >= priority_lsms_variable_dataset_rows
+        and priority_lsms_variable_no_candidate_rows == 0
+        and priority_lsms_variable_handoffs >= priority_lsms_variable_dataset_rows
+        and priority_lsms_variable_raw_verified == 0
+        and priority_lsms_variable_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_variable_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA variable evidence matrix maps official public metadata candidates to promotion requirements without accepting raw values",
+        status(priority_lsms_variable_gate_ok),
+        f"matrix_rows={counts['priority_lsms_isa_variable_evidence_matrix']}; coverage_rows={counts['priority_lsms_isa_requirement_variable_coverage']}; file_rows={counts['priority_lsms_isa_concept_file_shortlist']}; summary_rows={counts['priority_lsms_isa_variable_evidence_summary']}; reported_datasets={priority_lsms_variable_dataset_rows}; reported_requirements={priority_lsms_variable_requirement_rows}; candidate_variables={priority_lsms_variable_candidate_rows}; file_shortlist={priority_lsms_variable_file_rows}; strong_requirements={priority_lsms_variable_strong_requirement_rows}; docs_only={priority_lsms_variable_docs_only_rows}; no_candidate={priority_lsms_variable_no_candidate_rows}; handoffs={priority_lsms_variable_handoffs}; raw_verified={priority_lsms_variable_raw_verified}; data_write={priority_lsms_variable_data_write}; modeling_gate={priority_lsms_variable_modeling_gate}",
+        "" if priority_lsms_variable_gate_ok else "Run script/147_build_priority_lsms_isa_variable_evidence_matrix.py after the public documentation receipt is current.",
     )
     priority_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
     priority_raw_intake_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_dataset_rows"), "0"), 0)

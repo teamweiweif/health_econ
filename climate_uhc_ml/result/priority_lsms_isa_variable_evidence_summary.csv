@@ -1,0 +1,19 @@
+﻿metric,value,interpretation
+priority_lsms_variable_evidence_dataset_rows,19,Refocused LSMS/ISA datasets covered by official variable evidence.
+priority_lsms_variable_evidence_requirement_rows,152,Requirement-by-wave coverage rows.
+priority_lsms_variable_evidence_candidate_variable_rows,1531,Top official public metadata candidate variables shortlisted for raw review.
+priority_lsms_variable_evidence_file_shortlist_rows,629,Official DDI files shortlisted by concept for raw package checking.
+priority_lsms_variable_evidence_strong_requirement_rows,128,Non-documentation requirement rows with at least one strong metadata candidate.
+priority_lsms_variable_evidence_documentation_only_requirement_rows,19,"Rows where missing codes, units, recall, and skips require documentation/raw review rather than variable shortlisting."
+priority_lsms_variable_evidence_no_candidate_requirement_rows,0,Rows where public metadata found no variable candidate.
+priority_lsms_variable_evidence_handoff_readmes_written,19,Per-wave variable-evidence handoff files written.
+priority_lsms_variable_evidence_raw_value_verified_rows,0,Official metadata shortlists do not verify raw values.
+priority_lsms_variable_evidence_data_write_status,blocked_no_promoted_rows,No country-wave may write to data/ from metadata variable evidence alone.
+modeling_gate_status,blocked,Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass.
+priority_lsms_variable_evidence_coverage_status_documentation_and_raw_review_required_no_variable_shortlist,19,Requirement coverage status count.
+priority_lsms_variable_evidence_coverage_status_official_metadata_strong_candidates_present_raw_review_required,128,Requirement coverage status count.
+priority_lsms_variable_evidence_coverage_status_official_metadata_weak_candidates_present_raw_review_required,5,Requirement coverage status count.
+priority_lsms_variable_evidence_queue_role_core_replacement_primary,2,Dataset count by refocused queue role.
+priority_lsms_variable_evidence_queue_role_core_selected_lsms_isa_aligned,8,Dataset count by refocused queue role.
+priority_lsms_variable_evidence_queue_role_replacement_backup_wave,6,Dataset count by refocused queue role.
+priority_lsms_variable_evidence_queue_role_sixth_country_backup_candidate,3,Dataset count by refocused queue role.
