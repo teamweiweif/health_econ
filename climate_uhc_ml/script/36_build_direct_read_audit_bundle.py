@@ -43,6 +43,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_raw_intake_gate.csv", "priority raw package intake gate rows"),
     ("dataset_promotion", "temp/priority_raw_file_targets.csv", "priority raw file target gate rows"),
     ("dataset_promotion", "result/priority_raw_intake_gate_summary.csv", "priority raw package intake gate summary"),
+    ("dataset_promotion", "report/priority_archive_member_preflight.md", "priority archive/direct-file completeness preflight report"),
+    ("dataset_promotion", "temp/priority_archive_member_inventory.csv", "priority archive member inventory"),
+    ("dataset_promotion", "temp/priority_archive_completeness_matrix.csv", "priority direct/archive file target completeness matrix"),
+    ("dataset_promotion", "result/priority_archive_member_preflight_summary.csv", "priority archive member preflight summary"),
     ("dataset_promotion", "report/priority_climate_linkage_preflight.md", "priority climate linkage preflight report"),
     ("dataset_promotion", "temp/priority_climate_linkage_preflight.csv", "priority climate linkage preflight rows"),
     ("dataset_promotion", "temp/priority_climate_linkage_requirements.csv", "priority climate linkage requirement rows"),
@@ -429,6 +433,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/125_build_priority_climate_linkage_preflight.py", "priority climate linkage preflight generator"),
     ("reproducibility", "script/126_build_priority_raw_verification_workbook.py", "priority raw verification workbook generator"),
     ("reproducibility", "script/127_enforce_promoted_data_gate.py", "promoted data write gate enforcer"),
+    ("reproducibility", "script/128_build_priority_archive_member_preflight.py", "priority archive/direct-file preflight generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
     ("reproducibility", "script/41_build_first_batch_public_documentation_audit.py", "first-batch public documentation audit generator"),
     ("reproducibility", "script/42_build_first_batch_file_source_traceability.py", "first-batch file source traceability generator"),
@@ -618,6 +623,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     first_batch = read_csv_dicts(TEMP_DIR / "first_batch_raw_acquisition_checklist.csv")
     first_batch_access_summary = read_csv_dicts(RESULT_DIR / "first_batch_official_raw_access_summary.csv")
     priority_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_raw_intake_gate_summary.csv")
+    priority_archive_summary = read_csv_dicts(RESULT_DIR / "priority_archive_member_preflight_summary.csv")
     priority_climate_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv")
     priority_raw_verification_summary = read_csv_dicts(RESULT_DIR / "priority_raw_verification_workbook_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
@@ -814,6 +820,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"gate_rows={csv_value(priority_raw_intake_summary, 'priority_raw_intake_gate_rows', '0')}; priority_10_rows={csv_value(priority_raw_intake_summary, 'priority_raw_intake_priority_10_rows', '0')}; backup_rows={csv_value(priority_raw_intake_summary, 'priority_raw_intake_backup_rows', '0')}; file_targets={csv_value(priority_raw_intake_summary, 'priority_raw_file_target_rows', '0')}; manual_blocked={csv_value(priority_raw_intake_summary, 'priority_raw_gate_blocked_manual_rows', '0')}; schema_ready={csv_value(priority_raw_intake_summary, 'priority_raw_gate_schema_ready_rows', '0')}; handoffs={csv_value(priority_raw_intake_summary, 'priority_raw_handoff_readmes_written', '0')}",
         [TEMP_DIR / "priority_raw_intake_gate.csv", TEMP_DIR / "priority_raw_file_targets.csv", RESULT_DIR / "priority_raw_intake_gate_summary.csv", REPORT_DIR / "priority_raw_intake_gate.md"],
         "Priority 10-wave and backup raw-intake gate converts the acquisition plan into per-folder handoff files and fail-closed post-download promotion checks.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_archive_member_preflight",
+        "blocked_no_raw_or_archive_file" if csv_value(priority_archive_summary, "priority_datasets_blocked_no_raw_or_archive", "0") != "0" else "archive_or_direct_coverage_checked",
+        f"datasets={csv_value(priority_archive_summary, 'priority_archive_preflight_dataset_rows', '0')}; targets={csv_value(priority_archive_summary, 'priority_archive_preflight_file_target_rows', '0')}; archives={csv_value(priority_archive_summary, 'priority_archive_files_found', '0')}; members={csv_value(priority_archive_summary, 'priority_archive_member_rows', '0')}; direct_covered={csv_value(priority_archive_summary, 'priority_targets_covered_by_direct_file', '0')}; archive_covered={csv_value(priority_archive_summary, 'priority_targets_covered_by_archive_member', '0')}; missing={csv_value(priority_archive_summary, 'priority_targets_missing_direct_or_archive_member', '0')}",
+        [TEMP_DIR / "priority_archive_member_inventory.csv", TEMP_DIR / "priority_archive_completeness_matrix.csv", RESULT_DIR / "priority_archive_member_preflight_summary.csv", REPORT_DIR / "priority_archive_member_preflight.md"],
+        "Archive/direct-file preflight checks whether placed raw archives or tabular files cover priority modules before any raw value verification or data promotion.",
     )
     add_bundle(
         rows,
@@ -1703,6 +1718,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     alb2005_fallback_blocker_summary = read_csv_dicts(RESULT_DIR / "alb2005_fallback_blocker_resolution_summary.csv")
     alb2008_fallback_blocker_summary = read_csv_dicts(RESULT_DIR / "alb2008_fallback_blocker_resolution_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
+    priority_archive_summary = read_csv_dicts(RESULT_DIR / "priority_archive_member_preflight_summary.csv")
     data_dataset_files = [
         path for path in DATA_DIR.rglob("*")
         if path.is_file() and path.name not in {"README.md", ".gitkeep"}
@@ -1718,6 +1734,8 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "promoted_data_gate_status", "value": csv_value(promoted_data_gate_summary, "promoted_data_gate_status", "missing"), "interpretation": "Current promoted-data write gate status."},
         {"metric": "promoted_data_gate_registry_promoted_rows", "value": csv_value(promoted_data_gate_summary, "registry_promoted_analysis_ready_rows", "0"), "interpretation": "Registry rows currently allowed to write promoted datasets into data/."},
         {"metric": "promoted_data_gate_quarantined_files", "value": csv_value(promoted_data_gate_summary, "quarantined_diagnostic_data_files", "0"), "interpretation": "Pre-promotion diagnostic files moved from data/ to temp/."},
+        {"metric": "priority_archive_preflight_targets", "value": csv_value(priority_archive_summary, "priority_archive_preflight_file_target_rows", "0"), "interpretation": "Priority file targets checked against direct files and archive members."},
+        {"metric": "priority_archive_preflight_missing_targets", "value": csv_value(priority_archive_summary, "priority_targets_missing_direct_or_archive_member", "0"), "interpretation": "Priority file targets still missing after direct/archive member preflight."},
         {"metric": "analysis_dataset_promotion_audit_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_audit_rows", "0"), "interpretation": "Analysis dataset promotion targets checked."},
         {"metric": "analysis_dataset_promotion_blocked_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_blocked_rows", "0"), "interpretation": "Promotion targets blocked from data/."},
         {"metric": "analysis_dataset_promotion_promoted_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_promoted_rows", "0"), "interpretation": "Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked."},

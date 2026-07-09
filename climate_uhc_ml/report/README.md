@@ -28,6 +28,7 @@ python script/121_build_country_wave_promotion_registry.py
 python script/122_build_priority_promotion_acquisition_plan.py
 python script/123_probe_priority_official_raw_access.py
 python script/124_build_priority_raw_intake_gate.py
+python script/128_build_priority_archive_member_preflight.py
 python script/125_build_priority_climate_linkage_preflight.py
 python script/126_build_priority_raw_verification_workbook.py
 python script/127_enforce_promoted_data_gate.py
@@ -56,6 +57,7 @@ Current status:
 - The priority-first raw acquisition plan is `result/priority_promotion_acquisition_wave_plan.csv`.
 - The priority official raw access probe is `result/priority_official_raw_access_summary.csv`.
 - The priority raw intake gate is `result/priority_raw_intake_gate_summary.csv`.
+- The priority archive/direct-file preflight is `result/priority_archive_member_preflight_summary.csv`.
 - The priority climate linkage preflight is `result/priority_climate_linkage_preflight_summary.csv`.
 - The priority raw verification workbook is `result/priority_raw_verification_workbook_summary.csv`.
 - The promoted-data gate is `result/promoted_data_gate_summary.csv`; if the registry has zero promoted rows, diagnostic CSVs are kept in `temp/diagnostic_data_quarantine/current/` rather than `data/`.

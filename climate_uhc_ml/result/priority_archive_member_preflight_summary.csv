@@ -1,0 +1,12 @@
+﻿metric,value,interpretation
+priority_archive_preflight_dataset_rows,13,Priority and backup waves checked for direct/archive raw coverage.
+priority_archive_preflight_file_target_rows,156,Priority file targets checked against direct files and archive members.
+priority_archive_files_found,0,Archive files found in priority target folders.
+priority_archive_member_rows,0,Raw-like members listed inside priority archives.
+priority_targets_covered_by_direct_file,0,Priority file targets covered by a direct raw file.
+priority_targets_covered_by_archive_member,0,Priority file targets covered by a listed archive member.
+priority_targets_missing_direct_or_archive_member,156,Priority file targets still missing after direct/archive preflight.
+priority_archives_with_unsupported_listing,0,Archive files whose members could not be listed by available tools.
+priority_datasets_all_targets_covered,0,Datasets with all priority targets covered but still requiring raw value verification.
+priority_datasets_blocked_no_raw_or_archive,13,Datasets with no raw tabular or archive file in the priority folder.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted climate linkage pass.

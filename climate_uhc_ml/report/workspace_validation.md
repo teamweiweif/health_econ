@@ -6,7 +6,7 @@ Status: objective-level validation run completed. This is an audit of the worksp
 
 | Status | Count |
 |---|---:|
-| complete | 379 |
+| complete | 382 |
 
 ## Incomplete Or Failed Items
 

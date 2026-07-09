@@ -131,6 +131,7 @@ REQUIRED_REPORTS = [
     "priority_promotion_acquisition_plan.md",
     "priority_official_raw_access_probe.md",
     "priority_raw_intake_gate.md",
+    "priority_archive_member_preflight.md",
     "priority_climate_linkage_preflight.md",
     "priority_raw_verification_workbook.md",
     "promoted_data_gate.md",
@@ -272,6 +273,7 @@ REQUIRED_SCRIPTS = [
     "125_build_priority_climate_linkage_preflight.py",
     "126_build_priority_raw_verification_workbook.py",
     "127_enforce_promoted_data_gate.py",
+    "128_build_priority_archive_member_preflight.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -682,6 +684,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_raw_intake_gate": row_count(TEMP_DIR / "priority_raw_intake_gate.csv"),
         "priority_raw_file_targets": row_count(TEMP_DIR / "priority_raw_file_targets.csv"),
         "priority_raw_intake_gate_summary": row_count(RESULT_DIR / "priority_raw_intake_gate_summary.csv"),
+        "priority_archive_member_inventory": row_count(TEMP_DIR / "priority_archive_member_inventory.csv"),
+        "priority_archive_completeness_matrix": row_count(TEMP_DIR / "priority_archive_completeness_matrix.csv"),
+        "priority_archive_member_preflight_summary": row_count(RESULT_DIR / "priority_archive_member_preflight_summary.csv"),
         "priority_climate_linkage_preflight": row_count(TEMP_DIR / "priority_climate_linkage_preflight.csv"),
         "priority_climate_linkage_requirements": row_count(TEMP_DIR / "priority_climate_linkage_requirements.csv"),
         "priority_climate_linkage_preflight_summary": row_count(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv"),
@@ -3930,6 +3935,41 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_handoff_existing >= priority_raw_gate_rows
         and priority_raw_modeling_gate == "blocked"
         else "Run script/124_build_priority_raw_intake_gate.py after priority access probing and raw-download intake auditing.",
+    )
+    priority_archive_summary = read_csv_dicts(RESULT_DIR / "priority_archive_member_preflight_summary.csv")
+    priority_archive_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_archive_preflight_dataset_rows"), "0"), 0)
+    priority_archive_target_rows = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_archive_preflight_file_target_rows"), "0"), 0)
+    priority_archive_files_found = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_archive_files_found"), "0"), 0)
+    priority_archive_member_rows = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_archive_member_rows"), "0"), 0)
+    priority_direct_covered = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_targets_covered_by_direct_file"), "0"), 0)
+    priority_archive_covered = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_targets_covered_by_archive_member"), "0"), 0)
+    priority_archive_missing = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_targets_missing_direct_or_archive_member"), "0"), 0)
+    priority_archive_all_covered = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_datasets_all_targets_covered"), "0"), 0)
+    priority_archive_blocked_no_raw = safe_int(next((row.get("value", "0") for row in priority_archive_summary if row.get("metric") == "priority_datasets_blocked_no_raw_or_archive"), "0"), 0)
+    priority_archive_modeling_gate = next((row.get("value", "") for row in priority_archive_summary if row.get("metric") == "modeling_gate_status"), "")
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority archive member preflight checks placed direct files and archives against priority raw module targets before value verification",
+        status(
+            counts["priority_archive_completeness_matrix"] >= counts["priority_raw_file_targets"]
+            and counts["priority_archive_member_preflight_summary"] > 0
+            and file_ok(REPORT_DIR / "priority_archive_member_preflight.md")
+            and priority_archive_dataset_rows >= counts["priority_promotion_acquisition_wave_plan"]
+            and priority_archive_target_rows >= counts["priority_raw_file_targets"]
+            and priority_direct_covered + priority_archive_covered + priority_archive_missing <= priority_archive_target_rows
+            and priority_archive_modeling_gate == "blocked"
+        ),
+        f"inventory_rows={counts['priority_archive_member_inventory']}; completeness_rows={counts['priority_archive_completeness_matrix']}; summary_rows={counts['priority_archive_member_preflight_summary']}; dataset_rows={priority_archive_dataset_rows}; target_rows={priority_archive_target_rows}; archives_found={priority_archive_files_found}; member_rows={priority_archive_member_rows}; direct_covered={priority_direct_covered}; archive_covered={priority_archive_covered}; missing={priority_archive_missing}; all_covered={priority_archive_all_covered}; blocked_no_raw={priority_archive_blocked_no_raw}; modeling_gate={priority_archive_modeling_gate}",
+        ""
+        if counts["priority_archive_completeness_matrix"] >= counts["priority_raw_file_targets"]
+        and counts["priority_archive_member_preflight_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_archive_member_preflight.md")
+        and priority_archive_dataset_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_archive_target_rows >= counts["priority_raw_file_targets"]
+        and priority_direct_covered + priority_archive_covered + priority_archive_missing <= priority_archive_target_rows
+        and priority_archive_modeling_gate == "blocked"
+        else "Run script/128_build_priority_archive_member_preflight.py after priority raw intake gate; keep it fail-closed until raw archives/direct files are placed.",
     )
     priority_climate_summary = read_csv_dicts(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv")
     priority_climate_rows = safe_int(next((row.get("value", "0") for row in priority_climate_summary if row.get("metric") == "priority_climate_preflight_rows"), "0"), 0)
