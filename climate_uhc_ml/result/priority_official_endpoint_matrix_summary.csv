@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+priority_endpoint_matrix_dataset_rows,13,Priority and backup datasets with endpoint matrix rows.
+priority_endpoint_matrix_endpoint_rows,104,Official endpoint probes across priority and backup datasets.
+priority_endpoint_matrix_public_metadata_endpoint_rows,52,Dataset-level count of successful public metadata endpoint hits.
+priority_endpoint_matrix_variable_api_dataset_rows,12,Datasets with a public variable metadata API endpoint.
+priority_endpoint_matrix_get_microdata_gate_dataset_rows,13,Datasets whose official get-microdata endpoint shows an access gate.
+priority_endpoint_matrix_raw_download_candidate_rows,0,Raw download candidate endpoints detected without accepting them as usable.
+priority_endpoint_matrix_credentialed_download_required_rows,13,Datasets requiring credentialed download after endpoint matrix review.
+priority_endpoint_matrix_handoff_readmes_written,13,Per-wave official endpoint matrix handoffs written.
+modeling_gate_status,blocked,"Endpoint matrix evidence does not satisfy raw receipt, raw value verification, or climate-linkage gates."
+priority_endpoint_matrix_classification_empty_download_route_not_raw_package,13,Endpoint classification count.
+priority_endpoint_matrix_classification_http_error_not_public_endpoint,13,Endpoint classification count.
+priority_endpoint_matrix_classification_idno_route_returns_catalog_or_search_html_not_raw_package,13,Endpoint classification count.
+priority_endpoint_matrix_classification_official_get_microdata_access_gate,13,Endpoint classification count.
+priority_endpoint_matrix_classification_public_metadata_endpoint_not_raw_package,52,Endpoint classification count.

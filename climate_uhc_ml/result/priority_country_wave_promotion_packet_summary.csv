@@ -2,11 +2,12 @@
 priority_country_wave_packet_rows,13,Priority and backup country-wave promotion packets built.
 priority_country_wave_packet_priority_batch_rows,10,Immediate priority wave packets.
 priority_country_wave_packet_backup_rows,3,Sixth-country backup wave packets.
-priority_country_wave_packet_gate_rows,169,Gate rows across priority promotion packets.
-priority_country_wave_packet_passed_gate_rows,39,Packet gates currently passing.
+priority_country_wave_packet_gate_rows,182,Gate rows across priority promotion packets.
+priority_country_wave_packet_passed_gate_rows,52,Packet gates currently passing.
 priority_country_wave_packet_failed_gate_rows,130,Packet gates still blocking promotion.
 priority_country_wave_packet_public_documentation_ready_rows,13,Packets with complete core public documentation receipt.
 priority_country_wave_packet_official_metadata_ready_rows,13,Packets with official DDI/XML variable evidence extracted.
+priority_country_wave_packet_endpoint_matrix_ready_rows,13,Packets with official endpoint matrix confirming metadata-only public routes and credentialed raw gate.
 priority_country_wave_packet_credentialed_acquisition_ready_rows,13,Packets with credentialed raw-package acquisition ledger prepared.
 priority_country_wave_packet_raw_package_ready_rows,0,Packets with a non-empty original raw package receipt.
 priority_country_wave_packet_financial_ready_rows,0,Packets ready for financial-protection outcomes.

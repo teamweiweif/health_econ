@@ -14,6 +14,7 @@ RAW_RECEIPT_PATH = TEMP_DIR / "priority_raw_package_receipt_ledger.csv"
 PUBLIC_DOC_DATASET_PATH = TEMP_DIR / "priority_public_documentation_dataset_receipt.csv"
 PUBLIC_DOC_RESOURCE_PATH = TEMP_DIR / "priority_public_documentation_receipt.csv"
 METADATA_EVIDENCE_PATH = TEMP_DIR / "priority_official_metadata_dataset_evidence.csv"
+ENDPOINT_MATRIX_PATH = TEMP_DIR / "priority_official_endpoint_dataset_matrix.csv"
 CREDENTIALED_ACQUISITION_PATH = TEMP_DIR / "priority_credentialed_raw_acquisition_ledger.csv"
 MANUAL_DECISION_PATH = TEMP_DIR / "priority_manual_verification_decision_gate.csv"
 MANUAL_REQUIREMENT_PATH = TEMP_DIR / "priority_manual_requirement_decision_audit.csv"
@@ -41,6 +42,7 @@ INDEX_COLUMNS = [
     "local_target_folder",
     "public_documentation_status",
     "official_metadata_evidence_status",
+    "official_endpoint_matrix_status",
     "credentialed_acquisition_status",
     "raw_package_status",
     "manual_verification_status",
@@ -331,6 +333,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     public_dataset_by_id = one_by_id(read_csv_dicts(PUBLIC_DOC_DATASET_PATH))
     public_resource_by_id = by_id(read_csv_dicts(PUBLIC_DOC_RESOURCE_PATH))
     metadata_by_id = one_by_id(read_csv_dicts(METADATA_EVIDENCE_PATH))
+    endpoint_by_id = one_by_id(read_csv_dicts(ENDPOINT_MATRIX_PATH))
     credentialed_by_id = one_by_id(read_csv_dicts(CREDENTIALED_ACQUISITION_PATH))
     manual_by_id = one_by_id(read_csv_dicts(MANUAL_DECISION_PATH))
     req_by_id = by_id(read_csv_dicts(MANUAL_REQUIREMENT_PATH))
@@ -350,6 +353,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         raw = raw_by_id.get(idno, {})
         public_dataset = public_dataset_by_id.get(idno, {})
         metadata = metadata_by_id.get(idno, {})
+        endpoint = endpoint_by_id.get(idno, {})
         credentialed = credentialed_by_id.get(idno, {})
         manual = manual_by_id.get(idno, {})
         climate = climate_by_id.get(idno, {})
@@ -362,6 +366,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "complete_official_metadata_evidence_extract",
             "partial_official_metadata_evidence_extract",
         } and safe_int(metadata.get("ddi_variable_match_rows")) > 0
+        endpoint_ready = clean(endpoint.get("endpoint_matrix_status")) == "metadata_api_confirmed_raw_access_gate_confirmed" and clean(endpoint.get("credentialed_download_required")) == "1"
         credentialed_ready = clean(credentialed.get("credentialed_acquisition_status")) in {
             "ready_for_credentialed_manual_download",
             "partial_package_receipt_needs_review",
@@ -393,6 +398,14 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             metadata_ready,
             f"status={metadata.get('official_metadata_evidence_status', '')}; candidates={metadata.get('candidate_variable_rows', '0')}; ddi_matches={metadata.get('ddi_variable_match_rows', '0')}; file_matches={metadata.get('ddi_file_match_rows', '0')}; no_matches={metadata.get('ddi_no_match_rows', '0')}",
             "Parse official DDI/XML metadata and connect candidate variables to official labels, categories, counts, and file mappings.",
+        )
+        add_gate(
+            gates,
+            wave,
+            "official_endpoint_matrix_probe",
+            endpoint_ready,
+            f"status={endpoint.get('endpoint_matrix_status', '')}; endpoints={endpoint.get('endpoint_rows', '0')}; metadata_endpoints={endpoint.get('successful_public_metadata_endpoints', '0')}; variable_api={endpoint.get('successful_variable_api_endpoints', '0')}; get_microdata_gates={endpoint.get('get_microdata_gate_endpoints', '0')}; raw_candidates={endpoint.get('raw_download_candidate_endpoints', '0')}",
+            "Probe official catalog/API/metadata/get-microdata endpoints and confirm public routes are metadata-only while raw package acquisition remains credentialed.",
         )
         add_gate(
             gates,
@@ -517,6 +530,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "local_target_folder": wave.get("local_target_folder", ""),
             "public_documentation_status": "ready" if public_ready else "blocked",
             "official_metadata_evidence_status": "ready" if metadata_ready else "blocked",
+            "official_endpoint_matrix_status": "ready" if endpoint_ready else "blocked",
             "credentialed_acquisition_status": "ready" if credentialed_ready else "blocked",
             "raw_package_status": raw.get("receipt_status", "missing"),
             "manual_verification_status": manual.get("manual_verification_status", "missing"),
@@ -575,6 +589,7 @@ def build_summary(index_rows: list[dict[str, str]], gate_rows: list[dict[str, st
         {"metric": "priority_country_wave_packet_failed_gate_rows", "value": str(gate_counts.get("fail", 0)), "interpretation": "Packet gates still blocking promotion."},
         {"metric": "priority_country_wave_packet_public_documentation_ready_rows", "value": str(sum(1 for row in index_rows if row["public_documentation_status"] == "ready")), "interpretation": "Packets with complete core public documentation receipt."},
         {"metric": "priority_country_wave_packet_official_metadata_ready_rows", "value": str(sum(1 for row in index_rows if row["official_metadata_evidence_status"] == "ready")), "interpretation": "Packets with official DDI/XML variable evidence extracted."},
+        {"metric": "priority_country_wave_packet_endpoint_matrix_ready_rows", "value": str(sum(1 for row in index_rows if row["official_endpoint_matrix_status"] == "ready")), "interpretation": "Packets with official endpoint matrix confirming metadata-only public routes and credentialed raw gate."},
         {"metric": "priority_country_wave_packet_credentialed_acquisition_ready_rows", "value": str(sum(1 for row in index_rows if row["credentialed_acquisition_status"] == "ready")), "interpretation": "Packets with credentialed raw-package acquisition ledger prepared."},
         {"metric": "priority_country_wave_packet_raw_package_ready_rows", "value": str(sum(1 for row in index_rows if row["raw_package_status"] != "not_received_no_original_raw_package")), "interpretation": "Packets with a non-empty original raw package receipt."},
         {"metric": "priority_country_wave_packet_financial_ready_rows", "value": str(sum(1 for row in index_rows if row["financial_protection_status"] == "ready")), "interpretation": "Packets ready for financial-protection outcomes."},
@@ -612,7 +627,7 @@ analysis-ready household x climate datasets. It does not write data into
 
 ## Packet Index
 
-{markdown_table(index_rows, ['acquisition_batch_rank', 'idno', 'country', 'wave', 'public_documentation_status', 'official_metadata_evidence_status', 'credentialed_acquisition_status', 'raw_package_status', 'financial_protection_status', 'access_forgone_care_status', 'climate_linkage_status', 'packet_status', 'next_blocking_action'], 20)}
+{markdown_table(index_rows, ['acquisition_batch_rank', 'idno', 'country', 'wave', 'public_documentation_status', 'official_metadata_evidence_status', 'official_endpoint_matrix_status', 'credentialed_acquisition_status', 'raw_package_status', 'financial_protection_status', 'access_forgone_care_status', 'climate_linkage_status', 'packet_status', 'next_blocking_action'], 20)}
 
 ## Next Blocking Actions
 

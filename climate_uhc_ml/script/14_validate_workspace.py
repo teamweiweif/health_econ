@@ -140,6 +140,7 @@ REQUIRED_REPORTS = [
     "priority_public_documentation_receipt.md",
     "priority_official_metadata_evidence_extract.md",
     "priority_credentialed_raw_acquisition_ledger.md",
+    "priority_official_endpoint_matrix.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "promoted_data_gate.md",
@@ -288,6 +289,7 @@ REQUIRED_SCRIPTS = [
     "133_build_priority_public_documentation_receipt.py",
     "135_build_priority_official_metadata_evidence_extract.py",
     "136_build_priority_credentialed_raw_acquisition_ledger.py",
+    "137_probe_priority_official_endpoint_matrix.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
@@ -735,6 +737,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_credentialed_raw_full_file_manifest": row_count(TEMP_DIR / "priority_credentialed_raw_full_file_manifest.csv"),
         "priority_credentialed_raw_core_file_checklist": row_count(TEMP_DIR / "priority_credentialed_raw_core_file_checklist.csv"),
         "priority_credentialed_raw_acquisition_summary": row_count(RESULT_DIR / "priority_credentialed_raw_acquisition_summary.csv"),
+        "priority_official_endpoint_matrix": row_count(TEMP_DIR / "priority_official_endpoint_matrix.csv"),
+        "priority_official_endpoint_dataset_matrix": row_count(TEMP_DIR / "priority_official_endpoint_dataset_matrix.csv"),
+        "priority_official_endpoint_matrix_summary": row_count(RESULT_DIR / "priority_official_endpoint_matrix_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4395,6 +4400,39 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         f"ledger_rows={counts['priority_credentialed_raw_acquisition_ledger']}; full_file_rows={counts['priority_credentialed_raw_full_file_manifest']}; core_checklist_rows={counts['priority_credentialed_raw_core_file_checklist']}; summary_rows={counts['priority_credentialed_raw_acquisition_summary']}; reported_datasets={priority_credentialed_dataset_rows}; priority_rows={priority_credentialed_priority_rows}; backup_rows={priority_credentialed_backup_rows}; reported_full_files={priority_credentialed_full_rows}; reported_core_files={priority_credentialed_core_rows}; public_ready={priority_credentialed_public_ready}; metadata_ready={priority_credentialed_metadata_ready}; original_receipts={priority_credentialed_original_receipts}; missing_targets={priority_credentialed_missing_targets}; handoffs={priority_credentialed_handoffs}; modeling_gate={priority_credentialed_modeling_gate}",
         "" if priority_credentialed_gate_ok else "Run script/136_build_priority_credentialed_raw_acquisition_ledger.py after public documentation and official metadata evidence; this prepares credentialed download execution but does not verify raw values.",
     )
+    priority_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_official_endpoint_matrix_summary.csv")
+    priority_endpoint_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_dataset_rows"), "0"), 0)
+    priority_endpoint_rows = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_endpoint_rows"), "0"), 0)
+    priority_endpoint_metadata_rows = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_public_metadata_endpoint_rows"), "0"), 0)
+    priority_endpoint_variable_api_rows = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_variable_api_dataset_rows"), "0"), 0)
+    priority_endpoint_gate_rows = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_get_microdata_gate_dataset_rows"), "0"), 0)
+    priority_endpoint_raw_candidates = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_raw_download_candidate_rows"), "0"), 0)
+    priority_endpoint_credentialed_required = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_credentialed_download_required_rows"), "0"), 0)
+    priority_endpoint_handoffs = safe_int(next((row.get("value", "0") for row in priority_endpoint_summary if row.get("metric") == "priority_endpoint_matrix_handoff_readmes_written"), "0"), 0)
+    priority_endpoint_modeling_gate = next((row.get("value", "") for row in priority_endpoint_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_endpoint_gate_ok = (
+        counts["priority_official_endpoint_matrix"] >= counts["priority_promotion_acquisition_wave_plan"] * 8
+        and counts["priority_official_endpoint_dataset_matrix"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_official_endpoint_matrix_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_official_endpoint_matrix.md")
+        and priority_endpoint_dataset_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_endpoint_rows >= counts["priority_promotion_acquisition_wave_plan"] * 8
+        and priority_endpoint_metadata_rows >= counts["priority_promotion_acquisition_wave_plan"] * 4
+        and priority_endpoint_variable_api_rows >= 12
+        and priority_endpoint_gate_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_endpoint_raw_candidates == 0
+        and priority_endpoint_credentialed_required >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_endpoint_handoffs >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_endpoint_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority official endpoint matrix confirms public API routes are metadata-only and official raw access remains credentialed",
+        status(priority_endpoint_gate_ok),
+        f"endpoint_rows={counts['priority_official_endpoint_matrix']}; dataset_rows={counts['priority_official_endpoint_dataset_matrix']}; summary_rows={counts['priority_official_endpoint_matrix_summary']}; reported_datasets={priority_endpoint_dataset_rows}; reported_endpoints={priority_endpoint_rows}; metadata_endpoints={priority_endpoint_metadata_rows}; variable_api_datasets={priority_endpoint_variable_api_rows}; get_microdata_gate_datasets={priority_endpoint_gate_rows}; raw_candidates={priority_endpoint_raw_candidates}; credentialed_required={priority_endpoint_credentialed_required}; handoffs={priority_endpoint_handoffs}; modeling_gate={priority_endpoint_modeling_gate}",
+        "" if priority_endpoint_gate_ok else "Run script/137_probe_priority_official_endpoint_matrix.py after the official download dossier; endpoint evidence is metadata/access-gate evidence only.",
+    )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
     priority_synthesis_required_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_required_rows"), "0"), 0)
@@ -4439,6 +4477,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     priority_packet_failed_gates = safe_int(next((row.get("value", "0") for row in priority_packet_summary if row.get("metric") == "priority_country_wave_packet_failed_gate_rows"), "0"), 0)
     priority_packet_public_ready = safe_int(next((row.get("value", "0") for row in priority_packet_summary if row.get("metric") == "priority_country_wave_packet_public_documentation_ready_rows"), "0"), 0)
     priority_packet_metadata_ready = safe_int(next((row.get("value", "0") for row in priority_packet_summary if row.get("metric") == "priority_country_wave_packet_official_metadata_ready_rows"), "0"), 0)
+    priority_packet_endpoint_ready = safe_int(next((row.get("value", "0") for row in priority_packet_summary if row.get("metric") == "priority_country_wave_packet_endpoint_matrix_ready_rows"), "0"), 0)
     priority_packet_credentialed_ready = safe_int(next((row.get("value", "0") for row in priority_packet_summary if row.get("metric") == "priority_country_wave_packet_credentialed_acquisition_ready_rows"), "0"), 0)
     priority_packet_raw_ready = safe_int(next((row.get("value", "0") for row in priority_packet_summary if row.get("metric") == "priority_country_wave_packet_raw_package_ready_rows"), "0"), 0)
     priority_packet_financial_ready = safe_int(next((row.get("value", "0") for row in priority_packet_summary if row.get("metric") == "priority_country_wave_packet_financial_ready_rows"), "0"), 0)
@@ -4451,18 +4490,19 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     priority_packet_modeling_gate = next((row.get("value", "") for row in priority_packet_summary if row.get("metric") == "modeling_gate_status"), "")
     priority_packet_gate_ok = (
         counts["priority_country_wave_promotion_packet_index"] >= counts["priority_promotion_acquisition_wave_plan"]
-        and counts["priority_country_wave_promotion_packet_gate_matrix"] >= counts["priority_promotion_acquisition_wave_plan"] * 13
+        and counts["priority_country_wave_promotion_packet_gate_matrix"] >= counts["priority_promotion_acquisition_wave_plan"] * 14
         and counts["priority_country_wave_promotion_packet_action_queue"] >= counts["priority_promotion_acquisition_wave_plan"]
         and counts["priority_country_wave_promotion_packet_summary"] > 0
         and file_ok(REPORT_DIR / "priority_country_wave_promotion_packets.md")
         and priority_packet_rows >= counts["priority_promotion_acquisition_wave_plan"]
         and priority_packet_priority_rows >= 10
         and priority_packet_backup_rows >= 3
-        and priority_packet_gate_rows >= counts["priority_promotion_acquisition_wave_plan"] * 13
-        and priority_packet_passed_gates >= counts["priority_promotion_acquisition_wave_plan"] * 3
+        and priority_packet_gate_rows >= counts["priority_promotion_acquisition_wave_plan"] * 14
+        and priority_packet_passed_gates >= counts["priority_promotion_acquisition_wave_plan"] * 4
         and priority_packet_failed_gates >= counts["priority_promotion_acquisition_wave_plan"] * 10
         and priority_packet_public_ready >= counts["priority_promotion_acquisition_wave_plan"]
         and priority_packet_metadata_ready >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_packet_endpoint_ready >= counts["priority_promotion_acquisition_wave_plan"]
         and priority_packet_credentialed_ready >= counts["priority_promotion_acquisition_wave_plan"]
         and priority_packet_raw_ready == 0
         and priority_packet_financial_ready == 0
@@ -4479,7 +4519,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "dataset_promotion",
         "Priority country-wave promotion packets consolidate documentation, raw, manual, climate, synthesis, and write gates per wave",
         status(priority_packet_gate_ok),
-        f"index_rows={counts['priority_country_wave_promotion_packet_index']}; gate_rows={counts['priority_country_wave_promotion_packet_gate_matrix']}; action_rows={counts['priority_country_wave_promotion_packet_action_queue']}; summary_rows={counts['priority_country_wave_promotion_packet_summary']}; reported_packets={priority_packet_rows}; priority_rows={priority_packet_priority_rows}; backup_rows={priority_packet_backup_rows}; reported_gate_rows={priority_packet_gate_rows}; passed_gates={priority_packet_passed_gates}; failed_gates={priority_packet_failed_gates}; public_ready={priority_packet_public_ready}; metadata_ready={priority_packet_metadata_ready}; credentialed_ready={priority_packet_credentialed_ready}; raw_ready={priority_packet_raw_ready}; financial_ready={priority_packet_financial_ready}; access_ready={priority_packet_access_ready}; climate_ready={priority_packet_climate_ready}; analysis_ready={priority_packet_analysis_ready}; actions={priority_packet_actions}; reports={priority_packet_reports}; handoffs={priority_packet_handoffs}; modeling_gate={priority_packet_modeling_gate}",
+        f"index_rows={counts['priority_country_wave_promotion_packet_index']}; gate_rows={counts['priority_country_wave_promotion_packet_gate_matrix']}; action_rows={counts['priority_country_wave_promotion_packet_action_queue']}; summary_rows={counts['priority_country_wave_promotion_packet_summary']}; reported_packets={priority_packet_rows}; priority_rows={priority_packet_priority_rows}; backup_rows={priority_packet_backup_rows}; reported_gate_rows={priority_packet_gate_rows}; passed_gates={priority_packet_passed_gates}; failed_gates={priority_packet_failed_gates}; public_ready={priority_packet_public_ready}; metadata_ready={priority_packet_metadata_ready}; endpoint_ready={priority_packet_endpoint_ready}; credentialed_ready={priority_packet_credentialed_ready}; raw_ready={priority_packet_raw_ready}; financial_ready={priority_packet_financial_ready}; access_ready={priority_packet_access_ready}; climate_ready={priority_packet_climate_ready}; analysis_ready={priority_packet_analysis_ready}; actions={priority_packet_actions}; reports={priority_packet_reports}; handoffs={priority_packet_handoffs}; modeling_gate={priority_packet_modeling_gate}",
         "" if priority_packet_gate_ok else "Run script/134_build_priority_country_wave_promotion_packets.py after public documentation, synthesis, manual, climate, and receipt gates.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")

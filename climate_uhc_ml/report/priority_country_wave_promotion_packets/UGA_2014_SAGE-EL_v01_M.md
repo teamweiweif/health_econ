@@ -20,6 +20,7 @@ Next blocking action: download_or_place_complete_original_raw_package
 |---|---|---|---|
 | official_public_documentation_receipt | pass | status=complete_full_public_documentation_receipt; saved=data_dictionary_html;ddi_metadata;get_microdata_html;json_me... |  |
 | official_metadata_variable_evidence_extract | pass | status=partial_official_metadata_evidence_extract; candidates=96; ddi_matches=93; file_matches=93; no_matches=3 |  |
+| official_endpoint_matrix_probe | pass | status=metadata_api_confirmed_raw_access_gate_confirmed; endpoints=8; metadata_endpoints=4; variable_api=1; get_micro... |  |
 | credentialed_raw_acquisition_ledger | pass | status=ready_for_credentialed_manual_download; full_files=35; core_files=12; target_folder=temp/raw_downloads/UGA_201... |  |
 | complete_original_raw_package | fail | receipt_status=not_received_no_original_raw_package; original_files=0; archives=0; raw_tabular=0; missing_targets=12 | Download/place the complete unchanged original raw package and documentation in the target folder. |
 | priority_raw_module_coverage | fail | targets=12; covered=0; missing=12 | Ensure every priority target module is present directly or inside the received archive. |
