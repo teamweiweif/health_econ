@@ -1,0 +1,70 @@
+# Priority First-Pass Variable Review Queue
+
+Dataset: `ETH_2021_ESPS-W5_v02_M` - Ethiopia 2021-2022
+
+Campaign phase: phase_1_double_failure_10_wave_base
+
+Threshold role: required_for_10_country_wave_double_failure_threshold
+
+Current raw receipt: not_received_no_original_raw_package
+
+This is a compact first-pass queue for post-download raw-value review. It does
+not verify raw values, does not promote any dataset, and does not write to
+`data/`.
+
+## Selected Variables
+
+| requirement_id | concept | candidate_files | candidate_raw_variable | metadata_confidence | first_pass_review_status |
+|---|---|---|---|---|---|
+| household_person_merge_keys | household_id | eth_householdgeovariables_y5.dta;eth_plotgeovariables_y5.dta | household_id | high | blocked_raw_package_not_received |
+| household_person_merge_keys | household_id | sect10_ph_w5.dta;sect10a_hh_w5.dta;sect11_hh_w5.dta;sect11_ph_w5.dta;sect12a_hh_w5.dta;sect12b1_hh_w5.dta;sect12b2_hh... | saq08 | high | blocked_raw_package_not_received |
+| household_person_merge_keys | demographics | cons_agg_w5.dta | educ_cons_ann | high | blocked_raw_package_not_received |
+| household_person_merge_keys | demographics | cons_agg_w5.dta | hh_size | high | blocked_raw_package_not_received |
+| weights_and_survey_design | survey_weight | cons_agg_w5.dta;sect10_ph_w5.dta;sect10a_hh_w5.dta;sect11_hh_w5.dta;sect11_ph_w5.dta;sect12a_hh_w5.dta;sect12b1_hh_w5... | pw_w5 | high | blocked_raw_package_not_received |
+| weights_and_survey_design | survey_weight | sect10b_com_w5.dta | cs10bq04 | high | blocked_raw_package_not_received |
+| weights_and_survey_design | psu_cluster | cons_agg_w5.dta;sect01a_com_w5.dta;sect01b_com_w5.dta;sect02_com_w5.dta;sect03_com_w5.dta;sect04_com_w5.dta;sect05_co... | ea_id | high | blocked_raw_package_not_received |
+| weights_and_survey_design | psu_cluster | eth_householdgeovariables_y5.dta;eth_plotgeovariables_y5.dta | pct_urban_cluster | high | blocked_raw_package_not_received |
+| weights_and_survey_design | strata | sect8_3_ls_w5.dta | ls_s8_3q01 | high | blocked_raw_package_not_received |
+| weights_and_survey_design | strata | sect8_3_ls_w5.dta | ls_s8_3q02 | high | blocked_raw_package_not_received |
+| consumption_or_income_aggregate | total_consumption_or_income | sect8_2_ls_w5.dta | ls_s8_2q14 | high | blocked_raw_package_not_received |
+| consumption_or_income_aggregate | total_consumption_or_income | sect8_2_ls_w5.dta | ls_s8_2q18 | high | blocked_raw_package_not_received |
+| oop_health_expenditure | oop_health_expenditure | sect3_hh_w5.dta;sect3_pp_w5.dta | s3q18 | high | blocked_raw_package_not_received |
+| oop_health_expenditure | oop_health_expenditure | sect8_3_ls_w5.dta | ls_s8_3q04 | moderate | blocked_raw_package_not_received |
+| illness_need_care_access | health_need | sect3_hh_w5.dta | s3q05 | high | blocked_raw_package_not_received |
+| illness_need_care_access | health_need | sect3_hh_w5.dta | s3q06_1 | high | blocked_raw_package_not_received |
+| illness_need_care_access | care_or_barrier | sect04_com_w5.dta | cs4q28 | high | blocked_raw_package_not_received |
+| illness_need_care_access | care_or_barrier | sect04_com_w5.dta | cs4q30 | high | blocked_raw_package_not_received |
+| illness_need_care_access | insurance | sect3_hh_w5.dta | s3q19 | high | blocked_raw_package_not_received |
+| survey_timing | survey_timing | sect_cover_ls_w5.dta;sect_cover_ph_w5.dta;sect_cover_pp_w5.dta | InterviewDate | high | blocked_raw_package_not_received |
+| geography_climate_linkage | climate_geography | cons_agg_w5.dta;sect01a_com_w5.dta;sect01b_com_w5.dta;sect02_com_w5.dta;sect03_com_w5.dta;sect04_com_w5.dta;sect05_co... | saq01 | high | blocked_raw_package_not_received |
+| geography_climate_linkage | climate_geography | eth_householdgeovariables_y5.dta;eth_plotgeovariables_y5.dta | cropshare | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | household_id | eth_householdgeovariables_y5.dta;eth_plotgeovariables_y5.dta | household_id | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | household_id | sect10_ph_w5.dta;sect10a_hh_w5.dta;sect11_hh_w5.dta;sect11_ph_w5.dta;sect12a_hh_w5.dta;sect12b1_hh_w5.dta;sect12b2_hh... | saq08 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | survey_weight | cons_agg_w5.dta;sect10_ph_w5.dta;sect10a_hh_w5.dta;sect11_hh_w5.dta;sect11_ph_w5.dta;sect12a_hh_w5.dta;sect12b1_hh_w5... | pw_w5 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | survey_weight | sect10b_com_w5.dta | cs10bq04 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | total_consumption_or_income | sect8_2_ls_w5.dta | ls_s8_2q14 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | total_consumption_or_income | sect8_2_ls_w5.dta | ls_s8_2q18 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | oop_health_expenditure | sect3_hh_w5.dta;sect3_pp_w5.dta | s3q18 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | oop_health_expenditure | sect8_3_ls_w5.dta | ls_s8_3q04 | moderate | blocked_raw_package_not_received |
+| missing_skip_units_recall | health_need | sect3_hh_w5.dta | s3q05 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | health_need | sect3_hh_w5.dta | s3q06_1 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | care_or_barrier | sect04_com_w5.dta | cs4q28 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | care_or_barrier | sect04_com_w5.dta | cs4q30 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | survey_timing | sect_cover_ls_w5.dta;sect_cover_ph_w5.dta;sect_cover_pp_w5.dta | InterviewDate | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | climate_geography | cons_agg_w5.dta;sect01a_com_w5.dta;sect01b_com_w5.dta;sect02_com_w5.dta;sect03_com_w5.dta;sect04_com_w5.dta;sect05_co... | saq01 | high | blocked_raw_package_not_received |
+| missing_skip_units_recall | climate_geography | eth_householdgeovariables_y5.dta;eth_plotgeovariables_y5.dta | cropshare | high | blocked_raw_package_not_received |
+
+## Post-Download Rule
+
+Use the queue only after the complete original raw package and documentation
+are present. For each selected variable, inspect labels, raw values, missing and
+skip codes, units, recall periods, merge level, and denominator semantics.
+Then fill:
+
+- `temp/priority_promotion_verification_checklist.csv`
+- `temp/priority_concept_verification_template.csv`
+- `temp/priority_variable_verification_template.csv`
+
+Do not promote this wave until the manual verification decision gate, synthesis
+blueprint, country-wave packet, promoted-data gate, and accepted CHIRPS/ERA5
+linkage all pass.

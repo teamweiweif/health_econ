@@ -1,0 +1,14 @@
+﻿metric,value,interpretation
+priority_first_pass_dataset_rows,13,Priority and backup country-waves covered by the first-pass review queue.
+priority_first_pass_requirement_rows,104,Country-wave requirement coverage rows in the first-pass queue.
+priority_first_pass_selected_variable_rows,465,Selected metadata candidate variables for first-pass post-download review.
+priority_first_pass_distinct_countries,8,Distinct countries covered by the first-pass queue.
+priority_first_pass_priority_10_wave_rows,10,Phase-1 priority waves covered.
+priority_first_pass_backup_wave_rows,3,Sixth-country backup waves covered.
+priority_first_pass_missing_requirement_coverage_rows,0,Requirement rows lacking at least one selected variable candidate for a mapped concept.
+priority_first_pass_raw_package_received_rows,0,Covered datasets with complete or target-covered original raw package receipt.
+priority_first_pass_ready_after_download_rows,0,Selected variable rows ready for immediate first-pass raw value review.
+priority_first_pass_handoff_readmes_written,13,Per-wave first-pass queue handoff README files written.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted climate linkage pass.
+first_pass_review_status_blocked_raw_package_not_received,465,Selected variable first-pass status count.
+first_pass_requirement_status_blocked_raw_package_not_received,104,Requirement first-pass status count.

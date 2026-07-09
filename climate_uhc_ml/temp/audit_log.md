@@ -1,0 +1,1531 @@
+# Audit Log
+
+- 2026-07-08T13:41:16+00:00 - Initialized project skeleton and required placeholder files.
+- 2026-07-08T13:41:16+00:00 - Verified official anchors and wrote Phase 0 source reports.
+- 2026-07-08T13:44:39+00:00 - Built country-wave screening with 1088 candidate rows from World Bank Microdata catalog.
+- 2026-07-08T13:45:29+00:00 - Verified official anchors and wrote Phase 0 source reports.
+- 2026-07-08T13:45:48+00:00 - Verified official anchors and wrote Phase 0 source reports.
+- 2026-07-08T13:58:22+00:00 - Could not fetch related materials for catalog 2329: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+- 2026-07-08T13:58:24+00:00 - Saved public metadata/documentation for 35 priority studies and routed raw microdata to manual manifest.
+- 2026-07-08T14:00:45+00:00 - Could not fetch related materials for catalog 1952: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+- 2026-07-08T14:02:10+00:00 - Saved public metadata/documentation for 35 priority studies and routed raw microdata to manual manifest.
+- 2026-07-08T14:03:05+00:00 - Raw schema inspection pending raw microdata downloads.
+- 2026-07-08T14:03:05+00:00 - Household panel build pending variable maps and raw schemas.
+- 2026-07-08T14:03:05+00:00 - Outcome construction pending harmonized household data.
+- 2026-07-08T14:03:05+00:00 - Climate extraction pending usable geography and interview timing.
+- 2026-07-08T14:03:05+00:00 - Microdata-climate merge pending outcome and exposure datasets.
+- 2026-07-08T14:03:05+00:00 - Descriptive diagnostics pending climate-linked analytical data.
+- 2026-07-08T14:03:05+00:00 - Predictive ML pending audited analytical sample and event rates.
+- 2026-07-08T14:03:06+00:00 - Causal models pending identification audit and placebo-ready data.
+- 2026-07-08T14:03:06+00:00 - Causal ML/policy learning pending credible reduced-form design.
+- 2026-07-08T14:03:06+00:00 - Robustness checks pending primary estimates.
+- 2026-07-08T14:03:06+00:00 - Report-writing checkpoint run.
+- 2026-07-08T14:07:50+00:00 - Data dictionary fetch failed for catalog 6274: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+- 2026-07-08T14:08:20+00:00 - Data dictionary fetch failed for catalog 2252: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+- 2026-07-08T14:08:38+00:00 - Metadata schema inspection complete for 35 studies, 1997 files/modules, and 82281 variables.
+- 2026-07-08T14:10:08+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T14:11:16+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T14:12:11+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T14:13:33+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:17:42+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T14:17:42+00:00 - Raw file inspection found 0 tabular files and 0 raw variables.
+- 2026-07-08T14:18:07+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:18:29+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:19:28+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T14:19:28+00:00 - Raw file inspection found 0 tabular files and 0 raw variables.
+- 2026-07-08T14:19:28+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:22:32+00:00 - Climate extraction scaffold ready; no harmonized geography/timing input found.
+- 2026-07-08T14:22:32+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:23:54+00:00 - Climate merge blocked: no harmonized microdata input.
+- 2026-07-08T14:23:55+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:24:18+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:27:31+00:00 - Outcome construction blocked: no harmonized household input.
+- 2026-07-08T14:27:31+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:28:09+00:00 - Outcome construction blocked: no harmonized household input.
+- 2026-07-08T14:28:10+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:33:55+00:00 - Harmonization blocked: blocked_no_raw_files - No inspected tabular raw files are available.
+- 2026-07-08T14:33:59+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:34:53+00:00 - Harmonization blocked: blocked_no_raw_files - No inspected tabular raw files are available.
+- 2026-07-08T14:34:58+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:41:58+00:00 - Descriptive diagnostics blocked: no climate-linked analytical dataset.
+- 2026-07-08T14:41:59+00:00 - Predictive ML blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T14:41:59+00:00 - Reduced-form models blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T14:41:59+00:00 - Causal ML/policy learning audit wrote 1 row(s).
+- 2026-07-08T14:41:59+00:00 - Robustness audit wrote result rows=0.
+- 2026-07-08T14:42:00+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:44:52+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:45:17+00:00 - Initialized project skeleton and required placeholder files.
+- 2026-07-08T14:45:18+00:00 - Verified official anchors and wrote Phase 0 source reports.
+- 2026-07-08T14:49:23+00:00 - Built country-wave screening with 1088 candidate rows from World Bank Microdata catalog.
+- 2026-07-08T14:50:08+00:00 - Could not fetch related materials for catalog 280: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+- 2026-07-08T14:51:11+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:51:16+00:00 - Harmonization blocked: blocked_no_raw_files - No inspected tabular raw files are available.
+- 2026-07-08T14:51:16+00:00 - Outcome construction blocked: no harmonized household input.
+- 2026-07-08T14:51:17+00:00 - Climate extraction scaffold ready; no harmonized geography/timing input found.
+- 2026-07-08T14:51:17+00:00 - Climate merge blocked: no harmonized microdata input.
+- 2026-07-08T14:51:18+00:00 - Descriptive diagnostics blocked: no climate-linked analytical dataset.
+- 2026-07-08T14:51:18+00:00 - Predictive ML blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T14:51:19+00:00 - Reduced-form models blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T14:51:19+00:00 - Causal ML/policy learning audit wrote 1 row(s).
+- 2026-07-08T14:51:19+00:00 - Robustness audit wrote result rows=0.
+- 2026-07-08T14:51:19+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:53:00+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T14:53:00+00:00 - Raw file inspection found 0 tabular files and 0 raw variables.
+- 2026-07-08T14:53:05+00:00 - Harmonization blocked: blocked_no_raw_files - No inspected tabular raw files are available.
+- 2026-07-08T14:53:05+00:00 - Outcome construction blocked: no harmonized household input.
+- 2026-07-08T14:53:06+00:00 - Climate extraction scaffold ready; no harmonized geography/timing input found.
+- 2026-07-08T14:53:06+00:00 - Climate merge blocked: no harmonized microdata input.
+- 2026-07-08T14:53:06+00:00 - Descriptive diagnostics blocked: no climate-linked analytical dataset.
+- 2026-07-08T14:53:07+00:00 - Predictive ML blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T14:53:07+00:00 - Reduced-form models blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T14:53:07+00:00 - Causal ML/policy learning audit wrote 1 row(s).
+- 2026-07-08T14:53:07+00:00 - Robustness audit wrote result rows=0.
+- 2026-07-08T14:53:09+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:54:09+00:00 - Verified official anchors and wrote Phase 0 source reports.
+- 2026-07-08T14:54:15+00:00 - Outcome construction blocked: no harmonized household input.
+- 2026-07-08T14:54:16+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:56:11+00:00 - Saved public metadata/documentation for 0 priority studies and routed raw microdata to manual manifest.
+- 2026-07-08T14:56:19+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:56:36+00:00 - Saved public metadata/documentation for 0 priority studies and routed raw microdata to manual manifest.
+- 2026-07-08T14:56:37+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:59:08+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T14:59:09+00:00 - Workspace validation complete=44 incomplete_or_failed=2.
+- 2026-07-08T14:59:29+00:00 - Workspace validation complete=45 incomplete_or_failed=1.
+- 2026-07-08T15:02:27+00:00 - External repository probe checked 10 of 199 external-repository candidates.
+- 2026-07-08T15:03:47+00:00 - External repository probe checked 10 of 199 external-repository candidates.
+- 2026-07-08T15:04:04+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:04:05+00:00 - Workspace validation complete=47 incomplete_or_failed=1.
+- 2026-07-08T15:06:47+00:00 - Prepared manual raw-data request packet with 22 action rows.
+- 2026-07-08T15:06:48+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:06:48+00:00 - Workspace validation complete=50 incomplete_or_failed=1.
+- 2026-07-08T15:07:18+00:00 - Prepared manual raw-data request packet with 22 action rows.
+- 2026-07-08T15:07:18+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:07:19+00:00 - Workspace validation complete=50 incomplete_or_failed=1.
+- 2026-07-08T15:14:16+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:21:01+00:00 - Snapshotted public World Bank documentation for 20 priority datasets; saved resources=109.
+- 2026-07-08T15:21:01+00:00 - Prepared manual raw-data request packet with 22 action rows.
+- 2026-07-08T15:21:02+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:21:03+00:00 - Workspace validation complete=53 incomplete_or_failed=1.
+- 2026-07-08T15:22:49+00:00 - Snapshotted public World Bank documentation for 20 priority datasets; saved resources=119.
+- 2026-07-08T15:22:49+00:00 - Prepared manual raw-data request packet with 22 action rows.
+- 2026-07-08T15:22:50+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:22:50+00:00 - Workspace validation complete=53 incomplete_or_failed=1.
+- 2026-07-08T15:25:41+00:00 - Prepared manual raw-data request packet with 22 action rows.
+- 2026-07-08T15:25:41+00:00 - Audited raw download folder: files=1 raw_like_files=0 targets=22.
+- 2026-07-08T15:25:42+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:25:42+00:00 - Workspace validation complete=56 incomplete_or_failed=1.
+- 2026-07-08T15:26:10+00:00 - Audited raw download folder: files=1 raw_like_files=0 targets=22.
+- 2026-07-08T15:26:12+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:26:12+00:00 - Workspace validation complete=56 incomplete_or_failed=1.
+- 2026-07-08T15:29:55+00:00 - Climate source probe checked 9 endpoints; pass_or_reachable=9.
+- 2026-07-08T15:29:55+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:29:56+00:00 - Workspace validation complete=59 incomplete_or_failed=1.
+- 2026-07-08T15:35:41+00:00 - Validation reference probe checked 10 sources; ok=10; sample_records=3120.
+- 2026-07-08T15:35:42+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:35:42+00:00 - Workspace validation complete=62 incomplete_or_failed=1.
+- 2026-07-08T15:40:50+00:00 - Validation reference probe checked 12 sources; ok=12; sample_records=3120; hefpi_uhc_records=1288.
+- 2026-07-08T15:40:51+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:40:52+00:00 - Workspace validation complete=62 incomplete_or_failed=1.
+- 2026-07-08T15:44:02+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=32; raw_final_candidates=0.
+- 2026-07-08T15:45:34+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=32; raw_final_candidates=0.
+- 2026-07-08T15:45:35+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:45:36+00:00 - Workspace validation complete=65 incomplete_or_failed=1.
+- 2026-07-08T15:50:58+00:00 - Metadata variable quality audit rows=24149 quality_financial_country_waves=22 likely_false_positive_rows=863.
+- 2026-07-08T15:52:04+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=32; raw_final_candidates=0.
+- 2026-07-08T15:52:06+00:00 - Metadata variable quality audit rows=24149 quality_financial_country_waves=22 likely_false_positive_rows=863 priority_rows=28.
+- 2026-07-08T15:52:07+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:52:08+00:00 - Workspace validation complete=68 incomplete_or_failed=1.
+- 2026-07-08T15:55:28+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=28 ready=0.
+- 2026-07-08T15:56:34+00:00 - Audited raw download folder: files=1 raw_like_files=0 targets=22.
+- 2026-07-08T15:56:34+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=28 ready=0.
+- 2026-07-08T15:56:35+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T15:56:36+00:00 - Workspace validation complete=71 incomplete_or_failed=1.
+- 2026-07-08T15:59:08+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T16:00:12+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T16:00:13+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:00:15+00:00 - Workspace validation complete=74 incomplete_or_failed=1.
+- 2026-07-08T16:02:46+00:00 - Outcome denominator plan rows=392 specs=14 metadata_ready_raw_unverified=319 ready_for_construction=0.
+- 2026-07-08T16:03:12+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=386 ready_for_construction=0.
+- 2026-07-08T16:04:06+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=386 ready_for_construction=0.
+- 2026-07-08T16:04:08+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:04:09+00:00 - Workspace validation complete=77 incomplete_or_failed=1.
+- 2026-07-08T16:10:07+00:00 - Modeling identification plan rows=476 validation_rows=85 falsification_rows=12 policy_rows=40 predictive_ready=0 reduced_form_ready=0.
+- 2026-07-08T16:10:09+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:10:10+00:00 - Workspace validation complete=80 incomplete_or_failed=1.
+- 2026-07-08T16:14:48+00:00 - Objective traceability audit requirement_status={'satisfied': 11, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:14:49+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:14:51+00:00 - Workspace validation complete=83 incomplete_or_failed=1.
+- 2026-07-08T16:15:31+00:00 - Objective traceability audit requirement_status={'satisfied': 11, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:15:32+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:15:34+00:00 - Workspace validation complete=83 incomplete_or_failed=1.
+- 2026-07-08T16:20:09+00:00 - Raw download intake package targets=22 expected_rows=1066 readmes=22 ready_for_schema=0.
+- 2026-07-08T16:20:09+00:00 - Audited raw download folder: files=24 raw_like_files=0 targets=22.
+- 2026-07-08T16:20:09+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=28 ready=0.
+- 2026-07-08T16:20:10+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T16:20:10+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=386 ready_for_construction=0.
+- 2026-07-08T16:20:10+00:00 - Modeling identification plan rows=476 validation_rows=85 falsification_rows=12 policy_rows=40 predictive_ready=0 reduced_form_ready=0.
+- 2026-07-08T16:20:11+00:00 - Objective traceability audit requirement_status={'satisfied': 11, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:20:12+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:20:13+00:00 - Workspace validation complete=86 incomplete_or_failed=1.
+- 2026-07-08T16:21:38+00:00 - Raw download intake package targets=37 expected_rows=1615 readmes=37 ready_for_schema=0.
+- 2026-07-08T16:21:39+00:00 - Audited raw download folder: files=39 raw_like_files=0 targets=37.
+- 2026-07-08T16:21:40+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=28 ready=0.
+- 2026-07-08T16:21:40+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T16:21:40+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=386 ready_for_construction=0.
+- 2026-07-08T16:21:40+00:00 - Modeling identification plan rows=476 validation_rows=85 falsification_rows=12 policy_rows=40 predictive_ready=0 reduced_form_ready=0.
+- 2026-07-08T16:21:41+00:00 - Objective traceability audit requirement_status={'satisfied': 11, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:21:42+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:21:43+00:00 - Workspace validation complete=86 incomplete_or_failed=1.
+- 2026-07-08T16:25:54+00:00 - Python environment audit package_rows=26 incomplete_checks=0.
+- 2026-07-08T16:25:54+00:00 - Objective traceability audit requirement_status={'satisfied': 12, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:25:56+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:25:57+00:00 - Workspace validation complete=89 incomplete_or_failed=1.
+- 2026-07-08T16:32:51+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=28 ready=0.
+- 2026-07-08T16:32:51+00:00 - Raw-variable verification protocol rows=2571 scaffold_rows=1204 raw_variable_rows=0.
+- 2026-07-08T16:32:51+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T16:32:51+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=386 ready_for_construction=0.
+- 2026-07-08T16:32:51+00:00 - Modeling identification plan rows=476 validation_rows=85 falsification_rows=12 policy_rows=40 predictive_ready=0 reduced_form_ready=0.
+- 2026-07-08T16:32:52+00:00 - Python environment audit package_rows=26 incomplete_checks=0.
+- 2026-07-08T16:32:53+00:00 - Objective traceability audit requirement_status={'satisfied': 13, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:32:54+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:32:55+00:00 - Workspace validation complete=92 incomplete_or_failed=1.
+- 2026-07-08T16:37:30+00:00 - Raw-variable verification protocol rows=2571 scaffold_rows=1204 raw_variable_rows=0.
+- 2026-07-08T16:37:31+00:00 - Minimum viable acquisition plan target_rows=35 bundle_rows=21.
+- 2026-07-08T16:37:31+00:00 - Objective traceability audit requirement_status={'satisfied': 14, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:37:33+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:37:34+00:00 - Workspace validation complete=95 incomplete_or_failed=1.
+- 2026-07-08T16:42:31+00:00 - SDG382 denominator audit plan requirement_rows=189 country_wave_rows=21.
+- 2026-07-08T16:42:32+00:00 - Objective traceability audit requirement_status={'satisfied': 15, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 8, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:42:33+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:42:34+00:00 - Workspace validation complete=98 incomplete_or_failed=1.
+- 2026-07-08T16:47:01+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T16:47:02+00:00 - Climate validation protocol requirement_rows=231 country_wave_rows=21 validation_rows=9.
+- 2026-07-08T16:47:03+00:00 - Objective traceability audit requirement_status={'satisfied': 16, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 9, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:47:04+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:47:05+00:00 - Workspace validation complete=101 incomplete_or_failed=1.
+- 2026-07-08T16:53:36+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T16:53:36+00:00 - Minimum viable acquisition plan target_rows=35 bundle_rows=21.
+- 2026-07-08T16:53:37+00:00 - Objective traceability audit requirement_status={'satisfied': 17, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 10, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:53:38+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:53:39+00:00 - Workspace validation complete=104 incomplete_or_failed=1.
+- 2026-07-08T16:54:00+00:00 - Initialized project skeleton and required placeholder files.
+- 2026-07-08T16:54:01+00:00 - Verified official anchors and wrote Phase 0 source reports.
+- 2026-07-08T16:59:06+00:00 - Built country-wave screening with 1088 candidate rows from World Bank Microdata catalog.
+- 2026-07-08T16:59:09+00:00 - Acquisition checkpoint 1/31 for ALB_2005_LSMS_v01_M: source_rows=7 manifest_rows=1.
+- 2026-07-08T16:59:14+00:00 - Acquisition checkpoint 2/31 for BEN_2021_EHCVM-2_v01_M: source_rows=7 manifest_rows=1.
+- 2026-07-08T16:59:20+00:00 - Acquisition checkpoint 3/31 for BGR_1995_IHS_v01_M: source_rows=7 manifest_rows=1.
+- 2026-07-08T16:59:47+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:59:47+00:00 - Prepared manual raw-data request packet with 22 action rows.
+- 2026-07-08T16:59:47+00:00 - Raw download intake package targets=37 expected_rows=1615 readmes=37 ready_for_schema=0.
+- 2026-07-08T16:59:48+00:00 - Audited raw download folder: files=39 raw_like_files=0 targets=37.
+- 2026-07-08T16:59:48+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=28 ready=0.
+- 2026-07-08T16:59:49+00:00 - Raw-variable verification protocol rows=2571 scaffold_rows=1204 raw_variable_rows=0.
+- 2026-07-08T16:59:49+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T16:59:49+00:00 - Minimum viable acquisition plan target_rows=35 bundle_rows=21.
+- 2026-07-08T16:59:49+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T16:59:49+00:00 - Climate validation protocol requirement_rows=231 country_wave_rows=21 validation_rows=9.
+- 2026-07-08T16:59:49+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=386 ready_for_construction=0.
+- 2026-07-08T16:59:49+00:00 - SDG382 denominator audit plan requirement_rows=189 country_wave_rows=21.
+- 2026-07-08T16:59:50+00:00 - Modeling identification plan rows=476 validation_rows=85 falsification_rows=12 policy_rows=40 predictive_ready=0 reduced_form_ready=0.
+- 2026-07-08T16:59:50+00:00 - Python environment audit package_rows=26 incomplete_checks=0.
+- 2026-07-08T16:59:51+00:00 - Objective traceability audit requirement_status={'satisfied': 16, 'blocked_raw_microdata': 9, 'incomplete': 2, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 10, 'blocked_raw_microdata': 1}.
+- 2026-07-08T16:59:52+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T16:59:54+00:00 - Workspace validation complete=104 incomplete_or_failed=1.
+- 2026-07-08T17:00:51+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T17:00:51+00:00 - Raw file inspection found 0 tabular files and 0 raw variables.
+- 2026-07-08T17:00:51+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T17:00:54+00:00 - Metadata variable quality audit rows=24149 quality_financial_country_waves=22 likely_false_positive_rows=863 priority_rows=28.
+- 2026-07-08T17:00:54+00:00 - Harmonization blocked: blocked_no_raw_files - No inspected tabular raw files are available.
+- 2026-07-08T17:00:55+00:00 - Outcome construction blocked: no harmonized household input.
+- 2026-07-08T17:00:55+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=28 ready=0.
+- 2026-07-08T17:00:55+00:00 - Raw-variable verification protocol rows=2571 scaffold_rows=1204 raw_variable_rows=0.
+- 2026-07-08T17:00:56+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T17:00:56+00:00 - Minimum viable acquisition plan target_rows=35 bundle_rows=23.
+- 2026-07-08T17:00:56+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=28 ready_for_linkage=0.
+- 2026-07-08T17:00:56+00:00 - Climate validation protocol requirement_rows=253 country_wave_rows=23 validation_rows=9.
+- 2026-07-08T17:00:56+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=386 ready_for_construction=0.
+- 2026-07-08T17:00:56+00:00 - SDG382 denominator audit plan requirement_rows=207 country_wave_rows=23.
+- 2026-07-08T17:00:56+00:00 - Modeling identification plan rows=476 validation_rows=85 falsification_rows=12 policy_rows=40 predictive_ready=0 reduced_form_ready=0.
+- 2026-07-08T17:00:57+00:00 - Python environment audit package_rows=26 incomplete_checks=0.
+- 2026-07-08T17:00:58+00:00 - Objective traceability audit requirement_status={'satisfied': 17, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 10, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:00:59+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:01:01+00:00 - Workspace validation complete=104 incomplete_or_failed=1.
+- 2026-07-08T17:01:42+00:00 - Objective traceability audit requirement_status={'satisfied': 17, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1, 'planned_blocked_raw_microdata': 1} guardrail_status={'satisfied': 10, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:01:43+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:01:45+00:00 - Workspace validation complete=104 incomplete_or_failed=1.
+- 2026-07-08T17:06:27+00:00 - External repository probe checked 50 of 202 external-repository candidates.
+- 2026-07-08T17:06:28+00:00 - Mechanism analysis protocol requirement_rows=1449 readiness_rows=161.
+- 2026-07-08T17:06:29+00:00 - Objective traceability audit requirement_status={'satisfied': 18, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:06:31+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:06:32+00:00 - Workspace validation complete=107 incomplete_or_failed=1.
+- 2026-07-08T17:10:47+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T17:10:48+00:00 - Objective traceability audit requirement_status={'satisfied': 19, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:10:49+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:10:51+00:00 - Workspace validation complete=110 incomplete_or_failed=1.
+- 2026-07-08T17:16:51+00:00 - Direct-read audit bundle rows=44 manifest_rows=51.
+- 2026-07-08T17:16:52+00:00 - Objective traceability audit requirement_status={'satisfied': 20, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:16:54+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:16:55+00:00 - Workspace validation complete=113 incomplete_or_failed=1.
+- 2026-07-08T17:16:58+00:00 - Direct-read audit bundle rows=44 manifest_rows=51.
+- 2026-07-08T17:16:59+00:00 - Objective traceability audit requirement_status={'satisfied': 20, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:17:00+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:17:02+00:00 - Workspace validation complete=113 incomplete_or_failed=1.
+- 2026-07-08T17:22:16+00:00 - Built first-batch raw acquisition checklist dataset_rows=10 file_target_rows=183.
+- 2026-07-08T17:22:18+00:00 - Direct-read audit bundle rows=46 manifest_rows=56.
+- 2026-07-08T17:22:19+00:00 - Objective traceability audit requirement_status={'satisfied': 21, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:22:21+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:22:22+00:00 - Workspace validation complete=116 incomplete_or_failed=1.
+- 2026-07-08T17:22:22+00:00 - Built first-batch raw acquisition checklist dataset_rows=10 file_target_rows=183.
+- 2026-07-08T17:22:25+00:00 - Direct-read audit bundle rows=46 manifest_rows=56.
+- 2026-07-08T17:22:26+00:00 - Objective traceability audit requirement_status={'satisfied': 21, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:22:27+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:22:29+00:00 - Workspace validation complete=116 incomplete_or_failed=1.
+- 2026-07-08T17:23:00+00:00 - Built first-batch raw acquisition checklist dataset_rows=10 file_target_rows=183.
+- 2026-07-08T17:23:02+00:00 - Direct-read audit bundle rows=46 manifest_rows=56.
+- 2026-07-08T17:23:03+00:00 - Objective traceability audit requirement_status={'satisfied': 21, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:23:05+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:23:06+00:00 - Workspace validation complete=116 incomplete_or_failed=1.
+- 2026-07-08T17:23:08+00:00 - Direct-read audit bundle rows=46 manifest_rows=56.
+- 2026-07-08T17:23:10+00:00 - Objective traceability audit requirement_status={'satisfied': 21, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:23:11+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:23:12+00:00 - Workspace validation complete=116 incomplete_or_failed=1.
+- 2026-07-08T17:27:25+00:00 - Built first-batch raw acquisition checklist dataset_rows=10 file_target_rows=183.
+- 2026-07-08T17:27:25+00:00 - Built first-batch raw verification workbook dataset_rows=10 concept_rows=130 variable_rows=917.
+- 2026-07-08T17:27:27+00:00 - Direct-read audit bundle rows=47 manifest_rows=62.
+- 2026-07-08T17:27:28+00:00 - Objective traceability audit requirement_status={'satisfied': 22, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:27:30+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:27:31+00:00 - Workspace validation complete=119 incomplete_or_failed=1.
+- 2026-07-08T17:27:31+00:00 - Built first-batch raw verification workbook dataset_rows=10 concept_rows=130 variable_rows=917.
+- 2026-07-08T17:27:34+00:00 - Direct-read audit bundle rows=47 manifest_rows=62.
+- 2026-07-08T17:27:35+00:00 - Objective traceability audit requirement_status={'satisfied': 22, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:27:36+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:27:38+00:00 - Workspace validation complete=119 incomplete_or_failed=1.
+- 2026-07-08T17:32:25+00:00 - Built first-batch raw acquisition checklist dataset_rows=10 file_target_rows=183.
+- 2026-07-08T17:32:40+00:00 - Probed first-batch official raw access pages rows=10.
+- 2026-07-08T17:32:43+00:00 - Built first-batch raw verification workbook dataset_rows=10 concept_rows=130 variable_rows=917.
+- 2026-07-08T17:32:50+00:00 - Direct-read audit bundle rows=48 manifest_rows=66.
+- 2026-07-08T17:32:54+00:00 - Objective traceability audit requirement_status={'satisfied': 23, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:32:57+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:33:01+00:00 - Workspace validation complete=122 incomplete_or_failed=1.
+- 2026-07-08T17:33:06+00:00 - Direct-read audit bundle rows=48 manifest_rows=66.
+- 2026-07-08T17:33:10+00:00 - Objective traceability audit requirement_status={'satisfied': 23, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:33:16+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:33:20+00:00 - Workspace validation complete=122 incomplete_or_failed=1.
+- 2026-07-08T17:37:18+00:00 - Built first-batch raw acquisition checklist dataset_rows=10 file_target_rows=183.
+- 2026-07-08T17:37:33+00:00 - Probed first-batch official raw access pages rows=10.
+- 2026-07-08T17:37:36+00:00 - Built first-batch raw verification workbook dataset_rows=10 concept_rows=130 variable_rows=917.
+- 2026-07-08T17:37:38+00:00 - Built first-batch manual download handoff rows=10 file_queue_rows=143.
+- 2026-07-08T17:37:42+00:00 - Direct-read audit bundle rows=49 manifest_rows=71.
+- 2026-07-08T17:37:47+00:00 - Objective traceability audit requirement_status={'satisfied': 24, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:37:51+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:37:54+00:00 - Workspace validation complete=125 incomplete_or_failed=1.
+- 2026-07-08T17:38:00+00:00 - Direct-read audit bundle rows=49 manifest_rows=71.
+- 2026-07-08T17:38:04+00:00 - Objective traceability audit requirement_status={'satisfied': 24, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:38:08+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:38:12+00:00 - Workspace validation complete=125 incomplete_or_failed=1.
+- 2026-07-08T17:42:43+00:00 - Built first-batch public documentation audit rows=60 saved_or_reused=58.
+- 2026-07-08T17:43:06+00:00 - Direct-read audit bundle rows=50 manifest_rows=75.
+- 2026-07-08T17:43:11+00:00 - Objective traceability audit requirement_status={'satisfied': 25, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:43:15+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:43:19+00:00 - Workspace validation complete=128 incomplete_or_failed=1.
+- 2026-07-08T17:43:24+00:00 - Direct-read audit bundle rows=50 manifest_rows=75.
+- 2026-07-08T17:43:28+00:00 - Objective traceability audit requirement_status={'satisfied': 25, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:43:35+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:43:42+00:00 - Workspace validation complete=128 incomplete_or_failed=1.
+- 2026-07-08T17:46:49+00:00 - Built first-batch file source traceability rows=143 unsupported=0.
+- 2026-07-08T17:47:02+00:00 - Direct-read audit bundle rows=51 manifest_rows=79.
+- 2026-07-08T17:47:07+00:00 - Objective traceability audit requirement_status={'satisfied': 26, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:47:13+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:47:17+00:00 - Workspace validation complete=131 incomplete_or_failed=1.
+- 2026-07-08T17:47:22+00:00 - Direct-read audit bundle rows=51 manifest_rows=79.
+- 2026-07-08T17:47:27+00:00 - Objective traceability audit requirement_status={'satisfied': 26, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:47:31+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:47:36+00:00 - Workspace validation complete=131 incomplete_or_failed=1.
+- 2026-07-08T17:53:35+00:00 - Built first-batch merge-key lineage plan rows=10 planned=8 candidates=9360.
+- 2026-07-08T17:53:37+00:00 - Direct-read audit bundle rows=52 manifest_rows=84.
+- 2026-07-08T17:53:39+00:00 - Objective traceability audit requirement_status={'satisfied': 27, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:53:40+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:53:41+00:00 - Workspace validation complete=134 incomplete_or_failed=1.
+- 2026-07-08T17:53:44+00:00 - Direct-read audit bundle rows=52 manifest_rows=84.
+- 2026-07-08T17:53:45+00:00 - Objective traceability audit requirement_status={'satisfied': 27, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:53:46+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:53:47+00:00 - Workspace validation complete=134 incomplete_or_failed=1.
+- 2026-07-08T17:54:28+00:00 - Built first-batch merge-key lineage plan rows=10 planned=8 candidates=5112.
+- 2026-07-08T17:54:30+00:00 - Direct-read audit bundle rows=52 manifest_rows=84.
+- 2026-07-08T17:54:31+00:00 - Objective traceability audit requirement_status={'satisfied': 27, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:54:33+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:54:34+00:00 - Workspace validation complete=134 incomplete_or_failed=1.
+- 2026-07-08T17:54:36+00:00 - Direct-read audit bundle rows=52 manifest_rows=84.
+- 2026-07-08T17:54:37+00:00 - Objective traceability audit requirement_status={'satisfied': 27, 'blocked_raw_microdata': 9, 'partial_metadata_only': 1} guardrail_status={'satisfied': 11, 'blocked_raw_microdata': 1}.
+- 2026-07-08T17:54:39+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T17:54:40+00:00 - Workspace validation complete=134 incomplete_or_failed=1.
+- 2026-07-08T17:58:54+00:00 - Downloaded/verified public external raw candidate archives rows=4 matched_candidates=4.
+- 2026-07-08T17:58:55+00:00 - Audited raw download folder: files=43 raw_like_files=4 targets=37.
+- 2026-07-08T17:59:54+00:00 - Metadata schema inspection complete for 35 studies, 2137 files/modules, and 82281 variables.
+- 2026-07-08T17:59:54+00:00 - Raw file inspection found 209 tabular files and 5410 raw variables.
+- 2026-07-08T18:00:08+00:00 - Audited raw download folder: files=43 raw_like_files=4 targets=37.
+- 2026-07-08T18:00:08+00:00 - Raw download intake package targets=37 expected_rows=1615 readmes=37 ready_for_schema=1.
+- 2026-07-08T18:00:08+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=1.
+- 2026-07-08T18:00:11+00:00 - Metadata variable quality audit rows=25358 quality_financial_country_waves=22 likely_false_positive_rows=926 priority_rows=28.
+- 2026-07-08T18:00:11+00:00 - Raw ingestion plan rows=28 concept_rows=364 module_rows=1615 waiting=27 ready=1.
+- 2026-07-08T18:00:12+00:00 - Raw-variable verification protocol rows=2571 scaffold_rows=1204 raw_variable_rows=5410.
+- 2026-07-08T18:00:12+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:00:12+00:00 - Climate exposure plan rows=28 specs=28 metadata_ready_raw_unverified=27 ready_for_linkage=1.
+- 2026-07-08T18:00:12+00:00 - Climate validation protocol requirement_rows=253 country_wave_rows=23 validation_rows=9.
+- 2026-07-08T18:00:12+00:00 - Outcome denominator plan rows=476 specs=17 metadata_ready_raw_unverified=369 ready_for_construction=17.
+- 2026-07-08T18:00:12+00:00 - SDG382 denominator audit plan requirement_rows=207 country_wave_rows=23.
+- 2026-07-08T18:00:12+00:00 - Modeling identification plan rows=476 validation_rows=85 falsification_rows=12 policy_rows=40 predictive_ready=0 reduced_form_ready=0.
+- 2026-07-08T18:00:13+00:00 - Mechanism analysis protocol requirement_rows=1449 readiness_rows=161.
+- 2026-07-08T18:00:13+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:00:13+00:00 - Built first-batch raw acquisition checklist dataset_rows=10 file_target_rows=183.
+- 2026-07-08T18:00:16+00:00 - Built first-batch raw verification workbook dataset_rows=10 concept_rows=130 variable_rows=917.
+- 2026-07-08T18:00:16+00:00 - Built first-batch manual download handoff rows=10 file_queue_rows=143.
+- 2026-07-08T18:00:16+00:00 - Built first-batch file source traceability rows=143 unsupported=0.
+- 2026-07-08T18:00:17+00:00 - Built first-batch merge-key lineage plan rows=10 planned=8 candidates=5112.
+- 2026-07-08T18:00:19+00:00 - Direct-read audit bundle rows=52 manifest_rows=84.
+- 2026-07-08T18:00:20+00:00 - Objective traceability audit requirement_status={'satisfied': 29, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 11, 'incomplete': 1}.
+- 2026-07-08T18:00:21+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:00:23+00:00 - Workspace validation complete=135 incomplete_or_failed=0.
+- 2026-07-08T18:00:25+00:00 - Direct-read audit bundle rows=52 manifest_rows=84.
+- 2026-07-08T18:00:26+00:00 - Objective traceability audit requirement_status={'satisfied': 29, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 11, 'incomplete': 1}.
+- 2026-07-08T18:00:28+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:00:29+00:00 - Workspace validation complete=135 incomplete_or_failed=0.
+- 2026-07-08T18:03:58+00:00 - Downloaded/verified public external raw candidate archives rows=4 matched_candidates=4.
+- 2026-07-08T18:03:59+00:00 - Audited raw download folder: files=43 raw_like_files=4 targets=37.
+- 2026-07-08T18:03:59+00:00 - Built first-batch merge-key lineage plan rows=10 planned=8 candidates=5112.
+- 2026-07-08T18:04:02+00:00 - Direct-read audit bundle rows=53 manifest_rows=88.
+- 2026-07-08T18:04:03+00:00 - Objective traceability audit requirement_status={'satisfied': 30, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 11, 'incomplete': 1}.
+- 2026-07-08T18:04:04+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:04:05+00:00 - Workspace validation complete=138 incomplete_or_failed=0.
+- 2026-07-08T18:04:08+00:00 - Direct-read audit bundle rows=53 manifest_rows=88.
+- 2026-07-08T18:04:09+00:00 - Objective traceability audit requirement_status={'satisfied': 30, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 11, 'incomplete': 1}.
+- 2026-07-08T18:04:10+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:04:11+00:00 - Workspace validation complete=138 incomplete_or_failed=0.
+- 2026-07-08T18:04:28+00:00 - Harmonization blocked: blocked_no_harmonization_recipe - No explicit raw-to-harmonized recipe exists.
+- 2026-07-08T18:04:29+00:00 - Outcome construction blocked: no harmonized household input.
+- 2026-07-08T18:04:29+00:00 - Climate extraction scaffold ready; no harmonized geography/timing input found.
+- 2026-07-08T18:04:29+00:00 - Climate merge blocked: no harmonized microdata input.
+- 2026-07-08T18:04:30+00:00 - Descriptive diagnostics blocked: no climate-linked analytical dataset.
+- 2026-07-08T18:04:30+00:00 - Predictive ML blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T18:04:31+00:00 - Reduced-form models blocked: blocked_no_climate_linked_dataset - No climate-linked analytical dataset exists.
+- 2026-07-08T18:04:31+00:00 - Causal ML/policy learning audit wrote 1 row(s).
+- 2026-07-08T18:04:31+00:00 - Robustness audit wrote result rows=0.
+- 2026-07-08T18:04:31+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:04:33+00:00 - Direct-read audit bundle rows=53 manifest_rows=88.
+- 2026-07-08T18:04:35+00:00 - Objective traceability audit requirement_status={'satisfied': 30, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 11, 'incomplete': 1}.
+- 2026-07-08T18:04:36+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:04:37+00:00 - Workspace validation complete=138 incomplete_or_failed=0.
+- 2026-07-08T18:12:34+00:00 - First-batch raw value/key audit raw_ready=1 value_rows=535 key_rows=57 auto_value_rows=431.
+- 2026-07-08T18:12:55+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:14:59+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:15:00+00:00 - Python environment audit package_rows=26 incomplete_checks=0.
+- 2026-07-08T18:15:01+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:15:02+00:00 - Objective traceability audit requirement_status={'satisfied': 31, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 11, 'incomplete': 1}.
+- 2026-07-08T18:15:05+00:00 - Direct-read audit bundle rows=54 manifest_rows=94.
+- 2026-07-08T18:15:06+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:15:07+00:00 - Workspace validation complete=141 incomplete_or_failed=0.
+- 2026-07-08T18:16:14+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:16:14+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:16:15+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:16:16+00:00 - Objective traceability audit requirement_status={'satisfied': 31, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:16:19+00:00 - Direct-read audit bundle rows=54 manifest_rows=94.
+- 2026-07-08T18:16:20+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:16:22+00:00 - Workspace validation complete=141 incomplete_or_failed=0.
+- 2026-07-08T18:16:51+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:16:52+00:00 - Workspace validation complete=141 incomplete_or_failed=0.
+- 2026-07-08T18:26:13+00:00 - First-batch raw value/key audit raw_ready=1 value_rows=535 key_rows=56 auto_value_rows=431.
+- 2026-07-08T18:26:14+00:00 - Built ALB_2005 documented harmonization review rows=44.
+- 2026-07-08T18:26:14+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:26:14+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:26:14+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:26:16+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:26:17+00:00 - Objective traceability audit requirement_status={'satisfied': 32, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:26:19+00:00 - Direct-read audit bundle rows=55 manifest_rows=97.
+- 2026-07-08T18:26:21+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:26:22+00:00 - Workspace validation complete=144 incomplete_or_failed=0.
+- 2026-07-08T18:27:10+00:00 - First-batch raw value/key audit raw_ready=1 value_rows=535 key_rows=56 auto_value_rows=431.
+- 2026-07-08T18:27:11+00:00 - Built ALB_2005 documented harmonization review rows=44.
+- 2026-07-08T18:27:11+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:27:11+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:27:11+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:27:13+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:27:14+00:00 - Objective traceability audit requirement_status={'satisfied': 32, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:27:16+00:00 - Direct-read audit bundle rows=55 manifest_rows=97.
+- 2026-07-08T18:27:18+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:27:19+00:00 - Workspace validation complete=144 incomplete_or_failed=0.
+- 2026-07-08T18:31:24+00:00 - Built ALB_2005 household core temp candidate rows=3840.
+- 2026-07-08T18:32:56+00:00 - First-batch raw value/key audit raw_ready=1 value_rows=535 key_rows=56 auto_value_rows=431.
+- 2026-07-08T18:32:57+00:00 - Built ALB_2005 documented harmonization review rows=44.
+- 2026-07-08T18:32:58+00:00 - Built ALB_2005 household core temp candidate rows=3840.
+- 2026-07-08T18:32:58+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:32:59+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:32:59+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:33:00+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:33:01+00:00 - Objective traceability audit requirement_status={'satisfied': 33, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:33:04+00:00 - Direct-read audit bundle rows=56 manifest_rows=102.
+- 2026-07-08T18:33:05+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:33:06+00:00 - Workspace validation complete=147 incomplete_or_failed=0.
+- 2026-07-08T18:38:41+00:00 - First-batch raw value/key audit raw_ready=1 value_rows=535 key_rows=56 auto_value_rows=431.
+- 2026-07-08T18:38:42+00:00 - Built ALB_2005 documented harmonization review rows=44.
+- 2026-07-08T18:38:43+00:00 - Built ALB_2005 household core temp candidate rows=3840.
+- 2026-07-08T18:38:44+00:00 - Built ALB_2005 provisional outcome feasibility audit rows=23 decision=not_final_outcomes_timing_geography_recall_blocked.
+- 2026-07-08T18:38:44+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:38:44+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:38:44+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:38:46+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:38:47+00:00 - Objective traceability audit requirement_status={'satisfied': 34, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:38:49+00:00 - Direct-read audit bundle rows=57 manifest_rows=106.
+- 2026-07-08T18:38:51+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:38:52+00:00 - Workspace validation complete=150 incomplete_or_failed=0.
+- 2026-07-08T18:42:14+00:00 - Built ALB_2005 timing/geography exhaustive audit rows=234 decision=blocked_missing_interview_timing_partial_geography_no_gps.
+- 2026-07-08T18:44:36+00:00 - Built ALB_2005 timing/geography exhaustive audit rows=234 decision=blocked_missing_interview_timing_partial_geography_no_gps.
+- 2026-07-08T18:44:36+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:44:36+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:44:36+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:44:38+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:44:39+00:00 - Objective traceability audit requirement_status={'satisfied': 35, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:44:41+00:00 - Direct-read audit bundle rows=58 manifest_rows=110.
+- 2026-07-08T18:44:43+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:44:44+00:00 - Workspace validation complete=153 incomplete_or_failed=0.
+- 2026-07-08T18:47:56+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T18:50:17+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T18:50:18+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:50:18+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:50:18+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:50:19+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:50:21+00:00 - Objective traceability audit requirement_status={'satisfied': 36, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:50:23+00:00 - Direct-read audit bundle rows=59 manifest_rows=114.
+- 2026-07-08T18:50:24+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:50:26+00:00 - Workspace validation complete=156 incomplete_or_failed=0.
+- 2026-07-08T18:53:39+00:00 - Built ALB_2008 household core temp candidate rows=3599.
+- 2026-07-08T18:55:54+00:00 - Built ALB_2008 household core temp candidate rows=3599.
+- 2026-07-08T18:55:55+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T18:55:56+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T18:55:56+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T18:55:56+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T18:55:57+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:55:59+00:00 - Objective traceability audit requirement_status={'satisfied': 37, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T18:56:01+00:00 - Direct-read audit bundle rows=60 manifest_rows=120.
+- 2026-07-08T18:56:03+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T18:56:04+00:00 - Workspace validation complete=159 incomplete_or_failed=0.
+- 2026-07-08T19:02:26+00:00 - Built ALB_2008 household core temp candidate rows=3599.
+- 2026-07-08T19:02:26+00:00 - Built ALB_2008 provisional outcome feasibility audit rows=24 decision=not_final_outcomes_timing_geography_recall_blocked.
+- 2026-07-08T19:02:28+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:02:28+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:02:28+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:02:29+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:02:30+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:02:31+00:00 - Objective traceability audit requirement_status={'satisfied': 38, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:02:33+00:00 - Direct-read audit bundle rows=61 manifest_rows=124.
+- 2026-07-08T19:02:35+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:02:36+00:00 - Workspace validation complete=162 incomplete_or_failed=0.
+- 2026-07-08T19:07:51+00:00 - Built ALB_2008 household core temp candidate rows=3599.
+- 2026-07-08T19:07:51+00:00 - Built ALB_2008 provisional outcome feasibility audit rows=24 decision=not_final_outcomes_timing_geography_recall_blocked.
+- 2026-07-08T19:07:53+00:00 - Built ALB_2008 timing/geography exhaustive audit rows=225 decision=blocked_missing_interview_timing_coarse_geography_no_gps.
+- 2026-07-08T19:07:55+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:07:55+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:07:55+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:07:56+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:07:57+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:07:58+00:00 - Objective traceability audit requirement_status={'satisfied': 39, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:08:01+00:00 - Direct-read audit bundle rows=62 manifest_rows=128.
+- 2026-07-08T19:08:02+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:08:03+00:00 - Workspace validation complete=165 incomplete_or_failed=0.
+- 2026-07-08T19:12:20+00:00 - Built ALB_2002 household core temp candidate rows=3599.
+- 2026-07-08T19:17:22+00:00 - Built ALB_2002 household core temp candidate rows=3599.
+- 2026-07-08T19:17:24+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:17:24+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:17:24+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:17:24+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:17:26+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:17:27+00:00 - Objective traceability audit requirement_status={'satisfied': 40, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:17:30+00:00 - Direct-read audit bundle rows=63 manifest_rows=134.
+- 2026-07-08T19:17:31+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:17:32+00:00 - Workspace validation complete=168 incomplete_or_failed=0.
+- 2026-07-08T19:23:25+00:00 - Built ALB_2002 household core temp candidate rows=3599.
+- 2026-07-08T19:23:25+00:00 - Built ALB_2002 provisional outcome feasibility audit rows=30 decision=not_final_outcomes_outcome_semantics_climate_crosswalk_blocked.
+- 2026-07-08T19:23:26+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:23:27+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:23:27+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:23:27+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:23:29+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:23:30+00:00 - Objective traceability audit requirement_status={'satisfied': 40, 'blocked_raw_microdata': 8, 'incomplete': 1} guardrail_status={'satisfied': 11, 'incomplete': 1}.
+- 2026-07-08T19:23:32+00:00 - Direct-read audit bundle rows=64 manifest_rows=138.
+- 2026-07-08T19:23:34+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:23:35+00:00 - Workspace validation complete=170 incomplete_or_failed=1.
+- 2026-07-08T19:24:02+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:24:04+00:00 - Workspace validation complete=171 incomplete_or_failed=0.
+- 2026-07-08T19:24:18+00:00 - Objective traceability audit requirement_status={'satisfied': 41, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:24:21+00:00 - Direct-read audit bundle rows=64 manifest_rows=138.
+- 2026-07-08T19:24:22+00:00 - Workspace validation complete=171 incomplete_or_failed=0.
+- 2026-07-08T19:31:43+00:00 - Built ALB_2002 district climate crosswalk audit rows=36 decision=blocked_boundary_crosswalk_not_verified_no_gps.
+- 2026-07-08T19:32:06+00:00 - Built ALB_2002 household core temp candidate rows=3599.
+- 2026-07-08T19:32:06+00:00 - Built ALB_2002 provisional outcome feasibility audit rows=30 decision=not_final_outcomes_outcome_semantics_climate_crosswalk_blocked.
+- 2026-07-08T19:32:08+00:00 - Built ALB_2002 district climate crosswalk audit rows=36 decision=blocked_boundary_crosswalk_not_verified_no_gps.
+- 2026-07-08T19:32:09+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:32:10+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:32:10+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:32:10+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:32:11+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:32:12+00:00 - Objective traceability audit requirement_status={'satisfied': 42, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:32:15+00:00 - Direct-read audit bundle rows=65 manifest_rows=143.
+- 2026-07-08T19:32:16+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:32:18+00:00 - Workspace validation complete=174 incomplete_or_failed=0.
+- 2026-07-08T19:32:19+00:00 - Objective traceability audit requirement_status={'satisfied': 42, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:32:22+00:00 - Direct-read audit bundle rows=65 manifest_rows=143.
+- 2026-07-08T19:32:23+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:32:25+00:00 - Workspace validation complete=174 incomplete_or_failed=0.
+- 2026-07-08T19:37:05+00:00 - Built ALB_2012 raw core feasibility audit rows=10 decision=temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending.
+- 2026-07-08T19:39:38+00:00 - Built ALB_2012 raw core feasibility audit rows=10 decision=temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending.
+- 2026-07-08T19:39:40+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:39:40+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:39:40+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:39:41+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:39:42+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:39:43+00:00 - Objective traceability audit requirement_status={'satisfied': 43, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:39:46+00:00 - Direct-read audit bundle rows=66 manifest_rows=149.
+- 2026-07-08T19:39:47+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:39:49+00:00 - Workspace validation complete=177 incomplete_or_failed=0.
+- 2026-07-08T19:39:50+00:00 - Objective traceability audit requirement_status={'satisfied': 43, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:39:53+00:00 - Direct-read audit bundle rows=66 manifest_rows=149.
+- 2026-07-08T19:39:54+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:39:56+00:00 - Workspace validation complete=177 incomplete_or_failed=0.
+- 2026-07-08T19:47:48+00:00 - Built ALB_2012 provisional outcome feasibility audit rows=33 decision=not_final_outcomes_timing_geography_recall_semantics_blocked.
+- 2026-07-08T19:47:57+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:47:58+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:47:58+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:47:58+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:47:59+00:00 - Objective traceability audit requirement_status={'satisfied': 44, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:48:02+00:00 - Direct-read audit bundle rows=67 manifest_rows=153.
+- 2026-07-08T19:48:03+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:48:05+00:00 - Workspace validation complete=180 incomplete_or_failed=0.
+- 2026-07-08T19:48:11+00:00 - Objective traceability audit requirement_status={'satisfied': 44, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:48:14+00:00 - Direct-read audit bundle rows=67 manifest_rows=153.
+- 2026-07-08T19:48:15+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:48:17+00:00 - Workspace validation complete=180 incomplete_or_failed=0.
+- 2026-07-08T19:48:51+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:48:53+00:00 - Workspace validation complete=180 incomplete_or_failed=0.
+- 2026-07-08T19:50:35+00:00 - Built ALB_2012 provisional outcome feasibility audit rows=33 decision=not_final_outcomes_timing_geography_recall_semantics_blocked.
+- 2026-07-08T19:50:36+00:00 - Workspace validation complete=180 incomplete_or_failed=0.
+- 2026-07-08T19:52:33+00:00 - Built ALB_2012 timing/geography exhaustive audit rows=212 decision=blocked_missing_interview_timing_coarse_prefecture_region_no_gps.
+- 2026-07-08T19:55:16+00:00 - Built ALB_2012 provisional outcome feasibility audit rows=33 decision=not_final_outcomes_timing_geography_recall_semantics_blocked.
+- 2026-07-08T19:55:20+00:00 - Built ALB_2012 timing/geography exhaustive audit rows=212 decision=blocked_missing_interview_timing_coarse_prefecture_region_no_gps.
+- 2026-07-08T19:55:21+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T19:55:21+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T19:55:22+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T19:55:22+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T19:55:23+00:00 - Objective traceability audit requirement_status={'satisfied': 45, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:55:26+00:00 - Direct-read audit bundle rows=68 manifest_rows=157.
+- 2026-07-08T19:55:27+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:55:29+00:00 - Workspace validation complete=183 incomplete_or_failed=0.
+- 2026-07-08T19:55:37+00:00 - Objective traceability audit requirement_status={'satisfied': 45, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T19:55:40+00:00 - Direct-read audit bundle rows=68 manifest_rows=157.
+- 2026-07-08T19:55:42+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T19:55:43+00:00 - Workspace validation complete=183 incomplete_or_failed=0.
+- 2026-07-08T20:01:07+00:00 - Built ALB_2002 outcome semantics raw value audit rows=42; decision=blocked_outcome_semantics_units_recall_skip_patterns_unreviewed.
+- 2026-07-08T20:05:12+00:00 - Built ALB_2002 outcome semantics raw value audit rows=42; decision=blocked_outcome_semantics_units_recall_skip_patterns_unreviewed.
+- 2026-07-08T20:05:13+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T20:05:14+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T20:05:14+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T20:05:14+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T20:05:15+00:00 - Objective traceability audit requirement_status={'satisfied': 46, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:05:18+00:00 - Direct-read audit bundle rows=69 manifest_rows=161.
+- 2026-07-08T20:05:20+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:05:21+00:00 - Workspace validation complete=186 incomplete_or_failed=0.
+- 2026-07-08T20:05:23+00:00 - Objective traceability audit requirement_status={'satisfied': 46, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:05:25+00:00 - Direct-read audit bundle rows=69 manifest_rows=161.
+- 2026-07-08T20:05:27+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:05:28+00:00 - Workspace validation complete=186 incomplete_or_failed=0.
+- 2026-07-08T20:08:49+00:00 - Built ALB_2005 outcome semantics raw value audit rows=53; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-08T20:14:25+00:00 - Built ALB_2005 outcome semantics raw value audit rows=53; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-08T20:14:26+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T20:14:27+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T20:14:27+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T20:14:27+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T20:14:28+00:00 - Objective traceability audit requirement_status={'satisfied': 47, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:14:31+00:00 - Direct-read audit bundle rows=70 manifest_rows=165.
+- 2026-07-08T20:14:33+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:14:34+00:00 - Workspace validation complete=189 incomplete_or_failed=0.
+- 2026-07-08T20:14:35+00:00 - Objective traceability audit requirement_status={'satisfied': 47, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:14:38+00:00 - Direct-read audit bundle rows=70 manifest_rows=165.
+- 2026-07-08T20:14:40+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:14:41+00:00 - Workspace validation complete=189 incomplete_or_failed=0.
+- 2026-07-08T20:18:31+00:00 - Built ALB_2008 outcome semantics raw value audit rows=61; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-08T20:22:33+00:00 - Built ALB_2008 outcome semantics raw value audit rows=61; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-08T20:22:34+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T20:22:35+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T20:22:35+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T20:22:35+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T20:22:36+00:00 - Objective traceability audit requirement_status={'satisfied': 48, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:22:39+00:00 - Direct-read audit bundle rows=71 manifest_rows=169.
+- 2026-07-08T20:22:40+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:22:42+00:00 - Workspace validation complete=192 incomplete_or_failed=0.
+- 2026-07-08T20:22:43+00:00 - Objective traceability audit requirement_status={'satisfied': 48, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:22:46+00:00 - Direct-read audit bundle rows=71 manifest_rows=169.
+- 2026-07-08T20:22:48+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:22:49+00:00 - Workspace validation complete=192 incomplete_or_failed=0.
+- 2026-07-08T20:26:10+00:00 - Built ALB_2012 outcome semantics raw value audit rows=61; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-08T20:33:32+00:00 - Built ALB_2012 outcome semantics raw value audit rows=61; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-08T20:33:33+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T20:33:34+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T20:33:34+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T20:33:34+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T20:33:35+00:00 - Objective traceability audit requirement_status={'satisfied': 49, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:33:38+00:00 - Direct-read audit bundle rows=72 manifest_rows=173.
+- 2026-07-08T20:33:39+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:33:41+00:00 - Workspace validation complete=195 incomplete_or_failed=0.
+- 2026-07-08T20:33:42+00:00 - Objective traceability audit requirement_status={'satisfied': 49, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:33:45+00:00 - Direct-read audit bundle rows=72 manifest_rows=173.
+- 2026-07-08T20:33:47+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:33:48+00:00 - Workspace validation complete=195 incomplete_or_failed=0.
+- 2026-07-08T20:36:55+00:00 - Built ALB_2002 boundary name match audit rows=36 boundary_features=37 decision=blocked_current_boundary_name_match_incomplete_historical_crosswalk_no_gps.
+- 2026-07-08T20:37:27+00:00 - Built ALB_2002 boundary name match audit rows=36 boundary_features=37 decision=blocked_current_boundary_name_match_incomplete_historical_crosswalk_no_gps.
+- 2026-07-08T20:42:21+00:00 - Built ALB_2002 district climate crosswalk audit rows=36 decision=blocked_boundary_crosswalk_not_verified_no_gps.
+- 2026-07-08T20:42:23+00:00 - Built ALB_2002 boundary name match audit rows=36 boundary_features=37 decision=blocked_current_boundary_name_match_incomplete_historical_crosswalk_no_gps.
+- 2026-07-08T20:42:25+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T20:42:25+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T20:42:25+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T20:42:25+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T20:42:27+00:00 - Objective traceability audit requirement_status={'satisfied': 50, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:42:30+00:00 - Direct-read audit bundle rows=73 manifest_rows=179.
+- 2026-07-08T20:42:31+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:42:32+00:00 - Workspace validation complete=198 incomplete_or_failed=0.
+- 2026-07-08T20:42:34+00:00 - Objective traceability audit requirement_status={'satisfied': 50, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:42:36+00:00 - Direct-read audit bundle rows=73 manifest_rows=179.
+- 2026-07-08T20:42:38+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:42:39+00:00 - Workspace validation complete=198 incomplete_or_failed=0.
+- 2026-07-08T20:49:07+00:00 - Built ALB_2012 questionnaire timing field audit field_rows=29 raw_gap_rows=12 decision=blocked_questionnaire_timing_fields_not_in_raw_household_values.
+- 2026-07-08T20:53:07+00:00 - Built ALB_2012 questionnaire timing field audit field_rows=29 raw_gap_rows=12 decision=blocked_questionnaire_timing_fields_not_in_raw_household_values.
+- 2026-07-08T20:53:08+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T20:53:08+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T20:53:09+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T20:53:09+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T20:53:10+00:00 - Objective traceability audit requirement_status={'satisfied': 51, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:53:13+00:00 - Direct-read audit bundle rows=74 manifest_rows=184.
+- 2026-07-08T20:53:14+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:53:16+00:00 - Workspace validation complete=201 incomplete_or_failed=0.
+- 2026-07-08T20:53:17+00:00 - Objective traceability audit requirement_status={'satisfied': 51, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:53:20+00:00 - Direct-read audit bundle rows=74 manifest_rows=184.
+- 2026-07-08T20:53:21+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:53:23+00:00 - Workspace validation complete=201 incomplete_or_failed=0.
+- 2026-07-08T20:56:05+00:00 - Built Albania legacy questionnaire readability audit rows=5 decision=blocked_legacy_questionnaire_xls_reader_unavailable.
+- 2026-07-08T20:59:17+00:00 - Built Albania legacy questionnaire readability audit rows=5 decision=blocked_legacy_questionnaire_xls_reader_unavailable.
+- 2026-07-08T20:59:19+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T20:59:19+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T20:59:19+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T20:59:19+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T20:59:21+00:00 - Objective traceability audit requirement_status={'satisfied': 52, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:59:24+00:00 - Direct-read audit bundle rows=75 manifest_rows=188.
+- 2026-07-08T20:59:25+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:59:27+00:00 - Workspace validation complete=204 incomplete_or_failed=0.
+- 2026-07-08T20:59:28+00:00 - Objective traceability audit requirement_status={'satisfied': 52, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T20:59:31+00:00 - Direct-read audit bundle rows=75 manifest_rows=188.
+- 2026-07-08T20:59:32+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T20:59:34+00:00 - Workspace validation complete=204 incomplete_or_failed=0.
+- 2026-07-08T21:01:44+00:00 - Built Albania legacy questionnaire readability audit rows=5 decision=blocked_legacy_questionnaire_xls_reader_unavailable.
+- 2026-07-08T21:05:49+00:00 - Built Albania legacy questionnaire readability audit rows=5 decision=legacy_questionnaires_readable_content_audit_required.
+- 2026-07-08T21:05:53+00:00 - Built Albania legacy questionnaire timing field audit field_rows=83 raw_gap_rows=58 decision=blocked_legacy_questionnaire_form_design_not_sufficient_for_climate_linkage.
+- 2026-07-08T21:10:07+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-08T21:10:08+00:00 - Built Albania legacy questionnaire readability audit rows=5 decision=legacy_questionnaires_readable_content_audit_required.
+- 2026-07-08T21:10:09+00:00 - Built Albania legacy questionnaire timing field audit field_rows=83 raw_gap_rows=58 decision=blocked_legacy_questionnaire_form_design_not_sufficient_for_climate_linkage.
+- 2026-07-08T21:10:10+00:00 - Built existing Albania raw wave audit rows=4.
+- 2026-07-08T21:10:11+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T21:10:11+00:00 - Sample selection gate audited 1088 country-waves; metadata_candidates=31; raw_final_candidates=0.
+- 2026-07-08T21:10:11+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T21:10:12+00:00 - Objective traceability audit requirement_status={'satisfied': 53, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:10:15+00:00 - Direct-read audit bundle rows=76 manifest_rows=193.
+- 2026-07-08T21:10:17+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T21:10:18+00:00 - Workspace validation complete=207 incomplete_or_failed=0.
+- 2026-07-08T21:10:19+00:00 - Objective traceability audit requirement_status={'satisfied': 53, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:10:22+00:00 - Direct-read audit bundle rows=76 manifest_rows=193.
+- 2026-07-08T21:10:24+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T21:10:25+00:00 - Workspace validation complete=207 incomplete_or_failed=0.
+- 2026-07-08T21:19:22+00:00 - ALB_2005 harmonization value decision audit rows=43 ready_for_recipe=0 decision=blocked_no_alb2005_value_decision_ready_for_recipe.
+- 2026-07-08T21:20:18+00:00 - Harmonization recipe gate rows=1204 verified_candidates=0 country_wave_rows=28.
+- 2026-07-08T21:20:18+00:00 - ALB_2005 harmonization value decision audit rows=43 ready_for_recipe=0 decision=blocked_no_alb2005_value_decision_ready_for_recipe.
+- 2026-07-08T21:20:18+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T21:20:21+00:00 - Direct-read audit bundle rows=76 manifest_rows=197.
+- 2026-07-08T21:20:22+00:00 - Objective traceability audit requirement_status={'satisfied': 54, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:20:24+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T21:20:25+00:00 - Workspace validation complete=209 incomplete_or_failed=0.
+- 2026-07-08T21:30:43+00:00 - Built ALB_2002 boundary source alternatives audit rows=6 decision=blocked_no_public_2002_district_boundary_source_verified.
+- 2026-07-08T21:30:50+00:00 - Objective traceability audit requirement_status={'satisfied': 55, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:30:51+00:00 - Direct-read audit bundle rows=77 manifest_rows=201.
+- 2026-07-08T21:30:56+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T21:30:58+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T21:31:02+00:00 - Workspace validation complete=212 incomplete_or_failed=0.
+- 2026-07-08T21:32:07+00:00 - Built ALB_2002 boundary source alternatives audit rows=6 decision=blocked_no_public_2002_district_boundary_source_verified.
+- 2026-07-08T21:32:13+00:00 - Objective traceability audit requirement_status={'satisfied': 55, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:32:15+00:00 - Direct-read audit bundle rows=77 manifest_rows=201.
+- 2026-07-08T21:32:18+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T21:32:19+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T21:32:23+00:00 - Workspace validation complete=212 incomplete_or_failed=0.
+- 2026-07-08T21:36:54+00:00 - Built ALB_2002 local geography artifact audit rows=125 decision=blocked_questionnaire_gps_fields_not_present_as_raw_coordinate_artifacts.
+- 2026-07-08T21:38:02+00:00 - Built ALB_2002 local geography artifact audit rows=114 decision=blocked_questionnaire_gps_fields_not_present_as_raw_coordinate_artifacts.
+- 2026-07-08T21:40:20+00:00 - Objective traceability audit requirement_status={'satisfied': 56, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:40:26+00:00 - Direct-read audit bundle rows=78 manifest_rows=205.
+- 2026-07-08T21:40:30+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T21:40:35+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T21:40:39+00:00 - Objective traceability audit requirement_status={'satisfied': 56, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:40:46+00:00 - Direct-read audit bundle rows=78 manifest_rows=205.
+- 2026-07-08T21:40:51+00:00 - Workspace validation complete=215 incomplete_or_failed=0.
+- 2026-07-08T21:45:24+00:00 - Built ALB_2005 required value/key audit with decision blocked_alb2005_required_values_seen_but_recipe_not_ready.
+- 2026-07-08T21:50:32+00:00 - Built ALB_2005 required value/key audit with decision blocked_alb2005_required_values_seen_but_recipe_not_ready.
+- 2026-07-08T21:50:37+00:00 - Objective traceability audit requirement_status={'satisfied': 57, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:50:42+00:00 - Direct-read audit bundle rows=79 manifest_rows=209.
+- 2026-07-08T21:50:45+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T21:50:48+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T21:50:52+00:00 - Objective traceability audit requirement_status={'satisfied': 57, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:50:56+00:00 - Direct-read audit bundle rows=79 manifest_rows=209.
+- 2026-07-08T21:51:00+00:00 - Workspace validation complete=218 incomplete_or_failed=0.
+- 2026-07-08T21:51:35+00:00 - Objective traceability audit requirement_status={'satisfied': 57, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T21:51:40+00:00 - Direct-read audit bundle rows=79 manifest_rows=209.
+- 2026-07-08T21:51:44+00:00 - Workspace validation complete=218 incomplete_or_failed=0.
+- 2026-07-08T21:56:37+00:00 - Built ALB_2005 health questionnaire semantics audit rows=58 decision=blocked_alb2005_questionnaire_semantics_seen_but_recipe_not_ready.
+- 2026-07-08T21:56:54+00:00 - Built ALB_2005 health questionnaire semantics audit rows=58 decision=blocked_alb2005_questionnaire_semantics_seen_but_recipe_not_ready.
+- 2026-07-08T22:01:05+00:00 - Built ALB_2005 documented harmonization review rows=44.
+- 2026-07-08T22:01:10+00:00 - ALB_2005 harmonization value decision audit rows=43 ready_for_recipe=0 decision=blocked_no_alb2005_value_decision_ready_for_recipe.
+- 2026-07-08T22:01:11+00:00 - Built ALB_2005 required value/key audit with decision blocked_alb2005_required_values_seen_but_recipe_not_ready.
+- 2026-07-08T22:01:11+00:00 - Built ALB_2005 health questionnaire semantics audit rows=58 decision=blocked_alb2005_questionnaire_semantics_seen_but_recipe_not_ready.
+- 2026-07-08T22:01:15+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T22:01:20+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:01:24+00:00 - Workspace validation complete=221 incomplete_or_failed=0.
+- 2026-07-08T22:01:27+00:00 - Objective traceability audit requirement_status={'satisfied': 58, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:01:45+00:00 - Direct-read audit bundle rows=80 manifest_rows=213.
+- 2026-07-08T22:01:54+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:01:58+00:00 - Workspace validation complete=221 incomplete_or_failed=0.
+- 2026-07-08T22:02:02+00:00 - Objective traceability audit requirement_status={'satisfied': 58, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:02:08+00:00 - Direct-read audit bundle rows=80 manifest_rows=213.
+- 2026-07-08T22:07:06+00:00 - Built ALB_2005 OOP aggregation policy audit rows=11 decision=blocked_alb2005_oop_aggregation_policy_stress_test_not_outcome_ready.
+- 2026-07-08T22:11:00+00:00 - Built ALB_2005 OOP aggregation policy audit rows=11 decision=blocked_alb2005_oop_aggregation_policy_stress_test_not_outcome_ready.
+- 2026-07-08T22:11:00+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T22:11:02+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:11:03+00:00 - Workspace validation complete=224 incomplete_or_failed=0.
+- 2026-07-08T22:11:04+00:00 - Objective traceability audit requirement_status={'satisfied': 59, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:11:07+00:00 - Direct-read audit bundle rows=81 manifest_rows=216.
+- 2026-07-08T22:11:09+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:11:10+00:00 - Workspace validation complete=224 incomplete_or_failed=0.
+- 2026-07-08T22:11:12+00:00 - Objective traceability audit requirement_status={'satisfied': 59, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:11:15+00:00 - Direct-read audit bundle rows=81 manifest_rows=216.
+- 2026-07-08T22:15:24+00:00 - Built ALB_2005 skip/missing semantics audit rows=13 decision=blocked_alb2005_skip_missing_semantics_seen_but_recipe_not_ready.
+- 2026-07-08T22:18:09+00:00 - Built ALB_2005 skip/missing semantics audit rows=13 decision=blocked_alb2005_skip_missing_semantics_seen_but_recipe_not_ready.
+- 2026-07-08T22:18:09+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T22:18:10+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:18:12+00:00 - Workspace validation complete=227 incomplete_or_failed=0.
+- 2026-07-08T22:18:13+00:00 - Objective traceability audit requirement_status={'satisfied': 60, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:18:16+00:00 - Direct-read audit bundle rows=82 manifest_rows=219.
+- 2026-07-08T22:18:18+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:18:19+00:00 - Workspace validation complete=227 incomplete_or_failed=0.
+- 2026-07-08T22:18:20+00:00 - Objective traceability audit requirement_status={'satisfied': 60, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:18:24+00:00 - Direct-read audit bundle rows=82 manifest_rows=219.
+- 2026-07-08T22:24:26+00:00 - Built ALB_2005 consumption/OOP unit-period audit rows=12 decision=blocked_alb2005_consumption_oop_unit_period_not_ready.
+- 2026-07-08T22:24:52+00:00 - Built ALB_2005 consumption/OOP unit-period audit rows=12 decision=blocked_alb2005_consumption_oop_unit_period_not_ready.
+- 2026-07-08T22:29:38+00:00 - Built ALB_2005 consumption/OOP unit-period audit rows=12 decision=blocked_alb2005_consumption_oop_unit_period_not_ready.
+- 2026-07-08T22:29:38+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T22:29:40+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:29:41+00:00 - Workspace validation complete=230 incomplete_or_failed=0.
+- 2026-07-08T22:29:45+00:00 - Direct-read audit bundle rows=83 manifest_rows=225.
+- 2026-07-08T22:29:47+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:29:48+00:00 - Workspace validation complete=230 incomplete_or_failed=0.
+- 2026-07-08T22:29:52+00:00 - Direct-read audit bundle rows=83 manifest_rows=225.
+- 2026-07-08T22:30:12+00:00 - Objective traceability audit requirement_status={'satisfied': 61, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:30:15+00:00 - Direct-read audit bundle rows=83 manifest_rows=225.
+- 2026-07-08T22:30:17+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:30:18+00:00 - Workspace validation complete=230 incomplete_or_failed=0.
+- 2026-07-08T22:30:20+00:00 - Objective traceability audit requirement_status={'satisfied': 61, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:30:23+00:00 - Direct-read audit bundle rows=83 manifest_rows=225.
+- 2026-07-08T22:34:11+00:00 - Built ALB_2005 aggregate metadata crosswalk rows=16 decision=blocked_alb2005_consumption_aggregate_metadata_crosswalk_not_ready.
+- 2026-07-08T22:39:21+00:00 - Built ALB_2005 aggregate metadata crosswalk rows=16 decision=blocked_alb2005_consumption_aggregate_metadata_crosswalk_not_ready.
+- 2026-07-08T22:39:24+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T22:39:28+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:39:32+00:00 - Workspace validation complete=233 incomplete_or_failed=0.
+- 2026-07-08T22:39:36+00:00 - Objective traceability audit requirement_status={'satisfied': 62, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:39:41+00:00 - Direct-read audit bundle rows=84 manifest_rows=229.
+- 2026-07-08T22:39:46+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:39:49+00:00 - Workspace validation complete=233 incomplete_or_failed=0.
+- 2026-07-08T22:39:54+00:00 - Objective traceability audit requirement_status={'satisfied': 62, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:40:00+00:00 - Direct-read audit bundle rows=84 manifest_rows=229.
+- 2026-07-08T22:43:11+00:00 - Built ALB_2005 consumption component source-search audit rows=37 decision=blocked_alb2005_consumption_component_source_search_not_ready.
+- 2026-07-08T22:47:00+00:00 - Built ALB_2005 consumption component source-search audit rows=37 decision=blocked_alb2005_consumption_component_source_search_not_ready.
+- 2026-07-08T22:47:04+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-08T22:47:11+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:47:15+00:00 - Workspace validation complete=236 incomplete_or_failed=0.
+- 2026-07-08T22:47:20+00:00 - Objective traceability audit requirement_status={'satisfied': 63, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:47:26+00:00 - Direct-read audit bundle rows=85 manifest_rows=233.
+- 2026-07-08T22:47:31+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-08T22:47:35+00:00 - Workspace validation complete=236 incomplete_or_failed=0.
+- 2026-07-08T22:47:40+00:00 - Objective traceability audit requirement_status={'satisfied': 63, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-08T22:47:46+00:00 - Direct-read audit bundle rows=85 manifest_rows=233.
+- 2026-07-09T01:24:01+00:00 - Built ALB_2005 timing/geography source-search audit rows=11 decision=blocked_alb2005_timing_geography_source_search_not_ready.
+- 2026-07-09T01:31:24+00:00 - Built ALB_2005 timing/geography source-search audit rows=11 decision=blocked_alb2005_timing_geography_source_search_not_ready.
+- 2026-07-09T01:31:24+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T01:31:25+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T01:31:27+00:00 - Workspace validation complete=239 incomplete_or_failed=0.
+- 2026-07-09T01:31:28+00:00 - Objective traceability audit requirement_status={'satisfied': 64, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T01:31:31+00:00 - Direct-read audit bundle rows=86 manifest_rows=237.
+- 2026-07-09T01:31:32+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T01:31:33+00:00 - Workspace validation complete=239 incomplete_or_failed=0.
+- 2026-07-09T01:31:34+00:00 - Objective traceability audit requirement_status={'satisfied': 64, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T01:31:37+00:00 - Direct-read audit bundle rows=86 manifest_rows=237.
+- 2026-07-09T01:40:55+00:00 - Built ALB_2002 boundary source resource search rows=3 decision=blocked_alb2002_boundary_resource_search_no_historical_climate_ready_source.
+- 2026-07-09T01:45:16+00:00 - Built ALB_2002 boundary source resource search rows=3 decision=blocked_alb2002_boundary_resource_search_no_historical_climate_ready_source.
+- 2026-07-09T01:45:16+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T01:45:18+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T01:45:19+00:00 - Workspace validation complete=242 incomplete_or_failed=0.
+- 2026-07-09T01:45:20+00:00 - Objective traceability audit requirement_status={'satisfied': 65, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T01:45:24+00:00 - Direct-read audit bundle rows=87 manifest_rows=244.
+- 2026-07-09T01:45:25+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T01:45:27+00:00 - Workspace validation complete=242 incomplete_or_failed=0.
+- 2026-07-09T01:45:28+00:00 - Objective traceability audit requirement_status={'satisfied': 65, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T01:45:31+00:00 - Direct-read audit bundle rows=87 manifest_rows=244.
+- 2026-07-09T01:46:52+00:00 - Direct-read audit bundle rows=87 manifest_rows=244.
+- 2026-07-09T01:46:53+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T01:46:55+00:00 - Workspace validation complete=242 incomplete_or_failed=0.
+- 2026-07-09T01:46:56+00:00 - Objective traceability audit requirement_status={'satisfied': 65, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T01:46:59+00:00 - Direct-read audit bundle rows=87 manifest_rows=244.
+- 2026-07-09T01:50:29+00:00 - Built ALB_2002 boundary geometry/provenance audit features=36 decision=blocked_geoboundaries_2_0_1_boundary_year_2013_not_verified_2002.
+- 2026-07-09T01:53:39+00:00 - Built ALB_2002 boundary geometry/provenance audit features=36 decision=blocked_geoboundaries_2_0_1_boundary_year_2013_not_verified_2002.
+- 2026-07-09T01:53:39+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T01:53:41+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T01:53:42+00:00 - Workspace validation complete=245 incomplete_or_failed=0.
+- 2026-07-09T01:53:44+00:00 - Objective traceability audit requirement_status={'satisfied': 66, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T01:53:47+00:00 - Direct-read audit bundle rows=88 manifest_rows=250.
+- 2026-07-09T01:53:48+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T01:53:50+00:00 - Workspace validation complete=245 incomplete_or_failed=0.
+- 2026-07-09T01:53:51+00:00 - Objective traceability audit requirement_status={'satisfied': 66, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T01:53:54+00:00 - Direct-read audit bundle rows=88 manifest_rows=250.
+- 2026-07-09T01:57:07+00:00 - Built ALB_2002 boundary manual verification packet actions=6 gates=9 decision=blocked_manual_boundary_verification_required_before_alb2002_climate_linkage.
+- 2026-07-09T02:02:16+00:00 - Built ALB_2002 boundary manual verification packet actions=6 gates=9 decision=blocked_manual_boundary_verification_required_before_alb2002_climate_linkage.
+- 2026-07-09T02:02:16+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T02:02:18+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:02:19+00:00 - Workspace validation complete=248 incomplete_or_failed=0.
+- 2026-07-09T02:02:21+00:00 - Objective traceability audit requirement_status={'satisfied': 67, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:02:24+00:00 - Direct-read audit bundle rows=89 manifest_rows=255.
+- 2026-07-09T02:02:25+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:02:27+00:00 - Workspace validation complete=248 incomplete_or_failed=0.
+- 2026-07-09T02:02:28+00:00 - Objective traceability audit requirement_status={'satisfied': 67, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:02:31+00:00 - Direct-read audit bundle rows=89 manifest_rows=255.
+- 2026-07-09T02:07:39+00:00 - Built ALB_2002 boundary manual source follow-up rows=6 decision=blocked_followup_confirms_no_public_2002_district_boundary_source.
+- 2026-07-09T02:12:23+00:00 - Built ALB_2002 boundary manual source follow-up rows=6 decision=blocked_followup_confirms_no_public_2002_district_boundary_source.
+- 2026-07-09T02:12:23+00:00 - Built ALB_2002 boundary manual verification packet actions=6 gates=9 decision=blocked_manual_boundary_verification_required_before_alb2002_climate_linkage.
+- 2026-07-09T02:12:23+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T02:12:24+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:12:26+00:00 - Workspace validation complete=251 incomplete_or_failed=0.
+- 2026-07-09T02:12:27+00:00 - Objective traceability audit requirement_status={'satisfied': 68, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:12:31+00:00 - Direct-read audit bundle rows=90 manifest_rows=259.
+- 2026-07-09T02:12:32+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:12:34+00:00 - Workspace validation complete=251 incomplete_or_failed=0.
+- 2026-07-09T02:12:35+00:00 - Objective traceability audit requirement_status={'satisfied': 68, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:12:38+00:00 - Direct-read audit bundle rows=90 manifest_rows=259.
+- 2026-07-09T02:16:26+00:00 - Built ALB_2005 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2005_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T02:23:41+00:00 - Built ALB_2005 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2005_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T02:23:41+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T02:23:42+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:23:44+00:00 - Workspace validation complete=254 incomplete_or_failed=0.
+- 2026-07-09T02:23:45+00:00 - Objective traceability audit requirement_status={'satisfied': 69, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:23:48+00:00 - Direct-read audit bundle rows=91 manifest_rows=264.
+- 2026-07-09T02:23:49+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:23:51+00:00 - Workspace validation complete=254 incomplete_or_failed=0.
+- 2026-07-09T02:23:52+00:00 - Objective traceability audit requirement_status={'satisfied': 69, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:23:55+00:00 - Direct-read audit bundle rows=91 manifest_rows=264.
+- 2026-07-09T02:33:39+00:00 - Built ALB_2005 public fieldwork/geography metadata audit rows=10 decision=blocked_public_metadata_not_household_climate_linkage_ready.
+- 2026-07-09T02:33:55+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T02:33:57+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:33:58+00:00 - Workspace validation complete=257 incomplete_or_failed=0.
+- 2026-07-09T02:34:00+00:00 - Objective traceability audit requirement_status={'satisfied': 70, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:34:03+00:00 - Direct-read audit bundle rows=92 manifest_rows=269.
+- 2026-07-09T02:34:04+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:34:06+00:00 - Workspace validation complete=257 incomplete_or_failed=0.
+- 2026-07-09T02:34:07+00:00 - Objective traceability audit requirement_status={'satisfied': 70, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:34:10+00:00 - Direct-read audit bundle rows=92 manifest_rows=269.
+- 2026-07-09T02:40:27+00:00 - Built ALB_2005 diary timing candidate audit rows=11 decision=blocked_diary_timing_metadata_candidate_no_raw_merge_semantics.
+- 2026-07-09T02:40:56+00:00 - Built ALB_2005 diary timing candidate audit rows=11 decision=blocked_diary_timing_metadata_candidate_no_raw_merge_semantics.
+- 2026-07-09T02:40:57+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T02:40:58+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:41:00+00:00 - Workspace validation complete=260 incomplete_or_failed=0.
+- 2026-07-09T02:41:01+00:00 - Objective traceability audit requirement_status={'satisfied': 71, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:41:04+00:00 - Direct-read audit bundle rows=93 manifest_rows=274.
+- 2026-07-09T02:41:05+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:41:07+00:00 - Workspace validation complete=260 incomplete_or_failed=0.
+- 2026-07-09T02:41:08+00:00 - Objective traceability audit requirement_status={'satisfied': 71, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:41:12+00:00 - Direct-read audit bundle rows=93 manifest_rows=274.
+- 2026-07-09T02:45:14+00:00 - Built ALB_2005 extracted module coverage audit modules=68 decision=blocked_extracted_package_missing_bookmetadata_and_coordinate_values.
+- 2026-07-09T02:49:45+00:00 - Built ALB_2005 diary timing candidate audit rows=11 decision=blocked_diary_timing_metadata_candidate_no_raw_merge_semantics.
+- 2026-07-09T02:49:45+00:00 - Built ALB_2005 extracted module coverage audit modules=68 decision=blocked_extracted_package_missing_bookmetadata_and_coordinate_values.
+- 2026-07-09T02:49:45+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T02:49:46+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:49:48+00:00 - Workspace validation complete=263 incomplete_or_failed=0.
+- 2026-07-09T02:49:49+00:00 - Objective traceability audit requirement_status={'satisfied': 72, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:49:51+00:00 - Direct-read audit bundle rows=94 manifest_rows=280.
+- 2026-07-09T02:49:52+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:49:54+00:00 - Workspace validation complete=263 incomplete_or_failed=0.
+- 2026-07-09T02:49:55+00:00 - Objective traceability audit requirement_status={'satisfied': 72, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:49:57+00:00 - Direct-read audit bundle rows=94 manifest_rows=280.
+- 2026-07-09T02:57:55+00:00 - Built Albania first-analysis promotion gate waves=4 decision=blocked_no_albania_wave_ready_for_first_analysis_promotion.
+- 2026-07-09T02:57:56+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T02:57:57+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:57:58+00:00 - Objective traceability audit requirement_status={'satisfied': 73, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:58:02+00:00 - Direct-read audit bundle rows=95 manifest_rows=286.
+- 2026-07-09T02:58:03+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T02:58:04+00:00 - Workspace validation complete=265 incomplete_or_failed=0.
+- 2026-07-09T02:58:06+00:00 - Objective traceability audit requirement_status={'satisfied': 73, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T02:58:09+00:00 - Direct-read audit bundle rows=95 manifest_rows=286.
+- 2026-07-09T03:09:40+00:00 - Built ALB_2002 GADM boundary lead audit candidates=2 decision=blocked_gadm_boundary_lead_no_verified_2002_historical_provenance.
+- 2026-07-09T03:10:04+00:00 - Built ALB_2002 GADM boundary lead audit candidates=2 decision=blocked_gadm_boundary_lead_no_verified_2002_historical_provenance.
+- 2026-07-09T03:10:26+00:00 - Built Albania first-analysis promotion gate waves=4 decision=blocked_no_albania_wave_ready_for_first_analysis_promotion.
+- 2026-07-09T03:10:32+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:10:37+00:00 - Objective traceability audit requirement_status={'satisfied': 74, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T03:10:44+00:00 - Direct-read audit bundle rows=96 manifest_rows=293.
+- 2026-07-09T03:10:49+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T03:10:55+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:11:00+00:00 - Workspace validation complete=267 incomplete_or_failed=0.
+- 2026-07-09T03:11:05+00:00 - Objective traceability audit requirement_status={'satisfied': 74, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T03:11:11+00:00 - Direct-read audit bundle rows=96 manifest_rows=293.
+- 2026-07-09T03:11:24+00:00 - Workspace validation complete=267 incomplete_or_failed=0.
+- 2026-07-09T03:11:32+00:00 - Direct-read audit bundle rows=96 manifest_rows=293.
+- 2026-07-09T03:17:17+00:00 - Built ALB_2002 health questionnaire semantics audit rows=65 decision=blocked_alb2002_questionnaire_semantics_seen_but_outcome_not_ready.
+- 2026-07-09T03:23:28+00:00 - Built ALB_2002 health questionnaire semantics audit rows=65 decision=blocked_alb2002_questionnaire_semantics_seen_but_outcome_not_ready.
+- 2026-07-09T03:23:29+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:23:30+00:00 - Objective traceability audit requirement_status={'satisfied': 75, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T03:23:34+00:00 - Direct-read audit bundle rows=97 manifest_rows=297.
+- 2026-07-09T03:23:35+00:00 - Workspace validation complete=270 incomplete_or_failed=0.
+- 2026-07-09T03:23:37+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:23:40+00:00 - Direct-read audit bundle rows=97 manifest_rows=297.
+- 2026-07-09T03:23:42+00:00 - Workspace validation complete=270 incomplete_or_failed=0.
+- 2026-07-09T03:26:40+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T03:30:38+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T03:30:39+00:00 - Objective traceability audit requirement_status={'satisfied': 76, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T03:30:40+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:30:44+00:00 - Direct-read audit bundle rows=98 manifest_rows=302.
+- 2026-07-09T03:30:45+00:00 - Workspace validation complete=273 incomplete_or_failed=0.
+- 2026-07-09T03:30:46+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:30:50+00:00 - Direct-read audit bundle rows=98 manifest_rows=302.
+- 2026-07-09T03:30:51+00:00 - Workspace validation complete=273 incomplete_or_failed=0.
+- 2026-07-09T03:34:36+00:00 - Built ALB_2002 OOP aggregation policy audit rows=11 decision=blocked_alb2002_oop_aggregation_policy_stress_test_not_outcome_ready.
+- 2026-07-09T03:40:00+00:00 - Built ALB_2002 OOP aggregation policy audit rows=11 decision=blocked_alb2002_oop_aggregation_policy_stress_test_not_outcome_ready.
+- 2026-07-09T03:40:00+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T03:40:02+00:00 - Objective traceability audit requirement_status={'satisfied': 77, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T03:40:03+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:40:06+00:00 - Direct-read audit bundle rows=99 manifest_rows=306.
+- 2026-07-09T03:40:08+00:00 - Workspace validation complete=276 incomplete_or_failed=0.
+- 2026-07-09T03:40:15+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:40:18+00:00 - Direct-read audit bundle rows=99 manifest_rows=306.
+- 2026-07-09T03:40:20+00:00 - Workspace validation complete=276 incomplete_or_failed=0.
+- 2026-07-09T03:43:38+00:00 - Built ALB_2002 skip/missing semantics audit rows=12 decision=blocked_alb2002_skip_missing_semantics_seen_but_recipe_not_ready.
+- 2026-07-09T03:48:37+00:00 - Built ALB_2002 skip/missing semantics audit rows=12 decision=blocked_alb2002_skip_missing_semantics_seen_but_recipe_not_ready.
+- 2026-07-09T03:48:37+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T03:48:38+00:00 - Objective traceability audit requirement_status={'satisfied': 78, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T03:48:39+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:48:43+00:00 - Direct-read audit bundle rows=100 manifest_rows=310.
+- 2026-07-09T03:48:44+00:00 - Workspace validation complete=279 incomplete_or_failed=0.
+- 2026-07-09T03:48:49+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:48:53+00:00 - Direct-read audit bundle rows=100 manifest_rows=310.
+- 2026-07-09T03:48:55+00:00 - Workspace validation complete=279 incomplete_or_failed=0.
+- 2026-07-09T03:53:08+00:00 - Built ALB_2002 access/need denominator policy audit rows=24 decision=blocked_alb2002_access_need_denominator_policy_not_outcome_ready.
+- 2026-07-09T03:57:15+00:00 - Built ALB_2002 access/need denominator policy audit rows=24 decision=blocked_alb2002_access_need_denominator_policy_not_outcome_ready.
+- 2026-07-09T03:57:15+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T03:57:16+00:00 - Objective traceability audit requirement_status={'satisfied': 79, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T03:57:18+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:57:21+00:00 - Direct-read audit bundle rows=101 manifest_rows=314.
+- 2026-07-09T03:57:23+00:00 - Workspace validation complete=282 incomplete_or_failed=0.
+- 2026-07-09T03:57:28+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T03:57:31+00:00 - Direct-read audit bundle rows=101 manifest_rows=314.
+- 2026-07-09T03:57:33+00:00 - Workspace validation complete=282 incomplete_or_failed=0.
+- 2026-07-09T04:01:51+00:00 - Built ALB_2002 consumption/SDG denominator policy audit rows=14 decision=blocked_alb2002_consumption_sdg_denominator_policy_not_sdg_ready.
+- 2026-07-09T04:07:42+00:00 - Built ALB_2002 consumption/SDG denominator policy audit rows=14 decision=blocked_alb2002_consumption_sdg_denominator_policy_not_sdg_ready.
+- 2026-07-09T04:07:42+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T04:07:44+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:07:47+00:00 - Direct-read audit bundle rows=102 manifest_rows=318.
+- 2026-07-09T04:07:49+00:00 - Objective traceability audit requirement_status={'satisfied': 80, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T04:07:50+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:07:54+00:00 - Direct-read audit bundle rows=102 manifest_rows=318.
+- 2026-07-09T04:07:55+00:00 - Workspace validation complete=285 incomplete_or_failed=0.
+- 2026-07-09T04:13:32+00:00 - Built ALB_2002 aggregate metadata crosswalk rows=10 decision=blocked_alb2002_consumption_aggregate_metadata_crosswalk_not_ready.
+- 2026-07-09T04:21:00+00:00 - Built ALB_2002 aggregate metadata crosswalk rows=10 decision=blocked_alb2002_consumption_aggregate_metadata_crosswalk_not_ready.
+- 2026-07-09T04:21:00+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T04:21:02+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:21:05+00:00 - Direct-read audit bundle rows=103 manifest_rows=322.
+- 2026-07-09T04:21:06+00:00 - Objective traceability audit requirement_status={'satisfied': 81, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T04:21:08+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:21:11+00:00 - Direct-read audit bundle rows=103 manifest_rows=322.
+- 2026-07-09T04:21:13+00:00 - Workspace validation complete=288 incomplete_or_failed=0.
+- 2026-07-09T04:22:14+00:00 - Objective traceability audit requirement_status={'satisfied': 81, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T04:22:15+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:22:19+00:00 - Direct-read audit bundle rows=103 manifest_rows=322.
+- 2026-07-09T04:22:20+00:00 - Workspace validation complete=288 incomplete_or_failed=0.
+- 2026-07-09T04:27:47+00:00 - Built ALB_2002 consumption construction source audit rows=9 decision=documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready.
+- 2026-07-09T04:29:16+00:00 - Built ALB_2002 consumption construction source audit rows=9 decision=documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready.
+- 2026-07-09T04:29:17+00:00 - Built ALB_2002 aggregate metadata crosswalk rows=11 decision=documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready.
+- 2026-07-09T04:39:01+00:00 - Built ALB_2002 consumption construction source audit rows=9 decision=documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready.
+- 2026-07-09T04:39:02+00:00 - Built ALB_2002 aggregate metadata crosswalk rows=11 decision=documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready.
+- 2026-07-09T04:39:02+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T04:39:04+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:39:07+00:00 - Direct-read audit bundle rows=104 manifest_rows=326.
+- 2026-07-09T04:39:08+00:00 - Objective traceability audit requirement_status={'satisfied': 82, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T04:39:10+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:39:13+00:00 - Direct-read audit bundle rows=104 manifest_rows=326.
+- 2026-07-09T04:39:15+00:00 - Workspace validation complete=291 incomplete_or_failed=0.
+- 2026-07-09T04:40:51+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T04:40:52+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:40:56+00:00 - Direct-read audit bundle rows=104 manifest_rows=326.
+- 2026-07-09T04:40:57+00:00 - Objective traceability audit requirement_status={'satisfied': 82, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T04:40:58+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:41:02+00:00 - Direct-read audit bundle rows=104 manifest_rows=326.
+- 2026-07-09T04:41:03+00:00 - Workspace validation complete=291 incomplete_or_failed=0.
+- 2026-07-09T04:44:25+00:00 - Built ALB_2002 OOP skip-value decision audit: rows=5 decision=documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready.
+- 2026-07-09T04:52:05+00:00 - Built ALB_2002 OOP aggregation policy audit rows=11 decision=blocked_alb2002_oop_aggregation_policy_stress_test_not_outcome_ready.
+- 2026-07-09T04:52:05+00:00 - Built ALB_2002 skip/missing semantics audit rows=12 decision=blocked_alb2002_skip_missing_semantics_seen_but_recipe_not_ready.
+- 2026-07-09T04:52:06+00:00 - Built ALB_2002 OOP skip-value decision audit: rows=5 decision=documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready.
+- 2026-07-09T04:52:06+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T04:52:07+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:52:11+00:00 - Direct-read audit bundle rows=105 manifest_rows=330.
+- 2026-07-09T04:52:12+00:00 - Objective traceability audit requirement_status={'satisfied': 83, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T04:52:13+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:52:17+00:00 - Direct-read audit bundle rows=105 manifest_rows=330.
+- 2026-07-09T04:52:18+00:00 - Workspace validation complete=294 incomplete_or_failed=0.
+- 2026-07-09T04:58:36+00:00 - Built ALB_2002 boundary manual verification packet actions=7 gates=9 decision=blocked_manual_boundary_verification_required_before_alb2002_climate_linkage.
+- 2026-07-09T04:59:12+00:00 - Built ALB_2002 boundary manual source follow-up rows=7 decision=blocked_followup_confirms_no_public_2002_district_boundary_source.
+- 2026-07-09T04:59:13+00:00 - Built ALB_2002 boundary manual verification packet actions=7 gates=9 decision=blocked_manual_boundary_verification_required_before_alb2002_climate_linkage.
+- 2026-07-09T04:59:13+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T04:59:14+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:59:18+00:00 - Direct-read audit bundle rows=105 manifest_rows=330.
+- 2026-07-09T04:59:19+00:00 - Objective traceability audit requirement_status={'satisfied': 83, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T04:59:20+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T04:59:24+00:00 - Direct-read audit bundle rows=105 manifest_rows=330.
+- 2026-07-09T04:59:25+00:00 - Workspace validation complete=294 incomplete_or_failed=0.
+- 2026-07-09T05:00:43+00:00 - Built ALB_2002 boundary manual source follow-up rows=7 decision=blocked_followup_confirms_no_public_2002_district_boundary_source.
+- 2026-07-09T05:00:43+00:00 - Built ALB_2002 boundary manual verification packet actions=7 gates=9 decision=blocked_manual_boundary_verification_required_before_alb2002_climate_linkage.
+- 2026-07-09T05:00:44+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:00:48+00:00 - Direct-read audit bundle rows=105 manifest_rows=330.
+- 2026-07-09T05:00:49+00:00 - Objective traceability audit requirement_status={'satisfied': 83, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T05:00:51+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:00:54+00:00 - Direct-read audit bundle rows=105 manifest_rows=330.
+- 2026-07-09T05:00:56+00:00 - Workspace validation complete=294 incomplete_or_failed=0.
+- 2026-07-09T05:04:58+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T05:08:45+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T05:08:49+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:08:54+00:00 - Direct-read audit bundle rows=106 manifest_rows=334.
+- 2026-07-09T05:08:59+00:00 - Objective traceability audit requirement_status={'satisfied': 84, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T05:09:04+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:09:11+00:00 - Direct-read audit bundle rows=106 manifest_rows=334.
+- 2026-07-09T05:09:15+00:00 - Workspace validation complete=297 incomplete_or_failed=0.
+- 2026-07-09T05:15:42+00:00 - Built ALB_2005 extracted module coverage audit modules=68 decision=blocked_extracted_package_missing_bookmetadata_and_coordinate_values.
+- 2026-07-09T05:19:05+00:00 - Built ALB_2005 extracted module coverage audit modules=68 decision=blocked_extracted_package_missing_bookmetadata_and_coordinate_values.
+- 2026-07-09T05:19:08+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:19:15+00:00 - Direct-read audit bundle rows=106 manifest_rows=335.
+- 2026-07-09T05:19:19+00:00 - Objective traceability audit requirement_status={'satisfied': 84, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T05:19:24+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:19:31+00:00 - Direct-read audit bundle rows=106 manifest_rows=335.
+- 2026-07-09T05:19:35+00:00 - Workspace validation complete=297 incomplete_or_failed=0.
+- 2026-07-09T05:23:28+00:00 - Built ALB_2002 period-aligned CHE policy audit policies=3 decision=blocked_alb2002_period_aligned_che_policy_not_outcome_ready.
+- 2026-07-09T05:29:01+00:00 - Built ALB_2002 period-aligned CHE policy audit policies=3 decision=blocked_alb2002_period_aligned_che_policy_not_outcome_ready.
+- 2026-07-09T05:29:06+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:29:13+00:00 - Direct-read audit bundle rows=107 manifest_rows=339.
+- 2026-07-09T05:29:17+00:00 - Objective traceability audit requirement_status={'satisfied': 85, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T05:29:22+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:29:29+00:00 - Direct-read audit bundle rows=107 manifest_rows=339.
+- 2026-07-09T05:29:36+00:00 - Workspace validation complete=300 incomplete_or_failed=0.
+- 2026-07-09T05:33:11+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T05:33:11+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T05:33:14+00:00 - Direct-read audit bundle rows=107 manifest_rows=339.
+- 2026-07-09T05:33:16+00:00 - Objective traceability audit requirement_status={'satisfied': 85, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T05:33:17+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:33:19+00:00 - Workspace validation complete=300 incomplete_or_failed=0.
+- 2026-07-09T05:37:52+00:00 - Audited ALB_2002 weight/design evidence rows=6 decision=blocked_alb2002_weight_design_semantics_not_promotion_ready.
+- 2026-07-09T05:46:23+00:00 - Audited ALB_2002 weight/design evidence rows=6 decision=blocked_alb2002_weight_design_semantics_not_promotion_ready.
+- 2026-07-09T05:46:27+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T05:46:27+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T05:46:33+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T05:46:40+00:00 - Direct-read audit bundle rows=108 manifest_rows=344.
+- 2026-07-09T05:46:45+00:00 - Objective traceability audit requirement_status={'satisfied': 86, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T05:46:51+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:46:55+00:00 - Workspace validation complete=303 incomplete_or_failed=0.
+- 2026-07-09T05:51:07+00:00 - Built ALB_2002 boundary source alternatives audit rows=6 decision=blocked_no_public_2002_district_boundary_source_verified.
+- 2026-07-09T05:51:13+00:00 - Built ALB_2002 local geography artifact audit rows=114 decision=blocked_questionnaire_gps_fields_not_present_as_raw_coordinate_artifacts.
+- 2026-07-09T05:51:46+00:00 - Built ALB_2002 boundary manual source follow-up rows=7 decision=blocked_followup_confirms_no_public_2002_district_boundary_source.
+- 2026-07-09T05:51:50+00:00 - Built ALB_2002 boundary manual verification packet actions=7 gates=9 decision=blocked_manual_boundary_verification_required_before_alb2002_climate_linkage.
+- 2026-07-09T05:51:57+00:00 - Direct-read audit bundle rows=108 manifest_rows=344.
+- 2026-07-09T05:52:02+00:00 - Objective traceability audit requirement_status={'satisfied': 86, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T05:52:08+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T05:52:13+00:00 - Workspace validation complete=303 incomplete_or_failed=0.
+- 2026-07-09T12:40:58+00:00 - Built ALB_2002 CHE candidate outcome audit rows=3599 decision=blocked_alb2002_che_candidate_not_promoted_due_recipe_sdg_climate_gates.
+- 2026-07-09T12:48:15+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T12:48:19+00:00 - Built ALB_2002 CHE candidate outcome audit rows=3599 decision=blocked_alb2002_che_candidate_not_promoted_due_recipe_sdg_climate_gates.
+- 2026-07-09T12:48:22+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T12:48:31+00:00 - Direct-read audit bundle rows=109 manifest_rows=350.
+- 2026-07-09T12:48:35+00:00 - Objective traceability audit requirement_status={'satisfied': 87, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T12:48:40+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T12:48:47+00:00 - Workspace validation complete=306 incomplete_or_failed=0.
+- 2026-07-09T12:52:35+00:00 - Built ALB_2002 analysis candidate rows=3599 decision=blocked_alb2002_analysis_candidate_not_promoted_due_recipe_outcome_climate_gates.
+- 2026-07-09T12:57:09+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T12:57:09+00:00 - Built ALB_2002 CHE candidate outcome audit rows=3599 decision=blocked_alb2002_che_candidate_not_promoted_due_recipe_sdg_climate_gates.
+- 2026-07-09T12:57:10+00:00 - Built ALB_2002 analysis candidate rows=3599 decision=blocked_alb2002_analysis_candidate_not_promoted_due_recipe_outcome_climate_gates.
+- 2026-07-09T12:57:10+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T12:57:14+00:00 - Direct-read audit bundle rows=110 manifest_rows=356.
+- 2026-07-09T12:57:15+00:00 - Objective traceability audit requirement_status={'satisfied': 88, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T12:57:17+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T12:57:19+00:00 - Workspace validation complete=309 incomplete_or_failed=0.
+- 2026-07-09T13:03:48+00:00 - Built ALB_2002 climate centroid exposure candidates rows=384 decision=blocked_alb2002_climate_centroid_exposures_not_promoted_due_boundary_vintage_source_and_baseline_gates.
+- 2026-07-09T13:04:40+00:00 - Built ALB_2002 climate centroid exposure candidates rows=384 decision=blocked_alb2002_climate_centroid_exposures_not_promoted_due_boundary_vintage_source_and_baseline_gates.
+- 2026-07-09T13:11:42+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T13:11:47+00:00 - Built ALB_2002 CHE candidate outcome audit rows=3599 decision=blocked_alb2002_che_candidate_not_promoted_due_recipe_sdg_climate_gates.
+- 2026-07-09T13:11:52+00:00 - Built ALB_2002 analysis candidate rows=3599 decision=blocked_alb2002_analysis_candidate_not_promoted_due_recipe_outcome_climate_gates.
+- 2026-07-09T13:11:56+00:00 - Built ALB_2002 climate centroid exposure candidates rows=384 decision=blocked_alb2002_climate_centroid_exposures_not_promoted_due_boundary_vintage_source_and_baseline_gates.
+- 2026-07-09T13:11:59+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T13:12:05+00:00 - Direct-read audit bundle rows=111 manifest_rows=363.
+- 2026-07-09T13:12:10+00:00 - Objective traceability audit requirement_status={'satisfied': 89, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T13:12:14+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T13:12:19+00:00 - Workspace validation complete=312 incomplete_or_failed=0.
+- 2026-07-09T13:18:24+00:00 - Audited ALB_2002 sample-design documentation rows=7 documentation_ready=1 decision=candidate_alb2002_sample_design_documented_not_promoted_due_downstream_gates.
+- 2026-07-09T13:22:04+00:00 - Audited ALB_2002 sample-design documentation rows=7 documentation_ready=1 decision=candidate_alb2002_sample_design_documented_not_promoted_due_downstream_gates.
+- 2026-07-09T13:22:04+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T13:22:04+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T13:22:07+00:00 - Direct-read audit bundle rows=111 manifest_rows=368.
+- 2026-07-09T13:22:09+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T13:22:10+00:00 - Objective traceability audit requirement_status={'satisfied': 90, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T13:22:12+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T13:22:13+00:00 - Workspace validation complete=314 incomplete_or_failed=0.
+- 2026-07-09T13:27:35+00:00 - Built ALB_2002 access candidate outcome audit rows=3599 decision=blocked_alb2002_access_candidate_not_promoted_due_denominator_skip_climate_gates.
+- 2026-07-09T13:33:08+00:00 - Built ALB_2002 access candidate outcome audit rows=3599 decision=blocked_alb2002_access_candidate_not_promoted_due_denominator_skip_climate_gates.
+- 2026-07-09T13:33:08+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T13:33:08+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T13:33:12+00:00 - Direct-read audit bundle rows=112 manifest_rows=374.
+- 2026-07-09T13:33:12+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T13:33:14+00:00 - Objective traceability audit requirement_status={'satisfied': 91, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T13:33:15+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T13:33:17+00:00 - Workspace validation complete=317 incomplete_or_failed=0.
+- 2026-07-09T13:36:11+00:00 - Built ALB_2002 UHC composite candidate audit rows=3599 decision=blocked_alb2002_uhc_composite_candidate_not_promoted_due_outcome_recipe_climate_gates.
+- 2026-07-09T13:41:57+00:00 - Built ALB_2002 access candidate outcome audit rows=3599 decision=blocked_alb2002_access_candidate_not_promoted_due_denominator_skip_climate_gates.
+- 2026-07-09T13:41:57+00:00 - Built ALB_2002 CHE candidate outcome audit rows=3599 decision=blocked_alb2002_che_candidate_not_promoted_due_recipe_sdg_climate_gates.
+- 2026-07-09T13:41:58+00:00 - Built ALB_2002 UHC composite candidate audit rows=3599 decision=blocked_alb2002_uhc_composite_candidate_not_promoted_due_outcome_recipe_climate_gates.
+- 2026-07-09T13:41:58+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T13:41:58+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T13:42:00+00:00 - Objective traceability audit requirement_status={'satisfied': 92, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T13:42:04+00:00 - Direct-read audit bundle rows=113 manifest_rows=380.
+- 2026-07-09T13:42:04+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T13:42:06+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T13:42:08+00:00 - Workspace validation complete=320 incomplete_or_failed=0.
+- 2026-07-09T13:53:08+00:00 - Built ALB_2002 climate centroid exposure candidates rows=384 decision=blocked_alb2002_climate_centroid_exposures_not_promoted_due_boundary_vintage_source_and_baseline_gates.
+- 2026-07-09T13:53:08+00:00 - Built ALB_2002 climate shock candidate audit rows=384 decision=blocked_alb2002_climate_shock_candidate_not_promoted_due_geography_baseline_primary_source_gates.
+- 2026-07-09T13:53:08+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T13:53:08+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T13:53:10+00:00 - Objective traceability audit requirement_status={'satisfied': 93, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T13:53:13+00:00 - Direct-read audit bundle rows=114 manifest_rows=386.
+- 2026-07-09T13:53:14+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T13:53:15+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T13:53:17+00:00 - Workspace validation complete=323 incomplete_or_failed=0.
+- 2026-07-09T13:58:59+00:00 - Built ALB_2002 climate outcome linked candidate rows=14396 decision=blocked_alb2002_climate_outcome_linked_candidate_not_promoted_due_recipe_outcome_geography_source_baseline_gates.
+- 2026-07-09T14:07:47+00:00 - Built ALB_2002 CHE candidate outcome audit rows=3599 decision=blocked_alb2002_che_candidate_not_promoted_due_recipe_sdg_climate_gates.
+- 2026-07-09T14:07:48+00:00 - Built ALB_2002 UHC composite candidate audit rows=3599 decision=blocked_alb2002_uhc_composite_candidate_not_promoted_due_outcome_recipe_climate_gates.
+- 2026-07-09T14:07:48+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T14:07:49+00:00 - Built ALB_2002 analysis candidate rows=3599 decision=blocked_alb2002_analysis_candidate_not_promoted_due_recipe_outcome_climate_gates.
+- 2026-07-09T14:07:49+00:00 - Built ALB_2002 climate centroid exposure candidates rows=384 decision=blocked_alb2002_climate_centroid_exposures_not_promoted_due_boundary_vintage_source_and_baseline_gates.
+- 2026-07-09T14:07:50+00:00 - Built ALB_2002 climate shock candidate audit rows=384 decision=blocked_alb2002_climate_shock_candidate_not_promoted_due_geography_baseline_primary_source_gates.
+- 2026-07-09T14:07:51+00:00 - Built ALB_2002 climate outcome linked candidate rows=14396 decision=blocked_alb2002_climate_outcome_linked_candidate_not_promoted_due_recipe_outcome_geography_source_baseline_gates.
+- 2026-07-09T14:07:51+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T14:07:51+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T14:07:53+00:00 - Objective traceability audit requirement_status={'satisfied': 94, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T14:07:58+00:00 - Direct-read audit bundle rows=115 manifest_rows=392.
+- 2026-07-09T14:07:59+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T14:08:00+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T14:08:03+00:00 - Workspace validation complete=326 incomplete_or_failed=0.
+- 2026-07-09T14:12:08+00:00 - Built ALB_2002 linked candidate descriptive screen cell_rows=108 decision=blocked_alb2002_linked_candidate_descriptive_screen_not_promoted_due_unpromoted_inputs.
+- 2026-07-09T14:18:35+00:00 - Built ALB_2002 climate outcome linked candidate rows=14396 decision=blocked_alb2002_climate_outcome_linked_candidate_not_promoted_due_recipe_outcome_geography_source_baseline_gates.
+- 2026-07-09T14:18:35+00:00 - Built ALB_2002 linked candidate descriptive screen cell_rows=108 decision=blocked_alb2002_linked_candidate_descriptive_screen_not_promoted_due_unpromoted_inputs.
+- 2026-07-09T14:18:36+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T14:18:36+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T14:18:37+00:00 - Objective traceability audit requirement_status={'satisfied': 95, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T14:18:42+00:00 - Direct-read audit bundle rows=116 manifest_rows=397.
+- 2026-07-09T14:18:42+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T14:18:44+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T14:18:46+00:00 - Workspace validation complete=329 incomplete_or_failed=0.
+- 2026-07-09T14:22:28+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T14:29:59+00:00 - Built ALB_2002 climate outcome linked candidate rows=14396 decision=blocked_alb2002_climate_outcome_linked_candidate_not_promoted_due_recipe_outcome_geography_source_baseline_gates.
+- 2026-07-09T14:30:00+00:00 - Built ALB_2002 linked candidate descriptive screen cell_rows=108 decision=blocked_alb2002_linked_candidate_descriptive_screen_not_promoted_due_unpromoted_inputs.
+- 2026-07-09T14:30:00+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T14:30:01+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T14:30:01+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T14:30:03+00:00 - Objective traceability audit requirement_status={'satisfied': 96, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T14:30:08+00:00 - Direct-read audit bundle rows=117 manifest_rows=403.
+- 2026-07-09T14:30:10+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T14:30:11+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T14:30:13+00:00 - Workspace validation complete=332 incomplete_or_failed=0.
+- 2026-07-09T14:33:58+00:00 - Built ALB_2002 promotion gate delta rows=10 decision=partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass.
+- 2026-07-09T14:36:33+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T14:36:33+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T14:36:33+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T14:36:33+00:00 - Built ALB_2002 promotion gate delta rows=10 decision=partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass.
+- 2026-07-09T14:36:35+00:00 - Objective traceability audit requirement_status={'satisfied': 97, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T14:36:41+00:00 - Direct-read audit bundle rows=118 manifest_rows=407.
+- 2026-07-09T14:36:42+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T14:36:44+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T14:36:46+00:00 - Workspace validation complete=335 incomplete_or_failed=0.
+- 2026-07-09T14:42:35+00:00 - Built ALB_2002 boundary blocker resolution matrix rows=11 decision=blocked_no_alb2002_boundary_source_ready_for_climate_linkage.
+- 2026-07-09T14:45:38+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T14:45:38+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T14:45:39+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T14:45:39+00:00 - Built ALB_2002 promotion gate delta rows=10 decision=partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass.
+- 2026-07-09T14:45:39+00:00 - Built ALB_2002 boundary blocker resolution matrix rows=11 decision=blocked_no_alb2002_boundary_source_ready_for_climate_linkage.
+- 2026-07-09T14:45:43+00:00 - Direct-read audit bundle rows=119 manifest_rows=411.
+- 2026-07-09T14:45:45+00:00 - Objective traceability audit requirement_status={'satisfied': 98, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T14:45:45+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T14:45:47+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T14:45:49+00:00 - Workspace validation complete=338 incomplete_or_failed=0.
+- 2026-07-09T14:46:14+00:00 - Workspace validation complete=338 incomplete_or_failed=0.
+- 2026-07-09T14:49:02+00:00 - Built ALB_2002 outcome blocker resolution matrix rows=12 decision=blocked_no_alb2002_outcome_ready_for_promotion.
+- 2026-07-09T14:51:49+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T14:51:49+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T14:51:49+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T14:51:49+00:00 - Built ALB_2002 promotion gate delta rows=10 decision=partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass.
+- 2026-07-09T14:51:50+00:00 - Built ALB_2002 boundary blocker resolution matrix rows=11 decision=blocked_no_alb2002_boundary_source_ready_for_climate_linkage.
+- 2026-07-09T14:51:50+00:00 - Built ALB_2002 outcome blocker resolution matrix rows=12 decision=blocked_no_alb2002_outcome_ready_for_promotion.
+- 2026-07-09T14:51:54+00:00 - Direct-read audit bundle rows=120 manifest_rows=415.
+- 2026-07-09T14:51:56+00:00 - Objective traceability audit requirement_status={'satisfied': 99, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T14:51:56+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T14:51:58+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T14:52:00+00:00 - Workspace validation complete=341 incomplete_or_failed=0.
+- 2026-07-09T15:01:27+00:00 - Built ALB_2012 raw core feasibility audit rows=10 decision=temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending.
+- 2026-07-09T15:01:28+00:00 - Built ALB_2012 provisional outcome feasibility audit rows=33 decision=not_final_outcomes_timing_geography_recall_semantics_blocked.
+- 2026-07-09T15:01:29+00:00 - Built ALB_2012 outcome semantics raw value audit rows=61; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-09T15:01:32+00:00 - Built ALB_2012 timing/geography exhaustive audit rows=212 decision=blocked_missing_interview_timing_coarse_prefecture_region_no_gps.
+- 2026-07-09T15:01:33+00:00 - Built ALB_2012 questionnaire timing field audit field_rows=29 raw_gap_rows=12 decision=blocked_questionnaire_timing_fields_not_in_raw_household_values.
+- 2026-07-09T15:01:33+00:00 - Built ALB_2002 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2002_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T15:01:33+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=blocked_no_analysis_ready_dataset_without_verified_recipe_outcomes_climate.
+- 2026-07-09T15:01:33+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T15:01:33+00:00 - Built ALB_2002 promotion gate delta rows=10 decision=partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass.
+- 2026-07-09T15:01:33+00:00 - Built ALB_2002 boundary blocker resolution matrix rows=11 decision=blocked_no_alb2002_boundary_source_ready_for_climate_linkage.
+- 2026-07-09T15:01:33+00:00 - Built ALB_2002 outcome blocker resolution matrix rows=12 decision=blocked_no_alb2002_outcome_ready_for_promotion.
+- 2026-07-09T15:01:33+00:00 - Built ALB_2012 timing/geography blocker resolution matrix rows=10 decision=blocked_alb2012_no_timing_geography_fallback_ready.
+- 2026-07-09T15:02:09+00:00 - Direct-read audit bundle rows=121 manifest_rows=419.
+- 2026-07-09T15:02:11+00:00 - Objective traceability audit requirement_status={'satisfied': 100, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:02:11+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T15:02:12+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:02:14+00:00 - Workspace validation complete=344 incomplete_or_failed=0.
+- 2026-07-09T15:12:20+00:00 - Built ALB_2005 minimum recipe promotion packet actions=6 gates=10 decision=blocked_alb2005_minimum_recipe_not_ready_for_promotion.
+- 2026-07-09T15:12:20+00:00 - Built ALB_2005 public fieldwork/geography metadata audit rows=10 decision=blocked_public_metadata_not_household_climate_linkage_ready.
+- 2026-07-09T15:12:20+00:00 - Built ALB_2005 diary timing candidate audit rows=11 decision=blocked_diary_timing_metadata_candidate_no_raw_merge_semantics.
+- 2026-07-09T15:12:20+00:00 - Built ALB_2005 extracted module coverage audit modules=68 decision=blocked_extracted_package_missing_bookmetadata_and_coordinate_values.
+- 2026-07-09T15:12:20+00:00 - Built Albania first-analysis promotion gate waves=4 decision=blocked_no_albania_wave_ready_for_first_analysis_promotion.
+- 2026-07-09T15:12:20+00:00 - Built ALB_2005 fallback blocker resolution matrix rows=12 decision=blocked_alb2005_no_fallback_ready.
+- 2026-07-09T15:12:21+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T15:12:26+00:00 - Direct-read audit bundle rows=122 manifest_rows=423.
+- 2026-07-09T15:12:28+00:00 - Objective traceability audit requirement_status={'satisfied': 101, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:12:33+00:00 - Direct-read audit bundle rows=122 manifest_rows=423.
+- 2026-07-09T15:12:36+00:00 - Objective traceability audit requirement_status={'satisfied': 101, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:12:36+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T15:12:38+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:12:41+00:00 - Workspace validation complete=347 incomplete_or_failed=0.
+- 2026-07-09T15:22:06+00:00 - Built ALB_2008 household core temp candidate rows=3599.
+- 2026-07-09T15:22:06+00:00 - Built ALB_2008 provisional outcome feasibility audit rows=24 decision=not_final_outcomes_timing_geography_recall_blocked.
+- 2026-07-09T15:22:07+00:00 - Built ALB_2008 outcome semantics raw value audit rows=61; decision=blocked_timing_geography_outcome_semantics_units_recall_skip_patterns.
+- 2026-07-09T15:22:10+00:00 - Built ALB_2008 timing/geography exhaustive audit rows=225 decision=blocked_missing_interview_timing_coarse_geography_no_gps.
+- 2026-07-09T15:22:10+00:00 - Built Albania first-analysis promotion gate waves=4 decision=blocked_no_albania_wave_ready_for_first_analysis_promotion.
+- 2026-07-09T15:22:10+00:00 - Built ALB_2005 fallback blocker resolution matrix rows=12 decision=blocked_alb2005_no_fallback_ready.
+- 2026-07-09T15:22:10+00:00 - Built ALB_2008 fallback blocker resolution matrix rows=10 decision=blocked_alb2008_no_timing_geography_fallback_ready.
+- 2026-07-09T15:22:11+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T15:22:16+00:00 - Direct-read audit bundle rows=123 manifest_rows=427.
+- 2026-07-09T15:22:18+00:00 - Objective traceability audit requirement_status={'satisfied': 102, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:22:23+00:00 - Direct-read audit bundle rows=123 manifest_rows=427.
+- 2026-07-09T15:22:25+00:00 - Objective traceability audit requirement_status={'satisfied': 102, 'blocked_raw_microdata': 8} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:22:26+00:00 - Python environment audit package_rows=27 incomplete_checks=0.
+- 2026-07-09T15:22:27+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:22:29+00:00 - Workspace validation complete=350 incomplete_or_failed=0.
+- 2026-07-09T15:37:06+00:00 - Promoted ALB_2002 limited harmonized household core rows=3599 decision=limited_harmonized_household_core_promoted_outcome_climate_still_blocked.
+- 2026-07-09T15:37:06+00:00 - Outcome construction blocked: limited harmonized core is not final outcome input.
+- 2026-07-09T15:37:06+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=limited_harmonized_core_promoted_outcome_climate_still_blocked.
+- 2026-07-09T15:37:07+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T15:37:07+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T15:37:09+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:37:10+00:00 - Objective traceability audit requirement_status={'satisfied': 103, 'blocked_raw_microdata': 7} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:37:12+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:37:18+00:00 - Direct-read audit bundle rows=123 manifest_rows=434.
+- 2026-07-09T15:37:20+00:00 - Objective traceability audit requirement_status={'satisfied': 103, 'blocked_raw_microdata': 7} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:37:22+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:37:24+00:00 - Workspace validation complete=352 incomplete_or_failed=0.
+- 2026-07-09T15:46:33+00:00 - Promoted limited ALB_2002 climate exposure rows=384 decision=limited_nasa_admin2_centroid_climate_exposures_promoted_linkage_still_blocked.
+- 2026-07-09T15:46:34+00:00 - Climate merge blocked: limited inputs are not final climate-linkage inputs.
+- 2026-07-09T15:46:34+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=limited_harmonized_core_and_climate_exposures_promoted_outcome_linkage_still_blocked.
+- 2026-07-09T15:46:34+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T15:46:34+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T15:46:36+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:46:38+00:00 - Objective traceability audit requirement_status={'satisfied': 104, 'blocked_raw_microdata': 6} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:46:40+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:46:46+00:00 - Direct-read audit bundle rows=123 manifest_rows=440.
+- 2026-07-09T15:46:48+00:00 - Objective traceability audit requirement_status={'satisfied': 104, 'blocked_raw_microdata': 6} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:46:49+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:46:52+00:00 - Workspace validation complete=354 incomplete_or_failed=0.
+- 2026-07-09T15:59:45+00:00 - Promoted limited ALB_2002 financial outcomes rows=3599 decision=limited_che10_che25_financial_outcomes_promoted_sdg_access_climate_still_blocked.
+- 2026-07-09T15:59:45+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=limited_harmonized_core_financial_outcomes_and_climate_exposures_promoted_linkage_still_blocked.
+- 2026-07-09T15:59:45+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T15:59:46+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T15:59:48+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:59:50+00:00 - Objective traceability audit requirement_status={'satisfied': 103, 'incomplete': 2, 'blocked_raw_microdata': 5} guardrail_status={'satisfied': 12}.
+- 2026-07-09T15:59:52+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T15:59:58+00:00 - Direct-read audit bundle rows=123 manifest_rows=447.
+- 2026-07-09T16:00:00+00:00 - Objective traceability audit requirement_status={'satisfied': 103, 'incomplete': 2, 'blocked_raw_microdata': 5} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:00:02+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:00:05+00:00 - Workspace validation complete=356 incomplete_or_failed=0.
+- 2026-07-09T16:00:28+00:00 - Workspace validation complete=356 incomplete_or_failed=0.
+- 2026-07-09T16:12:55+00:00 - Promoted limited ALB_2002 climate-linked rows=14396 decision=limited_che_outcome_nasa_admin2_climate_linked_promoted_models_still_blocked.
+- 2026-07-09T16:13:19+00:00 - Descriptive diagnostics blocked: blocked_limited_climate_linked_not_descriptive_ready - Input carries data_use_limit=climate_linked_che_diagnostic_only_not_for_descriptive_ml_causal_or_policy_analysis.
+- 2026-07-09T16:13:20+00:00 - Predictive ML blocked: blocked_limited_climate_linked_not_predictive_ready - Input carries data_use_limit=climate_linked_che_diagnostic_only_not_for_descriptive_ml_causal_or_policy_analysis.
+- 2026-07-09T16:13:21+00:00 - Reduced-form models blocked: blocked_limited_climate_linked_not_reduced_form_ready - Input carries data_use_limit=climate_linked_che_diagnostic_only_not_for_descriptive_ml_causal_or_policy_analysis.
+- 2026-07-09T16:13:21+00:00 - Robustness audit wrote result rows=0.
+- 2026-07-09T16:13:40+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked.
+- 2026-07-09T16:13:40+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T16:13:41+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T16:13:43+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:13:48+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:13:54+00:00 - Direct-read audit bundle rows=123 manifest_rows=453.
+- 2026-07-09T16:13:58+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:14:46+00:00 - Objective traceability audit requirement_status={'satisfied': 104, 'blocked_raw_microdata': 5, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:14:48+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:14:55+00:00 - Direct-read audit bundle rows=123 manifest_rows=453.
+- 2026-07-09T16:14:57+00:00 - Objective traceability audit requirement_status={'satisfied': 104, 'blocked_raw_microdata': 5, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:14:59+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:15:05+00:00 - Workspace validation complete=358 incomplete_or_failed=0.
+- 2026-07-09T16:18:09+00:00 - Promoted limited ALB_2002 climate-linked rows=14396 decision=limited_che_outcome_nasa_admin2_climate_linked_promoted_models_still_blocked.
+- 2026-07-09T16:18:09+00:00 - Descriptive diagnostics wrote prevalence rows=2 and pass_count=0.
+- 2026-07-09T16:18:10+00:00 - Predictive ML blocked: blocked_limited_climate_linked_not_predictive_ready - Input carries data_use_limit=climate_linked_che_diagnostic_only_not_for_promoted_descriptive_ml_causal_or_policy_analysis.
+- 2026-07-09T16:18:10+00:00 - Reduced-form models blocked: blocked_limited_climate_linked_not_reduced_form_ready - Input carries data_use_limit=climate_linked_che_diagnostic_only_not_for_promoted_descriptive_ml_causal_or_policy_analysis.
+- 2026-07-09T16:18:11+00:00 - Robustness audit wrote result rows=0.
+- 2026-07-09T16:18:25+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked.
+- 2026-07-09T16:18:25+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T16:18:26+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T16:18:28+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:18:31+00:00 - Objective traceability audit requirement_status={'satisfied': 105, 'blocked_raw_microdata': 4, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:18:33+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:18:40+00:00 - Direct-read audit bundle rows=122 manifest_rows=453.
+- 2026-07-09T16:18:43+00:00 - Objective traceability audit requirement_status={'satisfied': 105, 'blocked_raw_microdata': 4, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:18:45+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:19:02+00:00 - Workspace validation complete=358 incomplete_or_failed=0.
+- 2026-07-09T16:21:29+00:00 - Predictive ML status=complete limited diagnostic only; not deployable or transportable; metric rows=30.
+- 2026-07-09T16:23:27+00:00 - Predictive ML status=complete limited diagnostic only; not deployable or transportable; metric rows=30.
+- 2026-07-09T16:23:45+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked.
+- 2026-07-09T16:23:47+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T16:23:50+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T16:23:55+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:24:00+00:00 - Objective traceability audit requirement_status={'satisfied': 106, 'blocked_raw_microdata': 3, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:24:04+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:24:14+00:00 - Direct-read audit bundle rows=121 manifest_rows=453.
+- 2026-07-09T16:24:19+00:00 - Objective traceability audit requirement_status={'satisfied': 106, 'blocked_raw_microdata': 3, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:24:23+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:25:22+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:25:28+00:00 - Objective traceability audit requirement_status={'satisfied': 106, 'blocked_raw_microdata': 3, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:25:33+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:25:42+00:00 - Direct-read audit bundle rows=121 manifest_rows=453.
+- 2026-07-09T16:25:48+00:00 - Objective traceability audit requirement_status={'satisfied': 106, 'blocked_raw_microdata': 3, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:25:53+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:26:05+00:00 - Workspace validation complete=358 incomplete_or_failed=0.
+- 2026-07-09T16:28:21+00:00 - Reduced-form model stage wrote estimates=88.
+- 2026-07-09T16:29:16+00:00 - Robustness audit wrote result rows=18.
+- 2026-07-09T16:29:31+00:00 - Causal ML/policy learning audit wrote 1 row(s).
+- 2026-07-09T16:29:35+00:00 - Built analysis dataset promotion barrier audit rows=6 decision=limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked.
+- 2026-07-09T16:29:41+00:00 - Built current design scorecard rows=38 decision=fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning.
+- 2026-07-09T16:29:44+00:00 - Empirical readiness dashboard rows=23 no_go_rows=8.
+- 2026-07-09T16:29:50+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:29:56+00:00 - Objective traceability audit requirement_status={'satisfied': 108, 'blocked_raw_microdata': 1, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:30:01+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:30:10+00:00 - Direct-read audit bundle rows=119 manifest_rows=453.
+- 2026-07-09T16:30:15+00:00 - Objective traceability audit requirement_status={'satisfied': 108, 'blocked_raw_microdata': 1, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:30:21+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:30:27+00:00 - Workspace validation complete=358 incomplete_or_failed=0.
+- 2026-07-09T16:31:46+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:31:56+00:00 - Direct-read audit bundle rows=119 manifest_rows=453.
+- 2026-07-09T16:32:03+00:00 - Objective traceability audit requirement_status={'satisfied': 108, 'blocked_raw_microdata': 1, 'incomplete': 1} guardrail_status={'satisfied': 12}.
+- 2026-07-09T16:32:08+00:00 - Wrote evidence-based reports and completion criteria audit.
+- 2026-07-09T16:32:17+00:00 - Workspace validation complete=358 incomplete_or_failed=0.
+- 2026-07-09T17:43:26+00:00 - Built country-wave promotion registry rows=24 promoted=0.
+- 2026-07-09T17:46:46+00:00 - Built country-wave promotion registry rows=24 promoted=0.
+- 2026-07-09T17:46:56+00:00 - Direct-read audit bundle rows=119 manifest_rows=457.
+- 2026-07-09T17:47:01+00:00 - Workspace validation complete=361 incomplete_or_failed=0.
+- 2026-07-09T17:48:54+00:00 - Built country-wave promotion registry rows=24 promoted=0.
+- 2026-07-09T17:49:00+00:00 - Direct-read audit bundle rows=119 manifest_rows=458.
+- 2026-07-09T17:49:03+00:00 - Workspace validation complete=361 incomplete_or_failed=0.
+- 2026-07-09T17:51:53+00:00 - Workspace validation complete=361 incomplete_or_failed=0.
+- 2026-07-09T18:02:09+00:00 - Built priority promotion acquisition plan waves=13 file_queue=156.
+- 2026-07-09T18:02:16+00:00 - Direct-read audit bundle rows=119 manifest_rows=462.
+- 2026-07-09T18:02:32+00:00 - Workspace validation complete=364 incomplete_or_failed=0.
+- 2026-07-09T18:08:48+00:00 - Probed priority official raw access pages rows=13.
+- 2026-07-09T18:09:00+00:00 - Direct-read audit bundle rows=119 manifest_rows=465.
+- 2026-07-09T18:10:43+00:00 - Direct-read audit bundle rows=119 manifest_rows=465.
+- 2026-07-09T18:10:48+00:00 - Workspace validation complete=367 incomplete_or_failed=0.
+- 2026-07-09T18:19:55+00:00 - Built priority raw intake gate waves=13 file_targets=156.
+- 2026-07-09T18:20:16+00:00 - Direct-read audit bundle rows=120 manifest_rows=470.
+- 2026-07-09T18:20:21+00:00 - Workspace validation complete=370 incomplete_or_failed=0.
+- 2026-07-09T18:30:41+00:00 - Built priority climate linkage preflight waves=13 requirements=143.
+- 2026-07-09T18:31:34+00:00 - Direct-read audit bundle rows=121 manifest_rows=475.
+- 2026-07-09T18:32:10+00:00 - Workspace validation complete=373 incomplete_or_failed=0.
+- 2026-07-09T18:41:35+00:00 - Built priority raw verification workbook dataset_rows=13 requirement_rows=104 concept_rows=169 variable_rows=1214.
+- 2026-07-09T18:41:56+00:00 - Direct-read audit bundle rows=122 manifest_rows=482.
+- 2026-07-09T18:42:04+00:00 - Workspace validation complete=376 incomplete_or_failed=0.
+- 2026-07-09T18:54:10+00:00 - Promoted data gate promoted_rows=0 before=4 after=0 quarantined=4.
+- 2026-07-09T18:54:10+00:00 - Built country-wave promotion registry rows=24 promoted=0.
+- 2026-07-09T18:54:15+00:00 - Direct-read audit bundle rows=123 manifest_rows=487.
+- 2026-07-09T18:54:17+00:00 - Workspace validation complete=379 incomplete_or_failed=0.
+- 2026-07-09T19:06:03+00:00 - Priority archive member preflight targets=156 archive_member_rows=0.
+- 2026-07-09T19:06:08+00:00 - Direct-read audit bundle rows=124 manifest_rows=492.
+- 2026-07-09T19:06:10+00:00 - Workspace validation complete=382 incomplete_or_failed=0.
+- 2026-07-09T19:18:20+00:00 - Built priority raw verification workbook dataset_rows=13 requirement_rows=104 concept_rows=169 variable_rows=1214.
+- 2026-07-09T19:18:22+00:00 - Built priority manual verification decision gate datasets=13 requirements=104 concepts=169 variables=1214.
+- 2026-07-09T19:18:28+00:00 - Direct-read audit bundle rows=125 manifest_rows=499.
+- 2026-07-09T19:18:30+00:00 - Workspace validation complete=385 incomplete_or_failed=0.
+- 2026-07-09T19:26:26+00:00 - Built priority raw package receipt ledger datasets=13 original_files=13 missing_targets=156.
+- 2026-07-09T19:26:47+00:00 - Built priority raw package receipt ledger datasets=13 original_files=13 missing_targets=156.
+- 2026-07-09T19:27:03+00:00 - Built priority raw package receipt ledger datasets=13 original_files=0 missing_targets=156.
+- 2026-07-09T19:29:05+00:00 - Built priority raw verification workbook dataset_rows=13 requirement_rows=104 concept_rows=169 variable_rows=1214.
+- 2026-07-09T19:29:05+00:00 - Built priority manual verification decision gate datasets=13 requirements=104 concepts=169 variables=1214.
+- 2026-07-09T19:29:05+00:00 - Built priority raw package receipt ledger datasets=13 original_files=0 missing_targets=156.
+- 2026-07-09T19:29:09+00:00 - Direct-read audit bundle rows=126 manifest_rows=505.
+- 2026-07-09T19:29:11+00:00 - Workspace validation complete=388 incomplete_or_failed=0.
+- 2026-07-09T19:34:32+00:00 - Built priority official download dossier datasets=13 full_file_rows=965 links=100.
+- 2026-07-09T19:36:26+00:00 - Built priority raw package receipt ledger datasets=13 original_files=0 missing_targets=156.
+- 2026-07-09T19:36:26+00:00 - Built priority official download dossier datasets=13 full_file_rows=965 links=100.
+- 2026-07-09T19:36:30+00:00 - Direct-read audit bundle rows=127 manifest_rows=511.
+- 2026-07-09T19:36:32+00:00 - Workspace validation complete=391 incomplete_or_failed=0.
+- 2026-07-09T19:42:38+00:00 - Built priority analysis dataset synthesis blueprint schema_rows=572 join_rows=13.
+- 2026-07-09T19:44:25+00:00 - Built priority raw package receipt ledger datasets=13 original_files=0 missing_targets=156.
+- 2026-07-09T19:44:25+00:00 - Built priority official download dossier datasets=13 full_file_rows=965 links=100.
+- 2026-07-09T19:44:25+00:00 - Built priority analysis dataset synthesis blueprint schema_rows=572 join_rows=13.
+- 2026-07-09T19:44:30+00:00 - Direct-read audit bundle rows=128 manifest_rows=516.
+- 2026-07-09T19:44:33+00:00 - Workspace validation complete=394 incomplete_or_failed=0.
+- 2026-07-09T19:54:47+00:00 - Built priority public documentation receipt datasets=13 resources=78 saved=76.
+- 2026-07-09T19:57:05+00:00 - Built priority public documentation receipt datasets=13 resources=78 saved=76.
+- 2026-07-09T19:57:09+00:00 - Direct-read audit bundle rows=129 manifest_rows=521.
+- 2026-07-09T19:57:11+00:00 - Workspace validation complete=397 incomplete_or_failed=0.
+- 2026-07-09T20:02:58+00:00 - Built priority country-wave promotion packets packets=13 gates=143 actions=13.
+- 2026-07-09T20:05:13+00:00 - Built priority country-wave promotion packets packets=13 gates=143 actions=13.
+- 2026-07-09T20:05:18+00:00 - Direct-read audit bundle rows=130 manifest_rows=527.
+- 2026-07-09T20:05:20+00:00 - Workspace validation complete=400 incomplete_or_failed=0.
+- 2026-07-09T20:11:14+00:00 - Built priority official metadata evidence extract variables=1214 categories=8107 datasets=13.
+- 2026-07-09T20:12:04+00:00 - Built priority official metadata evidence extract variables=1214 categories=4811 datasets=13.
+- 2026-07-09T20:12:35+00:00 - Built priority official metadata evidence extract variables=1214 categories=4811 datasets=13.
+- 2026-07-09T20:19:12+00:00 - Built priority official metadata evidence extract variables=1214 categories=4512 datasets=13.
+- 2026-07-09T20:19:33+00:00 - Built priority country-wave promotion packets packets=13 gates=156 actions=13.
+- 2026-07-09T20:19:41+00:00 - Direct-read audit bundle rows=131 manifest_rows=533.
+- 2026-07-09T20:19:47+00:00 - Workspace validation complete=403 incomplete_or_failed=0.
+- 2026-07-09T20:30:22+00:00 - Built priority credentialed raw acquisition ledger datasets=13 full_files=965 core_files=156.
+- 2026-07-09T20:30:26+00:00 - Built priority country-wave promotion packets packets=13 gates=169 actions=13.
+- 2026-07-09T20:30:35+00:00 - Direct-read audit bundle rows=132 manifest_rows=539.
+- 2026-07-09T20:30:41+00:00 - Workspace validation complete=406 incomplete_or_failed=0.
+- 2026-07-09T20:40:01+00:00 - Built priority official endpoint matrix endpoints=104 datasets=13.
+- 2026-07-09T20:46:52+00:00 - Built priority official endpoint matrix endpoints=104 datasets=13.
+- 2026-07-09T20:49:02+00:00 - Built priority official endpoint matrix endpoints=104 datasets=13.
+- 2026-07-09T20:49:07+00:00 - Built priority country-wave promotion packets packets=13 gates=182 actions=13.
+- 2026-07-09T20:49:12+00:00 - Direct-read audit bundle rows=133 manifest_rows=544.
+- 2026-07-09T20:49:18+00:00 - Workspace validation complete=409 incomplete_or_failed=0.
+- 2026-07-09T21:01:01+00:00 - Built priority core file endpoint matrix rows=780 datasets=13.
+- 2026-07-09T21:03:18+00:00 - Workspace validation complete=412 incomplete_or_failed=0.
+- 2026-07-09T21:03:20+00:00 - Direct-read audit bundle rows=134 manifest_rows=549.
+- 2026-07-09T21:03:30+00:00 - Workspace validation complete=412 incomplete_or_failed=0.
+- 2026-07-09T21:09:31+00:00 - Built priority threshold acquisition campaign rows=13 countries=8.
+- 2026-07-09T21:11:39+00:00 - Built priority threshold acquisition campaign rows=13 countries=8.
+- 2026-07-09T21:11:48+00:00 - Direct-read audit bundle rows=135 manifest_rows=554.
+- 2026-07-09T21:11:50+00:00 - Workspace validation complete=415 incomplete_or_failed=0.
+- 2026-07-09T21:22:10+00:00 - Built priority first-pass variable review queue rows=465 requirements=104.
+- 2026-07-09T21:22:15+00:00 - Direct-read audit bundle rows=136 manifest_rows=559.
+- 2026-07-09T21:22:17+00:00 - Workspace validation complete=418 incomplete_or_failed=0.
+- 2026-07-09T21:22:59+00:00 - Built priority threshold acquisition campaign rows=13 countries=8.
+- 2026-07-09T21:22:59+00:00 - Built priority first-pass variable review queue rows=465 requirements=104.
+- 2026-07-09T21:23:04+00:00 - Direct-read audit bundle rows=136 manifest_rows=559.
+- 2026-07-09T21:23:06+00:00 - Workspace validation complete=418 incomplete_or_failed=0.

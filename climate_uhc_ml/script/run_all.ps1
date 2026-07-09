@@ -48,6 +48,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/137_probe_priority_official_endpoint_matrix.py
 & $Python script/138_probe_priority_core_file_endpoint_matrix.py
 & $Python script/139_build_priority_threshold_acquisition_campaign.py
+& $Python script/140_build_priority_first_pass_variable_review_queue.py
 & $Python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 & $Python script/134_build_priority_country_wave_promotion_packets.py
 & $Python script/127_enforce_promoted_data_gate.py
