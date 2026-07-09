@@ -318,6 +318,7 @@ REQUIRED_SCRIPTS = [
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
+    "151_refresh_refocused_promoted_country_wave_registry.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -3923,6 +3924,13 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     )
     promotion_registry = read_csv_dicts(RESULT_DIR / "promoted_country_wave_registry.csv")
     promotion_summary = read_csv_dicts(RESULT_DIR / "country_wave_promotion_summary.csv")
+    refocused_queue = read_csv_dicts(TEMP_DIR / "priority_lsms_isa_refocused_acquisition_queue.csv")
+    registry_ids = {row.get("idno", "") for row in promotion_registry if row.get("idno")}
+    refocused_ids = {row.get("idno", "") for row in refocused_queue if row.get("idno")}
+    refocused_registry_coverage = len(registry_ids & refocused_ids)
+    refocused_missing = len(refocused_ids - registry_ids)
+    registry_extra_non_refocused = len(registry_ids - refocused_ids)
+    albania_main_rows = sum(1 for row in promotion_registry if row.get("country") == "Albania")
     promoted_rows = sum(1 for row in promotion_registry if row.get("analysis_ready_status") == "promoted_analysis_ready")
     priority_rows = sum(1 for row in promotion_registry if row.get("priority_country") == "1")
     packet_count = len(list((REPORT_DIR / "country_wave_promotion_packets").glob("*.md"))) if (REPORT_DIR / "country_wave_promotion_packets").exists() else 0
@@ -3937,17 +3945,25 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
             and counts["country_wave_promotion_summary"] > 0
             and counts["priority_country_wave_download_queue"] > 0
             and packet_count > 0
+            and refocused_registry_coverage >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+            and refocused_missing == 0
+            and registry_extra_non_refocused == 0
+            and albania_main_rows == 0
             and modeling_gate == "blocked"
         ),
-        f"registry_rows={counts['promoted_country_wave_registry']}; gate_rows={counts['country_wave_promotion_gate_audit']}; summary_rows={counts['country_wave_promotion_summary']}; queue_rows={counts['priority_country_wave_download_queue']}; priority_rows={priority_rows}; promoted_rows={promoted_rows}; packets={packet_count}; modeling_gate={modeling_gate}",
+        f"registry_rows={counts['promoted_country_wave_registry']}; gate_rows={counts['country_wave_promotion_gate_audit']}; summary_rows={counts['country_wave_promotion_summary']}; queue_rows={counts['priority_country_wave_download_queue']}; priority_rows={priority_rows}; promoted_rows={promoted_rows}; packets={packet_count}; refocused_coverage={refocused_registry_coverage}; refocused_missing={refocused_missing}; registry_extra_non_refocused={registry_extra_non_refocused}; albania_main_rows={albania_main_rows}; modeling_gate={modeling_gate}",
         ""
         if counts["promoted_country_wave_registry"] > 0
         and counts["country_wave_promotion_gate_audit"] > 0
         and counts["country_wave_promotion_summary"] > 0
         and counts["priority_country_wave_download_queue"] > 0
         and packet_count > 0
+        and refocused_registry_coverage >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and refocused_missing == 0
+        and registry_extra_non_refocused == 0
+        and albania_main_rows == 0
         and modeling_gate == "blocked"
-        else "Run script/121_build_country_wave_promotion_registry.py and keep modeling blocked until registry thresholds pass.",
+        else "Run script/151_refresh_refocused_promoted_country_wave_registry.py after the LSMS/ISA promotion packets and keep modeling blocked until registry thresholds pass.",
     )
     priority_acq_summary = read_csv_dicts(RESULT_DIR / "priority_promotion_acquisition_summary.csv")
     priority_batch_rows = safe_int(next((row.get("value", "0") for row in priority_acq_summary if row.get("metric") == "priority_10_wave_batch_rows"), "0"), 0)

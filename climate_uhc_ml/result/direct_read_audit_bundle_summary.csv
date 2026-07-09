@@ -1,14 +1,14 @@
 ﻿metric,value,interpretation
 bundle_rows,146,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,618,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,614,Curated artifacts present and non-empty.
+manifest_rows,619,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,615,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
 analysis_ready_data_files,0,"Dataset-like files currently present in data/, excluding README/.gitkeep."
 promoted_data_gate_status,closed_no_promoted_rows,Current promoted-data write gate status.
 promoted_data_gate_registry_promoted_rows,0,Registry rows currently allowed to write promoted datasets into data/.
-promoted_data_gate_quarantined_files,4,Pre-promotion diagnostic files moved from data/ to temp/.
+promoted_data_gate_quarantined_files,0,Pre-promotion diagnostic files moved from data/ to temp/.
 priority_lsms_isa_public_documentation_dataset_rows,19,Refocused LSMS/ISA waves covered by the public documentation receipt.
 priority_lsms_isa_public_documentation_core_complete_rows,19,Refocused LSMS/ISA waves with all core public metadata/documentation resources saved.
 priority_lsms_isa_public_documentation_file_inventory_rows,1597,Official DDI file-description rows extracted into a compact GPT-readable table.

@@ -560,6 +560,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/134_build_priority_country_wave_promotion_packets.py", "priority country-wave promotion packet generator"),
     ("reproducibility", "script/148_build_priority_lsms_isa_country_wave_promotion_packets.py", "priority LSMS/ISA country-wave promotion packet generator"),
+    ("reproducibility", "script/151_refresh_refocused_promoted_country_wave_registry.py", "refocused LSMS/ISA promoted registry refresher"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
     ("reproducibility", "script/41_build_first_batch_public_documentation_audit.py", "first-batch public documentation audit generator"),
     ("reproducibility", "script/42_build_first_batch_file_source_traceability.py", "first-batch file source traceability generator"),

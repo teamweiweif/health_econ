@@ -1579,3 +1579,7 @@
 - 2026-07-09T23:13:04+00:00 - Built priority LSMS/ISA raw package receipt checklist datasets=19 requirements=152.
 - 2026-07-09T23:13:17+00:00 - Direct-read audit bundle rows=146 manifest_rows=618.
 - 2026-07-09T23:13:19+00:00 - Workspace validation complete=448 incomplete_or_failed=0.
+- 2026-07-09T23:21:26+00:00 - Refreshed promoted country-wave registry to refocused LSMS/ISA queue rows=19 gates=361.
+- 2026-07-09T23:21:26+00:00 - Promoted data gate promoted_rows=0 before=0 after=0 quarantined=0.
+- 2026-07-09T23:21:31+00:00 - Direct-read audit bundle rows=146 manifest_rows=619.
+- 2026-07-09T23:21:33+00:00 - Workspace validation complete=449 incomplete_or_failed=0.
