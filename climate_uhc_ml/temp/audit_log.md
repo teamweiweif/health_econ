@@ -1586,3 +1586,9 @@
 - 2026-07-09T23:29:43+00:00 - Built priority LSMS/ISA credentialed raw acquisition workbench datasets=19 core_files=629.
 - 2026-07-09T23:29:49+00:00 - Direct-read audit bundle rows=147 manifest_rows=625.
 - 2026-07-09T23:29:51+00:00 - Workspace validation complete=452 incomplete_or_failed=0.
+- 2026-07-09T23:38:18+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-09T23:38:48+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-09T23:42:12+00:00 - Built priority LSMS/ISA credentialed raw acquisition workbench datasets=19 core_files=629.
+- 2026-07-09T23:42:12+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-09T23:42:17+00:00 - Direct-read audit bundle rows=148 manifest_rows=631.
+- 2026-07-09T23:42:19+00:00 - Workspace validation complete=455 incomplete_or_failed=0.

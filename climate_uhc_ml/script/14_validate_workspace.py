@@ -154,6 +154,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_raw_value_verification_workbook.md",
     "priority_lsms_isa_raw_package_receipt_checklist.md",
     "priority_lsms_isa_credentialed_raw_acquisition_workbench.md",
+    "priority_lsms_isa_official_file_receipt_validator.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -317,6 +318,7 @@ REQUIRED_SCRIPTS = [
     "149_build_priority_lsms_isa_raw_value_verification_workbook.py",
     "150_build_priority_lsms_isa_raw_package_receipt_checklist.py",
     "152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py",
+    "153_validate_priority_lsms_isa_official_file_receipt.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
@@ -817,6 +819,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_credentialed_raw_full_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_raw_full_file_manifest.csv"),
         "priority_lsms_isa_credentialed_raw_core_file_checklist": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_raw_core_file_checklist.csv"),
         "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary": row_count(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv"),
+        "priority_lsms_isa_official_file_receipt_validation": row_count(TEMP_DIR / "priority_lsms_isa_official_file_receipt_validation.csv"),
+        "priority_lsms_isa_official_file_receipt_file_match": row_count(TEMP_DIR / "priority_lsms_isa_official_file_receipt_file_match.csv"),
+        "priority_lsms_isa_official_file_receipt_core_match": row_count(TEMP_DIR / "priority_lsms_isa_official_file_receipt_core_match.csv"),
+        "priority_lsms_isa_official_file_receipt_validator_summary": row_count(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -5036,6 +5042,44 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_credentialed_gate_ok),
         f"workbench_rows={counts['priority_lsms_isa_credentialed_raw_acquisition_workbench']}; full_file_rows={counts['priority_lsms_isa_credentialed_raw_full_file_manifest']}; core_file_rows={counts['priority_lsms_isa_credentialed_raw_core_file_checklist']}; summary_rows={counts['priority_lsms_isa_credentialed_raw_acquisition_workbench_summary']}; reported_datasets={priority_lsms_credentialed_datasets}; reported_full_files={priority_lsms_credentialed_full_files}; reported_core_files={priority_lsms_credentialed_core_files}; access_gate={priority_lsms_credentialed_access_gate}; package_received={priority_lsms_credentialed_received}; targets_missing={priority_lsms_credentialed_targets_missing}; handoffs={priority_lsms_credentialed_handoffs}; data_write={priority_lsms_credentialed_data_write}; modeling_gate={priority_lsms_credentialed_modeling_gate}",
         "" if priority_lsms_credentialed_gate_ok else "Run script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py after public documentation, variable evidence, and receipt checklist outputs are current.",
+    )
+    priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
+    priority_lsms_official_file_receipt_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_dataset_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_expected = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_expected_file_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_expected_matched = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_expected_file_matched_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_expected_missing = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_expected_file_missing_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_core = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_core_file_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_core_matched = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_core_file_matched_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_core_missing = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_core_file_missing_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_core_complete = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_core_complete_dataset_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_complete = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_complete_dataset_rows"), "0"), 0)
+    priority_lsms_official_file_receipt_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_handoff_readmes_written"), "0"), 0)
+    priority_lsms_official_file_receipt_data_write = next((row.get("value", "") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "priority_lsms_official_file_receipt_data_write_status"), "")
+    priority_lsms_official_file_receipt_modeling_gate = next((row.get("value", "") for row in priority_lsms_official_file_receipt_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_official_file_receipt_gate_ok = (
+        counts["priority_lsms_isa_official_file_receipt_validation"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_official_file_receipt_file_match"] >= counts["priority_lsms_isa_credentialed_raw_full_file_manifest"]
+        and counts["priority_lsms_isa_official_file_receipt_core_match"] >= counts["priority_lsms_isa_credentialed_raw_core_file_checklist"]
+        and counts["priority_lsms_isa_official_file_receipt_validator_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_official_file_receipt_validator.md")
+        and priority_lsms_official_file_receipt_datasets == counts["priority_lsms_isa_official_file_receipt_validation"]
+        and priority_lsms_official_file_receipt_expected == counts["priority_lsms_isa_official_file_receipt_file_match"]
+        and priority_lsms_official_file_receipt_core == counts["priority_lsms_isa_official_file_receipt_core_match"]
+        and priority_lsms_official_file_receipt_expected_matched + priority_lsms_official_file_receipt_expected_missing == priority_lsms_official_file_receipt_expected
+        and priority_lsms_official_file_receipt_core_matched + priority_lsms_official_file_receipt_core_missing == priority_lsms_official_file_receipt_core
+        and priority_lsms_official_file_receipt_core_complete <= priority_lsms_official_file_receipt_datasets
+        and priority_lsms_official_file_receipt_complete <= priority_lsms_official_file_receipt_datasets
+        and priority_lsms_official_file_receipt_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_official_file_receipt_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_official_file_receipt_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA official file receipt validator compares local package contents against official DDI file names before raw-value review",
+        status(priority_lsms_official_file_receipt_gate_ok),
+        f"validation_rows={counts['priority_lsms_isa_official_file_receipt_validation']}; file_match_rows={counts['priority_lsms_isa_official_file_receipt_file_match']}; core_match_rows={counts['priority_lsms_isa_official_file_receipt_core_match']}; summary_rows={counts['priority_lsms_isa_official_file_receipt_validator_summary']}; reported_datasets={priority_lsms_official_file_receipt_datasets}; expected_files={priority_lsms_official_file_receipt_expected}; expected_matched={priority_lsms_official_file_receipt_expected_matched}; expected_missing={priority_lsms_official_file_receipt_expected_missing}; core_files={priority_lsms_official_file_receipt_core}; core_matched={priority_lsms_official_file_receipt_core_matched}; core_missing={priority_lsms_official_file_receipt_core_missing}; core_complete={priority_lsms_official_file_receipt_core_complete}; complete={priority_lsms_official_file_receipt_complete}; handoffs={priority_lsms_official_file_receipt_handoffs}; data_write={priority_lsms_official_file_receipt_data_write}; modeling_gate={priority_lsms_official_file_receipt_modeling_gate}",
+        "" if priority_lsms_official_file_receipt_gate_ok else "Run script/153_validate_priority_lsms_isa_official_file_receipt.py after raw package intake, archive preflight, and credentialed acquisition workbench outputs are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

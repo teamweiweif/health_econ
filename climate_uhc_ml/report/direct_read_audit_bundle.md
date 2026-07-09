@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 147 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 625 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 621 | Curated artifacts present and non-empty. |
+| bundle_rows | 148 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 631 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 627 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -38,6 +38,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_credentialed_workbench_dataset_rows | 19 | Credentialed raw acquisition workbench dataset rows. |
 | priority_lsms_isa_credentialed_workbench_core_file_rows | 629 | Core file rows to confirm after official package download. |
 | priority_lsms_isa_credentialed_workbench_package_received_rows | 0 | Credentialed workbench waves with original package receipt evidence. |
+| priority_lsms_isa_official_file_receipt_expected_file_rows | 1597 | Official DDI files expected after package receipt. |
+| priority_lsms_isa_official_file_receipt_expected_file_matched_rows | 0 | Expected official DDI files matched locally. |
+| priority_lsms_isa_official_file_receipt_core_file_missing_rows | 629 | Core expected files still missing locally. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 323 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 0 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -489,7 +492,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 38 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 39 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -544,6 +547,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_no_alb2002_boundary_source_ready_for_climate_linkage | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_alb2002_outcome_ready_for_promotion | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_albania_wave_ready_for_first_analysis_promotion | 1 | Direct-read bundle status count. |
+| bundle_status_blocked_no_original_package | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_public_2002_district_boundary_source_verified | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_raw_or_archive_file | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_official_access_required_no_original_package | 1 | Direct-read bundle status count. |
@@ -613,7 +617,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 38 |
+| priority_bundle | 39 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -670,6 +674,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | workbook_ready_blocked_no_original_files | 1 |
 | receipt_checklist_ready_no_original_files | 1 |
 | ready_for_manual_credentialed_download | 1 |
+| blocked_no_original_package | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | closed_no_promoted_rows | 1 |
 | raw_archives_available_requires_value_verification | 1 |
@@ -778,7 +783,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 621 |
+| present_nonempty | 627 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

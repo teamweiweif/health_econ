@@ -298,6 +298,7 @@ promotion:
 	$(PYTHON) script/149_build_priority_lsms_isa_raw_value_verification_workbook.py
 	$(PYTHON) script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py
 	$(PYTHON) script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py
+	$(PYTHON) script/153_validate_priority_lsms_isa_official_file_receipt.py
 	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/134_build_priority_country_wave_promotion_packets.py
 	$(PYTHON) script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
