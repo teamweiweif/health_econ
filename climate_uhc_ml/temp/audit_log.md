@@ -1537,3 +1537,6 @@
 - 2026-07-09T21:32:25+00:00 - Built priority download execution packet rows=13 file_acceptance_rows=156.
 - 2026-07-09T21:32:30+00:00 - Direct-read audit bundle rows=137 manifest_rows=564.
 - 2026-07-09T21:32:32+00:00 - Workspace validation complete=421 incomplete_or_failed=0.
+- 2026-07-09T21:44:23+00:00 - Built priority LSMS-ISA alignment audit rows=13 candidates=17.
+- 2026-07-09T21:44:28+00:00 - Direct-read audit bundle rows=138 manifest_rows=569.
+- 2026-07-09T21:44:29+00:00 - Workspace validation complete=424 incomplete_or_failed=0.

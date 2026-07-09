@@ -1,0 +1,20 @@
+﻿metric,value,interpretation
+priority_lsms_alignment_current_campaign_rows,13,Current priority/backup campaign rows audited for LSMS/ISA alignment.
+priority_lsms_alignment_core_priority_wave_rows,10,Core 10-wave campaign rows.
+priority_lsms_alignment_backup_wave_rows,3,Backup wave rows outside the five-country LSMS/ISA core requirement.
+priority_lsms_alignment_required_priority_countries,5,Required priority countries from the LSMS/ISA-centered goal.
+priority_lsms_alignment_current_required_countries,5,Required priority countries represented in the current core campaign.
+priority_lsms_alignment_aligned_core_wave_rows,8,Current core rows that are family-aligned with LSMS/ISA or LSMS-style panels.
+priority_lsms_alignment_off_family_core_wave_rows,2,Current core rows that should not be used as the LSMS/ISA main sample without replacement or augmentation.
+priority_lsms_alignment_off_family_core_country_rows,2,Core priority countries affected by off-family current waves.
+priority_lsms_alignment_replacement_candidate_rows,17,Candidate rows found for replacing or documenting off-family Malawi/Uganda waves.
+priority_lsms_alignment_strong_replacement_candidate_rows,15,Strong LSMS/ISA replacement candidates not already selected in the current campaign.
+priority_lsms_alignment_inventory_gap_rows,0,Off-family core countries without a strong LSMS/ISA replacement in the current screening inventory.
+priority_lsms_alignment_inventory_gap_countries,,Countries requiring new inventory search if non-empty.
+priority_lsms_alignment_handoff_readmes_written,13,Per-wave alignment handoff files written under temp/raw_downloads.
+priority_lsms_alignment_campaign_decision,needs_core_wave_replacement_before_manual_download_execution,Campaign-level family-alignment decision before credentialed downloads.
+modeling_gate_status,blocked,Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass.
+priority_lsms_alignment_status_aligned_lsms_isa_or_lsms_panel,8,Current campaign row status count.
+priority_lsms_alignment_status_backup_not_core_five_country_requirement,3,Current campaign row status count.
+priority_lsms_alignment_status_off_family_needs_lsms_isa_replacement_or_augmentation,1,Current campaign row status count.
+priority_lsms_alignment_status_off_family_needs_unps_lsms_isa_replacement_or_augmentation,1,Current campaign row status count.

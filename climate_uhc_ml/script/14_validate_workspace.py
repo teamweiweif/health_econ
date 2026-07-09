@@ -145,6 +145,7 @@ REQUIRED_REPORTS = [
     "priority_threshold_acquisition_campaign.md",
     "priority_first_pass_variable_review_queue.md",
     "priority_download_execution_packet.md",
+    "priority_lsms_isa_alignment_audit.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "promoted_data_gate.md",
@@ -298,6 +299,7 @@ REQUIRED_SCRIPTS = [
     "139_build_priority_threshold_acquisition_campaign.py",
     "140_build_priority_first_pass_variable_review_queue.py",
     "141_build_priority_download_execution_packet.py",
+    "142_build_priority_lsms_isa_alignment_audit.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
@@ -760,6 +762,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_download_execution_packet": row_count(TEMP_DIR / "priority_download_execution_packet.csv"),
         "priority_download_file_acceptance_matrix": row_count(TEMP_DIR / "priority_download_file_acceptance_matrix.csv"),
         "priority_download_execution_packet_summary": row_count(RESULT_DIR / "priority_download_execution_packet_summary.csv"),
+        "priority_lsms_isa_alignment_audit": row_count(TEMP_DIR / "priority_lsms_isa_alignment_audit.csv"),
+        "priority_lsms_isa_replacement_candidates": row_count(TEMP_DIR / "priority_lsms_isa_replacement_candidates.csv"),
+        "priority_lsms_isa_alignment_summary": row_count(RESULT_DIR / "priority_lsms_isa_alignment_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4619,6 +4624,43 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_download_gate_ok),
         f"packet_rows={counts['priority_download_execution_packet']}; file_rows={counts['priority_download_file_acceptance_matrix']}; summary_rows={counts['priority_download_execution_packet_summary']}; reported_packets={priority_download_packet_rows}; priority_waves={priority_download_priority_rows}; backup_waves={priority_download_backup_rows}; countries={priority_download_countries}; core_files={priority_download_core_file_rows}; requirements={priority_download_requirement_rows}; variables={priority_download_variable_rows}; raw_received={priority_download_raw_received}; ready_download_rows={priority_download_ready_rows}; blocked_file_rows={priority_download_file_blocked_rows}; handoffs={priority_download_handoffs}; modeling_gate={priority_download_modeling_gate}",
         "" if priority_download_gate_ok else "Run script/141_build_priority_download_execution_packet.py after first-pass review queue and credentialed acquisition ledgers are current.",
+    )
+    priority_lsms_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_alignment_summary.csv")
+    priority_lsms_campaign_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_current_campaign_rows"), "0"), 0)
+    priority_lsms_core_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_core_priority_wave_rows"), "0"), 0)
+    priority_lsms_required_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_current_required_countries"), "0"), 0)
+    priority_lsms_aligned_core = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_aligned_core_wave_rows"), "0"), 0)
+    priority_lsms_off_family_core = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_off_family_core_wave_rows"), "0"), 0)
+    priority_lsms_off_family_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_off_family_core_country_rows"), "0"), 0)
+    priority_lsms_replacements = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_strong_replacement_candidate_rows"), "0"), 0)
+    priority_lsms_gap_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_inventory_gap_rows"), "0"), 0)
+    priority_lsms_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_handoff_readmes_written"), "0"), 0)
+    priority_lsms_decision = next((row.get("value", "") for row in priority_lsms_summary if row.get("metric") == "priority_lsms_alignment_campaign_decision"), "")
+    priority_lsms_modeling_gate = next((row.get("value", "") for row in priority_lsms_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_gate_ok = (
+        counts["priority_lsms_isa_alignment_audit"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_lsms_isa_replacement_candidates"] >= 10
+        and counts["priority_lsms_isa_alignment_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_alignment_audit.md")
+        and priority_lsms_campaign_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_lsms_core_rows >= 10
+        and priority_lsms_required_countries >= 5
+        and priority_lsms_aligned_core >= 8
+        and priority_lsms_off_family_core >= 2
+        and priority_lsms_off_family_countries >= 2
+        and priority_lsms_replacements >= 10
+        and priority_lsms_gap_rows == 0
+        and priority_lsms_handoffs >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_lsms_decision == "needs_core_wave_replacement_before_manual_download_execution"
+        and priority_lsms_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA alignment audit flags off-family Malawi/Uganda core waves and finds replacement candidates before manual downloads",
+        status(priority_lsms_gate_ok),
+        f"audit_rows={counts['priority_lsms_isa_alignment_audit']}; candidate_rows={counts['priority_lsms_isa_replacement_candidates']}; summary_rows={counts['priority_lsms_isa_alignment_summary']}; reported_campaign_rows={priority_lsms_campaign_rows}; core_rows={priority_lsms_core_rows}; required_countries={priority_lsms_required_countries}; aligned_core={priority_lsms_aligned_core}; off_family_core={priority_lsms_off_family_core}; off_family_countries={priority_lsms_off_family_countries}; strong_replacements={priority_lsms_replacements}; inventory_gaps={priority_lsms_gap_rows}; handoffs={priority_lsms_handoffs}; decision={priority_lsms_decision}; modeling_gate={priority_lsms_modeling_gate}",
+        "" if priority_lsms_gate_ok else "Run script/142_build_priority_lsms_isa_alignment_audit.py after the download execution packet and country-wave screening are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
