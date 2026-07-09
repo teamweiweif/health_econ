@@ -33,6 +33,7 @@ python script/43_build_first_batch_merge_key_lineage_plan.py
 python script/45_audit_first_batch_raw_value_keys.py
 python script/121_build_country_wave_promotion_registry.py
 python script/122_build_priority_promotion_acquisition_plan.py
+python script/123_probe_priority_official_raw_access.py
 python script/36_build_direct_read_audit_bundle.py
 python script/28_audit_python_environment.py
 python script/26_build_objective_traceability_audit.py
