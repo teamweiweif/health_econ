@@ -50,6 +50,7 @@ python script/144_build_priority_lsms_isa_raw_package_intake_packet.py
 python script/145_build_priority_lsms_isa_archive_member_preflight.py
 python script/149_build_priority_lsms_isa_raw_value_verification_workbook.py
 python script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py
+python script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 python script/134_build_priority_country_wave_promotion_packets.py
 python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
@@ -102,6 +103,7 @@ Current status:
 - The priority LSMS/ISA archive/direct-file preflight is `result/priority_lsms_isa_archive_member_preflight_summary.csv`.
 - The priority LSMS/ISA raw value verification workbook is `result/priority_lsms_isa_raw_value_verification_workbook_summary.csv`.
 - The priority LSMS/ISA raw package receipt checklist is `result/priority_lsms_isa_raw_package_receipt_checklist_summary.csv`.
+- The priority LSMS/ISA credentialed raw acquisition workbench is `result/priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.
 - The refocused 19-wave LSMS/ISA country-wave promotion packets are indexed in `result/priority_lsms_isa_country_wave_promotion_packet_summary.csv`.

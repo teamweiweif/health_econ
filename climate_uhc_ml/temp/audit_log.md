@@ -1583,3 +1583,6 @@
 - 2026-07-09T23:21:26+00:00 - Promoted data gate promoted_rows=0 before=0 after=0 quarantined=0.
 - 2026-07-09T23:21:31+00:00 - Direct-read audit bundle rows=146 manifest_rows=619.
 - 2026-07-09T23:21:33+00:00 - Workspace validation complete=449 incomplete_or_failed=0.
+- 2026-07-09T23:29:43+00:00 - Built priority LSMS/ISA credentialed raw acquisition workbench datasets=19 core_files=629.
+- 2026-07-09T23:29:49+00:00 - Direct-read audit bundle rows=147 manifest_rows=625.
+- 2026-07-09T23:29:51+00:00 - Workspace validation complete=452 incomplete_or_failed=0.

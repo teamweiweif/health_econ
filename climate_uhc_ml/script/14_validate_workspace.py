@@ -153,6 +153,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_archive_member_preflight.md",
     "priority_lsms_isa_raw_value_verification_workbook.md",
     "priority_lsms_isa_raw_package_receipt_checklist.md",
+    "priority_lsms_isa_credentialed_raw_acquisition_workbench.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -315,6 +316,7 @@ REQUIRED_SCRIPTS = [
     "145_build_priority_lsms_isa_archive_member_preflight.py",
     "149_build_priority_lsms_isa_raw_value_verification_workbook.py",
     "150_build_priority_lsms_isa_raw_package_receipt_checklist.py",
+    "152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
@@ -811,6 +813,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_raw_package_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_receipt_checklist.csv"),
         "priority_lsms_isa_raw_package_requirement_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_requirement_receipt_checklist.csv"),
         "priority_lsms_isa_raw_package_receipt_checklist_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv"),
+        "priority_lsms_isa_credentialed_raw_acquisition_workbench": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench.csv"),
+        "priority_lsms_isa_credentialed_raw_full_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_raw_full_file_manifest.csv"),
+        "priority_lsms_isa_credentialed_raw_core_file_checklist": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_raw_core_file_checklist.csv"),
+        "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary": row_count(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4996,6 +5002,40 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_receipt_gate_ok),
         f"dataset_rows={counts['priority_lsms_isa_raw_package_receipt_checklist']}; requirement_rows={counts['priority_lsms_isa_raw_package_requirement_receipt_checklist']}; summary_rows={counts['priority_lsms_isa_raw_package_receipt_checklist_summary']}; reported_datasets={priority_lsms_receipt_datasets}; reported_requirements={priority_lsms_receipt_requirements}; package_received={priority_lsms_receipt_package_received}; complete_package_received={priority_lsms_receipt_complete_received}; ready_review={priority_lsms_receipt_ready_review}; blocked_no_original={priority_lsms_receipt_blocked_no_original}; blocked_requirements={priority_lsms_receipt_blocked_requirements}; handoffs={priority_lsms_receipt_handoffs}; data_write={priority_lsms_receipt_data_write}; modeling_gate={priority_lsms_receipt_modeling_gate}",
         "" if priority_lsms_receipt_gate_ok else "Run script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py after the raw value workbook and raw package intake outputs are current.",
+    )
+    priority_lsms_credentialed_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
+    priority_lsms_credentialed_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_dataset_rows"), "0"), 0)
+    priority_lsms_credentialed_full_files = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_full_file_rows"), "0"), 0)
+    priority_lsms_credentialed_core_files = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_core_file_rows"), "0"), 0)
+    priority_lsms_credentialed_access_gate = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_access_gate_rows"), "0"), 0)
+    priority_lsms_credentialed_received = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_package_received_rows"), "0"), 0)
+    priority_lsms_credentialed_targets_missing = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_targets_missing_before_download"), "0"), 0)
+    priority_lsms_credentialed_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_handoff_readmes_written"), "0"), 0)
+    priority_lsms_credentialed_data_write = next((row.get("value", "") for row in priority_lsms_credentialed_summary if row.get("metric") == "priority_lsms_credentialed_workbench_data_write_status"), "")
+    priority_lsms_credentialed_modeling_gate = next((row.get("value", "") for row in priority_lsms_credentialed_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_credentialed_gate_ok = (
+        counts["priority_lsms_isa_credentialed_raw_acquisition_workbench"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_credentialed_raw_full_file_manifest"] >= counts["priority_lsms_isa_public_documentation_file_inventory"]
+        and counts["priority_lsms_isa_credentialed_raw_core_file_checklist"] >= counts["priority_lsms_isa_concept_file_shortlist"]
+        and counts["priority_lsms_isa_credentialed_raw_acquisition_workbench_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench.md")
+        and priority_lsms_credentialed_datasets == counts["priority_lsms_isa_credentialed_raw_acquisition_workbench"]
+        and priority_lsms_credentialed_full_files == counts["priority_lsms_isa_credentialed_raw_full_file_manifest"]
+        and priority_lsms_credentialed_core_files == counts["priority_lsms_isa_credentialed_raw_core_file_checklist"]
+        and priority_lsms_credentialed_access_gate >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_credentialed_received == 0
+        and priority_lsms_credentialed_targets_missing >= priority_lsms_credentialed_core_files
+        and priority_lsms_credentialed_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_credentialed_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_credentialed_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA credentialed raw acquisition workbench covers the full 19-wave queue with official file manifests and post-download commands",
+        status(priority_lsms_credentialed_gate_ok),
+        f"workbench_rows={counts['priority_lsms_isa_credentialed_raw_acquisition_workbench']}; full_file_rows={counts['priority_lsms_isa_credentialed_raw_full_file_manifest']}; core_file_rows={counts['priority_lsms_isa_credentialed_raw_core_file_checklist']}; summary_rows={counts['priority_lsms_isa_credentialed_raw_acquisition_workbench_summary']}; reported_datasets={priority_lsms_credentialed_datasets}; reported_full_files={priority_lsms_credentialed_full_files}; reported_core_files={priority_lsms_credentialed_core_files}; access_gate={priority_lsms_credentialed_access_gate}; package_received={priority_lsms_credentialed_received}; targets_missing={priority_lsms_credentialed_targets_missing}; handoffs={priority_lsms_credentialed_handoffs}; data_write={priority_lsms_credentialed_data_write}; modeling_gate={priority_lsms_credentialed_modeling_gate}",
+        "" if priority_lsms_credentialed_gate_ok else "Run script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py after public documentation, variable evidence, and receipt checklist outputs are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
