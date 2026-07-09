@@ -1552,3 +1552,6 @@
 - 2026-07-09T22:02:30+00:00 - Built priority LSMS-ISA raw package intake packet ledger_rows=19 acceptance_rows=152 original_files=0.
 - 2026-07-09T22:02:35+00:00 - Direct-read audit bundle rows=140 manifest_rows=581.
 - 2026-07-09T22:02:37+00:00 - Workspace validation complete=430 incomplete_or_failed=0.
+- 2026-07-09T22:10:17+00:00 - Built priority LSMS-ISA archive member preflight datasets=19 direct_files=0 archive_members=0.
+- 2026-07-09T22:10:21+00:00 - Direct-read audit bundle rows=141 manifest_rows=588.
+- 2026-07-09T22:10:24+00:00 - Workspace validation complete=433 incomplete_or_failed=0.

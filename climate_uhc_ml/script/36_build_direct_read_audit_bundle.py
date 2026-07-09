@@ -121,6 +121,12 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_file_manifest.csv", "priority LSMS/ISA raw package file manifest"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_acceptance_matrix.csv", "priority LSMS/ISA raw package acceptance matrix"),
     ("dataset_promotion", "result/priority_lsms_isa_raw_package_intake_summary.csv", "priority LSMS/ISA raw package intake summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_archive_member_preflight.md", "priority LSMS/ISA archive/direct-file preflight report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_archive_member_preflight.csv", "priority LSMS/ISA dataset archive/direct-file preflight"),
+    ("dataset_promotion", "temp/priority_lsms_isa_archive_member_manifest.csv", "priority LSMS/ISA archive member manifest"),
+    ("dataset_promotion", "temp/priority_lsms_isa_direct_file_preflight.csv", "priority LSMS/ISA direct original file preflight"),
+    ("dataset_promotion", "temp/priority_lsms_isa_archive_requirement_preflight.csv", "priority LSMS/ISA requirement archive preflight"),
+    ("dataset_promotion", "result/priority_lsms_isa_archive_member_preflight_summary.csv", "priority LSMS/ISA archive/direct-file preflight summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -521,6 +527,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/142_build_priority_lsms_isa_alignment_audit.py", "priority LSMS/ISA alignment audit generator"),
     ("reproducibility", "script/143_build_priority_lsms_isa_refocused_acquisition_queue.py", "priority LSMS/ISA refocused acquisition queue generator"),
     ("reproducibility", "script/144_build_priority_lsms_isa_raw_package_intake_packet.py", "priority LSMS/ISA raw package intake packet generator"),
+    ("reproducibility", "script/145_build_priority_lsms_isa_archive_member_preflight.py", "priority LSMS/ISA archive/direct-file preflight generator"),
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/134_build_priority_country_wave_promotion_packets.py", "priority country-wave promotion packet generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
@@ -729,6 +736,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_alignment_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_alignment_summary.csv")
     priority_lsms_refocused_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_refocused_acquisition_summary.csv")
     priority_lsms_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
+    priority_lsms_archive_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_archive_member_preflight_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
@@ -1078,6 +1086,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_dataset_rows', '0')}; manifest_rows={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_file_manifest_rows', '0')}; generated_handoffs={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_generated_handoff_files', '0')}; original_files={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_original_file_rows', '0')}; archives={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_archive_file_rows', '0')}; raw_tabular={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_raw_tabular_file_rows', '0')}; documentation={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_documentation_file_rows', '0')}; missing_packages={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_missing_package_rows', '0')}; acceptance_requirements={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_acceptance_requirement_rows', '0')}; blocked_requirements={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_blocked_requirement_rows', '0')}; data_write={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_raw_intake_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger.csv", TEMP_DIR / "priority_lsms_isa_raw_package_file_manifest.csv", TEMP_DIR / "priority_lsms_isa_raw_package_acceptance_matrix.csv", RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv", REPORT_DIR / "priority_lsms_isa_raw_package_intake_packet.md"],
         "Raw package intake packet scans the exact refocused target folders, ignores generated markdown handoffs, and keeps every requirement blocked until a complete official raw package plus documentation is present.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_archive_member_preflight",
+        "archive_preflight_ready_no_original_files" if csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_direct_file_rows", "0") == "0" and csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_dataset_rows", "0") != "0" else "archive_preflight_needs_review",
+        f"datasets={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_dataset_rows', '0')}; direct_files={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_direct_file_rows', '0')}; direct_archives={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_direct_archive_rows', '0')}; direct_raw={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_direct_raw_tabular_rows', '0')}; direct_docs={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_direct_documentation_rows', '0')}; archive_members={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_archive_member_rows', '0')}; archive_raw_members={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_archive_raw_tabular_member_rows', '0')}; archive_doc_members={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_archive_documentation_member_rows', '0')}; ready_datasets={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_ready_dataset_rows', '0')}; blocked_datasets={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_blocked_dataset_rows', '0')}; blocked_requirements={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_blocked_requirement_rows', '0')}; data_write={csv_value(priority_lsms_archive_preflight_summary, 'priority_lsms_archive_preflight_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_archive_preflight_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_archive_member_preflight.csv", TEMP_DIR / "priority_lsms_isa_archive_member_manifest.csv", TEMP_DIR / "priority_lsms_isa_direct_file_preflight.csv", TEMP_DIR / "priority_lsms_isa_archive_requirement_preflight.csv", RESULT_DIR / "priority_lsms_isa_archive_member_preflight_summary.csv", REPORT_DIR / "priority_lsms_isa_archive_member_preflight.md"],
+        "Archive/direct-file preflight reads zip/tar member names where possible, without extracting or converting data, and keeps every refocused target blocked until archive/direct raw and documentation evidence exists.",
     )
     add_bundle(
         rows,
@@ -1982,6 +1999,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_alignment_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_alignment_summary.csv")
     priority_lsms_refocused_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_refocused_acquisition_summary.csv")
     priority_lsms_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
+    priority_lsms_archive_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_archive_member_preflight_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     data_dataset_files = [
@@ -2062,6 +2080,12 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_raw_intake_missing_package_rows", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_missing_package_rows", "0"), "interpretation": "Refocused targets with no original package files yet."},
         {"metric": "priority_lsms_raw_intake_blocked_requirement_rows", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_blocked_requirement_rows", "0"), "interpretation": "Raw-package acceptance requirements still blocked."},
         {"metric": "priority_lsms_raw_intake_data_write_status", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_data_write_status", "missing"), "interpretation": "Promoted-data write status for the raw intake packet."},
+        {"metric": "priority_lsms_archive_preflight_dataset_rows", "value": csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_dataset_rows", "0"), "interpretation": "Refocused targets covered by archive/direct-file preflight."},
+        {"metric": "priority_lsms_archive_preflight_direct_file_rows", "value": csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_direct_file_rows", "0"), "interpretation": "Direct non-generated original files detected by archive preflight."},
+        {"metric": "priority_lsms_archive_preflight_archive_member_rows", "value": csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_archive_member_rows", "0"), "interpretation": "Readable archive member rows detected without extraction."},
+        {"metric": "priority_lsms_archive_preflight_blocked_dataset_rows", "value": csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_blocked_dataset_rows", "0"), "interpretation": "Refocused targets still blocked before schema/manual raw review."},
+        {"metric": "priority_lsms_archive_preflight_blocked_requirement_rows", "value": csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_blocked_requirement_rows", "0"), "interpretation": "Archive preflight requirement rows still blocked."},
+        {"metric": "priority_lsms_archive_preflight_data_write_status", "value": csv_value(priority_lsms_archive_preflight_summary, "priority_lsms_archive_preflight_data_write_status", "missing"), "interpretation": "Promoted-data write status for archive preflight."},
         {"metric": "priority_synthesis_blueprint_schema_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_schema_rows", "0"), "interpretation": "Target output-column rows for promoted household-climate dataset synthesis."},
         {"metric": "priority_synthesis_blueprint_blocked_required_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_blocked_required_rows", "0"), "interpretation": "Required promoted-dataset output columns still blocked."},
         {"metric": "priority_synthesis_blueprint_join_ready_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0"), "interpretation": "Priority country-waves ready for promoted dataset build joins."},

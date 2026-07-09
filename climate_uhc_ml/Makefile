@@ -292,6 +292,7 @@ promotion:
 	$(PYTHON) script/142_build_priority_lsms_isa_alignment_audit.py
 	$(PYTHON) script/143_build_priority_lsms_isa_refocused_acquisition_queue.py
 	$(PYTHON) script/144_build_priority_lsms_isa_raw_package_intake_packet.py
+	$(PYTHON) script/145_build_priority_lsms_isa_archive_member_preflight.py
 	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/134_build_priority_country_wave_promotion_packets.py
 	$(PYTHON) script/127_enforce_promoted_data_gate.py
