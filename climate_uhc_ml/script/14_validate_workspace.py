@@ -137,6 +137,7 @@ REQUIRED_REPORTS = [
     "priority_manual_verification_decision_gate.md",
     "priority_raw_package_receipt_ledger.md",
     "priority_official_download_dossier.md",
+    "priority_public_documentation_receipt.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "promoted_data_gate.md",
 ]
@@ -281,6 +282,7 @@ REQUIRED_SCRIPTS = [
     "129_build_priority_manual_verification_decision_gate.py",
     "130_build_priority_raw_package_receipt_ledger.py",
     "131_build_priority_official_download_dossier.py",
+    "133_build_priority_public_documentation_receipt.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
@@ -716,6 +718,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_official_full_file_inventory": row_count(TEMP_DIR / "priority_official_full_file_inventory.csv"),
         "priority_official_documentation_links": row_count(TEMP_DIR / "priority_official_documentation_links.csv"),
         "priority_official_download_dossier_summary": row_count(RESULT_DIR / "priority_official_download_dossier_summary.csv"),
+        "priority_public_documentation_receipt": row_count(TEMP_DIR / "priority_public_documentation_receipt.csv"),
+        "priority_public_documentation_dataset_receipt": row_count(TEMP_DIR / "priority_public_documentation_dataset_receipt.csv"),
+        "priority_public_documentation_receipt_summary": row_count(RESULT_DIR / "priority_public_documentation_receipt_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4258,6 +4263,41 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_official_gate_ok),
         f"dossier_rows={counts['priority_official_download_dossier']}; full_inventory_rows={counts['priority_official_full_file_inventory']}; documentation_link_rows={counts['priority_official_documentation_links']}; summary_rows={counts['priority_official_download_dossier_summary']}; reported_dossiers={priority_official_dossier_rows}; reported_full_files={priority_official_full_file_rows}; reported_core_files={priority_official_core_rows}; links={priority_official_link_rows}; pdf={priority_official_pdf_links}; ddi={priority_official_ddi_links}; json={priority_official_json_links}; data_dictionary={priority_official_data_dictionary_links}; no_package_rows={priority_official_no_package_rows}; receipt_candidates={priority_official_receipt_candidates}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_official_modeling_gate}",
         "" if priority_official_gate_ok else "Run script/131_build_priority_official_download_dossier.py after priority receipt ledger; official links and full metadata file inventory must be present.",
+    )
+    priority_public_doc_summary = read_csv_dicts(RESULT_DIR / "priority_public_documentation_receipt_summary.csv")
+    priority_public_doc_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_dataset_rows"), "0"), 0)
+    priority_public_doc_resource_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_resource_rows"), "0"), 0)
+    priority_public_doc_saved_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_saved_rows"), "0"), 0)
+    priority_public_doc_failed_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_failed_rows"), "0"), 0)
+    priority_public_doc_core_complete_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_core_complete_dataset_rows"), "0"), 0)
+    priority_public_doc_full_complete_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_full_complete_dataset_rows"), "0"), 0)
+    priority_public_doc_optional_pdf_missing_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_optional_pdf_missing_dataset_rows"), "0"), 0)
+    priority_public_doc_access_gate_rows = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_access_gate_rows"), "0"), 0)
+    priority_public_doc_handoffs = safe_int(next((row.get("value", "0") for row in priority_public_doc_summary if row.get("metric") == "priority_public_documentation_handoff_readmes_written"), "0"), 0)
+    priority_public_doc_modeling_gate = next((row.get("value", "") for row in priority_public_doc_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_public_doc_gate_ok = (
+        counts["priority_public_documentation_receipt"] >= counts["priority_promotion_acquisition_wave_plan"] * 6
+        and counts["priority_public_documentation_dataset_receipt"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_public_documentation_receipt_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_public_documentation_receipt.md")
+        and priority_public_doc_dataset_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_public_doc_resource_rows >= counts["priority_promotion_acquisition_wave_plan"] * 6
+        and priority_public_doc_saved_rows >= 76
+        and priority_public_doc_failed_rows == 0
+        and priority_public_doc_core_complete_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_public_doc_full_complete_rows >= 10
+        and priority_public_doc_optional_pdf_missing_rows <= 3
+        and priority_public_doc_access_gate_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_public_doc_handoffs >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_public_doc_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority public documentation receipt saves official public metadata/documentation while preserving raw access blockers",
+        status(priority_public_doc_gate_ok),
+        f"receipt_rows={counts['priority_public_documentation_receipt']}; dataset_rows={counts['priority_public_documentation_dataset_receipt']}; summary_rows={counts['priority_public_documentation_receipt_summary']}; reported_datasets={priority_public_doc_dataset_rows}; resources={priority_public_doc_resource_rows}; saved={priority_public_doc_saved_rows}; failed={priority_public_doc_failed_rows}; core_complete={priority_public_doc_core_complete_rows}; full_complete={priority_public_doc_full_complete_rows}; optional_pdf_missing={priority_public_doc_optional_pdf_missing_rows}; access_gates={priority_public_doc_access_gate_rows}; handoffs={priority_public_doc_handoffs}; modeling_gate={priority_public_doc_modeling_gate}",
+        "" if priority_public_doc_gate_ok else "Run script/133_build_priority_public_documentation_receipt.py after the priority official download dossier exists; public core documentation must be saved or reused without raw promotion.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

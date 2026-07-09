@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,128,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,516,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,512,Curated artifacts present and non-empty.
+bundle_rows,129,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,521,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,517,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -25,6 +25,10 @@ priority_raw_receipt_complete_package_candidates,0,Priority datasets with origin
 priority_official_download_full_file_rows,965,Full official metadata file rows available for credentialed package acquisition checks.
 priority_official_download_documentation_links,100,Official metadata/documentation/access workflow links in the download dossier.
 priority_official_download_no_original_package_rows,13,Download dossiers still blocked because no original raw package is present.
+priority_public_documentation_dataset_rows,13,Priority datasets with public documentation receipt rows.
+priority_public_documentation_resource_rows,78,Priority public documentation resources attempted or reused.
+priority_public_documentation_saved_rows,76,Priority public documentation resources saved or reused locally.
+priority_public_documentation_core_complete_dataset_rows,13,Priority datasets with complete core public documentation receipts.
 priority_synthesis_blueprint_schema_rows,572,Target output-column rows for promoted household-climate dataset synthesis.
 priority_synthesis_blueprint_blocked_required_rows,325,Required promoted-dataset output columns still blocked.
 priority_synthesis_blueprint_join_ready_rows,0,Priority country-waves ready for promoted dataset build joins.
@@ -397,7 +401,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,19,Direct-read bundle section count.
+bundle_section_priority_bundle,20,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -464,6 +468,7 @@ bundle_status_blocked_required_schema_columns_not_verified,1,Direct-read bundle 
 bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns,3,Direct-read bundle status count.
 bundle_status_closed_no_promoted_rows,1,Direct-read bundle status count.
 bundle_status_complete,4,Direct-read bundle status count.
+bundle_status_core_public_documentation_saved_raw_gate_still_blocked,1,Direct-read bundle status count.
 bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready,2,Direct-read bundle status count.
 bundle_status_documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready,1,Direct-read bundle status count.
 bundle_status_fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning,1,Direct-read bundle status count.

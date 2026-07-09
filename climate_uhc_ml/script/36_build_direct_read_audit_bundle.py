@@ -73,6 +73,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_official_full_file_inventory.csv", "priority full official metadata file inventory"),
     ("dataset_promotion", "temp/priority_official_documentation_links.csv", "priority official documentation and access workflow links"),
     ("dataset_promotion", "result/priority_official_download_dossier_summary.csv", "priority official download dossier summary"),
+    ("dataset_promotion", "report/priority_public_documentation_receipt.md", "priority public documentation receipt report"),
+    ("dataset_promotion", "temp/priority_public_documentation_receipt.csv", "priority public documentation resource receipt"),
+    ("dataset_promotion", "temp/priority_public_documentation_dataset_receipt.csv", "priority dataset-level public documentation receipt"),
+    ("dataset_promotion", "result/priority_public_documentation_receipt_summary.csv", "priority public documentation receipt summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -457,6 +461,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/129_build_priority_manual_verification_decision_gate.py", "priority manual verification decision gate generator"),
     ("reproducibility", "script/130_build_priority_raw_package_receipt_ledger.py", "priority raw package receipt ledger generator"),
     ("reproducibility", "script/131_build_priority_official_download_dossier.py", "priority official download dossier generator"),
+    ("reproducibility", "script/133_build_priority_public_documentation_receipt.py", "priority public documentation receipt generator"),
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
     ("reproducibility", "script/41_build_first_batch_public_documentation_audit.py", "first-batch public documentation audit generator"),
@@ -653,6 +658,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
     priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
     priority_official_download_summary = read_csv_dicts(RESULT_DIR / "priority_official_download_dossier_summary.csv")
+    priority_public_documentation_summary = read_csv_dicts(RESULT_DIR / "priority_public_documentation_receipt_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     public_external_summary = read_csv_dicts(RESULT_DIR / "public_external_raw_candidate_download_summary.csv")
@@ -902,6 +908,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"dossiers={csv_value(priority_official_download_summary, 'priority_official_download_dossier_rows', '0')}; full_file_rows={csv_value(priority_official_download_summary, 'priority_official_full_file_inventory_rows', '0')}; core_rows={csv_value(priority_official_download_summary, 'priority_official_priority_core_file_rows', '0')}; links={csv_value(priority_official_download_summary, 'priority_official_documentation_link_rows', '0')}; pdf={csv_value(priority_official_download_summary, 'priority_official_pdf_documentation_links', '0')}; ddi={csv_value(priority_official_download_summary, 'priority_official_ddi_metadata_links', '0')}; json={csv_value(priority_official_download_summary, 'priority_official_json_metadata_links', '0')}; no_original_package={csv_value(priority_official_download_summary, 'priority_official_no_original_package_rows', '0')}; receipt_candidates={csv_value(priority_official_download_summary, 'priority_official_receipt_candidates', '0')}",
         [TEMP_DIR / "priority_official_download_dossier.csv", TEMP_DIR / "priority_official_full_file_inventory.csv", TEMP_DIR / "priority_official_documentation_links.csv", RESULT_DIR / "priority_official_download_dossier_summary.csv", REPORT_DIR / "priority_official_download_dossier.md"],
         "Official download dossier expands from the 156 core targets to the full metadata-derived file inventory and records official access, documentation, DDI, JSON, and data-dictionary links for credentialed package acquisition.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_public_documentation_receipt",
+        "core_public_documentation_saved_raw_gate_still_blocked" if csv_value(priority_public_documentation_summary, "priority_public_documentation_core_complete_dataset_rows", "0") != "0" else "public_documentation_missing",
+        f"datasets={csv_value(priority_public_documentation_summary, 'priority_public_documentation_dataset_rows', '0')}; resources={csv_value(priority_public_documentation_summary, 'priority_public_documentation_resource_rows', '0')}; saved={csv_value(priority_public_documentation_summary, 'priority_public_documentation_saved_rows', '0')}; failed={csv_value(priority_public_documentation_summary, 'priority_public_documentation_failed_rows', '0')}; core_complete={csv_value(priority_public_documentation_summary, 'priority_public_documentation_core_complete_dataset_rows', '0')}; full_complete={csv_value(priority_public_documentation_summary, 'priority_public_documentation_full_complete_dataset_rows', '0')}; optional_pdf_missing={csv_value(priority_public_documentation_summary, 'priority_public_documentation_optional_pdf_missing_dataset_rows', '0')}; access_gates={csv_value(priority_public_documentation_summary, 'priority_public_documentation_access_gate_rows', '0')}; saved_bytes={csv_value(priority_public_documentation_summary, 'priority_public_documentation_saved_bytes', '0')}",
+        [TEMP_DIR / "priority_public_documentation_receipt.csv", TEMP_DIR / "priority_public_documentation_dataset_receipt.csv", RESULT_DIR / "priority_public_documentation_receipt_summary.csv", REPORT_DIR / "priority_public_documentation_receipt.md"],
+        "Public documentation receipt downloads or reuses official DDI/XML, JSON, data dictionary, related-material, get-microdata, and listed PDF resources for priority waves while preserving the raw-microdata access gate.",
     )
     add_bundle(
         rows,
@@ -1786,6 +1801,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
     priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
     priority_official_download_summary = read_csv_dicts(RESULT_DIR / "priority_official_download_dossier_summary.csv")
+    priority_public_documentation_summary = read_csv_dicts(RESULT_DIR / "priority_public_documentation_receipt_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     data_dataset_files = [
         path for path in DATA_DIR.rglob("*")
@@ -1818,6 +1834,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_official_download_full_file_rows", "value": csv_value(priority_official_download_summary, "priority_official_full_file_inventory_rows", "0"), "interpretation": "Full official metadata file rows available for credentialed package acquisition checks."},
         {"metric": "priority_official_download_documentation_links", "value": csv_value(priority_official_download_summary, "priority_official_documentation_link_rows", "0"), "interpretation": "Official metadata/documentation/access workflow links in the download dossier."},
         {"metric": "priority_official_download_no_original_package_rows", "value": csv_value(priority_official_download_summary, "priority_official_no_original_package_rows", "0"), "interpretation": "Download dossiers still blocked because no original raw package is present."},
+        {"metric": "priority_public_documentation_dataset_rows", "value": csv_value(priority_public_documentation_summary, "priority_public_documentation_dataset_rows", "0"), "interpretation": "Priority datasets with public documentation receipt rows."},
+        {"metric": "priority_public_documentation_resource_rows", "value": csv_value(priority_public_documentation_summary, "priority_public_documentation_resource_rows", "0"), "interpretation": "Priority public documentation resources attempted or reused."},
+        {"metric": "priority_public_documentation_saved_rows", "value": csv_value(priority_public_documentation_summary, "priority_public_documentation_saved_rows", "0"), "interpretation": "Priority public documentation resources saved or reused locally."},
+        {"metric": "priority_public_documentation_core_complete_dataset_rows", "value": csv_value(priority_public_documentation_summary, "priority_public_documentation_core_complete_dataset_rows", "0"), "interpretation": "Priority datasets with complete core public documentation receipts."},
         {"metric": "priority_synthesis_blueprint_schema_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_schema_rows", "0"), "interpretation": "Target output-column rows for promoted household-climate dataset synthesis."},
         {"metric": "priority_synthesis_blueprint_blocked_required_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_blocked_required_rows", "0"), "interpretation": "Required promoted-dataset output columns still blocked."},
         {"metric": "priority_synthesis_blueprint_join_ready_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0"), "interpretation": "Priority country-waves ready for promoted dataset build joins."},

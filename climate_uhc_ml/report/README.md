@@ -34,6 +34,7 @@ python script/126_build_priority_raw_verification_workbook.py
 python script/129_build_priority_manual_verification_decision_gate.py
 python script/130_build_priority_raw_package_receipt_ledger.py
 python script/131_build_priority_official_download_dossier.py
+python script/133_build_priority_public_documentation_receipt.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 python script/127_enforce_promoted_data_gate.py
 python script/35_build_empirical_readiness_dashboard.py
@@ -67,6 +68,7 @@ Current status:
 - The priority manual verification decision gate is `result/priority_manual_verification_decision_summary.csv`.
 - The priority raw package receipt ledger is `result/priority_raw_package_receipt_summary.csv`.
 - The priority official download dossier is `result/priority_official_download_dossier_summary.csv`.
+- The priority public documentation receipt is `result/priority_public_documentation_receipt_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The promoted-data gate is `result/promoted_data_gate_summary.csv`; if the registry has zero promoted rows, diagnostic CSVs are kept in `temp/diagnostic_data_quarantine/current/` rather than `data/`.
 - Per-wave promotion packets are in `report/country_wave_promotion_packets/`.
