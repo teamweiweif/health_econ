@@ -30,6 +30,7 @@ python script/123_probe_priority_official_raw_access.py
 python script/124_build_priority_raw_intake_gate.py
 python script/125_build_priority_climate_linkage_preflight.py
 python script/126_build_priority_raw_verification_workbook.py
+python script/127_enforce_promoted_data_gate.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
 python script/26_build_objective_traceability_audit.py
@@ -57,5 +58,6 @@ Current status:
 - The priority raw intake gate is `result/priority_raw_intake_gate_summary.csv`.
 - The priority climate linkage preflight is `result/priority_climate_linkage_preflight_summary.csv`.
 - The priority raw verification workbook is `result/priority_raw_verification_workbook_summary.csv`.
+- The promoted-data gate is `result/promoted_data_gate_summary.csv`; if the registry has zero promoted rows, diagnostic CSVs are kept in `temp/diagnostic_data_quarantine/current/` rather than `data/`.
 - Per-wave promotion packets are in `report/country_wave_promotion_packets/`.
 - Albania remains a diagnostic template only unless its historical boundary, timing, and outcome gates are resolved.

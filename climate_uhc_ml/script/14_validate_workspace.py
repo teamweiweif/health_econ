@@ -133,6 +133,7 @@ REQUIRED_REPORTS = [
     "priority_raw_intake_gate.md",
     "priority_climate_linkage_preflight.md",
     "priority_raw_verification_workbook.md",
+    "promoted_data_gate.md",
 ]
 REQUIRED_TEMP = [
     "source_inventory.csv",
@@ -270,6 +271,7 @@ REQUIRED_SCRIPTS = [
     "124_build_priority_raw_intake_gate.py",
     "125_build_priority_climate_linkage_preflight.py",
     "126_build_priority_raw_verification_workbook.py",
+    "127_enforce_promoted_data_gate.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -688,6 +690,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_concept_verification_template": row_count(TEMP_DIR / "priority_concept_verification_template.csv"),
         "priority_variable_verification_template": row_count(TEMP_DIR / "priority_variable_verification_template.csv"),
         "priority_raw_verification_workbook_summary": row_count(RESULT_DIR / "priority_raw_verification_workbook_summary.csv"),
+        "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
+        "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
         "design_scorecard_current_audit": row_count(RESULT_DIR / "design_scorecard_current_audit.csv"),
         "design_no_go_threshold_audit": row_count(RESULT_DIR / "design_no_go_threshold_audit.csv"),
@@ -4047,6 +4051,37 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_raw_verification_modeling_gate == "blocked"
         else "Run script/126_build_priority_raw_verification_workbook.py after priority raw intake and climate preflight gates exist.",
     )
+    promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
+    promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)
+    promoted_data_before = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "data_dataset_files_before_gate"), "0"), 0)
+    promoted_data_after = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "data_dataset_files_after_gate"), "0"), 0)
+    promoted_data_quarantined = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "quarantined_diagnostic_data_files"), "0"), 0)
+    promoted_data_readme = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "data_readme_written"), "0"), 0)
+    promoted_data_status = next((row.get("value", "") for row in promoted_data_gate_summary if row.get("metric") == "promoted_data_gate_status"), "")
+    actual_data_dataset_files = [
+        path for path in DATA_DIR.rglob("*")
+        if path.is_file() and path.name not in {"README.md", ".gitkeep"}
+    ]
+    promoted_data_gate_ok = (
+        counts["promoted_data_gate_summary"] > 0
+        and file_ok(REPORT_DIR / "promoted_data_gate.md")
+        and file_ok(DATA_DIR / "README.md")
+        and promoted_data_readme == 1
+        and promoted_data_status in {"closed_no_promoted_rows", "open_registry_has_promoted_rows"}
+        and len(actual_data_dataset_files) == promoted_data_after
+        and (
+            (promoted_registry_rows == 0 and promoted_data_after == 0 and promoted_data_status == "closed_no_promoted_rows")
+            or promoted_registry_rows > 0
+        )
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Promoted data gate keeps `data/` reserved for registry-approved analysis-ready datasets",
+        status(promoted_data_gate_ok),
+        f"summary_rows={counts['promoted_data_gate_summary']}; manifest_rows={counts['promoted_data_gate_manifest']}; promoted_rows={promoted_registry_rows}; data_before={promoted_data_before}; data_after={promoted_data_after}; actual_data_dataset_files={len(actual_data_dataset_files)}; quarantined={promoted_data_quarantined}; data_readme={promoted_data_readme}; gate_status={promoted_data_status}",
+        "" if promoted_data_gate_ok else "Run script/127_enforce_promoted_data_gate.py after the promotion registry is built.",
+    )
     objective_trace = read_csv_dicts(RESULT_DIR / "objective_requirement_traceability.csv")
     objective_guardrails = read_csv_dicts(RESULT_DIR / "objective_guardrail_audit.csv")
     trace_satisfied = sum(1 for row in objective_trace if row.get("status") == "satisfied")
@@ -4098,27 +4133,20 @@ def validate_completion_and_guardrails(rows: list[dict[str, Any]]) -> None:
     incomplete = sum(1 for row in completion if row.get("status") == "incomplete")
     add(rows, "completion_criteria", "Completion criteria audit exists and is internally counted", status(bool(completion)), f"complete={complete}; incomplete={incomplete}; rows={len(completion)}")
 
-    harmonized_exists = (DATA_DIR / "harmonized_household.csv").exists() or (DATA_DIR / "harmonized_household.parquet").exists()
-    climate_exposure_exists = (DATA_DIR / "climate_exposures_nasa_power.csv").exists()
-    outcomes_exists = (DATA_DIR / "household_outcomes.csv").exists() or (DATA_DIR / "household_outcomes.parquet").exists()
-    linked_exists = (DATA_DIR / "climate_linked_household.csv").exists() or (DATA_DIR / "climate_linked_household.parquet").exists()
-    limited_harmonized_ok = has_limited_harmonized_core_marker(DATA_DIR / "harmonized_household.csv")
-    limited_climate_ok = has_limited_climate_exposure_marker(DATA_DIR / "climate_exposures_nasa_power.csv")
-    limited_outcome_ok = has_limited_household_outcome_marker(DATA_DIR / "household_outcomes.csv")
-    limited_linked_ok = has_limited_climate_linked_marker(DATA_DIR / "climate_linked_household.csv")
-    false_data_present = (
-        (linked_exists and not limited_linked_ok)
-        or (harmonized_exists and not limited_harmonized_ok)
-        or (climate_exposure_exists and not limited_climate_ok)
-        or (outcomes_exists and not limited_outcome_ok)
-    )
+    registry = read_csv_dicts(RESULT_DIR / "promoted_country_wave_registry.csv")
+    promoted_registry_rows = sum(1 for row in registry if row.get("analysis_ready_status") == "promoted_analysis_ready")
+    data_dataset_files = [
+        path for path in DATA_DIR.rglob("*")
+        if path.is_file() and path.name not in {"README.md", ".gitkeep"}
+    ]
+    unpromoted_data_ok = promoted_registry_rows > 0 or len(data_dataset_files) == 0
     add(
         rows,
         "guardrails",
-        "No false analysis-ready datasets are present while upstream outcome and climate gates are blocked",
-        "complete" if not false_data_present else "failed",
-        f"harmonized={harmonized_exists}; limited_harmonized_ok={limited_harmonized_ok}; climate_exposure={climate_exposure_exists}; limited_climate_ok={limited_climate_ok}; outcomes={outcomes_exists}; limited_outcome_ok={limited_outcome_ok}; climate_linked={linked_exists}; limited_linked_ok={limited_linked_ok}",
-        "" if not false_data_present else "Remove false outcome/climate-linked outputs or add successful audit rows.",
+        "No unpromoted dataset files remain in `data/` while the registry has zero promoted rows",
+        "complete" if unpromoted_data_ok else "failed",
+        f"promoted_registry_rows={promoted_registry_rows}; data_dataset_files={len(data_dataset_files)}; data_readme={(DATA_DIR / 'README.md').exists()}; files={'; '.join(str(path.relative_to(TEMP_DIR.parent)) for path in data_dataset_files[:8])}",
+        "" if unpromoted_data_ok else "Run script/127_enforce_promoted_data_gate.py and keep diagnostic data under temp/diagnostic_data_quarantine/current/.",
     )
 
     final_text = (REPORT_DIR / "final_report.md").read_text(encoding="utf-8", errors="replace") if (REPORT_DIR / "final_report.md").exists() else ""

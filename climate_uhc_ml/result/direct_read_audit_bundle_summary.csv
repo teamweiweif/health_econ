@@ -1,11 +1,14 @@
 ﻿metric,value,interpretation
-bundle_rows,122,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,482,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,482,Curated artifacts present and non-empty.
-manifest_missing_or_empty,0,Curated artifacts missing or empty.
+bundle_rows,123,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,487,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,483,Curated artifacts present and non-empty.
+manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
-analysis_ready_data_files,4,Files currently present in data/.
+analysis_ready_data_files,0,"Dataset-like files currently present in data/, excluding README/.gitkeep."
+promoted_data_gate_status,closed_no_promoted_rows,Current promoted-data write gate status.
+promoted_data_gate_registry_promoted_rows,0,Registry rows currently allowed to write promoted datasets into data/.
+promoted_data_gate_quarantined_files,4,Pre-promotion diagnostic files moved from data/ to temp/.
 analysis_dataset_promotion_audit_rows,6,Analysis dataset promotion targets checked.
 analysis_dataset_promotion_blocked_rows,2,Promotion targets blocked from data/.
 analysis_dataset_promotion_promoted_rows,4,Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked.
@@ -375,7 +378,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,13,Direct-read bundle section count.
+bundle_section_priority_bundle,14,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -436,6 +439,7 @@ bundle_status_blocked_raw_files_absent,1,Direct-read bundle status count.
 bundle_status_blocked_raw_microdata,14,Direct-read bundle status count.
 bundle_status_blocked_raw_timing_geography_not_verified,1,Direct-read bundle status count.
 bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns,3,Direct-read bundle status count.
+bundle_status_closed_no_promoted_rows,1,Direct-read bundle status count.
 bundle_status_complete,4,Direct-read bundle status count.
 bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready,2,Direct-read bundle status count.
 bundle_status_documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready,1,Direct-read bundle status count.

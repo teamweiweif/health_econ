@@ -14,6 +14,7 @@ EXPECTED_PATH = TEMP_DIR / "raw_download_expected_files.csv"
 CONCEPT_PATH = TEMP_DIR / "raw_ingestion_concept_checklist.csv"
 PROTOCOL_PATH = TEMP_DIR / "raw_variable_verification_protocol.csv"
 CURRENT_LINKED_PATH = DATA_DIR / "climate_linked_household.csv"
+QUARANTINED_LINKED_PATH = TEMP_DIR / "diagnostic_data_quarantine" / "current" / "climate_linked_household.csv"
 
 REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 GATE_AUDIT_PATH = RESULT_DIR / "country_wave_promotion_gate_audit.csv"
@@ -198,9 +199,10 @@ def status_from_bool(ok: bool, ready: str, blocked: str) -> str:
 
 
 def current_albania_diagnostic_row() -> dict[str, str] | None:
-    if not CURRENT_LINKED_PATH.exists():
+    linked_path = CURRENT_LINKED_PATH if CURRENT_LINKED_PATH.exists() else QUARANTINED_LINKED_PATH
+    if not linked_path.exists():
         return None
-    with CURRENT_LINKED_PATH.open(encoding="utf-8-sig", newline="") as f:
+    with linked_path.open(encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         rows = 0
         countries: set[str] = set()
@@ -226,7 +228,7 @@ def current_albania_diagnostic_row() -> dict[str, str] | None:
         "priority_country": "0",
         "source": "current_diagnostic_template",
         "official_url": "",
-        "local_target_folder": "data/climate_linked_household.csv",
+        "local_target_folder": relative(linked_path),
         "rows": str(rows),
         "outcome_ready_status": "diagnostic_che_only_not_promoted",
         "sdg382_ready_status": "blocked_not_constructed",
