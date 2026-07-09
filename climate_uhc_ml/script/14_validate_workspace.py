@@ -136,6 +136,7 @@ REQUIRED_REPORTS = [
     "priority_raw_verification_workbook.md",
     "priority_manual_verification_decision_gate.md",
     "priority_raw_package_receipt_ledger.md",
+    "priority_official_download_dossier.md",
     "promoted_data_gate.md",
 ]
 REQUIRED_TEMP = [
@@ -278,6 +279,7 @@ REQUIRED_SCRIPTS = [
     "128_build_priority_archive_member_preflight.py",
     "129_build_priority_manual_verification_decision_gate.py",
     "130_build_priority_raw_package_receipt_ledger.py",
+    "131_build_priority_official_download_dossier.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -708,6 +710,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_raw_package_file_manifest": row_count(TEMP_DIR / "priority_raw_package_file_manifest.csv"),
         "priority_raw_package_missing_targets": row_count(TEMP_DIR / "priority_raw_package_missing_targets.csv"),
         "priority_raw_package_receipt_summary": row_count(RESULT_DIR / "priority_raw_package_receipt_summary.csv"),
+        "priority_official_download_dossier": row_count(TEMP_DIR / "priority_official_download_dossier.csv"),
+        "priority_official_full_file_inventory": row_count(TEMP_DIR / "priority_official_full_file_inventory.csv"),
+        "priority_official_documentation_links": row_count(TEMP_DIR / "priority_official_documentation_links.csv"),
+        "priority_official_download_dossier_summary": row_count(RESULT_DIR / "priority_official_download_dossier_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -4209,6 +4215,44 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_receipt_gate_ok),
         f"ledger_rows={counts['priority_raw_package_receipt_ledger']}; file_manifest_rows={counts['priority_raw_package_file_manifest']}; missing_target_rows={counts['priority_raw_package_missing_targets']}; summary_rows={counts['priority_raw_package_receipt_summary']}; reported_dataset_rows={priority_receipt_dataset_rows}; original_files={priority_receipt_original_file_rows}; archives={priority_receipt_archive_files}; raw_tabular={priority_receipt_raw_tabular_files}; documentation={priority_receipt_documentation_files}; targets={priority_receipt_targets}; covered={priority_receipt_targets_covered}; missing={priority_receipt_targets_missing}; missing_rows={priority_receipt_missing_target_rows}; generated_ignored={priority_receipt_generated_ignored}; complete_candidates={priority_receipt_complete_candidates}; partial_candidates={priority_receipt_partial_candidates}; missing_packages={priority_receipt_missing_packages}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_receipt_modeling_gate}",
         "" if priority_receipt_gate_ok else "Run script/130_build_priority_raw_package_receipt_ledger.py after priority archive/manual gates; generated handoff files must not count as original package evidence.",
+    )
+    priority_official_summary = read_csv_dicts(RESULT_DIR / "priority_official_download_dossier_summary.csv")
+    priority_official_dossier_rows = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_download_dossier_rows"), "0"), 0)
+    priority_official_full_file_rows = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_full_file_inventory_rows"), "0"), 0)
+    priority_official_core_rows = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_priority_core_file_rows"), "0"), 0)
+    priority_official_link_rows = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_documentation_link_rows"), "0"), 0)
+    priority_official_pdf_links = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_pdf_documentation_links"), "0"), 0)
+    priority_official_ddi_links = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_ddi_metadata_links"), "0"), 0)
+    priority_official_json_links = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_json_metadata_links"), "0"), 0)
+    priority_official_data_dictionary_links = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_data_dictionary_links"), "0"), 0)
+    priority_official_no_package_rows = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_no_original_package_rows"), "0"), 0)
+    priority_official_receipt_candidates = safe_int(next((row.get("value", "0") for row in priority_official_summary if row.get("metric") == "priority_official_receipt_candidates"), "0"), 0)
+    priority_official_modeling_gate = next((row.get("value", "") for row in priority_official_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_official_gate_ok = (
+        counts["priority_official_download_dossier"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_official_full_file_inventory"] >= 965
+        and counts["priority_official_documentation_links"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_official_download_dossier_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_official_download_dossier.md")
+        and priority_official_dossier_rows >= max(13, counts["priority_promotion_acquisition_wave_plan"])
+        and priority_official_full_file_rows >= 965
+        and priority_official_core_rows >= counts["priority_raw_file_targets"]
+        and priority_official_link_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_official_ddi_links >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_official_json_links >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_official_data_dictionary_links >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_official_pdf_links >= 10
+        and (not priority_manual_no_raw_present or priority_official_no_package_rows >= counts["priority_promotion_acquisition_wave_plan"])
+        and (not priority_manual_no_raw_present or priority_official_receipt_candidates == 0)
+        and priority_official_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority official download dossier expands from core targets to full metadata file inventories and official access/documentation links",
+        status(priority_official_gate_ok),
+        f"dossier_rows={counts['priority_official_download_dossier']}; full_inventory_rows={counts['priority_official_full_file_inventory']}; documentation_link_rows={counts['priority_official_documentation_links']}; summary_rows={counts['priority_official_download_dossier_summary']}; reported_dossiers={priority_official_dossier_rows}; reported_full_files={priority_official_full_file_rows}; reported_core_files={priority_official_core_rows}; links={priority_official_link_rows}; pdf={priority_official_pdf_links}; ddi={priority_official_ddi_links}; json={priority_official_json_links}; data_dictionary={priority_official_data_dictionary_links}; no_package_rows={priority_official_no_package_rows}; receipt_candidates={priority_official_receipt_candidates}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_official_modeling_gate}",
+        "" if priority_official_gate_ok else "Run script/131_build_priority_official_download_dossier.py after priority receipt ledger; official links and full metadata file inventory must be present.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

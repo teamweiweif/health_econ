@@ -1,0 +1,13 @@
+﻿metric,value,interpretation
+priority_official_download_dossier_rows,13,Priority and backup waves with official download dossiers.
+priority_official_full_file_inventory_rows,965,Full official metadata file rows for priority and backup waves.
+priority_official_priority_core_file_rows,156,Rows from the full metadata inventory that also appear in the core priority file queue.
+priority_official_documentation_link_rows,100,Official metadata/documentation/access workflow links captured for the dossiers.
+priority_official_pdf_documentation_links,11,PDF documentation links captured.
+priority_official_ddi_metadata_links,13,DDI metadata export links captured.
+priority_official_json_metadata_links,13,JSON metadata export links captured.
+priority_official_data_dictionary_links,13,Data dictionary links captured.
+priority_official_no_original_package_rows,13,Dossiers still blocked because no original raw package is present.
+priority_official_receipt_candidates,0,Dossiers with receipt candidates ready for downstream audits.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted CHIRPS/ERA5 linkage pass.
+priority_official_dossier_status_blocked_official_access_required_no_original_package,13,Download dossier status count.

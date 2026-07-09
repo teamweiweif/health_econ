@@ -68,6 +68,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_raw_package_file_manifest.csv", "priority original package/file checksum manifest"),
     ("dataset_promotion", "temp/priority_raw_package_missing_targets.csv", "priority raw package missing target rows"),
     ("dataset_promotion", "result/priority_raw_package_receipt_summary.csv", "priority raw package receipt summary"),
+    ("dataset_promotion", "report/priority_official_download_dossier.md", "priority official download dossier report"),
+    ("dataset_promotion", "temp/priority_official_download_dossier.csv", "priority dataset-level official download dossier"),
+    ("dataset_promotion", "temp/priority_official_full_file_inventory.csv", "priority full official metadata file inventory"),
+    ("dataset_promotion", "temp/priority_official_documentation_links.csv", "priority official documentation and access workflow links"),
+    ("dataset_promotion", "result/priority_official_download_dossier_summary.csv", "priority official download dossier summary"),
     ("dataset_promotion", "report/promoted_data_gate.md", "promoted data write gate report"),
     ("dataset_promotion", "result/promoted_data_gate_summary.csv", "promoted data write gate summary"),
     ("dataset_promotion", "temp/promoted_data_gate_manifest.csv", "promoted data quarantine/action manifest"),
@@ -447,6 +452,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/128_build_priority_archive_member_preflight.py", "priority archive/direct-file preflight generator"),
     ("reproducibility", "script/129_build_priority_manual_verification_decision_gate.py", "priority manual verification decision gate generator"),
     ("reproducibility", "script/130_build_priority_raw_package_receipt_ledger.py", "priority raw package receipt ledger generator"),
+    ("reproducibility", "script/131_build_priority_official_download_dossier.py", "priority official download dossier generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
     ("reproducibility", "script/41_build_first_batch_public_documentation_audit.py", "first-batch public documentation audit generator"),
     ("reproducibility", "script/42_build_first_batch_file_source_traceability.py", "first-batch file source traceability generator"),
@@ -641,6 +647,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_raw_verification_summary = read_csv_dicts(RESULT_DIR / "priority_raw_verification_workbook_summary.csv")
     priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
     priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
+    priority_official_download_summary = read_csv_dicts(RESULT_DIR / "priority_official_download_dossier_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     public_external_summary = read_csv_dicts(RESULT_DIR / "public_external_raw_candidate_download_summary.csv")
     first_batch_handoff_summary = read_csv_dicts(RESULT_DIR / "first_batch_manual_download_handoff_summary.csv")
@@ -880,6 +887,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_receipt_summary, 'priority_raw_receipt_dataset_rows', '0')}; original_files={csv_value(priority_receipt_summary, 'priority_raw_receipt_original_file_rows', '0')}; archives={csv_value(priority_receipt_summary, 'priority_raw_receipt_archive_files', '0')}; raw_tabular={csv_value(priority_receipt_summary, 'priority_raw_receipt_raw_tabular_files', '0')}; documentation={csv_value(priority_receipt_summary, 'priority_raw_receipt_documentation_files', '0')}; targets={csv_value(priority_receipt_summary, 'priority_raw_receipt_priority_targets', '0')}; covered={csv_value(priority_receipt_summary, 'priority_raw_receipt_priority_targets_covered', '0')}; missing={csv_value(priority_receipt_summary, 'priority_raw_receipt_priority_targets_missing', '0')}; generated_ignored={csv_value(priority_receipt_summary, 'priority_raw_receipt_generated_files_ignored', '0')}; complete_candidates={csv_value(priority_receipt_summary, 'priority_raw_receipt_complete_package_candidates', '0')}",
         [TEMP_DIR / "priority_raw_package_receipt_ledger.csv", TEMP_DIR / "priority_raw_package_file_manifest.csv", TEMP_DIR / "priority_raw_package_missing_targets.csv", RESULT_DIR / "priority_raw_package_receipt_summary.csv", REPORT_DIR / "priority_raw_package_receipt_ledger.md"],
         "Priority receipt ledger ignores generated handoffs/placeholders and records only unchanged original package/documentation files, hashes, and missing target modules before downstream schema/manual verification.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_official_download_dossier",
+        "blocked_official_access_required_no_original_package" if csv_value(priority_official_download_summary, "priority_official_no_original_package_rows", "0") != "0" else "official_download_receipt_candidates_present",
+        f"dossiers={csv_value(priority_official_download_summary, 'priority_official_download_dossier_rows', '0')}; full_file_rows={csv_value(priority_official_download_summary, 'priority_official_full_file_inventory_rows', '0')}; core_rows={csv_value(priority_official_download_summary, 'priority_official_priority_core_file_rows', '0')}; links={csv_value(priority_official_download_summary, 'priority_official_documentation_link_rows', '0')}; pdf={csv_value(priority_official_download_summary, 'priority_official_pdf_documentation_links', '0')}; ddi={csv_value(priority_official_download_summary, 'priority_official_ddi_metadata_links', '0')}; json={csv_value(priority_official_download_summary, 'priority_official_json_metadata_links', '0')}; no_original_package={csv_value(priority_official_download_summary, 'priority_official_no_original_package_rows', '0')}; receipt_candidates={csv_value(priority_official_download_summary, 'priority_official_receipt_candidates', '0')}",
+        [TEMP_DIR / "priority_official_download_dossier.csv", TEMP_DIR / "priority_official_full_file_inventory.csv", TEMP_DIR / "priority_official_documentation_links.csv", RESULT_DIR / "priority_official_download_dossier_summary.csv", REPORT_DIR / "priority_official_download_dossier.md"],
+        "Official download dossier expands from the 156 core targets to the full metadata-derived file inventory and records official access, documentation, DDI, JSON, and data-dictionary links for credentialed package acquisition.",
     )
     add_bundle(
         rows,
@@ -1754,6 +1770,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_archive_summary = read_csv_dicts(RESULT_DIR / "priority_archive_member_preflight_summary.csv")
     priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
     priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
+    priority_official_download_summary = read_csv_dicts(RESULT_DIR / "priority_official_download_dossier_summary.csv")
     data_dataset_files = [
         path for path in DATA_DIR.rglob("*")
         if path.is_file() and path.name not in {"README.md", ".gitkeep"}
@@ -1782,6 +1799,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_raw_receipt_priority_targets_missing", "value": csv_value(priority_receipt_summary, "priority_raw_receipt_priority_targets_missing", "0"), "interpretation": "Priority target modules still missing from original package/archive receipt coverage."},
         {"metric": "priority_raw_receipt_missing_package_rows", "value": csv_value(priority_receipt_summary, "priority_raw_receipt_missing_package_rows", "0"), "interpretation": "Priority datasets with no original raw package/tabular receipt yet."},
         {"metric": "priority_raw_receipt_complete_package_candidates", "value": csv_value(priority_receipt_summary, "priority_raw_receipt_complete_package_candidates", "0"), "interpretation": "Priority datasets with original package receipt candidates ready for downstream schema/manual audits."},
+        {"metric": "priority_official_download_full_file_rows", "value": csv_value(priority_official_download_summary, "priority_official_full_file_inventory_rows", "0"), "interpretation": "Full official metadata file rows available for credentialed package acquisition checks."},
+        {"metric": "priority_official_download_documentation_links", "value": csv_value(priority_official_download_summary, "priority_official_documentation_link_rows", "0"), "interpretation": "Official metadata/documentation/access workflow links in the download dossier."},
+        {"metric": "priority_official_download_no_original_package_rows", "value": csv_value(priority_official_download_summary, "priority_official_no_original_package_rows", "0"), "interpretation": "Download dossiers still blocked because no original raw package is present."},
         {"metric": "analysis_dataset_promotion_audit_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_audit_rows", "0"), "interpretation": "Analysis dataset promotion targets checked."},
         {"metric": "analysis_dataset_promotion_blocked_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_blocked_rows", "0"), "interpretation": "Promotion targets blocked from data/."},
         {"metric": "analysis_dataset_promotion_promoted_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_promoted_rows", "0"), "interpretation": "Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked."},

@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 126 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 505 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 501 | Curated artifacts present and non-empty. |
+| bundle_rows | 127 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 511 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 507 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -35,6 +35,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_raw_receipt_priority_targets_missing | 156 | Priority target modules still missing from original package/archive receipt coverage. |
 | priority_raw_receipt_missing_package_rows | 13 | Priority datasets with no original raw package/tabular receipt yet. |
 | priority_raw_receipt_complete_package_candidates | 0 | Priority datasets with original package receipt candidates ready for downstream schema/manual audits. |
+| priority_official_download_full_file_rows | 965 | Full official metadata file rows available for credentialed package acquisition checks. |
+| priority_official_download_documentation_links | 100 | Official metadata/documentation/access workflow links in the download dossier. |
+| priority_official_download_no_original_package_rows | 13 | Download dossiers still blocked because no original raw package is present. |
 | analysis_dataset_promotion_audit_rows | 6 | Analysis dataset promotion targets checked. |
 | analysis_dataset_promotion_blocked_rows | 2 | Promotion targets blocked from data/. |
 | analysis_dataset_promotion_promoted_rows | 4 | Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked. |
@@ -404,7 +407,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 17 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 18 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -459,6 +462,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_no_albania_wave_ready_for_first_analysis_promotion | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_public_2002_district_boundary_source_verified | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_raw_or_archive_file | 1 | Direct-read bundle status count. |
+| bundle_status_blocked_official_access_required_no_original_package | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_outcome_semantics_units_recall_skip_patterns_unreviewed | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_public_metadata_not_household_climate_linkage_ready | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_questionnaire_gps_fields_not_present_as_raw_coordinate_artifacts | 1 | Direct-read bundle status count. |
@@ -509,7 +513,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 |---|---:|
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
-| priority_bundle | 17 |
+| priority_bundle | 18 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
 | coverage | 5 |
@@ -546,6 +550,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | blocked_raw_files_absent | 1 |
 | blocked_manual_verification_incomplete | 1 |
 | not_received_no_original_raw_package | 1 |
+| blocked_official_access_required_no_original_package | 1 |
 | closed_no_promoted_rows | 1 |
 | raw_archives_available_requires_value_verification | 1 |
 | raw_value_summary_available_manual_review_required | 1 |
@@ -644,16 +649,16 @@ No incomplete completion criteria were found.
 | priority_raw_verification_workbook | blocked_raw_files_absent | dataset_gates=13; requirements=104; concepts=169; variables=1214; dataset_ready=0; requirements_ready=0; handoffs=13 | Priority raw verification workbook converts the objective's required checks into fillable dataset, requirement, conce... |
 | priority_manual_verification_decision_gate | blocked_manual_verification_incomplete | datasets=13; requirements=104; concepts=169; variables=1214; requirements_verified=0; concepts_verified=0; variables_... | Priority manual verification decision gate consumes preserved fill-field evidence from the workbook and blocks promot... |
 | priority_raw_package_receipt_ledger | not_received_no_original_raw_package | datasets=13; original_files=0; archives=0; raw_tabular=0; documentation=0; targets=156; covered=0; missing=156; gener... | Priority receipt ledger ignores generated handoffs/placeholders and records only unchanged original package/documenta... |
+| priority_official_download_dossier | blocked_official_access_required_no_original_package | dossiers=13; full_file_rows=965; core_rows=156; links=100; pdf=11; ddi=13; json=13; no_original_package=13; receipt_c... | Official download dossier expands from the 156 core targets to the full metadata-derived file inventory and records o... |
 | promoted_data_gate | closed_no_promoted_rows | promoted_rows=0; data_before=4; data_after=0; quarantined=4 | Promoted data gate keeps data/ reserved for registry-approved datasets and moves pre-promotion diagnostic CSVs to tem... |
 | 1: Albania 2005 ALB_2005_LSMS_v01_M | harmonization_value_audit_required | raw_schema_claims_only_no_analysis_dataset_claims | complete harmonization value/unit/recall/key audits and assemble verified recipe candidates |
 | 2: Ethiopia 2021-2022 ETH_2021_ESPS-W5_v02_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
-| 3: Ethiopia 2018-2019 ETH_2018_ESS_v04_M | manual_raw_download_required | metadata_protocol_only_no_empirical_claims | place original raw archives/files in the target folder, then run raw-download and schema inspection |
 
 ## Artifact Manifest
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 501 |
+| present_nonempty | 507 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:
