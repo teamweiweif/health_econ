@@ -1,0 +1,20 @@
+﻿metric,value,interpretation
+priority_dataset_verification_gate_rows,13,Dataset-level priority raw verification gate rows.
+priority_verification_priority_10_rows,10,Immediate priority waves covered by the workbook.
+priority_verification_priority_10_countries,5,Priority countries covered by the workbook.
+priority_verification_backup_rows,3,Sixth-country backup rows covered by the workbook.
+priority_requirement_checklist_rows,104,Explicit requirement checklist rows aligned to the dataset promotion objective.
+priority_concept_template_rows,169,Concept-level raw verification template rows.
+priority_variable_template_rows,1214,Variable-level raw verification template rows.
+priority_datasets_ready_for_manual_value_audit,0,Datasets with all promotion evidence ready for harmonization recipe review.
+priority_requirements_ready_for_manual_audit,0,Requirement rows ready for manual raw-backed review.
+priority_concepts_ready_for_manual_value_audit,0,Concept rows ready for manual value/label/unit/key audit.
+priority_variables_ready_for_manual_value_audit,0,Variable rows ready for manual value/label/unit/key audit.
+priority_raw_verification_handoff_readmes_written,13,Per-wave raw verification workbook README files written.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted climate linkage pass.
+dataset_gate_blocked_raw_files_absent,13,Dataset gate status count.
+requirement_gate_blocked_raw_package_required,104,Requirement gate status count.
+concept_gate_blocked_missing_metadata_candidate,16,Concept gate status count.
+concept_gate_blocked_raw_file_missing,153,Concept gate status count.
+variable_status_raw_candidate_not_matched,16,Variable verification status count.
+variable_status_raw_not_inspected,1198,Variable verification status count.

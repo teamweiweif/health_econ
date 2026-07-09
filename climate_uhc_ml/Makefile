@@ -276,6 +276,7 @@ promotion:
 	$(PYTHON) script/123_probe_priority_official_raw_access.py
 	$(PYTHON) script/124_build_priority_raw_intake_gate.py
 	$(PYTHON) script/125_build_priority_climate_linkage_preflight.py
+	$(PYTHON) script/126_build_priority_raw_verification_workbook.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py

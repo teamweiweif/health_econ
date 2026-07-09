@@ -132,6 +132,7 @@ REQUIRED_REPORTS = [
     "priority_official_raw_access_probe.md",
     "priority_raw_intake_gate.md",
     "priority_climate_linkage_preflight.md",
+    "priority_raw_verification_workbook.md",
 ]
 REQUIRED_TEMP = [
     "source_inventory.csv",
@@ -268,6 +269,7 @@ REQUIRED_SCRIPTS = [
     "123_probe_priority_official_raw_access.py",
     "124_build_priority_raw_intake_gate.py",
     "125_build_priority_climate_linkage_preflight.py",
+    "126_build_priority_raw_verification_workbook.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -681,6 +683,11 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_climate_linkage_preflight": row_count(TEMP_DIR / "priority_climate_linkage_preflight.csv"),
         "priority_climate_linkage_requirements": row_count(TEMP_DIR / "priority_climate_linkage_requirements.csv"),
         "priority_climate_linkage_preflight_summary": row_count(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv"),
+        "priority_dataset_verification_gate": row_count(RESULT_DIR / "priority_dataset_verification_gate.csv"),
+        "priority_promotion_verification_checklist": row_count(TEMP_DIR / "priority_promotion_verification_checklist.csv"),
+        "priority_concept_verification_template": row_count(TEMP_DIR / "priority_concept_verification_template.csv"),
+        "priority_variable_verification_template": row_count(TEMP_DIR / "priority_variable_verification_template.csv"),
+        "priority_raw_verification_workbook_summary": row_count(RESULT_DIR / "priority_raw_verification_workbook_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
         "design_scorecard_current_audit": row_count(RESULT_DIR / "design_scorecard_current_audit.csv"),
         "design_no_go_threshold_audit": row_count(RESULT_DIR / "design_no_go_threshold_audit.csv"),
@@ -3975,6 +3982,70 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_climate_source_groups_ready >= 3
         and priority_climate_modeling_gate == "blocked"
         else "Run script/125_build_priority_climate_linkage_preflight.py after climate validation protocol and priority raw intake gate exist.",
+    )
+    priority_raw_verification_summary = read_csv_dicts(RESULT_DIR / "priority_raw_verification_workbook_summary.csv")
+    priority_dataset_gate_rows = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_dataset_verification_gate_rows"), "0"), 0)
+    priority_verification_batch_rows = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_verification_priority_10_rows"), "0"), 0)
+    priority_verification_countries = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_verification_priority_10_countries"), "0"), 0)
+    priority_verification_backup_rows = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_verification_backup_rows"), "0"), 0)
+    priority_requirement_rows = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_requirement_checklist_rows"), "0"), 0)
+    priority_concept_rows = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_concept_template_rows"), "0"), 0)
+    priority_variable_rows = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_variable_template_rows"), "0"), 0)
+    priority_datasets_ready = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_datasets_ready_for_manual_value_audit"), "0"), 0)
+    priority_requirements_ready = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_requirements_ready_for_manual_audit"), "0"), 0)
+    priority_raw_verification_handoffs = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "priority_raw_verification_handoff_readmes_written"), "0"), 0)
+    priority_raw_verification_blocked = safe_int(next((row.get("value", "0") for row in priority_raw_verification_summary if row.get("metric") == "dataset_gate_blocked_raw_files_absent"), "0"), 0)
+    priority_raw_verification_modeling_gate = next((row.get("value", "") for row in priority_raw_verification_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_dataset_gate = read_csv_dicts(RESULT_DIR / "priority_dataset_verification_gate.csv")
+    priority_raw_verification_handoff_existing = sum(1 for row in priority_dataset_gate if row.get("handoff_readme") and file_ok(PROJECT_ROOT / row.get("handoff_readme", "")))
+    expected_priority_requirements = counts["priority_promotion_acquisition_wave_plan"] * 8
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority raw verification workbook converts required promotion checks into fillable fail-closed dataset, requirement, concept, and variable gates",
+        status(
+            counts["priority_dataset_verification_gate"] >= counts["priority_promotion_acquisition_wave_plan"]
+            and counts["priority_promotion_verification_checklist"] >= expected_priority_requirements
+            and counts["priority_concept_verification_template"] >= counts["priority_promotion_acquisition_wave_plan"]
+            and counts["priority_variable_verification_template"] >= counts["priority_raw_file_targets"]
+            and counts["priority_raw_verification_workbook_summary"] > 0
+            and file_ok(REPORT_DIR / "priority_raw_verification_workbook.md")
+            and priority_dataset_gate_rows >= counts["priority_promotion_acquisition_wave_plan"]
+            and priority_verification_batch_rows >= 10
+            and priority_verification_countries >= 5
+            and priority_verification_backup_rows >= 1
+            and priority_requirement_rows >= expected_priority_requirements
+            and priority_concept_rows >= counts["priority_promotion_acquisition_wave_plan"]
+            and priority_variable_rows >= counts["priority_raw_file_targets"]
+            and priority_datasets_ready == 0
+            and priority_requirements_ready == 0
+            and priority_raw_verification_blocked >= counts["priority_promotion_acquisition_wave_plan"]
+            and priority_raw_verification_handoffs >= priority_dataset_gate_rows
+            and priority_raw_verification_handoff_existing >= priority_dataset_gate_rows
+            and priority_raw_verification_modeling_gate == "blocked"
+        ),
+        f"dataset_gate_rows={counts['priority_dataset_verification_gate']}; requirement_rows={counts['priority_promotion_verification_checklist']}; concept_rows={counts['priority_concept_verification_template']}; variable_rows={counts['priority_variable_verification_template']}; summary_rows={counts['priority_raw_verification_workbook_summary']}; reported_dataset_rows={priority_dataset_gate_rows}; priority_10_rows={priority_verification_batch_rows}; priority_countries={priority_verification_countries}; backup_rows={priority_verification_backup_rows}; reported_requirements={priority_requirement_rows}; reported_concepts={priority_concept_rows}; reported_variables={priority_variable_rows}; datasets_ready={priority_datasets_ready}; requirements_ready={priority_requirements_ready}; blocked_raw_files={priority_raw_verification_blocked}; handoff_rows={priority_raw_verification_handoffs}; handoff_existing={priority_raw_verification_handoff_existing}; modeling_gate={priority_raw_verification_modeling_gate}",
+        ""
+        if counts["priority_dataset_verification_gate"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_promotion_verification_checklist"] >= expected_priority_requirements
+        and counts["priority_concept_verification_template"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_variable_verification_template"] >= counts["priority_raw_file_targets"]
+        and counts["priority_raw_verification_workbook_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_raw_verification_workbook.md")
+        and priority_dataset_gate_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_verification_batch_rows >= 10
+        and priority_verification_countries >= 5
+        and priority_verification_backup_rows >= 1
+        and priority_requirement_rows >= expected_priority_requirements
+        and priority_concept_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_variable_rows >= counts["priority_raw_file_targets"]
+        and priority_datasets_ready == 0
+        and priority_requirements_ready == 0
+        and priority_raw_verification_blocked >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_raw_verification_handoffs >= priority_dataset_gate_rows
+        and priority_raw_verification_handoff_existing >= priority_dataset_gate_rows
+        and priority_raw_verification_modeling_gate == "blocked"
+        else "Run script/126_build_priority_raw_verification_workbook.py after priority raw intake and climate preflight gates exist.",
     )
     objective_trace = read_csv_dicts(RESULT_DIR / "objective_requirement_traceability.csv")
     objective_guardrails = read_csv_dicts(RESULT_DIR / "objective_guardrail_audit.csv")

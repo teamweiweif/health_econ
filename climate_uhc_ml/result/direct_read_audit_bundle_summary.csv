@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,121,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,475,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,475,Curated artifacts present and non-empty.
+bundle_rows,122,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,482,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,482,Curated artifacts present and non-empty.
 manifest_missing_or_empty,0,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -375,7 +375,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,12,Direct-read bundle section count.
+bundle_section_priority_bundle,13,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -432,6 +432,7 @@ bundle_status_blocked_outcome_semantics_units_recall_skip_patterns_unreviewed,1,
 bundle_status_blocked_public_metadata_not_household_climate_linkage_ready,1,Direct-read bundle status count.
 bundle_status_blocked_questionnaire_gps_fields_not_present_as_raw_coordinate_artifacts,1,Direct-read bundle status count.
 bundle_status_blocked_questionnaire_timing_fields_not_in_raw_household_values,1,Direct-read bundle status count.
+bundle_status_blocked_raw_files_absent,1,Direct-read bundle status count.
 bundle_status_blocked_raw_microdata,14,Direct-read bundle status count.
 bundle_status_blocked_raw_timing_geography_not_verified,1,Direct-read bundle status count.
 bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns,3,Direct-read bundle status count.
