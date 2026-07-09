@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+priority_threshold_campaign_dataset_rows,13,Priority and backup country-waves in the threshold acquisition campaign.
+priority_threshold_campaign_phase1_10_wave_rows,10,Core campaign rows needed for the 10 country-wave double-failure threshold.
+priority_threshold_campaign_phase2_sixth_country_backup_rows,3,Backup rows kept to reach a sixth financial-protection country.
+priority_threshold_campaign_distinct_countries,8,Distinct countries represented in the campaign.
+priority_threshold_campaign_core_country_rows,5,Core countries represented by the first 10 waves.
+priority_threshold_campaign_backup_country_rows,3,Backup countries available as sixth-country candidates.
+priority_threshold_campaign_core_wave_rows,10,Wave rows in the core five-country base.
+priority_threshold_campaign_backup_wave_rows,3,Wave rows in the sixth-country backup set.
+priority_threshold_campaign_minimum_download_rows_for_formal_thresholds,11,Ten phase-1 waves plus at least one backup-country wave are the minimum raw downloads if every selected wave verifies.
+priority_threshold_campaign_recommended_download_rows,13,Recommended downloads include all three backup countries to reduce sixth-country failure risk.
+priority_threshold_campaign_current_promoted_analysis_ready_rows,0,Campaign rows currently promoted analysis-ready.
+priority_threshold_campaign_raw_package_received_rows,0,Campaign rows with any original raw/package receipt.
+priority_threshold_campaign_raw_package_missing_rows,13,Campaign rows still missing original raw/package receipt.
+priority_threshold_campaign_core_file_endpoint_ready_rows,13,Campaign rows with core-file endpoint probes confirming public routes do not expose accepted raw payloads.
+priority_threshold_campaign_handoff_readmes_written,13,Per-wave threshold acquisition handoffs written.
+modeling_gate_status,blocked,"Models remain blocked until 6 countries, 10 country-waves, and accepted CHIRPS/ERA5 linkage are value-verified."

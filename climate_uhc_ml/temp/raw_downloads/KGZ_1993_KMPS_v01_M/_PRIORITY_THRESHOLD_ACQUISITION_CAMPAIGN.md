@@ -1,0 +1,38 @@
+# Priority Threshold Acquisition Campaign
+
+Dataset: KGZ_1993_KMPS_v01_M - Kyrgyz Republic 1993
+
+Campaign phase: phase_2_sixth_country_financial_protection_backup
+
+Threshold role: candidate_for_6th_financial_protection_country
+
+Country role: sixth_country_backup_option
+
+Official URL: https://microdata.worldbank.org/catalog/280/get-microdata
+
+Target folder: `temp/raw_downloads/KGZ_1993_KMPS_v01_M/`
+
+Current raw receipt: not_received_no_original_raw_package
+
+Current promoted registry status: not_promoted
+
+Next action: Open official get-microdata URL with an authorized account, complete terms/Data Access Agreement, download the complete unchanged package plus documentation, and place it in the target folder.
+
+Post-download validation commands:
+
+- `python script/17_audit_raw_downloads.py`
+- `python script/128_build_priority_archive_member_preflight.py`
+- `python script/130_build_priority_raw_package_receipt_ledger.py`
+- `python script/03_inspect_raw_schemas.py`
+- `python script/29_build_raw_variable_verification_protocol.py`
+- `python script/33_build_harmonization_recipe_gate.py`
+- `python script/125_build_priority_climate_linkage_preflight.py`
+- `python script/126_build_priority_raw_verification_workbook.py`
+- `python script/129_build_priority_manual_verification_decision_gate.py`
+- `python script/132_build_priority_analysis_dataset_synthesis_blueprint.py`
+- `python script/134_build_priority_country_wave_promotion_packets.py`
+- `python script/127_enforce_promoted_data_gate.py`
+- `python script/36_build_direct_read_audit_bundle.py`
+- `python script/14_validate_workspace.py`
+
+Promotion stop rule: Do not write this country-wave into data/ until the complete original package, raw value verification, outcome readiness, and CHIRPS/ERA5 linkage gates pass.

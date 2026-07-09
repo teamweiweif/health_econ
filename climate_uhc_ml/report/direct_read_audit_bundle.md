@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 134 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 549 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 545 | Curated artifacts present and non-empty. |
+| bundle_rows | 135 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 554 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 550 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -58,6 +58,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_core_file_endpoint_probed_download_rows | 624 | File-level download route probes for priority core files. |
 | priority_core_file_endpoint_raw_candidate_rows | 0 | Potential public raw file candidates detected by the core-file endpoint matrix. |
 | priority_core_file_endpoint_credentialed_download_required_rows | 13 | Datasets still requiring credentialed raw package acquisition after file-level route probes. |
+| priority_threshold_campaign_phase1_10_wave_rows | 10 | Core campaign rows for the 10 country-wave double-failure threshold. |
+| priority_threshold_campaign_phase2_sixth_country_backup_rows | 3 | Backup-country rows retained for the sixth financial-protection country threshold. |
+| priority_threshold_campaign_minimum_download_rows_for_formal_thresholds | 11 | Minimum raw downloads needed if every selected wave verifies. |
+| priority_threshold_campaign_recommended_download_rows | 13 | Recommended raw downloads including backup countries to reduce threshold failure risk. |
 | priority_synthesis_blueprint_schema_rows | 572 | Target output-column rows for promoted household-climate dataset synthesis. |
 | priority_synthesis_blueprint_blocked_required_rows | 325 | Required promoted-dataset output columns still blocked. |
 | priority_synthesis_blueprint_join_ready_rows | 0 | Priority country-waves ready for promoted dataset build joins. |
@@ -437,7 +441,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 25 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 26 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -543,13 +547,14 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_not_analysis_ready | 2 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_timing_geography_observed_outcome_semantics_pending | 1 | Direct-read bundle status count. |
+| bundle_status_threshold_campaign_ready_raw_missing | 1 | Direct-read bundle status count. |
 
 ## Bundle Sections
 
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 25 |
+| priority_bundle | 26 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -593,6 +598,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | ready_for_credentialed_manual_download | 1 |
 | public_metadata_only_raw_gate_confirmed | 1 |
 | file_level_routes_confirmed_non_public_raw | 1 |
+| threshold_campaign_ready_raw_missing | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | closed_no_promoted_rows | 1 |
@@ -702,7 +708,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 545 |
+| present_nonempty | 550 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

@@ -286,6 +286,7 @@ promotion:
 	$(PYTHON) script/136_build_priority_credentialed_raw_acquisition_ledger.py
 	$(PYTHON) script/137_probe_priority_official_endpoint_matrix.py
 	$(PYTHON) script/138_probe_priority_core_file_endpoint_matrix.py
+	$(PYTHON) script/139_build_priority_threshold_acquisition_campaign.py
 	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/134_build_priority_country_wave_promotion_packets.py
 	$(PYTHON) script/127_enforce_promoted_data_gate.py

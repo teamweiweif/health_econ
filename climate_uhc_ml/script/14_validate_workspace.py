@@ -142,6 +142,7 @@ REQUIRED_REPORTS = [
     "priority_credentialed_raw_acquisition_ledger.md",
     "priority_official_endpoint_matrix.md",
     "priority_core_file_endpoint_matrix.md",
+    "priority_threshold_acquisition_campaign.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "promoted_data_gate.md",
@@ -292,6 +293,7 @@ REQUIRED_SCRIPTS = [
     "136_build_priority_credentialed_raw_acquisition_ledger.py",
     "137_probe_priority_official_endpoint_matrix.py",
     "138_probe_priority_core_file_endpoint_matrix.py",
+    "139_build_priority_threshold_acquisition_campaign.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
@@ -745,6 +747,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_core_file_endpoint_matrix": row_count(TEMP_DIR / "priority_core_file_endpoint_matrix.csv"),
         "priority_core_file_endpoint_dataset_matrix": row_count(TEMP_DIR / "priority_core_file_endpoint_dataset_matrix.csv"),
         "priority_core_file_endpoint_matrix_summary": row_count(RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv"),
+        "priority_threshold_acquisition_campaign": row_count(TEMP_DIR / "priority_threshold_acquisition_campaign.csv"),
+        "priority_threshold_country_coverage": row_count(TEMP_DIR / "priority_threshold_country_coverage.csv"),
+        "priority_threshold_acquisition_campaign_summary": row_count(RESULT_DIR / "priority_threshold_acquisition_campaign_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4477,6 +4482,53 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_core_file_endpoint_gate_ok),
         f"matrix_rows={counts['priority_core_file_endpoint_matrix']}; dataset_rows={counts['priority_core_file_endpoint_dataset_matrix']}; summary_rows={counts['priority_core_file_endpoint_matrix_summary']}; reported_datasets={priority_core_file_endpoint_dataset_rows}; core_files={priority_core_file_endpoint_core_rows}; reported_matrix_rows={priority_core_file_endpoint_matrix_rows}; metadata_refs={priority_core_file_endpoint_metadata_refs}; probed_download_routes={priority_core_file_endpoint_probed_rows}; http_errors={priority_core_file_endpoint_http_errors}; empty_downloads={priority_core_file_endpoint_empty_downloads}; request_failed={priority_core_file_endpoint_request_failed}; no_public_raw_routes={priority_core_file_endpoint_no_public_raw}; raw_candidates={priority_core_file_endpoint_raw_candidates}; credentialed_required={priority_core_file_endpoint_credentialed_required}; handoffs={priority_core_file_endpoint_handoffs}; modeling_gate={priority_core_file_endpoint_modeling_gate}",
         "" if priority_core_file_endpoint_gate_ok else "Run script/138_probe_priority_core_file_endpoint_matrix.py after the credentialed raw acquisition ledger; file-level endpoint evidence is not raw receipt.",
+    )
+    priority_threshold_summary = read_csv_dicts(RESULT_DIR / "priority_threshold_acquisition_campaign_summary.csv")
+    priority_threshold_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_dataset_rows"), "0"), 0)
+    priority_threshold_phase1_rows = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_phase1_10_wave_rows"), "0"), 0)
+    priority_threshold_phase2_rows = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_phase2_sixth_country_backup_rows"), "0"), 0)
+    priority_threshold_countries = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_distinct_countries"), "0"), 0)
+    priority_threshold_core_countries = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_core_country_rows"), "0"), 0)
+    priority_threshold_backup_countries = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_backup_country_rows"), "0"), 0)
+    priority_threshold_core_waves = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_core_wave_rows"), "0"), 0)
+    priority_threshold_backup_waves = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_backup_wave_rows"), "0"), 0)
+    priority_threshold_minimum_downloads = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_minimum_download_rows_for_formal_thresholds"), "0"), 0)
+    priority_threshold_recommended_downloads = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_recommended_download_rows"), "0"), 0)
+    priority_threshold_promoted = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_current_promoted_analysis_ready_rows"), "0"), 0)
+    priority_threshold_raw_received = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_raw_package_received_rows"), "0"), 0)
+    priority_threshold_raw_missing = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_raw_package_missing_rows"), "0"), 0)
+    priority_threshold_core_endpoint_ready = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_core_file_endpoint_ready_rows"), "0"), 0)
+    priority_threshold_handoffs = safe_int(next((row.get("value", "0") for row in priority_threshold_summary if row.get("metric") == "priority_threshold_campaign_handoff_readmes_written"), "0"), 0)
+    priority_threshold_modeling_gate = next((row.get("value", "") for row in priority_threshold_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_threshold_gate_ok = (
+        counts["priority_threshold_acquisition_campaign"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_threshold_country_coverage"] >= 8
+        and counts["priority_threshold_acquisition_campaign_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_threshold_acquisition_campaign.md")
+        and priority_threshold_dataset_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_threshold_phase1_rows >= 10
+        and priority_threshold_phase2_rows >= 3
+        and priority_threshold_countries >= 8
+        and priority_threshold_core_countries >= 5
+        and priority_threshold_backup_countries >= 3
+        and priority_threshold_core_waves >= 10
+        and priority_threshold_backup_waves >= 3
+        and priority_threshold_minimum_downloads == 11
+        and priority_threshold_recommended_downloads >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_threshold_promoted == 0
+        and priority_threshold_raw_received == 0
+        and priority_threshold_raw_missing >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_threshold_core_endpoint_ready >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_threshold_handoffs >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_threshold_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority threshold acquisition campaign maps 10-wave and sixth-country download requirements before raw receipt",
+        status(priority_threshold_gate_ok),
+        f"campaign_rows={counts['priority_threshold_acquisition_campaign']}; country_rows={counts['priority_threshold_country_coverage']}; summary_rows={counts['priority_threshold_acquisition_campaign_summary']}; reported_datasets={priority_threshold_dataset_rows}; phase1={priority_threshold_phase1_rows}; phase2={priority_threshold_phase2_rows}; countries={priority_threshold_countries}; core_countries={priority_threshold_core_countries}; backup_countries={priority_threshold_backup_countries}; core_waves={priority_threshold_core_waves}; backup_waves={priority_threshold_backup_waves}; minimum_downloads={priority_threshold_minimum_downloads}; recommended_downloads={priority_threshold_recommended_downloads}; promoted={priority_threshold_promoted}; raw_received={priority_threshold_raw_received}; raw_missing={priority_threshold_raw_missing}; core_endpoint_ready={priority_threshold_core_endpoint_ready}; handoffs={priority_threshold_handoffs}; modeling_gate={priority_threshold_modeling_gate}",
+        "" if priority_threshold_gate_ok else "Run script/139_build_priority_threshold_acquisition_campaign.py after endpoint, credentialed acquisition, and packet artifacts are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
