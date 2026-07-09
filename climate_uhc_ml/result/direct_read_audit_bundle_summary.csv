@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,127,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,511,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,507,Curated artifacts present and non-empty.
+bundle_rows,128,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,516,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,512,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -25,6 +25,9 @@ priority_raw_receipt_complete_package_candidates,0,Priority datasets with origin
 priority_official_download_full_file_rows,965,Full official metadata file rows available for credentialed package acquisition checks.
 priority_official_download_documentation_links,100,Official metadata/documentation/access workflow links in the download dossier.
 priority_official_download_no_original_package_rows,13,Download dossiers still blocked because no original raw package is present.
+priority_synthesis_blueprint_schema_rows,572,Target output-column rows for promoted household-climate dataset synthesis.
+priority_synthesis_blueprint_blocked_required_rows,325,Required promoted-dataset output columns still blocked.
+priority_synthesis_blueprint_join_ready_rows,0,Priority country-waves ready for promoted dataset build joins.
 analysis_dataset_promotion_audit_rows,6,Analysis dataset promotion targets checked.
 analysis_dataset_promotion_blocked_rows,2,Promotion targets blocked from data/.
 analysis_dataset_promotion_promoted_rows,4,Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked.
@@ -394,7 +397,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,18,Direct-read bundle section count.
+bundle_section_priority_bundle,19,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -457,6 +460,7 @@ bundle_status_blocked_questionnaire_timing_fields_not_in_raw_household_values,1,
 bundle_status_blocked_raw_files_absent,1,Direct-read bundle status count.
 bundle_status_blocked_raw_microdata,14,Direct-read bundle status count.
 bundle_status_blocked_raw_timing_geography_not_verified,1,Direct-read bundle status count.
+bundle_status_blocked_required_schema_columns_not_verified,1,Direct-read bundle status count.
 bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns,3,Direct-read bundle status count.
 bundle_status_closed_no_promoted_rows,1,Direct-read bundle status count.
 bundle_status_complete,4,Direct-read bundle status count.

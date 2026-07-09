@@ -137,6 +137,7 @@ REQUIRED_REPORTS = [
     "priority_manual_verification_decision_gate.md",
     "priority_raw_package_receipt_ledger.md",
     "priority_official_download_dossier.md",
+    "priority_analysis_dataset_synthesis_blueprint.md",
     "promoted_data_gate.md",
 ]
 REQUIRED_TEMP = [
@@ -280,6 +281,7 @@ REQUIRED_SCRIPTS = [
     "129_build_priority_manual_verification_decision_gate.py",
     "130_build_priority_raw_package_receipt_ledger.py",
     "131_build_priority_official_download_dossier.py",
+    "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -714,6 +716,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_official_full_file_inventory": row_count(TEMP_DIR / "priority_official_full_file_inventory.csv"),
         "priority_official_documentation_links": row_count(TEMP_DIR / "priority_official_documentation_links.csv"),
         "priority_official_download_dossier_summary": row_count(RESULT_DIR / "priority_official_download_dossier_summary.csv"),
+        "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
+        "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
+        "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -4253,6 +4258,41 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_official_gate_ok),
         f"dossier_rows={counts['priority_official_download_dossier']}; full_inventory_rows={counts['priority_official_full_file_inventory']}; documentation_link_rows={counts['priority_official_documentation_links']}; summary_rows={counts['priority_official_download_dossier_summary']}; reported_dossiers={priority_official_dossier_rows}; reported_full_files={priority_official_full_file_rows}; reported_core_files={priority_official_core_rows}; links={priority_official_link_rows}; pdf={priority_official_pdf_links}; ddi={priority_official_ddi_links}; json={priority_official_json_links}; data_dictionary={priority_official_data_dictionary_links}; no_package_rows={priority_official_no_package_rows}; receipt_candidates={priority_official_receipt_candidates}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_official_modeling_gate}",
         "" if priority_official_gate_ok else "Run script/131_build_priority_official_download_dossier.py after priority receipt ledger; official links and full metadata file inventory must be present.",
+    )
+    priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
+    priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
+    priority_synthesis_required_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_required_rows"), "0"), 0)
+    priority_synthesis_ready_required_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_ready_required_rows"), "0"), 0)
+    priority_synthesis_blocked_required_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_blocked_required_rows"), "0"), 0)
+    priority_synthesis_join_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_join_plan_rows"), "0"), 0)
+    priority_synthesis_join_ready_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_join_ready_rows"), "0"), 0)
+    priority_synthesis_candidate_variable_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_candidate_variable_rows"), "0"), 0)
+    priority_synthesis_manual_verified_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_manual_verified_variable_rows"), "0"), 0)
+    priority_synthesis_handoffs = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_handoff_readmes_written"), "0"), 0)
+    priority_synthesis_modeling_gate = next((row.get("value", "") for row in priority_synthesis_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_synthesis_gate_ok = (
+        counts["priority_analysis_dataset_synthesis_blueprint"] >= 572
+        and counts["priority_analysis_dataset_join_plan"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_analysis_dataset_synthesis_blueprint_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_analysis_dataset_synthesis_blueprint.md")
+        and priority_synthesis_schema_rows >= 572
+        and priority_synthesis_required_rows >= 325
+        and priority_synthesis_blocked_required_rows >= priority_synthesis_required_rows
+        and priority_synthesis_candidate_variable_rows >= 2700
+        and priority_synthesis_join_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_synthesis_handoffs >= counts["priority_promotion_acquisition_wave_plan"]
+        and (not priority_manual_no_raw_present or priority_synthesis_ready_required_rows == 0)
+        and (not priority_manual_no_raw_present or priority_synthesis_join_ready_rows == 0)
+        and (not priority_manual_no_raw_present or priority_synthesis_manual_verified_rows == 0)
+        and priority_synthesis_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority analysis dataset synthesis blueprint defines promoted household-climate schema, joins, and fail-closed blockers before data writes",
+        status(priority_synthesis_gate_ok),
+        f"blueprint_rows={counts['priority_analysis_dataset_synthesis_blueprint']}; join_rows={counts['priority_analysis_dataset_join_plan']}; summary_rows={counts['priority_analysis_dataset_synthesis_blueprint_summary']}; reported_schema_rows={priority_synthesis_schema_rows}; required_rows={priority_synthesis_required_rows}; ready_required={priority_synthesis_ready_required_rows}; blocked_required={priority_synthesis_blocked_required_rows}; reported_join_rows={priority_synthesis_join_rows}; join_ready={priority_synthesis_join_ready_rows}; candidate_variables={priority_synthesis_candidate_variable_rows}; manual_verified={priority_synthesis_manual_verified_rows}; handoffs={priority_synthesis_handoffs}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_synthesis_modeling_gate}",
+        "" if priority_synthesis_gate_ok else "Run script/132_build_priority_analysis_dataset_synthesis_blueprint.py after manual verification and climate preflight gates.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

@@ -1,0 +1,14 @@
+﻿metric,value,interpretation
+priority_synthesis_blueprint_schema_rows,572,Target output-column rows for priority analysis dataset synthesis.
+priority_synthesis_blueprint_required_rows,325,Required output columns across priority and backup waves.
+priority_synthesis_blueprint_ready_required_rows,0,Required output columns ready for synthesis review.
+priority_synthesis_blueprint_blocked_required_rows,325,Required output columns still blocked.
+priority_synthesis_blueprint_join_plan_rows,13,Dataset-level join plans.
+priority_synthesis_blueprint_join_ready_rows,0,Dataset-level join plans ready for promoted dataset build.
+priority_synthesis_blueprint_candidate_variable_rows,2703,Metadata candidate variable rows connected to target output columns.
+priority_synthesis_blueprint_manual_verified_variable_rows,0,Candidate variable rows passing manual verification.
+priority_synthesis_blueprint_handoff_readmes_written,13,Per-wave synthesis blueprint handoffs written.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted CHIRPS/ERA5 linkage pass.
+priority_synthesis_status_blocked_raw_package_absent,533,Output-column synthesis status count.
+priority_synthesis_status_metadata_ready_not_sufficient_for_promotion,39,Output-column synthesis status count.
+priority_synthesis_join_status_blocked_required_schema_columns_not_verified,13,Dataset-level join status count.

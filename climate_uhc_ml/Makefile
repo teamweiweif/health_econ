@@ -281,6 +281,7 @@ promotion:
 	$(PYTHON) script/129_build_priority_manual_verification_decision_gate.py
 	$(PYTHON) script/130_build_priority_raw_package_receipt_ledger.py
 	$(PYTHON) script/131_build_priority_official_download_dossier.py
+	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/127_enforce_promoted_data_gate.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
