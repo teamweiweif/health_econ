@@ -44,6 +44,7 @@ python script/140_build_priority_first_pass_variable_review_queue.py
 python script/141_build_priority_download_execution_packet.py
 python script/142_build_priority_lsms_isa_alignment_audit.py
 python script/143_build_priority_lsms_isa_refocused_acquisition_queue.py
+python script/144_build_priority_lsms_isa_raw_package_intake_packet.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 python script/134_build_priority_country_wave_promotion_packets.py
 python script/127_enforce_promoted_data_gate.py
@@ -88,6 +89,7 @@ Current status:
 - The priority download execution packet is `result/priority_download_execution_packet_summary.csv`.
 - The priority LSMS/ISA alignment audit is `result/priority_lsms_isa_alignment_summary.csv`.
 - The priority LSMS/ISA refocused acquisition queue is `result/priority_lsms_isa_refocused_acquisition_summary.csv`.
+- The priority LSMS/ISA raw package intake packet is `result/priority_lsms_isa_raw_package_intake_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.
 - The promoted-data gate is `result/promoted_data_gate_summary.csv`; if the registry has zero promoted rows, diagnostic CSVs are kept in `temp/diagnostic_data_quarantine/current/` rather than `data/`.

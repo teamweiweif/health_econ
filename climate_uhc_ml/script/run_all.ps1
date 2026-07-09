@@ -52,6 +52,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/141_build_priority_download_execution_packet.py
 & $Python script/142_build_priority_lsms_isa_alignment_audit.py
 & $Python script/143_build_priority_lsms_isa_refocused_acquisition_queue.py
+& $Python script/144_build_priority_lsms_isa_raw_package_intake_packet.py
 & $Python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 & $Python script/134_build_priority_country_wave_promotion_packets.py
 & $Python script/127_enforce_promoted_data_gate.py

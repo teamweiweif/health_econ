@@ -116,6 +116,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_refocused_acquisition_queue.csv", "priority LSMS/ISA refocused manual acquisition queue"),
     ("dataset_promotion", "temp/priority_lsms_isa_refocused_requirement_matrix.csv", "priority LSMS/ISA refocused requirement matrix"),
     ("dataset_promotion", "result/priority_lsms_isa_refocused_acquisition_summary.csv", "priority LSMS/ISA refocused acquisition summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_raw_package_intake_packet.md", "priority LSMS/ISA raw package intake packet report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_raw_package_intake_ledger.csv", "priority LSMS/ISA raw package intake ledger"),
+    ("dataset_promotion", "temp/priority_lsms_isa_raw_package_file_manifest.csv", "priority LSMS/ISA raw package file manifest"),
+    ("dataset_promotion", "temp/priority_lsms_isa_raw_package_acceptance_matrix.csv", "priority LSMS/ISA raw package acceptance matrix"),
+    ("dataset_promotion", "result/priority_lsms_isa_raw_package_intake_summary.csv", "priority LSMS/ISA raw package intake summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -515,6 +520,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/141_build_priority_download_execution_packet.py", "priority manual download execution packet generator"),
     ("reproducibility", "script/142_build_priority_lsms_isa_alignment_audit.py", "priority LSMS/ISA alignment audit generator"),
     ("reproducibility", "script/143_build_priority_lsms_isa_refocused_acquisition_queue.py", "priority LSMS/ISA refocused acquisition queue generator"),
+    ("reproducibility", "script/144_build_priority_lsms_isa_raw_package_intake_packet.py", "priority LSMS/ISA raw package intake packet generator"),
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/134_build_priority_country_wave_promotion_packets.py", "priority country-wave promotion packet generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
@@ -722,6 +728,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_download_execution_summary = read_csv_dicts(RESULT_DIR / "priority_download_execution_packet_summary.csv")
     priority_lsms_alignment_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_alignment_summary.csv")
     priority_lsms_refocused_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_refocused_acquisition_summary.csv")
+    priority_lsms_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
@@ -1062,6 +1069,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"plan_rows={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_wave_plan_rows', '0')}; core_waves={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_core_wave_rows', '0')}; core_required_countries={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_core_required_countries', '0')}; core_lsms_aligned={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_core_lsms_aligned_rows', '0')}; replaced_off_family={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_replaced_off_family_core_rows', '0')}; queue_rows={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_acquisition_queue_rows', '0')}; backup_rows={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_replacement_backup_rows', '0')}; requirement_rows={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_requirement_rows', '0')}; raw_received={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_raw_package_received_rows', '0')}; data_write={csv_value(priority_lsms_refocused_summary, 'priority_lsms_refocused_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_refocused_summary, 'modeling_gate_status', 'missing')}",
         [RESULT_DIR / "priority_lsms_isa_refocused_wave_plan.csv", TEMP_DIR / "priority_lsms_isa_refocused_acquisition_queue.csv", TEMP_DIR / "priority_lsms_isa_refocused_requirement_matrix.csv", RESULT_DIR / "priority_lsms_isa_refocused_acquisition_summary.csv", REPORT_DIR / "priority_lsms_isa_refocused_acquisition_queue.md"],
         "Refocused acquisition queue makes the corrected manual-download path explicit: replace Malawi MTM and Uganda SAGE in the core campaign with LSMS/ISA-family Malawi IHS/IHPS and Uganda UNPS targets, while retaining backup waves for raw-review failure risk.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_raw_package_intake_packet",
+        "raw_package_intake_ready_no_original_files" if csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_original_file_rows", "0") == "0" and csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_dataset_rows", "0") != "0" else "raw_package_intake_needs_review",
+        f"datasets={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_dataset_rows', '0')}; manifest_rows={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_file_manifest_rows', '0')}; generated_handoffs={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_generated_handoff_files', '0')}; original_files={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_original_file_rows', '0')}; archives={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_archive_file_rows', '0')}; raw_tabular={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_raw_tabular_file_rows', '0')}; documentation={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_documentation_file_rows', '0')}; missing_packages={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_missing_package_rows', '0')}; acceptance_requirements={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_acceptance_requirement_rows', '0')}; blocked_requirements={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_blocked_requirement_rows', '0')}; data_write={csv_value(priority_lsms_raw_intake_summary, 'priority_lsms_raw_intake_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_raw_intake_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger.csv", TEMP_DIR / "priority_lsms_isa_raw_package_file_manifest.csv", TEMP_DIR / "priority_lsms_isa_raw_package_acceptance_matrix.csv", RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv", REPORT_DIR / "priority_lsms_isa_raw_package_intake_packet.md"],
+        "Raw package intake packet scans the exact refocused target folders, ignores generated markdown handoffs, and keeps every requirement blocked until a complete official raw package plus documentation is present.",
     )
     add_bundle(
         rows,
@@ -1965,6 +1981,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_download_execution_summary = read_csv_dicts(RESULT_DIR / "priority_download_execution_packet_summary.csv")
     priority_lsms_alignment_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_alignment_summary.csv")
     priority_lsms_refocused_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_refocused_acquisition_summary.csv")
+    priority_lsms_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     data_dataset_files = [
@@ -2040,6 +2057,11 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_refocused_acquisition_queue_rows", "value": csv_value(priority_lsms_refocused_summary, "priority_lsms_refocused_acquisition_queue_rows", "0"), "interpretation": "Refocused selected and backup manual acquisition targets."},
         {"metric": "priority_lsms_refocused_requirement_rows", "value": csv_value(priority_lsms_refocused_summary, "priority_lsms_refocused_requirement_rows", "0"), "interpretation": "Requirement rows for refocused selected and backup targets."},
         {"metric": "priority_lsms_refocused_data_write_status", "value": csv_value(priority_lsms_refocused_summary, "priority_lsms_refocused_data_write_status", "missing"), "interpretation": "Promoted-data write status for the refocused queue."},
+        {"metric": "priority_lsms_raw_intake_dataset_rows", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_dataset_rows", "0"), "interpretation": "Refocused LSMS/ISA targets covered by raw-package intake ledger."},
+        {"metric": "priority_lsms_raw_intake_original_file_rows", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_original_file_rows", "0"), "interpretation": "Non-generated original package/documentation candidates found in target folders."},
+        {"metric": "priority_lsms_raw_intake_missing_package_rows", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_missing_package_rows", "0"), "interpretation": "Refocused targets with no original package files yet."},
+        {"metric": "priority_lsms_raw_intake_blocked_requirement_rows", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_blocked_requirement_rows", "0"), "interpretation": "Raw-package acceptance requirements still blocked."},
+        {"metric": "priority_lsms_raw_intake_data_write_status", "value": csv_value(priority_lsms_raw_intake_summary, "priority_lsms_raw_intake_data_write_status", "missing"), "interpretation": "Promoted-data write status for the raw intake packet."},
         {"metric": "priority_synthesis_blueprint_schema_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_schema_rows", "0"), "interpretation": "Target output-column rows for promoted household-climate dataset synthesis."},
         {"metric": "priority_synthesis_blueprint_blocked_required_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_blocked_required_rows", "0"), "interpretation": "Required promoted-dataset output columns still blocked."},
         {"metric": "priority_synthesis_blueprint_join_ready_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0"), "interpretation": "Priority country-waves ready for promoted dataset build joins."},

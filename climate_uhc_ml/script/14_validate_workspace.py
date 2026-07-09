@@ -147,6 +147,7 @@ REQUIRED_REPORTS = [
     "priority_download_execution_packet.md",
     "priority_lsms_isa_alignment_audit.md",
     "priority_lsms_isa_refocused_acquisition_queue.md",
+    "priority_lsms_isa_raw_package_intake_packet.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "promoted_data_gate.md",
@@ -302,6 +303,7 @@ REQUIRED_SCRIPTS = [
     "141_build_priority_download_execution_packet.py",
     "142_build_priority_lsms_isa_alignment_audit.py",
     "143_build_priority_lsms_isa_refocused_acquisition_queue.py",
+    "144_build_priority_lsms_isa_raw_package_intake_packet.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
@@ -771,6 +773,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_refocused_acquisition_queue": row_count(TEMP_DIR / "priority_lsms_isa_refocused_acquisition_queue.csv"),
         "priority_lsms_isa_refocused_requirement_matrix": row_count(TEMP_DIR / "priority_lsms_isa_refocused_requirement_matrix.csv"),
         "priority_lsms_isa_refocused_acquisition_summary": row_count(RESULT_DIR / "priority_lsms_isa_refocused_acquisition_summary.csv"),
+        "priority_lsms_isa_raw_package_intake_ledger": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger.csv"),
+        "priority_lsms_isa_raw_package_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_file_manifest.csv"),
+        "priority_lsms_isa_raw_package_acceptance_matrix": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_acceptance_matrix.csv"),
+        "priority_lsms_isa_raw_package_intake_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4707,6 +4713,47 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_refocused_gate_ok),
         f"plan_rows={counts['priority_lsms_isa_refocused_wave_plan']}; queue_rows={counts['priority_lsms_isa_refocused_acquisition_queue']}; requirement_rows={counts['priority_lsms_isa_refocused_requirement_matrix']}; summary_rows={counts['priority_lsms_isa_refocused_acquisition_summary']}; reported_plan_rows={priority_refocused_plan_rows}; core_rows={priority_refocused_core_rows}; core_countries={priority_refocused_core_countries}; core_aligned={priority_refocused_core_aligned}; replaced={priority_refocused_replaced}; reported_queue_rows={priority_refocused_queue_rows}; backup_rows={priority_refocused_backup_rows}; reported_requirement_rows={priority_refocused_requirement_rows}; raw_received={priority_refocused_raw_received}; handoffs={priority_refocused_handoffs}; data_write={priority_refocused_data_write}; modeling_gate={priority_refocused_modeling_gate}",
         "" if priority_refocused_gate_ok else "Run script/143_build_priority_lsms_isa_refocused_acquisition_queue.py after the LSMS/ISA alignment audit is current.",
+    )
+    priority_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
+    priority_raw_intake_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_dataset_rows"), "0"), 0)
+    priority_raw_intake_manifest_rows = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_file_manifest_rows"), "0"), 0)
+    priority_raw_intake_generated = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_generated_handoff_files"), "0"), 0)
+    priority_raw_intake_original = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_original_file_rows"), "0"), 0)
+    priority_raw_intake_archives = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_archive_file_rows"), "0"), 0)
+    priority_raw_intake_tabular = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_raw_tabular_file_rows"), "0"), 0)
+    priority_raw_intake_docs = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_documentation_file_rows"), "0"), 0)
+    priority_raw_intake_missing = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_missing_package_rows"), "0"), 0)
+    priority_raw_intake_requirements = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_acceptance_requirement_rows"), "0"), 0)
+    priority_raw_intake_blocked_requirements = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_blocked_requirement_rows"), "0"), 0)
+    priority_raw_intake_handoffs = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_handoff_readmes_written"), "0"), 0)
+    priority_raw_intake_data_write = next((row.get("value", "") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_data_write_status"), "")
+    priority_raw_intake_modeling_gate = next((row.get("value", "") for row in priority_raw_intake_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_raw_intake_gate_ok = (
+        counts["priority_lsms_isa_raw_package_intake_ledger"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_raw_package_acceptance_matrix"] >= counts["priority_lsms_isa_refocused_requirement_matrix"]
+        and counts["priority_lsms_isa_raw_package_intake_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_raw_package_intake_packet.md")
+        and priority_raw_intake_dataset_rows >= priority_refocused_queue_rows
+        and priority_raw_intake_manifest_rows >= priority_raw_intake_generated
+        and priority_raw_intake_generated >= priority_refocused_queue_rows
+        and priority_raw_intake_original == 0
+        and priority_raw_intake_archives == 0
+        and priority_raw_intake_tabular == 0
+        and priority_raw_intake_docs == 0
+        and priority_raw_intake_missing >= priority_raw_intake_dataset_rows
+        and priority_raw_intake_requirements >= priority_refocused_requirement_rows
+        and priority_raw_intake_blocked_requirements >= priority_raw_intake_requirements
+        and priority_raw_intake_handoffs >= priority_raw_intake_dataset_rows
+        and priority_raw_intake_data_write == "blocked_no_promoted_rows"
+        and priority_raw_intake_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA raw-package intake packet scans refocused target folders and keeps all requirements blocked until original packages arrive",
+        status(priority_raw_intake_gate_ok),
+        f"ledger_rows={counts['priority_lsms_isa_raw_package_intake_ledger']}; manifest_rows={counts['priority_lsms_isa_raw_package_file_manifest']}; acceptance_rows={counts['priority_lsms_isa_raw_package_acceptance_matrix']}; summary_rows={counts['priority_lsms_isa_raw_package_intake_summary']}; reported_datasets={priority_raw_intake_dataset_rows}; reported_manifest={priority_raw_intake_manifest_rows}; generated_handoffs={priority_raw_intake_generated}; original_files={priority_raw_intake_original}; archives={priority_raw_intake_archives}; raw_tabular={priority_raw_intake_tabular}; documentation={priority_raw_intake_docs}; missing_packages={priority_raw_intake_missing}; requirements={priority_raw_intake_requirements}; blocked_requirements={priority_raw_intake_blocked_requirements}; handoffs={priority_raw_intake_handoffs}; data_write={priority_raw_intake_data_write}; modeling_gate={priority_raw_intake_modeling_gate}",
+        "" if priority_raw_intake_gate_ok else "Run script/144_build_priority_lsms_isa_raw_package_intake_packet.py after the refocused acquisition queue is current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

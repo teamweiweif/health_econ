@@ -1546,3 +1546,9 @@
 - 2026-07-09T21:54:45+00:00 - Built priority LSMS-ISA refocused acquisition queue plan_rows=13 queue_rows=19 requirement_rows=152.
 - 2026-07-09T21:54:49+00:00 - Direct-read audit bundle rows=139 manifest_rows=575.
 - 2026-07-09T21:54:51+00:00 - Workspace validation complete=427 incomplete_or_failed=0.
+- 2026-07-09T22:01:53+00:00 - Built priority LSMS-ISA raw package intake packet ledger_rows=19 acceptance_rows=152 original_files=12.
+- 2026-07-09T22:01:58+00:00 - Direct-read audit bundle rows=140 manifest_rows=581.
+- 2026-07-09T22:02:00+00:00 - Workspace validation complete=429 incomplete_or_failed=1.
+- 2026-07-09T22:02:30+00:00 - Built priority LSMS-ISA raw package intake packet ledger_rows=19 acceptance_rows=152 original_files=0.
+- 2026-07-09T22:02:35+00:00 - Direct-read audit bundle rows=140 manifest_rows=581.
+- 2026-07-09T22:02:37+00:00 - Workspace validation complete=430 incomplete_or_failed=0.

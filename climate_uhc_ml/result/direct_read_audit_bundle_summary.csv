@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,139,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,575,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,571,Curated artifacts present and non-empty.
+bundle_rows,140,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,581,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,577,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -67,6 +67,11 @@ priority_lsms_refocused_core_lsms_aligned_rows,10,Refocused core rows aligned wi
 priority_lsms_refocused_acquisition_queue_rows,19,Refocused selected and backup manual acquisition targets.
 priority_lsms_refocused_requirement_rows,152,Requirement rows for refocused selected and backup targets.
 priority_lsms_refocused_data_write_status,blocked_no_promoted_rows,Promoted-data write status for the refocused queue.
+priority_lsms_raw_intake_dataset_rows,19,Refocused LSMS/ISA targets covered by raw-package intake ledger.
+priority_lsms_raw_intake_original_file_rows,0,Non-generated original package/documentation candidates found in target folders.
+priority_lsms_raw_intake_missing_package_rows,19,Refocused targets with no original package files yet.
+priority_lsms_raw_intake_blocked_requirement_rows,152,Raw-package acceptance requirements still blocked.
+priority_lsms_raw_intake_data_write_status,blocked_no_promoted_rows,Promoted-data write status for the raw intake packet.
 priority_synthesis_blueprint_schema_rows,572,Target output-column rows for promoted household-climate dataset synthesis.
 priority_synthesis_blueprint_blocked_required_rows,325,Required promoted-dataset output columns still blocked.
 priority_synthesis_blueprint_join_ready_rows,0,Priority country-waves ready for promoted dataset build joins.
@@ -446,7 +451,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,30,Direct-read bundle section count.
+bundle_section_priority_bundle,31,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -513,7 +518,7 @@ bundle_status_blocked_raw_timing_geography_not_verified,1,Direct-read bundle sta
 bundle_status_blocked_required_schema_columns_not_verified,1,Direct-read bundle status count.
 bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns,3,Direct-read bundle status count.
 bundle_status_closed_no_promoted_rows,1,Direct-read bundle status count.
-bundle_status_complete,4,Direct-read bundle status count.
+bundle_status_complete,3,Direct-read bundle status count.
 bundle_status_core_public_documentation_saved_raw_gate_still_blocked,1,Direct-read bundle status count.
 bundle_status_core_wave_replacement_needed_before_download_execution,1,Direct-read bundle status count.
 bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready,2,Direct-read bundle status count.
@@ -523,7 +528,7 @@ bundle_status_fail_closed_design_scorecard_currently_no_go_for_estimation_or_pol
 bundle_status_file_level_routes_confirmed_non_public_raw,1,Direct-read bundle status count.
 bundle_status_first_pass_queue_ready_raw_missing,1,Direct-read bundle status count.
 bundle_status_harmonization_value_audit_required,1,Direct-read bundle status count.
-bundle_status_incomplete,1,Direct-read bundle status count.
+bundle_status_incomplete,2,Direct-read bundle status count.
 bundle_status_legacy_questionnaires_readable_content_audit_required,1,Direct-read bundle status count.
 bundle_status_limited_che10_che25_financial_outcomes_promoted_sdg_access_climate_still_blocked,1,Direct-read bundle status count.
 bundle_status_limited_che_outcome_nasa_admin2_climate_linked_promoted_models_still_blocked,1,Direct-read bundle status count.
@@ -547,6 +552,7 @@ bundle_status_pass,2,Direct-read bundle status count.
 bundle_status_present_raw_waves_require_wave_specific_schema_value_key_timing_audits,1,Direct-read bundle status count.
 bundle_status_public_metadata_only_raw_gate_confirmed,1,Direct-read bundle status count.
 bundle_status_raw_archives_available_requires_value_verification,1,Direct-read bundle status count.
+bundle_status_raw_package_intake_ready_no_original_files,1,Direct-read bundle status count.
 bundle_status_raw_schema_claims_only_no_analysis_dataset_claims,1,Direct-read bundle status count.
 bundle_status_raw_schema_inspected_harmonization_pending,1,Direct-read bundle status count.
 bundle_status_raw_value_summary_available_manual_review_required,1,Direct-read bundle status count.
