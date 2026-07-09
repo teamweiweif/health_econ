@@ -12,11 +12,12 @@ analysis-ready household x climate datasets. It does not write data into
 | priority_country_wave_packet_rows | 13 | Priority and backup country-wave promotion packets built. |
 | priority_country_wave_packet_priority_batch_rows | 10 | Immediate priority wave packets. |
 | priority_country_wave_packet_backup_rows | 3 | Sixth-country backup wave packets. |
-| priority_country_wave_packet_gate_rows | 156 | Gate rows across priority promotion packets. |
-| priority_country_wave_packet_passed_gate_rows | 26 | Packet gates currently passing. |
+| priority_country_wave_packet_gate_rows | 169 | Gate rows across priority promotion packets. |
+| priority_country_wave_packet_passed_gate_rows | 39 | Packet gates currently passing. |
 | priority_country_wave_packet_failed_gate_rows | 130 | Packet gates still blocking promotion. |
 | priority_country_wave_packet_public_documentation_ready_rows | 13 | Packets with complete core public documentation receipt. |
 | priority_country_wave_packet_official_metadata_ready_rows | 13 | Packets with official DDI/XML variable evidence extracted. |
+| priority_country_wave_packet_credentialed_acquisition_ready_rows | 13 | Packets with credentialed raw-package acquisition ledger prepared. |
 | priority_country_wave_packet_raw_package_ready_rows | 0 | Packets with a non-empty original raw package receipt. |
 | priority_country_wave_packet_financial_ready_rows | 0 | Packets ready for financial-protection outcomes. |
 | priority_country_wave_packet_access_ready_rows | 0 | Packets ready for access/forgone-care outcomes. |
@@ -31,21 +32,21 @@ analysis-ready household x climate datasets. It does not write data into
 
 ## Packet Index
 
-| acquisition_batch_rank | idno | country | wave | public_documentation_status | official_metadata_evidence_status | raw_package_status | financial_protection_status | access_forgone_care_status | climate_linkage_status | packet_status | next_blocking_action |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | ETH_2021_ESPS-W5_v02_M | Ethiopia | 2021-2022 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 2 | ETH_2018_ESS_v04_M | Ethiopia | 2018-2019 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 3 | MWI_2007-2009_MTM_v01_M | Malawi | 2007-2009 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 5 | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 7 | TZA_2008_NPS-R1_v03_M | Tanzania | 2008-2009 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 8 | TZA_2010_NPS-R2_v03_M | Tanzania | 2010-2011 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 9 | TZA_2012_NPS-R3_v01_M | Tanzania | 2012-2013 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 10 | UGA_2014_SAGE-EL_v01_M | Uganda | 2014 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 11 | JAM_1997_SLC_v01_M | Jamaica | 1997 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 12 | KGZ_1993_KMPS_v01_M | Kyrgyz Republic | 1993 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 13 | NPL_2010_LSS-III_v01_M | Nepal | 2010-2011 | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| acquisition_batch_rank | idno | country | wave | public_documentation_status | official_metadata_evidence_status | credentialed_acquisition_status | raw_package_status | financial_protection_status | access_forgone_care_status | climate_linkage_status | packet_status | next_blocking_action |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | ETH_2021_ESPS-W5_v02_M | Ethiopia | 2021-2022 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 2 | ETH_2018_ESS_v04_M | Ethiopia | 2018-2019 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 3 | MWI_2007-2009_MTM_v01_M | Malawi | 2007-2009 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 5 | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 7 | TZA_2008_NPS-R1_v03_M | Tanzania | 2008-2009 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 8 | TZA_2010_NPS-R2_v03_M | Tanzania | 2010-2011 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 9 | TZA_2012_NPS-R3_v01_M | Tanzania | 2012-2013 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 10 | UGA_2014_SAGE-EL_v01_M | Uganda | 2014 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 11 | JAM_1997_SLC_v01_M | Jamaica | 1997 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 12 | KGZ_1993_KMPS_v01_M | Kyrgyz Republic | 1993 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 13 | NPL_2010_LSS-III_v01_M | Nepal | 2010-2011 | ready | ready | ready | not_received_no_original_raw_package | blocked | blocked | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 
 ## Next Blocking Actions
 

@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 131 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 533 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 529 | Curated artifacts present and non-empty. |
+| bundle_rows | 132 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 539 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 535 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -46,13 +46,18 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_official_metadata_variable_file_match_rows | 1198 | Priority candidate variables with both DDI variable and file evidence. |
 | priority_official_metadata_no_match_rows | 16 | Priority candidate variables not matched in parsed official DDI metadata. |
 | priority_official_metadata_variables_with_categories | 717 | Priority candidate variables with official category/value-label evidence. |
+| priority_credentialed_acquisition_dataset_rows | 13 | Priority datasets with credentialed raw-acquisition instructions. |
+| priority_credentialed_acquisition_full_file_rows | 965 | Official metadata file rows in the credentialed acquisition manifest. |
+| priority_credentialed_acquisition_core_file_rows | 156 | Priority core file rows to confirm after official raw download. |
+| priority_credentialed_acquisition_targets_missing_before_download | 156 | Priority target modules still missing before credentialed download. |
 | priority_synthesis_blueprint_schema_rows | 572 | Target output-column rows for promoted household-climate dataset synthesis. |
 | priority_synthesis_blueprint_blocked_required_rows | 325 | Required promoted-dataset output columns still blocked. |
 | priority_synthesis_blueprint_join_ready_rows | 0 | Priority country-waves ready for promoted dataset build joins. |
 | priority_country_wave_packet_rows | 13 | Priority country-wave promotion packets built. |
-| priority_country_wave_packet_passed_gate_rows | 26 | Priority packet gates currently passing. |
+| priority_country_wave_packet_passed_gate_rows | 39 | Priority packet gates currently passing. |
 | priority_country_wave_packet_failed_gate_rows | 130 | Priority packet gates still blocking promotion. |
 | priority_country_wave_packet_official_metadata_ready_rows | 13 | Priority packets with official DDI/XML metadata evidence extracted. |
+| priority_country_wave_packet_credentialed_acquisition_ready_rows | 13 | Priority packets with credentialed raw acquisition ledger prepared. |
 | priority_country_wave_packet_analysis_ready_rows | 0 | Priority packets ready for promoted data writes. |
 | analysis_dataset_promotion_audit_rows | 6 | Analysis dataset promotion targets checked. |
 | analysis_dataset_promotion_blocked_rows | 2 | Promotion targets blocked from data/. |
@@ -423,7 +428,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 22 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 23 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -523,6 +528,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_raw_schema_inspected_harmonization_pending | 1 | Direct-read bundle status count. |
 | bundle_status_raw_value_summary_available_manual_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_ready | 1 | Direct-read bundle status count. |
+| bundle_status_ready_for_credentialed_manual_download | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_not_analysis_ready | 2 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_timing_geography_observed_outcome_semantics_pending | 1 | Direct-read bundle status count. |
@@ -532,7 +538,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 22 |
+| priority_bundle | 23 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -573,6 +579,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | blocked_official_access_required_no_original_package | 1 |
 | core_public_documentation_saved_raw_gate_still_blocked | 1 |
 | official_metadata_evidence_present_raw_gate_still_blocked | 1 |
+| ready_for_credentialed_manual_download | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | closed_no_promoted_rows | 1 |
@@ -676,13 +683,13 @@ No incomplete completion criteria were found.
 | priority_official_download_dossier | blocked_official_access_required_no_original_package | dossiers=13; full_file_rows=965; core_rows=156; links=100; pdf=11; ddi=13; json=13; no_original_package=13; receipt_c... | Official download dossier expands from the 156 core targets to the full metadata-derived file inventory and records o... |
 | priority_public_documentation_receipt | core_public_documentation_saved_raw_gate_still_blocked | datasets=13; resources=78; saved=76; failed=0; core_complete=13; full_complete=11; optional_pdf_missing=2; access_gat... | Public documentation receipt downloads or reuses official DDI/XML, JSON, data dictionary, related-material, get-micro... |
 | priority_official_metadata_evidence_extract | official_metadata_evidence_present_raw_gate_still_blocked | datasets=13; candidate_variables=1214; categories=4512; variable_matches=1198; file_matches=1198; no_matches=16; vari... | Official DDI/XML metadata evidence links candidate variables to official labels, categories, counts, and file mapping... |
-| priority_analysis_dataset_synthesis_blueprint | blocked_required_schema_columns_not_verified | schema_rows=572; required_rows=325; ready_required=0; blocked_required=325; join_rows=13; join_ready=0; candidate_var... | Synthesis blueprint defines the target promoted household-climate schema, source concepts, candidate variables, requi... |
+| priority_credentialed_raw_acquisition_ledger | ready_for_credentialed_manual_download | datasets=13; priority_rows=10; backup_rows=3; full_files=965; core_files=156; public_docs_ready=13; metadata_ready=13... | Credentialed raw acquisition ledger gives the exact official get-microdata workflow, complete-package scope, target f... |
 
 ## Artifact Manifest
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 529 |
+| present_nonempty | 535 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

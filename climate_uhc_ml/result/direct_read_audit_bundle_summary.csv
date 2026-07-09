@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,131,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,533,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,529,Curated artifacts present and non-empty.
+bundle_rows,132,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,539,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,535,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -33,13 +33,18 @@ priority_official_metadata_candidate_variable_rows,1214,Priority candidate varia
 priority_official_metadata_variable_file_match_rows,1198,Priority candidate variables with both DDI variable and file evidence.
 priority_official_metadata_no_match_rows,16,Priority candidate variables not matched in parsed official DDI metadata.
 priority_official_metadata_variables_with_categories,717,Priority candidate variables with official category/value-label evidence.
+priority_credentialed_acquisition_dataset_rows,13,Priority datasets with credentialed raw-acquisition instructions.
+priority_credentialed_acquisition_full_file_rows,965,Official metadata file rows in the credentialed acquisition manifest.
+priority_credentialed_acquisition_core_file_rows,156,Priority core file rows to confirm after official raw download.
+priority_credentialed_acquisition_targets_missing_before_download,156,Priority target modules still missing before credentialed download.
 priority_synthesis_blueprint_schema_rows,572,Target output-column rows for promoted household-climate dataset synthesis.
 priority_synthesis_blueprint_blocked_required_rows,325,Required promoted-dataset output columns still blocked.
 priority_synthesis_blueprint_join_ready_rows,0,Priority country-waves ready for promoted dataset build joins.
 priority_country_wave_packet_rows,13,Priority country-wave promotion packets built.
-priority_country_wave_packet_passed_gate_rows,26,Priority packet gates currently passing.
+priority_country_wave_packet_passed_gate_rows,39,Priority packet gates currently passing.
 priority_country_wave_packet_failed_gate_rows,130,Priority packet gates still blocking promotion.
 priority_country_wave_packet_official_metadata_ready_rows,13,Priority packets with official DDI/XML metadata evidence extracted.
+priority_country_wave_packet_credentialed_acquisition_ready_rows,13,Priority packets with credentialed raw acquisition ledger prepared.
 priority_country_wave_packet_analysis_ready_rows,0,Priority packets ready for promoted data writes.
 analysis_dataset_promotion_audit_rows,6,Analysis dataset promotion targets checked.
 analysis_dataset_promotion_blocked_rows,2,Promotion targets blocked from data/.
@@ -410,7 +415,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,22,Direct-read bundle section count.
+bundle_section_priority_bundle,23,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -510,6 +515,7 @@ bundle_status_raw_schema_claims_only_no_analysis_dataset_claims,1,Direct-read bu
 bundle_status_raw_schema_inspected_harmonization_pending,1,Direct-read bundle status count.
 bundle_status_raw_value_summary_available_manual_review_required,1,Direct-read bundle status count.
 bundle_status_ready,1,Direct-read bundle status count.
+bundle_status_ready_for_credentialed_manual_download,1,Direct-read bundle status count.
 bundle_status_temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending,1,Direct-read bundle status count.
 bundle_status_temp_candidate_not_analysis_ready,2,Direct-read bundle status count.
 bundle_status_temp_candidate_timing_geography_observed_outcome_semantics_pending,1,Direct-read bundle status count.
