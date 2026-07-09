@@ -151,6 +151,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_variable_evidence_matrix.md",
     "priority_lsms_isa_raw_package_intake_packet.md",
     "priority_lsms_isa_archive_member_preflight.md",
+    "priority_lsms_isa_raw_value_verification_workbook.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -311,6 +312,7 @@ REQUIRED_SCRIPTS = [
     "147_build_priority_lsms_isa_variable_evidence_matrix.py",
     "144_build_priority_lsms_isa_raw_package_intake_packet.py",
     "145_build_priority_lsms_isa_archive_member_preflight.py",
+    "149_build_priority_lsms_isa_raw_value_verification_workbook.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
@@ -799,6 +801,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_direct_file_preflight": row_count(TEMP_DIR / "priority_lsms_isa_direct_file_preflight.csv"),
         "priority_lsms_isa_archive_requirement_preflight": row_count(TEMP_DIR / "priority_lsms_isa_archive_requirement_preflight.csv"),
         "priority_lsms_isa_archive_member_preflight_summary": row_count(RESULT_DIR / "priority_lsms_isa_archive_member_preflight_summary.csv"),
+        "priority_lsms_isa_raw_value_requirement_workbook": row_count(TEMP_DIR / "priority_lsms_isa_raw_value_requirement_workbook.csv"),
+        "priority_lsms_isa_raw_value_variable_workbook": row_count(TEMP_DIR / "priority_lsms_isa_raw_value_variable_workbook.csv"),
+        "priority_lsms_isa_raw_value_file_workbook": row_count(TEMP_DIR / "priority_lsms_isa_raw_value_file_workbook.csv"),
+        "priority_lsms_isa_raw_value_verification_workbook_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4898,6 +4904,42 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_archive_preflight_gate_ok),
         f"preflight_rows={counts['priority_lsms_isa_archive_member_preflight']}; member_rows={counts['priority_lsms_isa_archive_member_manifest']}; direct_rows={counts['priority_lsms_isa_direct_file_preflight']}; requirement_rows={counts['priority_lsms_isa_archive_requirement_preflight']}; summary_rows={counts['priority_lsms_isa_archive_member_preflight_summary']}; reported_datasets={priority_archive_preflight_datasets}; direct_files={priority_archive_preflight_direct_files}; archives={priority_archive_preflight_direct_archives}; direct_raw={priority_archive_preflight_direct_raw}; direct_docs={priority_archive_preflight_direct_docs}; archive_members={priority_archive_preflight_members}; ready={priority_archive_preflight_ready}; blocked={priority_archive_preflight_blocked}; reported_requirements={priority_archive_preflight_requirements}; blocked_requirements={priority_archive_preflight_blocked_requirements}; handoffs={priority_archive_preflight_handoffs}; data_write={priority_archive_preflight_data_write}; modeling_gate={priority_archive_preflight_modeling_gate}",
         "" if priority_archive_preflight_gate_ok else "Run script/145_build_priority_lsms_isa_archive_member_preflight.py after the raw-package intake packet is current.",
+    )
+    priority_lsms_raw_value_workbook_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv")
+    priority_lsms_workbook_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_dataset_rows"), "0"), 0)
+    priority_lsms_workbook_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_requirement_rows"), "0"), 0)
+    priority_lsms_workbook_variables = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_variable_rows"), "0"), 0)
+    priority_lsms_workbook_files = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_file_rows"), "0"), 0)
+    priority_lsms_workbook_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_handoff_readmes_written"), "0"), 0)
+    priority_lsms_workbook_ready_review = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_ready_for_manual_review_rows"), "0"), 0)
+    priority_lsms_workbook_blocked_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_blocked_requirement_rows"), "0"), 0)
+    priority_lsms_workbook_raw_verified = safe_int(next((row.get("value", "0") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_raw_value_verified_rows"), "0"), 0)
+    priority_lsms_workbook_data_write = next((row.get("value", "") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "priority_lsms_raw_value_workbook_data_write_status"), "")
+    priority_lsms_workbook_modeling_gate = next((row.get("value", "") for row in priority_lsms_raw_value_workbook_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_workbook_gate_ok = (
+        counts["priority_lsms_isa_raw_value_requirement_workbook"] >= counts["priority_lsms_isa_refocused_requirement_matrix"]
+        and counts["priority_lsms_isa_raw_value_variable_workbook"] >= counts["priority_lsms_isa_variable_evidence_matrix"]
+        and counts["priority_lsms_isa_raw_value_file_workbook"] >= counts["priority_lsms_isa_concept_file_shortlist"]
+        and counts["priority_lsms_isa_raw_value_verification_workbook_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_raw_value_verification_workbook.md")
+        and priority_lsms_workbook_datasets >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_workbook_requirements == counts["priority_lsms_isa_raw_value_requirement_workbook"]
+        and priority_lsms_workbook_variables == counts["priority_lsms_isa_raw_value_variable_workbook"]
+        and priority_lsms_workbook_files == counts["priority_lsms_isa_raw_value_file_workbook"]
+        and priority_lsms_workbook_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_workbook_ready_review == 0
+        and priority_lsms_workbook_blocked_requirements >= priority_lsms_workbook_requirements
+        and priority_lsms_workbook_raw_verified == 0
+        and priority_lsms_workbook_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_workbook_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA raw value verification workbook converts metadata candidates into fillable raw requirement, variable, and file review rows",
+        status(priority_lsms_workbook_gate_ok),
+        f"requirement_rows={counts['priority_lsms_isa_raw_value_requirement_workbook']}; variable_rows={counts['priority_lsms_isa_raw_value_variable_workbook']}; file_rows={counts['priority_lsms_isa_raw_value_file_workbook']}; summary_rows={counts['priority_lsms_isa_raw_value_verification_workbook_summary']}; reported_datasets={priority_lsms_workbook_datasets}; reported_requirements={priority_lsms_workbook_requirements}; reported_variables={priority_lsms_workbook_variables}; reported_files={priority_lsms_workbook_files}; handoffs={priority_lsms_workbook_handoffs}; ready_review={priority_lsms_workbook_ready_review}; blocked_requirements={priority_lsms_workbook_blocked_requirements}; raw_verified={priority_lsms_workbook_raw_verified}; data_write={priority_lsms_workbook_data_write}; modeling_gate={priority_lsms_workbook_modeling_gate}",
+        "" if priority_lsms_workbook_gate_ok else "Run script/149_build_priority_lsms_isa_raw_value_verification_workbook.py after LSMS/ISA variable evidence, raw intake, and archive preflight outputs are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

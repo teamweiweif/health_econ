@@ -295,6 +295,7 @@ promotion:
 	$(PYTHON) script/147_build_priority_lsms_isa_variable_evidence_matrix.py
 	$(PYTHON) script/144_build_priority_lsms_isa_raw_package_intake_packet.py
 	$(PYTHON) script/145_build_priority_lsms_isa_archive_member_preflight.py
+	$(PYTHON) script/149_build_priority_lsms_isa_raw_value_verification_workbook.py
 	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/134_build_priority_country_wave_promotion_packets.py
 	$(PYTHON) script/148_build_priority_lsms_isa_country_wave_promotion_packets.py

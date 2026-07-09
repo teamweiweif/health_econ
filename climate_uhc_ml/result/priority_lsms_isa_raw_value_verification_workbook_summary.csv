@@ -1,0 +1,18 @@
+﻿metric,value,interpretation
+priority_lsms_raw_value_workbook_dataset_rows,19,Refocused LSMS/ISA datasets covered by the raw-value verification workbook.
+priority_lsms_raw_value_workbook_requirement_rows,152,Requirement-level raw-value verification rows.
+priority_lsms_raw_value_workbook_variable_rows,1531,Candidate variable-level raw-value verification rows.
+priority_lsms_raw_value_workbook_file_rows,629,Candidate file-level raw-value verification rows.
+priority_lsms_raw_value_workbook_handoff_readmes_written,19,Per-wave raw-folder workbook handoffs written.
+priority_lsms_raw_value_workbook_ready_for_manual_review_rows,0,Requirement rows ready for manual raw value review because raw package and archive preflight are present.
+priority_lsms_raw_value_workbook_blocked_requirement_rows,152,Requirement rows still blocked before raw value review.
+priority_lsms_raw_value_workbook_raw_value_verified_rows,0,Workbook rows are unverified until reviewer evidence fields are filled and accepted.
+priority_lsms_raw_value_workbook_data_write_status,blocked_no_promoted_rows,No country-wave may write to data/ from an unfilled verification workbook.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted climate linkage pass.
+priority_lsms_raw_value_workbook_queue_role_core_replacement_primary,2,Dataset count by refocused queue role.
+priority_lsms_raw_value_workbook_queue_role_core_selected_lsms_isa_aligned,8,Dataset count by refocused queue role.
+priority_lsms_raw_value_workbook_queue_role_replacement_backup_wave,6,Dataset count by refocused queue role.
+priority_lsms_raw_value_workbook_queue_role_sixth_country_backup_candidate,3,Dataset count by refocused queue role.
+priority_lsms_raw_value_workbook_requirement_status_blocked_no_original_package,152,Requirement workbook status count.
+priority_lsms_raw_value_workbook_variable_status_blocked_no_original_package,1531,Variable workbook status count.
+priority_lsms_raw_value_workbook_file_status_blocked_no_original_package,629,File workbook status count.
