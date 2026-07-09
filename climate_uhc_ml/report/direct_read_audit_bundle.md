@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 129 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 521 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 517 | Curated artifacts present and non-empty. |
+| bundle_rows | 130 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 527 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 523 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -45,6 +45,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_synthesis_blueprint_schema_rows | 572 | Target output-column rows for promoted household-climate dataset synthesis. |
 | priority_synthesis_blueprint_blocked_required_rows | 325 | Required promoted-dataset output columns still blocked. |
 | priority_synthesis_blueprint_join_ready_rows | 0 | Priority country-waves ready for promoted dataset build joins. |
+| priority_country_wave_packet_rows | 13 | Priority country-wave promotion packets built. |
+| priority_country_wave_packet_passed_gate_rows | 13 | Priority packet gates currently passing. |
+| priority_country_wave_packet_failed_gate_rows | 130 | Priority packet gates still blocking promotion. |
+| priority_country_wave_packet_analysis_ready_rows | 0 | Priority packets ready for promoted data writes. |
 | analysis_dataset_promotion_audit_rows | 6 | Analysis dataset promotion targets checked. |
 | analysis_dataset_promotion_blocked_rows | 2 | Promotion targets blocked from data/. |
 | analysis_dataset_promotion_promoted_rows | 4 | Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked. |
@@ -414,7 +418,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 20 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 21 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -455,6 +459,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_current_boundary_name_match_incomplete_historical_crosswalk_no_gps | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_diary_timing_metadata_candidate_no_raw_merge_semantics | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_extracted_package_missing_bookmetadata_and_coordinate_values | 1 | Direct-read bundle status count. |
+| bundle_status_blocked_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_followup_confirms_no_public_2002_district_boundary_source | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_gadm_boundary_lead_no_verified_2002_historical_provenance | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_geoboundaries_2_0_1_boundary_year_2013_not_verified_2002 | 1 | Direct-read bundle status count. |
@@ -522,7 +527,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 |---|---:|
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
-| priority_bundle | 20 |
+| priority_bundle | 21 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
 | coverage | 5 |
@@ -562,6 +567,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | blocked_official_access_required_no_original_package | 1 |
 | core_public_documentation_saved_raw_gate_still_blocked | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
+| blocked_fail_closed | 1 |
 | closed_no_promoted_rows | 1 |
 | raw_archives_available_requires_value_verification | 1 |
 | raw_value_summary_available_manual_review_required | 1 |
@@ -663,13 +669,13 @@ No incomplete completion criteria were found.
 | priority_official_download_dossier | blocked_official_access_required_no_original_package | dossiers=13; full_file_rows=965; core_rows=156; links=100; pdf=11; ddi=13; json=13; no_original_package=13; receipt_c... | Official download dossier expands from the 156 core targets to the full metadata-derived file inventory and records o... |
 | priority_public_documentation_receipt | core_public_documentation_saved_raw_gate_still_blocked | datasets=13; resources=78; saved=76; failed=0; core_complete=13; full_complete=11; optional_pdf_missing=2; access_gat... | Public documentation receipt downloads or reuses official DDI/XML, JSON, data dictionary, related-material, get-micro... |
 | priority_analysis_dataset_synthesis_blueprint | blocked_required_schema_columns_not_verified | schema_rows=572; required_rows=325; ready_required=0; blocked_required=325; join_rows=13; join_ready=0; candidate_var... | Synthesis blueprint defines the target promoted household-climate schema, source concepts, candidate variables, requi... |
-| promoted_data_gate | closed_no_promoted_rows | promoted_rows=0; data_before=4; data_after=0; quarantined=4 | Promoted data gate keeps data/ reserved for registry-approved datasets and moves pre-promotion diagnostic CSVs to tem... |
+| priority_country_wave_promotion_packets | blocked_fail_closed | packets=13; gates=143; passed_gates=13; failed_gates=130; public_docs_ready=13; raw_package_ready=0; financial_ready=... | Priority packets consolidate public documentation, raw receipt, manual verification, climate preflight, synthesis joi... |
 
 ## Artifact Manifest
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 517 |
+| present_nonempty | 523 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

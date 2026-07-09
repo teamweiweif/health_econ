@@ -43,6 +43,7 @@ python script/130_build_priority_raw_package_receipt_ledger.py
 python script/131_build_priority_official_download_dossier.py
 python script/133_build_priority_public_documentation_receipt.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
+python script/134_build_priority_country_wave_promotion_packets.py
 python script/127_enforce_promoted_data_gate.py
 python script/36_build_direct_read_audit_bundle.py
 python script/28_audit_python_environment.py
