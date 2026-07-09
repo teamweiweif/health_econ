@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 138 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 569 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 565 | Curated artifacts present and non-empty. |
+| bundle_rows | 139 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 575 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 571 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -75,6 +75,11 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_alignment_off_family_core_wave_rows | 2 | Core priority waves that should be replaced or augmented before manual download execution. |
 | priority_lsms_alignment_strong_replacement_candidate_rows | 15 | Strong Malawi/Uganda LSMS/ISA replacement candidates found in the screening inventory. |
 | priority_lsms_alignment_campaign_decision | needs_core_wave_replacement_before_manual_download_execution | Family-alignment campaign decision before credentialed downloads. |
+| priority_lsms_refocused_wave_plan_rows | 13 | Selected wave-plan rows after replacing off-family core waves. |
+| priority_lsms_refocused_core_lsms_aligned_rows | 10 | Refocused core rows aligned with LSMS/ISA or LSMS-style survey families. |
+| priority_lsms_refocused_acquisition_queue_rows | 19 | Refocused selected and backup manual acquisition targets. |
+| priority_lsms_refocused_requirement_rows | 152 | Requirement rows for refocused selected and backup targets. |
+| priority_lsms_refocused_data_write_status | blocked_no_promoted_rows | Promoted-data write status for the refocused queue. |
 | priority_synthesis_blueprint_schema_rows | 572 | Target output-column rows for promoted household-climate dataset synthesis. |
 | priority_synthesis_blueprint_blocked_required_rows | 325 | Required promoted-dataset output columns still blocked. |
 | priority_synthesis_blueprint_join_ready_rows | 0 | Priority country-waves ready for promoted dataset build joins. |
@@ -454,7 +459,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 29 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 30 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -560,6 +565,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_raw_value_summary_available_manual_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_ready | 1 | Direct-read bundle status count. |
 | bundle_status_ready_for_credentialed_manual_download | 1 | Direct-read bundle status count. |
+| bundle_status_refocused_manual_download_queue_ready_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_not_analysis_ready | 2 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_timing_geography_observed_outcome_semantics_pending | 1 | Direct-read bundle status count. |
@@ -570,7 +576,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 29 |
+| priority_bundle | 30 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -618,6 +624,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | first_pass_queue_ready_raw_missing | 1 |
 | download_execution_ready_raw_missing | 1 |
 | core_wave_replacement_needed_before_download_execution | 1 |
+| refocused_manual_download_queue_ready_raw_missing | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | closed_no_promoted_rows | 1 |
@@ -727,7 +734,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 565 |
+| present_nonempty | 571 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

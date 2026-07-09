@@ -1540,3 +1540,9 @@
 - 2026-07-09T21:44:23+00:00 - Built priority LSMS-ISA alignment audit rows=13 candidates=17.
 - 2026-07-09T21:44:28+00:00 - Direct-read audit bundle rows=138 manifest_rows=569.
 - 2026-07-09T21:44:29+00:00 - Workspace validation complete=424 incomplete_or_failed=0.
+- 2026-07-09T21:53:35+00:00 - Built priority LSMS-ISA refocused acquisition queue plan_rows=13 queue_rows=19 requirement_rows=152.
+- 2026-07-09T21:53:40+00:00 - Direct-read audit bundle rows=139 manifest_rows=575.
+- 2026-07-09T21:53:42+00:00 - Workspace validation complete=427 incomplete_or_failed=0.
+- 2026-07-09T21:54:45+00:00 - Built priority LSMS-ISA refocused acquisition queue plan_rows=13 queue_rows=19 requirement_rows=152.
+- 2026-07-09T21:54:49+00:00 - Direct-read audit bundle rows=139 manifest_rows=575.
+- 2026-07-09T21:54:51+00:00 - Workspace validation complete=427 incomplete_or_failed=0.

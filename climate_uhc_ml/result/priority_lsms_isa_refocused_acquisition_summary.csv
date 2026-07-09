@@ -1,0 +1,20 @@
+﻿metric,value,interpretation
+priority_lsms_refocused_wave_plan_rows,13,Refocused selected wave-plan rows after replacing off-family core waves.
+priority_lsms_refocused_core_wave_rows,10,Core priority wave rows in the refocused plan.
+priority_lsms_refocused_core_required_countries,5,Required LSMS/ISA priority countries represented in the refocused core.
+priority_lsms_refocused_core_lsms_aligned_rows,10,Core rows in the refocused plan with LSMS/ISA or LSMS-style family alignment.
+priority_lsms_refocused_replaced_off_family_core_rows,2,Off-family current core rows replaced in the refocused plan.
+priority_lsms_refocused_acquisition_queue_rows,19,Selected and backup rows in the refocused manual acquisition queue.
+priority_lsms_refocused_replacement_backup_rows,6,Extra Malawi/Uganda LSMS/ISA backup waves queued if primary replacements fail manual review.
+priority_lsms_refocused_requirement_rows,152,Requirement rows for selected and backup acquisition targets.
+priority_lsms_refocused_requirement_metadata_hit_rows,98,"Requirement rows with public metadata evidence, still requiring raw review."
+priority_lsms_refocused_requirement_weak_or_proxy_rows,11,Requirement rows where public metadata may be a weak proxy or false positive and must be resolved from raw documentation.
+priority_lsms_refocused_requirement_missing_or_raw_only_rows,54,"Requirement rows requiring raw package or documentation review because public metadata is missing, weak, or insufficient."
+priority_lsms_refocused_raw_package_received_rows,0,Refocused targets with original raw package receipt; still zero.
+priority_lsms_refocused_handoff_readmes_written,19,Per-wave refocused acquisition handoff files written.
+priority_lsms_refocused_data_write_status,blocked_no_promoted_rows,No refocused wave may write to data/ before all raw and climate gates pass.
+modeling_gate_status,blocked,Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass.
+priority_lsms_refocused_queue_role_core_replacement_primary,2,Refocused acquisition queue role count.
+priority_lsms_refocused_queue_role_core_selected_lsms_isa_aligned,8,Refocused acquisition queue role count.
+priority_lsms_refocused_queue_role_replacement_backup_wave,6,Refocused acquisition queue role count.
+priority_lsms_refocused_queue_role_sixth_country_backup_candidate,3,Refocused acquisition queue role count.
