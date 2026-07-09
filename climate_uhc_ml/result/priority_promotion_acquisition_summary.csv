@@ -1,0 +1,10 @@
+﻿metric,value,interpretation
+priority_promotion_wave_plan_rows,13,Rows in the priority acquisition wave plan.
+priority_10_wave_batch_rows,10,Priority waves selected for immediate raw-package acquisition.
+priority_10_wave_batch_countries,5,Priority countries covered by the first 10-wave batch.
+priority_country_list,Ethiopia;Malawi;Nigeria;Tanzania;Uganda,Priority countries covered by the first 10-wave batch.
+sixth_country_backup_rows,3,Non-Albania backup countries for the 6-country financial-protection threshold.
+waves_with_raw_package_present,0,Selected or backup waves with raw archive/tabular files currently present.
+waves_still_requiring_manual_download,13,Selected or backup waves still needing manual raw-package download or placement.
+priority_file_queue_rows,156,Top core files/modules to verify first after complete raw packages are placed.
+modeling_gate_status,blocked,Models remain blocked until the promoted registry thresholds pass.

@@ -272,6 +272,7 @@ promotion:
 	$(PYTHON) script/29_build_raw_variable_verification_protocol.py
 	$(PYTHON) script/33_build_harmonization_recipe_gate.py
 	$(PYTHON) script/121_build_country_wave_promotion_registry.py
+	$(PYTHON) script/122_build_priority_promotion_acquisition_plan.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py

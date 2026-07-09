@@ -128,6 +128,7 @@ REQUIRED_REPORTS = [
     "first_batch_raw_verification_workbook.md",
     "direct_read_audit_bundle.md",
     "country_wave_promotion_registry.md",
+    "priority_promotion_acquisition_plan.md",
 ]
 REQUIRED_TEMP = [
     "source_inventory.csv",
@@ -260,6 +261,7 @@ REQUIRED_SCRIPTS = [
     "118_promote_alb2002_limited_climate_exposures.py",
     "120_promote_alb2002_limited_climate_linked.py",
     "121_build_country_wave_promotion_registry.py",
+    "122_build_priority_promotion_acquisition_plan.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -662,6 +664,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "country_wave_promotion_gate_audit": row_count(RESULT_DIR / "country_wave_promotion_gate_audit.csv"),
         "country_wave_promotion_summary": row_count(RESULT_DIR / "country_wave_promotion_summary.csv"),
         "priority_country_wave_download_queue": row_count(RESULT_DIR / "priority_country_wave_download_queue.csv"),
+        "priority_promotion_acquisition_wave_plan": row_count(RESULT_DIR / "priority_promotion_acquisition_wave_plan.csv"),
+        "priority_promotion_acquisition_file_queue": row_count(RESULT_DIR / "priority_promotion_acquisition_file_queue.csv"),
+        "priority_promotion_acquisition_summary": row_count(RESULT_DIR / "priority_promotion_acquisition_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
         "design_scorecard_current_audit": row_count(RESULT_DIR / "design_scorecard_current_audit.csv"),
         "design_no_go_threshold_audit": row_count(RESULT_DIR / "design_no_go_threshold_audit.csv"),
@@ -3787,6 +3792,37 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and packet_count > 0
         and modeling_gate == "blocked"
         else "Run script/121_build_country_wave_promotion_registry.py and keep modeling blocked until registry thresholds pass.",
+    )
+    priority_acq_summary = read_csv_dicts(RESULT_DIR / "priority_promotion_acquisition_summary.csv")
+    priority_batch_rows = safe_int(next((row.get("value", "0") for row in priority_acq_summary if row.get("metric") == "priority_10_wave_batch_rows"), "0"), 0)
+    priority_batch_countries = safe_int(next((row.get("value", "0") for row in priority_acq_summary if row.get("metric") == "priority_10_wave_batch_countries"), "0"), 0)
+    sixth_backup_rows = safe_int(next((row.get("value", "0") for row in priority_acq_summary if row.get("metric") == "sixth_country_backup_rows"), "0"), 0)
+    priority_acq_modeling_gate = next((row.get("value", "") for row in priority_acq_summary if row.get("metric") == "modeling_gate_status"), "")
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority-first raw acquisition plan covers the requested countries and preserves the no-modeling gate",
+        status(
+            counts["priority_promotion_acquisition_wave_plan"] >= 10
+            and counts["priority_promotion_acquisition_file_queue"] > 0
+            and counts["priority_promotion_acquisition_summary"] > 0
+            and file_ok(REPORT_DIR / "priority_promotion_acquisition_plan.md")
+            and priority_batch_rows >= 10
+            and priority_batch_countries >= 5
+            and sixth_backup_rows >= 1
+            and priority_acq_modeling_gate == "blocked"
+        ),
+        f"wave_plan_rows={counts['priority_promotion_acquisition_wave_plan']}; file_queue_rows={counts['priority_promotion_acquisition_file_queue']}; summary_rows={counts['priority_promotion_acquisition_summary']}; priority_batch_rows={priority_batch_rows}; priority_batch_countries={priority_batch_countries}; sixth_backup_rows={sixth_backup_rows}; modeling_gate={priority_acq_modeling_gate}",
+        ""
+        if counts["priority_promotion_acquisition_wave_plan"] >= 10
+        and counts["priority_promotion_acquisition_file_queue"] > 0
+        and counts["priority_promotion_acquisition_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_promotion_acquisition_plan.md")
+        and priority_batch_rows >= 10
+        and priority_batch_countries >= 5
+        and sixth_backup_rows >= 1
+        and priority_acq_modeling_gate == "blocked"
+        else "Run script/122_build_priority_promotion_acquisition_plan.py after the promotion registry and raw-ingestion metadata are refreshed.",
     )
     objective_trace = read_csv_dicts(RESULT_DIR / "objective_requirement_traceability.csv")
     objective_guardrails = read_csv_dicts(RESULT_DIR / "objective_guardrail_audit.csv")
