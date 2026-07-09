@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,125,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,499,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,495,Curated artifacts present and non-empty.
+bundle_rows,126,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,505,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,501,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -18,6 +18,10 @@ priority_manual_verification_variable_rows,1214,Variable rows evaluated by the m
 priority_manual_verification_financial_ready_countries,0,Countries passing financial-protection manual verification.
 priority_manual_verification_double_failure_ready_waves,0,Country-waves passing double-failure manual verification.
 priority_manual_verification_analysis_ready_candidates,0,Country-waves ready for harmonization-recipe review after manual verification.
+priority_raw_receipt_original_file_rows,0,"Original package/documentation files counted in priority receipt folders, excluding generated handoffs."
+priority_raw_receipt_priority_targets_missing,156,Priority target modules still missing from original package/archive receipt coverage.
+priority_raw_receipt_missing_package_rows,13,Priority datasets with no original raw package/tabular receipt yet.
+priority_raw_receipt_complete_package_candidates,0,Priority datasets with original package receipt candidates ready for downstream schema/manual audits.
 analysis_dataset_promotion_audit_rows,6,Analysis dataset promotion targets checked.
 analysis_dataset_promotion_blocked_rows,2,Promotion targets blocked from data/.
 analysis_dataset_promotion_promoted_rows,4,Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked.
@@ -387,7 +391,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,16,Direct-read bundle section count.
+bundle_section_priority_bundle,17,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -473,6 +477,7 @@ bundle_status_not_final_outcomes_outcome_semantics_climate_crosswalk_blocked,1,D
 bundle_status_not_final_outcomes_timing_geography_recall_blocked,2,Direct-read bundle status count.
 bundle_status_not_final_outcomes_timing_geography_recall_semantics_blocked,1,Direct-read bundle status count.
 bundle_status_not_ready_for_verified_recipe,1,Direct-read bundle status count.
+bundle_status_not_received_no_original_raw_package,1,Direct-read bundle status count.
 bundle_status_partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass,1,Direct-read bundle status count.
 bundle_status_pass,2,Direct-read bundle status count.
 bundle_status_present_raw_waves_require_wave_specific_schema_value_key_timing_audits,1,Direct-read bundle status count.

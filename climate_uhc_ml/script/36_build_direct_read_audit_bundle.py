@@ -63,6 +63,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_manual_concept_decision_audit.csv", "priority concept manual verification audit rows"),
     ("dataset_promotion", "temp/priority_manual_variable_decision_audit.csv", "priority variable manual verification audit rows"),
     ("dataset_promotion", "result/priority_manual_verification_decision_summary.csv", "priority manual verification decision summary"),
+    ("dataset_promotion", "report/priority_raw_package_receipt_ledger.md", "priority raw package receipt ledger report"),
+    ("dataset_promotion", "temp/priority_raw_package_receipt_ledger.csv", "priority dataset-level raw package receipt ledger"),
+    ("dataset_promotion", "temp/priority_raw_package_file_manifest.csv", "priority original package/file checksum manifest"),
+    ("dataset_promotion", "temp/priority_raw_package_missing_targets.csv", "priority raw package missing target rows"),
+    ("dataset_promotion", "result/priority_raw_package_receipt_summary.csv", "priority raw package receipt summary"),
     ("dataset_promotion", "report/promoted_data_gate.md", "promoted data write gate report"),
     ("dataset_promotion", "result/promoted_data_gate_summary.csv", "promoted data write gate summary"),
     ("dataset_promotion", "temp/promoted_data_gate_manifest.csv", "promoted data quarantine/action manifest"),
@@ -441,6 +446,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/127_enforce_promoted_data_gate.py", "promoted data write gate enforcer"),
     ("reproducibility", "script/128_build_priority_archive_member_preflight.py", "priority archive/direct-file preflight generator"),
     ("reproducibility", "script/129_build_priority_manual_verification_decision_gate.py", "priority manual verification decision gate generator"),
+    ("reproducibility", "script/130_build_priority_raw_package_receipt_ledger.py", "priority raw package receipt ledger generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
     ("reproducibility", "script/41_build_first_batch_public_documentation_audit.py", "first-batch public documentation audit generator"),
     ("reproducibility", "script/42_build_first_batch_file_source_traceability.py", "first-batch file source traceability generator"),
@@ -634,6 +640,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_climate_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv")
     priority_raw_verification_summary = read_csv_dicts(RESULT_DIR / "priority_raw_verification_workbook_summary.csv")
     priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
+    priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     public_external_summary = read_csv_dicts(RESULT_DIR / "public_external_raw_candidate_download_summary.csv")
     first_batch_handoff_summary = read_csv_dicts(RESULT_DIR / "first_batch_manual_download_handoff_summary.csv")
@@ -864,6 +871,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_manual_verification_summary, 'priority_manual_decision_dataset_rows', '0')}; requirements={csv_value(priority_manual_verification_summary, 'priority_manual_requirement_decision_rows', '0')}; concepts={csv_value(priority_manual_verification_summary, 'priority_manual_concept_decision_rows', '0')}; variables={csv_value(priority_manual_verification_summary, 'priority_manual_variable_decision_rows', '0')}; requirements_verified={csv_value(priority_manual_verification_summary, 'priority_manual_requirements_verified', '0')}; concepts_verified={csv_value(priority_manual_verification_summary, 'priority_manual_concepts_verified', '0')}; variables_verified={csv_value(priority_manual_verification_summary, 'priority_manual_variables_verified', '0')}; financial_ready_countries={csv_value(priority_manual_verification_summary, 'priority_financial_protection_manual_ready_countries', '0')}; double_failure_ready_waves={csv_value(priority_manual_verification_summary, 'priority_double_failure_manual_ready_waves', '0')}; analysis_ready={csv_value(priority_manual_verification_summary, 'priority_analysis_ready_candidates', '0')}",
         [TEMP_DIR / "priority_manual_verification_decision_gate.csv", TEMP_DIR / "priority_manual_requirement_decision_audit.csv", TEMP_DIR / "priority_manual_concept_decision_audit.csv", TEMP_DIR / "priority_manual_variable_decision_audit.csv", RESULT_DIR / "priority_manual_verification_decision_summary.csv", REPORT_DIR / "priority_manual_verification_decision_gate.md"],
         "Priority manual verification decision gate consumes preserved fill-field evidence from the workbook and blocks promotion until source-backed manual requirement, concept, and variable checks pass.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_raw_package_receipt_ledger",
+        "not_received_no_original_raw_package" if csv_value(priority_receipt_summary, "priority_raw_receipt_missing_package_rows", "0") != "0" else "raw_package_receipt_candidates_present",
+        f"datasets={csv_value(priority_receipt_summary, 'priority_raw_receipt_dataset_rows', '0')}; original_files={csv_value(priority_receipt_summary, 'priority_raw_receipt_original_file_rows', '0')}; archives={csv_value(priority_receipt_summary, 'priority_raw_receipt_archive_files', '0')}; raw_tabular={csv_value(priority_receipt_summary, 'priority_raw_receipt_raw_tabular_files', '0')}; documentation={csv_value(priority_receipt_summary, 'priority_raw_receipt_documentation_files', '0')}; targets={csv_value(priority_receipt_summary, 'priority_raw_receipt_priority_targets', '0')}; covered={csv_value(priority_receipt_summary, 'priority_raw_receipt_priority_targets_covered', '0')}; missing={csv_value(priority_receipt_summary, 'priority_raw_receipt_priority_targets_missing', '0')}; generated_ignored={csv_value(priority_receipt_summary, 'priority_raw_receipt_generated_files_ignored', '0')}; complete_candidates={csv_value(priority_receipt_summary, 'priority_raw_receipt_complete_package_candidates', '0')}",
+        [TEMP_DIR / "priority_raw_package_receipt_ledger.csv", TEMP_DIR / "priority_raw_package_file_manifest.csv", TEMP_DIR / "priority_raw_package_missing_targets.csv", RESULT_DIR / "priority_raw_package_receipt_summary.csv", REPORT_DIR / "priority_raw_package_receipt_ledger.md"],
+        "Priority receipt ledger ignores generated handoffs/placeholders and records only unchanged original package/documentation files, hashes, and missing target modules before downstream schema/manual verification.",
     )
     add_bundle(
         rows,
@@ -1737,6 +1753,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     priority_archive_summary = read_csv_dicts(RESULT_DIR / "priority_archive_member_preflight_summary.csv")
     priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
+    priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
     data_dataset_files = [
         path for path in DATA_DIR.rglob("*")
         if path.is_file() and path.name not in {"README.md", ".gitkeep"}
@@ -1761,6 +1778,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_manual_verification_financial_ready_countries", "value": csv_value(priority_manual_verification_summary, "priority_financial_protection_manual_ready_countries", "0"), "interpretation": "Countries passing financial-protection manual verification."},
         {"metric": "priority_manual_verification_double_failure_ready_waves", "value": csv_value(priority_manual_verification_summary, "priority_double_failure_manual_ready_waves", "0"), "interpretation": "Country-waves passing double-failure manual verification."},
         {"metric": "priority_manual_verification_analysis_ready_candidates", "value": csv_value(priority_manual_verification_summary, "priority_analysis_ready_candidates", "0"), "interpretation": "Country-waves ready for harmonization-recipe review after manual verification."},
+        {"metric": "priority_raw_receipt_original_file_rows", "value": csv_value(priority_receipt_summary, "priority_raw_receipt_original_file_rows", "0"), "interpretation": "Original package/documentation files counted in priority receipt folders, excluding generated handoffs."},
+        {"metric": "priority_raw_receipt_priority_targets_missing", "value": csv_value(priority_receipt_summary, "priority_raw_receipt_priority_targets_missing", "0"), "interpretation": "Priority target modules still missing from original package/archive receipt coverage."},
+        {"metric": "priority_raw_receipt_missing_package_rows", "value": csv_value(priority_receipt_summary, "priority_raw_receipt_missing_package_rows", "0"), "interpretation": "Priority datasets with no original raw package/tabular receipt yet."},
+        {"metric": "priority_raw_receipt_complete_package_candidates", "value": csv_value(priority_receipt_summary, "priority_raw_receipt_complete_package_candidates", "0"), "interpretation": "Priority datasets with original package receipt candidates ready for downstream schema/manual audits."},
         {"metric": "analysis_dataset_promotion_audit_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_audit_rows", "0"), "interpretation": "Analysis dataset promotion targets checked."},
         {"metric": "analysis_dataset_promotion_blocked_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_blocked_rows", "0"), "interpretation": "Promotion targets blocked from data/."},
         {"metric": "analysis_dataset_promotion_promoted_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_promoted_rows", "0"), "interpretation": "Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked."},

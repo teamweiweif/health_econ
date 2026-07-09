@@ -135,6 +135,7 @@ REQUIRED_REPORTS = [
     "priority_climate_linkage_preflight.md",
     "priority_raw_verification_workbook.md",
     "priority_manual_verification_decision_gate.md",
+    "priority_raw_package_receipt_ledger.md",
     "promoted_data_gate.md",
 ]
 REQUIRED_TEMP = [
@@ -276,6 +277,7 @@ REQUIRED_SCRIPTS = [
     "127_enforce_promoted_data_gate.py",
     "128_build_priority_archive_member_preflight.py",
     "129_build_priority_manual_verification_decision_gate.py",
+    "130_build_priority_raw_package_receipt_ledger.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -702,6 +704,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_manual_concept_decision_audit": row_count(TEMP_DIR / "priority_manual_concept_decision_audit.csv"),
         "priority_manual_variable_decision_audit": row_count(TEMP_DIR / "priority_manual_variable_decision_audit.csv"),
         "priority_manual_verification_decision_summary": row_count(RESULT_DIR / "priority_manual_verification_decision_summary.csv"),
+        "priority_raw_package_receipt_ledger": row_count(TEMP_DIR / "priority_raw_package_receipt_ledger.csv"),
+        "priority_raw_package_file_manifest": row_count(TEMP_DIR / "priority_raw_package_file_manifest.csv"),
+        "priority_raw_package_missing_targets": row_count(TEMP_DIR / "priority_raw_package_missing_targets.csv"),
+        "priority_raw_package_receipt_summary": row_count(RESULT_DIR / "priority_raw_package_receipt_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -4153,6 +4159,56 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_manual_gate_ok),
         f"dataset_rows={counts['priority_manual_verification_decision_gate']}; requirement_rows={counts['priority_manual_requirement_decision_audit']}; concept_rows={counts['priority_manual_concept_decision_audit']}; variable_rows={counts['priority_manual_variable_decision_audit']}; summary_rows={counts['priority_manual_verification_decision_summary']}; reported_dataset_rows={priority_manual_dataset_rows}; reported_requirements={priority_manual_requirement_rows}; reported_concepts={priority_manual_concept_rows}; reported_variables={priority_manual_variable_rows}; verified_requirements={priority_manual_requirements_verified}; verified_concepts={priority_manual_concepts_verified}; verified_variables={priority_manual_variables_verified}; financial_ready_countries={priority_manual_financial_ready}; double_failure_ready_waves={priority_manual_double_failure_ready}; analysis_ready_candidates={priority_manual_analysis_ready}; handoff_rows={priority_manual_handoffs}; handoff_existing={priority_manual_handoff_existing}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_manual_modeling_gate}",
         "" if priority_manual_gate_ok else "Run script/129_build_priority_manual_verification_decision_gate.py after script/126_build_priority_raw_verification_workbook.py; blank or ambiguous fill-fields must remain blocked.",
+    )
+    priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
+    priority_receipt_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_dataset_rows"), "0"), 0)
+    priority_receipt_original_file_rows = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_original_file_rows"), "0"), 0)
+    priority_receipt_archive_files = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_archive_files"), "0"), 0)
+    priority_receipt_raw_tabular_files = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_raw_tabular_files"), "0"), 0)
+    priority_receipt_documentation_files = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_documentation_files"), "0"), 0)
+    priority_receipt_targets = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_priority_targets"), "0"), 0)
+    priority_receipt_targets_covered = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_priority_targets_covered"), "0"), 0)
+    priority_receipt_targets_missing = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_priority_targets_missing"), "0"), 0)
+    priority_receipt_missing_target_rows = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_missing_target_rows"), "0"), 0)
+    priority_receipt_generated_ignored = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_generated_files_ignored"), "0"), 0)
+    priority_receipt_complete_candidates = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_complete_package_candidates"), "0"), 0)
+    priority_receipt_partial_candidates = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_partial_package_candidates"), "0"), 0)
+    priority_receipt_missing_packages = safe_int(next((row.get("value", "0") for row in priority_receipt_summary if row.get("metric") == "priority_raw_receipt_missing_package_rows"), "0"), 0)
+    priority_receipt_modeling_gate = next((row.get("value", "") for row in priority_receipt_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_receipt_no_raw_ok = (
+        not priority_manual_no_raw_present
+        or (
+            priority_receipt_original_file_rows == 0
+            and priority_receipt_archive_files == 0
+            and priority_receipt_raw_tabular_files == 0
+            and priority_receipt_documentation_files == 0
+            and priority_receipt_targets_covered == 0
+            and priority_receipt_targets_missing >= counts["priority_raw_file_targets"]
+            and priority_receipt_missing_target_rows >= counts["priority_raw_file_targets"]
+            and priority_receipt_complete_candidates == 0
+            and priority_receipt_partial_candidates == 0
+            and priority_receipt_missing_packages >= counts["priority_promotion_acquisition_wave_plan"]
+        )
+    )
+    priority_receipt_gate_ok = (
+        counts["priority_raw_package_receipt_ledger"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_raw_package_file_manifest"] == priority_receipt_original_file_rows
+        and (not priority_manual_no_raw_present or counts["priority_raw_package_missing_targets"] >= counts["priority_raw_file_targets"])
+        and counts["priority_raw_package_receipt_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_raw_package_receipt_ledger.md")
+        and priority_receipt_dataset_rows >= max(13, counts["priority_promotion_acquisition_wave_plan"])
+        and priority_receipt_targets >= counts["priority_raw_file_targets"]
+        and priority_receipt_generated_ignored >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_receipt_no_raw_ok
+        and priority_receipt_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority raw package receipt ledger hashes original receipts, ignores generated handoffs, and preserves fail-closed package completeness status",
+        status(priority_receipt_gate_ok),
+        f"ledger_rows={counts['priority_raw_package_receipt_ledger']}; file_manifest_rows={counts['priority_raw_package_file_manifest']}; missing_target_rows={counts['priority_raw_package_missing_targets']}; summary_rows={counts['priority_raw_package_receipt_summary']}; reported_dataset_rows={priority_receipt_dataset_rows}; original_files={priority_receipt_original_file_rows}; archives={priority_receipt_archive_files}; raw_tabular={priority_receipt_raw_tabular_files}; documentation={priority_receipt_documentation_files}; targets={priority_receipt_targets}; covered={priority_receipt_targets_covered}; missing={priority_receipt_targets_missing}; missing_rows={priority_receipt_missing_target_rows}; generated_ignored={priority_receipt_generated_ignored}; complete_candidates={priority_receipt_complete_candidates}; partial_candidates={priority_receipt_partial_candidates}; missing_packages={priority_receipt_missing_packages}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_receipt_modeling_gate}",
+        "" if priority_receipt_gate_ok else "Run script/130_build_priority_raw_package_receipt_ledger.py after priority archive/manual gates; generated handoff files must not count as original package evidence.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

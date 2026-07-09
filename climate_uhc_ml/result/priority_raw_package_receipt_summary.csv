@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+priority_raw_receipt_dataset_rows,13,Priority and backup waves represented in the receipt ledger.
+priority_raw_receipt_original_file_rows,0,Original package/documentation files counted after ignoring generated handoff files.
+priority_raw_receipt_archive_files,0,Original archive packages present in priority target folders.
+priority_raw_receipt_raw_tabular_files,0,Original raw tabular files present in priority target folders.
+priority_raw_receipt_documentation_files,0,Original documentation files present in priority target folders.
+priority_raw_receipt_total_original_bytes,0,Total bytes of original files counted in priority target folders.
+priority_raw_receipt_priority_targets,156,Priority target file/module rows checked for receipt coverage.
+priority_raw_receipt_priority_targets_covered,0,Priority targets covered by direct files or archive members.
+priority_raw_receipt_priority_targets_missing,156,Priority targets still missing from direct/archive receipt coverage.
+priority_raw_receipt_missing_target_rows,156,Missing target rows written for reviewer follow-up.
+priority_raw_receipt_generated_files_ignored,78,Generated handoff/placeholder files ignored as original package evidence.
+priority_raw_receipt_complete_package_candidates,0,Datasets with original raw/package receipt and all priority targets covered.
+priority_raw_receipt_partial_package_candidates,0,Datasets with some original raw/package receipt but remaining receipt or documentation gaps.
+priority_raw_receipt_missing_package_rows,13,Datasets with no original raw package/tabular receipt yet.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted CHIRPS/ERA5 linkage pass.
+priority_raw_receipt_status_not_received_no_original_raw_package,13,Receipt status count.
