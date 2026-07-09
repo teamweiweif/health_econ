@@ -1,0 +1,21 @@
+# Priority LSMS-ISA Public Documentation Receipt
+
+Dataset: NGA_2015_GHSP-W3_v02_M - Nigeria 2015-2016
+
+Status: complete_core_public_documentation_receipt
+
+Resources:
+
+- get_microdata_html: saved_existing (temp/source_snapshots/priority_lsms_isa_public_documentation/5_NGA_2015_GHSP-W3_v02_M/get_microdata_html.html)
+- catalog_idno_json: saved_existing (temp/source_snapshots/priority_lsms_isa_public_documentation/5_NGA_2015_GHSP-W3_v02_M/catalog_idno_json.json)
+- variables_idno_json: saved_existing (temp/source_snapshots/priority_lsms_isa_public_documentation/5_NGA_2015_GHSP-W3_v02_M/variables_idno_json.json)
+- ddi_metadata: saved_existing (temp/source_snapshots/priority_lsms_isa_public_documentation/5_NGA_2015_GHSP-W3_v02_M/ddi_metadata.xml)
+- json_metadata: saved_existing (temp/source_snapshots/priority_lsms_isa_public_documentation/5_NGA_2015_GHSP-W3_v02_M/json_metadata.json)
+- data_dictionary_html: saved_existing (temp/source_snapshots/priority_lsms_isa_public_documentation/5_NGA_2015_GHSP-W3_v02_M/data_dictionary_html.html)
+- related_materials_html: saved_existing (temp/source_snapshots/priority_lsms_isa_public_documentation/5_NGA_2015_GHSP-W3_v02_M/related_materials_html.html)
+
+Guardrail: these are public documentation and metadata snapshots only. They are
+not a raw package receipt and do not verify raw values, units, recall periods,
+missing codes, skip patterns, merge keys, survey design, timing, geography, or
+climate linkage. Keep the wave out of `data/` until the complete unchanged
+official raw package is present and value-verified.

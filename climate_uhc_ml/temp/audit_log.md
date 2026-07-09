@@ -1555,3 +1555,9 @@
 - 2026-07-09T22:10:17+00:00 - Built priority LSMS-ISA archive member preflight datasets=19 direct_files=0 archive_members=0.
 - 2026-07-09T22:10:21+00:00 - Direct-read audit bundle rows=141 manifest_rows=588.
 - 2026-07-09T22:10:24+00:00 - Workspace validation complete=433 incomplete_or_failed=0.
+- 2026-07-09T22:23:33+00:00 - Built priority LSMS/ISA public documentation receipt datasets=19 resources=133.
+- 2026-07-09T22:23:55+00:00 - Direct-read audit bundle rows=142 manifest_rows=593.
+- 2026-07-09T22:24:04+00:00 - Workspace validation complete=436 incomplete_or_failed=0.
+- 2026-07-09T22:27:05+00:00 - Built priority LSMS/ISA public documentation receipt datasets=19 resources=133.
+- 2026-07-09T22:27:18+00:00 - Direct-read audit bundle rows=142 manifest_rows=595.
+- 2026-07-09T22:27:20+00:00 - Workspace validation complete=436 incomplete_or_failed=0.

@@ -147,6 +147,7 @@ REQUIRED_REPORTS = [
     "priority_download_execution_packet.md",
     "priority_lsms_isa_alignment_audit.md",
     "priority_lsms_isa_refocused_acquisition_queue.md",
+    "priority_lsms_isa_public_documentation_receipt.md",
     "priority_lsms_isa_raw_package_intake_packet.md",
     "priority_lsms_isa_archive_member_preflight.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
@@ -304,6 +305,7 @@ REQUIRED_SCRIPTS = [
     "141_build_priority_download_execution_packet.py",
     "142_build_priority_lsms_isa_alignment_audit.py",
     "143_build_priority_lsms_isa_refocused_acquisition_queue.py",
+    "146_build_priority_lsms_isa_public_documentation_receipt.py",
     "144_build_priority_lsms_isa_raw_package_intake_packet.py",
     "145_build_priority_lsms_isa_archive_member_preflight.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
@@ -775,6 +777,11 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_refocused_acquisition_queue": row_count(TEMP_DIR / "priority_lsms_isa_refocused_acquisition_queue.csv"),
         "priority_lsms_isa_refocused_requirement_matrix": row_count(TEMP_DIR / "priority_lsms_isa_refocused_requirement_matrix.csv"),
         "priority_lsms_isa_refocused_acquisition_summary": row_count(RESULT_DIR / "priority_lsms_isa_refocused_acquisition_summary.csv"),
+        "priority_lsms_isa_public_documentation_receipt": row_count(TEMP_DIR / "priority_lsms_isa_public_documentation_receipt.csv"),
+        "priority_lsms_isa_public_documentation_dataset_receipt": row_count(TEMP_DIR / "priority_lsms_isa_public_documentation_dataset_receipt.csv"),
+        "priority_lsms_isa_public_documentation_catalog_digest": row_count(TEMP_DIR / "priority_lsms_isa_public_documentation_catalog_digest.csv"),
+        "priority_lsms_isa_public_documentation_file_inventory": row_count(TEMP_DIR / "priority_lsms_isa_public_documentation_file_inventory.csv"),
+        "priority_lsms_isa_public_documentation_receipt_summary": row_count(RESULT_DIR / "priority_lsms_isa_public_documentation_receipt_summary.csv"),
         "priority_lsms_isa_raw_package_intake_ledger": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger.csv"),
         "priority_lsms_isa_raw_package_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_file_manifest.csv"),
         "priority_lsms_isa_raw_package_acceptance_matrix": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_acceptance_matrix.csv"),
@@ -4720,6 +4727,45 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_refocused_gate_ok),
         f"plan_rows={counts['priority_lsms_isa_refocused_wave_plan']}; queue_rows={counts['priority_lsms_isa_refocused_acquisition_queue']}; requirement_rows={counts['priority_lsms_isa_refocused_requirement_matrix']}; summary_rows={counts['priority_lsms_isa_refocused_acquisition_summary']}; reported_plan_rows={priority_refocused_plan_rows}; core_rows={priority_refocused_core_rows}; core_countries={priority_refocused_core_countries}; core_aligned={priority_refocused_core_aligned}; replaced={priority_refocused_replaced}; reported_queue_rows={priority_refocused_queue_rows}; backup_rows={priority_refocused_backup_rows}; reported_requirement_rows={priority_refocused_requirement_rows}; raw_received={priority_refocused_raw_received}; handoffs={priority_refocused_handoffs}; data_write={priority_refocused_data_write}; modeling_gate={priority_refocused_modeling_gate}",
         "" if priority_refocused_gate_ok else "Run script/143_build_priority_lsms_isa_refocused_acquisition_queue.py after the LSMS/ISA alignment audit is current.",
+    )
+    priority_lsms_public_docs_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_public_documentation_receipt_summary.csv")
+    priority_lsms_public_docs_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_dataset_rows"), "0"), 0)
+    priority_lsms_public_docs_resource_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_resource_rows"), "0"), 0)
+    priority_lsms_public_docs_saved_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_saved_rows"), "0"), 0)
+    priority_lsms_public_docs_failed_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_failed_rows"), "0"), 0)
+    priority_lsms_public_docs_core_complete = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_core_complete_dataset_rows"), "0"), 0)
+    priority_lsms_public_docs_catalog_digest = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_catalog_digest_rows"), "0"), 0)
+    priority_lsms_public_docs_file_inventory = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_file_inventory_rows"), "0"), 0)
+    priority_lsms_public_docs_access_gates = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_access_gate_rows"), "0"), 0)
+    priority_lsms_public_docs_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_handoff_readmes_written"), "0"), 0)
+    priority_lsms_public_docs_data_write = next((row.get("value", "") for row in priority_lsms_public_docs_summary if row.get("metric") == "priority_lsms_isa_public_documentation_data_write_status"), "")
+    priority_lsms_public_docs_modeling_gate = next((row.get("value", "") for row in priority_lsms_public_docs_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_public_docs_gate_ok = (
+        counts["priority_lsms_isa_public_documentation_dataset_receipt"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_public_documentation_receipt"] >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 7
+        and counts["priority_lsms_isa_public_documentation_receipt_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_public_documentation_receipt.md")
+        and priority_lsms_public_docs_dataset_rows >= priority_refocused_queue_rows
+        and priority_lsms_public_docs_resource_rows >= priority_lsms_public_docs_dataset_rows * 7
+        and priority_lsms_public_docs_saved_rows >= priority_lsms_public_docs_dataset_rows * 5
+        and priority_lsms_public_docs_failed_rows == 0
+        and priority_lsms_public_docs_core_complete >= priority_lsms_public_docs_dataset_rows
+        and counts["priority_lsms_isa_public_documentation_catalog_digest"] >= priority_lsms_public_docs_dataset_rows
+        and counts["priority_lsms_isa_public_documentation_file_inventory"] > priority_lsms_public_docs_dataset_rows
+        and priority_lsms_public_docs_catalog_digest >= priority_lsms_public_docs_dataset_rows
+        and priority_lsms_public_docs_file_inventory == counts["priority_lsms_isa_public_documentation_file_inventory"]
+        and priority_lsms_public_docs_access_gates >= priority_lsms_public_docs_dataset_rows
+        and priority_lsms_public_docs_handoffs >= priority_lsms_public_docs_dataset_rows
+        and priority_lsms_public_docs_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_public_docs_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA public documentation receipt covers the refocused queue with official metadata snapshots while preserving raw-data blockers",
+        status(priority_lsms_public_docs_gate_ok),
+        f"receipt_rows={counts['priority_lsms_isa_public_documentation_receipt']}; dataset_rows={counts['priority_lsms_isa_public_documentation_dataset_receipt']}; catalog_digest_rows={counts['priority_lsms_isa_public_documentation_catalog_digest']}; file_inventory_rows={counts['priority_lsms_isa_public_documentation_file_inventory']}; summary_rows={counts['priority_lsms_isa_public_documentation_receipt_summary']}; reported_datasets={priority_lsms_public_docs_dataset_rows}; resources={priority_lsms_public_docs_resource_rows}; saved={priority_lsms_public_docs_saved_rows}; failed={priority_lsms_public_docs_failed_rows}; core_complete={priority_lsms_public_docs_core_complete}; reported_catalog_digest={priority_lsms_public_docs_catalog_digest}; reported_file_inventory={priority_lsms_public_docs_file_inventory}; access_gates={priority_lsms_public_docs_access_gates}; handoffs={priority_lsms_public_docs_handoffs}; data_write={priority_lsms_public_docs_data_write}; modeling_gate={priority_lsms_public_docs_modeling_gate}",
+        "" if priority_lsms_public_docs_gate_ok else "Run script/146_build_priority_lsms_isa_public_documentation_receipt.py after the refocused acquisition queue is current.",
     )
     priority_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
     priority_raw_intake_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_raw_intake_summary if row.get("metric") == "priority_lsms_raw_intake_dataset_rows"), "0"), 0)

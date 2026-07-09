@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 141 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 588 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 584 | Curated artifacts present and non-empty. |
+| bundle_rows | 142 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 595 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 591 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -22,6 +22,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | promoted_data_gate_status | closed_no_promoted_rows | Current promoted-data write gate status. |
 | promoted_data_gate_registry_promoted_rows | 0 | Registry rows currently allowed to write promoted datasets into data/. |
 | promoted_data_gate_quarantined_files | 4 | Pre-promotion diagnostic files moved from data/ to temp/. |
+| priority_lsms_isa_public_documentation_dataset_rows | 19 | Refocused LSMS/ISA waves covered by the public documentation receipt. |
+| priority_lsms_isa_public_documentation_core_complete_rows | 19 | Refocused LSMS/ISA waves with all core public metadata/documentation resources saved. |
+| priority_lsms_isa_public_documentation_file_inventory_rows | 1597 | Official DDI file-description rows extracted into a compact GPT-readable table. |
+| priority_lsms_isa_public_documentation_access_gate_rows | 19 | Refocused LSMS/ISA waves whose official get-microdata page still shows credentialed access language. |
 | priority_archive_preflight_targets | 156 | Priority file targets checked against direct files and archive members. |
 | priority_archive_preflight_missing_targets | 156 | Priority file targets still missing after direct/archive member preflight. |
 | priority_manual_verification_dataset_rows | 13 | Priority waves evaluated by the manual verification decision gate. |
@@ -470,7 +474,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 32 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 33 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -570,6 +574,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass | 1 | Direct-read bundle status count. |
 | bundle_status_pass | 2 | Direct-read bundle status count. |
 | bundle_status_present_raw_waves_require_wave_specific_schema_value_key_timing_audits | 1 | Direct-read bundle status count. |
+| bundle_status_public_documentation_complete_raw_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_public_metadata_only_raw_gate_confirmed | 1 | Direct-read bundle status count. |
 | bundle_status_raw_archives_available_requires_value_verification | 1 | Direct-read bundle status count. |
 | bundle_status_raw_package_intake_ready_no_original_files | 1 | Direct-read bundle status count. |
@@ -589,7 +594,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 32 |
+| priority_bundle | 33 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -638,6 +643,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | download_execution_ready_raw_missing | 1 |
 | core_wave_replacement_needed_before_download_execution | 1 |
 | refocused_manual_download_queue_ready_raw_missing | 1 |
+| public_documentation_complete_raw_still_blocked | 1 |
 | raw_package_intake_ready_no_original_files | 1 |
 | archive_preflight_ready_no_original_files | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
@@ -749,7 +755,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 584 |
+| present_nonempty | 591 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

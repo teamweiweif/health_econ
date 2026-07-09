@@ -44,6 +44,7 @@ python script/140_build_priority_first_pass_variable_review_queue.py
 python script/141_build_priority_download_execution_packet.py
 python script/142_build_priority_lsms_isa_alignment_audit.py
 python script/143_build_priority_lsms_isa_refocused_acquisition_queue.py
+python script/146_build_priority_lsms_isa_public_documentation_receipt.py
 python script/144_build_priority_lsms_isa_raw_package_intake_packet.py
 python script/145_build_priority_lsms_isa_archive_member_preflight.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
@@ -90,6 +91,7 @@ Current status:
 - The priority download execution packet is `result/priority_download_execution_packet_summary.csv`.
 - The priority LSMS/ISA alignment audit is `result/priority_lsms_isa_alignment_summary.csv`.
 - The priority LSMS/ISA refocused acquisition queue is `result/priority_lsms_isa_refocused_acquisition_summary.csv`.
+- The priority LSMS/ISA public documentation receipt is `result/priority_lsms_isa_public_documentation_receipt_summary.csv`; compact GPT-readable catalog/file digests are `temp/priority_lsms_isa_public_documentation_catalog_digest.csv` and `temp/priority_lsms_isa_public_documentation_file_inventory.csv`.
 - The priority LSMS/ISA raw package intake packet is `result/priority_lsms_isa_raw_package_intake_summary.csv`.
 - The priority LSMS/ISA archive/direct-file preflight is `result/priority_lsms_isa_archive_member_preflight_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
