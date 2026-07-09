@@ -1,0 +1,11 @@
+﻿metric,value,interpretation
+priority_raw_intake_gate_rows,13,Priority acquisition and backup waves with raw-intake gates.
+priority_raw_intake_priority_10_rows,10,Immediate priority wave rows covered by the raw-intake gate.
+priority_raw_intake_priority_10_countries,5,Priority countries covered by the raw-intake gate.
+priority_raw_intake_backup_rows,3,Sixth-country backup rows covered by the raw-intake gate.
+priority_raw_file_target_rows,156,Priority file/module targets with current present/missing gate status.
+priority_raw_file_targets_missing_rows,156,Priority file targets still absent from raw-download folders.
+priority_raw_gate_blocked_manual_rows,13,Waves still blocked by missing complete original raw package.
+priority_raw_gate_schema_ready_rows,0,Waves ready for raw value/key/unit audit after current intake check.
+priority_raw_handoff_readmes_written,13,Per-target handoff README files written under temp/raw_downloads.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and climate linkage gates pass.

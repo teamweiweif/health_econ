@@ -35,6 +35,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/121_build_country_wave_promotion_registry.py
 & $Python script/122_build_priority_promotion_acquisition_plan.py
 & $Python script/123_probe_priority_official_raw_access.py
+& $Python script/124_build_priority_raw_intake_gate.py
 & $Python script/36_build_direct_read_audit_bundle.py
 & $Python script/28_audit_python_environment.py
 & $Python script/26_build_objective_traceability_audit.py

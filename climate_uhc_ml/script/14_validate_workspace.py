@@ -5,7 +5,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from common import DATA_DIR, REPORT_DIR, RESULT_DIR, SCRIPT_DIR, TEMP_DIR, append_log, ensure_dirs, write_csv
+from common import DATA_DIR, PROJECT_ROOT, REPORT_DIR, RESULT_DIR, SCRIPT_DIR, TEMP_DIR, append_log, ensure_dirs, write_csv
 
 
 AUDIT_PATH = RESULT_DIR / "workspace_validation_audit.csv"
@@ -130,6 +130,7 @@ REQUIRED_REPORTS = [
     "country_wave_promotion_registry.md",
     "priority_promotion_acquisition_plan.md",
     "priority_official_raw_access_probe.md",
+    "priority_raw_intake_gate.md",
 ]
 REQUIRED_TEMP = [
     "source_inventory.csv",
@@ -264,6 +265,7 @@ REQUIRED_SCRIPTS = [
     "121_build_country_wave_promotion_registry.py",
     "122_build_priority_promotion_acquisition_plan.py",
     "123_probe_priority_official_raw_access.py",
+    "124_build_priority_raw_intake_gate.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -671,6 +673,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_promotion_acquisition_summary": row_count(RESULT_DIR / "priority_promotion_acquisition_summary.csv"),
         "priority_official_raw_access_probe": row_count(TEMP_DIR / "priority_official_raw_access_probe.csv"),
         "priority_official_raw_access_summary": row_count(RESULT_DIR / "priority_official_raw_access_summary.csv"),
+        "priority_raw_intake_gate": row_count(TEMP_DIR / "priority_raw_intake_gate.csv"),
+        "priority_raw_file_targets": row_count(TEMP_DIR / "priority_raw_file_targets.csv"),
+        "priority_raw_intake_gate_summary": row_count(RESULT_DIR / "priority_raw_intake_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
         "design_scorecard_current_audit": row_count(RESULT_DIR / "design_scorecard_current_audit.csv"),
         "design_no_go_threshold_audit": row_count(RESULT_DIR / "design_no_go_threshold_audit.csv"),
@@ -3859,6 +3864,56 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_probe_manual_rows >= 1
         and priority_probe_modeling_gate == "blocked"
         else "Run script/123_probe_priority_official_raw_access.py after the priority acquisition wave plan exists.",
+    )
+    priority_raw_gate_summary = read_csv_dicts(RESULT_DIR / "priority_raw_intake_gate_summary.csv")
+    priority_raw_gate_rows = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_intake_gate_rows"), "0"), 0)
+    priority_raw_gate_batch_rows = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_intake_priority_10_rows"), "0"), 0)
+    priority_raw_gate_countries = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_intake_priority_10_countries"), "0"), 0)
+    priority_raw_gate_backup_rows = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_intake_backup_rows"), "0"), 0)
+    priority_raw_file_target_rows = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_file_target_rows"), "0"), 0)
+    priority_raw_manual_blocked_rows = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_gate_blocked_manual_rows"), "0"), 0)
+    priority_raw_schema_ready_rows = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_gate_schema_ready_rows"), "0"), 0)
+    priority_raw_handoff_rows = safe_int(next((row.get("value", "0") for row in priority_raw_gate_summary if row.get("metric") == "priority_raw_handoff_readmes_written"), "0"), 0)
+    priority_raw_modeling_gate = next((row.get("value", "") for row in priority_raw_gate_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_raw_gate = read_csv_dicts(TEMP_DIR / "priority_raw_intake_gate.csv")
+    priority_handoff_existing = sum(1 for row in priority_raw_gate if row.get("handoff_readme") and file_ok(PROJECT_ROOT / row.get("handoff_readme", "")))
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority raw intake gate maps each acquisition wave to placement handoff files, required raw targets, and fail-closed promotion status",
+        status(
+            counts["priority_raw_intake_gate"] >= counts["priority_promotion_acquisition_wave_plan"]
+            and counts["priority_raw_file_targets"] >= counts["priority_promotion_acquisition_file_queue"]
+            and counts["priority_raw_intake_gate_summary"] > 0
+            and file_ok(REPORT_DIR / "priority_raw_intake_gate.md")
+            and priority_raw_gate_rows >= 10
+            and priority_raw_gate_batch_rows >= 10
+            and priority_raw_gate_countries >= 5
+            and priority_raw_gate_backup_rows >= 1
+            and priority_raw_file_target_rows >= counts["priority_promotion_acquisition_file_queue"]
+            and priority_raw_manual_blocked_rows >= 1
+            and priority_raw_schema_ready_rows == 0
+            and priority_raw_handoff_rows >= priority_raw_gate_rows
+            and priority_handoff_existing >= priority_raw_gate_rows
+            and priority_raw_modeling_gate == "blocked"
+        ),
+        f"gate_rows={counts['priority_raw_intake_gate']}; file_target_rows={counts['priority_raw_file_targets']}; summary_rows={counts['priority_raw_intake_gate_summary']}; reported_gate_rows={priority_raw_gate_rows}; priority_10_rows={priority_raw_gate_batch_rows}; priority_countries={priority_raw_gate_countries}; backup_rows={priority_raw_gate_backup_rows}; reported_file_targets={priority_raw_file_target_rows}; manual_blocked_rows={priority_raw_manual_blocked_rows}; schema_ready_rows={priority_raw_schema_ready_rows}; handoff_rows={priority_raw_handoff_rows}; handoff_existing={priority_handoff_existing}; modeling_gate={priority_raw_modeling_gate}",
+        ""
+        if counts["priority_raw_intake_gate"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_raw_file_targets"] >= counts["priority_promotion_acquisition_file_queue"]
+        and counts["priority_raw_intake_gate_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_raw_intake_gate.md")
+        and priority_raw_gate_rows >= 10
+        and priority_raw_gate_batch_rows >= 10
+        and priority_raw_gate_countries >= 5
+        and priority_raw_gate_backup_rows >= 1
+        and priority_raw_file_target_rows >= counts["priority_promotion_acquisition_file_queue"]
+        and priority_raw_manual_blocked_rows >= 1
+        and priority_raw_schema_ready_rows == 0
+        and priority_raw_handoff_rows >= priority_raw_gate_rows
+        and priority_handoff_existing >= priority_raw_gate_rows
+        and priority_raw_modeling_gate == "blocked"
+        else "Run script/124_build_priority_raw_intake_gate.py after priority access probing and raw-download intake auditing.",
     )
     objective_trace = read_csv_dicts(RESULT_DIR / "objective_requirement_traceability.csv")
     objective_guardrails = read_csv_dicts(RESULT_DIR / "objective_guardrail_audit.csv")

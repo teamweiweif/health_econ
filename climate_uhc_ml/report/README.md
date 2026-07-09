@@ -27,6 +27,7 @@ python script/33_build_harmonization_recipe_gate.py
 python script/121_build_country_wave_promotion_registry.py
 python script/122_build_priority_promotion_acquisition_plan.py
 python script/123_probe_priority_official_raw_access.py
+python script/124_build_priority_raw_intake_gate.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
 python script/26_build_objective_traceability_audit.py
@@ -51,5 +52,6 @@ Current status:
 - The promotion registry is `result/promoted_country_wave_registry.csv`.
 - The priority-first raw acquisition plan is `result/priority_promotion_acquisition_wave_plan.csv`.
 - The priority official raw access probe is `result/priority_official_raw_access_summary.csv`.
+- The priority raw intake gate is `result/priority_raw_intake_gate_summary.csv`.
 - Per-wave promotion packets are in `report/country_wave_promotion_packets/`.
 - Albania remains a diagnostic template only unless its historical boundary, timing, and outcome gates are resolved.
