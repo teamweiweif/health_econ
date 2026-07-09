@@ -1,0 +1,19 @@
+﻿metric,value,interpretation
+priority_official_metadata_dataset_rows,13,Priority datasets with official metadata evidence extracts.
+priority_official_metadata_candidate_variable_rows,1214,Priority candidate variables checked against official DDI/XML metadata.
+priority_official_metadata_category_rows,4512,"Official DDI category/value-label rows extracted for candidate variables, capped per candidate."
+priority_official_metadata_variable_match_rows,1198,Candidate variables with a DDI variable-name match.
+priority_official_metadata_variable_file_match_rows,1198,Candidate variables matching both DDI variable name and file name.
+priority_official_metadata_no_match_rows,16,Candidate variables not found in parsed DDI metadata.
+priority_official_metadata_variables_with_categories,717,Candidate variables with official category/value-label metadata.
+priority_official_metadata_variables_with_valid_counts,1186,Candidate variables with DDI valid-count metadata.
+priority_official_metadata_variables_with_invalid_counts,834,Candidate variables with DDI invalid-count metadata.
+priority_official_metadata_dataset_complete_rows,3,Datasets with complete official metadata evidence under current thresholds.
+priority_official_metadata_handoff_readmes_written,13,Per-wave official metadata evidence handoff README files written.
+modeling_gate_status,blocked,Official metadata evidence does not satisfy raw value verification or climate-linkage promotion gates.
+priority_official_metadata_variable_status_official_ddi_variable_and_file_evidence_present,1198,Variable-level official metadata evidence status count.
+priority_official_metadata_variable_status_official_ddi_variable_evidence_missing,16,Variable-level official metadata evidence status count.
+priority_official_metadata_match_status_ddi_variable_and_file_match,1198,DDI match status count.
+priority_official_metadata_match_status_no_ddi_variable_match,16,DDI match status count.
+priority_official_metadata_dataset_status_complete_official_metadata_evidence_extract,3,Dataset-level official metadata evidence status count.
+priority_official_metadata_dataset_status_partial_official_metadata_evidence_extract,10,Dataset-level official metadata evidence status count.

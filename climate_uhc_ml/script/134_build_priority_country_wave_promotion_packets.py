@@ -13,6 +13,7 @@ REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 RAW_RECEIPT_PATH = TEMP_DIR / "priority_raw_package_receipt_ledger.csv"
 PUBLIC_DOC_DATASET_PATH = TEMP_DIR / "priority_public_documentation_dataset_receipt.csv"
 PUBLIC_DOC_RESOURCE_PATH = TEMP_DIR / "priority_public_documentation_receipt.csv"
+METADATA_EVIDENCE_PATH = TEMP_DIR / "priority_official_metadata_dataset_evidence.csv"
 MANUAL_DECISION_PATH = TEMP_DIR / "priority_manual_verification_decision_gate.csv"
 MANUAL_REQUIREMENT_PATH = TEMP_DIR / "priority_manual_requirement_decision_audit.csv"
 MANUAL_CONCEPT_PATH = TEMP_DIR / "priority_manual_concept_decision_audit.csv"
@@ -38,6 +39,7 @@ INDEX_COLUMNS = [
     "official_url",
     "local_target_folder",
     "public_documentation_status",
+    "official_metadata_evidence_status",
     "raw_package_status",
     "manual_verification_status",
     "financial_protection_status",
@@ -326,6 +328,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     raw_by_id = one_by_id(read_csv_dicts(RAW_RECEIPT_PATH))
     public_dataset_by_id = one_by_id(read_csv_dicts(PUBLIC_DOC_DATASET_PATH))
     public_resource_by_id = by_id(read_csv_dicts(PUBLIC_DOC_RESOURCE_PATH))
+    metadata_by_id = one_by_id(read_csv_dicts(METADATA_EVIDENCE_PATH))
     manual_by_id = one_by_id(read_csv_dicts(MANUAL_DECISION_PATH))
     req_by_id = by_id(read_csv_dicts(MANUAL_REQUIREMENT_PATH))
     concept_by_id = by_id(read_csv_dicts(MANUAL_CONCEPT_PATH))
@@ -343,6 +346,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         registry = registry_by_id.get(idno, {})
         raw = raw_by_id.get(idno, {})
         public_dataset = public_dataset_by_id.get(idno, {})
+        metadata = metadata_by_id.get(idno, {})
         manual = manual_by_id.get(idno, {})
         climate = climate_by_id.get(idno, {})
         synthesis = synthesis_by_id.get(idno, {})
@@ -350,6 +354,10 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
 
         gates: list[dict[str, str]] = []
         public_ready = public_doc_ready(public_dataset)
+        metadata_ready = clean(metadata.get("official_metadata_evidence_status")) in {
+            "complete_official_metadata_evidence_extract",
+            "partial_official_metadata_evidence_extract",
+        } and safe_int(metadata.get("ddi_variable_match_rows")) > 0
         raw_ready = raw_package_ready(raw)
         archive_ready = safe_int(raw.get("priority_targets_missing")) == 0 and safe_int(raw.get("priority_file_targets")) > 0 and raw_ready
         requirements_ready = safe_int(manual.get("requirements_passed")) >= safe_int(manual.get("requirement_rows")) and safe_int(manual.get("requirement_rows")) > 0
@@ -368,6 +376,14 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             public_ready,
             f"status={public_dataset.get('public_documentation_receipt_status', '')}; saved={public_dataset.get('saved_resource_types', '')}; missing_core={public_dataset.get('missing_core_resource_types', '')}",
             "Run the priority public documentation receipt and save all core public documentation resources.",
+        )
+        add_gate(
+            gates,
+            wave,
+            "official_metadata_variable_evidence_extract",
+            metadata_ready,
+            f"status={metadata.get('official_metadata_evidence_status', '')}; candidates={metadata.get('candidate_variable_rows', '0')}; ddi_matches={metadata.get('ddi_variable_match_rows', '0')}; file_matches={metadata.get('ddi_file_match_rows', '0')}; no_matches={metadata.get('ddi_no_match_rows', '0')}",
+            "Parse official DDI/XML metadata and connect candidate variables to official labels, categories, counts, and file mappings.",
         )
         add_gate(
             gates,
@@ -483,6 +499,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "official_url": wave.get("official_url", dossier.get("official_get_microdata_url", "")),
             "local_target_folder": wave.get("local_target_folder", ""),
             "public_documentation_status": "ready" if public_ready else "blocked",
+            "official_metadata_evidence_status": "ready" if metadata_ready else "blocked",
             "raw_package_status": raw.get("receipt_status", "missing"),
             "manual_verification_status": manual.get("manual_verification_status", "missing"),
             "financial_protection_status": "ready" if financial_ready else "blocked",
@@ -539,6 +556,7 @@ def build_summary(index_rows: list[dict[str, str]], gate_rows: list[dict[str, st
         {"metric": "priority_country_wave_packet_passed_gate_rows", "value": str(gate_counts.get("pass", 0)), "interpretation": "Packet gates currently passing."},
         {"metric": "priority_country_wave_packet_failed_gate_rows", "value": str(gate_counts.get("fail", 0)), "interpretation": "Packet gates still blocking promotion."},
         {"metric": "priority_country_wave_packet_public_documentation_ready_rows", "value": str(sum(1 for row in index_rows if row["public_documentation_status"] == "ready")), "interpretation": "Packets with complete core public documentation receipt."},
+        {"metric": "priority_country_wave_packet_official_metadata_ready_rows", "value": str(sum(1 for row in index_rows if row["official_metadata_evidence_status"] == "ready")), "interpretation": "Packets with official DDI/XML variable evidence extracted."},
         {"metric": "priority_country_wave_packet_raw_package_ready_rows", "value": str(sum(1 for row in index_rows if row["raw_package_status"] != "not_received_no_original_raw_package")), "interpretation": "Packets with a non-empty original raw package receipt."},
         {"metric": "priority_country_wave_packet_financial_ready_rows", "value": str(sum(1 for row in index_rows if row["financial_protection_status"] == "ready")), "interpretation": "Packets ready for financial-protection outcomes."},
         {"metric": "priority_country_wave_packet_access_ready_rows", "value": str(sum(1 for row in index_rows if row["access_forgone_care_status"] == "ready")), "interpretation": "Packets ready for access/forgone-care outcomes."},
@@ -575,7 +593,7 @@ analysis-ready household x climate datasets. It does not write data into
 
 ## Packet Index
 
-{markdown_table(index_rows, ['acquisition_batch_rank', 'idno', 'country', 'wave', 'public_documentation_status', 'raw_package_status', 'financial_protection_status', 'access_forgone_care_status', 'climate_linkage_status', 'packet_status', 'next_blocking_action'], 20)}
+{markdown_table(index_rows, ['acquisition_batch_rank', 'idno', 'country', 'wave', 'public_documentation_status', 'official_metadata_evidence_status', 'raw_package_status', 'financial_protection_status', 'access_forgone_care_status', 'climate_linkage_status', 'packet_status', 'next_blocking_action'], 20)}
 
 ## Next Blocking Actions
 

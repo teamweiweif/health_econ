@@ -282,6 +282,7 @@ promotion:
 	$(PYTHON) script/130_build_priority_raw_package_receipt_ledger.py
 	$(PYTHON) script/131_build_priority_official_download_dossier.py
 	$(PYTHON) script/133_build_priority_public_documentation_receipt.py
+	$(PYTHON) script/135_build_priority_official_metadata_evidence_extract.py
 	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/134_build_priority_country_wave_promotion_packets.py
 	$(PYTHON) script/127_enforce_promoted_data_gate.py

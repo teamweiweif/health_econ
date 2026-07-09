@@ -77,6 +77,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_public_documentation_receipt.csv", "priority public documentation resource receipt"),
     ("dataset_promotion", "temp/priority_public_documentation_dataset_receipt.csv", "priority dataset-level public documentation receipt"),
     ("dataset_promotion", "result/priority_public_documentation_receipt_summary.csv", "priority public documentation receipt summary"),
+    ("dataset_promotion", "report/priority_official_metadata_evidence_extract.md", "priority official DDI/XML metadata evidence report"),
+    ("dataset_promotion", "temp/priority_official_metadata_variable_evidence.csv", "priority official metadata candidate-variable evidence"),
+    ("dataset_promotion", "temp/priority_official_metadata_category_evidence.csv", "priority official metadata category/value-label evidence"),
+    ("dataset_promotion", "temp/priority_official_metadata_dataset_evidence.csv", "priority official metadata dataset-level evidence"),
+    ("dataset_promotion", "result/priority_official_metadata_evidence_summary.csv", "priority official metadata evidence summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -467,6 +472,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/130_build_priority_raw_package_receipt_ledger.py", "priority raw package receipt ledger generator"),
     ("reproducibility", "script/131_build_priority_official_download_dossier.py", "priority official download dossier generator"),
     ("reproducibility", "script/133_build_priority_public_documentation_receipt.py", "priority public documentation receipt generator"),
+    ("reproducibility", "script/135_build_priority_official_metadata_evidence_extract.py", "priority official metadata evidence extractor"),
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/134_build_priority_country_wave_promotion_packets.py", "priority country-wave promotion packet generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
@@ -665,6 +671,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
     priority_official_download_summary = read_csv_dicts(RESULT_DIR / "priority_official_download_dossier_summary.csv")
     priority_public_documentation_summary = read_csv_dicts(RESULT_DIR / "priority_public_documentation_receipt_summary.csv")
+    priority_official_metadata_summary = read_csv_dicts(RESULT_DIR / "priority_official_metadata_evidence_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
@@ -928,6 +935,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     add_bundle(
         rows,
         "priority_bundle",
+        "priority_official_metadata_evidence_extract",
+        "official_metadata_evidence_present_raw_gate_still_blocked" if csv_value(priority_official_metadata_summary, "priority_official_metadata_candidate_variable_rows", "0") != "0" else "official_metadata_evidence_missing",
+        f"datasets={csv_value(priority_official_metadata_summary, 'priority_official_metadata_dataset_rows', '0')}; candidate_variables={csv_value(priority_official_metadata_summary, 'priority_official_metadata_candidate_variable_rows', '0')}; categories={csv_value(priority_official_metadata_summary, 'priority_official_metadata_category_rows', '0')}; variable_matches={csv_value(priority_official_metadata_summary, 'priority_official_metadata_variable_match_rows', '0')}; file_matches={csv_value(priority_official_metadata_summary, 'priority_official_metadata_variable_file_match_rows', '0')}; no_matches={csv_value(priority_official_metadata_summary, 'priority_official_metadata_no_match_rows', '0')}; variables_with_categories={csv_value(priority_official_metadata_summary, 'priority_official_metadata_variables_with_categories', '0')}; dataset_complete={csv_value(priority_official_metadata_summary, 'priority_official_metadata_dataset_complete_rows', '0')}; handoffs={csv_value(priority_official_metadata_summary, 'priority_official_metadata_handoff_readmes_written', '0')}; modeling_gate={csv_value(priority_official_metadata_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_official_metadata_variable_evidence.csv", TEMP_DIR / "priority_official_metadata_category_evidence.csv", TEMP_DIR / "priority_official_metadata_dataset_evidence.csv", RESULT_DIR / "priority_official_metadata_evidence_summary.csv", REPORT_DIR / "priority_official_metadata_evidence_extract.md"],
+        "Official DDI/XML metadata evidence links candidate variables to official labels, categories, counts, and file mappings for pre-review only; promotion still requires original raw packages and raw value verification.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
         "priority_analysis_dataset_synthesis_blueprint",
         "blocked_required_schema_columns_not_verified" if csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0") == "0" else "synthesis_join_candidates_ready",
         f"schema_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_schema_rows', '0')}; required_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_required_rows', '0')}; ready_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_ready_required_rows', '0')}; blocked_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_blocked_required_rows', '0')}; join_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_plan_rows', '0')}; join_ready={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_ready_rows', '0')}; candidate_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_candidate_variable_rows', '0')}; manual_verified_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_manual_verified_variable_rows', '0')}",
@@ -939,7 +955,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         "priority_bundle",
         "priority_country_wave_promotion_packets",
         "blocked_fail_closed" if csv_value(priority_packet_summary, "priority_country_wave_packet_analysis_ready_rows", "0") == "0" else "packet_candidates_ready_for_data_write",
-        f"packets={csv_value(priority_packet_summary, 'priority_country_wave_packet_rows', '0')}; gates={csv_value(priority_packet_summary, 'priority_country_wave_packet_gate_rows', '0')}; passed_gates={csv_value(priority_packet_summary, 'priority_country_wave_packet_passed_gate_rows', '0')}; failed_gates={csv_value(priority_packet_summary, 'priority_country_wave_packet_failed_gate_rows', '0')}; public_docs_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_public_documentation_ready_rows', '0')}; raw_package_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_raw_package_ready_rows', '0')}; financial_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_financial_ready_rows', '0')}; access_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_access_ready_rows', '0')}; climate_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_climate_ready_rows', '0')}; analysis_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_analysis_ready_rows', '0')}",
+        f"packets={csv_value(priority_packet_summary, 'priority_country_wave_packet_rows', '0')}; gates={csv_value(priority_packet_summary, 'priority_country_wave_packet_gate_rows', '0')}; passed_gates={csv_value(priority_packet_summary, 'priority_country_wave_packet_passed_gate_rows', '0')}; failed_gates={csv_value(priority_packet_summary, 'priority_country_wave_packet_failed_gate_rows', '0')}; public_docs_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_public_documentation_ready_rows', '0')}; metadata_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_official_metadata_ready_rows', '0')}; raw_package_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_raw_package_ready_rows', '0')}; financial_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_financial_ready_rows', '0')}; access_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_access_ready_rows', '0')}; climate_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_climate_ready_rows', '0')}; analysis_ready={csv_value(priority_packet_summary, 'priority_country_wave_packet_analysis_ready_rows', '0')}",
         [TEMP_DIR / "priority_country_wave_promotion_packet_index.csv", TEMP_DIR / "priority_country_wave_promotion_packet_gate_matrix.csv", TEMP_DIR / "priority_country_wave_promotion_packet_action_queue.csv", RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv", REPORT_DIR / "priority_country_wave_promotion_packets.md"],
         "Priority packets consolidate public documentation, raw receipt, manual verification, climate preflight, synthesis join, and registry write gates for each target wave.",
     )
@@ -1818,6 +1834,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_raw_package_receipt_summary.csv")
     priority_official_download_summary = read_csv_dicts(RESULT_DIR / "priority_official_download_dossier_summary.csv")
     priority_public_documentation_summary = read_csv_dicts(RESULT_DIR / "priority_public_documentation_receipt_summary.csv")
+    priority_official_metadata_summary = read_csv_dicts(RESULT_DIR / "priority_official_metadata_evidence_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     data_dataset_files = [
@@ -1855,12 +1872,17 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_public_documentation_resource_rows", "value": csv_value(priority_public_documentation_summary, "priority_public_documentation_resource_rows", "0"), "interpretation": "Priority public documentation resources attempted or reused."},
         {"metric": "priority_public_documentation_saved_rows", "value": csv_value(priority_public_documentation_summary, "priority_public_documentation_saved_rows", "0"), "interpretation": "Priority public documentation resources saved or reused locally."},
         {"metric": "priority_public_documentation_core_complete_dataset_rows", "value": csv_value(priority_public_documentation_summary, "priority_public_documentation_core_complete_dataset_rows", "0"), "interpretation": "Priority datasets with complete core public documentation receipts."},
+        {"metric": "priority_official_metadata_candidate_variable_rows", "value": csv_value(priority_official_metadata_summary, "priority_official_metadata_candidate_variable_rows", "0"), "interpretation": "Priority candidate variables checked against official DDI/XML metadata."},
+        {"metric": "priority_official_metadata_variable_file_match_rows", "value": csv_value(priority_official_metadata_summary, "priority_official_metadata_variable_file_match_rows", "0"), "interpretation": "Priority candidate variables with both DDI variable and file evidence."},
+        {"metric": "priority_official_metadata_no_match_rows", "value": csv_value(priority_official_metadata_summary, "priority_official_metadata_no_match_rows", "0"), "interpretation": "Priority candidate variables not matched in parsed official DDI metadata."},
+        {"metric": "priority_official_metadata_variables_with_categories", "value": csv_value(priority_official_metadata_summary, "priority_official_metadata_variables_with_categories", "0"), "interpretation": "Priority candidate variables with official category/value-label evidence."},
         {"metric": "priority_synthesis_blueprint_schema_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_schema_rows", "0"), "interpretation": "Target output-column rows for promoted household-climate dataset synthesis."},
         {"metric": "priority_synthesis_blueprint_blocked_required_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_blocked_required_rows", "0"), "interpretation": "Required promoted-dataset output columns still blocked."},
         {"metric": "priority_synthesis_blueprint_join_ready_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0"), "interpretation": "Priority country-waves ready for promoted dataset build joins."},
         {"metric": "priority_country_wave_packet_rows", "value": csv_value(priority_packet_summary, "priority_country_wave_packet_rows", "0"), "interpretation": "Priority country-wave promotion packets built."},
         {"metric": "priority_country_wave_packet_passed_gate_rows", "value": csv_value(priority_packet_summary, "priority_country_wave_packet_passed_gate_rows", "0"), "interpretation": "Priority packet gates currently passing."},
         {"metric": "priority_country_wave_packet_failed_gate_rows", "value": csv_value(priority_packet_summary, "priority_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Priority packet gates still blocking promotion."},
+        {"metric": "priority_country_wave_packet_official_metadata_ready_rows", "value": csv_value(priority_packet_summary, "priority_country_wave_packet_official_metadata_ready_rows", "0"), "interpretation": "Priority packets with official DDI/XML metadata evidence extracted."},
         {"metric": "priority_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_packet_summary, "priority_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Priority packets ready for promoted data writes."},
         {"metric": "analysis_dataset_promotion_audit_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_audit_rows", "0"), "interpretation": "Analysis dataset promotion targets checked."},
         {"metric": "analysis_dataset_promotion_blocked_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_blocked_rows", "0"), "interpretation": "Promotion targets blocked from data/."},
