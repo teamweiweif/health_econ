@@ -152,6 +152,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_raw_package_intake_packet.md",
     "priority_lsms_isa_archive_member_preflight.md",
     "priority_lsms_isa_raw_value_verification_workbook.md",
+    "priority_lsms_isa_raw_package_receipt_checklist.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -313,6 +314,7 @@ REQUIRED_SCRIPTS = [
     "144_build_priority_lsms_isa_raw_package_intake_packet.py",
     "145_build_priority_lsms_isa_archive_member_preflight.py",
     "149_build_priority_lsms_isa_raw_value_verification_workbook.py",
+    "150_build_priority_lsms_isa_raw_package_receipt_checklist.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
@@ -805,6 +807,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_raw_value_variable_workbook": row_count(TEMP_DIR / "priority_lsms_isa_raw_value_variable_workbook.csv"),
         "priority_lsms_isa_raw_value_file_workbook": row_count(TEMP_DIR / "priority_lsms_isa_raw_value_file_workbook.csv"),
         "priority_lsms_isa_raw_value_verification_workbook_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv"),
+        "priority_lsms_isa_raw_package_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_receipt_checklist.csv"),
+        "priority_lsms_isa_raw_package_requirement_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_requirement_receipt_checklist.csv"),
+        "priority_lsms_isa_raw_package_receipt_checklist_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4940,6 +4945,41 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_workbook_gate_ok),
         f"requirement_rows={counts['priority_lsms_isa_raw_value_requirement_workbook']}; variable_rows={counts['priority_lsms_isa_raw_value_variable_workbook']}; file_rows={counts['priority_lsms_isa_raw_value_file_workbook']}; summary_rows={counts['priority_lsms_isa_raw_value_verification_workbook_summary']}; reported_datasets={priority_lsms_workbook_datasets}; reported_requirements={priority_lsms_workbook_requirements}; reported_variables={priority_lsms_workbook_variables}; reported_files={priority_lsms_workbook_files}; handoffs={priority_lsms_workbook_handoffs}; ready_review={priority_lsms_workbook_ready_review}; blocked_requirements={priority_lsms_workbook_blocked_requirements}; raw_verified={priority_lsms_workbook_raw_verified}; data_write={priority_lsms_workbook_data_write}; modeling_gate={priority_lsms_workbook_modeling_gate}",
         "" if priority_lsms_workbook_gate_ok else "Run script/149_build_priority_lsms_isa_raw_value_verification_workbook.py after LSMS/ISA variable evidence, raw intake, and archive preflight outputs are current.",
+    )
+    priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
+    priority_lsms_receipt_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_dataset_rows"), "0"), 0)
+    priority_lsms_receipt_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_requirement_rows"), "0"), 0)
+    priority_lsms_receipt_package_received = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_package_received_rows"), "0"), 0)
+    priority_lsms_receipt_complete_received = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_complete_package_received_rows"), "0"), 0)
+    priority_lsms_receipt_ready_review = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_ready_for_raw_value_review_rows"), "0"), 0)
+    priority_lsms_receipt_blocked_no_original = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_blocked_no_original_package_rows"), "0"), 0)
+    priority_lsms_receipt_blocked_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_blocked_requirement_rows"), "0"), 0)
+    priority_lsms_receipt_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_handoff_readmes_written"), "0"), 0)
+    priority_lsms_receipt_data_write = next((row.get("value", "") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_data_write_status"), "")
+    priority_lsms_receipt_modeling_gate = next((row.get("value", "") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_receipt_gate_ok = (
+        counts["priority_lsms_isa_raw_package_receipt_checklist"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_raw_package_requirement_receipt_checklist"] >= counts["priority_lsms_isa_raw_value_requirement_workbook"]
+        and counts["priority_lsms_isa_raw_package_receipt_checklist_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_raw_package_receipt_checklist.md")
+        and priority_lsms_receipt_datasets == counts["priority_lsms_isa_raw_package_receipt_checklist"]
+        and priority_lsms_receipt_requirements == counts["priority_lsms_isa_raw_package_requirement_receipt_checklist"]
+        and priority_lsms_receipt_package_received == 0
+        and priority_lsms_receipt_complete_received == 0
+        and priority_lsms_receipt_ready_review == 0
+        and priority_lsms_receipt_blocked_no_original >= priority_lsms_receipt_datasets
+        and priority_lsms_receipt_blocked_requirements >= priority_lsms_receipt_requirements
+        and priority_lsms_receipt_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_receipt_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_receipt_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA raw package receipt checklist defines complete-package receipt fields before raw-value review",
+        status(priority_lsms_receipt_gate_ok),
+        f"dataset_rows={counts['priority_lsms_isa_raw_package_receipt_checklist']}; requirement_rows={counts['priority_lsms_isa_raw_package_requirement_receipt_checklist']}; summary_rows={counts['priority_lsms_isa_raw_package_receipt_checklist_summary']}; reported_datasets={priority_lsms_receipt_datasets}; reported_requirements={priority_lsms_receipt_requirements}; package_received={priority_lsms_receipt_package_received}; complete_package_received={priority_lsms_receipt_complete_received}; ready_review={priority_lsms_receipt_ready_review}; blocked_no_original={priority_lsms_receipt_blocked_no_original}; blocked_requirements={priority_lsms_receipt_blocked_requirements}; handoffs={priority_lsms_receipt_handoffs}; data_write={priority_lsms_receipt_data_write}; modeling_gate={priority_lsms_receipt_modeling_gate}",
+        "" if priority_lsms_receipt_gate_ok else "Run script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py after the raw value workbook and raw package intake outputs are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

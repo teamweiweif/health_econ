@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 145 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 613 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 609 | Curated artifacts present and non-empty. |
+| bundle_rows | 146 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 618 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 614 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -32,6 +32,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_raw_value_workbook_requirement_rows | 152 | Requirement-level raw value verification workbook rows. |
 | priority_lsms_isa_raw_value_workbook_variable_rows | 1531 | Variable-level raw value verification workbook rows. |
 | priority_lsms_isa_raw_value_workbook_file_rows | 629 | File-level raw value verification workbook rows. |
+| priority_lsms_isa_receipt_checklist_dataset_rows | 19 | Dataset-level raw package receipt checklist rows. |
+| priority_lsms_isa_receipt_checklist_requirement_rows | 152 | Requirement-level raw package receipt checklist rows. |
+| priority_lsms_isa_receipt_checklist_package_received_rows | 0 | Refocused LSMS/ISA waves with original package receipt evidence. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 323 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 0 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -483,7 +486,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 36 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 37 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -593,6 +596,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_raw_value_summary_available_manual_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_ready | 1 | Direct-read bundle status count. |
 | bundle_status_ready_for_credentialed_manual_download | 1 | Direct-read bundle status count. |
+| bundle_status_receipt_checklist_ready_no_original_files | 1 | Direct-read bundle status count. |
 | bundle_status_refocused_manual_download_queue_ready_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_not_analysis_ready | 2 | Direct-read bundle status count. |
@@ -605,7 +609,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 36 |
+| priority_bundle | 37 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -660,6 +664,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | raw_package_intake_ready_no_original_files | 1 |
 | archive_preflight_ready_no_original_files | 1 |
 | workbook_ready_blocked_no_original_files | 1 |
+| receipt_checklist_ready_no_original_files | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | closed_no_promoted_rows | 1 |
 | raw_archives_available_requires_value_verification | 1 |
@@ -768,7 +773,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 609 |
+| present_nonempty | 614 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

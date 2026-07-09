@@ -1576,3 +1576,6 @@
 - 2026-07-09T23:01:09+00:00 - Built priority LSMS/ISA raw value verification workbook requirements=152 variables=1531 files=629.
 - 2026-07-09T23:01:15+00:00 - Direct-read audit bundle rows=145 manifest_rows=613.
 - 2026-07-09T23:01:17+00:00 - Workspace validation complete=445 incomplete_or_failed=0.
+- 2026-07-09T23:13:04+00:00 - Built priority LSMS/ISA raw package receipt checklist datasets=19 requirements=152.
+- 2026-07-09T23:13:17+00:00 - Direct-read audit bundle rows=146 manifest_rows=618.
+- 2026-07-09T23:13:19+00:00 - Workspace validation complete=448 incomplete_or_failed=0.
