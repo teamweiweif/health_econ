@@ -266,6 +266,25 @@ def first_by(rows: list[dict[str, str]], field: str) -> dict[str, dict[str, str]
     return out
 
 
+def preserve_fill_values(
+    rows: list[dict[str, str]],
+    existing_path: Path,
+    key_columns: list[str],
+    fill_columns: list[str],
+) -> list[dict[str, str]]:
+    existing_rows = read_csv_dicts(existing_path)
+    existing_by_key = {
+        tuple(clean(row.get(column)) for column in key_columns): row
+        for row in existing_rows
+    }
+    for row in rows:
+        old = existing_by_key.get(tuple(clean(row.get(column)) for column in key_columns), {})
+        for column in fill_columns:
+            if clean(old.get(column)):
+                row[column] = old.get(column, "")
+    return rows
+
+
 def wave_by_id() -> dict[str, dict[str, str]]:
     rows = read_csv_dicts(WAVE_PLAN_PATH)
     return {row.get("idno", ""): row for row in rows if row.get("idno", "")}
@@ -784,6 +803,54 @@ def main() -> None:
     concept_rows = build_concept_rows(waves, raw_files, raw_variables)
     variable_rows = build_variable_rows(waves, raw_files, raw_variables)
     requirement_rows = build_requirement_rows(waves, concept_rows, raw_gate_by_id, climate_by_id)
+    requirement_rows = preserve_fill_values(
+        requirement_rows,
+        REQUIREMENT_CHECKLIST_PATH,
+        ["idno", "requirement_id"],
+        [
+            "fill_evidence_file_or_module",
+            "fill_raw_variables_used",
+            "fill_value_label_pass",
+            "fill_unit_or_recall_pass",
+            "fill_merge_key_or_level_pass",
+            "fill_missing_skip_pattern_pass",
+            "fill_promote_requirement",
+            "review_notes",
+        ],
+    )
+    concept_rows = preserve_fill_values(
+        concept_rows,
+        CONCEPT_TEMPLATE_PATH,
+        ["idno", "concept"],
+        [
+            "fill_raw_file_used",
+            "fill_raw_variable_used",
+            "fill_value_label_pass",
+            "fill_unit_or_recall_pass",
+            "fill_merge_key_pass",
+            "fill_sample_level_pass",
+            "fill_missing_code_pass",
+            "fill_promote_to_harmonization_recipe",
+            "review_notes",
+        ],
+    )
+    variable_rows = preserve_fill_values(
+        variable_rows,
+        VARIABLE_TEMPLATE_PATH,
+        ["idno", "concept", "candidate_files", "candidate_raw_variable", "candidate_harmonized_variables"],
+        [
+            "fill_raw_file_used",
+            "fill_raw_variable_used",
+            "fill_variable_label_verified",
+            "fill_value_distribution_checked",
+            "fill_missing_codes_documented",
+            "fill_unit_recall_period_documented",
+            "fill_merge_key_level_verified",
+            "fill_outlier_or_skip_pattern_notes",
+            "fill_promote_to_harmonization_recipe",
+            "review_notes",
+        ],
+    )
     dataset_rows = build_dataset_rows(waves, concept_rows, variable_rows, requirement_rows, raw_files, raw_variables, climate_by_id)
     summary = build_summary(dataset_rows, requirement_rows, concept_rows, variable_rows)
     write_csv(DATASET_GATE_PATH, dataset_rows, DATASET_COLUMNS)

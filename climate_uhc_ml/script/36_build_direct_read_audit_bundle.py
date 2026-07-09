@@ -57,6 +57,12 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_concept_verification_template.csv", "priority concept-level raw verification template"),
     ("dataset_promotion", "temp/priority_variable_verification_template.csv", "priority variable-level raw verification template"),
     ("dataset_promotion", "result/priority_raw_verification_workbook_summary.csv", "priority raw verification workbook summary"),
+    ("dataset_promotion", "report/priority_manual_verification_decision_gate.md", "priority manual verification decision gate report"),
+    ("dataset_promotion", "temp/priority_manual_verification_decision_gate.csv", "priority dataset manual verification decision rows"),
+    ("dataset_promotion", "temp/priority_manual_requirement_decision_audit.csv", "priority requirement manual verification audit rows"),
+    ("dataset_promotion", "temp/priority_manual_concept_decision_audit.csv", "priority concept manual verification audit rows"),
+    ("dataset_promotion", "temp/priority_manual_variable_decision_audit.csv", "priority variable manual verification audit rows"),
+    ("dataset_promotion", "result/priority_manual_verification_decision_summary.csv", "priority manual verification decision summary"),
     ("dataset_promotion", "report/promoted_data_gate.md", "promoted data write gate report"),
     ("dataset_promotion", "result/promoted_data_gate_summary.csv", "promoted data write gate summary"),
     ("dataset_promotion", "temp/promoted_data_gate_manifest.csv", "promoted data quarantine/action manifest"),
@@ -434,6 +440,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/126_build_priority_raw_verification_workbook.py", "priority raw verification workbook generator"),
     ("reproducibility", "script/127_enforce_promoted_data_gate.py", "promoted data write gate enforcer"),
     ("reproducibility", "script/128_build_priority_archive_member_preflight.py", "priority archive/direct-file preflight generator"),
+    ("reproducibility", "script/129_build_priority_manual_verification_decision_gate.py", "priority manual verification decision gate generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
     ("reproducibility", "script/41_build_first_batch_public_documentation_audit.py", "first-batch public documentation audit generator"),
     ("reproducibility", "script/42_build_first_batch_file_source_traceability.py", "first-batch file source traceability generator"),
@@ -626,6 +633,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_archive_summary = read_csv_dicts(RESULT_DIR / "priority_archive_member_preflight_summary.csv")
     priority_climate_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_climate_linkage_preflight_summary.csv")
     priority_raw_verification_summary = read_csv_dicts(RESULT_DIR / "priority_raw_verification_workbook_summary.csv")
+    priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     public_external_summary = read_csv_dicts(RESULT_DIR / "public_external_raw_candidate_download_summary.csv")
     first_batch_handoff_summary = read_csv_dicts(RESULT_DIR / "first_batch_manual_download_handoff_summary.csv")
@@ -847,6 +855,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"dataset_gates={csv_value(priority_raw_verification_summary, 'priority_dataset_verification_gate_rows', '0')}; requirements={csv_value(priority_raw_verification_summary, 'priority_requirement_checklist_rows', '0')}; concepts={csv_value(priority_raw_verification_summary, 'priority_concept_template_rows', '0')}; variables={csv_value(priority_raw_verification_summary, 'priority_variable_template_rows', '0')}; dataset_ready={csv_value(priority_raw_verification_summary, 'priority_datasets_ready_for_manual_value_audit', '0')}; requirements_ready={csv_value(priority_raw_verification_summary, 'priority_requirements_ready_for_manual_audit', '0')}; handoffs={csv_value(priority_raw_verification_summary, 'priority_raw_verification_handoff_readmes_written', '0')}",
         [RESULT_DIR / "priority_dataset_verification_gate.csv", TEMP_DIR / "priority_promotion_verification_checklist.csv", TEMP_DIR / "priority_concept_verification_template.csv", TEMP_DIR / "priority_variable_verification_template.csv", RESULT_DIR / "priority_raw_verification_workbook_summary.csv", REPORT_DIR / "priority_raw_verification_workbook.md"],
         "Priority raw verification workbook converts the objective's required checks into fillable dataset, requirement, concept, and variable gates; all remain fail-closed until raw evidence is placed and audited.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_manual_verification_decision_gate",
+        "blocked_manual_verification_incomplete" if csv_value(priority_manual_verification_summary, "priority_analysis_ready_candidates", "0") == "0" else "manual_verification_candidates_ready",
+        f"datasets={csv_value(priority_manual_verification_summary, 'priority_manual_decision_dataset_rows', '0')}; requirements={csv_value(priority_manual_verification_summary, 'priority_manual_requirement_decision_rows', '0')}; concepts={csv_value(priority_manual_verification_summary, 'priority_manual_concept_decision_rows', '0')}; variables={csv_value(priority_manual_verification_summary, 'priority_manual_variable_decision_rows', '0')}; requirements_verified={csv_value(priority_manual_verification_summary, 'priority_manual_requirements_verified', '0')}; concepts_verified={csv_value(priority_manual_verification_summary, 'priority_manual_concepts_verified', '0')}; variables_verified={csv_value(priority_manual_verification_summary, 'priority_manual_variables_verified', '0')}; financial_ready_countries={csv_value(priority_manual_verification_summary, 'priority_financial_protection_manual_ready_countries', '0')}; double_failure_ready_waves={csv_value(priority_manual_verification_summary, 'priority_double_failure_manual_ready_waves', '0')}; analysis_ready={csv_value(priority_manual_verification_summary, 'priority_analysis_ready_candidates', '0')}",
+        [TEMP_DIR / "priority_manual_verification_decision_gate.csv", TEMP_DIR / "priority_manual_requirement_decision_audit.csv", TEMP_DIR / "priority_manual_concept_decision_audit.csv", TEMP_DIR / "priority_manual_variable_decision_audit.csv", RESULT_DIR / "priority_manual_verification_decision_summary.csv", REPORT_DIR / "priority_manual_verification_decision_gate.md"],
+        "Priority manual verification decision gate consumes preserved fill-field evidence from the workbook and blocks promotion until source-backed manual requirement, concept, and variable checks pass.",
     )
     add_bundle(
         rows,
@@ -1719,6 +1736,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     alb2008_fallback_blocker_summary = read_csv_dicts(RESULT_DIR / "alb2008_fallback_blocker_resolution_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     priority_archive_summary = read_csv_dicts(RESULT_DIR / "priority_archive_member_preflight_summary.csv")
+    priority_manual_verification_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
     data_dataset_files = [
         path for path in DATA_DIR.rglob("*")
         if path.is_file() and path.name not in {"README.md", ".gitkeep"}
@@ -1736,6 +1754,13 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "promoted_data_gate_quarantined_files", "value": csv_value(promoted_data_gate_summary, "quarantined_diagnostic_data_files", "0"), "interpretation": "Pre-promotion diagnostic files moved from data/ to temp/."},
         {"metric": "priority_archive_preflight_targets", "value": csv_value(priority_archive_summary, "priority_archive_preflight_file_target_rows", "0"), "interpretation": "Priority file targets checked against direct files and archive members."},
         {"metric": "priority_archive_preflight_missing_targets", "value": csv_value(priority_archive_summary, "priority_targets_missing_direct_or_archive_member", "0"), "interpretation": "Priority file targets still missing after direct/archive member preflight."},
+        {"metric": "priority_manual_verification_dataset_rows", "value": csv_value(priority_manual_verification_summary, "priority_manual_decision_dataset_rows", "0"), "interpretation": "Priority waves evaluated by the manual verification decision gate."},
+        {"metric": "priority_manual_verification_requirement_rows", "value": csv_value(priority_manual_verification_summary, "priority_manual_requirement_decision_rows", "0"), "interpretation": "Requirement rows evaluated by the manual verification decision gate."},
+        {"metric": "priority_manual_verification_concept_rows", "value": csv_value(priority_manual_verification_summary, "priority_manual_concept_decision_rows", "0"), "interpretation": "Concept rows evaluated by the manual verification decision gate."},
+        {"metric": "priority_manual_verification_variable_rows", "value": csv_value(priority_manual_verification_summary, "priority_manual_variable_decision_rows", "0"), "interpretation": "Variable rows evaluated by the manual verification decision gate."},
+        {"metric": "priority_manual_verification_financial_ready_countries", "value": csv_value(priority_manual_verification_summary, "priority_financial_protection_manual_ready_countries", "0"), "interpretation": "Countries passing financial-protection manual verification."},
+        {"metric": "priority_manual_verification_double_failure_ready_waves", "value": csv_value(priority_manual_verification_summary, "priority_double_failure_manual_ready_waves", "0"), "interpretation": "Country-waves passing double-failure manual verification."},
+        {"metric": "priority_manual_verification_analysis_ready_candidates", "value": csv_value(priority_manual_verification_summary, "priority_analysis_ready_candidates", "0"), "interpretation": "Country-waves ready for harmonization-recipe review after manual verification."},
         {"metric": "analysis_dataset_promotion_audit_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_audit_rows", "0"), "interpretation": "Analysis dataset promotion targets checked."},
         {"metric": "analysis_dataset_promotion_blocked_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_blocked_rows", "0"), "interpretation": "Promotion targets blocked from data/."},
         {"metric": "analysis_dataset_promotion_promoted_rows", "value": csv_value(analysis_promotion_summary, "analysis_dataset_promotion_promoted_rows", "0"), "interpretation": "Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files are allowed while model-ready data remain blocked."},

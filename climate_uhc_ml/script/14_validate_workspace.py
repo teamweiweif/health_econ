@@ -134,6 +134,7 @@ REQUIRED_REPORTS = [
     "priority_archive_member_preflight.md",
     "priority_climate_linkage_preflight.md",
     "priority_raw_verification_workbook.md",
+    "priority_manual_verification_decision_gate.md",
     "promoted_data_gate.md",
 ]
 REQUIRED_TEMP = [
@@ -274,6 +275,7 @@ REQUIRED_SCRIPTS = [
     "126_build_priority_raw_verification_workbook.py",
     "127_enforce_promoted_data_gate.py",
     "128_build_priority_archive_member_preflight.py",
+    "129_build_priority_manual_verification_decision_gate.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -695,6 +697,11 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_concept_verification_template": row_count(TEMP_DIR / "priority_concept_verification_template.csv"),
         "priority_variable_verification_template": row_count(TEMP_DIR / "priority_variable_verification_template.csv"),
         "priority_raw_verification_workbook_summary": row_count(RESULT_DIR / "priority_raw_verification_workbook_summary.csv"),
+        "priority_manual_verification_decision_gate": row_count(TEMP_DIR / "priority_manual_verification_decision_gate.csv"),
+        "priority_manual_requirement_decision_audit": row_count(TEMP_DIR / "priority_manual_requirement_decision_audit.csv"),
+        "priority_manual_concept_decision_audit": row_count(TEMP_DIR / "priority_manual_concept_decision_audit.csv"),
+        "priority_manual_variable_decision_audit": row_count(TEMP_DIR / "priority_manual_variable_decision_audit.csv"),
+        "priority_manual_verification_decision_summary": row_count(RESULT_DIR / "priority_manual_verification_decision_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -4090,6 +4097,62 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_raw_verification_handoff_existing >= priority_dataset_gate_rows
         and priority_raw_verification_modeling_gate == "blocked"
         else "Run script/126_build_priority_raw_verification_workbook.py after priority raw intake and climate preflight gates exist.",
+    )
+    priority_manual_summary = read_csv_dicts(RESULT_DIR / "priority_manual_verification_decision_summary.csv")
+    priority_manual_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_decision_dataset_rows"), "0"), 0)
+    priority_manual_requirement_rows = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_requirement_decision_rows"), "0"), 0)
+    priority_manual_concept_rows = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_concept_decision_rows"), "0"), 0)
+    priority_manual_variable_rows = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_variable_decision_rows"), "0"), 0)
+    priority_manual_requirements_verified = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_requirements_verified"), "0"), 0)
+    priority_manual_concepts_verified = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_concepts_verified"), "0"), 0)
+    priority_manual_variables_verified = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_variables_verified"), "0"), 0)
+    priority_manual_financial_ready = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_financial_protection_manual_ready_countries"), "0"), 0)
+    priority_manual_double_failure_ready = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_double_failure_manual_ready_waves"), "0"), 0)
+    priority_manual_analysis_ready = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_analysis_ready_candidates"), "0"), 0)
+    priority_manual_handoffs = safe_int(next((row.get("value", "0") for row in priority_manual_summary if row.get("metric") == "priority_manual_handoff_readmes_written"), "0"), 0)
+    priority_manual_modeling_gate = next((row.get("value", "") for row in priority_manual_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_manual_dataset_gate = read_csv_dicts(TEMP_DIR / "priority_manual_verification_decision_gate.csv")
+    priority_manual_handoff_existing = sum(1 for row in priority_manual_dataset_gate if row.get("handoff_readme") and file_ok(PROJECT_ROOT / row.get("handoff_readme", "")))
+    priority_manual_no_raw_present = (
+        priority_archive_files_found == 0
+        and priority_direct_covered == 0
+        and priority_archive_covered == 0
+        and priority_archive_missing >= counts["priority_raw_file_targets"]
+    )
+    priority_manual_zero_ready_ok = (
+        not priority_manual_no_raw_present
+        or (
+            priority_manual_requirements_verified == 0
+            and priority_manual_concepts_verified == 0
+            and priority_manual_variables_verified == 0
+            and priority_manual_financial_ready == 0
+            and priority_manual_double_failure_ready == 0
+            and priority_manual_analysis_ready == 0
+        )
+    )
+    priority_manual_gate_ok = (
+        counts["priority_manual_verification_decision_gate"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_manual_requirement_decision_audit"] >= counts["priority_promotion_verification_checklist"]
+        and counts["priority_manual_concept_decision_audit"] >= counts["priority_concept_verification_template"]
+        and counts["priority_manual_variable_decision_audit"] >= counts["priority_variable_verification_template"]
+        and counts["priority_manual_verification_decision_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_manual_verification_decision_gate.md")
+        and priority_manual_dataset_rows >= max(13, counts["priority_promotion_acquisition_wave_plan"])
+        and priority_manual_requirement_rows >= max(104, counts["priority_promotion_verification_checklist"])
+        and priority_manual_concept_rows >= max(169, counts["priority_concept_verification_template"])
+        and priority_manual_variable_rows >= max(1214, counts["priority_variable_verification_template"])
+        and priority_manual_zero_ready_ok
+        and priority_manual_handoffs >= priority_manual_dataset_rows
+        and priority_manual_handoff_existing >= priority_manual_dataset_rows
+        and priority_manual_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority manual verification decision gate consumes preserved fill-field evidence and remains fail-closed until raw-backed manual verification passes",
+        status(priority_manual_gate_ok),
+        f"dataset_rows={counts['priority_manual_verification_decision_gate']}; requirement_rows={counts['priority_manual_requirement_decision_audit']}; concept_rows={counts['priority_manual_concept_decision_audit']}; variable_rows={counts['priority_manual_variable_decision_audit']}; summary_rows={counts['priority_manual_verification_decision_summary']}; reported_dataset_rows={priority_manual_dataset_rows}; reported_requirements={priority_manual_requirement_rows}; reported_concepts={priority_manual_concept_rows}; reported_variables={priority_manual_variable_rows}; verified_requirements={priority_manual_requirements_verified}; verified_concepts={priority_manual_concepts_verified}; verified_variables={priority_manual_variables_verified}; financial_ready_countries={priority_manual_financial_ready}; double_failure_ready_waves={priority_manual_double_failure_ready}; analysis_ready_candidates={priority_manual_analysis_ready}; handoff_rows={priority_manual_handoffs}; handoff_existing={priority_manual_handoff_existing}; no_raw_present={priority_manual_no_raw_present}; modeling_gate={priority_manual_modeling_gate}",
+        "" if priority_manual_gate_ok else "Run script/129_build_priority_manual_verification_decision_gate.py after script/126_build_priority_raw_verification_workbook.py; blank or ambiguous fill-fields must remain blocked.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

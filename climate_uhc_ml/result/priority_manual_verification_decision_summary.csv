@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+priority_manual_decision_dataset_rows,13,Priority waves with manual verification decision gates.
+priority_manual_requirement_decision_rows,104,Requirement-level manual verification audit rows.
+priority_manual_concept_decision_rows,169,Concept-level manual verification audit rows.
+priority_manual_variable_decision_rows,1214,Variable-level manual verification audit rows.
+priority_manual_requirements_verified,0,Requirement rows passing source and fill-field manual verification.
+priority_manual_concepts_verified,0,Concept rows passing source and fill-field manual verification.
+priority_manual_variables_verified,0,Variable rows passing source and fill-field manual verification.
+priority_financial_protection_manual_ready_countries,0,Countries with financial-protection manual verification ready.
+priority_double_failure_manual_ready_waves,0,Country-waves with double-failure manual verification ready.
+priority_analysis_ready_candidates,0,Country-waves ready for harmonization recipe review and climate-linked data promotion.
+priority_manual_handoff_readmes_written,13,Per-wave manual verification decision README files written.
+modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted climate linkage pass.
+dataset_manual_status_blocked_raw_module_coverage_missing,13,Dataset manual verification status count.
+requirement_manual_status_blocked_source_gate_not_ready,104,Requirement manual verification status count.
+concept_manual_status_blocked_source_gate_not_ready,169,Concept manual verification status count.
+variable_manual_status_blocked_source_gate_not_ready,1214,Variable manual verification status count.
