@@ -1567,3 +1567,6 @@
 - 2026-07-09T22:38:04+00:00 - Built priority LSMS/ISA variable evidence matrix variables=1531 requirements=152 files=629.
 - 2026-07-09T22:38:09+00:00 - Direct-read audit bundle rows=143 manifest_rows=601.
 - 2026-07-09T22:38:11+00:00 - Workspace validation complete=439 incomplete_or_failed=0.
+- 2026-07-09T22:50:16+00:00 - Built priority LSMS-ISA country-wave promotion packets packets=19 gates=361 actions=19.
+- 2026-07-09T22:50:42+00:00 - Direct-read audit bundle rows=144 manifest_rows=607.
+- 2026-07-09T22:50:44+00:00 - Workspace validation complete=442 incomplete_or_failed=0.

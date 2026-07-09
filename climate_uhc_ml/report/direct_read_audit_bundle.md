@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 143 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 601 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 597 | Curated artifacts present and non-empty. |
+| bundle_rows | 144 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 607 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 603 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -29,6 +29,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_variable_evidence_candidate_rows | 1531 | Concept-level official metadata candidate variables shortlisted for raw review. |
 | priority_lsms_isa_variable_evidence_requirement_rows | 152 | Requirement-by-wave variable evidence coverage rows. |
 | priority_lsms_isa_variable_evidence_file_shortlist_rows | 629 | Official DDI files shortlisted by concept for raw package checking. |
+| priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
+| priority_lsms_isa_country_wave_packet_failed_gates | 323 | Refocused LSMS/ISA packet gates still blocking promotion. |
+| priority_lsms_isa_country_wave_packet_analysis_ready_rows | 0 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
 | priority_archive_preflight_targets | 156 | Priority file targets checked against direct files and archive members. |
 | priority_archive_preflight_missing_targets | 156 | Priority file targets still missing after direct/archive member preflight. |
 | priority_manual_verification_dataset_rows | 13 | Priority waves evaluated by the manual verification decision gate. |
@@ -477,7 +480,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 34 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 35 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -519,7 +522,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_current_boundary_name_match_incomplete_historical_crosswalk_no_gps | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_diary_timing_metadata_candidate_no_raw_merge_semantics | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_extracted_package_missing_bookmetadata_and_coordinate_values | 1 | Direct-read bundle status count. |
-| bundle_status_blocked_fail_closed | 1 | Direct-read bundle status count. |
+| bundle_status_blocked_fail_closed | 2 | Direct-read bundle status count. |
 | bundle_status_blocked_followup_confirms_no_public_2002_district_boundary_source | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_gadm_boundary_lead_no_verified_2002_historical_provenance | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_geoboundaries_2_0_1_boundary_year_2013_not_verified_2002 | 1 | Direct-read bundle status count. |
@@ -598,7 +601,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 34 |
+| priority_bundle | 35 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -620,6 +623,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | complete | 4 |
 | metadata_only_requires_raw_verification | 4 |
 | blocked_timing_geography_outcome_semantics_units_recall_skip_patterns | 3 |
+| blocked_fail_closed | 2 |
 | documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready | 2 |
 | temp_candidate_not_analysis_ready | 2 |
 | not_final_outcomes_timing_geography_recall_blocked | 2 |
@@ -652,7 +656,6 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | raw_package_intake_ready_no_original_files | 1 |
 | archive_preflight_ready_no_original_files | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
-| blocked_fail_closed | 1 |
 | closed_no_promoted_rows | 1 |
 | raw_archives_available_requires_value_verification | 1 |
 | raw_value_summary_available_manual_review_required | 1 |
@@ -760,7 +763,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 597 |
+| present_nonempty | 603 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

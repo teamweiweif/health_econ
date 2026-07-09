@@ -153,6 +153,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_archive_member_preflight.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
+    "priority_lsms_isa_country_wave_promotion_packets.md",
     "promoted_data_gate.md",
 ]
 REQUIRED_TEMP = [
@@ -312,6 +313,7 @@ REQUIRED_SCRIPTS = [
     "145_build_priority_lsms_isa_archive_member_preflight.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
+    "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -804,6 +806,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_country_wave_promotion_packet_gate_matrix": row_count(TEMP_DIR / "priority_country_wave_promotion_packet_gate_matrix.csv"),
         "priority_country_wave_promotion_packet_action_queue": row_count(TEMP_DIR / "priority_country_wave_promotion_packet_action_queue.csv"),
         "priority_country_wave_promotion_packet_summary": row_count(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv"),
+        "priority_lsms_isa_country_wave_promotion_packet_index": row_count(TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_index.csv"),
+        "priority_lsms_isa_country_wave_promotion_packet_gate_matrix": row_count(TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_gate_matrix.csv"),
+        "priority_lsms_isa_country_wave_promotion_packet_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_action_queue.csv"),
+        "priority_lsms_isa_country_wave_promotion_packet_summary": row_count(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -4981,6 +4987,62 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_packet_gate_ok),
         f"index_rows={counts['priority_country_wave_promotion_packet_index']}; gate_rows={counts['priority_country_wave_promotion_packet_gate_matrix']}; action_rows={counts['priority_country_wave_promotion_packet_action_queue']}; summary_rows={counts['priority_country_wave_promotion_packet_summary']}; reported_packets={priority_packet_rows}; priority_rows={priority_packet_priority_rows}; backup_rows={priority_packet_backup_rows}; reported_gate_rows={priority_packet_gate_rows}; passed_gates={priority_packet_passed_gates}; failed_gates={priority_packet_failed_gates}; public_ready={priority_packet_public_ready}; metadata_ready={priority_packet_metadata_ready}; endpoint_ready={priority_packet_endpoint_ready}; credentialed_ready={priority_packet_credentialed_ready}; raw_ready={priority_packet_raw_ready}; financial_ready={priority_packet_financial_ready}; access_ready={priority_packet_access_ready}; climate_ready={priority_packet_climate_ready}; analysis_ready={priority_packet_analysis_ready}; actions={priority_packet_actions}; reports={priority_packet_reports}; handoffs={priority_packet_handoffs}; modeling_gate={priority_packet_modeling_gate}",
         "" if priority_packet_gate_ok else "Run script/134_build_priority_country_wave_promotion_packets.py after public documentation, synthesis, manual, climate, and receipt gates.",
+    )
+    priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
+    priority_lsms_packet_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_rows"), "0"), 0)
+    priority_lsms_packet_core_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_core_rows"), "0"), 0)
+    priority_lsms_packet_backup_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_backup_rows"), "0"), 0)
+    priority_lsms_packet_gate_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_gate_rows"), "0"), 0)
+    priority_lsms_packet_passed_gates = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_passed_gate_rows"), "0"), 0)
+    priority_lsms_packet_failed_gates = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_failed_gate_rows"), "0"), 0)
+    priority_lsms_packet_public_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_public_documentation_ready_rows"), "0"), 0)
+    priority_lsms_packet_variable_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_variable_evidence_ready_rows"), "0"), 0)
+    priority_lsms_packet_raw_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_raw_package_ready_rows"), "0"), 0)
+    priority_lsms_packet_raw_verified = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_raw_value_verified_rows"), "0"), 0)
+    priority_lsms_packet_financial_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_financial_ready_rows"), "0"), 0)
+    priority_lsms_packet_access_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_access_ready_rows"), "0"), 0)
+    priority_lsms_packet_climate_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_climate_ready_rows"), "0"), 0)
+    priority_lsms_packet_synthesis_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_analysis_synthesis_ready_rows"), "0"), 0)
+    priority_lsms_packet_analysis_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_analysis_ready_rows"), "0"), 0)
+    priority_lsms_packet_actions = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_action_rows"), "0"), 0)
+    priority_lsms_packet_reports = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_reports_written"), "0"), 0)
+    priority_lsms_packet_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_handoffs_written"), "0"), 0)
+    priority_lsms_packet_data_write = next((row.get("value", "") for row in priority_lsms_packet_summary if row.get("metric") == "priority_lsms_country_wave_packet_data_write_status"), "")
+    priority_lsms_packet_modeling_gate = next((row.get("value", "") for row in priority_lsms_packet_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_packet_gate_ok = (
+        counts["priority_lsms_isa_country_wave_promotion_packet_index"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_country_wave_promotion_packet_gate_matrix"] >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 19
+        and counts["priority_lsms_isa_country_wave_promotion_packet_action_queue"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_country_wave_promotion_packet_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_country_wave_promotion_packets.md")
+        and priority_lsms_packet_rows >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_packet_core_rows >= 10
+        and priority_lsms_packet_backup_rows >= 9
+        and priority_lsms_packet_gate_rows >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 19
+        and priority_lsms_packet_passed_gates >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 2
+        and priority_lsms_packet_failed_gates >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 17
+        and priority_lsms_packet_public_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_packet_variable_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_packet_raw_ready == 0
+        and priority_lsms_packet_raw_verified == 0
+        and priority_lsms_packet_financial_ready == 0
+        and priority_lsms_packet_access_ready == 0
+        and priority_lsms_packet_climate_ready == 0
+        and priority_lsms_packet_synthesis_ready == 0
+        and priority_lsms_packet_analysis_ready == 0
+        and priority_lsms_packet_actions >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_packet_reports >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_packet_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and priority_lsms_packet_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_packet_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA country-wave promotion packets cover every refocused target with fail-closed raw, climate, synthesis, and registry gates",
+        status(priority_lsms_packet_gate_ok),
+        f"index_rows={counts['priority_lsms_isa_country_wave_promotion_packet_index']}; gate_rows={counts['priority_lsms_isa_country_wave_promotion_packet_gate_matrix']}; action_rows={counts['priority_lsms_isa_country_wave_promotion_packet_action_queue']}; summary_rows={counts['priority_lsms_isa_country_wave_promotion_packet_summary']}; reported_packets={priority_lsms_packet_rows}; core_rows={priority_lsms_packet_core_rows}; backup_rows={priority_lsms_packet_backup_rows}; reported_gate_rows={priority_lsms_packet_gate_rows}; passed_gates={priority_lsms_packet_passed_gates}; failed_gates={priority_lsms_packet_failed_gates}; public_ready={priority_lsms_packet_public_ready}; variable_ready={priority_lsms_packet_variable_ready}; raw_ready={priority_lsms_packet_raw_ready}; raw_verified={priority_lsms_packet_raw_verified}; financial_ready={priority_lsms_packet_financial_ready}; access_ready={priority_lsms_packet_access_ready}; climate_ready={priority_lsms_packet_climate_ready}; synthesis_ready={priority_lsms_packet_synthesis_ready}; analysis_ready={priority_lsms_packet_analysis_ready}; actions={priority_lsms_packet_actions}; reports={priority_lsms_packet_reports}; handoffs={priority_lsms_packet_handoffs}; data_write={priority_lsms_packet_data_write}; modeling_gate={priority_lsms_packet_modeling_gate}",
+        "" if priority_lsms_packet_gate_ok else "Run script/148_build_priority_lsms_isa_country_wave_promotion_packets.py after LSMS/ISA documentation, variable evidence, raw intake, and archive preflight gates.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

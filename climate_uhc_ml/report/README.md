@@ -50,6 +50,7 @@ python script/144_build_priority_lsms_isa_raw_package_intake_packet.py
 python script/145_build_priority_lsms_isa_archive_member_preflight.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 python script/134_build_priority_country_wave_promotion_packets.py
+python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
 python script/127_enforce_promoted_data_gate.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
@@ -98,6 +99,8 @@ Current status:
 - The priority LSMS/ISA archive/direct-file preflight is `result/priority_lsms_isa_archive_member_preflight_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.
+- The refocused 19-wave LSMS/ISA country-wave promotion packets are indexed in `result/priority_lsms_isa_country_wave_promotion_packet_summary.csv`.
 - The promoted-data gate is `result/promoted_data_gate_summary.csv`; if the registry has zero promoted rows, diagnostic CSVs are kept in `temp/diagnostic_data_quarantine/current/` rather than `data/`.
 - Per-wave promotion packets are in `report/country_wave_promotion_packets/`.
+- Refocused LSMS/ISA per-wave promotion packets are in `report/priority_lsms_isa_country_wave_promotion_packets/`.
 - Albania remains a diagnostic template only unless its historical boundary, timing, and outcome gates are resolved.
