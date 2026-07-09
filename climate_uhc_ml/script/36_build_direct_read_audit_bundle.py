@@ -91,6 +91,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_official_endpoint_matrix.csv", "priority official endpoint matrix rows"),
     ("dataset_promotion", "temp/priority_official_endpoint_dataset_matrix.csv", "priority official endpoint dataset matrix"),
     ("dataset_promotion", "result/priority_official_endpoint_matrix_summary.csv", "priority official endpoint matrix summary"),
+    ("dataset_promotion", "report/priority_core_file_endpoint_matrix.md", "priority core file endpoint matrix report"),
+    ("dataset_promotion", "temp/priority_core_file_endpoint_matrix.csv", "priority core file endpoint matrix rows"),
+    ("dataset_promotion", "temp/priority_core_file_endpoint_dataset_matrix.csv", "priority core file endpoint dataset matrix"),
+    ("dataset_promotion", "result/priority_core_file_endpoint_matrix_summary.csv", "priority core file endpoint matrix summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -484,6 +488,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/135_build_priority_official_metadata_evidence_extract.py", "priority official metadata evidence extractor"),
     ("reproducibility", "script/136_build_priority_credentialed_raw_acquisition_ledger.py", "priority credentialed raw acquisition ledger generator"),
     ("reproducibility", "script/137_probe_priority_official_endpoint_matrix.py", "priority official endpoint matrix probe"),
+    ("reproducibility", "script/138_probe_priority_core_file_endpoint_matrix.py", "priority core file endpoint matrix probe"),
     ("reproducibility", "script/132_build_priority_analysis_dataset_synthesis_blueprint.py", "priority analysis dataset synthesis blueprint generator"),
     ("reproducibility", "script/134_build_priority_country_wave_promotion_packets.py", "priority country-wave promotion packet generator"),
     ("reproducibility", "script/40_build_first_batch_manual_download_handoff.py", "first-batch manual download handoff generator"),
@@ -685,6 +690,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_official_metadata_summary = read_csv_dicts(RESULT_DIR / "priority_official_metadata_evidence_summary.csv")
     priority_credentialed_acquisition_summary = read_csv_dicts(RESULT_DIR / "priority_credentialed_raw_acquisition_summary.csv")
     priority_endpoint_matrix_summary = read_csv_dicts(RESULT_DIR / "priority_official_endpoint_matrix_summary.csv")
+    priority_core_file_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
@@ -971,6 +977,15 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_dataset_rows', '0')}; endpoints={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_endpoint_rows', '0')}; public_metadata_endpoints={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_public_metadata_endpoint_rows', '0')}; variable_api_datasets={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_variable_api_dataset_rows', '0')}; get_microdata_gate_datasets={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_get_microdata_gate_dataset_rows', '0')}; raw_candidates={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_raw_download_candidate_rows', '0')}; credentialed_required={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_credentialed_download_required_rows', '0')}; handoffs={csv_value(priority_endpoint_matrix_summary, 'priority_endpoint_matrix_handoff_readmes_written', '0')}; modeling_gate={csv_value(priority_endpoint_matrix_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_official_endpoint_matrix.csv", TEMP_DIR / "priority_official_endpoint_dataset_matrix.csv", RESULT_DIR / "priority_official_endpoint_matrix_summary.csv", REPORT_DIR / "priority_official_endpoint_matrix.md"],
         "Endpoint matrix probes catalog/API/metadata/get-microdata routes and confirms public routes are metadata-only while official raw package acquisition remains credentialed.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_core_file_endpoint_matrix",
+        "file_level_routes_confirmed_non_public_raw" if csv_value(priority_core_file_endpoint_summary, "priority_core_file_endpoint_raw_candidate_rows", "0") == "0" and csv_value(priority_core_file_endpoint_summary, "priority_core_file_endpoint_dataset_rows", "0") != "0" else "core_file_endpoint_matrix_needs_manual_review",
+        f"datasets={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_dataset_rows', '0')}; core_files={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_core_file_rows', '0')}; matrix_rows={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_matrix_rows', '0')}; metadata_refs={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_metadata_reference_rows', '0')}; probed_download_routes={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_probed_download_rows', '0')}; http_errors={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_http_error_rows', '0')}; empty_downloads={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_empty_download_rows', '0')}; request_failed={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_request_failed_rows', '0')}; raw_candidates={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_raw_candidate_rows', '0')}; credentialed_required={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_credentialed_download_required_rows', '0')}; handoffs={csv_value(priority_core_file_endpoint_summary, 'priority_core_file_endpoint_handoff_readmes_written', '0')}; modeling_gate={csv_value(priority_core_file_endpoint_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_core_file_endpoint_matrix.csv", TEMP_DIR / "priority_core_file_endpoint_dataset_matrix.csv", RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv", REPORT_DIR / "priority_core_file_endpoint_matrix.md"],
+        "Core-file endpoint matrix probes common file-level World Bank/NADA download route patterns for the 156 priority modules and confirms they do not expose public raw payloads; official credentialed package receipt is still required.",
     )
     add_bundle(
         rows,
@@ -1868,6 +1883,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_official_metadata_summary = read_csv_dicts(RESULT_DIR / "priority_official_metadata_evidence_summary.csv")
     priority_credentialed_acquisition_summary = read_csv_dicts(RESULT_DIR / "priority_credentialed_raw_acquisition_summary.csv")
     priority_endpoint_matrix_summary = read_csv_dicts(RESULT_DIR / "priority_official_endpoint_matrix_summary.csv")
+    priority_core_file_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     data_dataset_files = [
@@ -1917,6 +1933,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_endpoint_matrix_variable_api_dataset_rows", "value": csv_value(priority_endpoint_matrix_summary, "priority_endpoint_matrix_variable_api_dataset_rows", "0"), "interpretation": "Datasets with a public variable metadata API endpoint."},
         {"metric": "priority_endpoint_matrix_raw_download_candidate_rows", "value": csv_value(priority_endpoint_matrix_summary, "priority_endpoint_matrix_raw_download_candidate_rows", "0"), "interpretation": "Raw download candidate endpoints detected by the official endpoint matrix."},
         {"metric": "priority_endpoint_matrix_credentialed_download_required_rows", "value": csv_value(priority_endpoint_matrix_summary, "priority_endpoint_matrix_credentialed_download_required_rows", "0"), "interpretation": "Datasets still requiring credentialed raw download."},
+        {"metric": "priority_core_file_endpoint_core_file_rows", "value": csv_value(priority_core_file_endpoint_summary, "priority_core_file_endpoint_core_file_rows", "0"), "interpretation": "Priority core file rows covered by the file endpoint matrix."},
+        {"metric": "priority_core_file_endpoint_probed_download_rows", "value": csv_value(priority_core_file_endpoint_summary, "priority_core_file_endpoint_probed_download_rows", "0"), "interpretation": "File-level download route probes for priority core files."},
+        {"metric": "priority_core_file_endpoint_raw_candidate_rows", "value": csv_value(priority_core_file_endpoint_summary, "priority_core_file_endpoint_raw_candidate_rows", "0"), "interpretation": "Potential public raw file candidates detected by the core-file endpoint matrix."},
+        {"metric": "priority_core_file_endpoint_credentialed_download_required_rows", "value": csv_value(priority_core_file_endpoint_summary, "priority_core_file_endpoint_credentialed_download_required_rows", "0"), "interpretation": "Datasets still requiring credentialed raw package acquisition after file-level route probes."},
         {"metric": "priority_synthesis_blueprint_schema_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_schema_rows", "0"), "interpretation": "Target output-column rows for promoted household-climate dataset synthesis."},
         {"metric": "priority_synthesis_blueprint_blocked_required_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_blocked_required_rows", "0"), "interpretation": "Required promoted-dataset output columns still blocked."},
         {"metric": "priority_synthesis_blueprint_join_ready_rows", "value": csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0"), "interpretation": "Priority country-waves ready for promoted dataset build joins."},

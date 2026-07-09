@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+priority_core_file_endpoint_dataset_rows,13,Priority and backup datasets with core file endpoint matrices.
+priority_core_file_endpoint_core_file_rows,156,Priority core file rows covered by the file endpoint matrix.
+priority_core_file_endpoint_matrix_rows,780,File-level metadata references and download route probes.
+priority_core_file_endpoint_metadata_reference_rows,156,Official data-dictionary source rows carried as metadata references.
+priority_core_file_endpoint_probed_download_rows,624,Constructed file-level download routes probed without downloading raw files.
+priority_core_file_endpoint_http_error_rows,312,File download routes returning HTTP errors rather than public raw payloads.
+priority_core_file_endpoint_empty_download_rows,312,File download routes returning empty non-raw responses.
+priority_core_file_endpoint_request_failed_rows,0,File download route probes that need retry.
+priority_core_file_endpoint_raw_candidate_rows,0,Potential public raw file candidates detected; zero is required before treating credentialed route as necessary.
+priority_core_file_endpoint_download_routes_without_public_raw_rows,624,Probed download route rows that did not expose public raw payloads.
+priority_core_file_endpoint_credentialed_download_required_rows,13,Datasets whose core file route probes still require official credentialed raw acquisition.
+priority_core_file_endpoint_handoff_readmes_written,13,Per-wave core file endpoint handoffs written.
+modeling_gate_status,blocked,"File endpoint evidence does not satisfy raw receipt, raw value verification, or climate-linkage gates."
+priority_core_file_endpoint_classification_file_download_route_empty_not_raw_package,312,File endpoint classification count.
+priority_core_file_endpoint_classification_file_download_route_http_error_not_public_raw,312,File endpoint classification count.
+priority_core_file_endpoint_classification_public_file_metadata_reference_not_raw_package,156,File endpoint classification count.

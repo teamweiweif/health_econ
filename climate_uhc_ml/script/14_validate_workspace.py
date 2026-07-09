@@ -141,6 +141,7 @@ REQUIRED_REPORTS = [
     "priority_official_metadata_evidence_extract.md",
     "priority_credentialed_raw_acquisition_ledger.md",
     "priority_official_endpoint_matrix.md",
+    "priority_core_file_endpoint_matrix.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "promoted_data_gate.md",
@@ -290,6 +291,7 @@ REQUIRED_SCRIPTS = [
     "135_build_priority_official_metadata_evidence_extract.py",
     "136_build_priority_credentialed_raw_acquisition_ledger.py",
     "137_probe_priority_official_endpoint_matrix.py",
+    "138_probe_priority_core_file_endpoint_matrix.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
@@ -740,6 +742,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_official_endpoint_matrix": row_count(TEMP_DIR / "priority_official_endpoint_matrix.csv"),
         "priority_official_endpoint_dataset_matrix": row_count(TEMP_DIR / "priority_official_endpoint_dataset_matrix.csv"),
         "priority_official_endpoint_matrix_summary": row_count(RESULT_DIR / "priority_official_endpoint_matrix_summary.csv"),
+        "priority_core_file_endpoint_matrix": row_count(TEMP_DIR / "priority_core_file_endpoint_matrix.csv"),
+        "priority_core_file_endpoint_dataset_matrix": row_count(TEMP_DIR / "priority_core_file_endpoint_dataset_matrix.csv"),
+        "priority_core_file_endpoint_matrix_summary": row_count(RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -4432,6 +4437,46 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_endpoint_gate_ok),
         f"endpoint_rows={counts['priority_official_endpoint_matrix']}; dataset_rows={counts['priority_official_endpoint_dataset_matrix']}; summary_rows={counts['priority_official_endpoint_matrix_summary']}; reported_datasets={priority_endpoint_dataset_rows}; reported_endpoints={priority_endpoint_rows}; metadata_endpoints={priority_endpoint_metadata_rows}; variable_api_datasets={priority_endpoint_variable_api_rows}; get_microdata_gate_datasets={priority_endpoint_gate_rows}; raw_candidates={priority_endpoint_raw_candidates}; credentialed_required={priority_endpoint_credentialed_required}; handoffs={priority_endpoint_handoffs}; modeling_gate={priority_endpoint_modeling_gate}",
         "" if priority_endpoint_gate_ok else "Run script/137_probe_priority_official_endpoint_matrix.py after the official download dossier; endpoint evidence is metadata/access-gate evidence only.",
+    )
+    priority_core_file_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_core_file_endpoint_matrix_summary.csv")
+    priority_core_file_endpoint_dataset_rows = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_dataset_rows"), "0"), 0)
+    priority_core_file_endpoint_core_rows = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_core_file_rows"), "0"), 0)
+    priority_core_file_endpoint_matrix_rows = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_matrix_rows"), "0"), 0)
+    priority_core_file_endpoint_metadata_refs = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_metadata_reference_rows"), "0"), 0)
+    priority_core_file_endpoint_probed_rows = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_probed_download_rows"), "0"), 0)
+    priority_core_file_endpoint_http_errors = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_http_error_rows"), "0"), 0)
+    priority_core_file_endpoint_empty_downloads = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_empty_download_rows"), "0"), 0)
+    priority_core_file_endpoint_request_failed = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_request_failed_rows"), "0"), 0)
+    priority_core_file_endpoint_raw_candidates = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_raw_candidate_rows"), "0"), 0)
+    priority_core_file_endpoint_no_public_raw = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_download_routes_without_public_raw_rows"), "0"), 0)
+    priority_core_file_endpoint_credentialed_required = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_credentialed_download_required_rows"), "0"), 0)
+    priority_core_file_endpoint_handoffs = safe_int(next((row.get("value", "0") for row in priority_core_file_endpoint_summary if row.get("metric") == "priority_core_file_endpoint_handoff_readmes_written"), "0"), 0)
+    priority_core_file_endpoint_modeling_gate = next((row.get("value", "") for row in priority_core_file_endpoint_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_core_file_endpoint_gate_ok = (
+        counts["priority_core_file_endpoint_matrix"] >= counts["priority_raw_file_targets"] * 5
+        and counts["priority_core_file_endpoint_dataset_matrix"] >= counts["priority_promotion_acquisition_wave_plan"]
+        and counts["priority_core_file_endpoint_matrix_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_core_file_endpoint_matrix.md")
+        and priority_core_file_endpoint_dataset_rows >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_core_file_endpoint_core_rows >= counts["priority_raw_file_targets"]
+        and priority_core_file_endpoint_matrix_rows >= counts["priority_raw_file_targets"] * 5
+        and priority_core_file_endpoint_metadata_refs >= counts["priority_raw_file_targets"]
+        and priority_core_file_endpoint_probed_rows >= counts["priority_raw_file_targets"] * 4
+        and priority_core_file_endpoint_no_public_raw >= counts["priority_raw_file_targets"] * 4
+        and priority_core_file_endpoint_http_errors + priority_core_file_endpoint_empty_downloads >= counts["priority_raw_file_targets"] * 4
+        and priority_core_file_endpoint_request_failed == 0
+        and priority_core_file_endpoint_raw_candidates == 0
+        and priority_core_file_endpoint_credentialed_required >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_core_file_endpoint_handoffs >= counts["priority_promotion_acquisition_wave_plan"]
+        and priority_core_file_endpoint_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority core-file endpoint matrix confirms file-level public routes do not expose accepted raw payloads",
+        status(priority_core_file_endpoint_gate_ok),
+        f"matrix_rows={counts['priority_core_file_endpoint_matrix']}; dataset_rows={counts['priority_core_file_endpoint_dataset_matrix']}; summary_rows={counts['priority_core_file_endpoint_matrix_summary']}; reported_datasets={priority_core_file_endpoint_dataset_rows}; core_files={priority_core_file_endpoint_core_rows}; reported_matrix_rows={priority_core_file_endpoint_matrix_rows}; metadata_refs={priority_core_file_endpoint_metadata_refs}; probed_download_routes={priority_core_file_endpoint_probed_rows}; http_errors={priority_core_file_endpoint_http_errors}; empty_downloads={priority_core_file_endpoint_empty_downloads}; request_failed={priority_core_file_endpoint_request_failed}; no_public_raw_routes={priority_core_file_endpoint_no_public_raw}; raw_candidates={priority_core_file_endpoint_raw_candidates}; credentialed_required={priority_core_file_endpoint_credentialed_required}; handoffs={priority_core_file_endpoint_handoffs}; modeling_gate={priority_core_file_endpoint_modeling_gate}",
+        "" if priority_core_file_endpoint_gate_ok else "Run script/138_probe_priority_core_file_endpoint_matrix.py after the credentialed raw acquisition ledger; file-level endpoint evidence is not raw receipt.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
