@@ -1,0 +1,4 @@
+step,status,rows,dropped,detail
+input_climate_linked_household,complete,14396,0,data\climate_linked_household.csv
+has_financial_outcome,complete,14396,0,At least one financial-protection outcome nonmissing by country-wave.
+passes_main_sample_gate,failed,0,14396,Requires consumption/OOP/weight/time/geography/financial outcome/climate exposure.

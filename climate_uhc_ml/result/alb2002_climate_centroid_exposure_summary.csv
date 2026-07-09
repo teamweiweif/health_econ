@@ -1,0 +1,20 @@
+metric,value,interpretation
+alb2002_climate_centroid_input_rows,96,Observed ALB_2002 district-month rows with candidate centroid inputs.
+alb2002_climate_centroid_distinct_district_rows,36,Distinct ALB_2002 districts represented in the centroid stress test.
+alb2002_climate_centroid_household_rows_covered,3599,Household rows represented across district-month input cells.
+alb2002_climate_centroid_exposure_rows,384,Temp-only NASA POWER district-centroid exposure candidate rows.
+alb2002_climate_centroid_window_rows,4,Exposure window definitions computed per district-month.
+alb2002_climate_centroid_nasa_api_rows,36,NASA POWER API/cache manifest rows.
+alb2002_climate_centroid_nasa_downloaded_rows,0,NASA POWER responses downloaded in this run.
+alb2002_climate_centroid_nasa_cached_rows,36,NASA POWER responses reused from local cache.
+alb2002_climate_centroid_nasa_failed_rows,0,NASA POWER responses that failed.
+alb2002_climate_centroid_precip_nonmissing_rows,384,Exposure rows with nonmissing precipitation totals.
+alb2002_climate_centroid_temp_nonmissing_rows,384,Exposure rows with nonmissing mean temperature.
+alb2002_climate_centroid_boundary_year,2013,Boundary year from candidate geoBoundaries companion metadata.
+alb2002_climate_centroid_historical_boundary_ready_rows,0,Rows ready as historical 2002 boundaries; should remain zero.
+alb2002_climate_centroid_primary_chirps_ready_rows,0,Rows with primary CHIRPS rainfall extraction accepted; intentionally zero.
+alb2002_climate_centroid_primary_era5_ready_rows,0,Rows with primary ERA5-Land temperature extraction accepted; intentionally zero.
+alb2002_climate_centroid_historical_baseline_ready_rows,0,Rows with historical climate anomaly baselines accepted; intentionally zero.
+alb2002_climate_centroid_climate_linkage_ready_rows,0,Rows ready for promoted climate linkage; intentionally zero.
+alb2002_climate_centroid_data_write_ready_rows,0,Rows allowed to be written to data/ by this audit; intentionally zero.
+alb2002_climate_centroid_current_decision,blocked_alb2002_climate_centroid_exposures_not_promoted_due_boundary_vintage_source_and_baseline_gates,Current fail-closed climate centroid exposure decision.

@@ -1,0 +1,22 @@
+metric,value,interpretation
+alb2005_skip_missing_semantics_rows,13,Rows in the ALB_2005 skip/missing semantics audit.
+alb2005_skip_missing_payment_block_rows,8,Person-level visit/payment skip blocks audited.
+alb2005_skip_missing_access_condition_rows,4,Household access reason conditional skip blocks audited.
+alb2005_skip_missing_financing_multiselect_rows,1,Household health-financing method skip blocks audited.
+alb2005_skip_missing_payment_nonmissing_when_not_triggered_rows,0,Payment downstream rows nonmissing when the visit/drug/stay trigger is negative.
+alb2005_skip_missing_payment_positive_when_not_triggered_rows,0,Payment downstream rows positive when the visit/drug/stay trigger is negative.
+alb2005_skip_missing_payment_all_missing_when_triggered_rows,0,Triggered payment rows where every downstream payment variable is missing.
+alb2005_skip_missing_payment_zero_or_missing_when_triggered_rows,326,Triggered payment rows with no positive downstream payment; these are not outcome-ready without zero/missing-code review.
+alb2005_skip_missing_condition_nonmissing_when_not_triggered_rows,0,Conditional reason rows nonmissing when the trigger condition is false.
+alb2005_skip_missing_condition_missing_when_triggered_rows,0,Conditional reason rows missing when the trigger condition is true.
+alb2005_skip_missing_financing_nonmissing_when_not_triggered_rows,0,Health-financing method rows nonmissing when q01 is not difficult/very difficult.
+alb2005_skip_missing_financing_missing_when_triggered_rows,0,Health-financing method rows all missing when q01 is difficult/very difficult.
+alb2005_skip_missing_questionnaire_oop_rows_observed,36,Questionnaire-backed OOP rows observed upstream.
+alb2005_skip_missing_oop_policy_rows_observed,11,OOP aggregation policy stress-test rows observed upstream.
+alb2005_skip_missing_required_value_key_recipe_ready_observed,0,Recipe-ready rows observed upstream.
+alb2005_skip_missing_timing_verified_rows_observed,0,Verified interview-timing rows observed upstream.
+alb2005_skip_missing_climate_ready_rows_observed,0,Climate-linkage-ready rows observed upstream.
+alb2005_skip_missing_recipe_ready_rows,0,Rows promoted to harmonization recipe by this audit; intentionally zero.
+alb2005_skip_missing_outcome_ready_rows,0,Rows promoted to final outcome construction by this audit; intentionally zero.
+alb2005_skip_missing_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2005_skip_missing_current_decision,blocked_alb2005_skip_missing_semantics_seen_but_recipe_not_ready,Current fail-closed decision for ALB_2005 skip/missing semantics.

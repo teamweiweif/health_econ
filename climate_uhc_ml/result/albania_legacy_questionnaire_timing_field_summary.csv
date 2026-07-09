@@ -1,0 +1,19 @@
+metric,value,interpretation
+albania_legacy_questionnaire_timing_workbooks_scanned,5,Legacy ALB_2002/2005/2008 questionnaire workbooks opened for timing/control content review.
+albania_legacy_questionnaire_timing_sheets_scanned,6,Target control or panel-information sheets scanned.
+albania_legacy_questionnaire_timing_target_sheets_missing,0,Expected target sheets not found in opened workbooks.
+albania_legacy_questionnaire_timing_sheet_read_errors,0,Target sheets that could not be read.
+albania_legacy_questionnaire_timing_field_rows,83,"Questionnaire cells documenting date, begin/end, visit, status, contact, or remarks fields."
+albania_legacy_questionnaire_timing_visit_rows,18,Questionnaire cells documenting VISIT_1/VISIT_2/VISIT_3 control rows.
+albania_legacy_questionnaire_timing_second_visit_instruction_rows,5,Questionnaire cells documenting second-visit instructions.
+albania_legacy_questionnaire_timing_date_begin_end_status_rows,41,"Questionnaire cells documenting date, begin/end, status, or status-code fields."
+albania_legacy_questionnaire_timing_raw_gap_rows,58,ALB_2002/2005/2008 raw SPSS catalog rows with timing-like terms or verified ALB_2002 timing fields.
+albania_legacy_questionnaire_timing_raw_verified_variable_rows,7,ALB_2002 raw catalog variables classified as verified interview timing fields.
+albania_legacy_questionnaire_timing_raw_control_candidate_rows,0,Raw SPSS rows with interview/fieldwork/survey timing wording requiring review.
+alb2002_legacy_questionnaire_timing_raw_verified_interview_timing_rows,3599,ALB_2002 household rows with raw interview date from the existing household-core audit.
+alb2005_legacy_questionnaire_timing_raw_verified_interview_timing_rows,0,ALB_2005 verified raw household interview timing rows from the exhaustive timing/geography audit.
+alb2008_legacy_questionnaire_timing_raw_verified_interview_timing_rows,0,ALB_2008 verified raw household interview timing rows from the exhaustive timing/geography audit.
+albania_legacy_questionnaire_timing_raw_verified_interview_timing_waves,1,Legacy Albania waves with verified raw household interview timing rows.
+albania_legacy_questionnaire_timing_raw_verified_interview_timing_rows,3599,Total verified raw household interview timing rows already observed across ALB_2002/2005/2008.
+albania_legacy_questionnaire_timing_climate_linkage_ready_rows,0,Rows ready for climate-linkage input promotion after this questionnaire timing audit.
+albania_legacy_questionnaire_timing_current_decision,blocked_legacy_questionnaire_form_design_not_sufficient_for_climate_linkage,Current fail-closed decision for legacy questionnaire timing/control evidence.

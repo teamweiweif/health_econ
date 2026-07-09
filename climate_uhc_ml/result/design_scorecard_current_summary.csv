@@ -1,0 +1,8 @@
+metric,value,interpretation
+design_scorecard_rows,38,Total design scorecard rows after current fail-closed refresh.
+design_scorecard_current_rows,3,Current-state design rows appended to the metadata scorecard.
+design_scorecard_audit_rows,4,Audit rows for the current design scorecard refresh.
+design_no_go_threshold_rows,8,Go/no-go threshold audit rows.
+design_no_go_failed_or_not_estimable_rows,8,"Threshold rows that are failed, candidate-only, or not estimable."
+design_scorecard_data_write_ready_rows,0,Rows allowed for data/ write by this design scorecard; intentionally zero.
+design_scorecard_current_decision,fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning,Current design scorecard decision.

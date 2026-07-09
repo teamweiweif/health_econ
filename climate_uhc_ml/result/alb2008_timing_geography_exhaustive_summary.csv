@@ -1,0 +1,16 @@
+metric,value,interpretation
+alb2008_timing_geography_audit_rows,225,Timing/geography keyword rows scanned from ALB_2008 raw files.
+alb2008_timing_geography_source_files_scanned,42,ALB_2008 .sav files scanned.
+alb2008_timing_geography_read_failures,0,Raw files that could not be read by pyreadstat.
+alb2008_interview_timing_candidate_rows,0,Rows with apparent interview/fieldwork timing wording requiring context.
+alb2008_interview_timing_verified_rows,0,Verified household interview month/date rows available for climate linkage.
+alb2008_rejected_non_interview_timing_rows,62,"Rows rejected as birth, recall, duration, payment-period, or event-history timing."
+alb2008_rejected_migration_history_rows,18,Rows rejected as migration or historical residence geography/timing.
+alb2008_context_review_geography_timing_rows,99,Rows with timing/geography keywords requiring context but not verified for climate linkage.
+alb2008_psu_cluster_key_rows,42,PSU/cluster-like key rows observed.
+alb2008_coordinate_candidate_rows,0,GPS/latitude/longitude/coordinate candidate rows observed.
+alb2008_coarse_full_coverage_geography_candidate_rows,4,Rows for full-coverage coarse survey geography/design fields in poverty.sav.
+alb2008_coarse_geography_household_rows,3599,Maximum nonmissing household rows across coarse poverty.sav geography/design fields.
+alb2008_geography_verified_full_coverage_rows,0,Verified admin/GPS geography rows ready for climate linkage.
+alb2008_climate_linkage_ready_rows,0,Rows ready to support climate linkage input construction.
+alb2008_timing_geography_current_decision,blocked_missing_interview_timing_coarse_geography_no_gps,Current ALB_2008 timing/geography decision.

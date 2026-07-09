@@ -1,0 +1,16 @@
+metric,value,interpretation
+alb2002_consumption_construction_source_audit_rows,9,Rows in the ALB_2002 public consumption-construction source audit.
+alb2002_consumption_construction_public_pdf_present,1,Public IHSN consumption aggregate and poverty-line PDF downloaded.
+alb2002_consumption_construction_program_zip_present,1,Public IHSN Stata program ZIP downloaded.
+alb2002_consumption_construction_do_file_rows,19,Extracted Stata do-files in the public consumption program package.
+alb2002_consumption_construction_totcons_do_present,1,Whether totcons.do is present in the extracted program package.
+alb2002_consumption_construction_poverty_do_present,1,Whether poverty.do is present in the extracted program package.
+alb2002_consumption_construction_metadata_json_present,1,Public IHSN metadata JSON downloaded.
+alb2002_consumption_construction_documentation_ready_rows,9,Audit rows with accepted public documentation evidence.
+alb2002_consumption_construction_released_variable_mapping_ready_rows,3,Audit rows supporting the mapping from local `totcons` to public metadata `totcons3`.
+alb2002_consumption_construction_denominator_variant_ready_rows,8,Audit rows documenting the final total-budget denominator variant.
+alb2002_consumption_construction_recipe_ready_rows,0,Rows promoted to a full harmonization recipe by this source audit; intentionally zero.
+alb2002_consumption_construction_outcome_ready_rows,0,Rows promoted to outcome construction by this source audit; intentionally zero.
+alb2002_consumption_construction_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 construction by this source audit; intentionally zero.
+alb2002_consumption_construction_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this source audit; intentionally zero.
+alb2002_consumption_construction_current_decision,documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready,Current decision for ALB_2002 public consumption aggregate construction evidence.

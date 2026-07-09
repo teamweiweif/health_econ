@@ -1,0 +1,34 @@
+metric,value,interpretation
+alb2002_consumption_sdg_denominator_policy_rows,14,Rows in the ALB_2002 consumption/SDG denominator policy audit.
+alb2002_consumption_sdg_household_rows,3599,Household rows in the ALB_2002 temp core candidate.
+alb2002_consumption_sdg_total_consumption_rows,3599,Rows with nonmissing total consumption.
+alb2002_consumption_sdg_positive_total_consumption_rows,3599,Rows with positive total consumption.
+alb2002_consumption_sdg_zero_total_consumption_rows,0,Rows with zero total consumption.
+alb2002_consumption_sdg_negative_total_consumption_rows,0,Rows with negative total consumption.
+alb2002_consumption_sdg_total_consumption_min,2242.84,Observed minimum total consumption.
+alb2002_consumption_sdg_total_consumption_p50,30105.6,Observed median total consumption.
+alb2002_consumption_sdg_total_consumption_p95,64973,Observed 95th percentile total consumption.
+alb2002_consumption_sdg_total_consumption_max,277177,Observed maximum total consumption.
+alb2002_consumption_sdg_household_weight_rows,3599,Rows with nonmissing household weight.
+alb2002_consumption_sdg_positive_household_weight_rows,3599,Rows with positive household weight.
+alb2002_consumption_sdg_household_size_rows,3599,Rows with nonmissing household size.
+alb2002_consumption_sdg_positive_household_size_rows,3599,Rows with positive household size.
+alb2002_consumption_sdg_che10_4w_unreviewed_rows,626,Diagnostic CHE10 rows using unreviewed four-week OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_che10_4w_unreviewed_rate,0.173937,Diagnostic CHE10 rate using unreviewed four-week OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_che25_4w_unreviewed_rows,208,Diagnostic CHE25 rows using unreviewed four-week OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_che25_4w_unreviewed_rate,0.0577938,Diagnostic CHE25 rate using unreviewed four-week OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_che10_12m_unreviewed_rows,1076,Diagnostic CHE10 rows using unreviewed twelve-month OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_che10_12m_unreviewed_rate,0.298972,Diagnostic CHE10 rate using unreviewed twelve-month OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_che25_12m_unreviewed_rows,594,Diagnostic CHE25 rows using unreviewed twelve-month OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_che25_12m_unreviewed_rate,0.165046,Diagnostic CHE25 rate using unreviewed twelve-month OOP over total consumption; not a final outcome.
+alb2002_consumption_sdg_policy_ready_rows,0,Audit components accepted for promotion by this audit; intentionally zero.
+alb2002_consumption_sdg_blocked_component_rows,14,Audit components remaining blocked.
+alb2002_consumption_sdg_spl_ready_rows,0,Rows with accepted societal poverty line inputs; intentionally zero.
+alb2002_consumption_sdg_ppp_cpi_ready_rows,0,Rows with accepted PPP/CPI/price-basis inputs; intentionally zero.
+alb2002_consumption_sdg_discretionary_budget_ready_rows,0,Rows with accepted household discretionary budget construction; intentionally zero.
+alb2002_consumption_sdg_che_denominator_ready_rows,0,Rows with accepted CHE denominator construction; intentionally zero.
+alb2002_consumption_sdg_recipe_ready_rows,0,Rows promoted to harmonization recipe by this audit; intentionally zero.
+alb2002_consumption_sdg_outcome_ready_rows,0,Rows promoted to final outcome construction by this audit; intentionally zero.
+alb2002_consumption_sdg_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 construction by this audit; intentionally zero.
+alb2002_consumption_sdg_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2002_consumption_sdg_current_decision,blocked_alb2002_consumption_sdg_denominator_policy_not_sdg_ready,Current fail-closed decision for the ALB_2002 consumption/SDG denominator policy audit.

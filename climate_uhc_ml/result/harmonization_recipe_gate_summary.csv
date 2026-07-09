@@ -1,0 +1,20 @@
+metric,value,interpretation
+gate_rows,1204,"Scaffold rows assessed by raw-file, raw-variable, and value-audit gates."
+value_audit_template_rows,7153,Rows in the post-download value-audit template.
+verified_candidate_rows,0,Rows that can be copied into a real harmonization recipe after all gates pass.
+country_wave_rows,28,Country-waves assessed for minimum harmonization readiness.
+ready_country_wave_rows,0,Country-waves ready for verified recipe assembly.
+blocked_country_wave_rows,28,Country-waves still blocked by required raw evidence.
+raw_file_inventory_rows,209,Raw file inventory rows available to the gate.
+raw_variable_catalog_rows,5410,Raw variable catalog rows available to the gate.
+value_audit_rows,431,Manually or programmatically completed value-audit rows.
+recipe_gate_status_blocked_raw_file_missing,1174,Recipe gate status count.
+recipe_gate_status_blocked_raw_variable_missing,1,Recipe gate status count.
+recipe_gate_status_blocked_value_audit_missing,29,Recipe gate status count.
+readiness_status_blocked_until_required_raw_value_audits_pass,28,Country-wave readiness status count.
+required_flag_no,168,Required/recommended/optional scaffold row count.
+required_flag_recommended,588,Required/recommended/optional scaffold row count.
+required_flag_yes,448,Required/recommended/optional scaffold row count.
+value_audit_status_raw_value_summary_available_manual_interpretation_required,27,Value-audit status count.
+value_audit_status_raw_variable_rejected_false_survey_weight_birth_measure,2,Value-audit status count.
+value_audit_status_value_audit_blocked_until_raw_variable_seen,1175,Value-audit status count.

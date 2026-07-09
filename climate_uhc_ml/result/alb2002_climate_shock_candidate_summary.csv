@@ -1,0 +1,26 @@
+metric,value,interpretation
+alb2002_climate_shock_candidate_exposure_rows,384,Temp-only climate shock diagnostic rows derived from centroid exposures.
+alb2002_climate_shock_candidate_source_centroid_rows,384,Source centroid exposure rows consumed.
+alb2002_climate_shock_candidate_lineage_rows,7,Lineage rows for diagnostic shock fields.
+alb2002_climate_shock_candidate_audit_rows,8,Audit rows for diagnostic shock construction and promotion gates.
+alb2002_climate_shock_candidate_distinct_district_rows,36,Distinct districts represented.
+alb2002_climate_shock_candidate_survey_month_rows,4,Distinct survey months represented.
+alb2002_climate_shock_candidate_window_rows,4,Distinct lag windows represented.
+alb2002_climate_shock_candidate_reference_group_rows,16,Survey-month-by-window diagnostic reference groups.
+alb2002_climate_shock_candidate_min_reference_group_size,3,Smallest within-candidate reference group size.
+alb2002_climate_shock_candidate_max_reference_group_size,34,Largest within-candidate reference group size.
+alb2002_climate_shock_candidate_precip_z_nonmissing_rows,384,Rows with diagnostic rainfall z-scores.
+alb2002_climate_shock_candidate_temp_z_nonmissing_rows,384,Rows with diagnostic temperature z-scores.
+alb2002_climate_shock_candidate_low_rain_rows,37,Rows with diagnostic low-rain z <= -1.
+alb2002_climate_shock_candidate_severe_low_rain_rows,0,Rows with diagnostic low-rain z <= -1.5.
+alb2002_climate_shock_candidate_extreme_wet_rows,44,Rows with diagnostic wet z >= 1.5.
+alb2002_climate_shock_candidate_heat_rows,66,Rows with diagnostic heat z >= 1.
+alb2002_climate_shock_candidate_extreme_heat_rows,29,Rows with diagnostic heat z >= 1.5.
+alb2002_climate_shock_candidate_cold_rows,13,Rows with diagnostic cold z <= -1.5.
+alb2002_climate_shock_candidate_combined_stress_rows,73,"Rows with any severe low-rain, extreme-wet, or extreme-heat diagnostic flag."
+alb2002_climate_shock_candidate_primary_chirps_ready_rows,0,Rows with primary CHIRPS rainfall accepted; intentionally zero.
+alb2002_climate_shock_candidate_primary_era5_ready_rows,0,Rows with primary ERA5-Land temperature accepted; intentionally zero.
+alb2002_climate_shock_candidate_historical_baseline_ready_rows,0,Rows with local historical baselines accepted; intentionally zero.
+alb2002_climate_shock_candidate_climate_linkage_ready_rows,0,Rows ready for promoted climate linkage; intentionally zero.
+alb2002_climate_shock_candidate_data_write_ready_rows,0,Rows allowed to be written to data/; intentionally zero.
+alb2002_climate_shock_candidate_current_decision,blocked_alb2002_climate_shock_candidate_not_promoted_due_geography_baseline_primary_source_gates,Current fail-closed climate shock diagnostic decision.

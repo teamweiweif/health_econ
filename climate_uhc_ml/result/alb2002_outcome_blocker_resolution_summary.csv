@@ -1,0 +1,13 @@
+metric,value,interpretation
+alb2002_outcome_blocker_resolution_rows,12,Outcome blocker rows consolidated.
+alb2002_outcome_blocker_financial_rows,4,Financial-protection outcome rows in the matrix.
+alb2002_outcome_blocker_access_rows,5,Access outcome rows in the matrix.
+alb2002_outcome_blocker_composite_rows,3,Composite UHC/coping outcome rows in the matrix.
+alb2002_outcome_blocker_candidate_not_promoted_rows,11,Candidate outcome rows with evidence but no final promotion.
+alb2002_outcome_blocker_low_event_candidate_rows,1,Sparse candidate outcome rows flagged as low-event.
+alb2002_outcome_blocker_hard_blocked_rows,1,Outcome rows hard-blocked by missing required inputs.
+alb2002_outcome_blocker_outcome_ready_rows,0,Rows ready for final outcome promotion; intentionally zero.
+alb2002_outcome_blocker_sdg382_ready_rows,0,Rows ready for SDG 3.8.2 promotion; intentionally zero.
+alb2002_outcome_blocker_climate_linkage_ready_rows,0,Rows ready for climate-linked outcome promotion; intentionally zero.
+alb2002_outcome_blocker_data_write_ready_rows,0,Rows allowed for data/ writes by this outcome matrix; intentionally zero.
+alb2002_outcome_blocker_current_decision,blocked_no_alb2002_outcome_ready_for_promotion,Current consolidated ALB_2002 outcome promotion decision.

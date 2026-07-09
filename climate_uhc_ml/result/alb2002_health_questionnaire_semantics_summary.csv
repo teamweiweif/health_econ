@@ -1,0 +1,29 @@
+metric,value,interpretation
+alb2002_health_questionnaire_semantics_rows,65,Rows in the ALB_2002 health questionnaire and skip-path audit.
+alb2002_health_questionnaire_questionnaire_rows,53,Questionnaire-backed health variable rows.
+alb2002_health_questionnaire_oop_item_rows,25,Questionnaire-backed OOP payment item rows excluding gift-value rows.
+alb2002_health_questionnaire_gift_item_rows,6,Gift/payment-scope rows that require inclusion-policy review.
+alb2002_health_questionnaire_new_lek_unit_rows,31,Rows where the questionnaire explicitly records new-lek units.
+alb2002_health_questionnaire_four_week_oop_rows,17,OOP item rows with past-four-week recall.
+alb2002_health_questionnaire_twelve_month_oop_rows,8,OOP item rows with past-12-month recall.
+alb2002_health_questionnaire_exclusion_note_rows,6,"Questionnaire rows with explicit exclusion notes for gifts, medicines, laboratory, or transport."
+alb2002_health_questionnaire_zero_instruction_rows,10,Questionnaire rows with explicit zero-payment instructions.
+alb2002_health_questionnaire_access_rows,8,"Access, affordability, delayed-care, referral, refusal, or medicine-discount rows."
+alb2002_health_questionnaire_cost_barrier_rows,5,Access rows whose questionnaire options include cost or affordability barriers.
+alb2002_health_questionnaire_distance_barrier_rows,2,Access rows whose questionnaire options include distance barriers.
+alb2002_health_questionnaire_supply_barrier_rows,3,"Access rows whose questionnaire options include availability, service-region, referral, document, or shortage barriers."
+alb2002_health_questionnaire_payment_skip_rows,7,Person-level OOP payment skip-path rows audited.
+alb2002_health_questionnaire_payment_nonmissing_when_not_triggered_rows,11,Payment downstream rows nonmissing when the visit/drug/stay/dentist trigger is negative.
+alb2002_health_questionnaire_payment_positive_when_not_triggered_rows,0,Payment downstream rows positive when the trigger is negative.
+alb2002_health_questionnaire_payment_zero_or_missing_when_triggered_rows,274,Triggered payment rows with no positive downstream payment; requires zero/missing-code review.
+alb2002_health_questionnaire_conditional_skip_rows,5,Household access/coping conditional skip rows audited.
+alb2002_health_questionnaire_conditional_nonmissing_when_not_triggered_rows,0,Conditional downstream rows nonmissing when the trigger condition is false.
+alb2002_health_questionnaire_conditional_missing_when_triggered_rows,0,Conditional downstream rows missing when the trigger condition is true.
+alb2002_health_questionnaire_outcome_semantics_ready_observed,0,Outcome-ready rows observed in the upstream raw outcome-semantics audit.
+alb2002_health_questionnaire_core_recipe_ready_observed,0,Recipe-ready rows observed in the upstream household-core audit.
+alb2002_health_questionnaire_boundary_climate_ready_observed,0,Climate-linkage-ready rows observed in the GADM boundary lead audit.
+alb2002_health_questionnaire_recipe_ready_rows,0,Rows promoted to a harmonization recipe by this audit; intentionally zero.
+alb2002_health_questionnaire_outcome_ready_rows,0,Rows promoted to final outcome construction by this audit; intentionally zero.
+alb2002_health_questionnaire_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 construction by this audit; intentionally zero.
+alb2002_health_questionnaire_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2002_health_questionnaire_current_decision,blocked_alb2002_questionnaire_semantics_seen_but_outcome_not_ready,Current fail-closed decision for ALB_2002 questionnaire-backed health semantics.

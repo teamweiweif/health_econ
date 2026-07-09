@@ -1,0 +1,14 @@
+metric,value,interpretation
+alb2002_district_crosswalk_household_rows,3599,Rows in temp/alb2002_household_core_candidate.csv.
+alb2002_district_crosswalk_households_with_district,3599,Households with observed ALB_2002 district code.
+alb2002_district_crosswalk_district_rows,36,Observed district code/name groups in the crosswalk template.
+alb2002_district_crosswalk_survey_month_rows,3599,Households with raw survey month for climate windows.
+alb2002_district_crosswalk_interview_date_rows,3599,Households with constructed interview date for climate windows.
+alb2002_district_crosswalk_name_encoding_review_rows,2,District names with non-ASCII characters requiring raw-label encoding review.
+alb2002_district_crosswalk_boundary_source_rows,1,Public boundary metadata sources probed.
+alb2002_district_crosswalk_boundary_source_reachable_rows,1,Public boundary metadata sources reachable and saved.
+alb2002_district_crosswalk_boundary_source_adm_unit_count,37,ADM unit count reported by the probed public boundary source.
+alb2002_district_crosswalk_boundary_unit_count_match_rows,0,Template district rows where observed district count matches boundary unit count.
+alb2002_district_crosswalk_template_ready_rows,0,Rows ready for crosswalk or data promotion after this audit.
+alb2002_climate_linkage_ready_rows,0,ALB_2002 rows ready for climate-linkage input promotion after this audit.
+alb2002_district_crosswalk_current_decision,blocked_boundary_crosswalk_not_verified_no_gps,Current fail-closed decision for ALB_2002 district climate crosswalk readiness.

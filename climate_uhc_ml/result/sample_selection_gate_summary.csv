@@ -1,0 +1,5 @@
+rule,status,count_or_value,threshold,interpretation
+"Main financial-protection sample has at least 6 value-verified countries with budget, OOP, geography, timing, and weights",fail,0,6 countries,Do not proceed with main multi-country financial-protection paper until this passes.
+At least 10 value-verified country-waves support both financial hardship and access/forgone-care outcomes,fail,0,10 country-waves,Keep UHC double failure secondary until this passes.
+Metadata-only main-sample candidates before raw inspection,informational,31 waves; 18 countries,not a selection rule,Useful for download prioritization only; not valid for final analytical sample selection.
+Raw value and verified harmonization gate,fail,0,at least 1 value-verified analytical row set before any final selection,Current final sample selection is blocked if this fails.

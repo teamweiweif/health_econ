@@ -1,0 +1,16 @@
+metric,value,interpretation
+alb2005_timing_geography_audit_rows,234,Timing/geography keyword rows scanned from ALB_2005 raw files.
+alb2005_timing_geography_source_files_scanned,44,ALB_2005 .sav files scanned.
+alb2005_timing_geography_read_failures,0,Raw files that could not be read by pyreadstat.
+alb2005_interview_timing_candidate_rows,0,Rows with apparent interview/fieldwork timing wording requiring context.
+alb2005_interview_timing_verified_rows,0,Verified household interview month/date rows available for climate linkage.
+alb2005_rejected_non_interview_timing_rows,65,"Rows rejected as birth, recall, duration, payment-period, or event-history timing."
+alb2005_rejected_migration_history_rows,18,Rows rejected as migration or historical residence geography/timing.
+alb2005_psu_cluster_key_rows,44,PSU/cluster-like key rows observed.
+alb2005_coordinate_candidate_rows,0,GPS/latitude/longitude/coordinate candidate rows observed.
+alb2005_partial_current_district_candidate_rows,2,Rows for current household district name/code candidates in filters.sav.
+alb2005_partial_district_name_nonmissing_rows,1899,Nonmissing rows for P11_Q5A district name in filters.sav.
+alb2005_partial_district_code_nonmissing_rows,329,Nonmissing rows for P11_Q5B district code in filters.sav.
+alb2005_geography_verified_full_coverage_rows,0,Verified full-coverage geography rows ready for climate linkage.
+alb2005_climate_linkage_ready_rows,0,Rows ready to support climate linkage input construction.
+alb2005_timing_geography_current_decision,blocked_missing_interview_timing_partial_geography_no_gps,Current ALB_2005 timing/geography decision.

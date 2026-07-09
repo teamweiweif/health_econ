@@ -1,0 +1,12 @@
+metric,value,interpretation
+alb2002_weight_design_evidence_audit_rows,6,Rows in the ALB_2002 weight/design evidence audit.
+alb2002_weight_design_source_page_reachable_rows,1,Official study page or saved snapshot available for source context.
+alb2002_weight_design_source_page_flag_rows,9,"Official study-page flags detected for study identity, sampling context, fieldwork, and GPS intent."
+alb2002_weight_design_raw_weight_file_rows,3599,Rows read from weights_1.sav.
+alb2002_weight_design_positive_weight_rows,3599,Rows with positive household weights in weights_1.sav.
+alb2002_weight_design_candidate_key_match_rows,3599,Readable weight-file keys matching the temp household core candidate.
+alb2002_weight_design_distinct_psu_rows,450,Distinct PSU values in the readable weight file.
+alb2002_weight_design_distinct_stratum_rows,4,Distinct stratum values in the readable weight file.
+alb2002_weight_design_weighted_inference_ready_rows,0,Rows ready for promoted weighted inference; intentionally zero.
+alb2002_weight_design_harmonized_promotion_ready_rows,0,Rows ready for harmonized data promotion after this audit; intentionally zero.
+alb2002_weight_design_current_decision,blocked_alb2002_weight_design_semantics_not_promotion_ready,Current fail-closed ALB_2002 weight/design decision.

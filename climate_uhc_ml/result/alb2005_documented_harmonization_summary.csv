@@ -1,0 +1,11 @@
+metric,value,interpretation
+alb2005_documented_evidence_rows,44,Rows in the ALB_2005 documented harmonization review.
+alb2005_rows_with_observed_value_summaries,41,Rows where raw values were summarized from inspected SPSS files.
+alb2005_documentation_supported_rows,39,Rows with documentation/schema support but still requiring manual review.
+alb2005_future_recipe_candidate_rows,36,Rows that may enter a future recipe only after manual key/unit/recall/skip review.
+alb2005_false_positive_rows,2,Rows explicitly rejected as false-positive harmonization candidates.
+alb2005_timing_or_geography_blocker_rows,3,Rows blocking climate linkage because timing or geography evidence is insufficient.
+alb2005_oop_candidate_rows,16,Candidate OOP payment variables requiring aggregation/recall review.
+alb2005_questionnaire_xls_reader_available,1,Whether a trusted legacy XLS reader is available for questionnaire extraction.
+alb2005_recipe_ready_rows,0,This review does not promote any harmonization recipe rows.
+alb2005_current_decision,not_ready_for_verified_recipe,"ALB_2005 remains blocked pending timing/geography, OOP aggregation, units, skip patterns, and merge-key review."

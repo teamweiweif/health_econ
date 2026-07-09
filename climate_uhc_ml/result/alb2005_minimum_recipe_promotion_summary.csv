@@ -1,0 +1,9 @@
+metric,value,interpretation
+alb2005_minimum_recipe_promotion_action_rows,6,Action rows needed before ALB_2005 can become a minimum harmonized household dataset.
+alb2005_minimum_recipe_promotion_gate_rows,10,"Pass/fail promotion gates for ALB_2005 harmonization, outcome, and climate linkage."
+alb2005_minimum_recipe_promotion_blocked_gates,8,Promotion gates still blocked.
+alb2005_minimum_recipe_promotion_candidate_gates,2,Gates with candidate evidence that still needs acceptance review.
+alb2005_minimum_recipe_promotion_harmonized_ready_rows,0,Rows ready for harmonized dataset promotion after this packet; intentionally zero.
+alb2005_minimum_recipe_promotion_outcome_ready_rows,0,Existing ALB_2005 outcome-ready rows observed from semantics audits.
+alb2005_minimum_recipe_promotion_climate_linkage_ready_rows,0,Existing ALB_2005 climate-linkage-ready rows observed from timing/geography audits.
+alb2005_minimum_recipe_promotion_current_decision,blocked_alb2005_minimum_recipe_not_ready_for_promotion,Current fail-closed ALB_2005 minimum recipe promotion decision.

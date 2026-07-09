@@ -1,6 +1,6 @@
 # Health Economics Project Workspace
 
-This repository contains three public-data health economics project workspaces.
+This repository contains public-data health economics project workspaces.
 Each project is kept as a separate top-level folder with scripts, reports,
 lightweight outputs, and a GitHub-friendly data metadata layer.
 
@@ -11,6 +11,7 @@ lightweight outputs, and a GitHub-friendly data metadata layer.
 | `988_telecom_fee_crisis_performance/` | State 988 telecom fee funding and crisis-line performance | Conditional go for exploratory policy-audit evidence |
 | `ccbhc_expansion_capacity/` | 2024 CCBHC Medicaid Demonstration expansion and behavioral-health capacity | Monitoring package; no-go for a current causal paper |
 | `nursing_home_staffing_reporting/` | CMS 2022 nursing-home staffing transparency and Five-Star rating changes | Large staffing panel; weak current causal design because pretrends/placebo fail |
+| `climate_uhc_ml/` | Climate shocks, UHC financial protection, and diagnostic ML targeting feasibility | Objective audit workspace complete; empirical manuscript claims remain fail-closed |
 
 ## Data Policy
 
@@ -27,14 +28,15 @@ Each `data_metadata/` folder contains:
   summaries when applicable, and the most common observed value.
 - `categorical_top_values.csv`: top observed values for each variable in the
   profiled rows.
-- `file_manifest_sha256.csv`: local download audit for all files in the source
-  project folder, including omitted large files, with size, read status, and
-  SHA-256 hash.
+- `file_manifest_sha256.csv`, where available: local download audit for source
+  files, including omitted large files, with size, read status, and SHA-256 hash.
 - `README.md`: generation notes for the metadata profile.
 
 The full local download audit summary is stored in
-`download_audit_summary.csv`. At the time of this push all 422 source files
-across the three local project folders were readable with zero read errors.
+`download_audit_summary.csv`. At the time of the original three-project push all
+422 source files across those local project folders were readable with zero read
+errors. Newer project folders may carry their own source inventories and direct
+read audit bundles.
 
 ## Refreshing Metadata
 

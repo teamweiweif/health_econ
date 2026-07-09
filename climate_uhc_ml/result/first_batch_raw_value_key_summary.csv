@@ -1,0 +1,22 @@
+metric,value,interpretation
+raw_ready_first_batch_dataset_rows,1,First-batch datasets with raw files and variables present for value/key audit.
+raw_ready_first_batch_idnos,ALB_2005_LSMS_v01_M,IDNOs entering the raw value/key audit.
+first_batch_value_candidate_rows,513,Candidate raw variable rows gathered from the harmonization scaffold and first-batch variable template.
+first_batch_value_audit_rows,535,Resolved or blocked long-form value-audit rows.
+first_batch_value_rows_variable_present,182,Value-audit rows whose candidate raw variable was found in the raw schema catalog.
+first_batch_value_rows_read_ok,176,Value-audit rows whose raw values were read successfully.
+first_batch_value_rows_nonmissing,176,Value-audit rows with at least one nonmissing observed raw value.
+first_batch_false_survey_weight_birth_measure_rows,6,Survey-weight candidates rejected because the raw variable is a birth-weight measure.
+first_batch_auto_harmonization_value_audit_rows,431,Fail-closed auto value-audit rows provided to the harmonization gate.
+first_batch_key_audit_rows,56,File-level key/design/geography/timing cardinality audit rows.
+first_batch_key_rows_read_ok,56,Key-audit rows whose raw files were read successfully.
+first_batch_recipe_promoted_rows,0,This audit never promotes a harmonization recipe; manual unit/recall/missing-code/key review is still required.
+value_audit_status_raw_value_summary_available_manual_interpretation_required,176,First-batch raw value-audit status count.
+value_audit_status_raw_variable_not_found,353,First-batch raw value-audit status count.
+value_audit_status_raw_variable_rejected_false_survey_weight_birth_measure,6,First-batch raw value-audit status count.
+key_audit_status_key_repeats_at_file_row_level_manual_merge_level_review_required,35,First-batch raw key-audit status count.
+key_audit_status_key_summary_available_manual_design_level_review_required,11,First-batch raw key-audit status count.
+key_audit_status_key_unique_at_file_row_level_manual_cross_file_review_required,10,First-batch raw key-audit status count.
+value_read_status_not_attempted,353,First-batch raw value read-status count.
+value_read_status_not_attempted_rejected_false_positive,6,First-batch raw value read-status count.
+value_read_status_read_ok,176,First-batch raw value read-status count.

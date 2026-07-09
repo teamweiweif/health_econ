@@ -1,0 +1,12 @@
+metric,value,interpretation
+requirement_rows,253,Country-wave climate linkage requirement rows.
+country_wave_rows,23,Priority bundle country-waves assessed.
+source_matrix_rows,9,Climate source/method rows.
+validation_protocol_rows,9,Climate exposure validation check rows.
+ready_country_wave_rows,0,Country-waves ready for climate linkage value audit.
+blocked_country_wave_rows,23,Country-waves blocked by raw timing/geography or validation inputs.
+requirement_gate_metadata_ready_raw_unverified,253,Requirement gate status count.
+readiness_status_blocked_until_raw_timing_geography_and_validation_inputs,23,Country-wave readiness status count.
+source_status_pass_api_parameters_present,1,Climate source probe status count.
+source_status_reachable_snapshot_saved,8,Climate source probe status count.
+validation_status_blocked_until_verified_geography_and_timing,9,Validation protocol status count.

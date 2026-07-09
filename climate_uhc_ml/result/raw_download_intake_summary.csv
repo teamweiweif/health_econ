@@ -1,0 +1,9 @@
+metric,value,interpretation
+raw_download_intake_targets,37,Target folders with dataset-level intake instructions.
+target_readmes_written,37,Per-target README files written under temp/raw_downloads.
+expected_module_rows,1615,Metadata-derived module/file rows to check after download.
+ready_for_raw_schema_inspection_targets,1,Targets with raw tabular or archive files currently present.
+instructions_or_documentation_only_targets,36,Targets containing only README/documentation files.
+waiting_for_download_targets,0,Targets with no files yet.
+expected_file_status_archive_present_needs_schema_extraction,68,Expected module/file matching status.
+expected_file_status_not_present,1547,Expected module/file matching status.

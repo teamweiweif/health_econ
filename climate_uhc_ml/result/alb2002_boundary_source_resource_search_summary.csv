@@ -1,0 +1,13 @@
+metric,value,interpretation
+alb2002_boundary_resource_search_candidate_rows,3,Public boundary/gazetteer resources directly parsed or probed for ALB_2002.
+alb2002_boundary_resource_search_parseable_resource_rows,3,Rows with a parsed GeoJSON or gazetteer name list.
+alb2002_boundary_resource_search_complete_name_coverage_rows,1,Resources with no unmatched ALB_2002 survey district keys after documented repairs/aliases.
+alb2002_boundary_resource_search_exact_unit_count_rows,1,Resources whose feature and distinct-key counts both equal the 36 observed survey district groups.
+alb2002_boundary_resource_search_korce_available_rows,2,Resources whose parsed names include a canonical KORCE boundary key.
+alb2002_boundary_resource_search_2002_historical_ready_rows,0,Resources verified as 2002 historical boundary inputs after this audit; intentionally zero.
+alb2002_boundary_resource_search_climate_linkage_ready_rows,0,Resources ready for climate-linkage input promotion after this audit; intentionally zero.
+alb2002_boundary_resource_search_best_candidate_id,geoboundaries_2_0_1_adm2,Best current lead by name coverage only; not a promoted analytical input.
+alb2002_boundary_resource_search_best_candidate_exact_matches,33,Exact normalized matches for the best name-coverage candidate.
+alb2002_boundary_resource_search_best_candidate_repaired_matches,2,Mojibake/encoding-repaired matches for the best name-coverage candidate.
+alb2002_boundary_resource_search_best_candidate_alias_matches,1,Documented alias matches for the best name-coverage candidate.
+alb2002_boundary_resource_search_current_decision,blocked_alb2002_boundary_resource_search_no_historical_climate_ready_source,Current fail-closed decision for ALB_2002 public boundary resource search.

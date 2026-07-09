@@ -1,0 +1,26 @@
+metric,value,interpretation
+target_rows,35,Acquisition target rows across all probe sets.
+unique_bundle_datasets,23,Unique dataset folders to populate.
+unique_countries_in_targets,11,Countries represented by metadata-only targets.
+financial_core_candidate_rows,22,Metadata-only rows with budget/OOP/weight/timing/geography.
+double_failure_candidate_rows,22,Metadata-only rows with financial and access core indicators.
+raw_file_inventory_rows,0,Raw file rows currently inspected.
+raw_variable_catalog_rows,0,Raw variable rows currently inspected.
+target_rows_ready_for_analysis,0,Targets are metadata-only until raw verification and harmonization pass.
+target_set_double_failure_10_wave_probe,10,Acquisition target count by probe set.
+target_set_financial_6_country_probe,6,Acquisition target count by probe set.
+target_set_multi_wave_panel_sequence_probe,13,Acquisition target count by probe set.
+target_set_secondary_access_only_probe,6,Acquisition target count by probe set.
+target_quality_tier_tier_1_quality_supported_financial_and_access_download,29,Acquisition target count by metadata tier.
+target_quality_tier_tier_3_quality_supported_access_only_download,6,Acquisition target count by metadata tier.
+target_country_Albania,2,Acquisition target count by country across probe sets.
+target_country_Bulgaria,2,Acquisition target count by country across probe sets.
+target_country_Ethiopia,6,Acquisition target count by country across probe sets.
+target_country_Jamaica,2,Acquisition target count by country across probe sets.
+target_country_Kyrgyz Republic,2,Acquisition target count by country across probe sets.
+target_country_Malawi,5,Acquisition target count by country across probe sets.
+target_country_Nepal,2,Acquisition target count by country across probe sets.
+target_country_Nigeria,6,Acquisition target count by country across probe sets.
+target_country_Tanzania,4,Acquisition target count by country across probe sets.
+target_country_Uganda,3,Acquisition target count by country across probe sets.
+target_country_Viet Nam,1,Acquisition target count by country across probe sets.

@@ -1,0 +1,2 @@
+check,status,detail,input_path,rows_input,rows_output,output_path,required_action
+identification_gate,rejected_placebo_not_ready,Reduced-form gate is not placebo-ready (future_climate_lead_placebo: not_ready; seasonality_controls: ready; geography_controls: ready).,result\placebo_readiness_audit.csv,3,0,,"Construct and pass climate-lead, seasonality, and geography checks before causal ML."

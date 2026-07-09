@@ -1,0 +1,15 @@
+metric,value,interpretation
+alb2005_fallback_blocker_resolution_rows,12,ALB_2005 fallback blocker rows consolidated.
+alb2005_fallback_blocker_raw_package_rows,1,Raw-package blocker rows in the matrix.
+alb2005_fallback_blocker_timing_rows,3,Timing blocker rows in the matrix.
+alb2005_fallback_blocker_geography_rows,2,Geography blocker rows in the matrix.
+alb2005_fallback_blocker_outcome_rows,3,Outcome blocker rows in the matrix.
+alb2005_fallback_blocker_promotion_gate_rows,3,Promotion-gate rows in the matrix.
+alb2005_fallback_blocker_hard_blocked_rows,12,Rows hard-blocked from fallback promotion.
+alb2005_fallback_blocker_harmonized_ready_rows,0,Rows ready for harmonized data promotion; intentionally zero.
+alb2005_fallback_blocker_outcome_ready_rows,0,Rows ready for outcome promotion; intentionally zero.
+alb2005_fallback_blocker_interview_timing_ready_rows,0,Rows with verified interview timing; intentionally zero.
+alb2005_fallback_blocker_geography_ready_rows,0,Rows with promoted geography; intentionally zero.
+alb2005_fallback_blocker_climate_linkage_ready_rows,0,Rows ready for climate linkage; intentionally zero.
+alb2005_fallback_blocker_data_write_ready_rows,0,Rows allowed for data/ writes by this matrix; intentionally zero.
+alb2005_fallback_blocker_current_decision,blocked_alb2005_no_fallback_ready,Current consolidated ALB_2005 fallback decision.

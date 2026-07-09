@@ -1,0 +1,12 @@
+metric,value,interpretation
+alb2012_questionnaire_timing_workbooks_scanned,2,ALB_2012 questionnaire workbooks scanned for control-sheet timing fields.
+alb2012_questionnaire_timing_field_rows,29,"Questionnaire cells documenting date, begin/end, visit, status, or remarks fields."
+alb2012_questionnaire_timing_visit_rows,6,Questionnaire cells documenting VISIT_1/VISIT_2/VISIT_3 control rows.
+alb2012_questionnaire_timing_date_begin_end_status_rows,19,"Questionnaire cells documenting date, begin/end, status, or status-code fields."
+alb2012_questionnaire_timing_raw_gap_rows,12,ALB_2012 raw SPSS catalog rows with timing-like terms but not verified interview timing.
+alb2012_questionnaire_timing_raw_control_candidate_rows,0,Raw SPSS rows with interview/fieldwork/survey timing wording requiring review.
+alb2012_questionnaire_timing_raw_verified_interview_timing_rows,0,Verified household interview month/date values in raw SPSS modules.
+alb2012_questionnaire_timing_previous_exhaustive_verified_interview_rows,0,Verified interview timing rows reported by the exhaustive raw timing/geography audit.
+alb2012_questionnaire_timing_previous_exhaustive_climate_ready_rows,0,Climate-linkage-ready rows reported by the exhaustive raw timing/geography audit.
+alb2012_questionnaire_timing_climate_linkage_ready_rows,0,Rows ready for climate-linkage input promotion after this questionnaire timing audit.
+alb2012_questionnaire_timing_current_decision,blocked_questionnaire_timing_fields_not_in_raw_household_values,Current fail-closed decision for ALB_2012 questionnaire timing evidence.

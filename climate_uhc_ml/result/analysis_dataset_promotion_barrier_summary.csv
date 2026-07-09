@@ -1,0 +1,93 @@
+metric,value,interpretation
+analysis_dataset_promotion_audit_rows,6,Rows checking missing analysis-ready data promotion targets.
+analysis_dataset_promotion_blocked_rows,2,Promotion targets still blocked from data/.
+analysis_dataset_promotion_promoted_rows,4,Promotion targets currently allowed for data/ write; limited core/outcome/exposure/linked diagnostic files are allowed while analysis-ready models remain blocked.
+analysis_dataset_promotion_data_file_count,4,Files currently present under data/.
+analysis_dataset_promotion_verified_recipe_candidates,0,General harmonization recipe candidate rows verified by value/unit/recall/key checks.
+analysis_dataset_promotion_ready_country_waves,0,Country-waves ready for verified harmonization recipe assembly.
+analysis_dataset_promotion_alb2002_temp_core_rows,3599,ALB_2002 temp-only household core rows.
+analysis_dataset_promotion_alb2002_weight_positive_rows,3599,ALB_2002 positive household-weight rows observed in the readable weight file.
+analysis_dataset_promotion_alb2002_weight_key_match_rows,3599,ALB_2002 readable weight-file keys matching the temp household core.
+analysis_dataset_promotion_alb2002_sample_design_documentation_ready_rows,1,ALB_2002 official sample-design documentation ready; this is not data promotion.
+analysis_dataset_promotion_alb2002_sample_design_raw_concordance_rows,1,ALB_2002 raw and candidate row counts concord with official sample-design evidence.
+analysis_dataset_promotion_alb2002_weighted_inference_ready_rows,0,ALB_2002 rows ready for promoted weighted inference; should remain zero.
+analysis_dataset_promotion_alb2002_harmonized_ready_rows,0,ALB_2002 rows ready for harmonized data promotion.
+analysis_dataset_promotion_alb2002_outcome_ready_rows,0,ALB_2002 rows ready for final outcome promotion.
+analysis_dataset_promotion_alb2002_period_aligned_che_policy_rows,3,ALB_2002 period-aligned CHE stress-test policies observed upstream.
+analysis_dataset_promotion_alb2002_period_aligned_che_period_ready_rows,3,ALB_2002 period-aligned CHE policies ready for stress testing but not outcome promotion.
+analysis_dataset_promotion_alb2002_period_aligned_che_outcome_ready_rows,0,ALB_2002 period-aligned CHE rows ready for final outcome promotion; should remain zero.
+analysis_dataset_promotion_alb2002_period_aligned_che_combined_che10_rate,0.228952,Combined monthly-equivalent CHE10 stress-test rate; not a final outcome.
+analysis_dataset_promotion_alb2002_period_aligned_che_combined_che25_rate,0.0805779,Combined monthly-equivalent CHE25 stress-test rate; not a final outcome.
+analysis_dataset_promotion_alb2002_che_candidate_rows,3599,ALB_2002 temp-only household CHE candidate rows.
+analysis_dataset_promotion_alb2002_che_candidate_che10_rows,824,ALB_2002 temp-only CHE10 candidate rows.
+analysis_dataset_promotion_alb2002_che_candidate_che10_weighted_rate,0.23666,Weighted CHE10 candidate rate; not a promoted outcome.
+analysis_dataset_promotion_alb2002_che_candidate_che25_rows,290,ALB_2002 temp-only CHE25 candidate rows.
+analysis_dataset_promotion_alb2002_che_candidate_che25_weighted_rate,0.0859036,Weighted CHE25 candidate rate; not a promoted outcome.
+analysis_dataset_promotion_alb2002_che_candidate_outcome_promotion_ready_rows,0,ALB_2002 temp-only CHE candidate rows ready for final outcome promotion; should remain zero.
+analysis_dataset_promotion_alb2002_access_candidate_rows,3599,ALB_2002 temp-only household access candidate rows.
+analysis_dataset_promotion_alb2002_access_candidate_any_rows,1861,ALB_2002 temp-only composite any-access-barrier rows.
+analysis_dataset_promotion_alb2002_access_candidate_any_weighted_rate,0.528953,Weighted composite any-access-barrier candidate rate; not a promoted outcome.
+analysis_dataset_promotion_alb2002_access_candidate_cost_rows,1661,ALB_2002 temp-only composite cost-barrier rows.
+analysis_dataset_promotion_alb2002_access_candidate_outcome_promotion_ready_rows,0,ALB_2002 temp-only access candidate rows ready for final outcome promotion; should remain zero.
+analysis_dataset_promotion_alb2002_uhc_composite_rows,3599,ALB_2002 temp-only composite UHC candidate rows.
+analysis_dataset_promotion_alb2002_uhc_composite_che10_or_access_rows,2004,ALB_2002 temp-only CHE10-or-access candidate rows.
+analysis_dataset_promotion_alb2002_uhc_composite_che25_or_access_rows,1889,ALB_2002 temp-only CHE25-or-access candidate rows.
+analysis_dataset_promotion_alb2002_uhc_composite_coping_rows,1476,ALB_2002 temp-only health-cost coping candidate rows.
+analysis_dataset_promotion_alb2002_uhc_composite_outcome_promotion_ready_rows,0,ALB_2002 temp-only UHC composite candidate rows ready for final outcome promotion; should remain zero.
+analysis_dataset_promotion_alb2002_analysis_candidate_rows,3599,ALB_2002 temp-only joined analysis-candidate household rows.
+analysis_dataset_promotion_alb2002_analysis_candidate_complete_gates,9,"ALB_2002 candidate field families with complete observed coverage, still not promoted."
+analysis_dataset_promotion_alb2002_analysis_candidate_missing_gates,1,ALB_2002 candidate field families with missing required coverage.
+analysis_dataset_promotion_alb2002_analysis_candidate_data_write_ready_rows,0,ALB_2002 joined analysis-candidate rows allowed to be written to data/; should remain zero.
+analysis_dataset_promotion_limited_harmonized_core_rows,3599,ALB_2002 rows written to data/harmonized_household.csv under limited core scope.
+analysis_dataset_promotion_limited_harmonized_core_data_write_ready_rows,3599,Rows allowed for data/ write only as limited harmonized household core.
+analysis_dataset_promotion_limited_harmonized_core_final_outcome_ready_rows,0,Rows ready for final outcome construction; should remain zero.
+analysis_dataset_promotion_limited_harmonized_core_climate_linkage_ready_rows,0,Rows ready for climate linkage; should remain zero.
+analysis_dataset_promotion_limited_harmonized_core_analysis_ready_rows,0,Rows ready for final empirical analysis; should remain zero.
+analysis_dataset_promotion_limited_financial_outcome_rows,3599,ALB_2002 rows written to data/household_outcomes.csv under limited CHE-only scope.
+analysis_dataset_promotion_limited_financial_outcome_data_write_ready_rows,3599,Rows allowed for data/ write only as limited CHE10/CHE25 financial outcomes.
+analysis_dataset_promotion_limited_financial_outcome_che10_rows,824,Limited CHE10 outcome rows.
+analysis_dataset_promotion_limited_financial_outcome_che25_rows,290,Limited CHE25 outcome rows.
+analysis_dataset_promotion_limited_financial_outcome_sdg382_ready_rows,0,Rows ready for SDG 3.8.2; should remain zero.
+analysis_dataset_promotion_limited_financial_outcome_access_ready_rows,0,Rows ready for access outcomes; should remain zero.
+analysis_dataset_promotion_limited_financial_outcome_composite_ready_rows,0,Rows ready for composite UHC outcomes; should remain zero.
+analysis_dataset_promotion_limited_financial_outcome_climate_linkage_ready_rows,0,Rows ready for final climate linkage; should remain zero.
+analysis_dataset_promotion_limited_financial_outcome_analysis_ready_rows,0,Rows ready for final empirical analysis; should remain zero.
+analysis_dataset_promotion_limited_climate_exposure_rows,384,ALB_2002 limited NASA POWER admin2-centroid exposure rows written to data/.
+analysis_dataset_promotion_limited_climate_exposure_data_write_ready_rows,384,Rows allowed for data/ write only as limited fallback climate exposures.
+analysis_dataset_promotion_limited_climate_exposure_climate_linkage_ready_rows,0,Rows ready for final climate linkage; should remain zero.
+analysis_dataset_promotion_limited_climate_exposure_analysis_ready_rows,0,Rows ready for final empirical analysis; should remain zero.
+analysis_dataset_promotion_limited_climate_linked_rows,14396,ALB_2002 rows written to data/climate_linked_household.csv under limited diagnostic scope.
+analysis_dataset_promotion_limited_climate_linked_data_write_ready_rows,14396,Rows allowed for data/ write only as limited climate-linked diagnostics.
+analysis_dataset_promotion_limited_climate_linked_descriptive_ready_rows,0,Rows ready for promoted descriptive diagnostics; should remain zero.
+analysis_dataset_promotion_limited_climate_linked_predictive_ml_ready_rows,0,Rows ready for predictive ML; should remain zero.
+analysis_dataset_promotion_limited_climate_linked_reduced_form_ready_rows,0,Rows ready for reduced-form estimation; should remain zero.
+analysis_dataset_promotion_limited_climate_linked_robustness_ready_rows,0,Rows ready for robustness checks; should remain zero.
+analysis_dataset_promotion_limited_climate_linked_analysis_ready_rows,0,Rows ready for final empirical analysis; should remain zero.
+analysis_dataset_promotion_alb2002_climate_centroid_input_rows,96,ALB_2002 temp-only climate centroid input district-month cells.
+analysis_dataset_promotion_alb2002_climate_centroid_exposure_rows,384,ALB_2002 temp-only climate centroid exposure rows.
+analysis_dataset_promotion_alb2002_climate_centroid_nasa_failed_rows,0,ALB_2002 NASA POWER centroid request failures.
+analysis_dataset_promotion_alb2002_climate_centroid_climate_linkage_ready_rows,0,ALB_2002 centroid exposure rows ready for promoted climate linkage; should remain zero.
+analysis_dataset_promotion_alb2002_climate_centroid_data_write_ready_rows,0,ALB_2002 centroid exposure rows allowed for data/ write; should remain zero.
+analysis_dataset_promotion_alb2002_climate_shock_rows,384,ALB_2002 temp-only climate shock diagnostic rows.
+analysis_dataset_promotion_alb2002_climate_shock_reference_groups,16,ALB_2002 survey-month/window diagnostic reference groups.
+analysis_dataset_promotion_alb2002_climate_shock_precip_z_rows,384,ALB_2002 diagnostic rainfall z-score rows.
+analysis_dataset_promotion_alb2002_climate_shock_temp_z_rows,384,ALB_2002 diagnostic temperature z-score rows.
+analysis_dataset_promotion_alb2002_climate_shock_combined_stress_rows,73,ALB_2002 diagnostic combined climate-stress rows; not accepted treatments.
+analysis_dataset_promotion_alb2002_climate_shock_climate_linkage_ready_rows,0,ALB_2002 shock diagnostic rows ready for promoted climate linkage; should remain zero.
+analysis_dataset_promotion_alb2002_climate_shock_data_write_ready_rows,0,ALB_2002 shock diagnostic rows allowed for data/ write; should remain zero.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_rows,14396,ALB_2002 temp-only household-window climate/outcome linked candidate rows.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_households,3599,ALB_2002 households represented in the linked candidate.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_windows,4,Diagnostic exposure windows per household in the linked candidate.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_unmatched_rows,0,Linked candidate rows without a diagnostic climate window; should remain zero.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_combined_stress_rows,3092,ALB_2002 linked diagnostic combined climate-stress rows; not accepted treatments.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_harmonized_ready_rows,0,ALB_2002 linked rows ready for harmonized recipe promotion; should remain zero.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_outcome_ready_rows,0,ALB_2002 linked rows ready for outcome promotion; should remain zero.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_climate_ready_rows,0,ALB_2002 linked rows ready for promoted climate linkage; should remain zero.
+analysis_dataset_promotion_alb2002_climate_outcome_linked_data_write_ready_rows,0,ALB_2002 linked rows allowed for data/ write; should remain zero.
+analysis_dataset_promotion_alb2002_linked_candidate_descriptive_input_rows,14396,ALB_2002 temp-only linked rows screened by the candidate descriptive diagnostic.
+analysis_dataset_promotion_alb2002_linked_candidate_descriptive_cell_rows,108,ALB_2002 linked-candidate descriptive screen cells; not promoted descriptive diagnostics.
+analysis_dataset_promotion_alb2002_linked_candidate_descriptive_climate_ready_rows,0,ALB_2002 descriptive-screen rows ready for promoted climate linkage; should remain zero.
+analysis_dataset_promotion_alb2002_linked_candidate_descriptive_outcome_ready_rows,0,ALB_2002 descriptive-screen rows ready for outcome promotion; should remain zero.
+analysis_dataset_promotion_alb2002_linked_candidate_descriptive_data_write_ready_rows,0,ALB_2002 descriptive-screen rows allowed for data/ write; should remain zero.
+analysis_dataset_promotion_alb2002_climate_linkage_ready_rows,0,ALB_2002 rows ready for climate-linkage promotion.
+analysis_dataset_promotion_current_decision,limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked,Current fail-closed decision for data/ promotion.

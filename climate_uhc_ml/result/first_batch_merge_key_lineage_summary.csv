@@ -1,0 +1,19 @@
+metric,value,interpretation
+first_batch_merge_key_lineage_plan_rows,10,Dataset-level merge-key lineage planning rows.
+first_batch_merge_key_lineage_dataset_rows,10,First-batch datasets represented in the merge-key lineage plan.
+first_batch_merge_key_candidate_variable_rows,5112,Long candidate key/design/timing/geography variable rows.
+first_batch_merge_key_lineage_planned_rows,8,"Datasets with metadata-supported household key, design, timing, and geography candidates."
+first_batch_merge_key_lineage_incomplete_rows,2,Datasets missing one or more metadata key-lineage domains or file support checks.
+first_batch_merge_key_raw_ready_rows,1,Datasets with raw files and variables present for value/key audit.
+first_batch_merge_key_metadata_unsupported_file_rows,0,Unsupported first-batch file-source trace rows within merge-key planning.
+first_batch_merge_key_candidate_household_id_rows,771,Candidate key-lineage variable rows by role.
+first_batch_merge_key_candidate_person_id_rows,193,Candidate key-lineage variable rows by role.
+first_batch_merge_key_candidate_survey_weight_rows,379,Candidate key-lineage variable rows by role.
+first_batch_merge_key_candidate_psu_cluster_rows,1129,Candidate key-lineage variable rows by role.
+first_batch_merge_key_candidate_strata_rows,161,Candidate key-lineage variable rows by role.
+first_batch_merge_key_candidate_survey_timing_rows,63,Candidate key-lineage variable rows by role.
+first_batch_merge_key_candidate_geography_rows,2416,Candidate key-lineage variable rows by role.
+merge_key_lineage_status_metadata_key_lineage_incomplete_no_household_id_raw_unverified,2,Dataset-level merge-key lineage status count.
+merge_key_lineage_status_metadata_key_lineage_planned_raw_unverified,8,Dataset-level merge-key lineage status count.
+merge_key_raw_gate_status_blocked_raw_microdata,9,Dataset-level raw gate status count.
+merge_key_raw_gate_status_raw_files_present_requires_value_key_audit,1,Dataset-level raw gate status count.

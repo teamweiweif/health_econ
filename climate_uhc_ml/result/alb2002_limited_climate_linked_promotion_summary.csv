@@ -1,0 +1,27 @@
+metric,value,interpretation
+alb2002_limited_climate_linked_promotion_audit_rows,5,Rows in the limited climate-linked promotion audit.
+alb2002_limited_climate_linked_rows,14396,Rows written to data/climate_linked_household.csv.
+alb2002_limited_climate_linked_household_rows,3599,Distinct households represented.
+alb2002_limited_climate_linked_window_rows,4,Distinct exposure windows per household.
+alb2002_limited_climate_linked_expected_rows,14396,Expected rows from household rows times windows.
+alb2002_limited_climate_linked_source_household_rows,3599,Rows in the limited harmonized household core.
+alb2002_limited_climate_linked_source_climate_rows,384,Rows in the limited climate exposure file.
+alb2002_limited_climate_linked_climate_value_rows,14396,Rows with nonmissing precipitation and temperature values.
+alb2002_limited_climate_linked_unmatched_rows,0,Rows without linked climate values.
+alb2002_limited_climate_linked_che10_rows,3296,Long rows carrying CHE10 outcome.
+alb2002_limited_climate_linked_che25_rows,1160,Long rows carrying CHE25 outcome.
+alb2002_limited_climate_linked_combined_stress_rows,3092,Long rows with diagnostic combined climate-stress flag.
+alb2002_limited_climate_linked_limited_data_write_ready_rows,14396,Rows allowed in data/ only under limited climate-linked scope.
+alb2002_limited_climate_linked_sdg382_ready_rows,0,Rows ready for SDG 3.8.2.
+alb2002_limited_climate_linked_access_ready_rows,0,Rows ready for access outcomes.
+alb2002_limited_climate_linked_primary_chirps_ready_rows,0,Rows with primary CHIRPS extraction.
+alb2002_limited_climate_linked_primary_era5_ready_rows,0,Rows with primary ERA5 extraction.
+alb2002_limited_climate_linked_historical_baseline_ready_rows,0,Rows with historical climate baseline.
+alb2002_limited_climate_linked_climate_linkage_ready_rows,0,Rows ready for final climate linkage.
+alb2002_limited_climate_linked_descriptive_ready_rows,0,Rows ready for promoted descriptive diagnostics.
+alb2002_limited_climate_linked_predictive_ml_ready_rows,0,Rows ready for predictive ML.
+alb2002_limited_climate_linked_reduced_form_ready_rows,0,Rows ready for reduced-form estimation.
+alb2002_limited_climate_linked_robustness_ready_rows,0,Rows ready for robustness checks.
+alb2002_limited_climate_linked_final_analysis_ready_rows,0,Rows ready for final empirical analysis.
+alb2002_limited_climate_linked_current_decision,limited_che_outcome_nasa_admin2_climate_linked_promoted_models_still_blocked,Current limited climate-linked promotion decision.
+alb2002_limited_climate_linked_data_use_limit,climate_linked_che_diagnostic_only_not_for_promoted_descriptive_ml_causal_or_policy_analysis,Guardrail embedded in every output row.

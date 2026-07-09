@@ -1,0 +1,7 @@
+check,status,detail,input_path,rows_input,rows_output,output_path,required_action
+descriptive_inputs,complete,Read climate-linked analytical dataset.,data\climate_linked_household.csv,14396,0,,
+weighted_prevalence,complete,Prevalence rows=2.,,0,2,result\descriptive_weighted_prevalence.csv,
+missingness,complete,Missingness rows=21.,,0,21,result\descriptive_missingness.csv,
+climate_summary,complete,Climate exposure summary rows=11.,,0,11,result\descriptive_climate_exposure_summary.csv,
+analysis_sample_gate,failed_no_country_wave_passes,Country-waves passing main sample gate=0.,,0,0,result\analysis_sample_feasibility.csv,
+limited_diagnostic_guardrail,complete_limited_diagnostic_not_promoted,Input is the limited ALB_2002 CHE/NASA POWER linked diagnostic file; outputs are audit diagnostics only.,data\climate_linked_household.csv,14396,0,,"Resolve SDG/access/composite, CHIRPS/ERA5, historical baseline, and geography gates before promoted descriptive analysis."

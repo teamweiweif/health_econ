@@ -1,0 +1,35 @@
+metric,value,interpretation
+alb2002_household_core_candidate_rows,3599,Rows in the temp-only household core candidate table.
+alb2002_household_core_recipe_ready_rows,0,This audit never promotes analysis-ready harmonization rows.
+alb2002_households_with_total_consumption,3599,Base households with Poverty_2002.sav total consumption.
+alb2002_households_with_household_weight,3599,Base households with candidate household weight.
+alb2002_households_with_household_size,3599,Base households with roster-derived household size.
+alb2002_households_with_oop_4w_positive,2541,Households with positive unreviewed four-week OOP item sum.
+alb2002_households_with_oop_12m_positive,2102,Households with positive unreviewed twelve-month OOP item sum.
+alb2002_households_with_district_code,3599,Base households with district code from Modul_0_identification.sav.
+alb2002_households_with_survey_month,3599,Base households with raw interview month.
+alb2002_households_with_interview_date,3599,Base households with constructed raw interview date.
+alb2002_merge_modules_audited,7,Raw modules assessed for merge key coverage.
+alb2002_merge_modules_complete_base_coverage,7,Modules whose distinct keys cover all base households.
+alb2002_merge_modules_partial_base_coverage,0,Modules covering only part of the base households.
+alb2002_household_core_current_decision,temp_candidate_timing_geography_observed_outcome_semantics_pending,ALB_2002 core candidate has observed timing/geography fields but remains blocked from data/.
+alb2002_total_consumption_nonmissing,3599,Nonmissing total_consumption rows.
+alb2002_total_consumption_min,2242.84,Observed minimum for total_consumption.
+alb2002_total_consumption_max,277177,Observed maximum for total_consumption.
+alb2002_total_consumption_mean,33722.1,Observed mean for total_consumption.
+alb2002_household_weight_nonmissing,3599,Nonmissing household_weight rows.
+alb2002_household_weight_min,40.885,Observed minimum for household_weight.
+alb2002_household_weight_max,412.2,Observed maximum for household_weight.
+alb2002_household_weight_mean,201.959,Observed mean for household_weight.
+alb2002_household_size_nonmissing,3599,Nonmissing household_size rows.
+alb2002_household_size_min,1,Observed minimum for household_size.
+alb2002_household_size_max,15,Observed maximum for household_size.
+alb2002_household_size_mean,4.59044,Observed mean for household_size.
+alb2002_oop_4w_sum_unreviewed_nonmissing,3599,Nonmissing oop_4w_sum_unreviewed rows.
+alb2002_oop_4w_sum_unreviewed_min,0,Observed minimum for oop_4w_sum_unreviewed.
+alb2002_oop_4w_sum_unreviewed_max,225000,Observed maximum for oop_4w_sum_unreviewed.
+alb2002_oop_4w_sum_unreviewed_mean,1932.27,Observed mean for oop_4w_sum_unreviewed.
+alb2002_oop_12m_sum_unreviewed_nonmissing,3599,Nonmissing oop_12m_sum_unreviewed rows.
+alb2002_oop_12m_sum_unreviewed_min,0,Observed minimum for oop_12m_sum_unreviewed.
+alb2002_oop_12m_sum_unreviewed_max,999997,Observed maximum for oop_12m_sum_unreviewed.
+alb2002_oop_12m_sum_unreviewed_mean,6390.98,Observed mean for oop_12m_sum_unreviewed.

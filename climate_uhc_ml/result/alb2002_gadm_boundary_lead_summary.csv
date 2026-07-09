@@ -1,0 +1,14 @@
+metric,value,interpretation
+alb2002_gadm_boundary_lead_candidate_rows,2,GADM source candidates audited.
+alb2002_gadm36_adm2_row_count,37,GADM 3.6 ADM2 feature rows.
+alb2002_gadm36_distinct_normalized_key_count,36,GADM 3.6 distinct normalized ADM2 keys.
+alb2002_gadm36_engtype_district_rows,37,GADM 3.6 rows labeled as District.
+alb2002_gadm36_type_rreth_rows,37,GADM 3.6 rows labeled as Rreth.
+alb2002_gadm36_complete_name_coverage_rows,1,Whether GADM 3.6 covers all 36 normalized ALB_2002 district keys with no extra keys.
+alb2002_gadm36_duplicate_boundary_key_count,1,Distinct duplicated normalized GADM 3.6 boundary keys.
+alb2002_gadm36_duplicate_boundary_feature_rows,2,GADM 3.6 feature rows belonging to duplicated keys.
+alb2002_gadm41_adm2_row_count,37,GADM 4.1 ADM2 feature rows.
+alb2002_gadm41_engtype_district_rows,0,GADM 4.1 rows labeled as District; expected zero because type fields are NA.
+alb2002_gadm_boundary_lead_historical_2002_ready_rows,0,Rows ready as verified 2001/2002 historical district boundaries after this audit; intentionally zero.
+alb2002_gadm_boundary_lead_climate_linkage_ready_rows,0,Rows ready for ALB_2002 climate-linkage promotion after this audit; intentionally zero.
+alb2002_gadm_boundary_lead_current_decision,blocked_gadm_boundary_lead_no_verified_2002_historical_provenance,Current fail-closed decision for the GADM boundary lead.

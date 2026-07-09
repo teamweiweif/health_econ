@@ -1,0 +1,5 @@
+project,dataset_path,format,size_mb,row_count,column_count,profile_basis,profile_rows,status,error
+climate_uhc_ml,data/climate_exposures_nasa_power.csv,csv,0.3836,384,50,full_file,384,ok,
+climate_uhc_ml,data/climate_linked_household.csv,csv,17.6075,14396,75,full_file,14396,ok,
+climate_uhc_ml,data/harmonized_household.csv,csv,2.6961,3599,68,full_file,3599,ok,
+climate_uhc_ml,data/household_outcomes.csv,csv,2.7969,3599,34,full_file,3599,ok,

@@ -1,0 +1,7 @@
+metric,value,interpretation
+first_batch_access_probe_rows,10,First-batch official get-microdata pages probed.
+access_gate_detected_rows,10,Rows with login/register/request/terms language on official pages.
+possible_direct_raw_link_rows,0,Rows with possible direct raw links not requiring gate language; none are downloaded by this script.
+manual_action_required_rows,10,"Rows needing manual account, terms, or review steps."
+direct_raw_route_status_no_direct_raw_route_access_gate_detected,10,Direct raw route status count.
+manual_action_status_manual_account_or_terms_required,10,Manual action status count.

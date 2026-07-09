@@ -1,0 +1,5 @@
+check,status,evidence,gap
+python_runtime,complete,python=3.14.0; executable=C:\Python314\python.exe; platform=Windows-11-10.0.26200-SP0,
+metadata_pipeline_required_packages,complete,required metadata packages importable=2,
+post_raw_empirical_required_packages,complete,post-raw empirical required packages importable=5,
+pip_freeze_snapshot,complete,returncode=0; bytes=2905,

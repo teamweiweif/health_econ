@@ -1,0 +1,21 @@
+metric,value,interpretation
+requirement_rows,1449,Country-wave pathway concept requirement rows.
+pathway_protocol_rows,7,Mechanism pathway protocol rows.
+readiness_rows,161,Country-wave by mechanism pathway readiness rows.
+country_wave_rows,23,Country-waves assessed.
+mechanism_pathway_count,7,Mechanism pathways assessed.
+ready_pathway_rows,0,Country-wave pathway rows ready for mechanism analysis design.
+blocked_pathway_rows,161,Country-wave pathway rows blocked by raw evidence or upstream gates.
+raw_variable_catalog_rows,5410,Inspected raw variable catalog rows.
+requirement_gate_metadata_incomplete,212,Mechanism requirement gate status count.
+requirement_gate_metadata_ready_raw_unverified,1174,Mechanism requirement gate status count.
+requirement_gate_raw_concept_verified,63,Mechanism requirement gate status count.
+readiness_status_blocked_until_required_raw_mechanism_concepts_verified,154,Mechanism readiness status count.
+readiness_status_blocked_until_verified_harmonization_recipe,7,Mechanism readiness status count.
+pathway_rows_coping_response_to_health_or_climate,23,Country-wave readiness row count by pathway.
+pathway_rows_food_insecurity,23,Country-wave readiness row count by pathway.
+pathway_rows_forgone_care_after_need,23,Country-wave readiness row count by pathway.
+pathway_rows_health_need_illness,23,Country-wave readiness row count by pathway.
+pathway_rows_income_consumption_decline,23,Country-wave readiness row count by pathway.
+pathway_rows_oop_share_conditional_on_seeking,23,Country-wave readiness row count by pathway.
+pathway_rows_uhc_double_failure_composite,23,Country-wave readiness row count by pathway.

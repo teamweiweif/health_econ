@@ -1,0 +1,9 @@
+metric,value,interpretation
+alb2002_boundary_manual_source_followup_rows,7,Manual-source follow-up rows for ALB_2002 boundary verification leads.
+alb2002_boundary_manual_source_followup_reachable_page_rows,4,Rows whose source page was reachable during the local follow-up probe.
+alb2002_boundary_manual_source_followup_conclusive_blocker_rows,7,Rows with a source-specific blocker documented.
+alb2002_boundary_manual_source_followup_district_level_ready_rows,0,Rows verified as 36-district or lower ALB_2002-compatible geography sources after follow-up; intentionally zero.
+alb2002_boundary_manual_source_followup_climate_linkage_ready_rows,0,Rows ready for ALB_2002 climate-linkage promotion after follow-up; intentionally zero.
+alb2002_boundary_manual_source_followup_ipums_level_status,blocked_prefecture_g1_not_36_lsms_districts,IHGIS follow-up status after browser-visible catalog review.
+alb2002_boundary_manual_source_followup_unece_pre2011_map_status,blocked_pre2011_digital_boundary_source_absence_documented,UNECE/INSTAT follow-up status on pre-2011 national digital map availability.
+alb2002_boundary_manual_source_followup_current_decision,blocked_followup_confirms_no_public_2002_district_boundary_source,Current fail-closed decision after manual-source follow-up.

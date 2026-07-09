@@ -1,0 +1,13 @@
+metric,value,interpretation
+outcome_plan_rows,476,Dataset-outcome readiness rows across quality-screened country-waves.
+outcome_specification_rows,17,Unique outcome formula/specification rows.
+metadata_ready_raw_unverified_outcome_rows,369,Outcome rows with metadata support but no raw verification.
+ready_for_harmonized_outcome_construction_rows,17,Outcome rows with raw-verified required concepts and source-probed external inputs.
+external_source_probe_ready_rows,252,Rows whose external validation/denominator source category has been probed.
+gate_count_metadata_incomplete_for_outcome,90,Outcome construction gate status count.
+gate_count_metadata_ready_raw_unverified,369,Outcome construction gate status count.
+gate_count_ready_for_harmonized_outcome_construction,17,Outcome construction gate status count.
+family_count_access,140,Outcome family row count.
+family_count_composite,112,Outcome family row count.
+family_count_financial_protection,196,Outcome family row count.
+family_count_mechanism_or_composite,28,Outcome family row count.

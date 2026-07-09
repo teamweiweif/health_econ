@@ -1,0 +1,3 @@
+check,status,detail,input_path,rows_input,rows_output,output_path,required_action
+reduced_form_estimation,complete_limited_diagnostic,Estimate rows=88.,,14396,88,result\reduced_form_estimates.csv,
+limited_diagnostic_guardrail,complete_limited_reduced_form_diagnostic_not_promoted,"Estimates are association diagnostics on the limited ALB_2002 climate-linked file, not causal reduced-form evidence.",,14396,88,,"Use promoted multi-country outcome/climate data, primary CHIRPS/ERA5 or accepted baseline exposures, and placebo tests before causal interpretation."

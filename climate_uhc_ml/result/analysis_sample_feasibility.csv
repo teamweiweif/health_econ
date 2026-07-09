@@ -1,0 +1,2 @@
+country,survey_name,wave,rows,has_financial_outcome,has_access_outcome,has_climate,passes_main_sample_gate,gap
+Albania,Living Standards Measurement Survey 2002,2002,14396,1,0,1,0,limited diagnostic file; not promoted for final descriptive analysis

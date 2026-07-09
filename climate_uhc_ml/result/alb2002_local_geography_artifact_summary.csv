@@ -1,0 +1,17 @@
+metric,value,interpretation
+alb2002_local_geo_artifact_files_scanned,44,Files scanned under the extracted ALB_2002 package.
+alb2002_local_geo_artifact_raw_tabular_files,44,Raw tabular/document workbook files observed locally.
+alb2002_local_geo_artifact_gis_file_candidate_rows,0,Local GIS/boundary file candidates with recognized GIS suffixes; zero means no shapefile/GeoJSON/KML/GPX/GPKG candidate was found.
+alb2002_local_geo_artifact_coordinate_raw_variable_rows,0,Raw schema variables with coordinate/GPS keywords.
+alb2002_local_geo_artifact_questionnaire_coordinate_field_rows,2,Questionnaire cells documenting coordinate/GPS fields.
+alb2002_local_geo_artifact_admin_variable_rows,55,Raw schema variables documenting admin/sampling geography but not coordinates.
+alb2002_local_geo_artifact_psu_ea_variable_rows,43,Raw schema variables documenting PSU or enumerator-area identifiers.
+alb2002_local_geo_artifact_district_commune_variable_rows,9,Raw schema variables documenting district/commune/municipality fields.
+alb2002_local_geo_artifact_questionnaire_admin_text_rows,13,Questionnaire cells documenting admin geography fields.
+alb2002_local_geo_artifact_questionnaire_map_text_rows,0,Questionnaire cells documenting map/boundary/GIS language.
+alb2002_local_geo_artifact_official_gps_documented_rows,1,Upstream source-alternatives rows documenting GPS/longitude/latitude evidence.
+alb2002_local_geo_artifact_official_ea_map_documented_rows,1,Upstream source-alternatives rows documenting EA boundary-map evidence.
+alb2002_local_geo_artifact_local_coordinate_ready_rows,0,Local raw coordinate artifacts ready for climate linkage after this audit; intentionally zero.
+alb2002_local_geo_artifact_local_boundary_ready_rows,0,Local boundary/GIS artifacts ready for climate linkage after this audit; intentionally zero.
+alb2002_local_geo_artifact_climate_linkage_ready_rows,0,ALB_2002 rows ready for climate-linkage input promotion after this audit; intentionally zero.
+alb2002_local_geo_artifact_current_decision,blocked_questionnaire_gps_fields_not_present_as_raw_coordinate_artifacts,Current fail-closed decision for local ALB_2002 geography artifacts.

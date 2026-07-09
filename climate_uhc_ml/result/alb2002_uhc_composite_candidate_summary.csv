@@ -1,0 +1,26 @@
+metric,value,interpretation
+alb2002_uhc_composite_candidate_household_rows,3599,Temp-only ALB_2002 composite UHC candidate rows.
+alb2002_uhc_composite_candidate_lineage_rows,6,Lineage rows for composite UHC candidate fields.
+alb2002_uhc_composite_candidate_audit_rows,10,Outcome audit rows for composite UHC candidate fields.
+alb2002_uhc_composite_candidate_source_che10_rows,824,Upstream CHE10 candidate rows consumed.
+alb2002_uhc_composite_candidate_source_che25_rows,290,Upstream CHE25 candidate rows consumed.
+alb2002_uhc_composite_candidate_source_access_any_rows,1861,Upstream any-access-barrier candidate rows consumed.
+alb2002_uhc_composite_candidate_che10_or_access_rows,2004,CHE10 or any access-barrier candidate rows.
+alb2002_uhc_composite_candidate_che10_or_access_rate,0.556821,CHE10-or-access unweighted candidate rate.
+alb2002_uhc_composite_candidate_che10_or_access_weighted_rate,0.570531,CHE10-or-access weighted candidate rate.
+alb2002_uhc_composite_candidate_che25_or_access_rows,1889,CHE25 or any access-barrier candidate rows.
+alb2002_uhc_composite_candidate_che25_or_access_rate,0.524868,CHE25-or-access unweighted candidate rate.
+alb2002_uhc_composite_candidate_che25_or_access_weighted_rate,0.537554,CHE25-or-access weighted candidate rate.
+alb2002_uhc_composite_candidate_financial_only_che10_rows,143,CHE10-only candidate rows.
+alb2002_uhc_composite_candidate_access_only_vs_che10_rows,1180,Access-only versus CHE10 candidate rows.
+alb2002_uhc_composite_candidate_both_che10_access_rows,681,Both CHE10 and access-barrier candidate rows.
+alb2002_uhc_composite_candidate_financial_only_che25_rows,28,CHE25-only candidate rows.
+alb2002_uhc_composite_candidate_access_only_vs_che25_rows,1599,Access-only versus CHE25 candidate rows.
+alb2002_uhc_composite_candidate_both_che25_access_rows,262,Both CHE25 and access-barrier candidate rows.
+alb2002_uhc_composite_candidate_coping_rows,1476,Money-raising/coping candidate rows.
+alb2002_uhc_composite_candidate_low_event_rate_rows,1,Composite candidate outcomes with event rate below 3 percent.
+alb2002_uhc_composite_candidate_outcome_promotion_ready_rows,0,Rows ready for final composite outcome promotion; intentionally zero.
+alb2002_uhc_composite_candidate_recipe_ready_rows,0,Rows ready for harmonized recipe promotion; intentionally zero.
+alb2002_uhc_composite_candidate_sdg382_ready_rows,0,Rows ready for SDG 3.8.2 construction; intentionally zero.
+alb2002_uhc_composite_candidate_climate_linkage_ready_rows,0,Rows ready for climate linkage; intentionally zero.
+alb2002_uhc_composite_candidate_current_decision,blocked_alb2002_uhc_composite_candidate_not_promoted_due_outcome_recipe_climate_gates,Current fail-closed composite UHC candidate decision.

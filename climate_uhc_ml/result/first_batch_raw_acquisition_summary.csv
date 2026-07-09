@@ -1,0 +1,13 @@
+metric,value,interpretation
+first_batch_dataset_rows,10,Dataset rows selected for the first manual raw acquisition batch.
+first_batch_country_count,7,Unique countries in the first batch.
+financial_probe_dataset_rows,6,Rows testing the 6-country financial-protection no-go rule.
+double_failure_probe_dataset_rows,10,Rows testing the 10-wave double-failure no-go rule.
+first_batch_file_target_rows,183,File/module targets to inspect immediately after download.
+first_batch_raw_tabular_file_rows,0,Raw tabular files currently present across first-batch folders.
+first_batch_archive_file_rows,1,Raw archive files currently present across first-batch folders.
+first_batch_intake_status_instructions_or_documentation_only,9,First-batch raw intake status count.
+first_batch_intake_status_ready_for_raw_schema_inspection,1,First-batch raw intake status count.
+first_batch_target_reason_financial_core_file,35,First-batch file target reason count.
+first_batch_target_reason_geography_timing_design_file,28,First-batch file target reason count.
+first_batch_target_reason_top_metadata-supported_module_to_inspect_first,120,First-batch file target reason count.

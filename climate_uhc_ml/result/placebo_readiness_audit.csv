@@ -1,0 +1,4 @@
+test,status,detail,required_action
+future_climate_lead_placebo,not_ready,No future/lead climate exposure columns exist.,Construct future climate lead variables after primary exposure extraction.
+seasonality_controls,ready,interview_date or survey_month present,
+geography_controls,ready,At least one geography field present,

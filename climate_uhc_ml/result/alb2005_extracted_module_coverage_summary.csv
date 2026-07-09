@@ -1,0 +1,22 @@
+metric,value,interpretation
+alb2005_extracted_module_coverage_ddi_module_rows,68,DDI/schema modules checked against the extracted ALB_2005 package.
+alb2005_archive_member_rows,61,Members listed directly from the local ALB_2005 RAR archive.
+alb2005_archive_sav_member_rows,44,SPSS .sav members listed directly from the local ALB_2005 RAR archive.
+alb2005_archive_questionnaire_member_rows,2,Questionnaire workbook members listed directly from the local ALB_2005 RAR archive.
+alb2005_archive_ddi_module_present_rows,41,DDI/schema modules present in the local archive manifest.
+alb2005_archive_ddi_module_absent_rows,27,DDI/schema modules absent from the local archive manifest.
+alb2005_archive_critical_module_absent_rows,8,Critical timing/food-diary/design DDI modules absent from the local archive manifest.
+alb2005_archive_listing_status,tar_listing_available,Whether the local ALB_2005 archive member list was readable.
+alb2005_extracted_module_coverage_present_rows,41,DDI modules with a normalized extracted file match.
+alb2005_extracted_module_coverage_missing_rows,27,DDI modules missing from the extracted ALB_2005 package.
+alb2005_extracted_module_coverage_extracted_file_rows,44,Extracted .sav files under the ALB_2005 Data_2005 folder.
+alb2005_extracted_module_coverage_extra_extracted_rows,2,Extracted .sav files not matched to a normalized DDI file name.
+alb2005_extracted_module_coverage_bookmetadata_missing_rows,1,Whether DDI `bookmetadata_cl` is missing from the extracted package.
+alb2005_extracted_module_coverage_food_diary_missing_rows,5,Missing DDI food-diary modules relevant to consumption component reconstruction.
+alb2005_extracted_module_coverage_critical_missing_rows,8,Missing timing/food-diary/design modules that require follow-up before recipe promotion.
+alb2005_extracted_module_coverage_coordinate_metadata_variable_rows,0,Coordinate/GPS variable candidates found in the ALB_2005 metadata variable catalog.
+alb2005_extracted_module_coverage_coordinate_extracted_file_rows,0,Extracted files whose names suggest coordinate/GPS content.
+alb2005_extracted_module_coverage_harmonized_ready_rows,0,Rows promoted to harmonized analytical data by this audit; intentionally zero.
+alb2005_extracted_module_coverage_household_timing_ready_rows,0,Rows promoted to verified household timing by this audit; intentionally zero.
+alb2005_extracted_module_coverage_climate_linkage_ready_rows,0,Rows ready for climate linkage after this audit; intentionally zero.
+alb2005_extracted_module_coverage_current_decision,blocked_extracted_package_missing_bookmetadata_and_coordinate_values,Current fail-closed decision for ALB_2005 extracted module coverage.

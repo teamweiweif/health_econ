@@ -1,0 +1,14 @@
+metric,value,interpretation
+alb2002_outcome_semantics_raw_value_audit_rows,42,Rows in the ALB_2002 raw value/semantics audit.
+alb2002_outcome_semantics_source_files_scanned,2,Raw health modules scanned for outcome semantics.
+alb2002_outcome_semantics_financial_oop_candidate_rows,25,Raw OOP payment candidate rows.
+alb2002_outcome_semantics_access_candidate_rows,8,Raw access/affordability candidate rows.
+alb2002_outcome_semantics_need_candidate_rows,2,Raw health-need proxy rows.
+alb2002_outcome_semantics_coping_candidate_rows,5,Raw health-payment coping proxy rows.
+alb2002_outcome_semantics_rows_with_value_labels,12,Candidate rows with SPSS value-label metadata.
+alb2002_outcome_semantics_rows_with_positive_numeric_values,42,Candidate rows with at least one positive numeric value.
+alb2002_outcome_semantics_rows_with_complete_household_merge_coverage,42,Candidate rows whose source module covers all base households.
+alb2002_outcome_semantics_conditional_reason_rows,3,Reason variables that are conditional on access-barrier events and need denominator review.
+alb2002_outcome_semantics_outcome_ready_rows,0,No ALB_2002 raw value/semantics row is ready for final outcome promotion.
+alb2002_outcome_semantics_sdg382_ready_rows,0,No ALB_2002 row establishes the SDG 3.8.2 discretionary-budget denominator.
+alb2002_outcome_semantics_current_decision,blocked_outcome_semantics_units_recall_skip_patterns_unreviewed,Current fail-closed decision for ALB_2002 raw outcome semantics.

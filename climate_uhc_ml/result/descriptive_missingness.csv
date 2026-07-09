@@ -1,0 +1,22 @@
+country,survey_name,wave,variable,rows,missing,missing_rate
+Albania,Living Standards Measurement Survey 2002,2002,admin1,14396,14396,1.0
+Albania,Living Standards Measurement Survey 2002,2002,admin2,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,che10_total_budget,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,che25_total_budget,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,cluster_id,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,diagnostic_extreme_heat_z_ge_15,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,diagnostic_heat_z_ge_1,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,household_weight,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,oop_health_expenditure,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,precip_mean_mm_day,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,precip_total_mm,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,precip_within_candidate_percentile,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,precip_within_candidate_z,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,survey_month,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,survey_year,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,temp_max_c,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,temp_mean_c,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,temp_min_c,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,temp_within_candidate_percentile,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,temp_within_candidate_z,14396,0,0.0
+Albania,Living Standards Measurement Survey 2002,2002,total_consumption,14396,0,0.0

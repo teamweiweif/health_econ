@@ -1,0 +1,17 @@
+metric,value,interpretation
+alb2002_boundary_name_match_survey_district_rows,36,ALB_2002 survey district rows compared to public boundary names.
+alb2002_boundary_name_match_geojson_feature_rows,37,Features parsed from the public boundary GeoJSON snapshot.
+alb2002_boundary_name_match_exact_rows,34,Survey rows matching boundary names by normalized exact match.
+alb2002_boundary_name_match_euro_repaired_rows,1,Survey rows matching only after treating euro-sign mojibake as C.
+alb2002_boundary_name_match_high_similarity_rows,0,Survey rows with high-similarity candidate matches requiring manual review.
+alb2002_boundary_name_match_unmatched_survey_rows,1,Survey district rows without a candidate boundary-name match.
+alb2002_boundary_name_match_unmatched_boundary_name_rows,0,Boundary-name keys not matched to an observed ALB_2002 district row.
+alb2002_boundary_name_match_duplicate_boundary_name_keys,2,Distinct boundary-name keys appearing in more than one GeoJSON feature.
+alb2002_boundary_name_match_duplicate_boundary_feature_rows,4,GeoJSON feature rows belonging to duplicate boundary-name keys.
+alb2002_boundary_name_match_download_status,downloaded_geojson_snapshot,Public boundary GeoJSON download/parse status.
+alb2002_boundary_name_match_download_error,,Download or parse error if any.
+alb2002_boundary_name_match_boundary_source_url,https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/ALB/ADM2/geoBoundaries-ALB-ADM2.geojson,Public boundary GeoJSON source URL.
+alb2002_boundary_name_match_boundary_year_represented,2021,Boundary year represented by the public source metadata.
+alb2002_boundary_name_match_historical_year_ready_rows,0,Rows ready for 2002 historical boundary validity after this audit; intentionally zero.
+alb2002_boundary_name_match_climate_linkage_ready_rows,0,Rows ready for climate-linkage input promotion after this audit; intentionally zero.
+alb2002_boundary_name_match_current_decision,blocked_current_boundary_name_match_incomplete_historical_crosswalk_no_gps,Current fail-closed decision for ALB_2002 boundary name matching.

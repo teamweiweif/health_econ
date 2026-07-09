@@ -1,0 +1,13 @@
+metric,value,interpretation
+albania_legacy_questionnaire_files,5,Legacy Albania questionnaire .xls files expected in local raw extractions.
+albania_legacy_questionnaire_present_files,5,Legacy questionnaire files present locally.
+albania_legacy_questionnaire_ole_signature_files,5,Files with OLE compound-file signature expected for legacy .xls.
+albania_legacy_questionnaire_xlrd_installed,1,Whether xlrd is importable in the current Python environment.
+albania_legacy_questionnaire_python_calamine_installed,0,Whether python_calamine is importable in the current Python environment.
+albania_legacy_questionnaire_soffice_available,0,Whether soffice is available on PATH for reproducible conversion.
+albania_legacy_questionnaire_read_ok_files,5,Legacy questionnaire files readable by pandas in the current environment.
+albania_legacy_questionnaire_read_failed_files,0,Legacy questionnaire files not readable by pandas in the current environment.
+albania_legacy_questionnaire_missing_reader_blocked_files,0,Files blocked from questionnaire content extraction because a legacy .xls reader/converter is unavailable.
+albania_legacy_questionnaire_timing_content_audit_ready_rows,5,Legacy questionnaire files ready for separate timing/geography content extraction after this readability audit.
+albania_legacy_questionnaire_climate_linkage_ready_rows,0,Rows ready for climate-linkage promotion after this audit.
+albania_legacy_questionnaire_current_decision,legacy_questionnaires_readable_content_audit_required,Current fail-closed decision for legacy questionnaire readability.

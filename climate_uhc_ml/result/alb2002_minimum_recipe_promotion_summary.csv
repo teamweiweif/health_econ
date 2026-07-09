@@ -1,0 +1,94 @@
+metric,value,interpretation
+alb2002_minimum_recipe_promotion_action_rows,6,Action rows needed before ALB_2002 can become a minimum harmonized household dataset.
+alb2002_minimum_recipe_promotion_gate_rows,10,"Pass/fail promotion gates for ALB_2002 harmonization, outcome, and climate linkage."
+alb2002_minimum_recipe_promotion_blocked_gates,7,Promotion gates still blocked.
+alb2002_minimum_recipe_promotion_candidate_gates,3,Gates with candidate evidence that still needs acceptance review.
+alb2002_minimum_recipe_promotion_weight_design_audit_rows,6,ALB_2002 weight/design evidence audit rows observed upstream.
+alb2002_minimum_recipe_promotion_weight_design_source_flag_rows,9,Official source-context flags detected by the ALB_2002 weight/design audit.
+alb2002_minimum_recipe_promotion_weight_design_positive_weight_rows,3599,ALB_2002 positive household-weight rows observed in the readable weight file.
+alb2002_minimum_recipe_promotion_weight_design_key_match_rows,3599,ALB_2002 readable weight-file keys matching the temp household core.
+alb2002_minimum_recipe_promotion_weight_design_distinct_psu_rows,450,ALB_2002 distinct PSU values observed in the readable weight file.
+alb2002_minimum_recipe_promotion_weight_design_distinct_stratum_rows,4,ALB_2002 distinct strata observed in the readable weight file.
+alb2002_minimum_recipe_promotion_weight_design_weighted_inference_ready_rows,0,ALB_2002 rows ready for promoted weighted inference; intentionally zero.
+alb2002_minimum_recipe_promotion_weight_design_harmonized_ready_rows,0,ALB_2002 rows ready for harmonized promotion after weight/design audit; intentionally zero.
+alb2002_minimum_recipe_promotion_weight_design_decision,blocked_alb2002_weight_design_semantics_not_promotion_ready,Current ALB_2002 weight/design fail-closed decision observed by the minimum recipe packet.
+alb2002_minimum_recipe_promotion_sample_design_pdf_pages,66,Pages extracted from the ALB_2002 Basic Information PDF sample-design source.
+alb2002_minimum_recipe_promotion_sample_design_official_design_rows,1,Official 450 PSU by 8 household sample-design evidence observed upstream.
+alb2002_minimum_recipe_promotion_sample_design_official_final_rows,1,"Official 3,599 final household sample-size evidence observed upstream."
+alb2002_minimum_recipe_promotion_sample_design_raw_concordance_rows,1,Raw weight and candidate counts concordant with the official sample-design evidence.
+alb2002_minimum_recipe_promotion_sample_design_documentation_ready_rows,1,ALB_2002 sample-design documentation evidence ready; not a data-promotion gate pass.
+alb2002_minimum_recipe_promotion_sample_design_weighted_inference_ready_rows,0,ALB_2002 rows ready for promoted weighted inference after sample-design audit; intentionally zero.
+alb2002_minimum_recipe_promotion_sample_design_decision,candidate_alb2002_sample_design_documented_not_promoted_due_downstream_gates,Current ALB_2002 sample-design documentation decision observed by the minimum recipe packet.
+alb2002_minimum_recipe_promotion_oop_policy_rows,11,ALB_2002 OOP aggregation policy stress-test rows observed upstream.
+alb2002_minimum_recipe_promotion_oop_policy_outcome_ready_rows,0,ALB_2002 OOP policy rows ready for outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_oop_policy_sdg382_ready_rows,0,ALB_2002 OOP policy rows ready for SDG 3.8.2 promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_period_aligned_che_policy_rows,3,ALB_2002 period-aligned CHE stress-test policy rows observed upstream.
+alb2002_minimum_recipe_promotion_period_aligned_che_denominator_rows,3599,ALB_2002 rows with a positive monthly total-budget denominator in the period-aligned CHE audit.
+alb2002_minimum_recipe_promotion_period_aligned_che_period_ready_rows,3,"ALB_2002 period-aligned CHE policies with denominator, zero-skip, and period-alignment checks passing for stress testing."
+alb2002_minimum_recipe_promotion_period_aligned_che_combined_che10_rate,0.228952,Combined monthly-equivalent CHE10 stress-test rate; not a final outcome.
+alb2002_minimum_recipe_promotion_period_aligned_che_combined_che25_rate,0.0805779,Combined monthly-equivalent CHE25 stress-test rate; not a final outcome.
+alb2002_minimum_recipe_promotion_period_aligned_che_outcome_ready_rows,0,ALB_2002 period-aligned CHE rows ready for outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_period_aligned_che_recipe_ready_rows,0,ALB_2002 period-aligned CHE rows ready for recipe promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_period_aligned_che_sdg382_ready_rows,0,ALB_2002 period-aligned CHE rows ready for SDG 3.8.2 promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_period_aligned_che_climate_ready_rows,0,ALB_2002 period-aligned CHE rows ready for climate linkage; intentionally zero.
+alb2002_minimum_recipe_promotion_period_aligned_che_decision,blocked_alb2002_period_aligned_che_policy_not_outcome_ready,Current ALB_2002 period-aligned CHE fail-closed decision observed by the minimum recipe packet.
+alb2002_minimum_recipe_promotion_skip_missing_rows,12,ALB_2002 skip/missing semantics audit rows observed upstream.
+alb2002_minimum_recipe_promotion_skip_positive_rows,0,ALB_2002 positive skipped-payment rows observed upstream; should remain zero.
+alb2002_minimum_recipe_promotion_skip_zero_cells,11,ALB_2002 zero-only skipped-payment cells observed upstream.
+alb2002_minimum_recipe_promotion_skip_outcome_ready_rows,0,ALB_2002 skip/missing rows ready for outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_oop_skip_value_decision_rows,5,ALB_2002 OOP skip-value decision audit rows observed upstream.
+alb2002_minimum_recipe_promotion_oop_skip_value_zero_ready_rows,4,ALB_2002 skip-value rows supporting the no-positive-leakage skipped-payment decision.
+alb2002_minimum_recipe_promotion_oop_skip_value_positive_rows,0,ALB_2002 positive skipped-payment rows after the skip-value decision; should remain zero.
+alb2002_minimum_recipe_promotion_oop_skip_value_positive_cells,0,ALB_2002 positive skipped-payment cells after the skip-value decision; should remain zero.
+alb2002_minimum_recipe_promotion_oop_skip_value_recall_ready_rows,0,ALB_2002 OOP recall-scope rows accepted by the skip-value audit; intentionally zero.
+alb2002_minimum_recipe_promotion_oop_skip_value_inclusion_ready_rows,0,ALB_2002 OOP inclusion-scope rows accepted by the skip-value audit; intentionally zero.
+alb2002_minimum_recipe_promotion_oop_skip_value_decision,documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready,Current ALB_2002 OOP skip-value decision observed by the minimum recipe packet.
+alb2002_minimum_recipe_promotion_access_need_policy_rows,24,ALB_2002 access/need denominator policy rows observed upstream.
+alb2002_minimum_recipe_promotion_access_need_q01_need_rows,3247,ALB_2002 q01 need-denominator rows observed upstream.
+alb2002_minimum_recipe_promotion_access_need_any_barrier_rows,1861,ALB_2002 composite any-access-barrier candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_access_need_outcome_ready_rows,0,ALB_2002 access/need rows ready for outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_access_candidate_household_rows,3599,ALB_2002 temp-only household access candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_access_candidate_any_barrier_rows,1861,ALB_2002 temp-only composite any-access-barrier candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_access_candidate_cost_barrier_rows,1661,ALB_2002 temp-only composite cost-barrier candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_access_candidate_outcome_ready_rows,0,ALB_2002 household access candidate rows ready for final outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_uhc_composite_rows,3599,ALB_2002 temp-only composite UHC candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_uhc_composite_che10_or_access_rows,2004,ALB_2002 temp-only CHE10-or-access candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_uhc_composite_che25_or_access_rows,1889,ALB_2002 temp-only CHE25-or-access candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_uhc_composite_both_che10_access_rows,681,ALB_2002 temp-only both CHE10 and access-barrier candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_uhc_composite_coping_rows,1476,ALB_2002 temp-only health-cost coping candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_uhc_composite_outcome_ready_rows,0,ALB_2002 composite UHC candidate rows ready for final outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_sdg_policy_rows,14,ALB_2002 consumption/SDG denominator policy rows observed upstream.
+alb2002_minimum_recipe_promotion_consumption_sdg_positive_total_rows,3599,ALB_2002 positive total-consumption denominator rows observed upstream.
+alb2002_minimum_recipe_promotion_consumption_aggregate_crosswalk_rows,11,ALB_2002 consumption aggregate metadata/local evidence crosswalk rows observed upstream.
+alb2002_minimum_recipe_promotion_consumption_aggregate_metadata_rows,0,ALB_2002 local master metadata catalog rows for the aggregate audit.
+alb2002_minimum_recipe_promotion_consumption_aggregate_totcons_match_rows,3599,ALB_2002 candidate total-consumption rows exactly matching raw `totcons`.
+alb2002_minimum_recipe_promotion_consumption_aggregate_documentation_ready_rows,9,ALB_2002 rows with accepted public aggregate documentation.
+alb2002_minimum_recipe_promotion_consumption_aggregate_recipe_ready_rows,0,ALB_2002 aggregate crosswalk rows ready for recipe promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_aggregate_outcome_ready_rows,0,ALB_2002 aggregate crosswalk rows ready for outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_aggregate_sdg382_ready_rows,0,ALB_2002 aggregate crosswalk rows ready for SDG 3.8.2 promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_sdg_spl_ready_rows,0,ALB_2002 consumption/SDG rows with SPL inputs accepted; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_sdg_ppp_cpi_ready_rows,0,ALB_2002 consumption/SDG rows with PPP/CPI inputs accepted; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_sdg_discretionary_ready_rows,0,ALB_2002 rows with household discretionary budget accepted; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_sdg_che_ready_rows,0,ALB_2002 rows with CHE denominator accepted; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_sdg_outcome_ready_rows,0,ALB_2002 consumption/SDG rows ready for outcome promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_consumption_sdg_sdg382_ready_rows,0,ALB_2002 consumption/SDG rows ready for SDG 3.8.2 promotion; intentionally zero.
+alb2002_minimum_recipe_promotion_harmonized_ready_rows,0,Rows ready for harmonized dataset promotion after this packet; intentionally zero.
+alb2002_minimum_recipe_promotion_outcome_ready_rows,0,Existing ALB_2002 outcome-ready rows observed from raw semantics audits.
+alb2002_minimum_recipe_promotion_sdg382_ready_rows,0,Existing ALB_2002 SDG 3.8.2-ready rows observed from raw semantics audits.
+alb2002_minimum_recipe_promotion_climate_shock_rows,384,ALB_2002 temp-only climate shock diagnostic rows observed upstream.
+alb2002_minimum_recipe_promotion_climate_shock_reference_groups,16,ALB_2002 survey-month/window diagnostic climate shock reference groups.
+alb2002_minimum_recipe_promotion_climate_shock_precip_z_rows,384,ALB_2002 diagnostic rainfall z-score rows observed upstream.
+alb2002_minimum_recipe_promotion_climate_shock_temp_z_rows,384,ALB_2002 diagnostic temperature z-score rows observed upstream.
+alb2002_minimum_recipe_promotion_climate_shock_combined_stress_rows,73,ALB_2002 diagnostic combined climate-stress rows; not accepted treatment variables.
+alb2002_minimum_recipe_promotion_climate_shock_climate_ready_rows,0,ALB_2002 shock diagnostic rows ready for climate linkage; intentionally zero.
+alb2002_minimum_recipe_promotion_climate_shock_data_write_ready_rows,0,ALB_2002 shock diagnostic rows allowed for data/ write; intentionally zero.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_rows,14396,ALB_2002 temp-only household-window climate/outcome linked candidate rows observed upstream.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_households,3599,ALB_2002 households represented in the linked diagnostic candidate.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_windows,4,Diagnostic exposure windows per household in the linked candidate.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_precip_z_rows,14396,ALB_2002 linked diagnostic rainfall z-score rows.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_temp_z_rows,14396,ALB_2002 linked diagnostic temperature z-score rows.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_combined_stress_rows,3092,ALB_2002 linked diagnostic combined climate-stress rows; not accepted treatment variables.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_climate_ready_rows,0,ALB_2002 linked rows ready for promoted climate linkage; intentionally zero.
+alb2002_minimum_recipe_promotion_climate_outcome_linked_data_write_ready_rows,0,ALB_2002 linked rows allowed for data/ write; intentionally zero.
+alb2002_minimum_recipe_promotion_climate_linkage_ready_rows,0,Existing ALB_2002 climate-linkage-ready rows observed from geography audits.
+alb2002_minimum_recipe_promotion_current_decision,blocked_alb2002_minimum_recipe_not_ready_for_promotion,Current fail-closed ALB_2002 minimum recipe promotion decision.

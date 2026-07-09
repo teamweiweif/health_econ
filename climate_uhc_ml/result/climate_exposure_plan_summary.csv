@@ -1,0 +1,8 @@
+metric,value,interpretation
+climate_plan_country_waves,28,Quality-screened country-waves with dataset-level climate linkage plans.
+climate_exposure_spec_rows,28,Pre-specified exposure family/window/source rows.
+metadata_ready_raw_unverified_country_waves,27,Timing and geography appear plausible in metadata but raw files are not inspected.
+ready_for_climate_linkage_input_build,1,Country-waves with raw-verified timing and geography.
+blocked_until_verified_geography_and_timing_specs,28,"Exposure specifications blocked by raw-data linkage inputs, not by source probing."
+gate_count_metadata_ready_raw_unverified,27,Dataset-level climate linkage gate count.
+gate_count_ready_for_climate_linkage_input_build,1,Dataset-level climate linkage gate count.

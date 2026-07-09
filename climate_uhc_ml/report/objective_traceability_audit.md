@@ -1,0 +1,530 @@
+# Objective Traceability Audit
+
+Status: this audit maps the user objective to current workspace evidence. It is not a claim that the empirical project is complete.
+
+## Requirement Status
+
+| Requirement status | Count |
+|---|---:|
+| satisfied | 108 |
+| blocked_raw_microdata | 1 |
+| incomplete | 1 |
+
+## Guardrail Status
+
+| Guardrail status | Count |
+|---|---:|
+| satisfied | 12 |
+
+## Summary Metrics
+
+| Metric | Value | Interpretation |
+|---|---:|---|
+| requirement_rows | 110 | Objective requirement traceability rows. |
+| guardrail_rows | 12 | Objective interpretation and directory guardrail rows. |
+| raw_file_inventory_rows | 209 | Raw tabular files inspected. |
+| raw_variable_catalog_rows | 5410 | Raw variables inspected. |
+| public_external_download_rows | 4 | Public external candidate raw download audit rows. |
+| public_external_downloaded_rows | 4 | Public external raw archives downloaded or already present. |
+| public_external_dataset_rows | 4 | Datasets with public external raw archives present. |
+| raw_variable_verification_protocol_rows | 2571 | Raw-variable verification protocol rows. |
+| harmonization_scaffold_rows | 1204 | Metadata-only harmonization scaffold rows. |
+| harmonization_recipe_gate_rows | 1204 | Harmonization scaffold rows assessed by recipe gate. |
+| harmonization_verified_candidate_rows | 0 | Rows ready to promote into a verified harmonization recipe. |
+| harmonization_ready_country_waves | 0 | Country-waves ready for verified recipe assembly. |
+| analysis_dataset_promotion_audit_rows | 6 | Analysis dataset promotion targets checked. |
+| analysis_dataset_promotion_blocked_rows | 2 | Promotion targets blocked from data/. |
+| analysis_dataset_promotion_promoted_rows | 4 | Promotion targets allowed for data/ writes; limited core/outcome/exposure/linked diagnostic files only while model-ready data remain blocked. |
+| analysis_dataset_promotion_data_file_count | 4 | Files currently present under data/. |
+| analysis_dataset_promotion_verified_recipe_candidates | 0 | Verified recipe candidates carried into the promotion-barrier audit. |
+| analysis_dataset_promotion_ready_country_waves | 0 | Ready country-waves carried into the promotion-barrier audit. |
+| analysis_dataset_promotion_alb2002_temp_core_rows | 3599 | ALB_2002 temp core rows carried into the promotion-barrier audit. |
+| analysis_dataset_promotion_alb2002_weight_positive_rows | 3599 | ALB_2002 positive household-weight rows carried into the promotion-barrier audit. |
+| analysis_dataset_promotion_alb2002_weight_key_match_rows | 3599 | ALB_2002 household-weight key matches carried into the promotion-barrier audit. |
+| analysis_dataset_promotion_alb2002_weighted_inference_ready_rows | 0 | ALB_2002 rows ready for promoted weighted inference; should remain zero. |
+| analysis_dataset_promotion_alb2002_harmonized_ready_rows | 0 | ALB_2002 harmonized rows ready for promotion; should remain zero. |
+| analysis_dataset_promotion_alb2002_outcome_ready_rows | 0 | ALB_2002 outcome rows ready for promotion; should remain zero. |
+| analysis_dataset_promotion_alb2002_climate_linkage_ready_rows | 0 | ALB_2002 climate-linkage rows ready for promotion; should remain zero. |
+| analysis_dataset_promotion_limited_harmonized_core_rows | 3599 | Rows written to data/harmonized_household.csv under limited scope. |
+| analysis_dataset_promotion_limited_harmonized_core_data_write_ready_rows | 3599 | Rows allowed for data/ write only as limited harmonized household core. |
+| analysis_dataset_promotion_limited_harmonized_core_final_outcome_ready_rows | 0 | Rows ready for final outcomes; should remain zero. |
+| analysis_dataset_promotion_limited_harmonized_core_climate_linkage_ready_rows | 0 | Rows ready for climate linkage; should remain zero. |
+| analysis_dataset_promotion_limited_climate_exposure_rows | 384 | Rows written to data/climate_exposures_nasa_power.csv under limited fallback scope. |
+| analysis_dataset_promotion_limited_climate_exposure_data_write_ready_rows | 384 | Rows allowed for data/ write only as limited fallback climate exposures. |
+| analysis_dataset_promotion_limited_climate_exposure_climate_linkage_ready_rows | 0 | Rows ready for final climate linkage; should remain zero. |
+| analysis_dataset_promotion_current_decision | limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked | Current fail-closed analysis dataset promotion decision. |
+| minimum_viable_acquisition_targets | 35 | Metadata-only acquisition target rows. |
+| minimum_viable_download_bundles | 23 | Unique manual-download bundle rows. |
+| sdg382_denominator_requirement_rows | 207 | SDG 3.8.2 denominator requirement rows. |
+| sdg382_denominator_ready_rows | 0 | Rows ready for household denominator value audit. |
+| climate_linkage_requirement_rows | 253 | Climate linkage requirement rows. |
+| climate_linkage_ready_value_rows | 0 | Rows ready for climate linkage value audit. |
+| mechanism_requirement_rows | 1449 | Mechanism pathway concept requirement rows. |
+| mechanism_readiness_rows | 161 | Country-wave pathway readiness rows. |
+| mechanism_ready_rows | 0 | Rows ready for mechanism analysis design. |
+| mechanism_blocked_rows | 161 | Rows blocked by raw evidence or upstream gates. |
+| empirical_dashboard_rows | 23 | Consolidated empirical readiness dashboard rows. |
+| empirical_no_go_rows | 8 | Go/no-go threshold status rows. |
+| empirical_no_go_pass_rows | 2 | Go/no-go threshold rows currently passing. |
+| empirical_no_go_blocked_rows | 6 | Go/no-go threshold rows blocked or failing. |
+| first_batch_raw_acquisition_checklist_rows | 10 | First-batch manual raw acquisition dataset rows. |
+| first_batch_raw_file_target_rows | 183 | First-batch file/module target rows. |
+| first_batch_raw_acquisition_summary_rows | 12 | First-batch raw acquisition summary rows. |
+| first_batch_official_raw_access_probe_rows | 10 | First-batch official get-microdata page probe rows. |
+| first_batch_access_gate_detected_rows | 10 | First-batch rows with login, registration, request, or terms signals. |
+| first_batch_possible_direct_raw_route_rows | 0 | First-batch rows with possible direct raw routes; links are not downloaded by the probe. |
+| first_batch_manual_download_handoff_rows | 10 | First-batch dataset-level manual download handoff rows. |
+| first_batch_manual_download_file_queue_rows | 143 | First-batch deduplicated file/module queue rows. |
+| first_batch_handoff_raw_ready_rows | 1 | First-batch handoff rows ready for raw schema and value audit. |
+| first_batch_public_documentation_rows | 60 | First-batch public documentation resource rows. |
+| first_batch_public_documentation_saved_rows | 58 | First-batch public documentation rows saved or reused. |
+| first_batch_public_documentation_failed_rows | 2 | First-batch public documentation rows that failed to fetch. |
+| first_batch_file_source_traceability_rows | 143 | First-batch file-source traceability rows. |
+| first_batch_file_source_supported_rows | 143 | First-batch queued files supported by public schema and candidate examples. |
+| first_batch_file_source_unsupported_rows | 0 | First-batch queued files missing from public schema inventory. |
+| first_batch_merge_key_lineage_plan_rows | 10 | First-batch dataset-level merge-key lineage plan rows. |
+| first_batch_merge_key_candidate_rows | 5112 | First-batch key, design, timing, and geography candidate variable rows. |
+| first_batch_merge_key_planned_rows | 8 | First-batch rows with metadata-planned key lineage before raw verification. |
+| first_batch_merge_key_raw_ready_rows | 1 | First-batch rows with raw files ready for value/key audit. |
+| first_batch_raw_value_key_audit_rows | 535 | First-batch observed value-audit rows. |
+| first_batch_raw_value_key_read_ok_rows | 176 | First-batch value-audit rows read successfully from raw files. |
+| first_batch_raw_merge_key_audit_rows | 56 | First-batch file-level key cardinality audit rows. |
+| first_batch_harmonization_value_audit_auto_rows | 431 | Fail-closed auto value-audit rows provided to the harmonization gate. |
+| first_batch_harmonization_value_audit_auto_ready_rows | 0 | Auto value-audit rows marked ready for recipe; should remain zero. |
+| alb2002_household_core_candidate_rows | 3599 | ALB_2002 temp household core candidate rows. |
+| alb2002_household_core_recipe_ready_rows | 0 | ALB_2002 household core rows ready for data promotion; should remain zero until gates pass. |
+| alb2002_provisional_outcome_feasibility_rows | 30 | ALB_2002 provisional outcome feasibility audit rows. |
+| alb2002_provisional_outcome_ready_rows | 0 | ALB_2002 provisional outcome rows ready for final promotion; should remain zero. |
+| alb2002_outcome_semantics_raw_value_rows | 42 | ALB_2002 raw outcome-semantics value audit rows. |
+| alb2002_outcome_semantics_outcome_ready_rows | 0 | ALB_2002 raw outcome-semantics rows ready for final promotion; should remain zero. |
+| alb2002_outcome_semantics_sdg382_ready_rows | 0 | ALB_2002 raw outcome-semantics rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2002_health_questionnaire_semantics_rows | 65 | ALB_2002 health questionnaire semantics and skip-path audit rows. |
+| alb2002_health_questionnaire_oop_item_rows | 25 | ALB_2002 questionnaire-backed OOP payment item rows. |
+| alb2002_health_questionnaire_gift_item_rows | 6 | ALB_2002 gift/payment-scope rows requiring inclusion policy. |
+| alb2002_health_questionnaire_new_lek_unit_rows | 31 | ALB_2002 questionnaire rows explicitly recording NEW LEKS units. |
+| alb2002_health_questionnaire_four_week_oop_rows | 17 | ALB_2002 OOP item rows with four-week recall. |
+| alb2002_health_questionnaire_twelve_month_oop_rows | 8 | ALB_2002 OOP item rows with twelve-month recall. |
+| alb2002_health_questionnaire_payment_positive_when_not_triggered_rows | 0 | ALB_2002 positive skipped-payment downstream rows; should remain zero. |
+| alb2002_health_questionnaire_outcome_ready_rows | 0 | ALB_2002 questionnaire rows ready for final outcome promotion; should remain zero. |
+| alb2002_health_questionnaire_sdg382_ready_rows | 0 | ALB_2002 questionnaire rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2002_health_questionnaire_climate_linkage_ready_rows | 0 | ALB_2002 questionnaire rows ready for climate linkage; should remain zero. |
+| alb2002_oop_aggregation_policy_rows | 11 | ALB_2002 OOP aggregation policy stress-test rows. |
+| alb2002_oop_aggregation_policy_core_4w_match_rows | 3599 | Rows where recomputed four-week OOP matches the existing ALB_2002 core candidate sum. |
+| alb2002_oop_aggregation_policy_core_12m_match_rows | 3599 | Rows where recomputed twelve-month OOP matches the existing ALB_2002 core candidate sum. |
+| alb2002_oop_aggregation_policy_outcome_ready_rows | 0 | ALB_2002 OOP policy rows ready for final outcome promotion; should remain zero. |
+| alb2002_oop_aggregation_policy_sdg382_ready_rows | 0 | ALB_2002 OOP policy rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2002_oop_aggregation_policy_climate_linkage_ready_rows | 0 | ALB_2002 OOP policy rows ready for climate linkage; should remain zero. |
+| alb2002_skip_missing_semantics_rows | 12 | ALB_2002 skip/missing semantics audit rows. |
+| alb2002_skip_missing_payment_positive_when_not_triggered_rows | 0 | ALB_2002 skipped payment rows with positive downstream values; should remain zero. |
+| alb2002_skip_missing_payment_zero_cells_when_not_triggered | 11 | ALB_2002 skipped payment downstream cells equal to zero; downstream decision audit records no positive leakage. |
+| alb2002_skip_missing_payment_positive_cells_when_not_triggered | 0 | ALB_2002 skipped payment downstream cells positive; should remain zero. |
+| alb2002_skip_missing_outcome_ready_rows | 0 | ALB_2002 skip/missing rows ready for final outcome promotion; should remain zero. |
+| alb2002_skip_missing_sdg382_ready_rows | 0 | ALB_2002 skip/missing rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2002_skip_missing_climate_linkage_ready_rows | 0 | ALB_2002 skip/missing rows ready for climate linkage; should remain zero. |
+| alb2002_oop_skip_value_decision_rows | 5 | ALB_2002 OOP skip-value decision audit rows. |
+| alb2002_oop_skip_value_payment_zero_skipped_cells | 11 | ALB_2002 zero-valued downstream payment cells when payment block was not triggered. |
+| alb2002_oop_skip_value_payment_positive_skipped_rows | 0 | ALB_2002 rows with positive downstream payment values when payment block was not triggered; should remain zero. |
+| alb2002_oop_skip_value_payment_positive_skipped_cells | 0 | ALB_2002 positive downstream payment cells when payment block was not triggered; should remain zero. |
+| alb2002_oop_skip_value_zero_skip_policy_ready_rows | 4 | ALB_2002 rows supporting the narrow no-positive-leakage skipped-payment decision. |
+| alb2002_oop_skip_value_oop_recall_scope_ready_rows | 0 | ALB_2002 OOP recall-scope rows accepted by the skip-value audit; should remain zero. |
+| alb2002_oop_skip_value_oop_inclusion_scope_ready_rows | 0 | ALB_2002 OOP inclusion-scope rows accepted by the skip-value audit; should remain zero. |
+| alb2002_oop_skip_value_outcome_ready_rows | 0 | ALB_2002 OOP skip-value rows ready for outcome promotion; should remain zero. |
+| alb2002_access_need_denominator_policy_rows | 24 | ALB_2002 access/need denominator policy audit rows. |
+| alb2002_access_need_q01_need_rows | 3247 | ALB_2002 households not coded as no-one-needed-health-care in m5b_q01. |
+| alb2002_access_need_person_need_household_rows | 2202 | ALB_2002 households with any Health A chronic/disability or sudden-illness proxy. |
+| alb2002_access_need_composite_any_access_barrier_rows | 1861 | ALB_2002 composite any-access-barrier candidate rows; not a final outcome. |
+| alb2002_access_need_low_event_rate_rows | 3 | ALB_2002 access/need denominator policies with event rate below 3 percent. |
+| alb2002_access_need_outcome_ready_rows | 0 | ALB_2002 access/need rows ready for final outcome promotion; should remain zero. |
+| alb2002_access_need_sdg382_ready_rows | 0 | ALB_2002 access/need rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2002_access_need_climate_linkage_ready_rows | 0 | ALB_2002 access/need rows ready for climate linkage; should remain zero. |
+| alb2002_consumption_sdg_denominator_policy_rows | 14 | ALB_2002 consumption/SDG denominator policy audit rows. |
+| alb2002_consumption_sdg_positive_total_consumption_rows | 3599 | ALB_2002 rows with positive total consumption in the temp candidate. |
+| alb2002_consumption_sdg_spl_ready_rows | 0 | ALB_2002 rows with SPL inputs accepted; should remain zero. |
+| alb2002_consumption_sdg_ppp_cpi_ready_rows | 0 | ALB_2002 rows with PPP/CPI inputs accepted; should remain zero. |
+| alb2002_consumption_sdg_discretionary_budget_ready_rows | 0 | ALB_2002 rows with discretionary budget accepted; should remain zero. |
+| alb2002_consumption_sdg_che_denominator_ready_rows | 0 | ALB_2002 rows with CHE denominator accepted; should remain zero. |
+| alb2002_consumption_sdg_outcome_ready_rows | 0 | ALB_2002 consumption/SDG rows ready for final outcome promotion; should remain zero. |
+| alb2002_consumption_sdg_sdg382_ready_rows | 0 | ALB_2002 rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2002_consumption_sdg_climate_linkage_ready_rows | 0 | ALB_2002 consumption/SDG rows ready for climate linkage; should remain zero. |
+| alb2002_consumption_construction_source_audit_rows | 9 | ALB_2002 public consumption-construction source audit rows. |
+| alb2002_consumption_construction_do_file_rows | 19 | Extracted public ALB_2002 Stata do-files documenting consumption construction. |
+| alb2002_consumption_construction_documentation_ready_rows | 9 | ALB_2002 source-audit rows with accepted public construction documentation. |
+| alb2002_consumption_construction_released_variable_mapping_ready_rows | 3 | ALB_2002 source-audit rows supporting local `totcons` to public `totcons3` mapping. |
+| alb2002_consumption_construction_denominator_variant_ready_rows | 8 | ALB_2002 source-audit rows documenting the final total-budget denominator variant. |
+| alb2002_consumption_construction_outcome_ready_rows | 0 | ALB_2002 source-audit rows ready for outcome promotion; should remain zero. |
+| alb2002_consumption_construction_sdg382_ready_rows | 0 | ALB_2002 source-audit rows ready for SDG 3.8.2 promotion; should remain zero. |
+| alb2002_consumption_construction_climate_linkage_ready_rows | 0 | ALB_2002 source-audit rows ready for climate linkage; should remain zero. |
+| alb2002_consumption_aggregate_crosswalk_rows | 11 | ALB_2002 aggregate metadata/local evidence crosswalk rows. |
+| alb2002_consumption_aggregate_crosswalk_metadata_catalog_rows | 0 | Local master metadata rows available for ALB_2002 aggregate verification; public source evidence now sits in the construction-source audit instead. |
+| alb2002_consumption_aggregate_crosswalk_raw_totcons_positive_rows | 3599 | Positive raw `totcons` rows in local ALB_2002 Poverty_2002.sav. |
+| alb2002_consumption_aggregate_crosswalk_candidate_totcons_match_rows | 3599 | ALB_2002 candidate total_consumption rows exactly matching raw `totcons`. |
+| alb2002_consumption_aggregate_crosswalk_questionnaire_aggregate_formula_hits | 0 | Questionnaire aggregate-formula evidence hits; source-code documentation is captured separately. |
+| alb2002_consumption_aggregate_crosswalk_construction_source_rows | 9 | Rows imported from the upstream ALB_2002 public consumption-construction source audit. |
+| alb2002_consumption_aggregate_crosswalk_construction_do_file_rows | 19 | Extracted public Stata do-files used as ALB_2002 denominator-construction evidence. |
+| alb2002_consumption_aggregate_crosswalk_metadata_unit_period_ready_rows | 8 | ALB_2002 rows with denominator-variant and unit/period context documented by public sources. |
+| alb2002_consumption_aggregate_crosswalk_official_documentation_ready_rows | 9 | ALB_2002 rows with accepted public aggregate-construction documentation. |
+| alb2002_consumption_aggregate_crosswalk_released_variable_mapping_ready_rows | 3 | ALB_2002 rows supporting the local `totcons` to public `totcons3` mapping. |
+| alb2002_consumption_aggregate_crosswalk_denominator_variant_ready_rows | 8 | ALB_2002 rows documenting the total-budget denominator variant. |
+| alb2002_consumption_aggregate_crosswalk_recipe_ready_rows | 0 | ALB_2002 aggregate crosswalk rows ready for recipe promotion; should remain zero. |
+| alb2002_consumption_aggregate_crosswalk_outcome_ready_rows | 0 | ALB_2002 aggregate crosswalk rows ready for outcome promotion; should remain zero. |
+| alb2002_consumption_aggregate_crosswalk_sdg382_ready_rows | 0 | ALB_2002 aggregate crosswalk rows ready for SDG 3.8.2 promotion; should remain zero. |
+| alb2002_consumption_aggregate_crosswalk_climate_linkage_ready_rows | 0 | ALB_2002 aggregate crosswalk rows ready for climate linkage; should remain zero. |
+| alb2002_period_aligned_che_policy_rows | 3 | ALB_2002 period-aligned CHE stress-test policy rows. |
+| alb2002_period_aligned_che_period_alignment_ready_rows | 3 | ALB_2002 period-aligned CHE rows ready for stress testing, not outcome promotion. |
+| alb2002_period_aligned_che_combined_che10_rate | 0.228952 | Combined monthly-equivalent unweighted CHE10 rate for ALB_2002 no-gifts-with-transport stress test. |
+| alb2002_period_aligned_che_combined_che25_rate | 0.0805779 | Combined monthly-equivalent unweighted CHE25 rate for ALB_2002 no-gifts-with-transport stress test. |
+| alb2002_period_aligned_che_outcome_ready_rows | 0 | ALB_2002 period-aligned CHE rows promoted to final outcomes; should remain zero. |
+| alb2002_period_aligned_che_current_decision | blocked_alb2002_period_aligned_che_policy_not_outcome_ready | Current ALB_2002 period-aligned CHE policy decision. |
+| alb2002_che_candidate_household_rows | 3599 | ALB_2002 temp-only household CHE candidate rows. |
+| alb2002_che_candidate_denominator_rows | 3599 | ALB_2002 CHE candidate rows with positive monthly total-budget candidate denominator. |
+| alb2002_che_candidate_che10_rows | 824 | ALB_2002 candidate CHE10 rows under the period-aligned combined OOP policy. |
+| alb2002_che_candidate_che10_rate | 0.228952 | ALB_2002 candidate CHE10 rate; audit only. |
+| alb2002_che_candidate_che25_rows | 290 | ALB_2002 candidate CHE25 rows under the period-aligned combined OOP policy. |
+| alb2002_che_candidate_che25_rate | 0.0805779 | ALB_2002 candidate CHE25 rate; audit only. |
+| alb2002_che_candidate_outcome_promotion_ready_rows | 0 | ALB_2002 candidate outcome rows ready for final promotion; should remain zero. |
+| alb2002_che_candidate_current_decision | blocked_alb2002_che_candidate_not_promoted_due_recipe_sdg_climate_gates | Current ALB_2002 CHE candidate outcome decision. |
+| alb2002_access_candidate_household_rows | 3599 | ALB_2002 temp-only household access candidate rows. |
+| alb2002_access_candidate_q01_need_rows | 3247 | ALB_2002 q01 household need candidate rows. |
+| alb2002_access_candidate_person_need_rows | 2202 | ALB_2002 person-level need proxy rows aggregated to household. |
+| alb2002_access_candidate_composite_cost_rows | 1661 | ALB_2002 temp-only composite cost-barrier candidate rows. |
+| alb2002_access_candidate_composite_any_rows | 1861 | ALB_2002 temp-only composite any-access-barrier candidate rows. |
+| alb2002_access_candidate_outcome_promotion_ready_rows | 0 | ALB_2002 access candidate outcome rows ready for final promotion; should remain zero. |
+| alb2002_access_candidate_current_decision | blocked_alb2002_access_candidate_not_promoted_due_denominator_skip_climate_gates | Current ALB_2002 access candidate outcome decision. |
+| alb2002_uhc_composite_candidate_household_rows | 3599 | ALB_2002 temp-only composite UHC candidate rows. |
+| alb2002_uhc_composite_candidate_che10_or_access_rows | 2004 | ALB_2002 temp-only CHE10-or-access candidate rows. |
+| alb2002_uhc_composite_candidate_che25_or_access_rows | 1889 | ALB_2002 temp-only CHE25-or-access candidate rows. |
+| alb2002_uhc_composite_candidate_both_che10_access_rows | 681 | ALB_2002 temp-only both CHE10 and access-barrier candidate rows. |
+| alb2002_uhc_composite_candidate_coping_rows | 1476 | ALB_2002 temp-only health-cost coping candidate rows. |
+| alb2002_uhc_composite_candidate_outcome_promotion_ready_rows | 0 | ALB_2002 composite UHC candidate rows ready for final promotion; should remain zero. |
+| alb2002_uhc_composite_candidate_current_decision | blocked_alb2002_uhc_composite_candidate_not_promoted_due_outcome_recipe_climate_gates | Current ALB_2002 composite UHC candidate outcome decision. |
+| alb2002_analysis_candidate_rows | 3599 | ALB_2002 temp-only joined analysis-candidate household rows. |
+| alb2002_analysis_candidate_complete_candidate_gates | 9 | ALB_2002 analysis-candidate field families with complete observed coverage. |
+| alb2002_analysis_candidate_missing_gates | 1 | ALB_2002 analysis-candidate field families with missing required coverage. |
+| alb2002_analysis_candidate_data_write_ready_rows | 0 | ALB_2002 analysis-candidate rows allowed to be written to data/; should remain zero. |
+| alb2002_analysis_candidate_current_decision | blocked_alb2002_analysis_candidate_not_promoted_due_recipe_outcome_climate_gates | Current ALB_2002 joined analysis-candidate decision. |
+| alb2002_climate_centroid_input_rows | 96 | ALB_2002 observed district-month cells used for the temp-only climate centroid stress test. |
+| alb2002_climate_centroid_exposure_rows | 384 | ALB_2002 temp-only NASA POWER district-centroid exposure rows. |
+| alb2002_climate_centroid_nasa_api_rows | 36 | ALB_2002 district centroid API/cache manifest rows. |
+| alb2002_climate_centroid_nasa_failed_rows | 0 | ALB_2002 NASA POWER district centroid requests that failed. |
+| alb2002_climate_centroid_precip_nonmissing_rows | 384 | ALB_2002 centroid exposure rows with nonmissing precipitation summaries. |
+| alb2002_climate_centroid_temp_nonmissing_rows | 384 | ALB_2002 centroid exposure rows with nonmissing temperature summaries. |
+| alb2002_climate_centroid_climate_linkage_ready_rows | 0 | ALB_2002 centroid exposure rows ready for promoted climate linkage; should remain zero. |
+| alb2002_climate_centroid_data_write_ready_rows | 0 | ALB_2002 centroid exposure rows allowed for data/ write; should remain zero. |
+| alb2002_climate_shock_candidate_exposure_rows | 384 | ALB_2002 temp-only climate shock diagnostic rows. |
+| alb2002_climate_shock_candidate_reference_group_rows | 16 | ALB_2002 survey-month/window diagnostic reference groups. |
+| alb2002_climate_shock_candidate_precip_z_nonmissing_rows | 384 | ALB_2002 diagnostic rainfall z-score rows. |
+| alb2002_climate_shock_candidate_temp_z_nonmissing_rows | 384 | ALB_2002 diagnostic temperature z-score rows. |
+| alb2002_climate_shock_candidate_low_rain_rows | 37 | ALB_2002 diagnostic low-rain rows. |
+| alb2002_climate_shock_candidate_extreme_wet_rows | 44 | ALB_2002 diagnostic extreme-wet rows. |
+| alb2002_climate_shock_candidate_extreme_heat_rows | 29 | ALB_2002 diagnostic extreme-heat rows. |
+| alb2002_climate_shock_candidate_combined_stress_rows | 73 | ALB_2002 diagnostic combined climate-stress rows; not accepted treatment variables. |
+| alb2002_climate_shock_candidate_climate_linkage_ready_rows | 0 | ALB_2002 shock diagnostic rows ready for promoted climate linkage; should remain zero. |
+| alb2002_climate_shock_candidate_data_write_ready_rows | 0 | ALB_2002 shock diagnostic rows allowed for data/ write; should remain zero. |
+| alb2002_climate_outcome_linked_candidate_rows | 14396 | ALB_2002 temp-only household-window climate/outcome linked candidate rows. |
+| alb2002_climate_outcome_linked_candidate_household_rows | 3599 | ALB_2002 households represented in the linked candidate. |
+| alb2002_climate_outcome_linked_candidate_window_rows | 4 | Diagnostic exposure windows per household in the linked candidate. |
+| alb2002_climate_outcome_linked_candidate_unmatched_rows | 0 | Linked candidate rows without a diagnostic climate window; should remain zero. |
+| alb2002_climate_outcome_linked_candidate_precip_z_rows | 14396 | ALB_2002 linked diagnostic rainfall z-score rows. |
+| alb2002_climate_outcome_linked_candidate_temp_z_rows | 14396 | ALB_2002 linked diagnostic temperature z-score rows. |
+| alb2002_climate_outcome_linked_candidate_combined_stress_rows | 3092 | ALB_2002 linked diagnostic combined climate-stress rows; not accepted treatment variables. |
+| alb2002_climate_outcome_linked_candidate_climate_linkage_ready_rows | 0 | ALB_2002 linked rows ready for promoted climate linkage; should remain zero. |
+| alb2002_climate_outcome_linked_candidate_outcome_promotion_ready_rows | 0 | ALB_2002 linked rows ready for outcome promotion; should remain zero. |
+| alb2002_climate_outcome_linked_candidate_data_write_ready_rows | 0 | ALB_2002 linked rows allowed for data/ write; should remain zero. |
+| alb2002_linked_candidate_descriptive_input_rows | 14396 | ALB_2002 temp-only linked household-window rows screened descriptively. |
+| alb2002_linked_candidate_descriptive_household_rows | 3599 | Deduplicated ALB_2002 households used for candidate outcome rates. |
+| alb2002_linked_candidate_descriptive_cell_rows | 108 | ALB_2002 linked-candidate descriptive screen cells; not promoted descriptive diagnostics. |
+| alb2002_linked_candidate_descriptive_combined_stress_rows | 3092 | Long rows with diagnostic combined climate-stress flag in the descriptive screen. |
+| alb2002_linked_candidate_descriptive_climate_linkage_ready_rows | 0 | ALB_2002 descriptive-screen rows ready for promoted climate linkage; should remain zero. |
+| alb2002_linked_candidate_descriptive_data_write_ready_rows | 0 | ALB_2002 descriptive-screen rows allowed for data/ write; should remain zero. |
+| alb2002_weight_design_evidence_audit_rows | 6 | ALB_2002 household weight/design evidence audit rows. |
+| alb2002_weight_design_source_page_flag_rows | 9 | World Bank study-page weight/design source flags found by the audit. |
+| alb2002_weight_design_raw_weight_file_rows | 3599 | Rows read from the ALB_2002 household weight file. |
+| alb2002_weight_design_positive_weight_rows | 3599 | Rows with positive ALB_2002 household weights. |
+| alb2002_weight_design_candidate_key_match_rows | 3599 | ALB_2002 household-weight rows matching the temp core candidate by key. |
+| alb2002_weight_design_distinct_psu_rows | 450 | Distinct PSU values observed in the ALB_2002 household weight file. |
+| alb2002_weight_design_distinct_stratum_rows | 4 | Distinct stratum values observed in the ALB_2002 household weight file. |
+| alb2002_weight_design_weighted_inference_ready_rows | 0 | ALB_2002 rows ready for promoted weighted inference; should remain zero. |
+| alb2002_weight_design_harmonized_promotion_ready_rows | 0 | ALB_2002 weight/design rows ready for harmonized data promotion; should remain zero. |
+| alb2002_weight_design_current_decision | blocked_alb2002_weight_design_semantics_not_promotion_ready | Current ALB_2002 weight/design evidence decision. |
+| alb2002_sample_design_documentation_ready_rows | 1 | ALB_2002 official sample-design documentation ready; not a data-promotion pass. |
+| alb2002_sample_design_raw_design_concordance_rows | 1 | ALB_2002 raw count evidence concordant with official sample-design documentation. |
+| alb2002_sample_design_weighted_inference_ready_rows | 0 | ALB_2002 weighted inference ready rows after sample-design audit; should remain zero. |
+| alb2002_sample_design_current_decision | candidate_alb2002_sample_design_documented_not_promoted_due_downstream_gates | Current ALB_2002 sample-design documentation decision. |
+| alb2002_minimum_recipe_promotion_action_rows | 6 | ALB_2002 minimum recipe promotion action rows. |
+| alb2002_minimum_recipe_promotion_gate_rows | 10 | ALB_2002 minimum recipe promotion gate rows. |
+| alb2002_minimum_recipe_promotion_blocked_gates | 7 | ALB_2002 minimum recipe gates still blocked. |
+| alb2002_minimum_recipe_promotion_weight_positive_rows | 3599 | Positive ALB_2002 household-weight rows surfaced in the promotion packet. |
+| alb2002_minimum_recipe_promotion_weight_key_match_rows | 3599 | ALB_2002 household-weight key matches surfaced in the promotion packet. |
+| alb2002_minimum_recipe_promotion_weighted_inference_ready_rows | 0 | ALB_2002 rows ready for promoted weighted inference in the promotion packet; should remain zero. |
+| alb2002_minimum_recipe_promotion_harmonized_ready_rows | 0 | ALB_2002 rows ready for harmonized data promotion; should remain zero. |
+| alb2002_minimum_recipe_promotion_outcome_ready_rows | 0 | ALB_2002 rows ready for outcome promotion; should remain zero. |
+| alb2002_minimum_recipe_promotion_sdg382_ready_rows | 0 | ALB_2002 rows ready for SDG 3.8.2 promotion; should remain zero. |
+| alb2002_minimum_recipe_promotion_climate_linkage_ready_rows | 0 | ALB_2002 rows ready for climate linkage after minimum recipe gates; should remain zero. |
+| alb2002_district_climate_crosswalk_rows | 36 | ALB_2002 district climate crosswalk template rows. |
+| alb2002_boundary_name_match_rows | 36 | ALB_2002 survey district rows compared to public boundary names. |
+| alb2002_boundary_name_match_unmatched_survey_rows | 1 | ALB_2002 survey district rows without a current public boundary-name match. |
+| alb2002_boundary_name_match_duplicate_boundary_name_keys | 2 | Duplicate boundary-name keys in the public current ADM2 GeoJSON. |
+| alb2002_boundary_name_match_historical_year_ready_rows | 0 | ALB_2002 boundary-name rows ready for 2002 historical crosswalk validation; should remain zero. |
+| alb2002_boundary_name_match_climate_linkage_ready_rows | 0 | ALB_2002 boundary-name rows ready for climate-linkage promotion; should remain zero. |
+| alb2002_boundary_resource_search_candidate_rows | 3 | ALB_2002 public boundary/gazetteer resources parsed or probed. |
+| alb2002_boundary_resource_search_complete_name_coverage_rows | 1 | Boundary resources with complete ALB_2002 district-name coverage after documented repairs. |
+| alb2002_boundary_resource_search_exact_unit_count_rows | 1 | Boundary resources with feature and distinct-key counts matching the 36 ALB_2002 district groups. |
+| alb2002_boundary_resource_search_2002_historical_ready_rows | 0 | Boundary resources verified as 2002 historical inputs; should remain zero. |
+| alb2002_boundary_resource_search_climate_linkage_ready_rows | 0 | Boundary resources ready for climate-linkage promotion; should remain zero. |
+| alb2002_boundary_geometry_feature_rows | 36 | Features parsed in the best ALB_2002 boundary lead. |
+| alb2002_boundary_geometry_coordinate_structure_ok_rows | 36 | Boundary features with parseable coordinate structure; not topology validation. |
+| alb2002_boundary_geometry_metadata_boundary_year | 2013 | Boundary year reported by the candidate source metadata. |
+| alb2002_boundary_geometry_boundary_year_matches_2002_rows | 0 | Candidate source rows whose metadata directly verifies a 2002 boundary vintage; should remain zero. |
+| alb2002_boundary_geometry_historical_2002_boundary_ready_rows | 0 | Geometry/provenance rows ready as verified 2002 historical boundary inputs; should remain zero. |
+| alb2002_boundary_geometry_climate_linkage_ready_rows | 0 | Geometry/provenance rows ready for climate-linkage promotion; should remain zero. |
+| alb2002_boundary_manual_verification_action_rows | 7 | Source/action rows in the ALB_2002 manual boundary verification packet. |
+| alb2002_boundary_manual_verification_gate_rows | 9 | Pass/fail gate rows in the ALB_2002 manual boundary verification packet. |
+| alb2002_boundary_manual_verification_blocked_gates | 6 | Manual boundary verification gates still blocked. |
+| alb2002_boundary_manual_verification_pre2011_digital_map_absence_rows | 1 | Negative-evidence rows documenting pre-2011 national digital map absence. |
+| alb2002_boundary_manual_verification_climate_linkage_ready_rows | 0 | Manual verification rows ready for climate-linkage promotion; should remain zero. |
+| alb2002_boundary_manual_source_followup_rows | 7 | Manual-source follow-up rows for ALB_2002 boundary leads. |
+| alb2002_boundary_manual_source_followup_conclusive_blocker_rows | 7 | ALB_2002 source leads with documented source-specific blockers after follow-up. |
+| alb2002_boundary_manual_source_followup_district_level_ready_rows | 0 | ALB_2002 source leads verified as district-level-ready after follow-up; should remain zero. |
+| alb2002_boundary_manual_source_followup_climate_linkage_ready_rows | 0 | ALB_2002 source leads ready for climate-linkage promotion after follow-up; should remain zero. |
+| alb2002_boundary_manual_source_followup_unece_pre2011_map_status | blocked_pre2011_digital_boundary_source_absence_documented | UNECE/INSTAT pre-2011 national digital map availability blocker status. |
+| alb2002_gadm_boundary_lead_candidate_rows | 2 | GADM Albania ADM2 source candidates audited for ALB_2002 district-boundary linkage. |
+| alb2002_gadm36_adm2_row_count | 37 | GADM 3.6 Albania ADM2 feature rows. |
+| alb2002_gadm36_distinct_normalized_key_count | 36 | GADM 3.6 normalized keys after documented district-name repairs. |
+| alb2002_gadm36_complete_name_coverage_rows | 1 | GADM 3.6 name-coverage flag for all 36 ALB_2002 district keys. |
+| alb2002_gadm36_duplicate_boundary_key_count | 1 | Duplicated GADM 3.6 normalized keys that block automatic promotion. |
+| alb2002_gadm_boundary_lead_climate_linkage_ready_rows | 0 | GADM boundary lead rows ready for climate-linkage promotion; should remain zero. |
+| alb2002_climate_linkage_ready_rows | 0 | ALB_2002 district rows ready for climate linkage; should remain zero. |
+| alb2012_household_core_candidate_rows | 6671 | ALB_2012 temp household core candidate rows. |
+| alb2012_household_core_recipe_ready_rows | 0 | ALB_2012 household core rows ready for data promotion; should remain zero. |
+| alb2012_climate_linkage_ready_rows | 0 | ALB_2012 rows ready for climate linkage; should remain zero. |
+| alb2012_provisional_outcome_rows | 33 | ALB_2012 provisional outcome feasibility audit rows. |
+| alb2012_provisional_outcome_ready_rows | 0 | ALB_2012 provisional outcome rows ready for data promotion; should remain zero. |
+| alb2012_outcome_semantics_raw_value_rows | 61 | ALB_2012 raw outcome-semantics value audit rows. |
+| alb2012_outcome_semantics_outcome_ready_rows | 0 | ALB_2012 raw outcome-semantics rows ready for final promotion; should remain zero. |
+| alb2012_outcome_semantics_sdg382_ready_rows | 0 | ALB_2012 raw outcome-semantics rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2012_outcome_semantics_climate_linkage_ready_rows | 0 | ALB_2012 raw outcome-semantics rows ready for climate linkage; should remain zero. |
+| alb2012_timing_geography_rows | 212 | ALB_2012 timing/geography exhaustive audit rows. |
+| alb2012_timing_geography_climate_linkage_ready_rows | 0 | ALB_2012 timing/geography rows ready for climate linkage; should remain zero. |
+| alb2012_questionnaire_timing_field_rows | 29 | ALB_2012 questionnaire control-sheet timing field rows. |
+| alb2012_questionnaire_timing_raw_gap_rows | 12 | ALB_2012 raw SPSS timing-like rows that do not verify household interview timing. |
+| alb2012_questionnaire_timing_raw_verified_interview_timing_rows | 0 | ALB_2012 verified raw household interview timing rows; should remain zero. |
+| alb2012_questionnaire_timing_climate_linkage_ready_rows | 0 | ALB_2012 questionnaire timing rows ready for climate-linkage promotion; should remain zero. |
+| albania_legacy_questionnaire_present_files | 5 | ALB_2002/2005/2008 legacy questionnaire files present locally. |
+| albania_legacy_questionnaire_read_ok_files | 5 | Legacy questionnaire .xls files readable in the current environment. |
+| albania_legacy_questionnaire_missing_reader_blocked_files | 0 | Legacy questionnaire files blocked by missing .xls reader/converter. |
+| albania_legacy_questionnaire_climate_linkage_ready_rows | 0 | Legacy questionnaire rows ready for climate-linkage promotion; should remain zero. |
+| albania_legacy_questionnaire_timing_field_rows | 83 | Legacy questionnaire timing/control field rows. |
+| albania_legacy_questionnaire_timing_raw_gap_rows | 58 | Legacy raw SPSS timing-like rows reviewed after questionnaire timing audit. |
+| albania_legacy_questionnaire_timing_raw_verified_interview_timing_rows | 3599 | Verified raw household interview timing rows across ALB_2002/2005/2008. |
+| albania_legacy_questionnaire_timing_climate_linkage_ready_rows | 0 | Legacy questionnaire timing rows ready for climate-linkage promotion; should remain zero. |
+| alb2005_provisional_outcome_feasibility_rows | 23 | ALB_2005 provisional outcome feasibility audit rows. |
+| alb2005_provisional_outcome_ready_rows | 0 | ALB_2005 provisional outcome rows ready for final promotion; should remain zero. |
+| alb2005_outcome_semantics_raw_value_rows | 53 | ALB_2005 raw outcome-semantics value audit rows. |
+| alb2005_outcome_semantics_outcome_ready_rows | 0 | ALB_2005 raw outcome-semantics rows ready for final promotion; should remain zero. |
+| alb2005_outcome_semantics_sdg382_ready_rows | 0 | ALB_2005 raw outcome-semantics rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2005_outcome_semantics_climate_linkage_ready_rows | 0 | ALB_2005 raw outcome-semantics rows ready for climate linkage; should remain zero. |
+| alb2005_timing_geography_exhaustive_rows | 234 | ALB_2005 timing/geography exhaustive audit rows. |
+| alb2005_climate_linkage_ready_rows | 0 | ALB_2005 rows ready for climate linkage; should remain zero until timing/geography are verified. |
+| alb2005_timing_geography_source_search_rows | 11 | ALB_2005 timing/geography source-search audit rows. |
+| alb2005_timing_geography_source_search_local_files_scanned | 46 | Local ALB_2005 file rows scanned for timing/geography source evidence. |
+| alb2005_timing_geography_source_search_local_variables_scanned | 1187 | Local ALB_2005 raw-variable rows scanned for timing/geography source evidence. |
+| alb2005_timing_geography_source_search_verified_household_timing_rows | 0 | Verified ALB_2005 household interview timing rows in source-search evidence; should remain zero. |
+| alb2005_timing_geography_source_search_coordinate_candidate_rows | 0 | ALB_2005 coordinate/GPS candidate rows in source-search evidence; should remain zero. |
+| alb2005_timing_geography_source_search_partial_district_name_nonmissing_rows | 1899 | Partial ALB_2005 district-name rows observed upstream. |
+| alb2005_timing_geography_source_search_partial_district_code_nonmissing_rows | 329 | Partial ALB_2005 district-code rows observed upstream. |
+| alb2005_timing_geography_source_search_climate_linkage_ready_rows | 0 | ALB_2005 timing/geography source-search rows ready for climate linkage; should remain zero. |
+| alb2005_required_value_key_rows | 26 | ALB_2005 required value/key audit rows. |
+| alb2005_required_value_key_recipe_ready_rows | 0 | ALB_2005 rows promoted to a harmonization recipe by required value/key audit; should remain zero. |
+| alb2005_required_value_key_not_promoted_rows | 26 | ALB_2005 required value/key rows kept fail-closed. |
+| alb2005_required_value_key_total_consumption_nonmissing_rows | 3638 | Nonmissing ALB_2005 total-consumption raw values in poverty.sav. |
+| alb2005_required_value_key_oop_4w_household_positive_rows | 2679 | Audit-only positive ALB_2005 four-week OOP household sums; not final outcomes. |
+| alb2005_required_value_key_oop_12m_household_positive_rows | 2231 | Audit-only positive ALB_2005 twelve-month OOP household sums; not final outcomes. |
+| alb2005_required_value_key_district_code_nonmissing_rows | 329 | Nonmissing partial ALB_2005 district-code rows. |
+| alb2005_required_value_key_interview_timing_verified_rows | 0 | Verified ALB_2005 household interview timing rows; should remain zero. |
+| alb2005_required_value_key_coordinate_ready_rows | 0 | Verified ALB_2005 coordinate-ready rows; should remain zero. |
+| alb2005_required_value_key_climate_linkage_ready_rows | 0 | ALB_2005 climate-linkage-ready rows after required value/key audit; should remain zero. |
+| alb2005_health_questionnaire_semantics_rows | 58 | ALB_2005 health questionnaire semantics audit rows. |
+| alb2005_health_questionnaire_oop_item_rows | 36 | Questionnaire-backed ALB_2005 OOP payment item rows. |
+| alb2005_health_questionnaire_old_lek_unit_rows | 36 | ALB_2005 health questionnaire rows with old-lek unit evidence. |
+| alb2005_health_questionnaire_access_rows | 7 | ALB_2005 questionnaire access/barrier rows. |
+| alb2005_health_questionnaire_cost_barrier_rows | 3 | ALB_2005 access rows with cost-barrier codes. |
+| alb2005_health_questionnaire_recipe_ready_rows | 0 | ALB_2005 questionnaire-semantics rows ready for recipe promotion; should remain zero. |
+| alb2005_health_questionnaire_outcome_ready_rows | 0 | ALB_2005 questionnaire-semantics rows ready for outcome construction; should remain zero. |
+| alb2005_health_questionnaire_climate_linkage_ready_rows | 0 | ALB_2005 questionnaire-semantics rows ready for climate linkage; should remain zero. |
+| alb2005_oop_aggregation_policy_rows | 11 | ALB_2005 OOP aggregation policy stress-test rows. |
+| alb2005_oop_aggregation_policy_household_rows | 3840 | Households in the ALB_2005 OOP aggregation policy audit. |
+| alb2005_oop_aggregation_policy_total_consumption_rows | 3638 | ALB_2005 households with positive total-consumption denominator in the stress test. |
+| alb2005_oop_aggregation_policy_outcome_ready_rows | 0 | ALB_2005 OOP policy rows ready for final outcome promotion; should remain zero. |
+| alb2005_oop_aggregation_policy_recipe_ready_rows | 0 | ALB_2005 OOP policy rows ready for recipe promotion; should remain zero. |
+| alb2005_oop_aggregation_policy_climate_linkage_ready_rows | 0 | ALB_2005 OOP policy rows ready for climate linkage; should remain zero. |
+| alb2005_skip_missing_semantics_rows | 13 | ALB_2005 skip/missing semantics audit rows. |
+| alb2005_skip_missing_payment_nonmissing_when_not_triggered_rows | 0 | Payment downstream nonmissing rows under negative triggers; should remain zero. |
+| alb2005_skip_missing_payment_positive_when_not_triggered_rows | 0 | Payment downstream positive rows under negative triggers; should remain zero. |
+| alb2005_skip_missing_payment_zero_or_missing_when_triggered_rows | 326 | Triggered payment rows with no positive payment; requires zero/missing-code review before promotion. |
+| alb2005_skip_missing_recipe_ready_rows | 0 | ALB_2005 skip/missing rows ready for recipe promotion; should remain zero. |
+| alb2005_skip_missing_outcome_ready_rows | 0 | ALB_2005 skip/missing rows ready for outcome promotion; should remain zero. |
+| alb2005_skip_missing_climate_linkage_ready_rows | 0 | ALB_2005 skip/missing rows ready for climate linkage; should remain zero. |
+| alb2005_consumption_oop_unit_period_rows | 12 | ALB_2005 consumption/OOP unit-period audit rows. |
+| alb2005_consumption_oop_unit_period_total_consumption_positive_rows | 3638 | Positive total-consumption rows observed in the ALB_2005 unit-period audit. |
+| alb2005_consumption_oop_unit_period_rcons_positive_rows | 3638 | Positive per-capita consumption rows observed in the ALB_2005 unit-period audit. |
+| alb2005_consumption_oop_unit_period_metadata_old_lek_rows | 6 | Public metadata aggregate labels with old-lek evidence. |
+| alb2005_consumption_oop_unit_period_oop_old_lek_rows | 36 | Questionnaire OOP rows with old-lek unit evidence. |
+| alb2005_consumption_oop_unit_period_four_week_oop_rows | 26 | Questionnaire OOP rows with four-week recall. |
+| alb2005_consumption_oop_unit_period_twelve_month_oop_rows | 10 | Questionnaire OOP rows with 12-month recall. |
+| alb2005_consumption_oop_unit_period_sdg382_ready_rows | 0 | ALB_2005 unit-period rows ready for SDG 3.8.2 denominator construction; should remain zero. |
+| alb2005_consumption_oop_unit_period_recipe_ready_rows | 0 | ALB_2005 unit-period rows ready for recipe promotion; should remain zero. |
+| alb2005_consumption_oop_unit_period_outcome_ready_rows | 0 | ALB_2005 unit-period rows ready for outcome promotion; should remain zero. |
+| alb2005_consumption_oop_unit_period_climate_linkage_ready_rows | 0 | ALB_2005 unit-period rows ready for climate linkage; should remain zero. |
+| alb2005_consumption_aggregate_crosswalk_rows | 16 | ALB_2005 aggregate metadata/local raw crosswalk audit rows. |
+| alb2005_consumption_aggregate_crosswalk_metadata_rows | 9 | Public metadata aggregate/component variables checked against local poverty.sav. |
+| alb2005_consumption_aggregate_crosswalk_metadata_present_local_rows | 1 | Checked public metadata aggregate/component variables present locally. |
+| alb2005_consumption_aggregate_crosswalk_metadata_absent_local_rows | 8 | Checked public metadata aggregate/component variables absent locally. |
+| alb2005_consumption_aggregate_crosswalk_totcons_positive_rows | 3638 | Positive local totcons rows in the aggregate crosswalk audit. |
+| alb2005_consumption_aggregate_crosswalk_totcons05_local_rows | 0 | Local totcons05 rows in poverty.sav; should remain zero in current extract. |
+| alb2005_consumption_aggregate_crosswalk_component_formula_reconstructable_rows | 0 | Whether public-metadata aggregate formula components are all locally reconstructable; should remain zero. |
+| alb2005_consumption_aggregate_crosswalk_sdg382_ready_rows | 0 | ALB_2005 aggregate crosswalk rows ready for SDG 3.8.2 denominator construction; should remain zero. |
+| alb2005_consumption_aggregate_crosswalk_recipe_ready_rows | 0 | ALB_2005 aggregate crosswalk rows ready for recipe promotion; should remain zero. |
+| alb2005_consumption_aggregate_crosswalk_outcome_ready_rows | 0 | ALB_2005 aggregate crosswalk rows ready for outcome promotion; should remain zero. |
+| alb2005_consumption_aggregate_crosswalk_climate_linkage_ready_rows | 0 | ALB_2005 aggregate crosswalk rows ready for climate linkage; should remain zero. |
+| alb2005_consumption_component_source_search_rows | 37 | ALB_2005 consumption component source-search audit rows. |
+| alb2005_consumption_component_source_search_local_files_scanned | 46 | Local ALB_2005 file rows scanned for component source evidence. |
+| alb2005_consumption_component_source_search_local_variables_scanned | 1187 | Local ALB_2005 raw-variable rows scanned for component source evidence. |
+| alb2005_consumption_component_source_search_exact_target_variables_found | 1 | Public metadata target variables found exactly in local raw schema. |
+| alb2005_consumption_component_source_search_exact_target_variables_missing | 8 | Public metadata target variables missing from local raw schema. |
+| alb2005_consumption_component_source_search_construction_code_files_found | 0 | Local source-code-like files found under the ALB_2005 extract. |
+| alb2005_consumption_component_source_search_construction_code_targets_found | 0 | Target variables with construction-code text hits. |
+| alb2005_consumption_component_source_search_recipe_ready_rows | 0 | ALB_2005 component source-search rows ready for recipe promotion; should remain zero. |
+| alb2005_consumption_component_source_search_outcome_ready_rows | 0 | ALB_2005 component source-search rows ready for outcome promotion; should remain zero. |
+| alb2005_consumption_component_source_search_sdg382_ready_rows | 0 | ALB_2005 component source-search rows ready for SDG 3.8.2 denominator construction; should remain zero. |
+| alb2005_consumption_component_source_search_climate_linkage_ready_rows | 0 | ALB_2005 component source-search rows ready for climate linkage; should remain zero. |
+| alb2005_minimum_recipe_promotion_action_rows | 6 | ALB_2005 minimum recipe promotion action rows. |
+| alb2005_minimum_recipe_promotion_gate_rows | 10 | ALB_2005 minimum recipe promotion gate rows. |
+| alb2005_minimum_recipe_promotion_blocked_gates | 8 | ALB_2005 minimum recipe gates still blocked. |
+| alb2005_minimum_recipe_promotion_harmonized_ready_rows | 0 | ALB_2005 rows ready for harmonized data promotion; should remain zero. |
+| alb2005_minimum_recipe_promotion_outcome_ready_rows | 0 | ALB_2005 rows ready for outcome promotion; should remain zero. |
+| alb2005_minimum_recipe_promotion_climate_linkage_ready_rows | 0 | ALB_2005 rows ready for climate linkage after minimum recipe gates; should remain zero. |
+| alb2005_public_fieldwork_geo_metadata_evidence_rows | 10 | ALB_2005 public fieldwork/geography metadata evidence rows. |
+| alb2005_public_fieldwork_geo_metadata_verified_source_rows | 10 | ALB_2005 public fieldwork/geography metadata rows with source snippets verified. |
+| alb2005_public_fieldwork_geo_metadata_source_missing_rows | 0 | ALB_2005 public fieldwork/geography metadata rows with missing source evidence; should remain zero. |
+| alb2005_public_fieldwork_geo_metadata_household_timing_verified_rows | 0 | ALB_2005 household timing rows verified after public metadata audit; should remain zero. |
+| alb2005_public_fieldwork_geo_metadata_raw_coordinate_value_rows | 0 | ALB_2005 raw coordinate value rows verified after public metadata audit; should remain zero. |
+| alb2005_public_fieldwork_geo_metadata_climate_linkage_ready_rows | 0 | ALB_2005 climate-linkage rows ready after public metadata audit; should remain zero. |
+| alb2005_diary_timing_candidate_audit_rows | 11 | ALB_2005 bookmetadata diary timing candidate rows. |
+| alb2005_diary_timing_candidate_metadata_found_rows | 11 | ALB_2005 diary timing candidates found in metadata catalog and DDI. |
+| alb2005_diary_timing_candidate_raw_bookmetadata_files_present | 0 | Raw bookmetadata files present under temp/raw_downloads; should remain zero in current metadata-only state. |
+| alb2005_diary_timing_candidate_date_candidate_rows | 6 | Diary beginning/finishing date candidate variables with nonzero DDI valid counts. |
+| alb2005_diary_timing_candidate_household_timing_promoted_rows | 0 | ALB_2005 household timing rows promoted after diary candidate audit; should remain zero. |
+| alb2005_diary_timing_candidate_climate_linkage_ready_rows | 0 | ALB_2005 climate-linkage rows ready after diary candidate audit; should remain zero. |
+| alb2005_extracted_module_coverage_ddi_module_rows | 68 | ALB_2005 DDI/schema modules checked against extracted files. |
+| alb2005_archive_member_manifest_rows | 61 | Machine-readable ALB_2005 local archive member manifest rows. |
+| alb2005_archive_member_rows | 61 | Members listed directly from the local ALB_2005 archive. |
+| alb2005_archive_sav_member_rows | 44 | SPSS .sav members listed directly from the local ALB_2005 archive. |
+| alb2005_archive_questionnaire_member_rows | 2 | Questionnaire workbook members listed directly from the local ALB_2005 archive. |
+| alb2005_archive_ddi_module_present_rows | 41 | ALB_2005 DDI/schema modules present in the local archive manifest. |
+| alb2005_archive_ddi_module_absent_rows | 27 | ALB_2005 DDI/schema modules absent from the local archive manifest. |
+| alb2005_archive_critical_module_absent_rows | 8 | Critical ALB_2005 timing, food-diary, and design DDI modules absent from the archive manifest. |
+| alb2005_archive_listing_status | tar_listing_available | Whether the local ALB_2005 archive member list was readable. |
+| alb2005_extracted_module_coverage_present_rows | 41 | ALB_2005 DDI modules present in extracted files. |
+| alb2005_extracted_module_coverage_missing_rows | 27 | ALB_2005 DDI modules missing from extracted files. |
+| alb2005_extracted_module_coverage_bookmetadata_missing_rows | 1 | ALB_2005 bookmetadata_cl missing rows; should be one until raw module is obtained. |
+| alb2005_extracted_module_coverage_critical_missing_rows | 8 | ALB_2005 critical missing timing/food-diary/design modules. |
+| alb2005_extracted_module_coverage_coordinate_metadata_variable_rows | 0 | ALB_2005 coordinate/GPS metadata variable rows; zero means GPS claim remains unverified by variable catalog. |
+| alb2005_extracted_module_coverage_coordinate_extracted_file_rows | 0 | ALB_2005 coordinate/GPS extracted file rows; should remain zero unless a coordinate file is found. |
+| alb2005_extracted_module_coverage_climate_linkage_ready_rows | 0 | ALB_2005 climate-linkage rows ready after extracted-module audit; should remain zero. |
+| alb2005_fallback_blocker_resolution_rows | 12 | ALB_2005 fallback blocker matrix rows. |
+| alb2005_fallback_blocker_hard_blocked_rows | 12 | ALB_2005 rows hard-blocked from fallback promotion. |
+| alb2005_fallback_blocker_harmonized_ready_rows | 0 | ALB_2005 fallback rows ready for harmonized data; should remain zero. |
+| alb2005_fallback_blocker_outcome_ready_rows | 0 | ALB_2005 fallback rows ready for outcome promotion; should remain zero. |
+| alb2005_fallback_blocker_climate_linkage_ready_rows | 0 | ALB_2005 fallback rows ready for climate linkage; should remain zero. |
+| alb2005_fallback_blocker_data_write_ready_rows | 0 | Rows allowed for data/ write by the ALB_2005 fallback matrix; should remain zero. |
+| alb2005_fallback_blocker_current_decision | blocked_alb2005_no_fallback_ready | Current consolidated ALB_2005 fallback decision. |
+| albania_first_analysis_promotion_wave_rows | 4 | Local Albania raw waves compared for first analysis promotion. |
+| albania_first_analysis_promotion_gate_rows | 40 | First-analysis promotion gate checklist rows. |
+| albania_first_analysis_promotion_blocked_gate_rows | 19 | First-analysis promotion gates still blocked. |
+| albania_first_analysis_promotion_ready_wave_rows | 0 | Albania waves ready for first analytical-sample promotion; should remain zero. |
+| albania_first_analysis_promotion_harmonized_ready_rows | 0 | Harmonized-ready rows across compared Albania waves; should remain zero. |
+| albania_first_analysis_promotion_outcome_ready_rows | 0 | Outcome-ready rows across compared Albania waves; should remain zero. |
+| albania_first_analysis_promotion_climate_linkage_ready_rows | 0 | Climate-linkage-ready rows across compared Albania waves; should remain zero. |
+| albania_existing_raw_wave_audit_rows | 4 | Existing Albania raw wave audit rows. |
+| albania_existing_raw_wave_harmonization_ready_rows | 0 | Existing Albania raw waves ready for harmonized promotion; should remain zero until wave-specific audits pass. |
+| albania_existing_raw_wave_climate_linkage_ready_rows | 0 | Existing Albania raw waves ready for climate-linkage promotion; should remain zero until timing/geography pass. |
+| alb2008_household_core_candidate_rows | 3599 | ALB_2008 temp household core candidate rows. |
+| alb2008_household_core_recipe_ready_rows | 0 | ALB_2008 household core rows ready for data promotion; should remain zero until gates pass. |
+| alb2008_provisional_outcome_feasibility_rows | 24 | ALB_2008 provisional outcome feasibility audit rows. |
+| alb2008_provisional_outcome_ready_rows | 0 | ALB_2008 provisional outcome rows ready for final promotion; should remain zero. |
+| alb2008_outcome_semantics_raw_value_rows | 61 | ALB_2008 raw outcome-semantics value audit rows. |
+| alb2008_outcome_semantics_outcome_ready_rows | 0 | ALB_2008 raw outcome-semantics rows ready for final promotion; should remain zero. |
+| alb2008_outcome_semantics_sdg382_ready_rows | 0 | ALB_2008 raw outcome-semantics rows ready for SDG 3.8.2 construction; should remain zero. |
+| alb2008_outcome_semantics_climate_linkage_ready_rows | 0 | ALB_2008 raw outcome-semantics rows ready for climate linkage; should remain zero. |
+| alb2008_timing_geography_exhaustive_rows | 225 | ALB_2008 timing/geography exhaustive audit rows. |
+| alb2008_climate_linkage_ready_rows | 0 | ALB_2008 rows ready for climate linkage; should remain zero until timing/geography are verified. |
+| alb2008_fallback_blocker_resolution_rows | 10 | ALB_2008 fallback blocker matrix rows. |
+| alb2008_fallback_blocker_hard_blocked_rows | 10 | ALB_2008 rows hard-blocked from fallback promotion. |
+| alb2008_fallback_blocker_interview_timing_ready_rows | 0 | ALB_2008 fallback rows with verified interview timing; should remain zero. |
+| alb2008_fallback_blocker_geography_ready_rows | 0 | ALB_2008 fallback rows with promoted geography; should remain zero. |
+| alb2008_fallback_blocker_outcome_ready_rows | 0 | ALB_2008 fallback rows ready for outcome promotion; should remain zero. |
+| alb2008_fallback_blocker_climate_linkage_ready_rows | 0 | ALB_2008 fallback rows ready for climate linkage; should remain zero. |
+| alb2008_fallback_blocker_data_write_ready_rows | 0 | Rows allowed for data/ write by the ALB_2008 fallback matrix; should remain zero. |
+| alb2008_fallback_blocker_current_decision | blocked_alb2008_no_timing_geography_fallback_ready | Current consolidated ALB_2008 fallback decision. |
+| alb2002_local_geo_artifact_rows | 114 | ALB_2002 local geography artifact audit rows. |
+| alb2002_local_geo_artifact_summary_rows | 16 | ALB_2002 local geography artifact summary rows. |
+| alb2002_local_geo_artifact_files_scanned | 44 | Local extracted ALB_2002 files scanned for geography artifacts. |
+| alb2002_local_geo_artifact_coordinate_raw_variable_rows | 0 | Raw coordinate/GPS variable rows; should remain zero until a raw coordinate artifact is verified. |
+| alb2002_local_geo_artifact_questionnaire_coordinate_field_rows | 2 | Questionnaire coordinate/GPS field rows. |
+| alb2002_local_geo_artifact_admin_variable_rows | 55 | Raw admin/sampling geography variable rows. |
+| alb2002_local_geo_artifact_local_coordinate_ready_rows | 0 | Rows ready for point climate linkage from local coordinate artifacts; should remain zero. |
+| alb2002_local_geo_artifact_local_boundary_ready_rows | 0 | Rows ready for admin aggregation from local boundary artifacts; should remain zero. |
+| alb2002_local_geo_artifact_climate_linkage_ready_rows | 0 | ALB_2002 rows ready for climate linkage after local artifact audit; should remain zero. |
+| first_batch_dataset_verification_gate_rows | 10 | First-batch dataset verification gate rows. |
+| first_batch_concept_verification_template_rows | 130 | First-batch concept verification template rows. |
+| first_batch_variable_verification_template_rows | 917 | First-batch variable verification template rows. |
+| direct_read_bundle_rows | 119 | Direct-read audit bundle rows. |
+| direct_read_artifact_manifest_rows | 453 | Curated direct-read artifact manifest rows. |
+| direct_read_summary_rows | 467 | Direct-read bundle summary rows. |
+| design_scorecard_rows | 38 | Rows in the refreshed design scorecard. |
+| design_scorecard_current_rows | 3 | Current-state fail-closed design rows appended to the broad scorecard. |
+| design_no_go_threshold_rows | 8 | Current design no-go threshold rows. |
+| design_scorecard_data_write_ready_rows | 0 | Rows allowed for data/ write by the design scorecard; should remain zero. |
+| design_scorecard_current_decision | fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning | Current fail-closed design scorecard decision. |
+| alb2002_promotion_gate_delta_rows | 10 | ALB_2002 promotion gate delta rows. |
+| alb2002_promotion_gate_delta_hard_blocked_rows | 4 | ALB_2002 hard-blocked promotion gate rows. |
+| alb2002_promotion_gate_delta_data_write_ready_rows | 0 | Rows allowed for data/ write by the ALB_2002 gate-delta audit; should remain zero. |
+| alb2002_promotion_gate_delta_decision | partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass | Current ALB_2002 promotion-gate delta decision. |
+| alb2002_boundary_blocker_resolution_rows | 11 | ALB_2002 boundary blocker resolution rows. |
+| alb2002_boundary_blocker_candidate_name_coverage_rows | 3 | Public boundary leads with complete candidate name coverage but no climate-linkage promotion. |
+| alb2002_boundary_blocker_climate_linkage_ready_rows | 0 | Rows ready for ALB_2002 boundary climate-linkage promotion; should remain zero. |
+| alb2002_boundary_blocker_data_write_ready_rows | 0 | Rows allowed for data/ write by the boundary blocker matrix; should remain zero. |
+| alb2002_boundary_blocker_current_decision | blocked_no_alb2002_boundary_source_ready_for_climate_linkage | Current consolidated ALB_2002 boundary-source decision. |
+| alb2002_outcome_blocker_resolution_rows | 12 | ALB_2002 outcome blocker resolution rows. |
+| alb2002_outcome_blocker_candidate_not_promoted_rows | 11 | Candidate ALB_2002 outcome rows with evidence but no final promotion. |
+| alb2002_outcome_blocker_outcome_ready_rows | 0 | Rows ready for final ALB_2002 outcome promotion; should remain zero. |
+| alb2002_outcome_blocker_data_write_ready_rows | 0 | Rows allowed for data/ write by the outcome blocker matrix; should remain zero. |
+| alb2002_outcome_blocker_current_decision | blocked_no_alb2002_outcome_ready_for_promotion | Current consolidated ALB_2002 outcome-promotion decision. |
+| alb2012_timing_geography_blocker_resolution_rows | 10 | ALB_2012 fallback blocker matrix rows. |
+| alb2012_timing_geography_blocker_hard_blocked_rows | 10 | ALB_2012 rows hard-blocked from fallback promotion. |
+| alb2012_timing_geography_blocker_climate_linkage_ready_rows | 0 | ALB_2012 fallback rows ready for climate linkage; should remain zero. |
+| alb2012_timing_geography_blocker_data_write_ready_rows | 0 | Rows allowed for data/ write by the ALB_2012 fallback matrix; should remain zero. |
+| alb2012_timing_geography_blocker_current_decision | blocked_alb2012_no_timing_geography_fallback_ready | Current consolidated ALB_2012 fallback decision. |
+| completion_criteria_complete | 16 | Completion criteria currently complete. |
+| completion_criteria_incomplete | 0 | Completion criteria currently incomplete. |
+| requirement_status_blocked_raw_microdata | 1 | Objective requirement status count. |
+| requirement_status_incomplete | 1 | Objective requirement status count. |
+| requirement_status_satisfied | 108 | Objective requirement status count. |
+| guardrail_status_satisfied | 12 | Guardrail status count. |
+
+## Unresolved Requirements
+
+| requirement_id | objective_section | status | evidence | gap |
+|---|---|---|---|---|
+| phase10_policy_learning | phase10 | blocked_raw_microdata | policy-learning plan rows=40; policy-ready rows=0 | requires reduced-form identification and validation gates before policy-value simulation |
+| phase14_reporting | phase14 | incomplete | final_report exists=True; completion complete=16; completion incomplete=0 |  |
+
+## Unresolved Guardrails
+
+All traced guardrails are satisfied.
+
+## Machine-Readable Outputs
+
+- `result/objective_requirement_traceability.csv`
+- `result/objective_guardrail_audit.csv`
+- `result/objective_traceability_summary.csv`

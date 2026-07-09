@@ -1,0 +1,16 @@
+metric,value,interpretation
+alb2012_timing_geography_audit_rows,212,Timing/geography keyword rows scanned from ALB_2012 raw files.
+alb2012_timing_geography_source_files_scanned,34,ALB_2012 .sav files scanned.
+alb2012_timing_geography_read_failures,0,Raw files that could not be read by pyreadstat.
+alb2012_interview_timing_candidate_rows,0,Rows with apparent interview/fieldwork timing wording requiring context.
+alb2012_interview_timing_verified_rows,0,Verified household interview month/date rows available for climate linkage.
+alb2012_rejected_non_interview_timing_rows,54,"Rows rejected as birth, recall, duration, payment-period, or event-history timing."
+alb2012_rejected_migration_history_rows,15,Rows rejected as migration or historical residence geography/timing.
+alb2012_context_review_geography_timing_rows,106,Rows with timing/geography keywords requiring context but not verified for climate linkage.
+alb2012_psu_cluster_key_rows,34,PSU/cluster-like key rows observed.
+alb2012_coordinate_candidate_rows,0,GPS/latitude/longitude/coordinate candidate rows observed.
+alb2012_coarse_full_coverage_geography_candidate_rows,3,Rows for full-coverage coarse geography/design fields in poverty.sav.
+alb2012_coarse_geography_household_rows,6671,Maximum nonmissing household rows across coarse poverty.sav geography/design fields.
+alb2012_geography_verified_full_coverage_rows,0,Verified admin/GPS geography rows ready for climate linkage.
+alb2012_climate_linkage_ready_rows,0,Rows ready to support climate linkage input construction.
+alb2012_timing_geography_current_decision,blocked_missing_interview_timing_coarse_prefecture_region_no_gps,Current ALB_2012 timing/geography decision.

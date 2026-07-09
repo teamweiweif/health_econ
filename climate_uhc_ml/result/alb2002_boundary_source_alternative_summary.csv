@@ -1,0 +1,10 @@
+metric,value,interpretation
+alb2002_boundary_source_alternative_rows,6,Boundary/geography source alternatives audited for ALB_2002.
+alb2002_boundary_source_alternative_reachable_rows,4,Rows with either a sampled web page or an existing local artifact review.
+alb2002_boundary_source_alternative_current_or_post2015_rows,2,Sources that are current or post-2015/post-2019 boundary candidates rather than verified 2002 district sources.
+alb2002_boundary_source_alternative_lsms_maps_documented_rows,1,Sources whose sampled page documents LSMS EA boundary maps.
+alb2002_boundary_source_alternative_gps_documented_rows,1,Sources whose sampled page documents GPS or longitude/latitude evidence.
+alb2002_boundary_source_alternative_historical_candidate_rows,3,Historical/census-context source candidates that still require boundary-level and join-key verification.
+alb2002_boundary_source_alternative_historical_2002_boundary_ready_rows,0,Sources verified as ready 2001/2002 district boundary inputs after this audit; intentionally zero.
+alb2002_boundary_source_alternative_climate_linkage_ready_rows,0,Sources ready for climate-linkage input promotion after this audit; intentionally zero.
+alb2002_boundary_source_alternative_current_decision,blocked_no_public_2002_district_boundary_source_verified,Current fail-closed decision for ALB_2002 boundary-source alternatives.

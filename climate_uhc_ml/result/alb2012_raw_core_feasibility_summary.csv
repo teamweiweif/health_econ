@@ -1,0 +1,19 @@
+metric,value,interpretation
+alb2012_household_core_candidate_rows,6671,Rows in the ALB_2012 temp-only household core candidate.
+alb2012_household_core_recipe_ready_rows,0,Rows ready for harmonization recipe promotion after this audit.
+alb2012_climate_linkage_ready_rows,0,Rows ready for climate-linkage input promotion after this audit.
+alb2012_households_with_total_consumption,6671,Households with survey-team total consumption aggregate.
+alb2012_households_with_household_weight,6671,Households with retro household weight candidate.
+alb2012_households_with_prefecture,6671,Households with coarse prefecture field.
+alb2012_households_with_region,6671,Households with coarse region field.
+alb2012_households_with_survey_month,0,Households with raw interview month; none identified.
+alb2012_households_with_interview_date,0,Households with raw interview date; none identified.
+alb2012_households_with_oop_4w_positive,2794,Households with positive unreviewed four-week OOP item sum.
+alb2012_households_with_oop_12m_positive,2093,Households with positive unreviewed twelve-month OOP item sum.
+alb2012_households_with_access_affordability_proxy,2750,Households with difficulty paying health care proxy.
+alb2012_households_with_shock_any_2008_2012,1306,Households with any unreviewed shock-module positive signal.
+alb2012_raw_core_audit_rows,10,Rows in the ALB_2012 raw core feasibility audit.
+alb2012_merge_modules_complete_base_coverage,6,Merge-audit rows with complete base household key coverage.
+alb2012_timing_signal_rows,0,Raw interview timing rows identified for climate windows.
+alb2012_coordinate_signal_rows,0,Raw coordinate/GPS rows identified for climate linkage.
+alb2012_raw_core_current_decision,temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending,Current fail-closed decision for ALB_2012 raw core feasibility.

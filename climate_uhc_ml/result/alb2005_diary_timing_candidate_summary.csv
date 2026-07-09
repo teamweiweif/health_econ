@@ -1,0 +1,14 @@
+metric,value,interpretation
+alb2005_diary_timing_candidate_audit_rows,11,Bookmetadata timing/key variable rows audited from metadata and DDI.
+alb2005_diary_timing_candidate_metadata_found_rows,11,Rows found in both the metadata variable catalog and saved DDI XML.
+alb2005_diary_timing_candidate_schema_file_rows,3840,F96 bookmetadata_cl row count from schema inventory metadata.
+alb2005_diary_timing_candidate_schema_variable_rows,18,F96 bookmetadata_cl variable count from schema inventory metadata.
+alb2005_diary_timing_candidate_raw_bookmetadata_files_present,0,Whether a raw bookmetadata file was found under temp/raw_downloads or temp/raw_extracted.
+alb2005_diary_timing_candidate_key_candidate_rows,3,PSU/household key candidates with nonzero DDI valid counts.
+alb2005_diary_timing_candidate_date_candidate_rows,6,Diary beginning/finishing day/month/year candidates with nonzero DDI valid counts.
+alb2005_diary_timing_candidate_max_valid_count,57245,Largest DDI valid count across candidate variables.
+alb2005_diary_timing_candidate_rejected_all_missing_rows,2,Verification date fields rejected because DDI summary shows all missing or zero valid.
+alb2005_diary_timing_candidate_household_timing_promoted_rows,0,Rows promoted as household interview timing after this audit; intentionally zero.
+alb2005_diary_timing_candidate_climate_linkage_ready_rows,0,Rows ready for climate linkage after this audit; intentionally zero.
+alb2005_diary_timing_candidate_public_fieldwork_verified_rows,10,Verified public fieldwork/geography source rows from the upstream public metadata audit.
+alb2005_diary_timing_candidate_current_decision,blocked_diary_timing_metadata_candidate_no_raw_merge_semantics,Current fail-closed decision for diary timing candidates.

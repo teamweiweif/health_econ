@@ -1,0 +1,17 @@
+metric,value,interpretation
+alb2012_outcome_semantics_raw_value_audit_rows,61,Rows in the ALB_2012 raw value/semantics audit.
+alb2012_outcome_semantics_source_files_scanned,2,Raw health modules scanned for outcome semantics.
+alb2012_outcome_semantics_financial_oop_candidate_rows,37,Raw OOP payment/gift candidate rows.
+alb2012_outcome_semantics_gift_candidate_rows,7,Raw gift-value or gift-related rows whose inclusion in OOP/access definitions requires review.
+alb2012_outcome_semantics_access_candidate_rows,8,Raw access/affordability candidate rows.
+alb2012_outcome_semantics_service_quality_proxy_rows,7,"Raw service-quality, cost, supply, and satisfaction proxy rows."
+alb2012_outcome_semantics_need_candidate_rows,2,Raw health-need proxy rows.
+alb2012_outcome_semantics_coping_candidate_rows,5,Raw health-payment coping proxy rows.
+alb2012_outcome_semantics_rows_with_value_labels,24,Candidate rows with SPSS value-label metadata.
+alb2012_outcome_semantics_rows_with_positive_numeric_values,61,Candidate rows with at least one positive numeric value.
+alb2012_outcome_semantics_rows_with_complete_household_merge_coverage,61,Candidate rows whose source module covers all base households.
+alb2012_outcome_semantics_conditional_reason_rows,4,Reason variables that are conditional on access-barrier events and need denominator review.
+alb2012_outcome_semantics_outcome_ready_rows,0,No ALB_2012 raw value/semantics row is ready for final outcome promotion.
+alb2012_outcome_semantics_sdg382_ready_rows,0,No ALB_2012 row establishes the SDG 3.8.2 discretionary-budget denominator.
+alb2012_outcome_semantics_climate_linkage_ready_rows,0,No ALB_2012 row has verified timing/geography for climate linkage.
+alb2012_outcome_semantics_current_decision,blocked_timing_geography_outcome_semantics_units_recall_skip_patterns,Current fail-closed decision for ALB_2012 raw outcome semantics.

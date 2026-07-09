@@ -1,0 +1,34 @@
+metric,value,interpretation
+alb2005_household_core_candidate_rows,3840,Rows in the temp-only household core candidate table.
+alb2005_household_core_recipe_ready_rows,0,This audit never promotes analysis-ready harmonization rows.
+alb2005_households_with_total_consumption,3638,Base households with poverty.sav total consumption merged.
+alb2005_households_with_household_weight,3840,Base households with candidate household weight from poverty or PSU weight file.
+alb2005_households_with_household_size,3840,Base households with roster-derived household size.
+alb2005_households_with_oop_4w_positive,2679,Households with positive unreviewed four-week OOP item sum.
+alb2005_households_with_oop_12m_positive,2231,Households with positive unreviewed twelve-month OOP item sum.
+alb2005_households_with_partial_district_code,329,Base households with district code from filters.sav.
+alb2005_households_with_survey_month,0,No interview month variable has been verified.
+alb2005_merge_modules_audited,8,Raw modules assessed for merge key coverage.
+alb2005_merge_modules_complete_base_coverage,6,Modules whose distinct keys cover all base households.
+alb2005_merge_modules_partial_base_coverage,2,Modules covering only part of the base households.
+alb2005_household_core_current_decision,temp_candidate_not_analysis_ready,ALB_2005 core candidate is useful for review but remains blocked from data/.
+alb2005_total_consumption_nonmissing,3638,Nonmissing total_consumption rows.
+alb2005_total_consumption_min,42062,Observed minimum for total_consumption.
+alb2005_total_consumption_max,5.45599e+06,Observed maximum for total_consumption.
+alb2005_total_consumption_mean,421269,Observed mean for total_consumption.
+alb2005_household_weight_nonmissing,3840,Nonmissing household_weight rows.
+alb2005_household_weight_min,19.5547,Observed minimum for household_weight.
+alb2005_household_weight_max,574.427,Observed maximum for household_weight.
+alb2005_household_weight_mean,192.84,Observed mean for household_weight.
+alb2005_household_size_nonmissing,3840,Nonmissing household_size rows.
+alb2005_household_size_min,1,Observed minimum for household_size.
+alb2005_household_size_max,16,Observed maximum for household_size.
+alb2005_household_size_mean,4.50573,Observed mean for household_size.
+alb2005_oop_4w_sum_unreviewed_nonmissing,3840,Nonmissing oop_4w_sum_unreviewed rows.
+alb2005_oop_4w_sum_unreviewed_min,0,Observed minimum for oop_4w_sum_unreviewed.
+alb2005_oop_4w_sum_unreviewed_max,1011000,Observed maximum for oop_4w_sum_unreviewed.
+alb2005_oop_4w_sum_unreviewed_mean,18250.8,Observed mean for oop_4w_sum_unreviewed.
+alb2005_oop_12m_sum_unreviewed_nonmissing,3840,Nonmissing oop_12m_sum_unreviewed rows.
+alb2005_oop_12m_sum_unreviewed_min,0,Observed minimum for oop_12m_sum_unreviewed.
+alb2005_oop_12m_sum_unreviewed_max,10600000,Observed maximum for oop_12m_sum_unreviewed.
+alb2005_oop_12m_sum_unreviewed_mean,91644.7,Observed mean for oop_12m_sum_unreviewed.

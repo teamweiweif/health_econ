@@ -1,0 +1,24 @@
+metric,value,interpretation
+alb2012_provisional_outcome_audit_rows,33,Rows in the provisional ALB_2012 outcome feasibility audit.
+alb2012_provisional_financial_stress_test_rows,8,"Financial-protection stress-test rows, none final."
+alb2012_provisional_access_proxy_rows,15,"Access proxy rows, none final."
+alb2012_provisional_need_proxy_rows,4,"Need proxy rows, none final."
+alb2012_provisional_coping_proxy_rows,1,"Health-payment coping proxy rows, none final."
+alb2012_provisional_shock_proxy_rows,1,"Raw household shock proxy rows, not climate exposure rows."
+alb2012_provisional_low_event_rate_rows,9,Outcome candidates with unweighted event rate below 3 percent.
+alb2012_provisional_outcome_base_rows,6671,Rows in temp/alb2012_household_core_candidate.csv.
+alb2012_provisional_positive_total_consumption_rows,6671,Rows with positive total_consumption.
+alb2012_provisional_positive_household_weight_rows,6671,Rows with positive household_weight.
+alb2012_provisional_consumption_weight_rows,6671,Rows with both positive total_consumption and positive household_weight.
+alb2012_provisional_prefecture_rows,6671,Rows with coarse prefecture field for future geography review.
+alb2012_provisional_region_rows,6671,Rows with coarse region field for future geography review.
+alb2012_provisional_survey_month_rows,0,Rows with raw survey month for future climate window review.
+alb2012_provisional_interview_date_rows,0,Rows with raw interview date for future climate window review.
+alb2012_provisional_oop_4w_positive_rows,2794,Rows with positive unreviewed four-week OOP.
+alb2012_provisional_oop_12m_positive_rows,2093,Rows with positive unreviewed twelve-month OOP.
+alb2012_provisional_access_affordability_proxy_rows,2750,Rows with difficulty paying health care proxy.
+alb2012_provisional_distance_barrier_proxy_rows,36,Rows with any unreviewed distance-barrier proxy.
+alb2012_provisional_need_signal_rows,5691,Rows with any unreviewed health-need proxy.
+alb2012_provisional_outcome_ready_rows,0,No provisional ALB_2012 diagnostic row is ready for data/ or outcome promotion.
+alb2012_provisional_climate_linkage_ready_rows,0,No ALB_2012 provisional diagnostic row is ready for climate linkage.
+alb2012_provisional_outcome_current_decision,not_final_outcomes_timing_geography_recall_semantics_blocked,Current fail-closed decision for ALB_2012 provisional outcome feasibility.

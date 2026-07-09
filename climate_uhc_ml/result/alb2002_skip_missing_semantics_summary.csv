@@ -1,0 +1,25 @@
+metric,value,interpretation
+alb2002_skip_missing_semantics_rows,12,Rows in the ALB_2002 skip/missing semantics audit.
+alb2002_skip_missing_payment_block_rows,7,Person-level visit/payment skip blocks audited.
+alb2002_skip_missing_access_condition_rows,5,Household access/financing conditional skip blocks audited.
+alb2002_skip_missing_payment_nonmissing_when_not_triggered_rows,11,Payment downstream rows nonmissing when the trigger is negative.
+alb2002_skip_missing_payment_positive_when_not_triggered_rows,0,Payment downstream rows positive when the trigger is negative.
+alb2002_skip_missing_payment_nonmissing_cells_when_not_triggered,11,Payment downstream cells nonmissing when the trigger is negative.
+alb2002_skip_missing_payment_zero_cells_when_not_triggered,11,Payment downstream cells equal to zero when the trigger is negative.
+alb2002_skip_missing_payment_positive_cells_when_not_triggered,0,Payment downstream cells positive when the trigger is negative.
+alb2002_skip_missing_payment_zero_only_block_rows,2,Payment skip blocks where nonmissing skipped values are zero-only.
+alb2002_skip_missing_payment_no_skipped_value_block_rows,5,Payment skip blocks with no downstream values when triggers are negative.
+alb2002_skip_missing_payment_all_missing_when_triggered_rows,0,Triggered payment rows where every downstream payment variable is missing.
+alb2002_skip_missing_payment_zero_or_missing_when_triggered_rows,274,Triggered payment rows with no positive downstream payment; may be true zero care/spending and needs policy review.
+alb2002_skip_missing_condition_nonmissing_when_not_triggered_rows,0,Conditional access/financing downstream rows nonmissing when the trigger condition is false.
+alb2002_skip_missing_condition_missing_when_triggered_rows,0,Conditional access/financing downstream rows missing when the trigger condition is true.
+alb2002_skip_missing_questionnaire_payment_nonmissing_skip_review_observed,11,Nonmissing skipped-payment rows observed in the questionnaire audit.
+alb2002_skip_missing_questionnaire_payment_positive_skip_leaks_observed,0,Positive skipped-payment rows observed in the questionnaire audit.
+alb2002_skip_missing_oop_policy_rows_observed,11,OOP aggregation policy stress-test rows observed upstream.
+alb2002_skip_missing_minimum_recipe_harmonized_ready_observed,0,Harmonized-ready rows observed upstream.
+alb2002_skip_missing_climate_ready_rows_observed,0,Climate-linkage-ready rows observed upstream.
+alb2002_skip_missing_recipe_ready_rows,0,Rows promoted to harmonization recipe by this audit; intentionally zero.
+alb2002_skip_missing_outcome_ready_rows,0,Rows promoted to final outcome construction by this audit; intentionally zero.
+alb2002_skip_missing_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 construction by this audit; intentionally zero.
+alb2002_skip_missing_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2002_skip_missing_current_decision,blocked_alb2002_skip_missing_semantics_seen_but_recipe_not_ready,Current fail-closed decision for ALB_2002 skip/missing semantics.

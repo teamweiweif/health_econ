@@ -1,0 +1,26 @@
+metric,value,interpretation
+alb2005_health_questionnaire_semantics_rows,58,Rows in the ALB_2005 health questionnaire semantics audit.
+alb2005_health_questionnaire_oop_item_rows,36,Questionnaire-backed OOP payment item rows.
+alb2005_health_questionnaire_visit_selection_rows,8,Visit/stay/purchase selection rows needed for OOP denominators.
+alb2005_health_questionnaire_access_rows,7,"Access, delayed-care, referral, refusal, and barrier rows from health module B."
+alb2005_health_questionnaire_four_week_oop_rows,26,OOP item rows with past-four-week recall.
+alb2005_health_questionnaire_twelve_month_oop_rows,10,OOP item rows with past-12-month recall.
+alb2005_health_questionnaire_old_lek_unit_rows,36,Rows where the questionnaire explicitly records old-lek units.
+alb2005_health_questionnaire_exclusion_note_rows,7,"Rows with explicit exclusion notes for gifts, medicines, laboratory, or transport."
+alb2005_health_questionnaire_zero_instruction_rows,5,Rows with explicit zero-payment instructions.
+alb2005_health_questionnaire_cost_barrier_rows,3,Access rows whose questionnaire options include cost or affordability barriers.
+alb2005_health_questionnaire_distance_barrier_rows,2,Access rows whose questionnaire options include distance or transport barriers.
+alb2005_health_questionnaire_supply_barrier_rows,2,"Access rows whose questionnaire options include availability, service-region, referral, or shortage barriers."
+alb2005_health_questionnaire_recipe_ready_rows,0,Rows promoted to a harmonization recipe by this audit; intentionally zero.
+alb2005_health_questionnaire_outcome_ready_rows,0,Rows promoted to constructed outcomes by this audit; intentionally zero.
+alb2005_health_questionnaire_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2005_health_questionnaire_required_value_key_recipe_ready_observed,0,Recipe-ready rows observed in the required value/key audit.
+alb2005_health_questionnaire_required_value_key_climate_ready_observed,0,Climate-linkage-ready rows observed in the required value/key audit.
+alb2005_health_questionnaire_value_decision_recipe_ready_observed,0,Recipe-ready rows observed in the value-decision audit.
+alb2005_health_questionnaire_current_decision,blocked_alb2005_questionnaire_semantics_seen_but_recipe_not_ready,Current fail-closed decision for questionnaire-backed ALB_2005 health semantics.
+alb2005_health_questionnaire_status_questionnaire_confirms_access_barrier_codes_but_denominator_not_ready,3,Rows by questionnaire semantic status.
+alb2005_health_questionnaire_status_questionnaire_confirms_access_question_but_skip_pattern_not_ready,4,Rows by questionnaire semantic status.
+alb2005_health_questionnaire_status_questionnaire_confirms_health_financing_coping_item_but_not_minimum_recipe,5,Rows by questionnaire semantic status.
+alb2005_health_questionnaire_status_questionnaire_confirms_medicine_discount_access_item_but_not_minimum_recipe,2,Rows by questionnaire semantic status.
+alb2005_health_questionnaire_status_questionnaire_confirms_old_lek_payment_item_but_aggregation_not_ready,36,Rows by questionnaire semantic status.
+alb2005_health_questionnaire_status_questionnaire_confirms_visit_selection_skip_path_but_denominator_not_ready,8,Rows by questionnaire semantic status.

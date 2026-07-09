@@ -1,0 +1,21 @@
+metric,value,interpretation
+alb2002_boundary_geometry_candidate_resource_id,geoboundaries_2_0_1_adm2,Resource selected from the prior public resource-search audit for geometry/provenance review.
+alb2002_boundary_geometry_geojson_status,local_geojson_snapshot_parsed,GeoJSON snapshot parse/download status.
+alb2002_boundary_geometry_metadata_status,downloaded_json,Companion metadata download/parse status.
+alb2002_boundary_geometry_feature_rows,36,Boundary features in the candidate GeoJSON.
+alb2002_boundary_geometry_adm2_feature_rows,36,Features whose shapeType property is ADM2.
+alb2002_boundary_geometry_multipolygon_rows,36,Features represented as MultiPolygon geometry.
+alb2002_boundary_geometry_coordinate_structure_ok_rows,36,"Features with parseable polygon coordinate structure, closed rings, coordinate ranges, and a broad Albania bounding box; this is not topology validation."
+alb2002_boundary_geometry_survey_key_matched_rows,36,Features matched back to ALB_2002 survey district keys after documented name repairs/aliases.
+alb2002_boundary_geometry_closed_ring_failure_rows,0,Features with at least one unclosed ring.
+alb2002_boundary_geometry_out_of_range_coordinate_rows,0,Features with any longitude/latitude outside global valid ranges.
+alb2002_boundary_geometry_within_broad_albania_bbox_rows,36,Features whose coordinates fall inside a broad Albania bounding box.
+alb2002_boundary_geometry_metadata_boundary_year,2013,Boundary year reported by the geoBoundaries 2.0.1 companion metadata.
+alb2002_boundary_geometry_metadata_boundary_update,2020-01-16,Boundary update date reported by companion metadata.
+alb2002_boundary_geometry_metadata_boundary_source,OpenStreetMap; Wambacher,Boundary source fields reported by companion metadata.
+alb2002_boundary_geometry_metadata_source_url,https://wambachers-osm.website/boundaries/,Boundary source URL reported by companion metadata.
+alb2002_boundary_geometry_boundary_year_matches_2002_rows,0,Whether the candidate metadata directly supports a 2002 boundary vintage.
+alb2002_boundary_geometry_topology_validated_rows,0,Rows with real topology validation; zero because shapely/geopandas is not required or available in this pipeline step.
+alb2002_boundary_geometry_historical_2002_boundary_ready_rows,0,Rows ready as verified 2002 historical district boundaries after this audit; intentionally zero.
+alb2002_boundary_geometry_climate_linkage_ready_rows,0,Rows ready for climate-linkage promotion after this audit; intentionally zero.
+alb2002_boundary_geometry_current_decision,blocked_geoboundaries_2_0_1_boundary_year_2013_not_verified_2002,Current fail-closed decision for ALB_2002 boundary geometry/provenance.

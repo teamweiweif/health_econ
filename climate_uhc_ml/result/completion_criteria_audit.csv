@@ -1,0 +1,17 @@
+criterion,status,evidence,gap
+Workspace structure exists,complete,data/script/result/report/temp directories exist,
+Source inventory exists,complete,temp/source_inventory.csv rows=141,
+Country-wave screening exists,complete,temp/country_wave_screening.csv rows=1088,
+Raw files or manual download manifest exists,complete,temp/manual_download_manifest.csv rows=37; raw_file_inventory rows=209,Manual user/account steps still required for raw World Bank/DHS/MICS microdata.
+Variable maps exist,complete,temp/variable_map_*.csv candidate rows=25358,All current mappings are metadata-only and require raw-file verification.
+At least one harmonized household analytical dataset exists,complete,data/harmonized_household.csv rows=3599; harmonization audit rows=5; lineage rows=68,
+At least one climate-linked analytical dataset exists,complete,data/climate_linked_household.csv rows=14396; climate_merge_audit rows=1,
+Main outcomes are constructed and audited,complete,data/household_outcomes.csv rows=3599; constructed outcome-audit rows=4,
+Climate exposures are constructed and audited,complete,climate exposure rows=384; climate audit rows=3,
+Descriptive diagnostics exist,complete,descriptive audit rows=6; prevalence rows=2; missingness rows=21; sample-flow rows=3,
+Predictive ML has been estimated and validated,complete,predictive audit rows=2; validated metric rows=30; feature rows=54,
+At least one reduced-form climate-shock model has been estimated,complete,causal-model audit rows=2; reduced-form estimate rows=88; placebo-readiness rows=3,
+Causal ML/policy learning attempted or explicitly rejected,complete,causal-ML policy audit rows=1; rejection rows=1; CATE rows=0; policy-simulation rows=0,"This is an explicit gate rejection, not a final empirical policy-learning result."
+Robustness and placebo checks attempted,complete,robustness audit rows=1; robustness grid rows=18; attempted rows=4; placebo-readiness rows=3,
+report/final_report.md gives a clear empirical judgment,complete,report/final_report.md states no-go for estimation and go for manual raw access/schema inspection,Final publishable judgment cannot be made until raw data and empirical tests exist.
+script/run_all.sh or Makefile can reproduce core pipeline except documented manual downloads,complete,"Makefile, script/run_all.sh, and script/run_all.ps1 exist",Core empirical pipeline remains gated after metadata/schema stage.

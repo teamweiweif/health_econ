@@ -1,0 +1,19 @@
+metric,value,interpretation
+alb2002_harmonized_household_core_promotion_audit_rows,8,Rows in the scoped harmonized-core promotion audit.
+alb2002_harmonized_household_core_source_candidate_rows,3599,Rows in temp/alb2002_analysis_candidate_dataset.csv.
+alb2002_harmonized_household_core_rows,3599,Rows written to data/harmonized_household.csv under limited scope.
+alb2002_harmonized_household_core_columns,68,Columns in the limited harmonized household core.
+alb2002_harmonized_household_core_identity_rows,3599,Rows with nonmissing household ID.
+alb2002_harmonized_household_core_timing_rows,3599,Rows with interview month and date.
+alb2002_harmonized_household_core_weight_rows,3599,Rows with nonmissing household weight.
+alb2002_harmonized_household_core_admin2_rows,3599,Rows with candidate admin2 name.
+alb2002_harmonized_household_core_coordinate_rows,0,Rows with both latitude and longitude; should remain zero.
+alb2002_harmonized_household_core_candidate_consumption_rows,3599,Rows carrying candidate total-budget input.
+alb2002_harmonized_household_core_candidate_oop_rows,3599,Rows carrying candidate OOP input.
+alb2002_harmonized_household_core_candidate_need_rows,3599,Rows carrying candidate health-need input.
+alb2002_harmonized_household_core_limited_data_write_ready_rows,3599,Rows allowed in data/ only as a limited harmonized household core.
+alb2002_harmonized_household_core_final_outcome_ready_rows,0,Rows ready for final outcome construction; intentionally zero.
+alb2002_harmonized_household_core_climate_linkage_ready_rows,0,Rows ready for climate linkage; intentionally zero.
+alb2002_harmonized_household_core_analysis_ready_rows,0,Rows ready for final empirical analysis; intentionally zero.
+alb2002_harmonized_household_core_current_decision,limited_harmonized_household_core_promoted_outcome_climate_still_blocked,Current scoped promotion decision.
+alb2002_harmonized_household_core_data_use_limit,harmonized_household_core_only_not_for_final_outcome_or_climate_analysis,Guardrail embedded in every output row.

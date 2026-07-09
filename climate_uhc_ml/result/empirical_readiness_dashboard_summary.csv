@@ -1,0 +1,20 @@
+metric,value,interpretation
+dashboard_rows,23,Priority acquisition bundle rows in the dashboard.
+country_count,11,Unique countries in priority acquisition bundles.
+no_go_rule_rows,8,Pre-specified go/no-go threshold rows.
+no_go_pass_rows,2,Go/no-go rules currently passing.
+no_go_blocked_rows,6,Go/no-go rules blocked or failing.
+limited_harmonized_household_rows,3599,Country-wave rows ready at this stage.
+limited_household_outcome_rows,3599,Country-wave rows ready at this stage.
+limited_climate_exposure_rows,384,Country-wave rows ready at this stage.
+limited_climate_linked_rows,14396,Country-wave rows ready at this stage.
+harmonization_ready_country_waves,0,Country-wave rows ready at this stage.
+sdg382_ready_country_waves,0,Country-wave rows ready at this stage.
+climate_ready_country_waves,0,Country-wave rows ready at this stage.
+outcome_ready_country_waves,1,Country-wave rows ready at this stage.
+reduced_form_ready_country_waves,0,Country-wave rows ready at this stage.
+mechanism_ready_country_waves,0,Country-wave rows ready at this stage.
+current_stage_harmonization_value_audit_required,1,Dashboard current-stage count.
+current_stage_manual_raw_download_required,22,Dashboard current-stage count.
+claim_status_metadata_protocol_only_no_empirical_claims,22,Allowed claim status count.
+claim_status_raw_schema_claims_only_no_analysis_dataset_claims,1,Allowed claim status count.

@@ -1,0 +1,13 @@
+metric,value,interpretation
+protocol_rows,2571,Candidate raw variables requiring verification.
+scaffold_rows,1204,Harmonized-variable scaffold rows; not a usable recipe.
+priority_dataset_count,28,Quality-prioritized datasets included.
+concept_count,13,Raw-ingestion concepts represented.
+raw_file_inventory_rows,209,Raw tabular file inventory rows currently available.
+raw_variable_catalog_rows,5410,Raw variable catalog rows currently available.
+scaffold_ready_for_recipe_rows,0,No scaffold row is recipe-ready until raw value audits pass.
+verification_status_raw_not_inspected,2571,Protocol verification status count.
+raw_file_status_raw_files_not_present,2571,Protocol raw-file status count.
+metadata_confidence_high,2335,Protocol metadata-confidence count.
+metadata_confidence_metadata_candidate_from_concept_checklist,49,Protocol metadata-confidence count.
+metadata_confidence_moderate,187,Protocol metadata-confidence count.

@@ -1,0 +1,8 @@
+metric,value,interpretation
+alb2002_promotion_gate_delta_rows,10,Gate delta rows audited.
+alb2002_promotion_gate_delta_review_ready_rows,2,Gates with strong evidence that are ready for manual recipe review but not data promotion.
+alb2002_promotion_gate_delta_documented_candidate_rows,6,Evidence-rich candidate gates still not promoted.
+alb2002_promotion_gate_delta_hard_blocked_rows,4,Hard blocked gates.
+alb2002_promotion_gate_delta_promotion_ready_rows,0,Rows ready for promotion by this delta audit; intentionally zero.
+alb2002_promotion_gate_delta_data_write_ready_rows,0,Rows allowed for data/ write by this delta audit; intentionally zero.
+alb2002_promotion_gate_delta_decision,partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass,Current ALB_2002 promotion-gate delta decision.

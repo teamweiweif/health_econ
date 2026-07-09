@@ -1,0 +1,16 @@
+metric,value,interpretation
+first_batch_dataset_gate_rows,10,Dataset-level verification gate rows.
+first_batch_concept_template_rows,130,Concept-level verification template rows.
+first_batch_variable_template_rows,917,Variable-level verification template rows.
+datasets_ready_for_manual_value_audit,0,Datasets with raw schemas matched to critical concepts.
+concepts_ready_for_manual_value_audit,9,Concept rows ready for value/label/unit/key audit.
+variables_ready_for_manual_value_audit,42,Variable rows ready for value/label/unit/key audit.
+dataset_gate_blocked_candidate_file_or_variable_not_matched,1,Dataset gate status count.
+dataset_gate_blocked_raw_files_absent,9,Dataset gate status count.
+concept_gate_blocked_missing_metadata_candidate,12,Concept gate status count.
+concept_gate_blocked_raw_candidate_not_matched,3,Concept gate status count.
+concept_gate_blocked_raw_file_missing,106,Concept gate status count.
+concept_gate_ready_for_manual_value_label_unit_key_audit,9,Concept gate status count.
+variable_status_raw_candidate_not_matched,65,Variable verification status count.
+variable_status_raw_not_inspected,810,Variable verification status count.
+variable_status_ready_for_manual_value_audit,42,Variable verification status count.

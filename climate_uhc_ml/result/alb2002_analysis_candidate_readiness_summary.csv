@@ -1,0 +1,16 @@
+metric,value,interpretation
+alb2002_analysis_candidate_rows,3599,Temp-only joined ALB_2002 analysis-candidate household rows.
+alb2002_analysis_candidate_columns,49,Columns in the temp-only ALB_2002 analysis-candidate dataset.
+alb2002_analysis_candidate_lineage_rows,6,Lineage rows for carried or derived analysis-candidate fields.
+alb2002_analysis_candidate_audit_rows,12,Readiness gate rows for the ALB_2002 analysis candidate.
+alb2002_analysis_candidate_complete_candidate_gates,9,"Field families with complete observed candidate coverage, still not promoted."
+alb2002_analysis_candidate_missing_gates,1,Field families with missing required candidate coverage.
+alb2002_analysis_candidate_blocked_promotion_gates,2,Promotion gates still blocked.
+alb2002_analysis_candidate_household_core_rows,3599,Upstream household-core rows consumed.
+alb2002_analysis_candidate_che10_rows,824,CHE10 candidate rows carried from the temp-only outcome audit.
+alb2002_analysis_candidate_che25_rows,290,CHE25 candidate rows carried from the temp-only outcome audit.
+alb2002_analysis_candidate_outcome_promotion_ready_rows,0,Rows ready for final outcome promotion; should remain zero.
+alb2002_analysis_candidate_harmonized_ready_rows,0,Rows ready for harmonized dataset promotion; should remain zero.
+alb2002_analysis_candidate_climate_linkage_ready_rows,0,Rows ready for climate linkage; should remain zero.
+alb2002_analysis_candidate_data_write_ready_rows,0,Rows allowed to be written under data/ by this audit; intentionally zero.
+alb2002_analysis_candidate_current_decision,blocked_alb2002_analysis_candidate_not_promoted_due_recipe_outcome_climate_gates,Current fail-closed decision for the ALB_2002 analysis candidate.

@@ -1,0 +1,27 @@
+metric,value,interpretation
+alb2002_access_candidate_household_rows,3599,Temp-only ALB_2002 household access candidate rows.
+alb2002_access_candidate_lineage_rows,8,Lineage rows for access candidate fields.
+alb2002_access_candidate_audit_rows,13,Outcome audit rows for access candidate fields.
+alb2002_access_candidate_q01_need_rows,3247,Households not coded as no-one-needed-care by m5b_q01.
+alb2002_access_candidate_person_need_rows,2202,Households with Health A person-level need proxy.
+alb2002_access_candidate_q01_cost_difficulty_rows,1623,Households reporting difficult/very difficult health-care payment situation.
+alb2002_access_candidate_delayed_help_rows,144,Households with delayed or not-sought help candidate.
+alb2002_access_candidate_referral_not_gone_rows,161,Households with hospital referral not gone candidate.
+alb2002_access_candidate_refused_service_rows,68,Households with health-service refusal candidate.
+alb2002_access_candidate_medicine_discount_any_barrier_rows,493,Households with medicine-discount entitlement barrier candidate.
+alb2002_access_candidate_composite_cost_rows,1661,Composite cost-barrier candidate rows.
+alb2002_access_candidate_composite_cost_rate,0.461517,Composite cost-barrier unweighted candidate rate.
+alb2002_access_candidate_composite_cost_weighted_rate,0.476346,Composite cost-barrier weighted candidate rate.
+alb2002_access_candidate_composite_distance_rows,34,Composite distance-barrier candidate rows.
+alb2002_access_candidate_composite_supply_admin_rows,405,Composite supply/admin-barrier candidate rows.
+alb2002_access_candidate_composite_nonuse_rows,318,Composite delayed/refused/nonuse candidate rows.
+alb2002_access_candidate_composite_any_rows,1861,Composite any-access-barrier candidate rows.
+alb2002_access_candidate_composite_any_rate,0.517088,Composite any-access-barrier unweighted candidate rate.
+alb2002_access_candidate_composite_any_weighted_rate,0.528953,Composite any-access-barrier weighted candidate rate.
+alb2002_access_candidate_policy_rows_observed,24,Upstream access/need policy audit rows consumed.
+alb2002_access_candidate_low_event_rate_rows,2,Candidate access outcomes with event rate below 3 percent.
+alb2002_access_candidate_outcome_promotion_ready_rows,0,Rows ready for final access-outcome promotion; intentionally zero.
+alb2002_access_candidate_recipe_ready_rows,0,Rows ready for harmonized recipe promotion; intentionally zero.
+alb2002_access_candidate_sdg382_ready_rows,0,Rows ready for SDG 3.8.2 construction; intentionally zero.
+alb2002_access_candidate_climate_linkage_ready_rows,0,Rows ready for climate linkage; should remain zero until geography is verified.
+alb2002_access_candidate_current_decision,blocked_alb2002_access_candidate_not_promoted_due_denominator_skip_climate_gates,Current fail-closed access candidate outcome decision.

@@ -1,0 +1,18 @@
+metric,value,interpretation
+alb2005_consumption_component_source_search_rows,37,Rows in the ALB_2005 consumption component source-search audit.
+alb2005_consumption_component_source_search_target_variables,9,Public metadata aggregate/component variables searched locally.
+alb2005_consumption_component_source_search_local_files_scanned,46,Local ALB_2005 raw/schema file rows scanned.
+alb2005_consumption_component_source_search_local_variables_scanned,1187,Local ALB_2005 raw-variable rows scanned.
+alb2005_consumption_component_source_search_questionnaire_workbooks_scanned,2,Local ALB_2005 questionnaire workbooks scanned for phrase leads.
+alb2005_consumption_component_source_search_construction_code_files_found,0,Local source-code-like files found under the ALB_2005 extract.
+alb2005_consumption_component_source_search_exact_target_variables_found,1,Target variables with exact local raw-variable hits.
+alb2005_consumption_component_source_search_exact_target_variables_missing,8,Target variables without exact local raw-variable hits.
+alb2005_consumption_component_source_search_label_phrase_targets_found,5,Target variables with local raw-label/phrase hits.
+alb2005_consumption_component_source_search_questionnaire_phrase_targets_found,5,Target variables with questionnaire phrase leads.
+alb2005_consumption_component_source_search_construction_code_targets_found,0,Target variables with local construction-code text hits.
+alb2005_consumption_component_source_search_candidate_module_target_rows,9,Target variables with module-name leads only.
+alb2005_consumption_component_source_search_recipe_ready_rows,0,Rows promoted to a harmonization recipe by this audit; intentionally zero.
+alb2005_consumption_component_source_search_outcome_ready_rows,0,Rows promoted to outcome construction by this audit; intentionally zero.
+alb2005_consumption_component_source_search_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 denominator readiness by this audit; intentionally zero.
+alb2005_consumption_component_source_search_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2005_consumption_component_source_search_current_decision,blocked_alb2005_consumption_component_source_search_not_ready,Current fail-closed decision for the ALB_2005 component source-search evidence.

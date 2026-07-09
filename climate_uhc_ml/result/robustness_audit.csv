@@ -1,0 +1,2 @@
+check,status,detail,input_path,rows_input,rows_output,output_path,required_action
+robustness_grid,complete_limited_diagnostic,Primary estimates=88; robustness grid rows=18; ready rows=4.,result\reduced_form_estimates.csv,88,18,result\robustness_results.csv,Promote verified analytical data and run full refits before treating robustness/placebo checks as causal evidence.

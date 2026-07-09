@@ -1,0 +1,3 @@
+check,status,detail,input_path,rows_input,rows_output,output_path,required_action
+predictive_ml,complete_limited_diagnostic,Validated metric rows=30.,,0,30,result\predictive_ml_metrics.csv,
+limited_diagnostic_guardrail,complete_limited_predictive_diagnostic_not_promoted,Input is the limited ALB_2002 CHE/NASA POWER linked diagnostic file; predictive metrics are grouped-geography diagnostics only.,data\climate_linked_household.csv,14396,30,result\predictive_ml_metrics.csv,"Use multi-country, multi-wave, or externally validated analytical data before transportable targeting claims."

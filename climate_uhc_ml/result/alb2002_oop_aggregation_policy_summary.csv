@@ -1,0 +1,24 @@
+metric,value,interpretation
+alb2002_oop_aggregation_policy_rows,11,Rows in the ALB_2002 OOP aggregation policy audit.
+alb2002_oop_aggregation_policy_household_rows,3599,Base household rows included in the stress test.
+alb2002_oop_aggregation_policy_total_consumption_rows,3599,Households with positive total consumption denominator.
+alb2002_oop_aggregation_policy_four_week_policy_rows,4,Four-week OOP aggregation policies.
+alb2002_oop_aggregation_policy_twelve_month_policy_rows,4,Twelve-month hospital/dentist OOP aggregation policies.
+alb2002_oop_aggregation_policy_annual_stress_rows,3,Annualized stress-test policies combining four-week and 12-month items.
+alb2002_oop_aggregation_policy_max_che10_rate,0.707697,Maximum unweighted CHE10 stress-test rate across policies.
+alb2002_oop_aggregation_policy_max_che25_rate,0.56738,Maximum unweighted CHE25 stress-test rate across policies.
+alb2002_oop_aggregation_policy_core_4w_match_rows,3599,Rows where recomputed four-week no-gifts-with-transport OOP equals the existing core candidate sum.
+alb2002_oop_aggregation_policy_core_12m_match_rows,3599,Rows where recomputed 12-month no-gifts-with-transport OOP equals the existing core candidate sum.
+alb2002_oop_aggregation_policy_questionnaire_oop_item_rows_observed,25,Questionnaire OOP item rows observed upstream.
+alb2002_oop_aggregation_policy_questionnaire_gift_item_rows_observed,6,Questionnaire gift/payment-scope rows observed upstream.
+alb2002_oop_aggregation_policy_questionnaire_new_lek_rows_observed,31,Questionnaire NEW LEKS unit rows observed upstream.
+alb2002_oop_aggregation_policy_questionnaire_payment_positive_skip_leaks_observed,0,Positive skipped-payment downstream rows observed upstream.
+alb2002_oop_aggregation_policy_questionnaire_payment_nonmissing_skip_review_observed,11,Nonmissing skipped-payment downstream rows requiring review upstream.
+alb2002_oop_aggregation_policy_minimum_recipe_harmonized_ready_observed,0,Harmonized-ready rows observed in the ALB_2002 minimum recipe packet.
+alb2002_oop_aggregation_policy_minimum_recipe_outcome_ready_observed,0,Outcome-ready rows observed in the ALB_2002 minimum recipe packet.
+alb2002_oop_aggregation_policy_climate_ready_rows_observed,0,Climate-linkage-ready rows observed in the district crosswalk audit.
+alb2002_oop_aggregation_policy_outcome_ready_rows,0,Rows promoted to final outcome construction by this audit; intentionally zero.
+alb2002_oop_aggregation_policy_recipe_ready_rows,0,Rows promoted to harmonization recipe by this audit; intentionally zero.
+alb2002_oop_aggregation_policy_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 construction by this audit; intentionally zero.
+alb2002_oop_aggregation_policy_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2002_oop_aggregation_policy_current_decision,blocked_alb2002_oop_aggregation_policy_stress_test_not_outcome_ready,Current fail-closed decision for ALB_2002 OOP aggregation stress tests.

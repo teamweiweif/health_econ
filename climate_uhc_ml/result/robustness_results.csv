@@ -1,0 +1,19 @@
+primary_outcome,primary_exposure,robustness_check,status,estimate_rows,result,notes
+che10_total_budget,precip_total_mm,alternative_financial_hardship_thresholds,attempted_limited_threshold_comparison,88,CHE10 and CHE25 reduced-form diagnostic estimates are both present.,Threshold comparison is diagnostic only; outcome promotion remains blocked.
+che10_total_budget,precip_total_mm,alternative_climate_lags,attempted_limited_window_lag_comparison,88,Window-specific estimate models=4.,Compares diagnostic windows only; primary climate baseline remains unaccepted.
+che10_total_budget,precip_total_mm,alternative_climate_datasets,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,gps_point_vs_admin_aggregation,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,with_and_without_survey_weights,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,country_leave_one_out,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,region_leave_one_out,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,exclude_weak_outcome_construction,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,exclude_poor_geolocation,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,rural_urban_splits,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,agricultural_livelihood_splits,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,multiple_testing_correction,attempted_limited_bh_correction,88,p-values=88; min_p=0.0143871; min_bh_q=0.857384,Benjamini-Hochberg summary over diagnostic estimates; not inferentially promoted.
+che10_total_budget,precip_total_mm,household_or_repeated_cross_section_fixed_effects,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,future_climate_placebo,attempted_future_climate_placebo_not_available,88,No future climate lead variables exist in the linked diagnostic file.,Placebo attempt documented as unavailable; construct future lead exposures before causal interpretation.
+che10_total_budget,precip_total_mm,negative_control_or_non_climate_sensitive_outcome,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,poverty_line_assumption_sensitivity,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,ppp_cpi_assumption_sensitivity,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.
+che10_total_budget,precip_total_mm,missing_data_sensitivity,planned_not_attempted,88,,Requires specialized data or refit logic beyond the primary estimate.

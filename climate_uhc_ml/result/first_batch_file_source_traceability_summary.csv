@@ -1,0 +1,9 @@
+metric,value,interpretation
+first_batch_file_source_traceability_rows,143,First-batch queued file/module source traceability rows.
+first_batch_file_source_traceability_dataset_rows,10,Datasets represented in file-source traceability.
+first_batch_file_source_traceability_unsupported_rows,0,Queued files missing from public schema inventory.
+first_batch_candidate_variable_examples_checked,1431,Candidate raw-variable examples checked against metadata variable catalog.
+first_batch_candidate_variable_examples_found,1431,Candidate examples found in metadata variable catalog.
+source_trace_status_metadata_file_and_examples_supported,143,File-source trace status count.
+metadata_file_status_metadata_file_found,143,Metadata file status count.
+metadata_variable_status_metadata_variables_found,143,Metadata variable status count.

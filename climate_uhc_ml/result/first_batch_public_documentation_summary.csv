@@ -1,0 +1,17 @@
+metric,value,interpretation
+first_batch_documentation_dataset_rows,10,First-batch datasets audited for public documentation coverage.
+first_batch_documentation_resource_rows,60,Dataset-resource documentation rows.
+first_batch_documentation_saved_rows,58,Documentation resources saved or reused as local snapshots.
+first_batch_documentation_failed_rows,2,Documentation resources that failed to fetch.
+first_batch_documentation_complete_dataset_rows,8,Datasets with all six public documentation resource types saved or reused.
+first_batch_documentation_pdf_missing_dataset_rows,2,Datasets without a saved PDF documentation endpoint.
+first_batch_documentation_access_gate_rows,10,Datasets with access-gate language on the get-microdata HTML page.
+coverage_status_failed_http,2,Documentation coverage status count.
+coverage_status_saved,29,Documentation coverage status count.
+coverage_status_saved_existing_worldbank_public_documentation,29,Documentation coverage status count.
+resource_type_data_dictionary_html,10,Documentation resource type count.
+resource_type_get_microdata_html,10,Documentation resource type count.
+resource_type_metadata_ddi_xml,10,Documentation resource type count.
+resource_type_metadata_json,10,Documentation resource type count.
+resource_type_pdf_documentation,10,Documentation resource type count.
+resource_type_related_materials_html,10,Documentation resource type count.

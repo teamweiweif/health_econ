@@ -1,0 +1,16 @@
+metric,value,interpretation
+alb2005_consumption_aggregate_crosswalk_rows,16,Rows in the ALB_2005 consumption aggregate metadata crosswalk audit.
+alb2005_consumption_aggregate_crosswalk_metadata_rows,9,Public metadata aggregate/component variables checked against local poverty.sav.
+alb2005_consumption_aggregate_crosswalk_metadata_old_lek_rows,8,Checked public metadata aggregate/component labels mentioning old lek.
+alb2005_consumption_aggregate_crosswalk_local_poverty_columns,16,Columns exposed by local ALB_2005 poverty.sav.
+alb2005_consumption_aggregate_crosswalk_metadata_variables_present_in_local_raw_rows,1,Checked public metadata aggregate/component variables present in local poverty.sav.
+alb2005_consumption_aggregate_crosswalk_metadata_variables_absent_from_local_raw_rows,8,Checked public metadata aggregate/component variables absent from local poverty.sav.
+alb2005_consumption_aggregate_crosswalk_local_per_capita_component_rows,6,Local per-capita component variables available for diagnostics only.
+alb2005_consumption_aggregate_crosswalk_totcons_positive_rows,3638,Positive local `totcons` rows in poverty.sav.
+alb2005_consumption_aggregate_crosswalk_totcons05_local_rows,0,Local `totcons05` rows available in poverty.sav; should remain zero in current extract.
+alb2005_consumption_aggregate_crosswalk_component_formula_reconstructable_rows,0,Rows indicating whether required public-metadata formula components are all present locally; should remain zero.
+alb2005_consumption_aggregate_crosswalk_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 denominator readiness by this audit; intentionally zero.
+alb2005_consumption_aggregate_crosswalk_recipe_ready_rows,0,Rows promoted to a harmonization recipe by this audit; intentionally zero.
+alb2005_consumption_aggregate_crosswalk_outcome_ready_rows,0,Rows promoted to outcome construction by this audit; intentionally zero.
+alb2005_consumption_aggregate_crosswalk_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2005_consumption_aggregate_crosswalk_current_decision,blocked_alb2005_consumption_aggregate_metadata_crosswalk_not_ready,Current fail-closed decision for ALB_2005 aggregate metadata/local raw crosswalk evidence.

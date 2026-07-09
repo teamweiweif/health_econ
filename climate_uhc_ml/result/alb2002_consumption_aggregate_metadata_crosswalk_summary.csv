@@ -1,0 +1,21 @@
+metric,value,interpretation
+alb2002_consumption_aggregate_crosswalk_rows,11,Rows in the ALB_2002 consumption aggregate metadata/local evidence audit.
+alb2002_consumption_aggregate_crosswalk_local_poverty_rows,3599,Rows exposed by local ALB_2002 Poverty_2002.sav.
+alb2002_consumption_aggregate_crosswalk_local_poverty_columns,14,Columns exposed by local ALB_2002 Poverty_2002.sav.
+alb2002_consumption_aggregate_crosswalk_metadata_catalog_rows,0,Local master metadata rows for ALB_2002; currently expected to be zero.
+alb2002_consumption_aggregate_crosswalk_raw_totcons_positive_rows,3599,Positive raw `totcons` rows observed locally.
+alb2002_consumption_aggregate_crosswalk_candidate_totcons_match_rows,3599,Candidate `total_consumption` rows exactly matching raw `totcons` by household id.
+alb2002_consumption_aggregate_crosswalk_scale_ratio_within_10pct_rows,2618,Rows where `totcons / household_size / rcons` is within 10 percent of 1; diagnostic only.
+alb2002_consumption_aggregate_crosswalk_questionnaire_new_lek_hits,8,Binary questionnaire string hits for New Lek wording; source-item evidence only.
+alb2002_consumption_aggregate_crosswalk_questionnaire_aggregate_formula_hits,0,Binary questionnaire string hits for aggregate/formula terms; not accepted documentation.
+alb2002_consumption_aggregate_crosswalk_construction_source_rows,9,Rows in the upstream public consumption-construction source audit.
+alb2002_consumption_aggregate_crosswalk_construction_do_file_rows,19,Extracted public Stata do-files documenting the ALB_2002 consumption aggregate.
+alb2002_consumption_aggregate_crosswalk_metadata_unit_period_ready_rows,8,Public source-audit rows documenting the denominator variant and unit/period context.
+alb2002_consumption_aggregate_crosswalk_official_documentation_ready_rows,9,Rows with accepted public aggregate-construction documentation.
+alb2002_consumption_aggregate_crosswalk_released_variable_mapping_ready_rows,3,Rows supporting the mapping from local `totcons` to public metadata `totcons3`.
+alb2002_consumption_aggregate_crosswalk_denominator_variant_ready_rows,8,Rows documenting the final total-budget denominator variant.
+alb2002_consumption_aggregate_crosswalk_recipe_ready_rows,0,Rows promoted to harmonization recipe readiness by this audit; intentionally zero.
+alb2002_consumption_aggregate_crosswalk_outcome_ready_rows,0,Rows promoted to outcome construction by this audit; intentionally zero.
+alb2002_consumption_aggregate_crosswalk_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 denominator readiness by this audit; intentionally zero.
+alb2002_consumption_aggregate_crosswalk_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2002_consumption_aggregate_crosswalk_current_decision,documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready,Current fail-closed decision for ALB_2002 consumption aggregate metadata/local evidence.

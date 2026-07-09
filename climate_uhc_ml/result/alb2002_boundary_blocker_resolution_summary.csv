@@ -1,0 +1,11 @@
+metric,value,interpretation
+alb2002_boundary_blocker_resolution_rows,11,Boundary-source resolution rows consolidated.
+alb2002_boundary_blocker_official_or_primary_lead_rows,4,Official or primary institutional leads represented in the matrix.
+alb2002_boundary_blocker_candidate_name_coverage_rows,3,Public boundary leads with complete candidate name coverage but no promotion.
+alb2002_boundary_blocker_incompatible_or_negative_rows,4,"Rows that are current-unit, wrong-level, or negative-evidence sources."
+alb2002_boundary_blocker_historical_2002_ready_rows,0,Rows verified as 2001/2002 historical boundary-ready.
+alb2002_boundary_blocker_climate_linkage_ready_rows,0,Rows ready for promoted ALB_2002 climate linkage.
+alb2002_boundary_blocker_data_write_ready_rows,0,Rows allowed for data/ writes by this boundary matrix; intentionally zero.
+alb2002_boundary_blocker_hard_blocked_rows,11,Rows still blocked from promoted climate linkage.
+alb2002_boundary_blocker_required_source_action_rows,7,"Rows with an explicit source-search, request, or verification action."
+alb2002_boundary_blocker_current_decision,blocked_no_alb2002_boundary_source_ready_for_climate_linkage,Current consolidated ALB_2002 boundary-source decision.

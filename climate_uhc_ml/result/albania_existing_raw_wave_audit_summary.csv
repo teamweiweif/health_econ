@@ -1,0 +1,14 @@
+metric,value,interpretation
+albania_existing_raw_wave_rows,4,Existing Albania LSMS wave rows audited.
+albania_existing_raw_wave_archive_present_rows,4,Audited waves with raw archive present.
+albania_existing_raw_wave_extracted_rows,4,Audited waves with extracted raw root present.
+albania_existing_raw_wave_unintegrated_rows,3,Audited waves present locally but not yet in the core schema inventory.
+albania_existing_raw_wave_deep_audited_rows,4,Audited waves with at least one existing deep raw/core audit layer.
+albania_existing_raw_wave_total_raw_tabular_files,163,Total raw .sav files under audited Albania wave extraction roots.
+albania_existing_raw_wave_total_raw_variable_rows,4148,Total raw variables readable from audited Albania wave extraction roots.
+albania_existing_raw_wave_oop_signal_rows,4,Audited waves with at least one OOP/health-expenditure keyword signal.
+albania_existing_raw_wave_timing_signal_rows,0,Audited waves with apparent interview/fieldwork timing keyword signals.
+albania_existing_raw_wave_gps_signal_rows,0,Audited waves with GPS/coordinate keyword signals.
+albania_existing_raw_wave_harmonization_ready_rows,0,Existing Albania waves ready for harmonized data promotion after this audit.
+albania_existing_raw_wave_climate_linkage_ready_rows,0,Existing Albania waves ready for climate-linkage input promotion after this audit.
+albania_existing_raw_wave_current_decision,present_raw_waves_require_wave_specific_schema_value_key_timing_audits,Current decision for existing Albania raw waves.

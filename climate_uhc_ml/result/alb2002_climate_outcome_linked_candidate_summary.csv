@@ -1,0 +1,30 @@
+metric,value,interpretation
+alb2002_climate_outcome_linked_candidate_rows,14396,Temp-only long household-window climate/outcome candidate rows.
+alb2002_climate_outcome_linked_candidate_household_rows,3599,Distinct ALB_2002 households represented.
+alb2002_climate_outcome_linked_candidate_window_rows,4,Distinct diagnostic exposure windows linked per household.
+alb2002_climate_outcome_linked_candidate_district_month_cells,96,District-month cells represented after linkage.
+alb2002_climate_outcome_linked_candidate_lineage_rows,7,Lineage rows for the linked climate/outcome candidate.
+alb2002_climate_outcome_linked_candidate_audit_rows,7,Audit rows for linkage integrity and promotion gates.
+alb2002_climate_outcome_linked_candidate_source_analysis_rows,3599,Source joined analysis-candidate rows consumed.
+alb2002_climate_outcome_linked_candidate_source_uhc_rows,3599,Source composite UHC candidate rows consumed.
+alb2002_climate_outcome_linked_candidate_source_shock_rows,384,Source climate shock diagnostic rows consumed.
+alb2002_climate_outcome_linked_candidate_expected_rows,14396,Expected rows if every household has all diagnostic windows.
+alb2002_climate_outcome_linked_candidate_unmatched_rows,0,Rows with no linked climate window; should remain zero.
+alb2002_climate_outcome_linked_candidate_precip_z_rows,14396,Linked rows with diagnostic rainfall z-scores.
+alb2002_climate_outcome_linked_candidate_temp_z_rows,14396,Linked rows with diagnostic temperature z-scores.
+alb2002_climate_outcome_linked_candidate_low_rain_rows,1008,Linked household-window rows with diagnostic low-rain flag.
+alb2002_climate_outcome_linked_candidate_extreme_wet_rows,1398,Linked household-window rows with diagnostic extreme-wet flag.
+alb2002_climate_outcome_linked_candidate_extreme_heat_rows,1694,Linked household-window rows with diagnostic extreme-heat flag.
+alb2002_climate_outcome_linked_candidate_combined_stress_rows,3092,Linked household-window rows with any diagnostic combined-stress flag.
+alb2002_climate_outcome_linked_candidate_che10_or_access_rows,8016,Long rows carrying CHE10-or-access UHC candidate flag.
+alb2002_climate_outcome_linked_candidate_che25_or_access_rows,7556,Long rows carrying CHE25-or-access UHC candidate flag.
+alb2002_climate_outcome_linked_candidate_both_che10_access_rows,2724,Long rows carrying both CHE10 and access-barrier candidate flag.
+alb2002_climate_outcome_linked_candidate_coping_rows,5904,Long rows carrying health-cost coping candidate flag.
+alb2002_climate_outcome_linked_candidate_primary_chirps_ready_rows,0,Rows with primary CHIRPS accepted; intentionally zero.
+alb2002_climate_outcome_linked_candidate_primary_era5_ready_rows,0,Rows with primary ERA5 accepted; intentionally zero.
+alb2002_climate_outcome_linked_candidate_historical_baseline_ready_rows,0,Rows with historical baseline accepted; intentionally zero.
+alb2002_climate_outcome_linked_candidate_climate_linkage_ready_rows,0,Rows ready for promoted climate linkage; intentionally zero.
+alb2002_climate_outcome_linked_candidate_outcome_promotion_ready_rows,0,Rows ready for promoted outcomes; intentionally zero.
+alb2002_climate_outcome_linked_candidate_harmonized_recipe_ready_rows,0,Rows ready for harmonized recipe promotion; intentionally zero.
+alb2002_climate_outcome_linked_candidate_data_write_ready_rows,0,Rows allowed to be written to data/; intentionally zero.
+alb2002_climate_outcome_linked_candidate_current_decision,blocked_alb2002_climate_outcome_linked_candidate_not_promoted_due_recipe_outcome_geography_source_baseline_gates,Current fail-closed linked climate/outcome candidate decision.

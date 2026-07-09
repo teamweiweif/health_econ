@@ -1,0 +1,13 @@
+metric,value,interpretation
+first_batch_handoff_rows,10,Dataset-level manual download handoff rows.
+first_batch_file_queue_rows,143,Deduplicated first-batch file/module queue rows.
+first_batch_access_gate_rows,10,Dataset rows with official access-gate language.
+first_batch_possible_direct_raw_route_rows,0,Dataset rows with possible ungated direct raw route signals.
+first_batch_raw_file_inventory_rows,46,Raw file inventory rows currently linked to handoff datasets.
+first_batch_raw_variable_catalog_rows,1187,Raw variable catalog rows currently linked to handoff datasets.
+handoff_status_manual_account_terms_download_required,9,Manual download handoff status count.
+handoff_status_ready_for_raw_schema_and_value_audit,1,Manual download handoff status count.
+direct_raw_route_status_no_direct_raw_route_access_gate_detected,10,Direct raw route status count.
+file_queue_reason_financial_core_file,35,Deduplicated file queue target-reason count.
+file_queue_reason_geography_timing_design_file,28,Deduplicated file queue target-reason count.
+file_queue_reason_top_metadata-supported_module_to_inspect_first,120,Deduplicated file queue target-reason count.

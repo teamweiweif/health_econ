@@ -1,0 +1,24 @@
+metric,value,interpretation
+alb2005_consumption_oop_unit_period_rows,12,Rows in the ALB_2005 consumption/OOP unit-period audit.
+alb2005_consumption_oop_unit_period_total_consumption_nonmissing_rows,3638,Nonmissing ALB_2005 total-consumption rows observed upstream.
+alb2005_consumption_oop_unit_period_total_consumption_positive_rows,3638,Positive total-consumption rows in poverty.sav.
+alb2005_consumption_oop_unit_period_rcons_positive_rows,3638,Positive per-capita consumption rows in poverty.sav.
+alb2005_consumption_oop_unit_period_metadata_old_lek_rows_observed,6,Public metadata aggregate labels mentioning old lek.
+alb2005_consumption_oop_unit_period_oop_old_lek_questionnaire_rows_observed,36,Questionnaire OOP payment rows explicitly recorded in old lek.
+alb2005_consumption_oop_unit_period_four_week_oop_rows_observed,26,Questionnaire OOP rows with past-four-week recall.
+alb2005_consumption_oop_unit_period_twelve_month_oop_rows_observed,10,Questionnaire OOP rows with past-12-month recall.
+alb2005_consumption_oop_unit_period_questionnaire_nonfood_old_lek_rows_observed,15,Nonhealth consumption/expenditure questionnaire rows with old-lek text.
+alb2005_consumption_oop_unit_period_questionnaire_consumption_period_rows_observed,9,"Nonhealth consumption/expenditure questionnaire rows with 12-month, monthly, or 30-day period text."
+alb2005_consumption_oop_unit_period_totcons_rcons_roster_join_rows,3638,Poverty rows joined to raw roster household counts for scaling diagnostics.
+alb2005_consumption_oop_unit_period_totcons_rcons_implied_scale_median,3.76601,"Median of totcons/rcons/12, used only as an internal scaling diagnostic."
+alb2005_consumption_oop_unit_period_roster_hhsize_median,4,Median raw roster household member count.
+alb2005_consumption_oop_unit_period_totcons_rcons_abs_diff_le_0_1_rows,439,Rows where totcons/rcons/12 is within 0.1 of raw roster size.
+alb2005_consumption_oop_unit_period_value_decision_recipe_ready_observed,0,Recipe-ready rows observed in upstream value-decision audit.
+alb2005_consumption_oop_unit_period_required_value_key_recipe_ready_observed,0,Recipe-ready rows observed in upstream required value/key audit.
+alb2005_consumption_oop_unit_period_oop_policy_rows_observed,11,OOP aggregation stress-test rows observed upstream.
+alb2005_consumption_oop_unit_period_skip_missing_rows_observed,13,Skip/missing audit rows observed upstream.
+alb2005_consumption_oop_unit_period_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 denominator readiness by this audit; intentionally zero.
+alb2005_consumption_oop_unit_period_recipe_ready_rows,0,Rows promoted to harmonization recipe by this audit; intentionally zero.
+alb2005_consumption_oop_unit_period_outcome_ready_rows,0,Rows promoted to outcome construction by this audit; intentionally zero.
+alb2005_consumption_oop_unit_period_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2005_consumption_oop_unit_period_current_decision,blocked_alb2005_consumption_oop_unit_period_not_ready,Current fail-closed decision for ALB_2005 denominator unit/period evidence.

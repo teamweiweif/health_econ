@@ -1,0 +1,13 @@
+metric,value,interpretation
+requirement_rows,207,Country-wave denominator component requirement rows.
+country_wave_rows,23,Priority bundle country-waves assessed.
+source_matrix_rows,18,Reference/source role rows.
+ready_for_sdg382_construction_rows,0,Rows ready for household denominator value audit.
+blocked_country_wave_rows,23,Rows still blocked by raw or exact external denominator inputs.
+component_gate_metadata_missing,20,Denominator component gate count.
+component_gate_metadata_ready_raw_unverified,187,Denominator component gate count.
+source_status_indicator_metadata_available,8,Source-matrix probe status count.
+source_status_local_snapshot_present,2,Source-matrix probe status count.
+source_status_not_probed,2,Source-matrix probe status count.
+source_status_reachable_snapshot_saved,4,Source-matrix probe status count.
+source_status_records_available,2,Source-matrix probe status count.

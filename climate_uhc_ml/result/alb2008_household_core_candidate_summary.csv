@@ -1,0 +1,34 @@
+metric,value,interpretation
+alb2008_household_core_candidate_rows,3599,Rows in the temp-only household core candidate table.
+alb2008_household_core_recipe_ready_rows,0,This audit never promotes analysis-ready harmonization rows.
+alb2008_households_with_total_consumption,3599,Base households with poverty.sav total consumption.
+alb2008_households_with_household_weight,3599,Base households with candidate household weight.
+alb2008_households_with_household_size,3599,Base households with roster-derived household size.
+alb2008_households_with_oop_4w_positive,1895,Households with positive unreviewed four-week OOP item sum.
+alb2008_households_with_oop_12m_positive,1284,Households with positive unreviewed twelve-month OOP item sum.
+alb2008_households_with_coarse_area,3599,Base households with coarse area code from poverty.sav.
+alb2008_households_with_survey_month,0,No interview month variable has been verified.
+alb2008_merge_modules_audited,7,Raw modules assessed for merge key coverage.
+alb2008_merge_modules_complete_base_coverage,7,Modules whose distinct keys cover all base households.
+alb2008_merge_modules_partial_base_coverage,0,Modules covering only part of the base households.
+alb2008_household_core_current_decision,temp_candidate_not_analysis_ready,ALB_2008 core candidate is useful for review but remains blocked from data/.
+alb2008_total_consumption_nonmissing,3599,Nonmissing total_consumption rows.
+alb2008_total_consumption_min,7543.52,Observed minimum for total_consumption.
+alb2008_total_consumption_max,369641,Observed maximum for total_consumption.
+alb2008_total_consumption_mean,43241.8,Observed mean for total_consumption.
+alb2008_household_weight_nonmissing,3599,Nonmissing household_weight rows.
+alb2008_household_weight_min,24.4286,Observed minimum for household_weight.
+alb2008_household_weight_max,1822.27,Observed maximum for household_weight.
+alb2008_household_weight_mean,204.63,Observed mean for household_weight.
+alb2008_household_size_nonmissing,3599,Nonmissing household_size rows.
+alb2008_household_size_min,1,Observed minimum for household_size.
+alb2008_household_size_max,18,Observed maximum for household_size.
+alb2008_household_size_mean,4.13143,Observed mean for household_size.
+alb2008_oop_4w_sum_unreviewed_nonmissing,3599,Nonmissing oop_4w_sum_unreviewed rows.
+alb2008_oop_4w_sum_unreviewed_min,0,Observed minimum for oop_4w_sum_unreviewed.
+alb2008_oop_4w_sum_unreviewed_max,3860000,Observed maximum for oop_4w_sum_unreviewed.
+alb2008_oop_4w_sum_unreviewed_mean,20862.1,Observed mean for oop_4w_sum_unreviewed.
+alb2008_oop_12m_sum_unreviewed_nonmissing,3599,Nonmissing oop_12m_sum_unreviewed rows.
+alb2008_oop_12m_sum_unreviewed_min,0,Observed minimum for oop_12m_sum_unreviewed.
+alb2008_oop_12m_sum_unreviewed_max,20000000,Observed maximum for oop_12m_sum_unreviewed.
+alb2008_oop_12m_sum_unreviewed_mean,61601.3,Observed mean for oop_12m_sum_unreviewed.

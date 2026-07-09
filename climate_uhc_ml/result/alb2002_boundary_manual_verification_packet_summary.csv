@@ -1,0 +1,9 @@
+metric,value,interpretation
+alb2002_boundary_manual_verification_action_rows,7,Manual source/action rows for resolving the ALB_2002 geography blocker.
+alb2002_boundary_manual_verification_gate_rows,9,Promotion-gate checklist rows for ALB_2002 boundary verification.
+alb2002_boundary_manual_verification_candidate_evidence_gates,3,Gates with candidate evidence that is useful but insufficient for promotion.
+alb2002_boundary_manual_verification_blocked_gates,6,Gates still blocked before any ALB_2002 climate linkage.
+alb2002_boundary_manual_verification_high_priority_actions,3,"Top-priority manual actions: World Bank geography artifacts, INSTAT 2001 boundary files, and IHGIS historical GIS."
+alb2002_boundary_manual_verification_pre2011_digital_map_absence_rows,1,Negative-evidence source rows documenting that pre-2011 national digital maps were absent.
+alb2002_boundary_manual_verification_climate_linkage_ready_rows,0,Rows ready for climate-linkage promotion after this packet; intentionally zero.
+alb2002_boundary_manual_verification_current_decision,blocked_manual_boundary_verification_required_before_alb2002_climate_linkage,Current fail-closed decision for ALB_2002 manual boundary verification.

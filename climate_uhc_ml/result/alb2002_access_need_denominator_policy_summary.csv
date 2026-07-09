@@ -1,0 +1,25 @@
+metric,value,interpretation
+alb2002_access_need_denominator_policy_rows,24,Rows in the ALB_2002 access/need denominator policy audit.
+alb2002_access_need_household_rows,3599,Base household rows included in the access/need audit.
+alb2002_access_need_person_need_household_rows,2202,Households with any Health A chronic/disability or sudden-illness need proxy.
+alb2002_access_need_q01_need_rows,3247,Households not coded as no-one-needed-health-care in m5b_q01.
+alb2002_access_need_q01_cost_difficulty_rows,1623,Households reporting very difficult or difficult payment situation among q01 need-coded households.
+alb2002_access_need_delayed_help_rows,144,Households with delayed/not-sought help count above none.
+alb2002_access_need_referral_not_gone_rows,161,Households with hospital referral not gone count above none.
+alb2002_access_need_refused_service_rows,68,Households with any health-service refusal.
+alb2002_access_need_medicine_discount_any_barrier_rows,493,Households entitled to medicine discount but not always able to exercise it.
+alb2002_access_need_composite_cost_barrier_rows,1661,Composite cost-barrier candidate event rows.
+alb2002_access_need_composite_distance_barrier_rows,34,Composite distance-barrier candidate event rows.
+alb2002_access_need_composite_supply_admin_barrier_rows,405,Composite supply/admin-barrier candidate event rows.
+alb2002_access_need_composite_any_access_barrier_rows,1861,Composite any-access-barrier candidate event rows.
+alb2002_access_need_composite_any_access_barrier_denominator_rows,3599,Composite any-access-barrier candidate denominator rows.
+alb2002_access_need_low_event_rate_rows,3,Candidate policies with unweighted event rate below 3 percent.
+alb2002_access_need_questionnaire_access_rows_observed,8,Access rows observed upstream in the questionnaire audit.
+alb2002_access_need_skip_missing_rows_observed,12,Skip/missing audit rows observed upstream.
+alb2002_access_need_minimum_recipe_outcome_ready_observed,0,Outcome-ready rows observed upstream in the minimum recipe packet.
+alb2002_access_need_climate_ready_rows_observed,0,Climate-linkage-ready rows observed upstream.
+alb2002_access_need_recipe_ready_rows,0,Rows promoted to harmonization recipe by this audit; intentionally zero.
+alb2002_access_need_outcome_ready_rows,0,Rows promoted to final outcome construction by this audit; intentionally zero.
+alb2002_access_need_sdg382_ready_rows,0,Rows promoted to SDG 3.8.2 construction by this audit; intentionally zero.
+alb2002_access_need_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2002_access_need_current_decision,blocked_alb2002_access_need_denominator_policy_not_outcome_ready,Current fail-closed decision for ALB_2002 access/need denominator policies.

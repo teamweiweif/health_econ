@@ -1,0 +1,8 @@
+metric,value,interpretation
+raw_ingestion_plan_rows,28,Quality-screened country-waves with explicit target folders and next checks.
+raw_ingestion_concept_rows,364,Dataset-concept verification checklist rows.
+raw_ingestion_module_rows,1615,Candidate module/file rows to inspect after download.
+metadata_supported_concept_rows,315,"Concept rows supported by moderate/high metadata evidence, still raw-unverified."
+raw_verified_concept_rows,13,Concept rows where raw variables have been inspected.
+gate_count_ready_for_raw_schema_inspection,1,Raw ingestion gate status count.
+gate_count_waiting_for_manual_download,27,Raw ingestion gate status count.

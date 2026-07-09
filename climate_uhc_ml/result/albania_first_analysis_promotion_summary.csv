@@ -1,0 +1,13 @@
+metric,value,interpretation
+albania_first_analysis_promotion_wave_rows,4,Albania local raw waves compared for first analysis-sample promotion.
+albania_first_analysis_promotion_gate_rows,40,Promotion gate checklist rows.
+albania_first_analysis_promotion_action_rows,4,Prioritized action rows.
+albania_first_analysis_promotion_candidate_or_ready_gate_rows,21,Gate rows with candidate or ready evidence.
+albania_first_analysis_promotion_blocked_gate_rows,19,Promotion gates still blocked.
+albania_first_analysis_promotion_ready_wave_rows,0,Waves ready for first analytical-sample promotion; should remain zero until gates pass.
+albania_first_analysis_promotion_harmonized_ready_rows,0,Harmonized-ready rows across compared waves; should remain zero.
+albania_first_analysis_promotion_outcome_ready_rows,0,Outcome-ready rows across compared waves; should remain zero.
+albania_first_analysis_promotion_climate_linkage_ready_rows,0,Climate-linkage-ready rows across compared waves; should remain zero.
+albania_first_analysis_promotion_top_ranked_idno,ALB_2002_LSMS_v01_M,Top local raw wave to investigate next.
+albania_first_analysis_promotion_top_ranked_primary_blocker,verified_2002_district_boundary_absent_gadm_lead_blocked_and_outcome_semantics_unpromoted,Binding blocker for the top-ranked local wave.
+albania_first_analysis_promotion_current_decision,blocked_no_albania_wave_ready_for_first_analysis_promotion,Current fail-closed first-analysis promotion decision.

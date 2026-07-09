@@ -1,0 +1,6 @@
+metric,value,interpretation
+public_external_candidate_rows,4,Matched public external raw candidate links.
+public_external_downloaded_or_existing_rows,4,Public external raw archives downloaded or already present.
+public_external_dataset_rows,4,Datasets with public external raw archives present.
+public_external_failed_or_skipped_rows,0,Candidate links not downloaded.
+public_external_downloaded_bytes,19395105,Total bytes of present public external raw archives.

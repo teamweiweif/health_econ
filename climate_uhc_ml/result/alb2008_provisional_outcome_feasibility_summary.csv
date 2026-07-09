@@ -1,0 +1,11 @@
+metric,value,interpretation
+alb2008_provisional_outcome_audit_rows,24,Rows in the provisional ALB_2008 outcome feasibility audit.
+alb2008_provisional_financial_stress_test_rows,8,"Financial-protection stress-test rows, none final."
+alb2008_provisional_access_proxy_rows,11,"Access proxy rows, none final."
+alb2008_provisional_low_event_rate_rows,6,Outcome candidates with unweighted event rate below 3 percent.
+alb2008_provisional_outcome_base_rows,3599,Rows in temp/alb2008_household_core_candidate.csv.
+alb2008_provisional_positive_total_consumption_rows,3599,Rows with positive total_consumption.
+alb2008_provisional_positive_household_weight_rows,3599,Rows with positive household_weight.
+alb2008_provisional_consumption_weight_rows,3599,Rows with both positive total_consumption and positive household_weight.
+alb2008_provisional_outcome_ready_rows,0,No provisional ALB_2008 diagnostic row is ready for data/ or outcome promotion.
+alb2008_provisional_outcome_current_decision,not_final_outcomes_timing_geography_recall_blocked,Current fail-closed decision for ALB_2008 provisional outcome feasibility.

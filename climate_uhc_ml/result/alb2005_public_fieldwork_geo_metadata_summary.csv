@@ -1,0 +1,15 @@
+metric,value,interpretation
+alb2005_public_fieldwork_geo_metadata_evidence_rows,10,Public fieldwork/geography metadata evidence rows audited from saved DDI XML.
+alb2005_public_fieldwork_geo_metadata_verified_source_rows,10,Rows where the expected public-source snippet was found.
+alb2005_public_fieldwork_geo_metadata_source_missing_rows,0,Rows where the expected public-source snippet or source file was missing.
+alb2005_public_fieldwork_geo_metadata_fieldwork_period_evidence_rows,5,Rows documenting the wave-level fieldwork window or module-specific timing.
+alb2005_public_fieldwork_geo_metadata_gps_claim_rows,3,Rows documenting public metadata claims about GPS/georeferencing.
+alb2005_public_fieldwork_geo_metadata_sampling_geo_rows,2,Rows documenting public sampling/admin geography context.
+alb2005_public_fieldwork_geo_metadata_household_timing_verified_rows,0,Verified row-level household timing rows from the raw timing/geography audit; must remain zero until timing is actually verified.
+alb2005_public_fieldwork_geo_metadata_raw_coordinate_value_rows,0,Verified raw coordinate candidate rows from the raw timing/geography audit; must remain zero until coordinate values are actually located.
+alb2005_public_fieldwork_geo_metadata_full_geography_rows,0,Verified full-coverage row-level geography rows from the raw timing/geography audit.
+alb2005_public_fieldwork_geo_metadata_source_search_household_timing_ready_rows,0,Timing-ready rows from the source-search audit.
+alb2005_public_fieldwork_geo_metadata_source_search_coordinate_rows,0,Coordinate candidate rows from the source-search audit.
+alb2005_public_fieldwork_geo_metadata_source_search_climate_linkage_ready_rows,0,Climate-linkage-ready rows from the source-search audit.
+alb2005_public_fieldwork_geo_metadata_climate_linkage_ready_rows,0,Rows ready for climate linkage after this metadata audit; intentionally zero.
+alb2005_public_fieldwork_geo_metadata_current_decision,blocked_public_metadata_not_household_climate_linkage_ready,Current fail-closed decision for public fieldwork/geography metadata.

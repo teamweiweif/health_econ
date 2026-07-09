@@ -1,0 +1,18 @@
+metric,value,interpretation
+alb2005_oop_aggregation_policy_rows,11,Rows in the ALB_2005 OOP aggregation policy audit.
+alb2005_oop_aggregation_policy_household_rows,3840,Base household rows included in the stress test.
+alb2005_oop_aggregation_policy_total_consumption_rows,3638,Households with positive total consumption denominator.
+alb2005_oop_aggregation_policy_four_week_policy_rows,4,Four-week OOP aggregation policies.
+alb2005_oop_aggregation_policy_twelve_month_policy_rows,4,Twelve-month hospital/dentist OOP aggregation policies.
+alb2005_oop_aggregation_policy_annual_stress_rows,3,Annualized stress-test policies combining four-week and 12-month items.
+alb2005_oop_aggregation_policy_max_che10_rate,0.693788,Maximum unweighted CHE10 stress-test rate across policies.
+alb2005_oop_aggregation_policy_max_che25_rate,0.532161,Maximum unweighted CHE25 stress-test rate across policies.
+alb2005_oop_aggregation_policy_questionnaire_oop_item_rows_observed,36,Questionnaire OOP item rows observed upstream.
+alb2005_oop_aggregation_policy_questionnaire_old_lek_rows_observed,36,Questionnaire old-lek unit rows observed upstream.
+alb2005_oop_aggregation_policy_required_value_key_recipe_ready_observed,0,Recipe-ready rows observed in the required value/key audit.
+alb2005_oop_aggregation_policy_timing_verified_rows_observed,0,Verified interview-timing rows observed in the required value/key audit.
+alb2005_oop_aggregation_policy_climate_ready_rows_observed,0,Climate-linkage-ready rows observed in the timing/geography audit.
+alb2005_oop_aggregation_policy_outcome_ready_rows,0,Rows promoted to final outcome construction by this audit; intentionally zero.
+alb2005_oop_aggregation_policy_recipe_ready_rows,0,Rows promoted to harmonization recipe by this audit; intentionally zero.
+alb2005_oop_aggregation_policy_climate_linkage_ready_rows,0,Rows promoted to climate linkage by this audit; intentionally zero.
+alb2005_oop_aggregation_policy_current_decision,blocked_alb2005_oop_aggregation_policy_stress_test_not_outcome_ready,Current fail-closed decision for ALB_2005 OOP aggregation stress tests.

@@ -1,0 +1,21 @@
+metric,value,interpretation
+python_version,3.14.0,Python runtime used for the audit.
+package_rows,27,Tracked packages/imports relevant to the objective and current scripts.
+packages_installed,11,Tracked packages importable in this environment.
+packages_missing,16,Tracked packages not importable; optional missing packages are planning gaps only.
+requirement_level_optional_causal_ml_after_identification,3,Tracked package requirement level count.
+requirement_level_optional_for_era5_download,1,Tracked package requirement level count.
+requirement_level_optional_prediction_explanation,1,Tracked package requirement level count.
+requirement_level_optional_predictive_ml,3,Tracked package requirement level count.
+requirement_level_optional_scaling,2,Tracked package requirement level count.
+requirement_level_recommended_after_raw_download,3,Tracked package requirement level count.
+requirement_level_recommended_for_admin_climate_linkage,2,Tracked package requirement level count.
+requirement_level_recommended_for_chirps_era5_terraclimate,3,Tracked package requirement level count.
+requirement_level_recommended_for_era5_terraclimate,1,Tracked package requirement level count.
+requirement_level_recommended_for_reduced_form,1,Tracked package requirement level count.
+requirement_level_required_after_outcomes_for_predictive_ml,1,Tracked package requirement level count.
+requirement_level_required_after_raw_download_for_dta_sav_sas,1,Tracked package requirement level count.
+requirement_level_required_for_climate_fallback,1,Tracked package requirement level count.
+requirement_level_required_for_empirical_pipeline,2,Tracked package requirement level count.
+requirement_level_required_for_metadata_pipeline,2,Tracked package requirement level count.
+environment_audit_status_complete,4,Environment audit status count.
