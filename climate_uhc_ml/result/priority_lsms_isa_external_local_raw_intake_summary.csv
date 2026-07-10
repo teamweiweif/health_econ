@@ -1,0 +1,12 @@
+﻿metric,value,interpretation
+external_local_raw_intake_review_rows,10,External local candidate folders with expected-file matches promoted from discovery into intake review.
+external_local_raw_intake_selected_review_rows,7,Currently selected refocused-plan rows with external local candidate matches.
+external_local_raw_intake_copy_review_ready_rows,4,Selected rows ready for human official-provenance review before copying into temp/raw_downloads.
+external_local_raw_intake_selected_partial_review_rows,3,Selected rows with partial external local matches needing missing-file or provenance triage.
+external_local_raw_intake_backup_review_rows,3,Backup rows with external local matches held behind the selected batch.
+external_local_raw_intake_document_manifest_rows,17,Documentation files found in external local candidate folders.
+external_local_raw_intake_questionnaire_document_rows,14,Documentation files whose filename suggests questionnaire or interview evidence.
+external_local_raw_intake_provenance_accepted_rows,0,External local folders accepted as official raw receipt; remains zero until official-source and unchanged-package review passes.
+external_local_raw_intake_immediate_copy_rows,0,Rows copied automatically by this script; must remain zero.
+data_write_gate_status,blocked_no_data_write,This intake decision writes no promoted data and copies no raw files.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

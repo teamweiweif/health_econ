@@ -360,6 +360,7 @@ promotion:
 	$(PYTHON) script/206_build_priority_lsms_isa_package_level_download_manifest.py
 	$(PYTHON) script/208_build_priority_lsms_isa_acquisition_gap_receipt_board.py
 	$(PYTHON) script/209_build_priority_lsms_isa_external_local_raw_candidate_audit.py
+	$(PYTHON) script/210_build_priority_lsms_isa_external_local_raw_intake_decision.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py

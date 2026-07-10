@@ -195,6 +195,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_package_level_download_manifest.md",
     "priority_lsms_isa_acquisition_gap_receipt_board.md",
     "priority_lsms_isa_external_local_raw_candidate_audit.md",
+    "priority_lsms_isa_external_local_raw_intake_decision.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -410,6 +411,7 @@ REQUIRED_SCRIPTS = [
     "206_build_priority_lsms_isa_package_level_download_manifest.py",
     "208_build_priority_lsms_isa_acquisition_gap_receipt_board.py",
     "209_build_priority_lsms_isa_external_local_raw_candidate_audit.py",
+    "210_build_priority_lsms_isa_external_local_raw_intake_decision.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -456,6 +458,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "206_build_priority_lsms_isa_package_level_download_manifest.py",
     "208_build_priority_lsms_isa_acquisition_gap_receipt_board.py",
     "209_build_priority_lsms_isa_external_local_raw_candidate_audit.py",
+    "210_build_priority_lsms_isa_external_local_raw_intake_decision.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1097,6 +1100,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_external_local_raw_candidate_audit": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_candidate_audit.csv"),
         "priority_lsms_isa_external_local_raw_candidate_file_match": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_candidate_file_match.csv"),
         "priority_lsms_isa_external_local_raw_candidate_summary": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_candidate_summary.csv"),
+        "priority_lsms_isa_external_local_raw_intake_decision": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_intake_decision.csv"),
+        "priority_lsms_isa_external_local_raw_document_manifest": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_document_manifest.csv"),
+        "priority_lsms_isa_external_local_raw_intake_summary": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_intake_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6671,6 +6677,43 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_external_candidate_gate_ok),
         f"rows={priority_lsms_external_candidate_rows}; root_exists={priority_lsms_external_candidate_root_exists}; folder_exists={priority_lsms_external_candidate_folder_exists}; expected_matches={priority_lsms_external_candidate_expected_matches}; core_matches={priority_lsms_external_candidate_core_matches}; locked_targets={priority_lsms_external_candidate_locked_targets}; locked_with_matches={priority_lsms_external_candidate_locked_with_matches}; locked_core_complete={priority_lsms_external_candidate_locked_core_complete}; backup_with_matches={priority_lsms_external_candidate_backup_with_matches}; provenance_accepted={priority_lsms_external_candidate_provenance_accepted}; file_match_rows={counts['priority_lsms_isa_external_local_raw_candidate_file_match']}; data_write={priority_lsms_external_candidate_data_write}; modeling_gate={priority_lsms_external_candidate_modeling}",
         "" if priority_lsms_external_candidate_gate_ok else "Run script/209_build_priority_lsms_isa_external_local_raw_candidate_audit.py after the acquisition gap receipt board and official receipt matrices are current.",
+    )
+    priority_lsms_external_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_intake_summary.csv")
+    priority_lsms_external_intake_review_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_review_rows"), "0"), 0)
+    priority_lsms_external_intake_selected_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_selected_review_rows"), "0"), 0)
+    priority_lsms_external_intake_ready_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_copy_review_ready_rows"), "0"), 0)
+    priority_lsms_external_intake_partial_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_selected_partial_review_rows"), "0"), 0)
+    priority_lsms_external_intake_backup_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_backup_review_rows"), "0"), 0)
+    priority_lsms_external_intake_document_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_document_manifest_rows"), "0"), 0)
+    priority_lsms_external_intake_questionnaire_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_questionnaire_document_rows"), "0"), 0)
+    priority_lsms_external_intake_provenance_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_provenance_accepted_rows"), "0"), 0)
+    priority_lsms_external_intake_copy_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_intake_summary if row.get("metric") == "external_local_raw_intake_immediate_copy_rows"), "0"), 0)
+    priority_lsms_external_intake_data_write = next((row.get("value", "") for row in priority_lsms_external_intake_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_external_intake_modeling = next((row.get("value", "") for row in priority_lsms_external_intake_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_external_intake_gate_ok = (
+        counts["priority_lsms_isa_external_local_raw_intake_decision"] == priority_lsms_external_intake_review_rows
+        and counts["priority_lsms_isa_external_local_raw_document_manifest"] == priority_lsms_external_intake_document_rows
+        and counts["priority_lsms_isa_external_local_raw_intake_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_external_local_raw_intake_decision.md")
+        and priority_lsms_external_intake_review_rows == 10
+        and priority_lsms_external_intake_selected_rows == 7
+        and priority_lsms_external_intake_ready_rows == 4
+        and priority_lsms_external_intake_partial_rows == 3
+        and priority_lsms_external_intake_backup_rows == 3
+        and priority_lsms_external_intake_document_rows >= 17
+        and priority_lsms_external_intake_questionnaire_rows >= 14
+        and priority_lsms_external_intake_provenance_rows == 0
+        and priority_lsms_external_intake_copy_rows == 0
+        and priority_lsms_external_intake_data_write == "blocked_no_data_write"
+        and priority_lsms_external_intake_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA external local raw intake decision creates a copy-review queue without accepting provenance",
+        status(priority_lsms_external_intake_gate_ok),
+        f"review_rows={priority_lsms_external_intake_review_rows}; selected_review={priority_lsms_external_intake_selected_rows}; copy_review_ready={priority_lsms_external_intake_ready_rows}; selected_partial={priority_lsms_external_intake_partial_rows}; backup_review={priority_lsms_external_intake_backup_rows}; documents={priority_lsms_external_intake_document_rows}; questionnaires={priority_lsms_external_intake_questionnaire_rows}; provenance_accepted={priority_lsms_external_intake_provenance_rows}; immediate_copy={priority_lsms_external_intake_copy_rows}; data_write={priority_lsms_external_intake_data_write}; modeling_gate={priority_lsms_external_intake_modeling}",
+        "" if priority_lsms_external_intake_gate_ok else "Run script/210_build_priority_lsms_isa_external_local_raw_intake_decision.py after the external local candidate audit is current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
