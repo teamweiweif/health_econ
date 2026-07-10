@@ -158,6 +158,9 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_threshold_download_sequence.md",
     "priority_lsms_isa_minimum_batch_raw_intake_guide.md",
     "priority_lsms_isa_minimum_batch_endpoint_refresh.md",
+    "priority_lsms_isa_incoming_raw_package_router.md",
+    "priority_lsms_isa_threshold_gap_control_panel.md",
+    "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -337,6 +340,7 @@ REQUIRED_SCRIPTS = [
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
+    "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -348,6 +352,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "171_build_mwi2004_promoted_household_climate_dataset.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
+    "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -491,7 +496,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-174 dataset-promotion gate chain",
+        "One-command runners include the current 157-175 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -894,6 +899,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_incoming_raw_package_route_plan": row_count(TEMP_DIR / "priority_lsms_isa_incoming_raw_package_route_plan.csv"),
         "priority_lsms_isa_incoming_raw_package_route_candidates": row_count(TEMP_DIR / "priority_lsms_isa_incoming_raw_package_route_candidates.csv"),
         "priority_lsms_isa_incoming_raw_package_router_summary": row_count(RESULT_DIR / "priority_lsms_isa_incoming_raw_package_router_summary.csv"),
+        "priority_lsms_isa_threshold_gap_download_panel": row_count(TEMP_DIR / "priority_lsms_isa_threshold_gap_download_panel.csv"),
+        "priority_lsms_isa_threshold_gap_country_panel": row_count(RESULT_DIR / "priority_lsms_isa_threshold_gap_country_panel.csv"),
+        "priority_lsms_isa_threshold_gap_control_panel_summary": row_count(RESULT_DIR / "priority_lsms_isa_threshold_gap_control_panel_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5332,6 +5340,49 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_incoming_router_gate_ok),
         f"incoming_folder={priority_lsms_incoming_router_folder}; action_waves={priority_lsms_incoming_router_action_waves}; incoming_files={priority_lsms_incoming_router_files}; candidate_rows={priority_lsms_incoming_router_candidates}; copy_candidates={priority_lsms_incoming_router_copy}; manual_review={priority_lsms_incoming_router_manual}; plan_rows={counts['priority_lsms_isa_incoming_raw_package_route_plan']}; data_write={priority_lsms_incoming_router_data_write}; modeling_gate={priority_lsms_incoming_router_modeling}",
         "" if priority_lsms_incoming_router_gate_ok else "Run script/174_build_priority_lsms_isa_incoming_raw_package_router.py after next raw package action queue is current.",
+    )
+    priority_lsms_threshold_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_gap_control_panel_summary.csv")
+    priority_lsms_threshold_gap_current_promoted = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "current_promoted_analysis_ready_rows"), "0"), 0)
+    priority_lsms_threshold_gap_current_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "current_promoted_country_rows"), "0"), 0)
+    priority_lsms_threshold_gap_country_gap = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "current_country_gap_to_threshold"), "0"), 0)
+    priority_lsms_threshold_gap_wave_gap = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "current_country_wave_gap_to_threshold"), "0"), 0)
+    priority_lsms_threshold_gap_minimum_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "minimum_threshold_batch_rows"), "0"), 0)
+    priority_lsms_threshold_gap_minimum_remaining = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "minimum_threshold_batch_remaining_download_rows"), "0"), 0)
+    priority_lsms_threshold_gap_countries_if_pass = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "countries_if_minimum_remaining_passes"), "0"), 0)
+    priority_lsms_threshold_gap_waves_if_pass = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "country_waves_if_minimum_remaining_passes"), "0"), 0)
+    priority_lsms_threshold_gap_country_buffer = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "country_buffer_if_minimum_remaining_passes"), "0"), 0)
+    priority_lsms_threshold_gap_wave_buffer = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "country_wave_buffer_if_minimum_remaining_passes"), "0"), 0)
+    priority_lsms_threshold_gap_missing_core = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "minimum_batch_missing_core_file_rows"), "0"), 0)
+    priority_lsms_threshold_gap_download_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "download_panel_rows"), "0"), 0)
+    priority_lsms_threshold_gap_country_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "country_panel_rows"), "0"), 0)
+    priority_lsms_threshold_gap_data_write = next((row.get("value", "") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_threshold_gap_modeling = next((row.get("value", "") for row in priority_lsms_threshold_gap_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_threshold_gap_gate_ok = (
+        counts["priority_lsms_isa_threshold_gap_control_panel_summary"] > 0
+        and counts["priority_lsms_isa_threshold_gap_download_panel"] == priority_lsms_threshold_gap_download_rows
+        and counts["priority_lsms_isa_threshold_gap_country_panel"] == priority_lsms_threshold_gap_country_rows
+        and file_ok(REPORT_DIR / "priority_lsms_isa_threshold_gap_control_panel.md")
+        and priority_lsms_threshold_gap_current_promoted == 1
+        and priority_lsms_threshold_gap_current_countries == 1
+        and priority_lsms_threshold_gap_country_gap == 5
+        and priority_lsms_threshold_gap_wave_gap == 9
+        and priority_lsms_threshold_gap_minimum_rows == counts["priority_lsms_isa_threshold_minimum_batch"]
+        and priority_lsms_threshold_gap_minimum_remaining == priority_lsms_next_raw_package_minimum_remaining
+        and priority_lsms_threshold_gap_countries_if_pass == 6
+        and priority_lsms_threshold_gap_waves_if_pass == 11
+        and priority_lsms_threshold_gap_country_buffer == 0
+        and priority_lsms_threshold_gap_wave_buffer == 1
+        and priority_lsms_threshold_gap_missing_core > 0
+        and priority_lsms_threshold_gap_data_write == "blocked_no_new_data_write"
+        and priority_lsms_threshold_gap_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA threshold gap control panel states the exact country/wave gap before any model rerun",
+        status(priority_lsms_threshold_gap_gate_ok),
+        f"download_rows={counts['priority_lsms_isa_threshold_gap_download_panel']}; country_rows={counts['priority_lsms_isa_threshold_gap_country_panel']}; summary_rows={counts['priority_lsms_isa_threshold_gap_control_panel_summary']}; current_promoted={priority_lsms_threshold_gap_current_promoted}; current_countries={priority_lsms_threshold_gap_current_countries}; country_gap={priority_lsms_threshold_gap_country_gap}; wave_gap={priority_lsms_threshold_gap_wave_gap}; minimum_remaining={priority_lsms_threshold_gap_minimum_remaining}; countries_if_pass={priority_lsms_threshold_gap_countries_if_pass}; waves_if_pass={priority_lsms_threshold_gap_waves_if_pass}; country_buffer={priority_lsms_threshold_gap_country_buffer}; wave_buffer={priority_lsms_threshold_gap_wave_buffer}; missing_core={priority_lsms_threshold_gap_missing_core}; data_write={priority_lsms_threshold_gap_data_write}; modeling_gate={priority_lsms_threshold_gap_modeling}",
+        "" if priority_lsms_threshold_gap_gate_ok else "Run script/175_build_priority_lsms_isa_threshold_gap_control_panel.py after the next raw package action queue and incoming router are current.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)

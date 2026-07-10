@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 169 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 740 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 736 | Curated artifacts present and non-empty. |
+| bundle_rows | 170 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 745 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 741 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -116,6 +116,13 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_incoming_router_incoming_files | 0 | Files currently staged under temp/raw_downloads/_incoming for route scoring. |
 | priority_lsms_isa_incoming_router_copy_candidates | 0 | Incoming files with a single suggested country-wave target folder. |
 | priority_lsms_isa_incoming_router_manual_review_rows | 0 | Incoming files that need manual route review. |
+| priority_lsms_isa_threshold_gap_current_country_gap | 5 | Additional value-verified countries needed from the current promoted registry. |
+| priority_lsms_isa_threshold_gap_current_wave_gap | 9 | Additional value-verified country-waves needed from the current promoted registry. |
+| priority_lsms_isa_threshold_gap_minimum_remaining_downloads | 10 | Minimum-batch raw package downloads still required. |
+| priority_lsms_isa_threshold_gap_countries_if_minimum_passes | 6 | Countries covered if all remaining minimum-batch downloads later pass verification. |
+| priority_lsms_isa_threshold_gap_waves_if_minimum_passes | 11 | Country-waves covered if all remaining minimum-batch downloads later pass verification. |
+| priority_lsms_isa_threshold_gap_country_buffer | 0 | Country-count buffer above the 6-country threshold after the minimum batch passes. |
+| priority_lsms_isa_threshold_gap_wave_buffer | 1 | Country-wave buffer above the 10-wave threshold after the minimum batch passes. |
 | priority_lsms_isa_promotion_gate_country_waves | 19 | Country-waves tracked by the promotion gate dashboard. |
 | priority_lsms_isa_promotion_gate_promoted_rows | 1 | Country-waves already promoted analysis-ready in the gate dashboard. |
 | priority_lsms_isa_promotion_gate_blocked_raw_package_rows | 18 | Country-waves still blocked at complete official raw package receipt. |
@@ -571,7 +578,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 60 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 61 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -710,6 +717,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_temp_candidate_not_analysis_ready | 2 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_timing_geography_observed_outcome_semantics_pending | 1 | Direct-read bundle status count. |
 | bundle_status_threshold_campaign_ready_raw_missing | 1 | Direct-read bundle status count. |
+| bundle_status_threshold_gap_control_panel_current | 1 | Direct-read bundle status count. |
 | bundle_status_threshold_sequence_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_workbook_needs_review | 1 | Direct-read bundle status count. |
 
@@ -717,7 +725,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 60 |
+| priority_bundle | 61 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -795,6 +803,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | credentialed_download_required_no_public_raw_route | 1 |
 | minimum_batch_raw_package_actions_ready | 1 |
 | incoming_router_ready | 1 |
+| threshold_gap_control_panel_current | 1 |
 | promotion_gate_dashboard_current | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
@@ -906,7 +915,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 736 |
+| present_nonempty | 741 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

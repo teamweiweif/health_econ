@@ -1,0 +1,26 @@
+﻿metric,value,interpretation
+threshold_country_requirement,6,Minimum value-verified countries required before modeling can resume.
+threshold_country_wave_requirement,10,Minimum value-verified country-waves required before modeling can resume.
+current_promoted_analysis_ready_rows,1,Country-waves currently promoted analysis-ready in the registry.
+current_promoted_country_rows,1,Countries currently represented by promoted analysis-ready rows.
+current_country_gap_to_threshold,5,Additional value-verified countries needed from the current registry state.
+current_country_wave_gap_to_threshold,9,Additional value-verified country-waves needed from the current registry state.
+minimum_threshold_batch_rows,11,Country-waves in the minimum threshold batch.
+minimum_threshold_batch_promoted_rows,1,Minimum-batch rows already promoted or not requiring a raw-package action.
+minimum_threshold_batch_remaining_download_rows,10,Minimum-batch rows still requiring complete official raw packages.
+countries_if_minimum_remaining_passes,6,Countries covered if all remaining minimum-batch downloads later pass verification.
+country_waves_if_minimum_remaining_passes,11,Country-waves covered if all remaining minimum-batch downloads later pass verification.
+country_buffer_if_minimum_remaining_passes,0,Country-count buffer above the 6-country modeling threshold if the minimum batch passes.
+country_wave_buffer_if_minimum_remaining_passes,1,Country-wave buffer above the 10-wave modeling threshold if the minimum batch passes.
+backup_action_rows_after_minimum_batch,8,Backup raw package actions if a minimum-batch row fails.
+backup_country_rows_after_minimum_batch,4,Backup countries represented after the minimum batch.
+download_panel_rows,11,Rows in the threshold-gap download control panel.
+country_panel_rows,8,Rows in the threshold-gap country control panel.
+minimum_batch_missing_full_file_rows,838,Expected official full-file rows still missing across the minimum batch.
+minimum_batch_missing_core_file_rows,323,Requirement-linked official core-file rows still missing across the minimum batch.
+incoming_route_rows_for_minimum_batch,0,Incoming route rows currently matched to minimum-batch IDNOs.
+incoming_copy_candidate_rows_for_minimum_batch,0,Incoming files with one selected target among minimum-batch rows.
+blocked_download_rows_in_control_panel,10,Control-panel rows blocked at credentialed/manual raw package download.
+data_write_gate_status,blocked_no_new_data_write,The control panel never writes country-waves into data/.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."
+minimum_batch_ids,ETH_2021_ESPS-W5_v02_M;ETH_2018_ESS_v04_M;MWI_2004_IHS-II_v01_M;NGA_2012_GHSP-W2_v02_M;NGA_2015_GHSP-W3_v02_M;NGA_2010_GHSP-W1_v03_M;TZA_2008_NPS-R1_v03_M;TZA_2010_NPS-R2_v03_M;TZA_2012_NPS-R3_v01_M;UGA_2019_UNPS_v03_M;NPL_2010_LSS-III_v01_M,IDNOs in the minimum threshold batch.
