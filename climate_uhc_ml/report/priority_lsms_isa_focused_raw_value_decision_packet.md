@@ -9,21 +9,21 @@ local package PDF documentation.
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| priority_lsms_focused_raw_value_decision_dataset_rows | 2 | Received raw datasets with focused decision rows. |
-| priority_lsms_focused_raw_value_documentation_file_rows | 4 | Local PDF documentation files parsed for received raw datasets. |
-| priority_lsms_focused_raw_value_documentation_extracted_rows | 4 | PDF documentation files with extracted text. |
-| priority_lsms_focused_raw_value_variable_decision_rows | 366 | Variable-level focused raw value decision rows. |
-| priority_lsms_focused_raw_value_requirement_decision_rows | 14 | Requirement-level focused raw value decision rows. |
+| priority_lsms_focused_raw_value_decision_dataset_rows | 3 | Received raw datasets with focused decision rows. |
+| priority_lsms_focused_raw_value_documentation_file_rows | 5 | Local PDF documentation files parsed for received raw datasets. |
+| priority_lsms_focused_raw_value_documentation_extracted_rows | 5 | PDF documentation files with extracted text. |
+| priority_lsms_focused_raw_value_variable_decision_rows | 432 | Variable-level focused raw value decision rows. |
+| priority_lsms_focused_raw_value_requirement_decision_rows | 21 | Requirement-level focused raw value decision rows. |
 | priority_lsms_focused_raw_value_requirement_raw_value_verified_rows | 0 | No requirement is value-verified by this fail-closed documentation crosswalk. |
 | priority_lsms_focused_raw_value_data_write_status | blocked_decision_packet_only | Focused raw value decisions do not write promoted data. |
 | modeling_gate_status | blocked | Models remain blocked until promoted registry thresholds and climate linkage pass. |
-| priority_lsms_focused_raw_value_documentation_status_extracted | 4 | PDF extraction status count. |
-| priority_lsms_focused_raw_value_documentation_match_documented_by_variable_code | 115 | Variable documentation match status count. |
-| priority_lsms_focused_raw_value_documentation_match_label_terms_found_needs_manual_confirmation | 107 | Variable documentation match status count. |
-| priority_lsms_focused_raw_value_documentation_match_not_found_in_local_pdf_text | 114 | Variable documentation match status count. |
-| priority_lsms_focused_raw_value_documentation_match_weak_label_term_found_needs_manual_confirmation | 30 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_status_extracted | 5 | PDF extraction status count. |
+| priority_lsms_focused_raw_value_documentation_match_documented_by_variable_code | 122 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_match_label_terms_found_needs_manual_confirmation | 142 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_match_not_found_in_local_pdf_text | 131 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_match_weak_label_term_found_needs_manual_confirmation | 37 | Variable documentation match status count. |
 | priority_lsms_focused_raw_value_requirement_mechanical_mechanical_raw_profile_available_documentation_crosscheck_missing | 1 | Requirement mechanical decision status count. |
-| priority_lsms_focused_raw_value_requirement_mechanical_mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | 13 | Requirement mechanical decision status count. |
+| priority_lsms_focused_raw_value_requirement_mechanical_mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | 20 | Requirement mechanical decision status count. |
 
 ## Documentation Parsed
 
@@ -31,6 +31,7 @@ local package PDF documentation.
 |---|---|---|---|---|
 | NGA_2015_GHSP-W3_v02_M | PH_W3_Household_Quest.pdf | 70 | 106085 | extracted |
 | NGA_2015_GHSP-W3_v02_M | PP_W3_Household_Quest.pdf | 47 | 75687 | extracted |
+| TZA_2010_NPS-R2_v03_M | NPS_Household_Qx_English_Year_2.pdf | 48 | 86669 | extracted |
 | TZA_2012_NPS-R3_v01_M | NPS_Household_Qx_Y3_Final_English.pdf | 52 | 89586 | extracted |
 | TZA_2012_NPS-R3_v01_M | NPS_Wave_3 _Final _Report.pdf | 120 | 245665 | extracted |
 
@@ -45,13 +46,19 @@ local package PDF documentation.
 | NGA_2015_GHSP-W3_v02_M | health_need_and_access | 12 | 0 | 12 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 | NGA_2015_GHSP-W3_v02_M | survey_timing | 12 | 0 | 12 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 | NGA_2015_GHSP-W3_v02_M | climate_geography | 122 | 2 | 21 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
+| TZA_2010_NPS-R2_v03_M | household_person_keys | 16 | 0 | 5 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
+| TZA_2010_NPS-R2_v03_M | weights_and_design | 8 | 0 | 7 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
+| TZA_2010_NPS-R2_v03_M | consumption_or_income | 4 | 0 | 4 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
+| TZA_2010_NPS-R2_v03_M | oop_health_expenditure | 8 | 0 | 8 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
+| TZA_2010_NPS-R2_v03_M | health_need_and_access | 9 | 0 | 9 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
+| TZA_2010_NPS-R2_v03_M | survey_timing | 10 | 0 | 8 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
+| TZA_2010_NPS-R2_v03_M | climate_geography | 11 | 7 | 1 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 | TZA_2012_NPS-R3_v01_M | household_person_keys | 12 | 0 | 0 | mechanical_raw_profile_available_documentation_crosscheck_missing | blocked_manual_acceptance_required |
 | TZA_2012_NPS-R3_v01_M | weights_and_design | 12 | 0 | 12 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 | TZA_2012_NPS-R3_v01_M | consumption_or_income | 11 | 4 | 6 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 | TZA_2012_NPS-R3_v01_M | oop_health_expenditure | 12 | 0 | 12 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 | TZA_2012_NPS-R3_v01_M | health_need_and_access | 12 | 2 | 10 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 | TZA_2012_NPS-R3_v01_M | survey_timing | 12 | 0 | 12 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
-| TZA_2012_NPS-R3_v01_M | climate_geography | 14 | 2 | 12 | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required |
 
 ## Variable Documentation Hits
 

@@ -8,18 +8,18 @@ this review.
 
 | metric | value | interpretation |
 |---|---:|---|
-| priority_lsms_received_raw_semantics_dataset_rows | 2 | Datasets with received raw semantics review evidence. |
-| priority_lsms_received_raw_semantics_variable_rows | 366 | Variable-level semantics review rows from value and utility profiles. |
+| priority_lsms_received_raw_semantics_dataset_rows | 3 | Datasets with received raw semantics review evidence. |
+| priority_lsms_received_raw_semantics_variable_rows | 435 | Variable-level semantics review rows from value and utility profiles. |
 | priority_lsms_received_raw_semantics_ddi_documented_variable_rows | 0 | Profiled variables matched to official DDI documentation. |
-| priority_lsms_received_raw_semantics_requirement_rows | 16 | Requirement-level semantics review rows. |
+| priority_lsms_received_raw_semantics_requirement_rows | 24 | Requirement-level semantics review rows. |
 | priority_lsms_received_raw_semantics_documentation_scope_rows | 6 | Study-level documentation scope rows. |
-| priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 2 | Documentation-semantics gate rows now backed by review evidence. |
+| priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 3 | Documentation-semantics gate rows now backed by review evidence. |
 | priority_lsms_received_raw_semantics_raw_value_verified_rows | 0 | Semantics review does not value-verify any country-wave. |
 | priority_lsms_received_raw_semantics_data_write_status | blocked_semantics_review_only | Semantics review evidence does not write promoted analysis data. |
 | modeling_gate_status | blocked | Models remain blocked until promoted registry thresholds and climate linkage pass. |
-| priority_lsms_received_raw_semantics_status_missing_ddi_documentation_for_profiled_variable | 366 | Variable-level semantics review status count. |
-| priority_lsms_received_raw_semantics_requirement_status_semantics_review_available_not_value_verified | 16 | Requirement-level semantics review status count. |
-| priority_lsms_received_raw_semantics_handoff_readmes_written | 2 | Per-dataset semantics review handoffs written. |
+| priority_lsms_received_raw_semantics_status_missing_ddi_documentation_for_profiled_variable | 435 | Variable-level semantics review status count. |
+| priority_lsms_received_raw_semantics_requirement_status_semantics_review_available_not_value_verified | 24 | Requirement-level semantics review status count. |
+| priority_lsms_received_raw_semantics_handoff_readmes_written | 3 | Per-dataset semantics review handoffs written. |
 
 ## Documentation Scope
 
@@ -44,6 +44,14 @@ this review.
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | oop_health_expenditure | 6 | 0 |  | money_amount_local_currency_needs_malawi_kwacha_confirmation | semantics_review_available_not_value_verified |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | survey_timing | 12 | 0 |  |  | semantics_review_available_not_value_verified |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | weights_and_design | 12 | 0 |  | survey_weight | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | climate_geography | 11 | 0 |  | unit_variable | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | consumption_or_income | 4 | 0 |  | money_amount_local_currency_needs_malawi_kwacha_confirmation; year | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | health_need_and_access | 9 | 0 |  | money_amount_local_currency_needs_malawi_kwacha_confirmation | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | household_person_keys | 16 | 0 |  | year | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | missing_codes_units_recall_skip_patterns | 69 | 0 | past_12_months | money_amount_local_currency_needs_malawi_kwacha_confirmation; money_amount_local_currency_needs_malawi_kwacha_confirm... | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | oop_health_expenditure | 8 | 0 |  | money_amount_local_currency_needs_malawi_kwacha_confirmation | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | survey_timing | 10 | 0 | past_12_months | money_amount_local_currency_needs_malawi_kwacha_confirmation; money_amount_local_currency_needs_malawi_kwacha_confirm... | semantics_review_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | weights_and_design | 11 | 0 |  | survey_weight | semantics_review_available_not_value_verified |
 | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | climate_geography | 14 | 0 |  |  | semantics_review_available_not_value_verified |
 | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | consumption_or_income | 12 | 0 | past_12_months | money_amount_local_currency_needs_malawi_kwacha_confirmation; month | semantics_review_available_not_value_verified |
 | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | health_need_and_access | 12 | 0 |  | money_amount_local_currency_needs_malawi_kwacha_confirmation | semantics_review_available_not_value_verified |
@@ -135,8 +143,8 @@ this review.
 | raw_value_profile | weights_and_design | sectc2_harvestw3.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
 | raw_value_profile | climate_geography | sectc2_harvestw3.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
 | raw_value_profile | climate_geography | sectc2_harvestw3.dta | lga |  |  |  |  | question_text_suggests_skip_or_universe; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | AG_SEC_01.dta | y3_hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | AG_SEC_08.dta | y3_hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | AG_SEC10B.dta | y2_hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | AG_SEC7A.dta | y2_hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
 
 ## Interpretation
 

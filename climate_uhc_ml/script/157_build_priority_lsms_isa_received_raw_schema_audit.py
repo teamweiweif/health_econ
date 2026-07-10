@@ -95,6 +95,10 @@ REQUIREMENT_EVIDENCE_COLUMNS = [
 ]
 
 SUMMARY_COLUMNS = ["metric", "value", "interpretation"]
+READABLE_RECEIPT_STATUSES = {
+    "official_file_receipt_complete_pending_schema_value_review",
+    "core_files_present_full_official_package_incomplete",
+}
 
 
 def read_csv_dicts(path: Path) -> list[dict[str, str]]:
@@ -188,7 +192,7 @@ def scan_series(series: pd.Series) -> dict[str, str]:
 def readable_receipts(rows: list[dict[str, str]]) -> dict[str, dict[str, str]]:
     out: dict[str, dict[str, str]] = {}
     for row in rows:
-        if clean(row.get("official_file_receipt_status")) == "official_file_receipt_complete_pending_schema_value_review":
+        if clean(row.get("official_file_receipt_status")) in READABLE_RECEIPT_STATUSES:
             out[clean(row.get("idno"))] = row
     return out
 

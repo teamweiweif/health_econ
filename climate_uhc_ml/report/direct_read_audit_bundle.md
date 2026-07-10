@@ -32,22 +32,22 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_raw_value_workbook_requirement_rows | 152 | Requirement-level raw value verification workbook rows. |
 | priority_lsms_isa_raw_value_workbook_variable_rows | 1531 | Variable-level raw value verification workbook rows. |
 | priority_lsms_isa_raw_value_workbook_file_rows | 629 | File-level raw value verification workbook rows. |
-| priority_lsms_isa_received_raw_schema_file_rows | 252 | Received official raw archive files included in the metadata-only schema audit. |
-| priority_lsms_isa_received_raw_schema_readable_file_rows | 200 | Received official raw files readable by the schema audit. |
-| priority_lsms_isa_received_raw_schema_variable_rows | 5392 | Variables extracted from the received official raw archive schema. |
-| priority_lsms_isa_received_raw_schema_candidate_present_rows | 162 | Requirement candidate variables present in the received official raw archive. |
-| priority_lsms_isa_received_raw_value_profile_variable_rows | 162 | Candidate requirement variables with received raw value-profile evidence. |
-| priority_lsms_isa_received_raw_value_profile_nonmissing_variable_rows | 161 | Candidate variables with at least one nonmissing raw value. |
-| priority_lsms_isa_received_raw_key_design_geography_profile_rows | 204 | Utility key, design, and geography variables profiled from received raw files. |
-| priority_lsms_isa_received_raw_value_profile_requirements_with_profiles | 14 | Requirements with value-profile evidence available for manual review. |
-| priority_lsms_isa_received_raw_semantics_variable_rows | 366 | Variable-level semantics review rows from value and utility profiles. |
+| priority_lsms_isa_received_raw_schema_file_rows | 351 | Received official raw archive files included in the metadata-only schema audit. |
+| priority_lsms_isa_received_raw_schema_readable_file_rows | 299 | Received official raw files readable by the schema audit. |
+| priority_lsms_isa_received_raw_schema_variable_rows | 7530 | Variables extracted from the received official raw archive schema. |
+| priority_lsms_isa_received_raw_schema_candidate_present_rows | 218 | Requirement candidate variables present in the received official raw archive. |
+| priority_lsms_isa_received_raw_value_profile_variable_rows | 218 | Candidate requirement variables with received raw value-profile evidence. |
+| priority_lsms_isa_received_raw_value_profile_nonmissing_variable_rows | 217 | Candidate variables with at least one nonmissing raw value. |
+| priority_lsms_isa_received_raw_key_design_geography_profile_rows | 217 | Utility key, design, and geography variables profiled from received raw files. |
+| priority_lsms_isa_received_raw_value_profile_requirements_with_profiles | 21 | Requirements with value-profile evidence available for manual review. |
+| priority_lsms_isa_received_raw_semantics_variable_rows | 435 | Variable-level semantics review rows from value and utility profiles. |
 | priority_lsms_isa_received_raw_semantics_ddi_documented_variable_rows | 0 | Profiled variables matched to official DDI documentation. |
-| priority_lsms_isa_received_raw_semantics_requirement_rows | 16 | Requirement-level semantics review rows. |
-| priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 2 | Documentation-semantics gate rows backed by review evidence. |
-| priority_lsms_isa_focused_raw_value_decision_dataset_rows | 2 | Received raw datasets with focused raw value decision rows. |
-| priority_lsms_isa_focused_raw_value_documentation_file_rows | 4 | Local package PDF documentation files parsed for focused raw value review. |
-| priority_lsms_isa_focused_raw_value_variable_decision_rows | 366 | Variable-level focused raw value decision rows. |
-| priority_lsms_isa_focused_raw_value_requirement_decision_rows | 14 | Requirement-level focused raw value decision rows. |
+| priority_lsms_isa_received_raw_semantics_requirement_rows | 24 | Requirement-level semantics review rows. |
+| priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 3 | Documentation-semantics gate rows backed by review evidence. |
+| priority_lsms_isa_focused_raw_value_decision_dataset_rows | 3 | Received raw datasets with focused raw value decision rows. |
+| priority_lsms_isa_focused_raw_value_documentation_file_rows | 5 | Local package PDF documentation files parsed for focused raw value review. |
+| priority_lsms_isa_focused_raw_value_variable_decision_rows | 432 | Variable-level focused raw value decision rows. |
+| priority_lsms_isa_focused_raw_value_requirement_decision_rows | 21 | Requirement-level focused raw value decision rows. |
 | priority_lsms_isa_focused_raw_value_verified_rows | 0 | Focused decision packet remains fail-closed and should be zero until reviewer acceptance exists. |
 | priority_lsms_isa_household_join_dataset_rows | 3 | Received LSMS/ISA country-waves included in household join readiness audit. |
 | priority_lsms_isa_household_join_file_audit_rows | 15 | Core raw files audited for household keys and required fields. |
@@ -127,8 +127,8 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_credentialed_workbench_core_file_rows | 629 | Core file rows to confirm after official package download. |
 | priority_lsms_isa_credentialed_workbench_package_received_rows | 1 | Credentialed workbench waves with original package receipt evidence. |
 | priority_lsms_isa_official_file_receipt_expected_file_rows | 1597 | Official DDI files expected after package receipt. |
-| priority_lsms_isa_official_file_receipt_expected_file_matched_rows | 325 | Expected official DDI files matched locally. |
-| priority_lsms_isa_official_file_receipt_core_file_missing_rows | 511 | Core expected files still missing locally. |
+| priority_lsms_isa_official_file_receipt_expected_file_matched_rows | 330 | Expected official DDI files matched locally. |
+| priority_lsms_isa_official_file_receipt_core_file_missing_rows | 495 | Core expected files still missing locally. |
 | priority_lsms_isa_threshold_sequence_minimum_download_rows | 11 | Minimum downloads needed to test 10-wave and 6-country thresholds if every wave passes verification. |
 | priority_lsms_isa_threshold_sequence_recommended_download_rows | 13 | Recommended threshold downloads including all sixth-country candidates. |
 | priority_lsms_isa_threshold_sequence_raw_package_received_rows | 4 | Threshold sequence rows with non-blocked official file receipt status. |

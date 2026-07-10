@@ -5288,11 +5288,11 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["priority_lsms_isa_requirement_acceptance_decisions"] == priority_lsms_focused_requirements
         and counts["priority_lsms_isa_focused_raw_value_decision_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_focused_raw_value_decision_packet.md")
-        and priority_lsms_focused_datasets == 2
-        and priority_lsms_focused_docs >= 4
+        and priority_lsms_focused_datasets == 3
+        and priority_lsms_focused_docs >= 5
         and priority_lsms_focused_docs_extracted == priority_lsms_focused_docs
-        and priority_lsms_focused_variables >= 300
-        and priority_lsms_focused_requirements == 14
+        and priority_lsms_focused_variables >= 400
+        and priority_lsms_focused_requirements == 21
         and priority_lsms_focused_verified == 0
         and priority_lsms_focused_data_write == "blocked_decision_packet_only"
         and priority_lsms_focused_modeling_gate == "blocked"

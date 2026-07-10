@@ -8,24 +8,25 @@ promoted by this audit.
 
 | metric | value | interpretation |
 |---|---:|---|
-| priority_lsms_received_raw_value_profile_dataset_rows | 2 | Datasets with received raw value-profile evidence. |
-| priority_lsms_received_raw_value_profile_variable_rows | 162 | Candidate requirement variable rows with value-profile evidence. |
-| priority_lsms_received_raw_value_profile_nonmissing_variable_rows | 161 | Candidate variables with at least one nonmissing raw value. |
-| priority_lsms_received_raw_value_profile_value_label_rows | 39 | Candidate variables with raw value-label metadata. |
-| priority_lsms_received_raw_key_design_geography_profile_rows | 204 | Utility key, design, and geography variables profiled from received raw files. |
-| priority_lsms_received_raw_value_requirement_profile_rows | 14 | Requirement-level value-profile summary rows. |
-| priority_lsms_received_raw_value_profile_requirements_with_profiles | 14 | Requirements with value-profile evidence available for manual review. |
+| priority_lsms_received_raw_value_profile_dataset_rows | 3 | Datasets with received raw value-profile evidence. |
+| priority_lsms_received_raw_value_profile_variable_rows | 218 | Candidate requirement variable rows with value-profile evidence. |
+| priority_lsms_received_raw_value_profile_nonmissing_variable_rows | 217 | Candidate variables with at least one nonmissing raw value. |
+| priority_lsms_received_raw_value_profile_value_label_rows | 52 | Candidate variables with raw value-label metadata. |
+| priority_lsms_received_raw_key_design_geography_profile_rows | 217 | Utility key, design, and geography variables profiled from received raw files. |
+| priority_lsms_received_raw_value_requirement_profile_rows | 21 | Requirement-level value-profile summary rows. |
+| priority_lsms_received_raw_value_profile_requirements_with_profiles | 21 | Requirements with value-profile evidence available for manual review. |
 | priority_lsms_received_raw_value_profile_raw_value_verified_rows | 0 | No rows are value-verified until reviewer acceptance fields and documentation checks pass. |
 | priority_lsms_received_raw_value_profile_data_write_status | blocked_value_profile_only | Value-profile evidence does not write promoted analysis data. |
 | modeling_gate_status | blocked | Models remain blocked until promoted registry thresholds and climate linkage pass. |
-| priority_lsms_received_raw_value_profile_status_value_profile_available_needs_documentation_review | 61 | Candidate variable value-profile status count. |
-| priority_lsms_received_raw_value_profile_status_value_profile_available_needs_semantics_review | 100 | Candidate variable value-profile status count. |
+| priority_lsms_received_raw_value_profile_status_value_profile_available_needs_documentation_review | 72 | Candidate variable value-profile status count. |
+| priority_lsms_received_raw_value_profile_status_value_profile_available_needs_semantics_review | 145 | Candidate variable value-profile status count. |
 | priority_lsms_received_raw_value_profile_status_value_profile_no_nonmissing_values | 1 | Candidate variable value-profile status count. |
-| priority_lsms_received_raw_value_requirement_status_value_profile_available_not_value_verified | 14 | Requirement value-profile status count. |
-| priority_lsms_received_raw_key_design_geography_role_admin_geography_region | 2 | Utility key/design/geography variable role count. |
-| priority_lsms_received_raw_key_design_geography_role_cluster_or_enumeration_area | 110 | Utility key/design/geography variable role count. |
-| priority_lsms_received_raw_key_design_geography_role_household_key_component | 92 | Utility key/design/geography variable role count. |
-| priority_lsms_received_raw_value_profile_handoff_readmes_written | 2 | Per-dataset received raw value-profile handoffs written. |
+| priority_lsms_received_raw_value_requirement_status_value_profile_available_not_value_verified | 21 | Requirement value-profile status count. |
+| priority_lsms_received_raw_key_design_geography_role_admin_geography_region | 6 | Utility key/design/geography variable role count. |
+| priority_lsms_received_raw_key_design_geography_role_cluster_or_enumeration_area | 111 | Utility key/design/geography variable role count. |
+| priority_lsms_received_raw_key_design_geography_role_household_key_component | 97 | Utility key/design/geography variable role count. |
+| priority_lsms_received_raw_key_design_geography_role_survey_design_strata | 3 | Utility key/design/geography variable role count. |
+| priority_lsms_received_raw_value_profile_handoff_readmes_written | 3 | Per-dataset received raw value-profile handoffs written. |
 
 ## Requirement-Level Profile
 
@@ -38,6 +39,13 @@ promoted by this audit.
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | oop_health_expenditure | 6 | 6 | 6 |  | local_currency_amount_needs_unit_confirmation | value_profile_available_not_value_verified |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | survey_timing | 12 | 12 | 12 |  |  | value_profile_available_not_value_verified |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | weights_and_design | 12 | 12 | 12 |  | survey_weight | value_profile_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | climate_geography | 6 | 6 | 6 |  | unit_variable; year | value_profile_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | consumption_or_income | 4 | 4 | 4 |  | year | value_profile_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | health_need_and_access | 9 | 9 | 9 |  | local_currency_amount_needs_unit_confirmation | value_profile_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | household_person_keys | 11 | 11 | 11 |  | year | value_profile_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | oop_health_expenditure | 8 | 8 | 8 |  | local_currency_amount_needs_unit_confirmation | value_profile_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | survey_timing | 10 | 10 | 10 | past_12_months | local_currency_amount_needs_unit_confirmation; local_currency_amount_needs_unit_confirmation; mon... | value_profile_available_not_value_verified |
+| Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | weights_and_design | 8 | 8 | 8 |  | survey_weight | value_profile_available_not_value_verified |
 | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | climate_geography | 12 | 12 | 12 |  |  | value_profile_available_not_value_verified |
 | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | consumption_or_income | 12 | 12 | 11 | past_12_months | local_currency_amount_needs_unit_confirmation; month | value_profile_available_not_value_verified |
 | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | health_need_and_access | 12 | 12 | 12 |  | local_currency_amount_needs_unit_confirmation | value_profile_available_not_value_verified |

@@ -13,14 +13,14 @@ download, extract, convert, or promote data.
 |---|---:|---|
 | priority_lsms_official_file_receipt_dataset_rows | 19 | Refocused LSMS/ISA datasets checked against the official DDI file universe. |
 | priority_lsms_official_file_receipt_expected_file_rows | 1597 | Official DDI file rows expected after complete package receipt. |
-| priority_lsms_official_file_receipt_expected_file_matched_rows | 325 | Expected official files matched by direct files or archive members. |
-| priority_lsms_official_file_receipt_expected_file_alias_matched_rows | 325 | Expected files matched through a constrained same-basename DDI format alias, most commonly NSDstat to Stata. |
-| priority_lsms_official_file_receipt_expected_file_missing_rows | 1272 | Official DDI file rows still not found locally. |
+| priority_lsms_official_file_receipt_expected_file_matched_rows | 330 | Expected official files matched by direct files or archive members. |
+| priority_lsms_official_file_receipt_expected_file_alias_matched_rows | 330 | Expected files matched through a constrained same-basename DDI format alias, most commonly NSDstat to Stata. |
+| priority_lsms_official_file_receipt_expected_file_missing_rows | 1267 | Official DDI file rows still not found locally. |
 | priority_lsms_official_file_receipt_core_file_rows | 629 | Core requirement/file rows that must be present before raw-value review. |
-| priority_lsms_official_file_receipt_core_file_matched_rows | 118 | Core expected files matched locally. |
-| priority_lsms_official_file_receipt_core_file_alias_matched_rows | 118 | Core files matched through a constrained same-basename DDI format alias. |
-| priority_lsms_official_file_receipt_core_file_missing_rows | 511 | Core expected files still missing locally. |
-| priority_lsms_official_file_receipt_core_complete_dataset_rows | 3 | Datasets whose expected core files all match local package evidence. |
+| priority_lsms_official_file_receipt_core_file_matched_rows | 134 | Core expected files matched locally. |
+| priority_lsms_official_file_receipt_core_file_alias_matched_rows | 134 | Core files matched through a constrained same-basename DDI format alias. |
+| priority_lsms_official_file_receipt_core_file_missing_rows | 495 | Core expected files still missing locally. |
+| priority_lsms_official_file_receipt_core_complete_dataset_rows | 4 | Datasets whose expected core files all match local package evidence. |
 | priority_lsms_official_file_receipt_complete_dataset_rows | 3 | Datasets with all expected official file rows matched, pending schema and value checks. |
 | priority_lsms_official_file_receipt_original_or_member_rows | 357 | Non-generated direct original files plus archive member rows indexed. |
 | priority_lsms_official_file_receipt_generated_handoff_rows | 474 | Generated handoff files ignored as raw receipt evidence. |
@@ -31,8 +31,8 @@ download, extract, convert, or promote data.
 | priority_lsms_official_file_receipt_queue_role_core_selected_lsms_isa_aligned | 8 | Official file receipt validator row count by refocused queue role. |
 | priority_lsms_official_file_receipt_queue_role_replacement_backup_wave | 6 | Official file receipt validator row count by refocused queue role. |
 | priority_lsms_official_file_receipt_queue_role_sixth_country_backup_candidate | 3 | Official file receipt validator row count by refocused queue role. |
-| priority_lsms_official_file_receipt_status_blocked_core_official_files_missing | 1 | Official file receipt dataset status count. |
 | priority_lsms_official_file_receipt_status_blocked_no_original_package | 15 | Official file receipt dataset status count. |
+| priority_lsms_official_file_receipt_status_core_files_present_full_official_package_incomplete | 1 | Official file receipt dataset status count. |
 | priority_lsms_official_file_receipt_status_official_file_receipt_complete_pending_schema_value_review | 3 | Official file receipt dataset status count. |
 
 ## Dataset Receipt Status
@@ -46,7 +46,7 @@ download, extract, convert, or promote data.
 | 5 | core_selected_lsms_isa_aligned | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 104 | 104 | 26 | 26 | official_file_receipt_complete_pending_schema_value_review |
 | 6 | core_selected_lsms_isa_aligned | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 0 | 99 | 0 | 27 | blocked_no_original_package |
 | 7 | core_selected_lsms_isa_aligned | Tanzania | 2008-2009 | TZA_2008_NPS-R1_v03_M | 0 | 61 | 0 | 35 | blocked_no_original_package |
-| 8 | core_selected_lsms_isa_aligned | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 89 | 95 | 22 | 38 | blocked_core_official_files_missing |
+| 8 | core_selected_lsms_isa_aligned | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 94 | 95 | 38 | 38 | core_files_present_full_official_package_incomplete |
 | 9 | core_selected_lsms_isa_aligned | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 80 | 80 | 33 | 33 | official_file_receipt_complete_pending_schema_value_review |
 | 10 | core_replacement_primary | Uganda | 2019-2020 | UGA_2019_UNPS_v03_M | 0 | 109 | 0 | 39 | blocked_no_original_package |
 | 11 | sixth_country_backup_candidate | Jamaica | 1997 | JAM_1997_SLC_v01_M | 0 | 68 | 0 | 32 | blocked_no_original_package |
@@ -68,7 +68,7 @@ download, extract, convert, or promote data.
 | 4 | Nigeria | NGA_2012_GHSP-W2_v02_M | temp/raw_downloads/NGA_2012_GHSP-W2_v02_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 6 | Nigeria | NGA_2010_GHSP-W1_v03_M | temp/raw_downloads/NGA_2010_GHSP-W1_v03_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 7 | Tanzania | TZA_2008_NPS-R1_v03_M | temp/raw_downloads/TZA_2008_NPS-R1_v03_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
-| 8 | Tanzania | TZA_2010_NPS-R2_v03_M | temp/raw_downloads/TZA_2010_NPS-R2_v03_M/ | blocked_core_official_files_missing | Download the complete package or locate missing core files before raw-value verification. |
+| 8 | Tanzania | TZA_2010_NPS-R2_v03_M | temp/raw_downloads/TZA_2010_NPS-R2_v03_M/ | core_files_present_full_official_package_incomplete | Core files are present, but the full official file receipt is incomplete; review before promotion. |
 | 10 | Uganda | UGA_2019_UNPS_v03_M | temp/raw_downloads/UGA_2019_UNPS_v03_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 11 | Jamaica | JAM_1997_SLC_v01_M | temp/raw_downloads/JAM_1997_SLC_v01_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 12 | Kyrgyz Republic | KGZ_1993_KMPS_v01_M | temp/raw_downloads/KGZ_1993_KMPS_v01_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
