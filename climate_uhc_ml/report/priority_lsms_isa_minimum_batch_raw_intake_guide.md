@@ -15,18 +15,19 @@ raw-value, outcome, timing, geography, and climate-linkage gates.
 | priority_lsms_minimum_batch_country_wave_rows | 11 | Minimum batch country-waves requiring complete official raw package intake. |
 | priority_lsms_minimum_batch_country_rows | 6 | Countries represented in the minimum threshold batch. |
 | priority_lsms_minimum_batch_expected_full_file_rows | 890 | Official DDI file rows expected across the minimum batch. |
-| priority_lsms_minimum_batch_matched_full_file_rows | 52 | Expected full official files currently matched locally. |
-| priority_lsms_minimum_batch_missing_full_file_rows | 838 | Expected full official files still missing locally. |
+| priority_lsms_minimum_batch_matched_full_file_rows | 325 | Expected full official files currently matched locally. |
+| priority_lsms_minimum_batch_missing_full_file_rows | 565 | Expected full official files still missing locally. |
 | priority_lsms_minimum_batch_expected_core_file_rows | 360 | Core requirement-linked official files expected across the minimum batch. |
-| priority_lsms_minimum_batch_matched_core_file_rows | 37 | Core requirement-linked official files currently matched locally. |
-| priority_lsms_minimum_batch_missing_core_file_rows | 323 | Core requirement-linked official files still missing locally. |
+| priority_lsms_minimum_batch_matched_core_file_rows | 118 | Core requirement-linked official files currently matched locally. |
+| priority_lsms_minimum_batch_missing_core_file_rows | 242 | Core requirement-linked official files still missing locally. |
 | priority_lsms_minimum_batch_expected_manifest_rows | 890 | Rows written to the minimum-batch expected full-file manifest. |
 | priority_lsms_minimum_batch_core_manifest_rows | 360 | Rows written to the minimum-batch core-file manifest. |
 | priority_lsms_minimum_batch_handoff_readmes_written | 11 | Per-wave raw intake guides written under temp/raw_downloads. |
 | priority_lsms_minimum_batch_data_write_status | blocked_no_value_verified_raw_packages | The minimum-batch intake guide never writes promoted data. |
 | modeling_gate_status | blocked | Models remain blocked until 6 countries, 10 country-waves, and accepted CHIRPS/ERA5 linkage are value-verified. |
-| priority_lsms_minimum_batch_receipt_status_blocked_no_original_package | 10 | Minimum batch rows by current official file receipt status. |
-| priority_lsms_minimum_batch_receipt_status_official_file_receipt_complete_pending_schema_value_review | 1 | Minimum batch rows by current official file receipt status. |
+| priority_lsms_minimum_batch_receipt_status_blocked_core_official_files_missing | 1 | Minimum batch rows by current official file receipt status. |
+| priority_lsms_minimum_batch_receipt_status_blocked_no_original_package | 7 | Minimum batch rows by current official file receipt status. |
+| priority_lsms_minimum_batch_receipt_status_official_file_receipt_complete_pending_schema_value_review | 3 | Minimum batch rows by current official file receipt status. |
 
 ## Minimum Batch Intake Rows
 
@@ -36,11 +37,11 @@ raw-value, outcome, timing, geography, and climate-linkage gates.
 | 2 | minimum_10_wave_core | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 68 | 68 | 35 | 35 | blocked_no_original_package |
 | 3 | minimum_10_wave_core | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 52 | 0 | 37 | 0 | official_file_receipt_complete_pending_schema_value_review |
 | 4 | minimum_10_wave_core | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 103 | 103 | 26 | 26 | blocked_no_original_package |
-| 5 | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 104 | 104 | 26 | 26 | blocked_no_original_package |
+| 5 | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 104 | 0 | 26 | 0 | official_file_receipt_complete_pending_schema_value_review |
 | 6 | minimum_10_wave_core | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 99 | 99 | 27 | 27 | blocked_no_original_package |
 | 7 | minimum_10_wave_core | Tanzania | 2008-2009 | TZA_2008_NPS-R1_v03_M | 61 | 61 | 35 | 35 | blocked_no_original_package |
-| 8 | minimum_10_wave_core | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 95 | 95 | 38 | 38 | blocked_no_original_package |
-| 9 | minimum_10_wave_core | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 80 | 80 | 33 | 33 | blocked_no_original_package |
+| 8 | minimum_10_wave_core | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 95 | 6 | 38 | 16 | blocked_core_official_files_missing |
+| 9 | minimum_10_wave_core | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 80 | 0 | 33 | 0 | official_file_receipt_complete_pending_schema_value_review |
 | 10 | minimum_10_wave_core | Uganda | 2019-2020 | UGA_2019_UNPS_v03_M | 109 | 109 | 39 | 39 | blocked_no_original_package |
 | 11 | minimum_6th_country_financial_protection_candidate | Nepal | 2010-2011 | NPL_2010_LSS-III_v01_M | 51 | 51 | 28 | 28 | blocked_no_original_package |
 

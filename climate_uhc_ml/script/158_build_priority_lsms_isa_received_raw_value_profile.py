@@ -16,6 +16,7 @@ from common import PROJECT_ROOT, REPORT_DIR, RESULT_DIR, TEMP_DIR, append_log, e
 
 RECEIPT_VALIDATION_PATH = TEMP_DIR / "priority_lsms_isa_official_file_receipt_validation.csv"
 ARCHIVE_MEMBER_PATH = TEMP_DIR / "priority_lsms_isa_archive_member_manifest.csv"
+DIRECT_FILE_PATH = TEMP_DIR / "priority_lsms_isa_direct_file_preflight.csv"
 SCHEMA_EVIDENCE_PATH = TEMP_DIR / "priority_lsms_isa_received_raw_requirement_evidence.csv"
 VARIABLE_SCHEMA_PATH = TEMP_DIR / "priority_lsms_isa_received_raw_variable_schema.csv"
 
@@ -196,6 +197,21 @@ def archive_lookup(member_rows: list[dict[str, str]]) -> dict[tuple[str, str], d
         idno = clean(row.get("idno"))
         name = member_key(row.get("member_name", ""))
         if idno and name:
+            row["_raw_source_type"] = "archive_member"
+            out[(idno, name)] = row
+    return out
+
+
+def direct_lookup(direct_rows: list[dict[str, str]]) -> dict[tuple[str, str], dict[str, str]]:
+    out: dict[tuple[str, str], dict[str, str]] = {}
+    for row in direct_rows:
+        idno = clean(row.get("idno"))
+        name = member_key(row.get("file_name", ""))
+        if idno and name and name.endswith(".dta"):
+            row["_raw_source_type"] = "direct_file"
+            row["archive_relative_path"] = clean(row.get("relative_path"))
+            row["member_name"] = clean(row.get("file_name"))
+            row["member_role"] = clean(row.get("file_role"))
             out[(idno, name)] = row
     return out
 
@@ -235,6 +251,20 @@ def read_member_meta(zip_path: Path, member_name: str) -> Any:
         return meta
     finally:
         raw_path.unlink(missing_ok=True)
+
+
+def raw_source_path(raw_source: dict[str, str]) -> Path:
+    return PROJECT_ROOT / clean(raw_source.get("archive_relative_path")).replace("/", "\\")
+
+
+def read_raw_source(raw_source: dict[str, str], member_name: str, columns: list[str] | None = None) -> tuple[pd.DataFrame, Any]:
+    raw_path = raw_source_path(raw_source)
+    if clean(raw_source.get("_raw_source_type")) == "direct_file":
+        kwargs: dict[str, Any] = {"apply_value_formats": False}
+        if columns is not None:
+            kwargs["usecols"] = columns
+        return pyreadstat.read_dta(str(raw_path), **kwargs)
+    return read_member(raw_path, member_name, columns)
 
 
 def variable_labels(meta: Any) -> dict[str, str]:
@@ -435,12 +465,12 @@ def build_value_profiles(
 
     for (idno, member), candidates in sorted(grouped.items()):
         archive_row = archives.get((idno, member), {})
-        archive_path = PROJECT_ROOT / clean(archive_row.get("archive_relative_path")).replace("/", "\\")
+        archive_path = raw_source_path(archive_row)
         member_name = clean(archive_row.get("member_name")) or candidates[0].get("actual_member_name", "")
         variables = sorted({clean(row.get("variable_name")) for row in candidates if clean(row.get("variable_name"))})
         if not archive_path.exists() or not variables:
             continue
-        df, meta = read_member(archive_path, member_name, variables)
+        df, meta = read_raw_source(archive_row, member_name, variables)
         labels_by_variable = variable_labels(meta)
         for candidate in candidates:
             variable = clean(candidate.get("variable_name"))
@@ -489,12 +519,12 @@ def build_key_profiles(
 
     for (idno, member), variables_rows in sorted(by_member.items()):
         archive_row = archives.get((idno, member), {})
-        archive_path = PROJECT_ROOT / clean(archive_row.get("archive_relative_path")).replace("/", "\\")
+        archive_path = raw_source_path(archive_row)
         member_name = clean(archive_row.get("member_name")) or clean(variables_rows[0].get("member_name"))
         variables = sorted({clean(row.get("variable_name")) for row in variables_rows})
         if not archive_path.exists() or not variables:
             continue
-        df, meta = read_member(archive_path, member_name, variables)
+        df, meta = read_raw_source(archive_row, member_name, variables)
         labels_by_variable = variable_labels(meta)
         for variable in variables:
             if variable not in df.columns:
@@ -701,6 +731,7 @@ def main() -> None:
     evidence_rows = read_csv_dicts(SCHEMA_EVIDENCE_PATH)
     schema_rows = read_csv_dicts(VARIABLE_SCHEMA_PATH)
     archives = archive_lookup(read_csv_dicts(ARCHIVE_MEMBER_PATH))
+    archives.update(direct_lookup(read_csv_dicts(DIRECT_FILE_PATH)))
     receipts = receipt_lookup(read_csv_dicts(RECEIPT_VALIDATION_PATH))
 
     value_rows = build_value_profiles(evidence_rows, archives)

@@ -20,10 +20,10 @@ datasets, or write `data/`.
 | priority_lsms_threshold_sequence_recommended_country_rows | 8 | Distinct countries represented by the recommended threshold batch. |
 | priority_lsms_threshold_sequence_full_download_rows | 19 | Full refocused acquisition queue including same-country replacement backups. |
 | priority_lsms_threshold_sequence_expected_file_rows | 1597 | Official DDI files expected across the full refocused queue. |
-| priority_lsms_threshold_sequence_expected_file_matched_rows | 52 | Expected official files currently matched locally. |
+| priority_lsms_threshold_sequence_expected_file_matched_rows | 325 | Expected official files currently matched locally. |
 | priority_lsms_threshold_sequence_core_file_rows | 629 | Core official file rows across the full refocused queue. |
-| priority_lsms_threshold_sequence_core_file_matched_rows | 37 | Core official files currently matched locally. |
-| priority_lsms_threshold_sequence_raw_package_received_rows | 1 | Rows with any non-blocked official file receipt status. |
+| priority_lsms_threshold_sequence_core_file_matched_rows | 118 | Core official files currently matched locally. |
+| priority_lsms_threshold_sequence_raw_package_received_rows | 4 | Rows with any non-blocked official file receipt status. |
 | priority_lsms_threshold_sequence_promoted_analysis_ready_rows | 0 | Rows analysis-ready in the promoted registry. |
 | priority_lsms_threshold_sequence_handoff_readmes_written | 19 | Per-wave threshold download sequence handoffs written. |
 | priority_lsms_threshold_sequence_data_write_status | blocked_no_promoted_rows | Threshold sequencing never writes promoted data. |
@@ -48,11 +48,11 @@ and climate-linkage gates: 10 core waves plus one sixth-country candidate.
 | 2 | minimum_10_wave_core | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 68 | 35 | blocked_no_original_package |
 | 3 | minimum_10_wave_core | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 52 | 37 | official_file_receipt_complete_pending_schema_value_review |
 | 4 | minimum_10_wave_core | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 103 | 26 | blocked_no_original_package |
-| 5 | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 104 | 26 | blocked_no_original_package |
+| 5 | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 104 | 26 | official_file_receipt_complete_pending_schema_value_review |
 | 6 | minimum_10_wave_core | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 99 | 27 | blocked_no_original_package |
 | 7 | minimum_10_wave_core | Tanzania | 2008-2009 | TZA_2008_NPS-R1_v03_M | 61 | 35 | blocked_no_original_package |
-| 8 | minimum_10_wave_core | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 95 | 38 | blocked_no_original_package |
-| 9 | minimum_10_wave_core | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 80 | 33 | blocked_no_original_package |
+| 8 | minimum_10_wave_core | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 95 | 38 | blocked_core_official_files_missing |
+| 9 | minimum_10_wave_core | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 80 | 33 | official_file_receipt_complete_pending_schema_value_review |
 | 10 | minimum_10_wave_core | Uganda | 2019-2020 | UGA_2019_UNPS_v03_M | 109 | 39 | blocked_no_original_package |
 | 11 | minimum_6th_country_financial_protection_candidate | Nepal | 2010-2011 | NPL_2010_LSS-III_v01_M | 51 | 28 | blocked_no_original_package |
 
@@ -64,11 +64,11 @@ and climate-linkage gates: 10 core waves plus one sixth-country candidate.
 | 2 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 7 | blocked_no_original_package |
 | 3 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 7 | official_file_receipt_complete_pending_schema_value_review |
 | 4 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 7 | blocked_no_original_package |
-| 5 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 7 | blocked_no_original_package |
+| 5 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 7 | official_file_receipt_complete_pending_schema_value_review |
 | 6 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 7 | blocked_no_original_package |
 | 7 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Tanzania | 2008-2009 | TZA_2008_NPS-R1_v03_M | 1 | blocked_no_original_package |
-| 8 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 7 | blocked_no_original_package |
-| 9 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 7 | blocked_no_original_package |
+| 8 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 7 | blocked_core_official_files_missing |
+| 9 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 7 | official_file_receipt_complete_pending_schema_value_review |
 | 10 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Uganda | 2019-2020 | UGA_2019_UNPS_v03_M | 5 | blocked_no_original_package |
 | 11 | phase_2_sixth_country_financial_protection_candidate | minimum_6th_country_financial_protection_candidate | Nepal | 2010-2011 | NPL_2010_LSS-III_v01_M | 7 | blocked_no_original_package |
 | 12 | phase_2_sixth_country_financial_protection_candidate | sixth_country_failure_backup | Kyrgyz Republic | 1993 | KGZ_1993_KMPS_v01_M | 7 | blocked_no_original_package |

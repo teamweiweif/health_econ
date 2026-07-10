@@ -1,17 +1,17 @@
 ﻿metric,value,interpretation
 priority_lsms_official_file_receipt_dataset_rows,19,Refocused LSMS/ISA datasets checked against the official DDI file universe.
 priority_lsms_official_file_receipt_expected_file_rows,1597,Official DDI file rows expected after complete package receipt.
-priority_lsms_official_file_receipt_expected_file_matched_rows,52,Expected official files matched by direct files or archive members.
-priority_lsms_official_file_receipt_expected_file_alias_matched_rows,52,"Expected files matched through a constrained same-basename DDI format alias, most commonly NSDstat to Stata."
-priority_lsms_official_file_receipt_expected_file_missing_rows,1545,Official DDI file rows still not found locally.
+priority_lsms_official_file_receipt_expected_file_matched_rows,325,Expected official files matched by direct files or archive members.
+priority_lsms_official_file_receipt_expected_file_alias_matched_rows,325,"Expected files matched through a constrained same-basename DDI format alias, most commonly NSDstat to Stata."
+priority_lsms_official_file_receipt_expected_file_missing_rows,1272,Official DDI file rows still not found locally.
 priority_lsms_official_file_receipt_core_file_rows,629,Core requirement/file rows that must be present before raw-value review.
-priority_lsms_official_file_receipt_core_file_matched_rows,37,Core expected files matched locally.
-priority_lsms_official_file_receipt_core_file_alias_matched_rows,37,Core files matched through a constrained same-basename DDI format alias.
-priority_lsms_official_file_receipt_core_file_missing_rows,592,Core expected files still missing locally.
-priority_lsms_official_file_receipt_core_complete_dataset_rows,1,Datasets whose expected core files all match local package evidence.
-priority_lsms_official_file_receipt_complete_dataset_rows,1,"Datasets with all expected official file rows matched, pending schema and value checks."
-priority_lsms_official_file_receipt_original_or_member_rows,53,Non-generated direct original files plus archive member rows indexed.
-priority_lsms_official_file_receipt_generated_handoff_rows,430,Generated handoff files ignored as raw receipt evidence.
+priority_lsms_official_file_receipt_core_file_matched_rows,118,Core expected files matched locally.
+priority_lsms_official_file_receipt_core_file_alias_matched_rows,118,Core files matched through a constrained same-basename DDI format alias.
+priority_lsms_official_file_receipt_core_file_missing_rows,511,Core expected files still missing locally.
+priority_lsms_official_file_receipt_core_complete_dataset_rows,3,Datasets whose expected core files all match local package evidence.
+priority_lsms_official_file_receipt_complete_dataset_rows,3,"Datasets with all expected official file rows matched, pending schema and value checks."
+priority_lsms_official_file_receipt_original_or_member_rows,357,Non-generated direct original files plus archive member rows indexed.
+priority_lsms_official_file_receipt_generated_handoff_rows,474,Generated handoff files ignored as raw receipt evidence.
 priority_lsms_official_file_receipt_handoff_readmes_written,19,Per-wave official file receipt validator handoffs written.
 priority_lsms_official_file_receipt_data_write_status,blocked_no_promoted_rows,Official file receipt alone never writes promoted data.
 modeling_gate_status,blocked,"Models remain blocked until raw value, climate linkage, and promoted-registry thresholds pass."
@@ -19,5 +19,6 @@ priority_lsms_official_file_receipt_queue_role_core_replacement_primary,2,Offici
 priority_lsms_official_file_receipt_queue_role_core_selected_lsms_isa_aligned,8,Official file receipt validator row count by refocused queue role.
 priority_lsms_official_file_receipt_queue_role_replacement_backup_wave,6,Official file receipt validator row count by refocused queue role.
 priority_lsms_official_file_receipt_queue_role_sixth_country_backup_candidate,3,Official file receipt validator row count by refocused queue role.
-priority_lsms_official_file_receipt_status_blocked_no_original_package,18,Official file receipt dataset status count.
-priority_lsms_official_file_receipt_status_official_file_receipt_complete_pending_schema_value_review,1,Official file receipt dataset status count.
+priority_lsms_official_file_receipt_status_blocked_core_official_files_missing,1,Official file receipt dataset status count.
+priority_lsms_official_file_receipt_status_blocked_no_original_package,15,Official file receipt dataset status count.
+priority_lsms_official_file_receipt_status_official_file_receipt_complete_pending_schema_value_review,3,Official file receipt dataset status count.

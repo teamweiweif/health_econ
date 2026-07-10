@@ -379,6 +379,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/priority_lsms_isa_external_local_raw_intake_decision.csv", "priority LSMS/ISA external local raw intake decision queue"),
     ("dataset_promotion", "result/priority_lsms_isa_external_local_raw_document_manifest.csv", "priority LSMS/ISA external local raw documentation manifest"),
     ("dataset_promotion", "result/priority_lsms_isa_external_local_raw_intake_summary.csv", "priority LSMS/ISA external local raw intake summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_external_local_raw_staging.md", "priority LSMS/ISA external local raw staging report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_external_local_raw_staging_plan.csv", "priority LSMS/ISA external local raw staging plan"),
+    ("dataset_promotion", "temp/priority_lsms_isa_external_local_raw_staging_file_manifest.csv", "priority LSMS/ISA external local raw staging file manifest"),
+    ("dataset_promotion", "result/priority_lsms_isa_external_local_raw_staging_summary.csv", "priority LSMS/ISA external local raw staging summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -841,6 +845,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/208_build_priority_lsms_isa_acquisition_gap_receipt_board.py", "priority LSMS/ISA acquisition gap receipt board generator"),
     ("reproducibility", "script/209_build_priority_lsms_isa_external_local_raw_candidate_audit.py", "priority LSMS/ISA external local raw candidate audit generator"),
     ("reproducibility", "script/210_build_priority_lsms_isa_external_local_raw_intake_decision.py", "priority LSMS/ISA external local raw intake decision generator"),
+    ("reproducibility", "script/211_stage_priority_lsms_isa_external_local_raw_packages.py", "priority LSMS/ISA external local raw staging plan and optional executor"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1121,6 +1126,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_acquisition_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_gap_receipt_summary.csv")
     priority_lsms_external_candidate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_candidate_summary.csv")
     priority_lsms_external_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_intake_summary.csv")
+    priority_lsms_external_staging_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_staging_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2222,6 +2228,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     add_bundle(
         rows,
         "priority_bundle",
+        "priority_lsms_isa_external_local_raw_staging",
+        "raw_packages_staged_for_receipt_validation_provenance_not_accepted"
+        if csv_value(priority_lsms_external_staging_summary, "external_local_raw_staging_executed_dataset_rows", "0") != "0"
+        and csv_value(priority_lsms_external_staging_summary, "external_local_raw_staging_provenance_accepted_rows", "1") == "0"
+        and csv_value(priority_lsms_external_staging_summary, "modeling_gate_status", "missing") == "blocked"
+        else "external_local_raw_staging_plan_only_or_needs_review",
+        f"mode={csv_value(priority_lsms_external_staging_summary, 'external_local_raw_staging_mode', 'missing')}; plan_rows={csv_value(priority_lsms_external_staging_summary, 'external_local_raw_staging_plan_rows', '0')}; file_rows={csv_value(priority_lsms_external_staging_summary, 'external_local_raw_staging_file_manifest_rows', '0')}; executed_datasets={csv_value(priority_lsms_external_staging_summary, 'external_local_raw_staging_executed_dataset_rows', '0')}; copied_files={csv_value(priority_lsms_external_staging_summary, 'external_local_raw_staging_copied_file_rows', '0')}; blocked_files={csv_value(priority_lsms_external_staging_summary, 'external_local_raw_staging_blocked_file_rows', '0')}; provenance_accepted={csv_value(priority_lsms_external_staging_summary, 'external_local_raw_staging_provenance_accepted_rows', '0')}; data_write={csv_value(priority_lsms_external_staging_summary, 'data_write_gate_status', 'missing')}; modeling_gate={csv_value(priority_lsms_external_staging_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_external_local_raw_staging_plan.csv", TEMP_DIR / "priority_lsms_isa_external_local_raw_staging_file_manifest.csv", RESULT_DIR / "priority_lsms_isa_external_local_raw_staging_summary.csv", REPORT_DIR / "priority_lsms_isa_external_local_raw_staging.md"],
+        "External local raw staging copied selected review-ready folders into temp/raw_downloads for receipt validation, while keeping provenance acceptance, data writes, and modeling blocked.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
         "priority_analysis_dataset_synthesis_blueprint",
         "blocked_required_schema_columns_not_verified" if csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0") == "0" else "synthesis_join_candidates_ready",
         f"schema_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_schema_rows', '0')}; required_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_required_rows', '0')}; ready_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_ready_required_rows', '0')}; blocked_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_blocked_required_rows', '0')}; join_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_plan_rows', '0')}; join_ready={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_ready_rows', '0')}; candidate_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_candidate_variable_rows', '0')}; manual_verified_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_manual_verified_variable_rows', '0')}",
@@ -3187,6 +3206,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_acquisition_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_gap_receipt_summary.csv")
     priority_lsms_external_candidate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_candidate_summary.csv")
     priority_lsms_external_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_intake_summary.csv")
+    priority_lsms_external_staging_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_staging_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3417,6 +3437,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_external_intake_selected_partial_review", "value": csv_value(priority_lsms_external_intake_summary, "external_local_raw_intake_selected_partial_review_rows", "0"), "interpretation": "Selected rows with partial external local matches needing missing-file or provenance triage."},
         {"metric": "priority_lsms_isa_external_intake_backup_review", "value": csv_value(priority_lsms_external_intake_summary, "external_local_raw_intake_backup_review_rows", "0"), "interpretation": "Backup rows with external local matches held behind the selected batch."},
         {"metric": "priority_lsms_isa_external_intake_provenance_accepted", "value": csv_value(priority_lsms_external_intake_summary, "external_local_raw_intake_provenance_accepted_rows", "0"), "interpretation": "External local raw folders accepted as official receipt; should remain zero until review passes."},
+        {"metric": "priority_lsms_isa_external_staging_executed_dataset_rows", "value": csv_value(priority_lsms_external_staging_summary, "external_local_raw_staging_executed_dataset_rows", "0"), "interpretation": "External local raw-folder candidates copied into temp/raw_downloads for receipt validation."},
+        {"metric": "priority_lsms_isa_external_staging_copied_file_rows", "value": csv_value(priority_lsms_external_staging_summary, "external_local_raw_staging_copied_file_rows", "0"), "interpretation": "Raw/documentation files staged from external local folders."},
+        {"metric": "priority_lsms_isa_external_staging_provenance_accepted", "value": csv_value(priority_lsms_external_staging_summary, "external_local_raw_staging_provenance_accepted_rows", "0"), "interpretation": "Staged external local packages accepted as official provenance; should remain zero until review passes."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},

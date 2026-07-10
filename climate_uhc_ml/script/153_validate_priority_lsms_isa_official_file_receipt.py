@@ -169,6 +169,8 @@ def expected_file_lookup_keys(expected_name: str) -> list[tuple[str, str]]:
     if key.endswith(".nsdstat"):
         stem = key[: -len(".nsdstat")]
         keys.extend((f"alias_nsdstat_to_{ext.lstrip('.')}", f"{stem}{ext}") for ext in RAW_FILE_ALIAS_EXTENSIONS)
+    elif not PurePosixPath(key).suffix:
+        keys.extend((f"alias_extensionless_to_{ext.lstrip('.')}", f"{key}{ext}") for ext in RAW_FILE_ALIAS_EXTENSIONS)
     return keys
 
 

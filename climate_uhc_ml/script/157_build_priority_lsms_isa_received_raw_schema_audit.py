@@ -15,6 +15,7 @@ from common import PROJECT_ROOT, REPORT_DIR, RESULT_DIR, TEMP_DIR, append_log, e
 
 RECEIPT_VALIDATION_PATH = TEMP_DIR / "priority_lsms_isa_official_file_receipt_validation.csv"
 ARCHIVE_MEMBER_PATH = TEMP_DIR / "priority_lsms_isa_archive_member_manifest.csv"
+DIRECT_FILE_PATH = TEMP_DIR / "priority_lsms_isa_direct_file_preflight.csv"
 VARIABLE_WORKBOOK_PATH = TEMP_DIR / "priority_lsms_isa_raw_value_variable_workbook.csv"
 
 FILE_SCHEMA_PATH = TEMP_DIR / "priority_lsms_isa_received_raw_schema_file_inventory.csv"
@@ -137,6 +138,8 @@ def expected_lookup_keys(expected_name: str) -> list[str]:
     if key.endswith(".nsdstat"):
         stem = key[: -len(".nsdstat")]
         keys.extend(f"{stem}{ext}" for ext in RAW_ALIAS_EXTENSIONS)
+    elif not PurePosixPath(key).suffix:
+        keys.extend(f"{key}{ext}" for ext in RAW_ALIAS_EXTENSIONS)
     return keys
 
 
@@ -198,7 +201,25 @@ def archive_members_by_id(
     for row in member_rows:
         idno = clean(row.get("idno"))
         if idno in receipt_ids and file_key(row.get("member_name", "")).endswith(".dta"):
+            row["_raw_source_type"] = "archive_member"
             out[idno].append(row)
+    return out
+
+
+def direct_files_by_id(
+    direct_rows: list[dict[str, str]],
+    receipt_ids: set[str],
+) -> dict[str, list[dict[str, str]]]:
+    out: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in direct_rows:
+        idno = clean(row.get("idno"))
+        if idno not in receipt_ids or not file_key(row.get("file_name", "")).endswith(".dta"):
+            continue
+        row["_raw_source_type"] = "direct_file"
+        row["archive_relative_path"] = clean(row.get("relative_path"))
+        row["member_name"] = clean(row.get("file_name"))
+        row["member_role"] = clean(row.get("file_role"))
+        out[idno].append(row)
     return out
 
 
@@ -237,9 +258,25 @@ def read_member_values(zip_path: Path, member_name: str, columns: list[str]) -> 
     return df
 
 
+def read_direct_metadata(raw_path: Path) -> tuple[Any, list[str]]:
+    _, meta = pyreadstat.read_dta(str(raw_path), metadataonly=True)
+    return meta, list(meta.column_names)
+
+
+def read_direct_values(raw_path: Path, columns: list[str]) -> pd.DataFrame:
+    if not columns:
+        return pd.DataFrame()
+    df, _ = pyreadstat.read_dta(str(raw_path), usecols=columns)
+    return df
+
+
 def build_schema_rows() -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
     receipt_by_id = readable_receipts(read_csv_dicts(RECEIPT_VALIDATION_PATH))
-    members_by_id = archive_members_by_id(read_csv_dicts(ARCHIVE_MEMBER_PATH), set(receipt_by_id))
+    receipt_ids = set(receipt_by_id)
+    members_by_id = archive_members_by_id(read_csv_dicts(ARCHIVE_MEMBER_PATH), receipt_ids)
+    direct_by_id = direct_files_by_id(read_csv_dicts(DIRECT_FILE_PATH), receipt_ids)
+    for idno, rows in direct_by_id.items():
+        members_by_id[idno].extend(rows)
     workbook = workbook_by_id_member(read_csv_dicts(VARIABLE_WORKBOOK_PATH))
 
     file_rows: list[dict[str, str]] = []
@@ -253,7 +290,8 @@ def build_schema_rows() -> tuple[list[dict[str, str]], list[dict[str, str]], lis
             member_name = clean(member.get("member_name"))
             member_key = file_key(member_name)
             archive_relative = clean(member.get("archive_relative_path"))
-            archive_path = PROJECT_ROOT / archive_relative.replace("/", "\\")
+            raw_path = PROJECT_ROOT / archive_relative.replace("/", "\\")
+            raw_source_type = clean(member.get("_raw_source_type")) or "archive_member"
             base = {
                 "download_priority_order": clean(receipt.get("download_priority_order")),
                 "queue_role": clean(receipt.get("queue_role")),
@@ -267,7 +305,10 @@ def build_schema_rows() -> tuple[list[dict[str, str]], list[dict[str, str]], lis
             }
             candidates = workbook.get(idno, {}).get(member_key, [])
             try:
-                meta, column_names = read_member_metadata(archive_path, member_name)
+                if raw_source_type == "direct_file":
+                    meta, column_names = read_direct_metadata(raw_path)
+                else:
+                    meta, column_names = read_member_metadata(raw_path, member_name)
                 labels = dict(zip(meta.column_names, meta.column_labels))
                 file_rows.append(
                     {
@@ -295,7 +336,10 @@ def build_schema_rows() -> tuple[list[dict[str, str]], list[dict[str, str]], lis
                 value_scan_error = ""
                 if candidate_names:
                     try:
-                        df = read_member_values(archive_path, member_name, candidate_names)
+                        if raw_source_type == "direct_file":
+                            df = read_direct_values(raw_path, candidate_names)
+                        else:
+                            df = read_member_values(raw_path, member_name, candidate_names)
                         for variable in candidate_names:
                             value_stats[variable] = scan_series(df[variable])
                     except Exception as error:  # pragma: no cover - depends on legacy file quirks

@@ -9,18 +9,18 @@ whether direct original files or readable archive members exist.
 | Metric | Value | Interpretation |
 |---|---:|---|
 | priority_lsms_archive_preflight_dataset_rows | 19 | Refocused LSMS/ISA targets checked by archive/direct-file preflight. |
-| priority_lsms_archive_preflight_direct_file_rows | 1 | Direct non-generated original candidate files found under target folders. |
+| priority_lsms_archive_preflight_direct_file_rows | 305 | Direct non-generated original candidate files found under target folders. |
 | priority_lsms_archive_preflight_direct_archive_rows | 1 | Direct archive/compressed package candidates found. |
-| priority_lsms_archive_preflight_direct_raw_tabular_rows | 0 | Direct raw tabular/workbook candidates found. |
-| priority_lsms_archive_preflight_direct_documentation_rows | 0 | Direct documentation candidates found. |
+| priority_lsms_archive_preflight_direct_raw_tabular_rows | 299 | Direct raw tabular/workbook candidates found. |
+| priority_lsms_archive_preflight_direct_documentation_rows | 5 | Direct documentation candidates found. |
 | priority_lsms_archive_preflight_public_documentation_snapshot_rows | 133 | Saved official public documentation snapshots accepted as documentation evidence. |
 | priority_lsms_archive_preflight_archive_member_rows | 52 | Readable archive member rows found without extraction. |
 | priority_lsms_archive_preflight_archive_raw_tabular_member_rows | 52 | Raw tabular-like archive members found. |
 | priority_lsms_archive_preflight_archive_documentation_member_rows | 0 | Documentation-like archive members found. |
-| priority_lsms_archive_preflight_ready_dataset_rows | 1 | Targets ready for schema and manual raw review. |
-| priority_lsms_archive_preflight_blocked_dataset_rows | 18 | Targets still blocked before schema/manual raw review. |
+| priority_lsms_archive_preflight_ready_dataset_rows | 4 | Targets ready for schema and manual raw review. |
+| priority_lsms_archive_preflight_blocked_dataset_rows | 15 | Targets still blocked before schema/manual raw review. |
 | priority_lsms_archive_preflight_requirement_rows | 152 | Requirement rows covered by archive/direct-file preflight. |
-| priority_lsms_archive_preflight_blocked_requirement_rows | 144 | Requirement rows blocked because no archive/direct raw evidence is available. |
+| priority_lsms_archive_preflight_blocked_requirement_rows | 120 | Requirement rows blocked because no archive/direct raw evidence is available. |
 | priority_lsms_archive_preflight_handoff_readmes_written | 19 | Per-target archive preflight handoff files written. |
 | priority_lsms_archive_preflight_data_write_status | blocked_no_promoted_rows | No country-wave may write to data/ from archive preflight alone. |
 | modeling_gate_status | blocked | Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass. |
@@ -28,8 +28,8 @@ whether direct original files or readable archive members exist.
 | priority_lsms_archive_preflight_queue_role_core_selected_lsms_isa_aligned | 8 | Archive preflight target count by refocused queue role. |
 | priority_lsms_archive_preflight_queue_role_replacement_backup_wave | 6 | Archive preflight target count by refocused queue role. |
 | priority_lsms_archive_preflight_queue_role_sixth_country_backup_candidate | 3 | Archive preflight target count by refocused queue role. |
-| priority_lsms_archive_preflight_status_blocked_no_original_archive_or_direct_files | 18 | Archive preflight dataset status count. |
-| priority_lsms_archive_preflight_status_ready_for_raw_receipt_schema_and_manual_review | 1 | Archive preflight dataset status count. |
+| priority_lsms_archive_preflight_status_blocked_no_original_archive_or_direct_files | 15 | Archive preflight dataset status count. |
+| priority_lsms_archive_preflight_status_ready_for_raw_receipt_schema_and_manual_review | 4 | Archive preflight dataset status count. |
 
 ## Dataset Preflight
 
@@ -39,11 +39,11 @@ whether direct original files or readable archive members exist.
 | 2 | core_selected_lsms_isa_aligned | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
 | 3 | core_replacement_primary | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 1 | 52 | 7 | ready_for_raw_receipt_schema_and_manual_review |
 | 4 | core_selected_lsms_isa_aligned | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
-| 5 | core_selected_lsms_isa_aligned | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
+| 5 | core_selected_lsms_isa_aligned | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 0 | 0 | 7 | ready_for_raw_receipt_schema_and_manual_review |
 | 6 | core_selected_lsms_isa_aligned | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
 | 7 | core_selected_lsms_isa_aligned | Tanzania | 2008-2009 | TZA_2008_NPS-R1_v03_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
-| 8 | core_selected_lsms_isa_aligned | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
-| 9 | core_selected_lsms_isa_aligned | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
+| 8 | core_selected_lsms_isa_aligned | Tanzania | 2010-2011 | TZA_2010_NPS-R2_v03_M | 0 | 0 | 7 | ready_for_raw_receipt_schema_and_manual_review |
+| 9 | core_selected_lsms_isa_aligned | Tanzania | 2012-2013 | TZA_2012_NPS-R3_v01_M | 0 | 0 | 7 | ready_for_raw_receipt_schema_and_manual_review |
 | 10 | core_replacement_primary | Uganda | 2019-2020 | UGA_2019_UNPS_v03_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
 | 11 | sixth_country_backup_candidate | Jamaica | 1997 | JAM_1997_SLC_v01_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
 | 12 | sixth_country_backup_candidate | Kyrgyz Republic | 1993 | KGZ_1993_KMPS_v01_M | 0 | 0 | 7 | blocked_no_original_archive_or_direct_files |
@@ -62,11 +62,8 @@ whether direct original files or readable archive members exist.
 | 1 | Ethiopia | ETH_2021_ESPS-W5_v02_M | temp/raw_downloads/ETH_2021_ESPS-W5_v02_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
 | 2 | Ethiopia | ETH_2018_ESS_v04_M | temp/raw_downloads/ETH_2018_ESS_v04_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
 | 4 | Nigeria | NGA_2012_GHSP-W2_v02_M | temp/raw_downloads/NGA_2012_GHSP-W2_v02_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
-| 5 | Nigeria | NGA_2015_GHSP-W3_v02_M | temp/raw_downloads/NGA_2015_GHSP-W3_v02_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
 | 6 | Nigeria | NGA_2010_GHSP-W1_v03_M | temp/raw_downloads/NGA_2010_GHSP-W1_v03_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
 | 7 | Tanzania | TZA_2008_NPS-R1_v03_M | temp/raw_downloads/TZA_2008_NPS-R1_v03_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
-| 8 | Tanzania | TZA_2010_NPS-R2_v03_M | temp/raw_downloads/TZA_2010_NPS-R2_v03_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
-| 9 | Tanzania | TZA_2012_NPS-R3_v01_M | temp/raw_downloads/TZA_2012_NPS-R3_v01_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
 | 10 | Uganda | UGA_2019_UNPS_v03_M | temp/raw_downloads/UGA_2019_UNPS_v03_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
 | 11 | Jamaica | JAM_1997_SLC_v01_M | temp/raw_downloads/JAM_1997_SLC_v01_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
 | 12 | Kyrgyz Republic | KGZ_1993_KMPS_v01_M | temp/raw_downloads/KGZ_1993_KMPS_v01_M/ | blocked_no_original_archive_or_direct_files | Place the complete official archive/raw package and documentation in the target folder. |
@@ -83,6 +80,25 @@ whether direct original files or readable archive members exist.
 | download_priority_order | idno | file_name | file_role | direct_file_acceptance_status |
 |---|---|---|---|---|
 | 3 | MWI_2004_IHS-II_v01_M | MWI_2004_IHS-II_v01_M_Stata8.zip | official_archive_or_compressed_package_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | ag_conv_w3.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux1.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux2.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux3.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux4.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux_round1.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux_round2.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux_round5.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux_year1.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux_year2.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux_year3.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | aux_year4.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | cons_agg_wave3_visit1.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | cons_agg_wave3_visit2.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | food_conv_w3.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | HHTrack.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | NGA_HouseholdGeovars_Y3.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | NGA_PlotGeovariables_Y3.dta | raw_tabular_or_workbook_candidate | direct_file_present_pending_schema_or_documentation_review |
+| 5 | NGA_2015_GHSP-W3_v02_M | PH_W3_Household_Quest.pdf | documentation_candidate | direct_file_present_pending_schema_or_documentation_review |
 
 ## Archive Member Preview
 

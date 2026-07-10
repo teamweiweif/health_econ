@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,205,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,909,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,905,Curated artifacts present and non-empty.
+bundle_rows,206,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,914,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,910,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -19,18 +19,18 @@ priority_lsms_isa_variable_evidence_file_shortlist_rows,629,Official DDI files s
 priority_lsms_isa_raw_value_workbook_requirement_rows,152,Requirement-level raw value verification workbook rows.
 priority_lsms_isa_raw_value_workbook_variable_rows,1531,Variable-level raw value verification workbook rows.
 priority_lsms_isa_raw_value_workbook_file_rows,629,File-level raw value verification workbook rows.
-priority_lsms_isa_received_raw_schema_file_rows,52,Received official raw archive files included in the metadata-only schema audit.
-priority_lsms_isa_received_raw_schema_readable_file_rows,52,Received official raw files readable by the schema audit.
-priority_lsms_isa_received_raw_schema_variable_rows,1901,Variables extracted from the received official raw archive schema.
-priority_lsms_isa_received_raw_schema_candidate_present_rows,84,Requirement candidate variables present in the received official raw archive.
-priority_lsms_isa_received_raw_value_profile_variable_rows,84,Candidate requirement variables with received raw value-profile evidence.
-priority_lsms_isa_received_raw_value_profile_nonmissing_variable_rows,84,Candidate variables with at least one nonmissing raw value.
-priority_lsms_isa_received_raw_key_design_geography_profile_rows,459,"Utility key, design, and geography variables profiled from received raw files."
-priority_lsms_isa_received_raw_value_profile_requirements_with_profiles,7,Requirements with value-profile evidence available for manual review.
-priority_lsms_isa_received_raw_semantics_variable_rows,543,Variable-level semantics review rows from value and utility profiles.
-priority_lsms_isa_received_raw_semantics_ddi_documented_variable_rows,543,Profiled variables matched to official DDI documentation.
-priority_lsms_isa_received_raw_semantics_requirement_rows,8,Requirement-level semantics review rows.
-priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows,1,Documentation-semantics gate rows backed by review evidence.
+priority_lsms_isa_received_raw_schema_file_rows,252,Received official raw archive files included in the metadata-only schema audit.
+priority_lsms_isa_received_raw_schema_readable_file_rows,200,Received official raw files readable by the schema audit.
+priority_lsms_isa_received_raw_schema_variable_rows,5392,Variables extracted from the received official raw archive schema.
+priority_lsms_isa_received_raw_schema_candidate_present_rows,162,Requirement candidate variables present in the received official raw archive.
+priority_lsms_isa_received_raw_value_profile_variable_rows,162,Candidate requirement variables with received raw value-profile evidence.
+priority_lsms_isa_received_raw_value_profile_nonmissing_variable_rows,161,Candidate variables with at least one nonmissing raw value.
+priority_lsms_isa_received_raw_key_design_geography_profile_rows,204,"Utility key, design, and geography variables profiled from received raw files."
+priority_lsms_isa_received_raw_value_profile_requirements_with_profiles,14,Requirements with value-profile evidence available for manual review.
+priority_lsms_isa_received_raw_semantics_variable_rows,366,Variable-level semantics review rows from value and utility profiles.
+priority_lsms_isa_received_raw_semantics_ddi_documented_variable_rows,0,Profiled variables matched to official DDI documentation.
+priority_lsms_isa_received_raw_semantics_requirement_rows,16,Requirement-level semantics review rows.
+priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows,2,Documentation-semantics gate rows backed by review evidence.
 mwi2004_raw_requirement_verification_requirements,8,Malawi 2004 promotion requirements with focused raw-backed verification evidence.
 mwi2004_raw_requirement_verification_key_or_join_checks,10/11,Malawi 2004 mechanical uniqueness and join checks passing in focused raw review.
 mwi2004_raw_requirement_verification_decision,not_final_verified,Focused Malawi 2004 decision; it should remain not_final_verified until manual construct and climate-linkage acceptance pass.
@@ -99,19 +99,19 @@ mwi2004_promoted_dataset_climate_complete_rows,11280,Promoted Malawi 2004 househ
 mwi2004_promoted_dataset_data_write_gate,open_promoted_dataset_written,Controlled data-write gate outcome for the Malawi 2004 promoted synthesis.
 priority_lsms_isa_receipt_checklist_dataset_rows,19,Dataset-level raw package receipt checklist rows.
 priority_lsms_isa_receipt_checklist_requirement_rows,152,Requirement-level raw package receipt checklist rows.
-priority_lsms_isa_receipt_checklist_package_received_rows,1,Refocused LSMS/ISA waves with original package receipt evidence.
+priority_lsms_isa_receipt_checklist_package_received_rows,4,Refocused LSMS/ISA waves with original package receipt evidence.
 priority_lsms_isa_credentialed_workbench_dataset_rows,19,Credentialed raw acquisition workbench dataset rows.
 priority_lsms_isa_credentialed_workbench_core_file_rows,629,Core file rows to confirm after official package download.
 priority_lsms_isa_credentialed_workbench_package_received_rows,1,Credentialed workbench waves with original package receipt evidence.
 priority_lsms_isa_official_file_receipt_expected_file_rows,1597,Official DDI files expected after package receipt.
-priority_lsms_isa_official_file_receipt_expected_file_matched_rows,52,Expected official DDI files matched locally.
-priority_lsms_isa_official_file_receipt_core_file_missing_rows,592,Core expected files still missing locally.
+priority_lsms_isa_official_file_receipt_expected_file_matched_rows,325,Expected official DDI files matched locally.
+priority_lsms_isa_official_file_receipt_core_file_missing_rows,511,Core expected files still missing locally.
 priority_lsms_isa_threshold_sequence_minimum_download_rows,11,Minimum downloads needed to test 10-wave and 6-country thresholds if every wave passes verification.
 priority_lsms_isa_threshold_sequence_recommended_download_rows,13,Recommended threshold downloads including all sixth-country candidates.
-priority_lsms_isa_threshold_sequence_raw_package_received_rows,1,Threshold sequence rows with non-blocked official file receipt status.
+priority_lsms_isa_threshold_sequence_raw_package_received_rows,4,Threshold sequence rows with non-blocked official file receipt status.
 priority_lsms_isa_minimum_batch_expected_full_file_rows,890,Expected official DDI file rows across the 11-wave minimum batch.
-priority_lsms_isa_minimum_batch_missing_core_file_rows,323,Core official files still missing locally for the 11-wave minimum batch.
-priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows,11,Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh.
+priority_lsms_isa_minimum_batch_missing_core_file_rows,242,Core official files still missing locally for the 11-wave minimum batch.
+priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows,9,Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh.
 priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows,0,Raw download candidate endpoints detected by the minimum-batch endpoint refresh.
 priority_lsms_isa_next_raw_package_actions,18,Country-waves in the next raw package acquisition queue.
 priority_lsms_isa_next_raw_package_minimum_remaining,10,Remaining minimum-batch waves requiring complete official raw packages.
@@ -221,8 +221,11 @@ priority_lsms_isa_external_intake_copy_review_ready,4,Selected rows ready for of
 priority_lsms_isa_external_intake_selected_partial_review,3,Selected rows with partial external local matches needing missing-file or provenance triage.
 priority_lsms_isa_external_intake_backup_review,3,Backup rows with external local matches held behind the selected batch.
 priority_lsms_isa_external_intake_provenance_accepted,0,External local raw folders accepted as official receipt; should remain zero until review passes.
+priority_lsms_isa_external_staging_executed_dataset_rows,3,External local raw-folder candidates copied into temp/raw_downloads for receipt validation.
+priority_lsms_isa_external_staging_copied_file_rows,304,Raw/documentation files staged from external local folders.
+priority_lsms_isa_external_staging_provenance_accepted,0,Staged external local packages accepted as official provenance; should remain zero until review passes.
 priority_lsms_isa_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promotion packets built.
-priority_lsms_isa_country_wave_packet_failed_gates,306,Refocused LSMS/ISA packet gates still blocking promotion.
+priority_lsms_isa_country_wave_packet_failed_gates,300,Refocused LSMS/ISA packet gates still blocking promotion.
 priority_lsms_isa_country_wave_packet_analysis_ready_rows,1,Refocused LSMS/ISA packets currently approved for promoted data writes.
 priority_archive_preflight_targets,156,Priority file targets checked against direct files and archive members.
 priority_archive_preflight_missing_targets,156,Priority file targets still missing after direct/archive member preflight.
@@ -283,15 +286,15 @@ priority_lsms_refocused_acquisition_queue_rows,19,Refocused selected and backup 
 priority_lsms_refocused_requirement_rows,152,Requirement rows for refocused selected and backup targets.
 priority_lsms_refocused_data_write_status,blocked_no_promoted_rows,Promoted-data write status for the refocused queue.
 priority_lsms_raw_intake_dataset_rows,19,Refocused LSMS/ISA targets covered by raw-package intake ledger.
-priority_lsms_raw_intake_original_file_rows,1,Non-generated original package/documentation candidates found in target folders.
-priority_lsms_raw_intake_missing_package_rows,18,Refocused targets with no original package files yet.
-priority_lsms_raw_intake_blocked_requirement_rows,152,Raw-package acceptance requirements still blocked.
+priority_lsms_raw_intake_original_file_rows,305,Non-generated original package/documentation candidates found in target folders.
+priority_lsms_raw_intake_missing_package_rows,15,Refocused targets with no original package files yet.
+priority_lsms_raw_intake_blocked_requirement_rows,128,Raw-package acceptance requirements still blocked.
 priority_lsms_raw_intake_data_write_status,blocked_no_promoted_rows,Promoted-data write status for the raw intake packet.
 priority_lsms_archive_preflight_dataset_rows,19,Refocused targets covered by archive/direct-file preflight.
-priority_lsms_archive_preflight_direct_file_rows,1,Direct non-generated original files detected by archive preflight.
+priority_lsms_archive_preflight_direct_file_rows,305,Direct non-generated original files detected by archive preflight.
 priority_lsms_archive_preflight_archive_member_rows,52,Readable archive member rows detected without extraction.
-priority_lsms_archive_preflight_blocked_dataset_rows,18,Refocused targets still blocked before schema/manual raw review.
-priority_lsms_archive_preflight_blocked_requirement_rows,144,Archive preflight requirement rows still blocked.
+priority_lsms_archive_preflight_blocked_dataset_rows,15,Refocused targets still blocked before schema/manual raw review.
+priority_lsms_archive_preflight_blocked_requirement_rows,120,Archive preflight requirement rows still blocked.
 priority_lsms_archive_preflight_data_write_status,blocked_no_promoted_rows,Promoted-data write status for archive preflight.
 priority_synthesis_blueprint_schema_rows,572,Target output-column rows for promoted household-climate dataset synthesis.
 priority_synthesis_blueprint_blocked_required_rows,325,Required promoted-dataset output columns still blocked.
@@ -672,7 +675,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,96,Direct-read bundle section count.
+bundle_section_priority_bundle,97,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -751,7 +754,6 @@ bundle_status_copy_review_queue_ready_provenance_not_accepted,1,Direct-read bund
 bundle_status_core_public_documentation_saved_raw_gate_still_blocked,1,Direct-read bundle status count.
 bundle_status_core_wave_replacement_needed_before_download_execution,1,Direct-read bundle status count.
 bundle_status_credentialed_download_handoff_waiting_for_session,1,Direct-read bundle status count.
-bundle_status_credentialed_download_required_no_public_raw_route,1,Direct-read bundle status count.
 bundle_status_credentialed_fetch_command_packet_current_missing_session_material,1,Direct-read bundle status count.
 bundle_status_credentialed_workbench_needs_review,1,Direct-read bundle status count.
 bundle_status_dataset_scope_locked_6_countries_11_waves_10_downloads_required,1,Direct-read bundle status count.
@@ -759,6 +761,7 @@ bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_clima
 bundle_status_documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready,1,Direct-read bundle status count.
 bundle_status_download_acceptance_matrix_current,1,Direct-read bundle status count.
 bundle_status_download_execution_ready_raw_missing,1,Direct-read bundle status count.
+bundle_status_endpoint_refresh_needs_review,1,Direct-read bundle status count.
 bundle_status_external_local_candidates_found_provenance_not_accepted,1,Direct-read bundle status count.
 bundle_status_fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning,1,Direct-read bundle status count.
 bundle_status_file_level_routes_confirmed_non_public_raw,1,Direct-read bundle status count.
@@ -826,6 +829,7 @@ bundle_status_public_documentation_complete_raw_still_blocked,1,Direct-read bund
 bundle_status_public_metadata_only_raw_gate_confirmed,1,Direct-read bundle status count.
 bundle_status_raw_archives_available_requires_value_verification,1,Direct-read bundle status count.
 bundle_status_raw_package_intake_needs_review,1,Direct-read bundle status count.
+bundle_status_raw_packages_staged_for_receipt_validation_provenance_not_accepted,1,Direct-read bundle status count.
 bundle_status_raw_schema_claims_only_no_analysis_dataset_claims,1,Direct-read bundle status count.
 bundle_status_raw_schema_inspected_harmonization_pending,1,Direct-read bundle status count.
 bundle_status_raw_value_summary_available_manual_review_required,1,Direct-read bundle status count.

@@ -16,12 +16,12 @@ until complete original raw packages and raw value checks pass.
 | priority_lsms_country_wave_packet_core_rows | 10 | Core selected/refocused replacement packets. |
 | priority_lsms_country_wave_packet_backup_rows | 9 | Backup and sixth-country candidate packets. |
 | priority_lsms_country_wave_packet_gate_rows | 361 | Gate rows across LSMS/ISA promotion packets. |
-| priority_lsms_country_wave_packet_passed_gate_rows | 55 | Packet gates currently passing. |
-| priority_lsms_country_wave_packet_failed_gate_rows | 306 | Packet gates still blocking promotion. |
+| priority_lsms_country_wave_packet_passed_gate_rows | 61 | Packet gates currently passing. |
+| priority_lsms_country_wave_packet_failed_gate_rows | 300 | Packet gates still blocking promotion. |
 | priority_lsms_country_wave_packet_public_documentation_ready_rows | 19 | Packets with complete public documentation receipt. |
 | priority_lsms_country_wave_packet_variable_evidence_ready_rows | 19 | Packets with official variable evidence coverage ready for raw review. |
-| priority_lsms_country_wave_packet_raw_package_ready_rows | 1 | Packets with complete original raw package receipt and documentation. |
-| priority_lsms_country_wave_packet_archive_preflight_ready_rows | 1 | Packets with readable archive/direct raw preflight. |
+| priority_lsms_country_wave_packet_raw_package_ready_rows | 4 | Packets with complete original raw package receipt and documentation. |
+| priority_lsms_country_wave_packet_archive_preflight_ready_rows | 4 | Packets with readable archive/direct raw preflight. |
 | priority_lsms_country_wave_packet_raw_value_verified_rows | 1 | Packets with all required raw values verified. |
 | priority_lsms_country_wave_packet_financial_ready_rows | 1 | Packets ready for financial-protection outcomes. |
 | priority_lsms_country_wave_packet_access_ready_rows | 1 | Packets ready for access/forgone-care outcomes. |
@@ -35,7 +35,8 @@ until complete original raw packages and raw value checks pass.
 | modeling_gate_status | blocked | Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass. |
 | priority_lsms_country_wave_packet_status_blocked_fail_closed | 18 | Packet status count. |
 | priority_lsms_country_wave_packet_status_ready_for_promoted_dataset_write | 1 | Packet status count. |
-| priority_lsms_country_wave_packet_next_action_download_or_place_complete_original_raw_package | 18 | Next blocking action count. |
+| priority_lsms_country_wave_packet_next_action_complete_raw_value_key_unit_verification | 3 | Next blocking action count. |
+| priority_lsms_country_wave_packet_next_action_download_or_place_complete_original_raw_package | 15 | Next blocking action count. |
 | priority_lsms_country_wave_packet_next_action_ready_for_promoted_dataset_write | 1 | Next blocking action count. |
 
 ## Packet Index
@@ -46,11 +47,11 @@ until complete original raw packages and raw value checks pass.
 | 2 | core_selected_lsms_isa_aligned | ETH_2018_ESS_v04_M | Ethiopia | 2018-2019 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 | 3 | core_replacement_primary | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | ready_metadata_only | ready_metadata_only_raw_review_required | raw_archive_plus_official_public_documentation_ready_for_raw_review | ready_for_raw_receipt_schema_and_manual_review | all_verified | accepted_chirps_or_era5_route | ready_for_promoted_dataset_write | ready_for_promoted_dataset_write |
 | 4 | core_selected_lsms_isa_aligned | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 5 | core_selected_lsms_isa_aligned | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 5 | core_selected_lsms_isa_aligned | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | ready_metadata_only | ready_metadata_only_raw_review_required | raw_archive_plus_official_public_documentation_ready_for_raw_review | ready_for_raw_receipt_schema_and_manual_review | blocked_not_raw_value_verified | blocked | blocked_fail_closed | complete_raw_value_key_unit_verification |
 | 6 | core_selected_lsms_isa_aligned | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 | 7 | core_selected_lsms_isa_aligned | TZA_2008_NPS-R1_v03_M | Tanzania | 2008-2009 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 8 | core_selected_lsms_isa_aligned | TZA_2010_NPS-R2_v03_M | Tanzania | 2010-2011 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 9 | core_selected_lsms_isa_aligned | TZA_2012_NPS-R3_v01_M | Tanzania | 2012-2013 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
+| 8 | core_selected_lsms_isa_aligned | TZA_2010_NPS-R2_v03_M | Tanzania | 2010-2011 | ready_metadata_only | ready_metadata_only_raw_review_required | raw_archive_plus_official_public_documentation_ready_for_raw_review | ready_for_raw_receipt_schema_and_manual_review | blocked_not_raw_value_verified | blocked | blocked_fail_closed | complete_raw_value_key_unit_verification |
+| 9 | core_selected_lsms_isa_aligned | TZA_2012_NPS-R3_v01_M | Tanzania | 2012-2013 | ready_metadata_only | ready_metadata_only_raw_review_required | raw_archive_plus_official_public_documentation_ready_for_raw_review | ready_for_raw_receipt_schema_and_manual_review | blocked_not_raw_value_verified | blocked | blocked_fail_closed | complete_raw_value_key_unit_verification |
 | 10 | core_replacement_primary | UGA_2019_UNPS_v03_M | Uganda | 2019-2020 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 | 11 | sixth_country_backup_candidate | JAM_1997_SLC_v01_M | Jamaica | 1997 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 | 12 | sixth_country_backup_candidate | KGZ_1993_KMPS_v01_M | Kyrgyz Republic | 1993 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
@@ -69,11 +70,11 @@ until complete original raw packages and raw value checks pass.
 | 1 | ETH_2021_ESPS-W5_v02_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/ETH_2021_ESPS-W5_v02_M/ |
 | 2 | ETH_2018_ESS_v04_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/ETH_2018_ESS_v04_M/ |
 | 3 | NGA_2012_GHSP-W2_v02_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/NGA_2012_GHSP-W2_v02_M/ |
-| 4 | NGA_2015_GHSP-W3_v02_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/NGA_2015_GHSP-W3_v02_M/ |
+| 4 | NGA_2015_GHSP-W3_v02_M | complete_raw_value_key_unit_verification | Verify merge keys, weights/design, consumption/income, OOP, access, timing, geography, missing codes, units, recall p... | temp/raw_downloads/NGA_2015_GHSP-W3_v02_M/ |
 | 5 | NGA_2010_GHSP-W1_v03_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/NGA_2010_GHSP-W1_v03_M/ |
 | 6 | TZA_2008_NPS-R1_v03_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/TZA_2008_NPS-R1_v03_M/ |
-| 7 | TZA_2010_NPS-R2_v03_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/TZA_2010_NPS-R2_v03_M/ |
-| 8 | TZA_2012_NPS-R3_v01_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/TZA_2012_NPS-R3_v01_M/ |
+| 7 | TZA_2010_NPS-R2_v03_M | complete_raw_value_key_unit_verification | Verify merge keys, weights/design, consumption/income, OOP, access, timing, geography, missing codes, units, recall p... | temp/raw_downloads/TZA_2010_NPS-R2_v03_M/ |
+| 8 | TZA_2012_NPS-R3_v01_M | complete_raw_value_key_unit_verification | Verify merge keys, weights/design, consumption/income, OOP, access, timing, geography, missing codes, units, recall p... | temp/raw_downloads/TZA_2012_NPS-R3_v01_M/ |
 | 9 | UGA_2019_UNPS_v03_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/UGA_2019_UNPS_v03_M/ |
 | 10 | JAM_1997_SLC_v01_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/JAM_1997_SLC_v01_M/ |
 | 11 | KGZ_1993_KMPS_v01_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/KGZ_1993_KMPS_v01_M/ |

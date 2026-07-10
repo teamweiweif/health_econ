@@ -12,7 +12,7 @@ Current packet status: `blocked_fail_closed`
 
 Analysis-ready status: `not_promoted`
 
-Next blocking action: `download_or_place_complete_original_raw_package`
+Next blocking action: `complete_raw_value_key_unit_verification`
 
 ## Gate Matrix
 
@@ -20,8 +20,8 @@ Next blocking action: `download_or_place_complete_original_raw_package`
 |---|---|---|---|
 | official_public_documentation_receipt | pass | status=complete_core_public_documentation_receipt; saved=catalog_idno_json;data_dictionary_html;ddi_metadata;get_micr... |  |
 | official_variable_evidence_coverage | pass | coverage_rows=8; matrix_rows=84; shortlist_rows=33; no_candidate_rows=0 |  |
-| complete_original_raw_package | fail | intake_status=blocked_no_original_package; original_files=0; archives=0; raw_tabular=0; package_docs=0; public_docs=c... | Download/place the complete unchanged official raw package and all documentation in the target folder. |
-| archive_or_direct_file_preflight | fail | status=blocked_no_original_archive_or_direct_files; direct_raw=0; direct_docs=0; archive_members=0 | Confirm readable archive/direct raw and documentation files before schema inspection. |
+| complete_original_raw_package | pass | intake_status=ready_for_schema_and_manual_value_review; original_files=87; archives=0; raw_tabular=85; package_docs=2... |  |
+| archive_or_direct_file_preflight | pass | status=ready_for_raw_receipt_schema_and_manual_review; direct_raw=85; direct_docs=2; archive_members=0 |  |
 | raw_value_verification_household_person_keys | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=11; raw_status=not_raw... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
 | raw_value_verification_weights_and_design | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=6; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
 | raw_value_verification_consumption_or_income | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=2; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
@@ -109,14 +109,14 @@ Next blocking action: `download_or_place_complete_original_raw_package`
 
 | requirement | metadata_status | requirement_preflight_status |
 |---|---|---|
-| household_person_keys | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| weights_and_design | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| consumption_or_income | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| oop_health_expenditure | metadata_weak_or_proxy_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| health_need_and_access | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| survey_timing | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| climate_geography | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| missing_codes_units_recall_skip_patterns | raw_review_required | blocked_no_archive_or_direct_raw_evidence |
+| household_person_keys | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| weights_and_design | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| consumption_or_income | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| oop_health_expenditure | metadata_weak_or_proxy_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| health_need_and_access | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| survey_timing | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| climate_geography | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| missing_codes_units_recall_skip_patterns | raw_review_required | ready_for_schema_and_manual_requirement_review |
 
 ## Stop Rule
 
@@ -125,4 +125,4 @@ write this country-wave into `data/` until the complete original raw package,
 all raw value/key/unit/skip-pattern checks, outcome gates, and an accepted
 CHIRPS or ERA5 linkage route pass.
 
-Failed gates currently blocking promotion: 17.
+Failed gates currently blocking promotion: 15.

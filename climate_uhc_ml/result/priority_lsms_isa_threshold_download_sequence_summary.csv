@@ -8,10 +8,10 @@ priority_lsms_threshold_sequence_recommended_download_rows,13,Recommended thresh
 priority_lsms_threshold_sequence_recommended_country_rows,8,Distinct countries represented by the recommended threshold batch.
 priority_lsms_threshold_sequence_full_download_rows,19,Full refocused acquisition queue including same-country replacement backups.
 priority_lsms_threshold_sequence_expected_file_rows,1597,Official DDI files expected across the full refocused queue.
-priority_lsms_threshold_sequence_expected_file_matched_rows,52,Expected official files currently matched locally.
+priority_lsms_threshold_sequence_expected_file_matched_rows,325,Expected official files currently matched locally.
 priority_lsms_threshold_sequence_core_file_rows,629,Core official file rows across the full refocused queue.
-priority_lsms_threshold_sequence_core_file_matched_rows,37,Core official files currently matched locally.
-priority_lsms_threshold_sequence_raw_package_received_rows,1,Rows with any non-blocked official file receipt status.
+priority_lsms_threshold_sequence_core_file_matched_rows,118,Core official files currently matched locally.
+priority_lsms_threshold_sequence_raw_package_received_rows,4,Rows with any non-blocked official file receipt status.
 priority_lsms_threshold_sequence_promoted_analysis_ready_rows,0,Rows analysis-ready in the promoted registry.
 priority_lsms_threshold_sequence_handoff_readmes_written,19,Per-wave threshold download sequence handoffs written.
 priority_lsms_threshold_sequence_data_write_status,blocked_no_promoted_rows,Threshold sequencing never writes promoted data.

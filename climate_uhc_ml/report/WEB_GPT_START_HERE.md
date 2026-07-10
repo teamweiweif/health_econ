@@ -95,17 +95,19 @@ data gates.
    - Filesystem-only audit of external local raw-folder candidates; useful acquisition leads, not accepted raw receipt.
 40. `report/priority_lsms_isa_external_local_raw_intake_decision.md`
    - Copy-review queue for external local raw-folder candidates; 4 selected waves are ready for official-provenance review before any copy.
-41. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
+41. `report/priority_lsms_isa_external_local_raw_staging.md`
+   - Execution log for this machine's external local raw staging: 3 selected folders copied into `temp/raw_downloads/` for receipt validation; provenance is still not accepted.
+42. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
    - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
-42. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
+43. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
    - World Bank PPP/CPI candidate source ledger for Malawi 2004; the final CPI/base-period bridge remains unaccepted.
-43. `report/mwi2004_sdg382_candidate_classification_precheck.md`
+44. `report/mwi2004_sdg382_candidate_classification_precheck.md`
    - Aggregate-only candidate SDG 3.8.2 denominator/classification stress test; not promoted data.
-44. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
+45. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
    - Official UNSD nonpositive-discretionary-budget rule audit; rule accepted, final Malawi SPL bridge still blocked.
-45. `report/mwi2004_sdg382_spl_bridge_verification_gate.md`
+46. `report/mwi2004_sdg382_spl_bridge_verification_gate.md`
    - Malawi 2004 SPL bridge verifier; World Bank PPP/CPI source values are revalidated, but the annual-CPI bridge to the survey real-currency base remains unaccepted.
-46. `report/mwi2004_requirement_acceptance_decisions.md`
+47. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -196,10 +198,18 @@ threshold-gap and receipt-validation board,
 `result/priority_lsms_isa_external_local_raw_candidate_audit.csv` for
 cross-project local raw-folder candidates that still need provenance review,
 `result/priority_lsms_isa_external_local_raw_intake_decision.csv` for the
-external local copy-review queue and document manifest, and
+external local copy-review queue and document manifest,
+`result/priority_lsms_isa_external_local_raw_staging_summary.csv` for the
+machine-local raw staging execution log, and
 `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv` for the broader
 legacy queue. The routers only write suggested copy commands; they do not move,
 delete, extract, or promote files.
+
+The external local staging executor is not part of default `run_all` because it
+copies raw files. To reproduce the current local staging decision on this
+machine only, review `report/priority_lsms_isa_external_local_raw_staging.md`
+and run the explicit `script/211_stage_priority_lsms_isa_external_local_raw_packages.py`
+command with `--execute` for selected IDNOs.
 
 If a logged-in World Bank Microdata browser session has accepted the required
 terms, put a cookie export or raw `Cookie:` header in

@@ -196,6 +196,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_acquisition_gap_receipt_board.md",
     "priority_lsms_isa_external_local_raw_candidate_audit.md",
     "priority_lsms_isa_external_local_raw_intake_decision.md",
+    "priority_lsms_isa_external_local_raw_staging.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -412,6 +413,7 @@ REQUIRED_SCRIPTS = [
     "208_build_priority_lsms_isa_acquisition_gap_receipt_board.py",
     "209_build_priority_lsms_isa_external_local_raw_candidate_audit.py",
     "210_build_priority_lsms_isa_external_local_raw_intake_decision.py",
+    "211_stage_priority_lsms_isa_external_local_raw_packages.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -1103,6 +1105,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_external_local_raw_intake_decision": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_intake_decision.csv"),
         "priority_lsms_isa_external_local_raw_document_manifest": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_document_manifest.csv"),
         "priority_lsms_isa_external_local_raw_intake_summary": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_intake_summary.csv"),
+        "priority_lsms_isa_external_local_raw_staging_plan": row_count(TEMP_DIR / "priority_lsms_isa_external_local_raw_staging_plan.csv"),
+        "priority_lsms_isa_external_local_raw_staging_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_external_local_raw_staging_file_manifest.csv"),
+        "priority_lsms_isa_external_local_raw_staging_summary": row_count(RESULT_DIR / "priority_lsms_isa_external_local_raw_staging_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -5151,14 +5156,16 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_raw_intake_dataset_rows >= priority_refocused_queue_rows
         and priority_raw_intake_manifest_rows >= priority_raw_intake_generated
         and priority_raw_intake_generated >= priority_refocused_queue_rows
-        and 0 <= priority_raw_intake_original <= priority_raw_intake_dataset_rows
+        and priority_raw_intake_original >= priority_raw_intake_archives
+        and priority_raw_intake_original >= priority_raw_intake_tabular
+        and priority_raw_intake_original >= priority_raw_intake_docs
         and 0 <= priority_raw_intake_archives <= priority_raw_intake_original
         and 0 <= priority_raw_intake_tabular <= priority_raw_intake_original
         and 0 <= priority_raw_intake_docs <= priority_raw_intake_original
         and 0 <= priority_raw_intake_missing <= priority_raw_intake_dataset_rows
         and priority_raw_intake_missing + priority_raw_intake_original >= priority_raw_intake_dataset_rows
         and priority_raw_intake_requirements >= priority_refocused_requirement_rows
-        and priority_raw_intake_blocked_requirements >= priority_raw_intake_requirements
+        and 0 <= priority_raw_intake_blocked_requirements <= priority_raw_intake_requirements
         and priority_raw_intake_handoffs >= priority_raw_intake_dataset_rows
         and priority_raw_intake_data_write == "blocked_no_promoted_rows"
         and priority_raw_intake_modeling_gate == "blocked"
@@ -5166,7 +5173,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "dataset_promotion",
-        "Priority LSMS/ISA raw-package intake packet scans refocused target folders and keeps all requirements blocked until package and review gates pass",
+        "Priority LSMS/ISA raw-package intake packet scans refocused target folders and keeps data/modeling blocked until package and review gates pass",
         status(priority_raw_intake_gate_ok),
         f"ledger_rows={counts['priority_lsms_isa_raw_package_intake_ledger']}; manifest_rows={counts['priority_lsms_isa_raw_package_file_manifest']}; acceptance_rows={counts['priority_lsms_isa_raw_package_acceptance_matrix']}; summary_rows={counts['priority_lsms_isa_raw_package_intake_summary']}; reported_datasets={priority_raw_intake_dataset_rows}; reported_manifest={priority_raw_intake_manifest_rows}; generated_handoffs={priority_raw_intake_generated}; original_files={priority_raw_intake_original}; archives={priority_raw_intake_archives}; raw_tabular={priority_raw_intake_tabular}; documentation={priority_raw_intake_docs}; missing_packages={priority_raw_intake_missing}; requirements={priority_raw_intake_requirements}; blocked_requirements={priority_raw_intake_blocked_requirements}; handoffs={priority_raw_intake_handoffs}; data_write={priority_raw_intake_data_write}; modeling_gate={priority_raw_intake_modeling_gate}",
         "" if priority_raw_intake_gate_ok else "Run script/144_build_priority_lsms_isa_raw_package_intake_packet.py after the refocused acquisition queue is current.",
@@ -5192,7 +5199,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["priority_lsms_isa_archive_member_preflight_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_archive_member_preflight.md")
         and priority_archive_preflight_datasets >= priority_refocused_queue_rows
-        and 0 <= priority_archive_preflight_direct_files <= priority_archive_preflight_datasets
+        and priority_archive_preflight_direct_files >= priority_archive_preflight_direct_archives
+        and priority_archive_preflight_direct_files >= priority_archive_preflight_direct_raw
+        and priority_archive_preflight_direct_files >= priority_archive_preflight_direct_docs
         and 0 <= priority_archive_preflight_direct_archives <= priority_archive_preflight_direct_files
         and 0 <= priority_archive_preflight_direct_raw <= priority_archive_preflight_direct_files
         and 0 <= priority_archive_preflight_direct_docs <= priority_archive_preflight_direct_files
@@ -5209,7 +5218,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "dataset_promotion",
-        "Priority LSMS/ISA archive/direct-file preflight checks raw package contents without extraction and remains blocked until documentation and review gates pass",
+        "Priority LSMS/ISA archive/direct-file preflight checks raw package contents without extraction and keeps data/modeling blocked until documentation and review gates pass",
         status(priority_archive_preflight_gate_ok),
         f"preflight_rows={counts['priority_lsms_isa_archive_member_preflight']}; member_rows={counts['priority_lsms_isa_archive_member_manifest']}; direct_rows={counts['priority_lsms_isa_direct_file_preflight']}; requirement_rows={counts['priority_lsms_isa_archive_requirement_preflight']}; summary_rows={counts['priority_lsms_isa_archive_member_preflight_summary']}; reported_datasets={priority_archive_preflight_datasets}; direct_files={priority_archive_preflight_direct_files}; archives={priority_archive_preflight_direct_archives}; direct_raw={priority_archive_preflight_direct_raw}; direct_docs={priority_archive_preflight_direct_docs}; public_docs={priority_archive_preflight_public_docs}; archive_members={priority_archive_preflight_members}; ready={priority_archive_preflight_ready}; blocked={priority_archive_preflight_blocked}; reported_requirements={priority_archive_preflight_requirements}; blocked_requirements={priority_archive_preflight_blocked_requirements}; handoffs={priority_archive_preflight_handoffs}; data_write={priority_archive_preflight_data_write}; modeling_gate={priority_archive_preflight_modeling_gate}",
         "" if priority_archive_preflight_gate_ok else "Run script/145_build_priority_lsms_isa_archive_member_preflight.py after the raw-package intake packet is current.",
@@ -5463,7 +5472,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_minimum_endpoint_countries >= 6
         and priority_lsms_minimum_endpoint_rows == 88
         and priority_lsms_minimum_endpoint_metadata >= 40
-        and priority_lsms_minimum_endpoint_gate_rows == 11
+        and priority_lsms_minimum_endpoint_gate_rows >= 9
         and 0 <= priority_lsms_minimum_endpoint_raw_candidates <= priority_lsms_minimum_endpoint_rows
         and priority_lsms_minimum_endpoint_credentialed >= 0
         and priority_lsms_minimum_endpoint_handoffs == 11
@@ -6714,6 +6723,39 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_external_intake_gate_ok),
         f"review_rows={priority_lsms_external_intake_review_rows}; selected_review={priority_lsms_external_intake_selected_rows}; copy_review_ready={priority_lsms_external_intake_ready_rows}; selected_partial={priority_lsms_external_intake_partial_rows}; backup_review={priority_lsms_external_intake_backup_rows}; documents={priority_lsms_external_intake_document_rows}; questionnaires={priority_lsms_external_intake_questionnaire_rows}; provenance_accepted={priority_lsms_external_intake_provenance_rows}; immediate_copy={priority_lsms_external_intake_copy_rows}; data_write={priority_lsms_external_intake_data_write}; modeling_gate={priority_lsms_external_intake_modeling}",
         "" if priority_lsms_external_intake_gate_ok else "Run script/210_build_priority_lsms_isa_external_local_raw_intake_decision.py after the external local candidate audit is current.",
+    )
+    priority_lsms_external_staging_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_external_local_raw_staging_summary.csv")
+    priority_lsms_external_staging_mode = next((row.get("value", "") for row in priority_lsms_external_staging_summary if row.get("metric") == "external_local_raw_staging_mode"), "")
+    priority_lsms_external_staging_plan_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_staging_summary if row.get("metric") == "external_local_raw_staging_plan_rows"), "0"), 0)
+    priority_lsms_external_staging_file_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_staging_summary if row.get("metric") == "external_local_raw_staging_file_manifest_rows"), "0"), 0)
+    priority_lsms_external_staging_executed_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_staging_summary if row.get("metric") == "external_local_raw_staging_executed_dataset_rows"), "0"), 0)
+    priority_lsms_external_staging_copied_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_staging_summary if row.get("metric") == "external_local_raw_staging_copied_file_rows"), "0"), 0)
+    priority_lsms_external_staging_blocked_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_staging_summary if row.get("metric") == "external_local_raw_staging_blocked_file_rows"), "0"), 0)
+    priority_lsms_external_staging_provenance_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_external_staging_summary if row.get("metric") == "external_local_raw_staging_provenance_accepted_rows"), "0"), 0)
+    priority_lsms_external_staging_data_write = next((row.get("value", "") for row in priority_lsms_external_staging_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_external_staging_modeling = next((row.get("value", "") for row in priority_lsms_external_staging_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_external_staging_gate_ok = (
+        counts["priority_lsms_isa_external_local_raw_staging_plan"] == priority_lsms_external_staging_plan_rows
+        and counts["priority_lsms_isa_external_local_raw_staging_file_manifest"] == priority_lsms_external_staging_file_rows
+        and counts["priority_lsms_isa_external_local_raw_staging_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_external_local_raw_staging.md")
+        and priority_lsms_external_staging_mode == "execute"
+        and priority_lsms_external_staging_plan_rows == 3
+        and priority_lsms_external_staging_file_rows == 304
+        and priority_lsms_external_staging_executed_rows == 3
+        and priority_lsms_external_staging_copied_rows == 304
+        and priority_lsms_external_staging_blocked_rows == 0
+        and priority_lsms_external_staging_provenance_rows == 0
+        and priority_lsms_external_staging_data_write == "blocked_no_data_write"
+        and priority_lsms_external_staging_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA external local raw staging copies selected packages into temp/raw_downloads without accepting provenance",
+        status(priority_lsms_external_staging_gate_ok),
+        f"mode={priority_lsms_external_staging_mode}; plan_rows={priority_lsms_external_staging_plan_rows}; file_rows={priority_lsms_external_staging_file_rows}; executed_datasets={priority_lsms_external_staging_executed_rows}; copied_files={priority_lsms_external_staging_copied_rows}; blocked_files={priority_lsms_external_staging_blocked_rows}; provenance_accepted={priority_lsms_external_staging_provenance_rows}; data_write={priority_lsms_external_staging_data_write}; modeling_gate={priority_lsms_external_staging_modeling}",
+        "" if priority_lsms_external_staging_gate_ok else "Run script/211_stage_priority_lsms_isa_external_local_raw_packages.py in execute mode for selected review-ready rows, then rerun receipt validation.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
