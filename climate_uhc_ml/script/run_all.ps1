@@ -120,6 +120,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/205_build_priority_lsms_isa_post_download_receipt_handoff.py
 & $Python script/206_build_priority_lsms_isa_package_level_download_manifest.py
 & $Python script/208_build_priority_lsms_isa_acquisition_gap_receipt_board.py
+& $Python script/209_build_priority_lsms_isa_external_local_raw_candidate_audit.py
 & $Python script/36_build_direct_read_audit_bundle.py
 & $Python script/28_audit_python_environment.py
 & $Python script/26_build_objective_traceability_audit.py

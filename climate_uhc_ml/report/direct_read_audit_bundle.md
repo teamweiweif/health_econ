@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 203 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 899 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 895 | Curated artifacts present and non-empty. |
+| bundle_rows | 204 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 904 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 900 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -226,6 +226,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_acquisition_gap_remaining_double_failure_wave_gap | 9 | Double-failure-ready country-waves still needed before modeling can resume. |
 | priority_lsms_isa_acquisition_gap_missing_package_rows | 10 | Download-required rows still lacking a local package or incoming file. |
 | priority_lsms_isa_acquisition_gap_first_canary | ETH_2021_ESPS-W5_v02_M | First package to download and validate before scaling the remaining batch. |
+| priority_lsms_isa_external_candidate_locked_target_with_matches | 7 | Selected rows with external local expected-file matches. |
+| priority_lsms_isa_external_candidate_locked_core_complete | 4 | Selected rows whose requirement-linked core filenames are complete in the external local candidate folder. |
+| priority_lsms_isa_external_candidate_backup_with_matches | 3 | Backup rows with external local expected-file matches. |
+| priority_lsms_isa_external_candidate_provenance_accepted | 0 | External local candidates accepted as official receipt; should remain zero until provenance review passes. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 306 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 1 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -677,7 +681,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 94 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 95 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -763,6 +767,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready | 1 | Direct-read bundle status count. |
 | bundle_status_download_acceptance_matrix_current | 1 | Direct-read bundle status count. |
 | bundle_status_download_execution_ready_raw_missing | 1 | Direct-read bundle status count. |
+| bundle_status_external_local_candidates_found_provenance_not_accepted | 1 | Direct-read bundle status count. |
 | bundle_status_fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning | 1 | Direct-read bundle status count. |
 | bundle_status_file_level_routes_confirmed_non_public_raw | 1 | Direct-read bundle status count. |
 | bundle_status_first_canary_download_runbook_current_raw_missing | 1 | Direct-read bundle status count. |
@@ -857,7 +862,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 94 |
+| priority_bundle | 95 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -970,6 +975,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | blocked_no_target_files | 1 |
 | blocked_no_local_package | 1 |
 | acquisition_gap_board_10_packages_threshold_gap_locked | 1 |
+| external_local_candidates_found_provenance_not_accepted | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | packet_candidates_ready_for_data_write | 1 |
@@ -1080,7 +1086,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 895 |
+| present_nonempty | 900 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

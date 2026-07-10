@@ -1,0 +1,13 @@
+﻿metric,value,interpretation
+external_local_raw_candidate_queue_rows,19,Refocused LSMS/ISA queue rows audited against the external local raw candidate root.
+external_local_raw_candidate_root_exists,1,Whether the external health-expenditure raw-data root exists on this machine.
+external_local_raw_candidate_folder_exists_rows,10,Queue rows with a mapped external local folder.
+external_local_raw_candidate_expected_match_rows,814,Expected official file-name rows matched by external local candidates.
+external_local_raw_candidate_core_match_rows,280,Requirement-linked core file-name rows matched by external local candidates.
+external_local_raw_candidate_locked_target_rows,13,Rows selected in the current refocused plan.
+external_local_raw_candidate_locked_target_with_matches_rows,7,Selected rows with external local expected-file matches.
+external_local_raw_candidate_locked_core_complete_rows,4,Selected rows whose requirement-linked core file names are complete in the external local candidate folder.
+external_local_raw_candidate_backup_with_matches_rows,3,Backup rows with external local expected-file matches.
+external_local_raw_candidate_provenance_accepted_rows,0,External local candidates are not accepted as official receipt until provenance and unchanged package status are reviewed.
+data_write_gate_status,blocked_no_data_write,The audit does not copy raw files or write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
