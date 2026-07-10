@@ -43,9 +43,11 @@ data gates.
    - One-table board with official URLs, target folders, missing-file counts, and post-download validation commands.
 14. `report/priority_lsms_isa_credentialed_download_handoff.md`
    - Local-only cookie/header handoff for probing or executing World Bank get-microdata downloads after browser login.
-15. `report/priority_lsms_isa_country_wave_promotion_packets/`
+15. `report/priority_lsms_isa_resource_download_route_probe.md`
+   - Bounded public file-route probe for the 10 manual packets.
+16. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-16. `report/mwi2004_requirement_acceptance_decisions.md`
+17. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -90,6 +92,7 @@ resume, read:
 - `report/priority_lsms_isa_post_download_validation_runner.md`
 - `report/priority_lsms_isa_manual_download_execution_board.md`
 - `report/priority_lsms_isa_credentialed_download_handoff.md`
+- `report/priority_lsms_isa_resource_download_route_probe.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -113,6 +116,13 @@ python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --pro
 Use `--execute` only after the probe indicates a raw payload; the handoff saves
 raw files under packet target folders but still does not extract, promote, or
 run models.
+
+To confirm whether common public file-id resource routes expose raw payloads
+without using cookies or saving data, run:
+
+```bash
+python script/181_probe_priority_lsms_isa_resource_download_routes.py
+```
 
 ## Excluded From GitHub
 

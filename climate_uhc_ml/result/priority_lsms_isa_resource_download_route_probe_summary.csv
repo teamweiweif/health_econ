@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+resource_download_route_probe_scope,bounded_route_family_smoke_test,The probe samples core files and route templates; it is not a full raw-package download.
+resource_download_route_probe_max_files_per_dataset,4,Maximum distinct core files probed per manual-download packet.
+resource_download_route_probe_route_templates,6,Route templates probed for each sampled core file.
+resource_download_route_probe_datasets,10,Manual-download packet datasets covered by the resource-level route probe.
+resource_download_route_probe_sampled_files,40,Distinct core files sampled from the manual-download packets.
+resource_download_route_probe_route_rows,240,Constructed resource-level download/data-dictionary route rows probed.
+resource_download_route_probe_request_attempted_rows,240,HTTP request attempts made by the probe.
+resource_download_route_probe_raw_payload_candidate_rows,0,Rows whose headers or URL suffix suggested a raw payload candidate.
+resource_download_route_probe_access_gate_rows,80,"Rows with login, registration, terms, or data access gate evidence."
+resource_download_route_probe_data_dictionary_html_rows,80,Rows returning data-dictionary HTML rather than raw payload.
+resource_download_route_probe_http_error_rows,160,Rows returning HTTP errors rather than public raw payloads.
+resource_download_route_probe_request_failed_rows,0,Rows where the request failed before classification.
+resource_download_route_probe_non_raw_html_rows,0,Rows returning non-raw HTML without accepted raw payload evidence.
+resource_download_route_probe_empty_or_no_payload_rows,0,Rows returning no body or no accepted payload.
+data_write_gate_status,blocked_no_data_write,The route probe does not save raw files or write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

@@ -264,6 +264,9 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_credentialed_download_handoff_plan.csv", "priority LSMS/ISA credentialed download handoff plan"),
     ("dataset_promotion", "temp/priority_lsms_isa_credentialed_download_handoff_log.csv", "priority LSMS/ISA credentialed download handoff log"),
     ("dataset_promotion", "result/priority_lsms_isa_credentialed_download_handoff_summary.csv", "priority LSMS/ISA credentialed download handoff summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_resource_download_route_probe.md", "priority LSMS/ISA public resource route probe report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_resource_download_route_probe.csv", "priority LSMS/ISA public resource route probe rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_resource_download_route_probe_summary.csv", "priority LSMS/ISA public resource route probe summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -699,6 +702,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/178_build_priority_lsms_isa_post_download_validation_runner.py", "priority LSMS/ISA post-download validation runner generator"),
     ("reproducibility", "script/179_build_priority_lsms_isa_manual_download_execution_board.py", "priority LSMS/ISA manual download execution board generator"),
     ("reproducibility", "script/180_build_priority_lsms_isa_credentialed_download_handoff.py", "priority LSMS/ISA credentialed download handoff generator"),
+    ("reproducibility", "script/181_probe_priority_lsms_isa_resource_download_routes.py", "priority LSMS/ISA public resource download route probe"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -949,6 +953,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_post_download_validation_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_validation_runner_summary.csv")
     priority_lsms_manual_download_execution_board_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_execution_board_summary.csv")
     priority_lsms_credentialed_download_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_download_handoff_summary.csv")
+    priority_lsms_resource_download_route_probe_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_resource_download_route_probe_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1652,6 +1657,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"mode={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_mode', 'missing')}; rows={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_rows', '0')}; cookie_file={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_cookie_file_present', '0')}; header_file={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_header_file_present', '0')}; attempted={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_request_attempted_rows', '0')}; raw_payload={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_raw_payload_detected_rows', '0')}; saved={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_saved_raw_file_rows', '0')}; missing_session={csv_value(priority_lsms_credentialed_download_handoff_summary, 'credentialed_download_handoff_missing_session_rows', '0')}; modeling_gate={csv_value(priority_lsms_credentialed_download_handoff_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_credentialed_download_handoff_plan.csv", TEMP_DIR / "priority_lsms_isa_credentialed_download_handoff_log.csv", RESULT_DIR / "priority_lsms_isa_credentialed_download_handoff_summary.csv", REPORT_DIR / "priority_lsms_isa_credentialed_download_handoff.md"],
         "Credentialed download handoff can use local-only World Bank cookies or headers to probe and explicitly execute official get-microdata downloads after login and terms acceptance.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_resource_download_route_probe",
+        "resource_download_routes_no_public_raw_payload"
+        if csv_value(priority_lsms_resource_download_route_probe_summary, "resource_download_route_probe_datasets", "0") == "10"
+        and csv_value(priority_lsms_resource_download_route_probe_summary, "resource_download_route_probe_raw_payload_candidate_rows", "1") == "0"
+        and csv_value(priority_lsms_resource_download_route_probe_summary, "data_write_gate_status", "missing") == "blocked_no_data_write"
+        else "resource_download_route_probe_needs_review",
+        f"datasets={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_datasets', '0')}; sampled_files={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_sampled_files', '0')}; route_rows={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_route_rows', '0')}; raw_payload={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_raw_payload_candidate_rows', '0')}; access_gate={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_access_gate_rows', '0')}; data_dictionary_html={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_data_dictionary_html_rows', '0')}; http_error={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_http_error_rows', '0')}; request_failed={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_request_failed_rows', '0')}; modeling_gate={csv_value(priority_lsms_resource_download_route_probe_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_resource_download_route_probe.csv", RESULT_DIR / "priority_lsms_isa_resource_download_route_probe_summary.csv", REPORT_DIR / "priority_lsms_isa_resource_download_route_probe.md"],
+        "Resource download route probe checks common World Bank file-id/data-dictionary routes for the 10 manual packets without cookies, raw saves, or data writes.",
     )
     add_bundle(
         rows,

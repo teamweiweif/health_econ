@@ -165,6 +165,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_post_download_validation_runner.md",
     "priority_lsms_isa_manual_download_execution_board.md",
     "priority_lsms_isa_credentialed_download_handoff.md",
+    "priority_lsms_isa_resource_download_route_probe.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -351,6 +352,7 @@ REQUIRED_SCRIPTS = [
     "178_build_priority_lsms_isa_post_download_validation_runner.py",
     "179_build_priority_lsms_isa_manual_download_execution_board.py",
     "180_build_priority_lsms_isa_credentialed_download_handoff.py",
+    "181_probe_priority_lsms_isa_resource_download_routes.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -368,6 +370,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "178_build_priority_lsms_isa_post_download_validation_runner.py",
     "179_build_priority_lsms_isa_manual_download_execution_board.py",
     "180_build_priority_lsms_isa_credentialed_download_handoff.py",
+    "181_probe_priority_lsms_isa_resource_download_routes.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -511,7 +514,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-180 dataset-promotion gate chain",
+        "One-command runners include the current 157-181 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -930,6 +933,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_credentialed_download_handoff_plan": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_download_handoff_plan.csv"),
         "priority_lsms_isa_credentialed_download_handoff_log": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_download_handoff_log.csv"),
         "priority_lsms_isa_credentialed_download_handoff_summary": row_count(RESULT_DIR / "priority_lsms_isa_credentialed_download_handoff_summary.csv"),
+        "priority_lsms_isa_resource_download_route_probe": row_count(TEMP_DIR / "priority_lsms_isa_resource_download_route_probe.csv"),
+        "priority_lsms_isa_resource_download_route_probe_summary": row_count(RESULT_DIR / "priority_lsms_isa_resource_download_route_probe_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5582,6 +5587,42 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_credentialed_handoff_gate_ok),
         f"plan_rows={counts['priority_lsms_isa_credentialed_download_handoff_plan']}; log_rows={counts['priority_lsms_isa_credentialed_download_handoff_log']}; summary_rows={counts['priority_lsms_isa_credentialed_download_handoff_summary']}; mode={priority_lsms_credentialed_handoff_mode}; rows={priority_lsms_credentialed_handoff_rows}; cookie_file={priority_lsms_credentialed_handoff_cookie}; header_file={priority_lsms_credentialed_handoff_header}; attempted={priority_lsms_credentialed_handoff_attempted}; raw_payload={priority_lsms_credentialed_handoff_raw_payload}; saved={priority_lsms_credentialed_handoff_saved}; missing_session={priority_lsms_credentialed_handoff_missing_session}; data_write={priority_lsms_credentialed_handoff_data_write}; modeling_gate={priority_lsms_credentialed_handoff_modeling}",
         "" if priority_lsms_credentialed_handoff_gate_ok else "Run script/180_build_priority_lsms_isa_credentialed_download_handoff.py in dry-run mode unless a local session is intentionally provided for --probe or --execute.",
+    )
+    priority_lsms_resource_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_resource_download_route_probe_summary.csv")
+    priority_lsms_resource_route_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_datasets"), "0"), 0)
+    priority_lsms_resource_route_files = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_sampled_files"), "0"), 0)
+    priority_lsms_resource_route_routes = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_route_rows"), "0"), 0)
+    priority_lsms_resource_route_attempted = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_request_attempted_rows"), "0"), 0)
+    priority_lsms_resource_route_raw = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_raw_payload_candidate_rows"), "0"), 0)
+    priority_lsms_resource_route_access = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_access_gate_rows"), "0"), 0)
+    priority_lsms_resource_route_dictionary = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_data_dictionary_html_rows"), "0"), 0)
+    priority_lsms_resource_route_http_error = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_http_error_rows"), "0"), 0)
+    priority_lsms_resource_route_failed = safe_int(next((row.get("value", "0") for row in priority_lsms_resource_route_summary if row.get("metric") == "resource_download_route_probe_request_failed_rows"), "0"), 0)
+    priority_lsms_resource_route_data_write = next((row.get("value", "") for row in priority_lsms_resource_route_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_resource_route_modeling = next((row.get("value", "") for row in priority_lsms_resource_route_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_resource_route_gate_ok = (
+        counts["priority_lsms_isa_resource_download_route_probe_summary"] > 0
+        and counts["priority_lsms_isa_resource_download_route_probe"] == priority_lsms_resource_route_routes
+        and file_ok(REPORT_DIR / "priority_lsms_isa_resource_download_route_probe.md")
+        and priority_lsms_resource_route_datasets == priority_lsms_manual_execution_rows
+        and priority_lsms_resource_route_files >= priority_lsms_resource_route_datasets
+        and priority_lsms_resource_route_routes > 0
+        and priority_lsms_resource_route_attempted == priority_lsms_resource_route_routes
+        and priority_lsms_resource_route_raw == 0
+        and priority_lsms_resource_route_failed == 0
+        and priority_lsms_resource_route_access >= 0
+        and priority_lsms_resource_route_dictionary >= 0
+        and priority_lsms_resource_route_http_error >= 0
+        and priority_lsms_resource_route_data_write == "blocked_no_data_write"
+        and priority_lsms_resource_route_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA resource route probe checks public file-id routes without saving raw payloads",
+        status(priority_lsms_resource_route_gate_ok),
+        f"route_rows={counts['priority_lsms_isa_resource_download_route_probe']}; summary_rows={counts['priority_lsms_isa_resource_download_route_probe_summary']}; datasets={priority_lsms_resource_route_datasets}; sampled_files={priority_lsms_resource_route_files}; attempted={priority_lsms_resource_route_attempted}; raw_payload={priority_lsms_resource_route_raw}; access_gate={priority_lsms_resource_route_access}; data_dictionary_html={priority_lsms_resource_route_dictionary}; http_error={priority_lsms_resource_route_http_error}; request_failed={priority_lsms_resource_route_failed}; data_write={priority_lsms_resource_route_data_write}; modeling_gate={priority_lsms_resource_route_modeling}",
+        "" if priority_lsms_resource_route_gate_ok else "Run script/181_probe_priority_lsms_isa_resource_download_routes.py after the manual download execution board is current and network is available.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)
