@@ -51,9 +51,11 @@ data gates.
    - Manifest of local target-folder README files written under ignored `temp/raw_downloads/<IDNO>/`.
 18. `report/priority_lsms_isa_minimum_batch_raw_value_queue.md`
    - Requirement, file, and variable raw-value review queue for the 10 manual packets.
-19. `report/priority_lsms_isa_country_wave_promotion_packets/`
+19. `report/priority_lsms_isa_target_folder_receipt_smoke_test.md`
+   - Non-destructive smoke test showing whether target folders contain candidate raw files ready for receipt validation.
+20. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-20. `report/mwi2004_requirement_acceptance_decisions.md`
+21. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -102,6 +104,7 @@ resume, read:
 - `report/priority_lsms_isa_download_acceptance_matrix.md`
 - `report/priority_lsms_isa_local_target_readmes.md`
 - `report/priority_lsms_isa_minimum_batch_raw_value_queue.md`
+- `report/priority_lsms_isa_target_folder_receipt_smoke_test.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -151,6 +154,12 @@ To refresh the 10-packet raw-value review queue after package placement, run:
 
 ```bash
 python script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py
+```
+
+To smoke-test known target folders before receipt/schema/value validation, run:
+
+```bash
+python script/185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py
 ```
 
 ## Excluded From GitHub

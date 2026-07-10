@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+priority_lsms_target_smoke_dataset_rows,10,Manual-download packet target folders audited by the receipt smoke test.
+priority_lsms_target_smoke_target_folders_present,10,Target folders currently present under temp/raw_downloads.
+priority_lsms_target_smoke_file_inventory_rows,312,"Files found under the target folders, including generated instructions."
+priority_lsms_target_smoke_placeholder_instruction_rows,312,Generated readmes or instruction files that do not count as raw receipt.
+priority_lsms_target_smoke_candidate_raw_file_rows,0,Non-placeholder files with raw data or archive extensions.
+priority_lsms_target_smoke_candidate_documentation_file_rows,0,Non-placeholder files with documentation extensions.
+priority_lsms_target_smoke_ready_for_receipt_validation_rows,0,Target folders with candidate raw files matching expected/core filenames.
+priority_lsms_target_smoke_blocked_no_candidate_raw_rows,10,Target folders that still contain no candidate raw or documentation files.
+priority_lsms_target_smoke_documentation_only_rows,0,Target folders with documentation but no candidate raw files.
+priority_lsms_target_smoke_manual_review_rows,0,Target folders with candidate raw files that need manual identity review before receipt validation.
+priority_lsms_target_smoke_expected_name_match_rows,0,Target folders with at least one expected filename match.
+priority_lsms_target_smoke_core_name_match_rows,0,Target folders with at least one core expected filename match.
+priority_lsms_target_smoke_data_write_status,blocked_no_data_write,Receipt smoke testing never writes promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

@@ -279,6 +279,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_raw_value_variable_queue.csv", "priority LSMS/ISA minimum-batch variable raw-value queue"),
     ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_raw_value_file_queue.csv", "priority LSMS/ISA minimum-batch file raw-value queue"),
     ("dataset_promotion", "result/priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv", "priority LSMS/ISA minimum-batch raw-value queue summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_target_folder_receipt_smoke_test.md", "priority LSMS/ISA target-folder receipt smoke-test report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_target_folder_receipt_status.csv", "priority LSMS/ISA target-folder receipt status"),
+    ("dataset_promotion", "temp/priority_lsms_isa_target_folder_receipt_file_inventory.csv", "priority LSMS/ISA target-folder receipt file inventory"),
+    ("dataset_promotion", "result/priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv", "priority LSMS/ISA target-folder receipt smoke-test summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -718,6 +722,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/182_build_priority_lsms_isa_download_acceptance_matrix.py", "priority LSMS/ISA download acceptance matrix generator"),
     ("reproducibility", "script/183_build_priority_lsms_isa_local_target_readmes.py", "priority LSMS/ISA local target readme generator"),
     ("reproducibility", "script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py", "priority LSMS/ISA minimum-batch raw-value queue generator"),
+    ("reproducibility", "script/185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py", "priority LSMS/ISA target-folder receipt smoke-test generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -972,6 +977,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_download_acceptance_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_download_acceptance_matrix_summary.csv")
     priority_lsms_local_target_readme_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_target_readme_summary.csv")
     priority_lsms_minimum_batch_raw_value_queue_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv")
+    priority_lsms_target_folder_smoke_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1727,6 +1733,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_dataset_rows', '0')}; requirements={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_requirement_rows', '0')}; variables={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_variable_rows', '0')}; files={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_file_rows', '0')}; blocked_requirements={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_blocked_requirement_rows', '0')}; ready_requirements={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_ready_requirement_rows', '0')}; target_readmes={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_local_target_readmes', '0')}; modeling_gate={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_requirement_queue.csv", TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_variable_queue.csv", TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_file_queue.csv", RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv", REPORT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue.md"],
         "Minimum-batch raw-value queue narrows the full 19-wave workbook to the 10 manual-download packets so receipt can move straight into requirement, file, and variable review.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_target_folder_receipt_smoke_test",
+        "target_folder_receipt_smoke_current"
+        if csv_value(priority_lsms_target_folder_smoke_summary, "priority_lsms_target_smoke_dataset_rows", "0") == "10"
+        and csv_value(priority_lsms_target_folder_smoke_summary, "priority_lsms_target_smoke_data_write_status", "missing") == "blocked_no_data_write"
+        else "target_folder_receipt_smoke_needs_review",
+        f"datasets={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_dataset_rows', '0')}; target_folders_present={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_target_folders_present', '0')}; files={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_file_inventory_rows', '0')}; placeholders={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_placeholder_instruction_rows', '0')}; candidate_raw_files={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_candidate_raw_file_rows', '0')}; candidate_docs={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_candidate_documentation_file_rows', '0')}; ready_for_receipt={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_ready_for_receipt_validation_rows', '0')}; blocked_no_candidate_raw={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_blocked_no_candidate_raw_rows', '0')}; manual_review={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_manual_review_rows', '0')}; modeling_gate={csv_value(priority_lsms_target_folder_smoke_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_target_folder_receipt_status.csv", TEMP_DIR / "priority_lsms_isa_target_folder_receipt_file_inventory.csv", RESULT_DIR / "priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv", REPORT_DIR / "priority_lsms_isa_target_folder_receipt_smoke_test.md"],
+        "Target-folder receipt smoke test separates generated instructions from real candidate raw packages in the 10 minimum-batch folders before receipt/schema/value validation.",
     )
     add_bundle(
         rows,
