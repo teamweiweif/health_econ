@@ -61,7 +61,9 @@ data gates.
    - Non-destructive local workspace scan for already-downloaded raw packages outside the expected target folders.
 23. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-24. `report/mwi2004_requirement_acceptance_decisions.md`
+24. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
+   - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
+25. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -91,6 +93,7 @@ Verified or partially accepted:
 Still blocked:
 
 - SDG 3.8.2 discretionary-budget construction.
+- SDG 3.8.2 now has a focused parameter audit, but the 2017 PPP conversion, CPI/deflator bridge, and local-currency SPL are not yet verified.
 - Multi-country promoted dataset synthesis.
 - All additional country-waves until complete official raw packages pass receipt, value, semantics, timing/geography, and climate-linkage gates.
 

@@ -49,8 +49,10 @@ Malawi 2004 is the current raw-backed audit row. CHE10/CHE25 financial inputs an
 cost-barrier forgone-care/access inputs have been verified for their stated
 scope. Survey timing and admin/EA geography are verified for the accepted
 CHIRPS ADM2 linkage route, and a promoted household-climate dataset exists for
-this one country-wave. SDG 3.8.2 and multi-country dataset synthesis remain
-blocked until additional raw packages pass the same gates.
+this one country-wave. SDG 3.8.2 has a focused discretionary-budget parameter
+audit but remains blocked until 2017 PPP, CPI/deflator, and SPL parameters are
+verified. Multi-country dataset synthesis remains blocked until additional raw
+packages pass the same gates.
 
 Albania remains a diagnostic template only. It is not the main empirical case
 unless its timing, geography, and outcome gates are resolved.

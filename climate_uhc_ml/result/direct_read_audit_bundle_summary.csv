@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,183,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,808,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,804,Curated artifacts present and non-empty.
+bundle_rows,184,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,812,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,808,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -42,6 +42,9 @@ mwi2004_financial_policy_household_rows,11280,Household rows with verified finan
 mwi2004_financial_policy_che10_rows,208,Candidate CHE10 rows from accepted financial inputs.
 mwi2004_financial_policy_che25_rows,17,Candidate CHE25 rows from accepted financial inputs.
 mwi2004_financial_policy_sdg382_ready,0,Whether SDG 3.8.2 is ready; should remain zero.
+mwi2004_sdg382_parameter_internal_inputs_complete,1,"Whether Malawi 2004 has raw OOP, consumption, household size, and weights needed before parameterizing current SDG 3.8.2."
+mwi2004_sdg382_parameter_external_ppp_cpi_verified,0,Whether 2017 PPP and CPI/deflator parameters have been frozen for Malawi 2004 SDG 3.8.2.
+mwi2004_sdg382_parameter_sdg382_ready,0,Current Malawi 2004 SDG 3.8.2 readiness under the 2026 discretionary-budget metadata.
 mwi2004_timing_geography_policy_status,raw_timing_admin_ea_geography_verified_climate_route_blocked,Malawi 2004 timing/geography raw-value policy status.
 mwi2004_timing_geography_idate_rows,11280,Rows with verified raw household interview date.
 mwi2004_timing_geography_months,13,Distinct interview months for climate-window anchoring.
@@ -580,7 +583,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,74,Direct-read bundle section count.
+bundle_section_priority_bundle,75,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -695,6 +698,7 @@ bundle_status_mwi2004_health_exceptions_unresolved,1,Direct-read bundle status c
 bundle_status_mwi2004_missing_units_recall_skip_verified,1,Direct-read bundle status count.
 bundle_status_mwi2004_promoted_household_climate_dataset_ready,1,Direct-read bundle status count.
 bundle_status_mwi2004_raw_backed_evidence_ready_not_final_verified,1,Direct-read bundle status count.
+bundle_status_mwi2004_sdg382_internal_inputs_ready_external_parameters_blocked,1,Direct-read bundle status count.
 bundle_status_mwi2004_timing_admin_ea_verified_climate_route_blocked,1,Direct-read bundle status count.
 bundle_status_not_available,1,Direct-read bundle status count.
 bundle_status_not_final_outcomes_outcome_semantics_climate_crosswalk_blocked,1,Direct-read bundle status count.

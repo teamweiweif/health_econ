@@ -173,6 +173,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_threshold_replacement_plan.md",
     "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md",
     "priority_lsms_isa_local_stray_raw_package_locator.md",
+    "mwi2004_sdg382_discretionary_budget_parameter_audit.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -350,6 +351,7 @@ REQUIRED_SCRIPTS = [
     "169_build_mwi2004_chirps_admin2_route_policy.py",
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
+    "189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
@@ -376,6 +378,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "169_build_mwi2004_chirps_admin2_route_policy.py",
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
+    "189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
     "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
@@ -535,7 +538,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-188 dataset-promotion gate chain",
+        "One-command runners include the current 157-189 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -932,6 +935,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "mwi2004_promoted_household_climate_dataset_summary": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv"),
         "mwi2004_promoted_household_climate_dataset_dictionary": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_dictionary.csv"),
         "mwi2004_promoted_household_climate_dataset_validation": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_validation.csv"),
+        "mwi2004_sdg382_discretionary_budget_parameter_audit": row_count(RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_audit.csv"),
+        "mwi2004_sdg382_discretionary_budget_parameter_summary": row_count(RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_summary.csv"),
         "priority_lsms_isa_next_raw_package_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv"),
         "priority_lsms_isa_next_raw_package_core_files": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv"),
         "priority_lsms_isa_next_raw_package_action_summary": row_count(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv"),
@@ -6126,6 +6131,34 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(mwi2004_promoted_ok),
         f"summary_rows={counts['mwi2004_promoted_household_climate_dataset_summary']}; dictionary_rows={counts['mwi2004_promoted_household_climate_dataset_dictionary']}; validation_rows={counts['mwi2004_promoted_household_climate_dataset_validation']}; status={mwi2004_promoted_status}; rows={mwi2004_promoted_rows}; validation_fail={mwi2004_promoted_validation_fail}; data_exists={(DATA_DIR / 'mwi2004_household_climate_analysis.csv').exists()}",
         "" if mwi2004_promoted_ok else "Run script/171_build_mwi2004_promoted_household_climate_dataset.py after Malawi financial/access/missing-unit and CHIRPS gates pass.",
+    )
+    mwi2004_sdg382_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_summary.csv")
+    mwi2004_sdg382_rows = safe_int(next((row.get("value", "0") for row in mwi2004_sdg382_summary if row.get("metric") == "household_rows_with_internal_sdg382_inputs"), "0"), 0)
+    mwi2004_sdg382_internal_ready = next((row.get("value", "") for row in mwi2004_sdg382_summary if row.get("metric") == "raw_internal_sdg382_inputs_complete"), "")
+    mwi2004_sdg382_ppp_cpi = next((row.get("value", "") for row in mwi2004_sdg382_summary if row.get("metric") == "external_ppp_cpi_parameters_verified"), "")
+    mwi2004_sdg382_spl = next((row.get("value", "") for row in mwi2004_sdg382_summary if row.get("metric") == "spl_local_currency_verified"), "")
+    mwi2004_sdg382_ready = next((row.get("value", "") for row in mwi2004_sdg382_summary if row.get("metric") == "sdg382_ready"), "")
+    mwi2004_sdg382_data_write = next((row.get("value", "") for row in mwi2004_sdg382_summary if row.get("metric") == "data_write_gate_status"), "")
+    mwi2004_sdg382_modeling = next((row.get("value", "") for row in mwi2004_sdg382_summary if row.get("metric") == "modeling_gate_status"), "")
+    mwi2004_sdg382_gate_ok = (
+        counts["mwi2004_sdg382_discretionary_budget_parameter_summary"] > 0
+        and counts["mwi2004_sdg382_discretionary_budget_parameter_audit"] >= 10
+        and file_ok(REPORT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_audit.md")
+        and mwi2004_sdg382_rows == mwi2004_promoted_rows
+        and mwi2004_sdg382_internal_ready == "1"
+        and mwi2004_sdg382_ppp_cpi == "0"
+        and mwi2004_sdg382_spl == "0"
+        and mwi2004_sdg382_ready == "0"
+        and mwi2004_sdg382_data_write == "closed"
+        and mwi2004_sdg382_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Malawi 2004 SDG 3.8.2 parameter audit verifies internal raw inputs and keeps discretionary-budget gate fail-closed",
+        status(mwi2004_sdg382_gate_ok),
+        f"audit_rows={counts['mwi2004_sdg382_discretionary_budget_parameter_audit']}; summary_rows={counts['mwi2004_sdg382_discretionary_budget_parameter_summary']}; internal_rows={mwi2004_sdg382_rows}; internal_ready={mwi2004_sdg382_internal_ready}; ppp_cpi_verified={mwi2004_sdg382_ppp_cpi}; spl_verified={mwi2004_sdg382_spl}; sdg382_ready={mwi2004_sdg382_ready}; data_write={mwi2004_sdg382_data_write}; modeling_gate={mwi2004_sdg382_modeling}",
+        "" if mwi2004_sdg382_gate_ok else "Run script/189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py after Malawi financial inputs are current.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

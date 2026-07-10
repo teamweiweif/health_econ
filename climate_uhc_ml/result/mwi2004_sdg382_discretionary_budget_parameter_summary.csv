@@ -1,0 +1,19 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by the SDG 3.8.2 parameter audit.
+official_metadata_url,https://unstats.un.org/sdgs/metadata/files/Metadata-03-08-02.pdf,Official UNSD SDG metadata PDF used for current indicator definition.
+official_metadata_last_update,2026-03-27,Last update date recorded in the official SDG 3.8.2 metadata.
+official_sdg382_series,SH_OOP_XPD_EARNNET40,Official SDG 3.8.2 series code in the current metadata.
+official_threshold_discretionary_budget,0.40,OOP health expenditure threshold over household discretionary budget.
+household_rows_with_internal_sdg382_inputs,11280,"Rows with case_id, positive weight, positive household size, positive total consumption, and nonmissing OOP."
+positive_oop_household_rows,7765,Households with positive OOP health expenditure; official numerator requires positive OOP.
+weighted_population_internal_universe,1.23285e+07,Population-weighted denominator before final SDG 3.8.2 parameterization.
+weighted_median_daily_total_consumption_pc_raw,42.6362,Diagnostic raw-currency daily per-capita median total consumption.
+weighted_median_daily_consumption_excluding_oop_pc_raw,41.9651,Diagnostic raw-currency median needed for the relative SPL formula after PPP/CPI conversion.
+survey_povline_rows,11280,Rows with survey poverty-line context; not the final official 2026 SPL by itself.
+price_index_rows,11280,Rows with survey spatial/temporal price index context.
+raw_internal_sdg382_inputs_complete,1,"OOP, total consumption, household size, and population weights are present for the internal SDG 3.8.2 frame."
+external_ppp_cpi_parameters_verified,0,Official 2017 PPP and CPI/deflator bridge have not been frozen in project artifacts.
+spl_local_currency_verified,0,Societal poverty line in Malawi survey local currency is not yet accepted.
+sdg382_ready,0,SDG 3.8.2 remains blocked by external parameter and SPL verification.
+data_write_gate_status,closed,This audit writes no promoted data and does not alter the existing promoted Malawi dataset.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened by this parameter audit."
