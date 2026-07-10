@@ -118,6 +118,16 @@ Next blocking action: `complete_raw_value_key_unit_verification`
 | climate_geography | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
 | missing_codes_units_recall_skip_patterns | raw_review_required | ready_for_schema_and_manual_requirement_review |
 
+## Household Join Readiness
+
+| best_base_file | consumption_or_income | weights_and_design | oop_health_expenditure | health_need_and_access | survey_timing | climate_geography | complete_join_path | status | remaining_blockers |
+|---|---|---|---|---|---|---|---|---|---|
+| TZY2.HH.Consumption.dta | 1 | 1 | 1 | 1 | 1 | 1 | 1 | household_join_path_ready_value_verification_and_climate_blocked | raw_value_verification_still_requires_reviewer_acceptance; climate_exposure_route_not_accepted_for_this_wave |
+
+This join audit is raw-backed structural evidence only. It does not verify raw
+values, accept climate linkage, write to `data/`, or open modeling.
+
+
 ## Stop Rule
 
 This packet is a promotion-control artifact, not an analysis dataset. Do not

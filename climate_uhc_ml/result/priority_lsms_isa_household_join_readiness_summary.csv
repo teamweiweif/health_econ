@@ -1,11 +1,11 @@
 ﻿metric,value,interpretation
-priority_lsms_household_join_dataset_rows,2,Received raw country-waves included in household join readiness audit.
-priority_lsms_household_join_file_audit_rows,11,Core component files audited for household keys and required variables.
-priority_lsms_household_join_pair_audit_rows,14,Base-to-component household join coverage rows.
-priority_lsms_household_join_complete_join_path_rows,2,Country-waves with all required modules join-ready at household level.
+priority_lsms_household_join_dataset_rows,3,Received raw country-waves included in household join readiness audit.
+priority_lsms_household_join_file_audit_rows,15,Core component files audited for household keys and required variables.
+priority_lsms_household_join_pair_audit_rows,17,Base-to-component household join coverage rows.
+priority_lsms_household_join_complete_join_path_rows,3,Country-waves with all required modules join-ready at household level.
 priority_lsms_household_join_raw_value_verified_rows,0,Focused requirements already accepted as raw-value verified; should remain zero until reviewer acceptance.
 priority_lsms_household_join_data_write_status,blocked_join_audit_only,Household join readiness audit does not write promoted data.
 modeling_gate_status,blocked,Models remain blocked until promoted registry thresholds and accepted climate linkage pass.
-priority_lsms_household_join_component_status_household_level_component_ready_for_join_audit,9,Core file component status count.
-priority_lsms_household_join_component_status_person_or_item_level_component_ready_for_household_aggregation_review,2,Core file component status count.
-priority_lsms_household_join_pair_status_join_ready_ge95_base_coverage,14,Household join pair status count.
+priority_lsms_household_join_component_status_household_level_component_ready_for_join_audit,12,Core file component status count.
+priority_lsms_household_join_component_status_person_or_item_level_component_ready_for_household_aggregation_review,3,Core file component status count.
+priority_lsms_household_join_pair_status_join_ready_ge95_base_coverage,17,Household join pair status count.

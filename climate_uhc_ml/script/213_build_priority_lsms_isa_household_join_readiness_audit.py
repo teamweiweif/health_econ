@@ -241,6 +241,66 @@ WAVE_CONFIGS: dict[str, dict[str, Any]] = {
             "household_person_keys": ["consumption_aggregate", "household_header_timing_design", "health_access_oop", "climate_geography", "panel_weights"],
         },
     },
+    "TZA_2010_NPS-R2_v03_M": {
+        "key": "y2_hhid",
+        "base_components": ["consumption_aggregate"],
+        "components": [
+            {
+                "component": "consumption_aggregate",
+                "role": "consumption_or_income;oop_health_expenditure;weights_and_design;survey_timing;climate_geography",
+                "file": "TZY2.HH.Consumption.dta",
+                "key": "y2_hhid",
+                "person_key": "",
+                "required": ["y2_hhid", "expm", "expmR", "health", "healthR", "hhweight", "strata", "region", "intmonth", "intyear"],
+            },
+            {
+                "component": "household_header_timing_design",
+                "role": "survey_timing;weights_and_design;climate_geography",
+                "file": "HH_SEC_A.dta",
+                "key": "y2_hhid",
+                "person_key": "",
+                "required": ["y2_hhid", "y2_weight", "clusterid", "strataid", "region", "district", "ward", "ea", "hh_a18_month", "hh_a18_year"],
+            },
+            {
+                "component": "health_access_oop",
+                "role": "health_need_and_access;oop_health_expenditure",
+                "file": "HH_SEC_D.dta",
+                "key": "y2_hhid",
+                "person_key": "",
+                "required": [
+                    "y2_hhid",
+                    "hh_d02",
+                    "hh_d05_1",
+                    "hh_d05_2",
+                    "hh_d07",
+                    "hh_d08",
+                    "hh_d09",
+                    "hh_d10",
+                    "hh_d13",
+                    "hh_d15",
+                    "hh_d43",
+                    "hh_d48",
+                ],
+            },
+            {
+                "component": "climate_geography",
+                "role": "climate_geography",
+                "file": "HH.Geovariables_Y2.dta",
+                "key": "y2_hhid",
+                "person_key": "",
+                "required": ["y2_hhid", "ea_id", "lat_modified", "lon_modified"],
+            },
+        ],
+        "role_components": {
+            "consumption_or_income": ["consumption_aggregate"],
+            "weights_and_design": ["consumption_aggregate", "household_header_timing_design"],
+            "oop_health_expenditure": ["consumption_aggregate", "health_access_oop"],
+            "health_need_and_access": ["health_access_oop"],
+            "survey_timing": ["consumption_aggregate", "household_header_timing_design"],
+            "climate_geography": ["consumption_aggregate", "household_header_timing_design", "climate_geography"],
+            "household_person_keys": ["consumption_aggregate", "household_header_timing_design", "health_access_oop", "climate_geography"],
+        },
+    },
 }
 
 
@@ -591,9 +651,10 @@ def write_report(
     REPORT_PATH.write_text(
         f"""# Priority LSMS-ISA Household Join Readiness Audit
 
-Status: raw-backed household join audit for the received Nigeria 2015 and
-Tanzania 2012 LSMS/ISA packages. This is a promotion-control artifact; it does
-not write to `data/` and does not mark any requirement as value-verified.
+Status: raw-backed household join audit for the received Nigeria 2015,
+Tanzania 2010, and Tanzania 2012 LSMS/ISA packages. This is a
+promotion-control artifact; it does not write to `data/` and does not mark any
+requirement as value-verified.
 
 ## Summary
 

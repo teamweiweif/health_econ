@@ -5319,10 +5319,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["priority_lsms_isa_household_join_readiness"] == priority_lsms_join_datasets
         and counts["priority_lsms_isa_household_join_readiness_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_household_join_readiness_audit.md")
-        and priority_lsms_join_datasets == 2
-        and priority_lsms_join_files == 11
-        and priority_lsms_join_pairs == 14
-        and priority_lsms_join_complete == 2
+        and priority_lsms_join_datasets == 3
+        and priority_lsms_join_files == 15
+        and priority_lsms_join_pairs == 17
+        and priority_lsms_join_complete == 3
         and priority_lsms_join_verified == 0
         and priority_lsms_join_data_write == "blocked_join_audit_only"
         and priority_lsms_join_modeling_gate == "blocked"

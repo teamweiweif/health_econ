@@ -49,10 +49,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_focused_raw_value_variable_decision_rows | 366 | Variable-level focused raw value decision rows. |
 | priority_lsms_isa_focused_raw_value_requirement_decision_rows | 14 | Requirement-level focused raw value decision rows. |
 | priority_lsms_isa_focused_raw_value_verified_rows | 0 | Focused decision packet remains fail-closed and should be zero until reviewer acceptance exists. |
-| priority_lsms_isa_household_join_dataset_rows | 2 | Received LSMS/ISA country-waves included in household join readiness audit. |
-| priority_lsms_isa_household_join_file_audit_rows | 11 | Core raw files audited for household keys and required fields. |
-| priority_lsms_isa_household_join_pair_audit_rows | 14 | Base-to-component join coverage checks. |
-| priority_lsms_isa_household_join_complete_path_rows | 2 | Country-waves with all required household join paths ready for manual value/climate review. |
+| priority_lsms_isa_household_join_dataset_rows | 3 | Received LSMS/ISA country-waves included in household join readiness audit. |
+| priority_lsms_isa_household_join_file_audit_rows | 15 | Core raw files audited for household keys and required fields. |
+| priority_lsms_isa_household_join_pair_audit_rows | 17 | Base-to-component join coverage checks. |
+| priority_lsms_isa_household_join_complete_path_rows | 3 | Country-waves with all required household join paths ready for manual value/climate review. |
 | priority_lsms_isa_household_join_raw_value_verified_rows | 0 | Raw-value-verified rows should remain zero until reviewer acceptance exists. |
 | mwi2004_raw_requirement_verification_requirements | 8 | Malawi 2004 promotion requirements with focused raw-backed verification evidence. |
 | mwi2004_raw_requirement_verification_key_or_join_checks | 10/11 | Malawi 2004 mechanical uniqueness and join checks passing in focused raw review. |

@@ -9,6 +9,9 @@
 5,core_selected_lsms_isa_aligned,Nigeria,2015-2016,NGA_2015_GHSP-W3_v02_M,consumption_visit2,cons_agg_wave3_visit2.dta,survey_timing,secta_harvestw3.dta,4579,4592,4579,1.000000,0.997169,join_ready_ge95_base_coverage
 5,core_selected_lsms_isa_aligned,Nigeria,2015-2016,NGA_2015_GHSP-W3_v02_M,consumption_visit2,cons_agg_wave3_visit2.dta,climate_geography,NGA_HouseholdGeovars_Y3.dta,4579,4613,4579,1.000000,0.992630,join_ready_ge95_base_coverage
 5,core_selected_lsms_isa_aligned,Nigeria,2015-2016,NGA_2015_GHSP-W3_v02_M,consumption_visit2,cons_agg_wave3_visit2.dta,panel_weights,HHTrack.dta,4579,5000,4579,1.000000,0.915800,join_ready_ge95_base_coverage
+8,core_selected_lsms_isa_aligned,Tanzania,2010-2011,TZA_2010_NPS-R2_v03_M,consumption_aggregate,TZY2.HH.Consumption.dta,household_header_timing_design,HH_SEC_A.dta,3846,3924,3846,1.000000,0.980122,join_ready_ge95_base_coverage
+8,core_selected_lsms_isa_aligned,Tanzania,2010-2011,TZA_2010_NPS-R2_v03_M,consumption_aggregate,TZY2.HH.Consumption.dta,health_access_oop,HH_SEC_D.dta,3846,3924,3846,1.000000,0.980122,join_ready_ge95_base_coverage
+8,core_selected_lsms_isa_aligned,Tanzania,2010-2011,TZA_2010_NPS-R2_v03_M,consumption_aggregate,TZY2.HH.Consumption.dta,climate_geography,HH.Geovariables_Y2.dta,3846,3917,3839,0.998180,0.980087,join_ready_ge95_base_coverage
 9,core_selected_lsms_isa_aligned,Tanzania,2012-2013,TZA_2012_NPS-R3_v01_M,consumption_aggregate,ConsumptionNPS3.dta,household_header_timing_design,HH_SEC_A.dta,4883,5010,4883,1.000000,0.974651,join_ready_ge95_base_coverage
 9,core_selected_lsms_isa_aligned,Tanzania,2012-2013,TZA_2012_NPS-R3_v01_M,consumption_aggregate,ConsumptionNPS3.dta,health_access_oop,HH_SEC_D.dta,4883,5010,4883,1.000000,0.974651,join_ready_ge95_base_coverage
 9,core_selected_lsms_isa_aligned,Tanzania,2012-2013,TZA_2012_NPS-R3_v01_M,consumption_aggregate,ConsumptionNPS3.dta,climate_geography,HouseholdGeovars_Y3.dta,4883,4988,4862,0.995699,0.974739,join_ready_ge95_base_coverage
