@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 206 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 914 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 910 | Curated artifacts present and non-empty. |
+| bundle_rows | 207 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 920 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 916 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -44,6 +44,11 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_received_raw_semantics_ddi_documented_variable_rows | 0 | Profiled variables matched to official DDI documentation. |
 | priority_lsms_isa_received_raw_semantics_requirement_rows | 16 | Requirement-level semantics review rows. |
 | priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 2 | Documentation-semantics gate rows backed by review evidence. |
+| priority_lsms_isa_focused_raw_value_decision_dataset_rows | 2 | Received raw datasets with focused raw value decision rows. |
+| priority_lsms_isa_focused_raw_value_documentation_file_rows | 4 | Local package PDF documentation files parsed for focused raw value review. |
+| priority_lsms_isa_focused_raw_value_variable_decision_rows | 366 | Variable-level focused raw value decision rows. |
+| priority_lsms_isa_focused_raw_value_requirement_decision_rows | 14 | Requirement-level focused raw value decision rows. |
+| priority_lsms_isa_focused_raw_value_verified_rows | 0 | Focused decision packet remains fail-closed and should be zero until reviewer acceptance exists. |
 | mwi2004_raw_requirement_verification_requirements | 8 | Malawi 2004 promotion requirements with focused raw-backed verification evidence. |
 | mwi2004_raw_requirement_verification_key_or_join_checks | 10/11 | Malawi 2004 mechanical uniqueness and join checks passing in focused raw review. |
 | mwi2004_raw_requirement_verification_decision | not_final_verified | Focused Malawi 2004 decision; it should remain not_final_verified until manual construct and climate-linkage acceptance pass. |
@@ -688,7 +693,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 97 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 98 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -780,6 +785,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_file_level_routes_confirmed_non_public_raw | 1 | Direct-read bundle status count. |
 | bundle_status_first_canary_download_runbook_current_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_first_pass_queue_ready_raw_missing | 1 | Direct-read bundle status count. |
+| bundle_status_focused_raw_value_decision_packet_ready_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_harmonization_value_audit_required | 1 | Direct-read bundle status count. |
 | bundle_status_incoming_router_ready | 1 | Direct-read bundle status count. |
 | bundle_status_incomplete | 1 | Direct-read bundle status count. |
@@ -871,7 +877,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 97 |
+| priority_bundle | 98 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -929,6 +935,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | received_raw_schema_ready_for_manual_value_review | 1 |
 | received_raw_value_profile_ready_for_manual_value_review | 1 |
 | received_raw_semantics_review_ready_for_manual_value_review | 1 |
+| focused_raw_value_decision_packet_ready_fail_closed | 1 |
 | mwi2004_raw_backed_evidence_ready_not_final_verified | 1 |
 | mwi2004_acceptance_decisions_fail_closed | 1 |
 | mwi2004_che10_che25_financial_inputs_verified_sdg_blocked | 1 |
@@ -1097,7 +1104,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 910 |
+| present_nonempty | 916 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

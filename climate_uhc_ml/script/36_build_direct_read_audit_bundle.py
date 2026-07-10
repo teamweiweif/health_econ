@@ -160,6 +160,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_received_raw_semantics_requirement_review.csv", "priority LSMS/ISA received raw requirement semantics review"),
     ("dataset_promotion", "temp/priority_lsms_isa_received_raw_documentation_scope_review.csv", "priority LSMS/ISA received raw documentation scope review"),
     ("dataset_promotion", "result/priority_lsms_isa_received_raw_semantics_review_summary.csv", "priority LSMS/ISA received raw semantics review summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_focused_raw_value_decision_packet.md", "priority LSMS/ISA focused raw value decision packet"),
+    ("dataset_promotion", "temp/priority_lsms_isa_focused_raw_value_documentation_inventory.csv", "priority LSMS/ISA focused raw value documentation inventory"),
+    ("dataset_promotion", "temp/priority_lsms_isa_focused_raw_value_variable_decisions.csv", "priority LSMS/ISA focused raw value variable decisions"),
+    ("dataset_promotion", "result/priority_lsms_isa_requirement_acceptance_decisions.csv", "priority LSMS/ISA focused requirement acceptance decisions"),
+    ("dataset_promotion", "result/priority_lsms_isa_focused_raw_value_decision_summary.csv", "priority LSMS/ISA focused raw value decision summary"),
     ("dataset_promotion", "report/mwi2004_raw_requirement_verification.md", "Malawi 2004 focused raw requirement verification report"),
     ("dataset_promotion", "temp/mwi2004_raw_requirement_evidence.csv", "Malawi 2004 focused requirement-level raw-backed evidence"),
     ("dataset_promotion", "temp/mwi2004_raw_module_join_evidence.csv", "Malawi 2004 focused key and module join evidence"),
@@ -794,6 +799,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/149_build_priority_lsms_isa_raw_value_verification_workbook.py", "priority LSMS/ISA raw value verification workbook generator"),
     ("reproducibility", "script/158_build_priority_lsms_isa_received_raw_value_profile.py", "priority LSMS/ISA received raw value profile generator"),
     ("reproducibility", "script/159_build_priority_lsms_isa_received_raw_semantics_review.py", "priority LSMS/ISA received raw semantics review generator"),
+    ("reproducibility", "script/212_build_priority_lsms_isa_focused_raw_value_decision_packet.py", "priority LSMS/ISA focused raw value decision packet generator"),
     ("reproducibility", "script/160_build_mwi2004_raw_requirement_verification.py", "Malawi 2004 focused raw requirement verification generator"),
     ("reproducibility", "script/161_build_mwi2004_requirement_acceptance_decisions.py", "Malawi 2004 focused requirement acceptance decision generator"),
     ("reproducibility", "script/162_build_mwi2004_health_access_label_skip_decisions.py", "Malawi 2004 health/access label-skip decision generator"),
@@ -1069,6 +1075,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_received_raw_schema_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_schema_audit_summary.csv")
     priority_lsms_received_raw_value_profile_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_value_profile_summary.csv")
     priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
+    priority_lsms_focused_raw_value_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv")
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
@@ -1546,6 +1553,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_dataset_rows', '0')}; variables={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_variable_rows', '0')}; ddi_documented_variables={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_ddi_documented_variable_rows', '0')}; requirements={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_requirement_rows', '0')}; documentation_scope={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_documentation_scope_rows', '0')}; missing_unit_recall_skip_rows={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows', '0')}; raw_verified={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_raw_value_verified_rows', '0')}; data_write={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_received_raw_semantics_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_received_raw_semantics_variable_review.csv", TEMP_DIR / "priority_lsms_isa_received_raw_semantics_requirement_review.csv", TEMP_DIR / "priority_lsms_isa_received_raw_documentation_scope_review.csv", RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv", REPORT_DIR / "priority_lsms_isa_received_raw_semantics_review.md"],
         "Received raw semantics review aligns official DDI/catalog documentation to value profiles for units, recall periods, missing-code, skip-pattern, and merge-level review; it still does not certify raw-value verification or write promoted data.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_focused_raw_value_decision_packet",
+        "focused_raw_value_decision_packet_ready_fail_closed"
+        if csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_requirement_decision_rows", "0") != "0"
+        and csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_requirement_raw_value_verified_rows", "1") == "0"
+        else "focused_raw_value_decision_packet_missing_or_overopened",
+        f"datasets={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_decision_dataset_rows', '0')}; documentation_files={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_documentation_file_rows', '0')}; extracted_docs={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_documentation_extracted_rows', '0')}; variables={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_variable_decision_rows', '0')}; requirements={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_requirement_decision_rows', '0')}; raw_verified={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_requirement_raw_value_verified_rows', 'missing')}; data_write={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_focused_raw_value_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_focused_raw_value_documentation_inventory.csv", TEMP_DIR / "priority_lsms_isa_focused_raw_value_variable_decisions.csv", RESULT_DIR / "priority_lsms_isa_requirement_acceptance_decisions.csv", RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv", REPORT_DIR / "priority_lsms_isa_focused_raw_value_decision_packet.md"],
+        "Focused raw value decision packet crosswalks received raw value profiles against local PDF documentation for Nigeria 2015 and Tanzania 2012, but leaves every requirement blocked until reviewer acceptance.",
     )
     add_bundle(
         rows,
@@ -3157,6 +3176,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_received_raw_schema_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_schema_audit_summary.csv")
     priority_lsms_received_raw_value_profile_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_value_profile_summary.csv")
     priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
+    priority_lsms_focused_raw_value_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv")
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
@@ -3247,6 +3267,11 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_received_raw_semantics_ddi_documented_variable_rows", "value": csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_ddi_documented_variable_rows", "0"), "interpretation": "Profiled variables matched to official DDI documentation."},
         {"metric": "priority_lsms_isa_received_raw_semantics_requirement_rows", "value": csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_requirement_rows", "0"), "interpretation": "Requirement-level semantics review rows."},
         {"metric": "priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows", "value": csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows", "0"), "interpretation": "Documentation-semantics gate rows backed by review evidence."},
+        {"metric": "priority_lsms_isa_focused_raw_value_decision_dataset_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_decision_dataset_rows", "0"), "interpretation": "Received raw datasets with focused raw value decision rows."},
+        {"metric": "priority_lsms_isa_focused_raw_value_documentation_file_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_documentation_file_rows", "0"), "interpretation": "Local package PDF documentation files parsed for focused raw value review."},
+        {"metric": "priority_lsms_isa_focused_raw_value_variable_decision_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_variable_decision_rows", "0"), "interpretation": "Variable-level focused raw value decision rows."},
+        {"metric": "priority_lsms_isa_focused_raw_value_requirement_decision_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_requirement_decision_rows", "0"), "interpretation": "Requirement-level focused raw value decision rows."},
+        {"metric": "priority_lsms_isa_focused_raw_value_verified_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_requirement_raw_value_verified_rows", "0"), "interpretation": "Focused decision packet remains fail-closed and should be zero until reviewer acceptance exists."},
         {"metric": "mwi2004_raw_requirement_verification_requirements", "value": csv_value(mwi2004_raw_requirement_summary, "requirements_with_raw_backed_evidence", "0"), "interpretation": "Malawi 2004 promotion requirements with focused raw-backed verification evidence."},
         {"metric": "mwi2004_raw_requirement_verification_key_or_join_checks", "value": csv_value(mwi2004_raw_requirement_summary, "key_or_join_checks_passing", "0"), "interpretation": "Malawi 2004 mechanical uniqueness and join checks passing in focused raw review."},
         {"metric": "mwi2004_raw_requirement_verification_decision", "value": csv_value(mwi2004_raw_requirement_summary, "raw_value_verification_decision", "missing"), "interpretation": "Focused Malawi 2004 decision; it should remain not_final_verified until manual construct and climate-linkage acceptance pass."},

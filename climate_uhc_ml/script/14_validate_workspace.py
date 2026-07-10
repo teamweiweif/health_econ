@@ -197,6 +197,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_external_local_raw_candidate_audit.md",
     "priority_lsms_isa_external_local_raw_intake_decision.md",
     "priority_lsms_isa_external_local_raw_staging.md",
+    "priority_lsms_isa_focused_raw_value_decision_packet.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -414,11 +415,13 @@ REQUIRED_SCRIPTS = [
     "209_build_priority_lsms_isa_external_local_raw_candidate_audit.py",
     "210_build_priority_lsms_isa_external_local_raw_intake_decision.py",
     "211_stage_priority_lsms_isa_external_local_raw_packages.py",
+    "212_build_priority_lsms_isa_focused_raw_value_decision_packet.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
     "158_build_priority_lsms_isa_received_raw_value_profile.py",
     "159_build_priority_lsms_isa_received_raw_semantics_review.py",
+    "212_build_priority_lsms_isa_focused_raw_value_decision_packet.py",
     "169_build_mwi2004_chirps_admin2_route_policy.py",
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
@@ -964,6 +967,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_raw_value_variable_workbook": row_count(TEMP_DIR / "priority_lsms_isa_raw_value_variable_workbook.csv"),
         "priority_lsms_isa_raw_value_file_workbook": row_count(TEMP_DIR / "priority_lsms_isa_raw_value_file_workbook.csv"),
         "priority_lsms_isa_raw_value_verification_workbook_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv"),
+        "priority_lsms_isa_focused_raw_value_documentation_inventory": row_count(TEMP_DIR / "priority_lsms_isa_focused_raw_value_documentation_inventory.csv"),
+        "priority_lsms_isa_focused_raw_value_variable_decisions": row_count(TEMP_DIR / "priority_lsms_isa_focused_raw_value_variable_decisions.csv"),
+        "priority_lsms_isa_requirement_acceptance_decisions": row_count(RESULT_DIR / "priority_lsms_isa_requirement_acceptance_decisions.csv"),
+        "priority_lsms_isa_focused_raw_value_decision_summary": row_count(RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv"),
         "priority_lsms_isa_raw_package_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_receipt_checklist.csv"),
         "priority_lsms_isa_raw_package_requirement_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_requirement_receipt_checklist.csv"),
         "priority_lsms_isa_raw_package_receipt_checklist_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv"),
@@ -5258,6 +5265,38 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_workbook_gate_ok),
         f"requirement_rows={counts['priority_lsms_isa_raw_value_requirement_workbook']}; variable_rows={counts['priority_lsms_isa_raw_value_variable_workbook']}; file_rows={counts['priority_lsms_isa_raw_value_file_workbook']}; summary_rows={counts['priority_lsms_isa_raw_value_verification_workbook_summary']}; reported_datasets={priority_lsms_workbook_datasets}; reported_requirements={priority_lsms_workbook_requirements}; reported_variables={priority_lsms_workbook_variables}; reported_files={priority_lsms_workbook_files}; handoffs={priority_lsms_workbook_handoffs}; ready_review={priority_lsms_workbook_ready_review}; blocked_requirements={priority_lsms_workbook_blocked_requirements}; raw_verified={priority_lsms_workbook_raw_verified}; data_write={priority_lsms_workbook_data_write}; modeling_gate={priority_lsms_workbook_modeling_gate}",
         "" if priority_lsms_workbook_gate_ok else "Run script/149_build_priority_lsms_isa_raw_value_verification_workbook.py after LSMS/ISA variable evidence, raw intake, and archive preflight outputs are current.",
+    )
+    priority_lsms_focused_decision_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv")
+    priority_lsms_focused_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_focused_decision_summary if row.get("metric") == "priority_lsms_focused_raw_value_decision_dataset_rows"), "0"), 0)
+    priority_lsms_focused_docs = safe_int(next((row.get("value", "0") for row in priority_lsms_focused_decision_summary if row.get("metric") == "priority_lsms_focused_raw_value_documentation_file_rows"), "0"), 0)
+    priority_lsms_focused_docs_extracted = safe_int(next((row.get("value", "0") for row in priority_lsms_focused_decision_summary if row.get("metric") == "priority_lsms_focused_raw_value_documentation_extracted_rows"), "0"), 0)
+    priority_lsms_focused_variables = safe_int(next((row.get("value", "0") for row in priority_lsms_focused_decision_summary if row.get("metric") == "priority_lsms_focused_raw_value_variable_decision_rows"), "0"), 0)
+    priority_lsms_focused_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_focused_decision_summary if row.get("metric") == "priority_lsms_focused_raw_value_requirement_decision_rows"), "0"), 0)
+    priority_lsms_focused_verified = safe_int(next((row.get("value", "0") for row in priority_lsms_focused_decision_summary if row.get("metric") == "priority_lsms_focused_raw_value_requirement_raw_value_verified_rows"), "0"), 0)
+    priority_lsms_focused_data_write = next((row.get("value", "") for row in priority_lsms_focused_decision_summary if row.get("metric") == "priority_lsms_focused_raw_value_data_write_status"), "")
+    priority_lsms_focused_modeling_gate = next((row.get("value", "") for row in priority_lsms_focused_decision_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_focused_gate_ok = (
+        counts["priority_lsms_isa_focused_raw_value_documentation_inventory"] == priority_lsms_focused_docs
+        and counts["priority_lsms_isa_focused_raw_value_variable_decisions"] == priority_lsms_focused_variables
+        and counts["priority_lsms_isa_requirement_acceptance_decisions"] == priority_lsms_focused_requirements
+        and counts["priority_lsms_isa_focused_raw_value_decision_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_focused_raw_value_decision_packet.md")
+        and priority_lsms_focused_datasets == 2
+        and priority_lsms_focused_docs >= 4
+        and priority_lsms_focused_docs_extracted == priority_lsms_focused_docs
+        and priority_lsms_focused_variables >= 300
+        and priority_lsms_focused_requirements == 14
+        and priority_lsms_focused_verified == 0
+        and priority_lsms_focused_data_write == "blocked_decision_packet_only"
+        and priority_lsms_focused_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA focused raw value decision packet crosswalks received raw profiles to local PDF documentation while staying fail-closed",
+        status(priority_lsms_focused_gate_ok),
+        f"doc_rows={counts['priority_lsms_isa_focused_raw_value_documentation_inventory']}; variable_rows={counts['priority_lsms_isa_focused_raw_value_variable_decisions']}; requirement_rows={counts['priority_lsms_isa_requirement_acceptance_decisions']}; summary_rows={counts['priority_lsms_isa_focused_raw_value_decision_summary']}; reported_datasets={priority_lsms_focused_datasets}; docs={priority_lsms_focused_docs}; docs_extracted={priority_lsms_focused_docs_extracted}; variables={priority_lsms_focused_variables}; requirements={priority_lsms_focused_requirements}; raw_verified={priority_lsms_focused_verified}; data_write={priority_lsms_focused_data_write}; modeling_gate={priority_lsms_focused_modeling_gate}",
+        "" if priority_lsms_focused_gate_ok else "Run script/212_build_priority_lsms_isa_focused_raw_value_decision_packet.py after received raw value profiles are current.",
     )
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_receipt_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_dataset_rows"), "0"), 0)

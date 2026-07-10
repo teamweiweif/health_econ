@@ -21,6 +21,7 @@ CLIMATE_PREFLIGHT_PATH = TEMP_DIR / "priority_climate_linkage_preflight.csv"
 SYNTHESIS_JOIN_PATH = TEMP_DIR / "priority_analysis_dataset_join_plan.csv"
 REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 MWI2004_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv"
+FOCUSED_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "priority_lsms_isa_requirement_acceptance_decisions.csv"
 MWI2004_CHIRPS_ROUTE_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv"
 MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_extraction_summary.csv"
 MWI2004_PROMOTED_DATASET_SUMMARY_PATH = RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv"
@@ -445,7 +446,10 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     climate_by_id = one_by_id(read_csv_dicts(CLIMATE_PREFLIGHT_PATH))
     synthesis_by_id = one_by_id(read_csv_dicts(SYNTHESIS_JOIN_PATH))
     registry_by_id = one_by_id(read_csv_dicts(REGISTRY_PATH))
-    acceptance_by_id = by_id(read_csv_dicts(MWI2004_ACCEPTANCE_DECISION_PATH))
+    acceptance_by_id = by_id(
+        read_csv_dicts(MWI2004_ACCEPTANCE_DECISION_PATH)
+        + read_csv_dicts(FOCUSED_ACCEPTANCE_DECISION_PATH)
+    )
     mwi2004_route_summary = read_csv_dicts(MWI2004_CHIRPS_ROUTE_SUMMARY_PATH)
     mwi2004_extraction_summary = read_csv_dicts(MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH)
     mwi2004_promoted_summary = read_csv_dicts(MWI2004_PROMOTED_DATASET_SUMMARY_PATH)

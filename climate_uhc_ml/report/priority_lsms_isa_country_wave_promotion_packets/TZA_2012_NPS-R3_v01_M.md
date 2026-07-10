@@ -22,13 +22,13 @@ Next blocking action: `complete_raw_value_key_unit_verification`
 | official_variable_evidence_coverage | pass | coverage_rows=8; matrix_rows=84; shortlist_rows=33; no_candidate_rows=0 |  |
 | complete_original_raw_package | pass | intake_status=ready_for_schema_and_manual_value_review; original_files=87; archives=0; raw_tabular=85; package_docs=2... |  |
 | archive_or_direct_file_preflight | pass | status=ready_for_raw_receipt_schema_and_manual_review; direct_raw=85; direct_docs=2; archive_members=0 |  |
-| raw_value_verification_household_person_keys | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=11; raw_status=not_raw... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
-| raw_value_verification_weights_and_design | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=6; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
-| raw_value_verification_consumption_or_income | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=2; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
-| raw_value_verification_oop_health_expenditure | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=1; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
-| raw_value_verification_health_need_and_access | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=6; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
-| raw_value_verification_survey_timing | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=5; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
-| raw_value_verification_climate_geography | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=5; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
+| raw_value_verification_household_person_keys | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=11; raw_status=not_raw... | Use the focused variable-decision rows and original PDF documentation to make a reviewer acceptance decision; rerun p... |
+| raw_value_verification_weights_and_design | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=6; raw_status=not_raw_... | Use the focused variable-decision rows and original PDF documentation to make a reviewer acceptance decision; rerun p... |
+| raw_value_verification_consumption_or_income | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=2; raw_status=not_raw_... | Use the focused variable-decision rows and original PDF documentation to make a reviewer acceptance decision; rerun p... |
+| raw_value_verification_oop_health_expenditure | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=1; raw_status=not_raw_... | Use the focused variable-decision rows and original PDF documentation to make a reviewer acceptance decision; rerun p... |
+| raw_value_verification_health_need_and_access | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=6; raw_status=not_raw_... | Use the focused variable-decision rows and original PDF documentation to make a reviewer acceptance decision; rerun p... |
+| raw_value_verification_survey_timing | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=5; raw_status=not_raw_... | Use the focused variable-decision rows and original PDF documentation to make a reviewer acceptance decision; rerun p... |
+| raw_value_verification_climate_geography | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=5; raw_status=not_raw_... | Use the focused variable-decision rows and original PDF documentation to make a reviewer acceptance decision; rerun p... |
 | raw_value_verification_missing_codes_units_recall_skip_patterns | fail | metadata=documentation_and_raw_review_required_no_variable_shortlist; candidates=0; files=0; raw_status=not_raw_value... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
 | all_required_raw_values_verified | fail | verified_requirement_rows=0/8 | Complete raw-backed verification for every required promotion requirement. |
 | financial_protection_inputs_ready | fail | requires verified weights/design, total consumption or income, and OOP health expenditure. | Verify financial-protection inputs before CHE10/CHE25 or SDG 3.8.2 readiness can be claimed. |
@@ -117,6 +117,19 @@ Next blocking action: `complete_raw_value_key_unit_verification`
 | survey_timing | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
 | climate_geography | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
 | missing_codes_units_recall_skip_patterns | raw_review_required | ready_for_schema_and_manual_requirement_review |
+
+## Focused Raw Acceptance Decisions
+
+| requirement | mechanical_raw_check_decision | final_verification_decision | remaining_blocker |
+|---|---|---|---|
+| household_person_keys | mechanical_raw_profile_available_documentation_crosscheck_missing | blocked_manual_acceptance_required | reviewer must confirm raw file, variable, value labels, units, recall periods, missing codes, skip patterns, merge le... |
+| weights_and_design | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required | reviewer must confirm raw file, variable, value labels, units, recall periods, missing codes, skip patterns, merge le... |
+| consumption_or_income | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required | reviewer must confirm raw file, variable, value labels, units, recall periods, missing codes, skip patterns, merge le... |
+| oop_health_expenditure | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required | reviewer must confirm raw file, variable, value labels, units, recall periods, missing codes, skip patterns, merge le... |
+| health_need_and_access | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required | reviewer must confirm raw file, variable, value labels, units, recall periods, missing codes, skip patterns, merge le... |
+| survey_timing | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required | reviewer must confirm raw file, variable, value labels, units, recall periods, missing codes, skip patterns, merge le... |
+| climate_geography | mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | blocked_manual_acceptance_required | reviewer must confirm raw file, variable, value labels, units, recall periods, missing codes, skip patterns, merge le... |
+
 
 ## Stop Rule
 
