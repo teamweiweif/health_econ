@@ -338,6 +338,16 @@ REQUIRED_SCRIPTS = [
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
+PROMOTION_REPRODUCTION_SCRIPTS = [
+    "157_build_priority_lsms_isa_received_raw_schema_audit.py",
+    "158_build_priority_lsms_isa_received_raw_value_profile.py",
+    "159_build_priority_lsms_isa_received_raw_semantics_review.py",
+    "169_build_mwi2004_chirps_admin2_route_policy.py",
+    "170_extract_mwi2004_chirps_admin2_exposures.py",
+    "171_build_mwi2004_promoted_household_climate_dataset.py",
+    "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
+    "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
+]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
 
@@ -468,6 +478,21 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
         status(complete),
         "; ".join(f"{path.name}={path.exists()}" for path in runner_paths),
         "" if complete else "Expected Makefile, script/run_all.sh, and script/run_all.ps1.",
+    )
+    runner_text = {path.name: path.read_text(encoding="utf-8", errors="ignore") if path.exists() else "" for path in runner_paths}
+    missing_runner_scripts = [
+        f"{runner}:{script_name}"
+        for runner, text in runner_text.items()
+        for script_name in PROMOTION_REPRODUCTION_SCRIPTS
+        if script_name not in text
+    ]
+    add(
+        rows,
+        "reproducibility",
+        "One-command runners include the current 157-173 dataset-promotion gate chain",
+        status(not missing_runner_scripts),
+        f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
+        "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
     )
 
 

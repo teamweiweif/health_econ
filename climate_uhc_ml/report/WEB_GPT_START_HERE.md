@@ -25,21 +25,25 @@ data gates.
    - Human-readable 19-wave promotion registry.
 5. `result/promoted_country_wave_registry.csv`
    - Machine-readable promotion gate registry.
-6. `report/priority_lsms_isa_country_wave_promotion_packets/`
+6. `report/priority_lsms_isa_promotion_gate_dashboard.md`
+   - Current raw-receipt-to-promotion gate dashboard for 19 LSMS/ISA country-waves.
+7. `report/priority_lsms_isa_next_raw_package_action_packet.md`
+   - Exact remaining raw-package acquisition actions for the minimum batch plus backups.
+8. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-7. `report/mwi2004_requirement_acceptance_decisions.md`
+9. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
 
 - Refocused registry rows: 19 country-waves.
 - Priority-country rows: 16 rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda.
-- Promoted analysis-ready rows: 0.
+- Promoted analysis-ready rows: 1.
 - Financial-protection-ready countries: 1.
 - Double-failure-ready country-waves: 1.
 - Raw-value-verified country-waves: 1.
-- Accepted CHIRPS/ERA5 climate-linkage routes: 0.
-- Data-write gate: closed because no country-wave is promoted.
+- Accepted CHIRPS/ERA5 climate-linkage routes: 1.
+- Data-write gate: open only for the promoted Malawi 2004 country-wave.
 - Modeling gate: blocked.
 
 ## Malawi 2004 Status
@@ -51,13 +55,14 @@ Verified or partially accepted:
 - CHE10/CHE25 financial inputs are verified for the stated scope.
 - Acute need and cost-barrier forgone-care inputs are verified for the stated scope.
 - Missing, unit, recall-period, and skip-pattern policy is accepted for the current verified constructs.
-- Household interview timing and EA/admin geography are verified for route review.
+- Household interview timing and EA/admin geography are verified for the accepted CHIRPS ADM2 linkage route.
+- A promoted household-climate dataset exists at `data/mwi2004_household_climate_analysis.csv`.
 
 Still blocked:
 
 - SDG 3.8.2 discretionary-budget construction.
-- Accepted CHIRPS or ERA5 climate route.
-- Promoted analysis dataset synthesis.
+- Multi-country promoted dataset synthesis.
+- All additional country-waves until complete official raw packages pass receipt, value, semantics, timing/geography, and climate-linkage gates.
 
 ## Excluded From GitHub
 

@@ -55,11 +55,28 @@ python script/153_validate_priority_lsms_isa_official_file_receipt.py
 python script/154_build_priority_lsms_isa_threshold_download_sequence.py
 python script/155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py
 python script/156_probe_priority_lsms_isa_minimum_batch_endpoint_refresh.py
+python script/157_build_priority_lsms_isa_received_raw_schema_audit.py
+python script/158_build_priority_lsms_isa_received_raw_value_profile.py
+python script/159_build_priority_lsms_isa_received_raw_semantics_review.py
+python script/160_build_mwi2004_raw_requirement_verification.py
+python script/162_build_mwi2004_health_access_label_skip_decisions.py
+python script/163_build_mwi2004_health_exception_audit.py
+python script/164_build_mwi2004_health_access_construction_policy.py
+python script/165_build_mwi2004_financial_protection_construction_policy.py
+python script/166_build_mwi2004_timing_geography_linkage_policy.py
+python script/167_build_mwi2004_access_person_key_resolution_policy.py
+python script/168_build_mwi2004_missing_units_recall_skip_policy.py
+python script/161_build_mwi2004_requirement_acceptance_decisions.py
+python script/169_build_mwi2004_chirps_admin2_route_policy.py
+python script/170_extract_mwi2004_chirps_admin2_exposures.py
+python script/171_build_mwi2004_promoted_household_climate_dataset.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 python script/134_build_priority_country_wave_promotion_packets.py
 python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
 python script/151_refresh_refocused_promoted_country_wave_registry.py
 python script/127_enforce_promoted_data_gate.py
+python script/172_build_priority_lsms_isa_next_raw_package_action_packet.py
+python script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
 python script/26_build_objective_traceability_audit.py
@@ -112,10 +129,13 @@ Current status:
 - The priority LSMS/ISA threshold download sequence is `result/priority_lsms_isa_threshold_download_sequence_summary.csv`.
 - The priority LSMS/ISA minimum-batch raw intake guide is `result/priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv`.
 - The priority LSMS/ISA minimum-batch endpoint refresh is `result/priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv`.
+- The priority LSMS/ISA next raw package action packet is `result/priority_lsms_isa_next_raw_package_action_summary.csv`.
+- The priority LSMS/ISA promotion gate dashboard is `result/priority_lsms_isa_promotion_gate_dashboard_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.
 - The refocused 19-wave LSMS/ISA country-wave promotion packets are indexed in `result/priority_lsms_isa_country_wave_promotion_packet_summary.csv`.
 - The main promoted country-wave registry is refreshed from the refocused 19-wave LSMS/ISA queue in `result/promoted_country_wave_registry.csv`.
+- Malawi 2004 is currently the only promoted analysis-ready household-climate country-wave; additional waves remain blocked until complete official raw packages are placed and pass receipt, value, semantics, timing/geography, and climate-linkage gates.
 - The promoted-data gate is `result/promoted_data_gate_summary.csv`; if the registry has zero promoted rows, diagnostic CSVs are kept in `temp/diagnostic_data_quarantine/current/` rather than `data/`.
 - Per-wave promotion packets are in `report/country_wave_promotion_packets/`.
 - Refocused LSMS/ISA per-wave promotion packets are in `report/priority_lsms_isa_country_wave_promotion_packets/`.

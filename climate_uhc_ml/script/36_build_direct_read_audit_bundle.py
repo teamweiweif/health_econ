@@ -20,6 +20,8 @@ BINARY_ROWLESS_SUFFIXES = {".xlsx", ".xls", ".zip", ".rar", ".7z", ".dta", ".sav
 
 
 CURATED_ARTIFACTS = [
+    ("entry_reports", "README.md", "GitHub repository entry point and current status"),
+    ("entry_reports", "report/WEB_GPT_START_HERE.md", "short Web GPT starting point"),
     ("entry_reports", "report/README.md", "human entry point and reproduction instructions"),
     ("entry_reports", "report/final_report.md", "current empirical judgment"),
     ("entry_reports", "report/source_audit.md", "official-source verification"),

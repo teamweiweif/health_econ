@@ -302,6 +302,9 @@ promotion:
 	$(PYTHON) script/154_build_priority_lsms_isa_threshold_download_sequence.py
 	$(PYTHON) script/155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py
 	$(PYTHON) script/156_probe_priority_lsms_isa_minimum_batch_endpoint_refresh.py
+	$(PYTHON) script/157_build_priority_lsms_isa_received_raw_schema_audit.py
+	$(PYTHON) script/158_build_priority_lsms_isa_received_raw_value_profile.py
+	$(PYTHON) script/159_build_priority_lsms_isa_received_raw_semantics_review.py
 	$(PYTHON) script/160_build_mwi2004_raw_requirement_verification.py
 	$(PYTHON) script/162_build_mwi2004_health_access_label_skip_decisions.py
 	$(PYTHON) script/163_build_mwi2004_health_exception_audit.py
@@ -311,11 +314,16 @@ promotion:
 	$(PYTHON) script/167_build_mwi2004_access_person_key_resolution_policy.py
 	$(PYTHON) script/168_build_mwi2004_missing_units_recall_skip_policy.py
 	$(PYTHON) script/161_build_mwi2004_requirement_acceptance_decisions.py
+	$(PYTHON) script/169_build_mwi2004_chirps_admin2_route_policy.py
+	$(PYTHON) script/170_extract_mwi2004_chirps_admin2_exposures.py
+	$(PYTHON) script/171_build_mwi2004_promoted_household_climate_dataset.py
 	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/134_build_priority_country_wave_promotion_packets.py
 	$(PYTHON) script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
 	$(PYTHON) script/151_refresh_refocused_promoted_country_wave_registry.py
 	$(PYTHON) script/127_enforce_promoted_data_gate.py
+	$(PYTHON) script/172_build_priority_lsms_isa_next_raw_package_action_packet.py
+	$(PYTHON) script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py

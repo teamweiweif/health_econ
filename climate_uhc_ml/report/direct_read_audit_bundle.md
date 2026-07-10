@@ -13,8 +13,8 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Metric | Value | Interpretation |
 |---|---:|---|
 | bundle_rows | 168 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 733 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 729 | Curated artifacts present and non-empty. |
+| manifest_rows | 735 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 731 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -901,7 +901,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 729 |
+| present_nonempty | 731 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

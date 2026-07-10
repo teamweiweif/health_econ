@@ -63,6 +63,9 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/154_build_priority_lsms_isa_threshold_download_sequence.py
 & $Python script/155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py
 & $Python script/156_probe_priority_lsms_isa_minimum_batch_endpoint_refresh.py
+& $Python script/157_build_priority_lsms_isa_received_raw_schema_audit.py
+& $Python script/158_build_priority_lsms_isa_received_raw_value_profile.py
+& $Python script/159_build_priority_lsms_isa_received_raw_semantics_review.py
 & $Python script/160_build_mwi2004_raw_requirement_verification.py
 & $Python script/162_build_mwi2004_health_access_label_skip_decisions.py
 & $Python script/163_build_mwi2004_health_exception_audit.py
@@ -72,11 +75,16 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/167_build_mwi2004_access_person_key_resolution_policy.py
 & $Python script/168_build_mwi2004_missing_units_recall_skip_policy.py
 & $Python script/161_build_mwi2004_requirement_acceptance_decisions.py
+& $Python script/169_build_mwi2004_chirps_admin2_route_policy.py
+& $Python script/170_extract_mwi2004_chirps_admin2_exposures.py
+& $Python script/171_build_mwi2004_promoted_household_climate_dataset.py
 & $Python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 & $Python script/134_build_priority_country_wave_promotion_packets.py
 & $Python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
 & $Python script/151_refresh_refocused_promoted_country_wave_registry.py
 & $Python script/127_enforce_promoted_data_gate.py
+& $Python script/172_build_priority_lsms_isa_next_raw_package_action_packet.py
+& $Python script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 & $Python script/36_build_direct_read_audit_bundle.py
 & $Python script/28_audit_python_environment.py
 & $Python script/26_build_objective_traceability_audit.py
