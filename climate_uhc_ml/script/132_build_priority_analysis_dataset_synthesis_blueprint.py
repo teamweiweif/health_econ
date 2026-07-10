@@ -16,6 +16,7 @@ RECEIPT_LEDGER_PATH = TEMP_DIR / "priority_raw_package_receipt_ledger.csv"
 CLIMATE_PREFLIGHT_PATH = TEMP_DIR / "priority_climate_linkage_preflight.csv"
 PROMOTED_REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 MWI2004_CHIRPS_ROUTE_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv"
+MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_extraction_summary.csv"
 
 BLUEPRINT_PATH = TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"
 JOIN_PLAN_PATH = TEMP_DIR / "priority_analysis_dataset_join_plan.csv"
@@ -344,11 +345,18 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     climate_by_id = first_by(read_csv_dicts(CLIMATE_PREFLIGHT_PATH), "idno")
     registry_by_id = first_by(read_csv_dicts(PROMOTED_REGISTRY_PATH), "idno")
     mwi2004_route_summary = read_csv_dicts(MWI2004_CHIRPS_ROUTE_SUMMARY_PATH)
+    mwi2004_extraction_summary = read_csv_dicts(MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH)
     mwi2004_route_design_ready = csv_value(mwi2004_route_summary, "route_design_ready", "0") == "1"
+    mwi2004_extraction_validated = csv_value(mwi2004_extraction_summary, "accepted_chirps_era5_route", "0") == "1"
     mwi2004_route_gate = csv_value(
         mwi2004_route_summary,
         "current_climate_linkage_gate_status",
         "route_preflight_ready_needs_extraction_validation",
+    )
+    mwi2004_extraction_gate = csv_value(
+        mwi2004_extraction_summary,
+        "current_climate_linkage_gate_status",
+        "accepted_chirps_admin2_extraction_validated",
     )
 
     blueprint_rows: list[dict[str, str]] = []
@@ -359,7 +367,9 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         receipt = receipt_by_id.get(idno, {})
         raw_receipt_status = receipt.get("receipt_status", "receipt_ledger_missing")
         climate_gate = climate_by_id.get(idno, {}).get("current_climate_linkage_gate_status", "missing_climate_preflight")
-        if idno == "MWI_2004_IHS-II_v01_M" and mwi2004_route_design_ready:
+        if idno == "MWI_2004_IHS-II_v01_M" and mwi2004_extraction_validated:
+            climate_gate = mwi2004_extraction_gate
+        elif idno == "MWI_2004_IHS-II_v01_M" and mwi2004_route_design_ready:
             climate_gate = mwi2004_route_gate
         analysis_ready = registry_by_id.get(idno, {}).get("analysis_ready_status", "not_in_registry")
         concept_audits = concept_audits_by_id.get(idno, {})

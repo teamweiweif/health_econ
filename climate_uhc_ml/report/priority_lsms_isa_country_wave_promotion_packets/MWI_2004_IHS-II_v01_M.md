@@ -12,7 +12,7 @@ Current packet status: `blocked_fail_closed`
 
 Analysis-ready status: `not_promoted`
 
-Next blocking action: `extract_validate_chirps_adm2_exposures`
+Next blocking action: `complete_analysis_dataset_synthesis_join_review`
 
 ## Gate Matrix
 
@@ -34,7 +34,7 @@ Next blocking action: `extract_validate_chirps_adm2_exposures`
 | financial_protection_inputs_ready | pass | requires verified weights/design, total consumption or income, and OOP health expenditure. |  |
 | access_forgone_care_inputs_ready | pass | requires verified illness/need, care-seeking, and access-barrier raw variables. |  |
 | timing_geography_ready_for_climate | pass | requires verified survey timing and GPS/cluster/EA/admin geography. |  |
-| accepted_chirps_or_era5_linkage_route | fail | accepted_route=not_accepted_extraction_and_validation_pending; current_gate=route_preflight_ready_needs_extraction_va... | Download/extract CHIRPS ADM2 monthly rasters and validate units, spatial coverage, and lag windows. |
+| accepted_chirps_or_era5_linkage_route | pass | accepted_route=accepted_chirps_admin2_extraction_validated; current_gate=accepted_chirps_admin2_extraction_validated;... |  |
 | analysis_dataset_synthesis_ready | fail | join_status=missing; ready_columns=0; blocked_columns=0 | Complete promoted household-climate schema and join review. |
 | promoted_registry_write_gate | fail | registry_analysis_ready=not_promoted; rows=0 | Write to data/ only when the promoted registry marks this country-wave as analysis-ready with nonzero rows. |
 
@@ -139,4 +139,4 @@ write this country-wave into `data/` until the complete original raw package,
 all raw value/key/unit/skip-pattern checks, outcome gates, and an accepted
 CHIRPS or ERA5 linkage route pass.
 
-Failed gates currently blocking promotion: 3.
+Failed gates currently blocking promotion: 2.

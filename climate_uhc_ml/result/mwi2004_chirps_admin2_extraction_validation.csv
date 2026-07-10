@@ -1,0 +1,7 @@
+﻿country,wave,idno,validation_component,status,evidence,required_action
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,download_manifest_fulfilled,pass,downloaded_readable=24/24,
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,geotiff_grid_consistency,pass,"reference_grid=(1500, 1600, -20.0, 40.0, 0.0500000007, 0.0500000007); raster_files=24",
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,adm2_polygon_masks_nonempty,pass,adm2_masks=28; min_pixels=1; max_pixels=357,
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,sampled_raw_district_month_coverage,pass,sampled_districts=26; sampled_district_month_rows=624; valid_rows=624,
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,lag_windows_complete,pass,lag_rows=1316; complete_rows=1316,
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,precipitation_values_nonnegative,pass,mean_precip_min=0.292594; mean_precip_max=404.831726,

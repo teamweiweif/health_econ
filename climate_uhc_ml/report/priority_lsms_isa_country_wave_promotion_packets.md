@@ -16,8 +16,8 @@ until complete original raw packages and raw value checks pass.
 | priority_lsms_country_wave_packet_core_rows | 10 | Core selected/refocused replacement packets. |
 | priority_lsms_country_wave_packet_backup_rows | 9 | Backup and sixth-country candidate packets. |
 | priority_lsms_country_wave_packet_gate_rows | 361 | Gate rows across LSMS/ISA promotion packets. |
-| priority_lsms_country_wave_packet_passed_gate_rows | 52 | Packet gates currently passing. |
-| priority_lsms_country_wave_packet_failed_gate_rows | 309 | Packet gates still blocking promotion. |
+| priority_lsms_country_wave_packet_passed_gate_rows | 53 | Packet gates currently passing. |
+| priority_lsms_country_wave_packet_failed_gate_rows | 308 | Packet gates still blocking promotion. |
 | priority_lsms_country_wave_packet_public_documentation_ready_rows | 19 | Packets with complete public documentation receipt. |
 | priority_lsms_country_wave_packet_variable_evidence_ready_rows | 19 | Packets with official variable evidence coverage ready for raw review. |
 | priority_lsms_country_wave_packet_raw_package_ready_rows | 1 | Packets with complete original raw package receipt and documentation. |
@@ -25,7 +25,7 @@ until complete original raw packages and raw value checks pass.
 | priority_lsms_country_wave_packet_raw_value_verified_rows | 1 | Packets with all required raw values verified. |
 | priority_lsms_country_wave_packet_financial_ready_rows | 1 | Packets ready for financial-protection outcomes. |
 | priority_lsms_country_wave_packet_access_ready_rows | 1 | Packets ready for access/forgone-care outcomes. |
-| priority_lsms_country_wave_packet_climate_ready_rows | 0 | Packets with accepted CHIRPS/ERA5 climate-linkage route. |
+| priority_lsms_country_wave_packet_climate_ready_rows | 1 | Packets with accepted CHIRPS/ERA5 climate-linkage route. |
 | priority_lsms_country_wave_packet_analysis_synthesis_ready_rows | 0 | Packets ready for promoted dataset synthesis. |
 | priority_lsms_country_wave_packet_analysis_ready_rows | 0 | Packets ready for promoted data writes. |
 | priority_lsms_country_wave_packet_action_rows | 19 | Next blocking actions across LSMS/ISA packets. |
@@ -34,8 +34,8 @@ until complete original raw packages and raw value checks pass.
 | priority_lsms_country_wave_packet_data_write_status | blocked_no_promoted_rows | No LSMS/ISA country-wave may write to data/ from metadata-only packet evidence. |
 | modeling_gate_status | blocked | Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass. |
 | priority_lsms_country_wave_packet_status_blocked_fail_closed | 19 | Packet status count. |
+| priority_lsms_country_wave_packet_next_action_complete_analysis_dataset_synthesis_join_review | 1 | Next blocking action count. |
 | priority_lsms_country_wave_packet_next_action_download_or_place_complete_original_raw_package | 18 | Next blocking action count. |
-| priority_lsms_country_wave_packet_next_action_extract_validate_chirps_adm2_exposures | 1 | Next blocking action count. |
 
 ## Packet Index
 
@@ -43,7 +43,7 @@ until complete original raw packages and raw value checks pass.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 1 | core_selected_lsms_isa_aligned | ETH_2021_ESPS-W5_v02_M | Ethiopia | 2021-2022 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 | 2 | core_selected_lsms_isa_aligned | ETH_2018_ESS_v04_M | Ethiopia | 2018-2019 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
-| 3 | core_replacement_primary | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | ready_metadata_only | ready_metadata_only_raw_review_required | raw_archive_plus_official_public_documentation_ready_for_raw_review | ready_for_raw_receipt_schema_and_manual_review | all_verified | blocked | blocked_fail_closed | extract_validate_chirps_adm2_exposures |
+| 3 | core_replacement_primary | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | ready_metadata_only | ready_metadata_only_raw_review_required | raw_archive_plus_official_public_documentation_ready_for_raw_review | ready_for_raw_receipt_schema_and_manual_review | all_verified | accepted_chirps_or_era5_route | blocked_fail_closed | complete_analysis_dataset_synthesis_join_review |
 | 4 | core_selected_lsms_isa_aligned | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 | 5 | core_selected_lsms_isa_aligned | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
 | 6 | core_selected_lsms_isa_aligned | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | ready_metadata_only | ready_metadata_only_raw_review_required | not_received_no_original_raw_package | blocked_no_original_archive_or_direct_files | blocked_not_raw_value_verified | blocked | blocked_fail_closed | download_or_place_complete_original_raw_package |
@@ -67,7 +67,7 @@ until complete original raw packages and raw value checks pass.
 |---|---|---|---|---|
 | 1 | ETH_2021_ESPS-W5_v02_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/ETH_2021_ESPS-W5_v02_M/ |
 | 2 | ETH_2018_ESS_v04_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/ETH_2018_ESS_v04_M/ |
-| 3 | MWI_2004_IHS-II_v01_M | extract_validate_chirps_adm2_exposures | Download/extract CHIRPS ADM2 monthly rasters, validate coverage/units/lag windows, then decide whether the climate li... | temp/raw_downloads/MWI_2004_IHS-II_v01_M/ |
+| 3 | MWI_2004_IHS-II_v01_M | complete_analysis_dataset_synthesis_join_review | Complete the promoted household-climate schema and join review. | temp/raw_downloads/MWI_2004_IHS-II_v01_M/ |
 | 4 | NGA_2012_GHSP-W2_v02_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/NGA_2012_GHSP-W2_v02_M/ |
 | 5 | NGA_2015_GHSP-W3_v02_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/NGA_2015_GHSP-W3_v02_M/ |
 | 6 | NGA_2010_GHSP-W1_v03_M | download_or_place_complete_original_raw_package | Download/place the complete unchanged official raw package and all documentation in local_target_folder. | temp/raw_downloads/NGA_2010_GHSP-W1_v03_M/ |
@@ -123,12 +123,12 @@ until complete original raw packages and raw value checks pass.
 | 2 | ETH_2018_ESS_v04_M | accepted_chirps_or_era5_linkage_route | fail | accepted_route=not_accepted_raw_timing_geography_unverified; current_gate=blocked_raw_timing_geography_not_verified_s... | Accept a CHIRPS or ERA5 route only after timing/geography verification passes. |
 | 2 | ETH_2018_ESS_v04_M | analysis_dataset_synthesis_ready | fail | join_status=blocked_required_schema_columns_not_verified; ready_columns=0; blocked_columns=22 | Complete promoted household-climate schema and join review. |
 | 2 | ETH_2018_ESS_v04_M | promoted_registry_write_gate | fail | registry_analysis_ready=not_promoted; rows=0 | Write to data/ only when the promoted registry marks this country-wave as analysis-ready with nonzero rows. |
-| 3 | MWI_2004_IHS-II_v01_M | accepted_chirps_or_era5_linkage_route | fail | accepted_route=not_accepted_extraction_and_validation_pending; current_gate=route_preflight_ready_needs_extraction_va... | Download/extract CHIRPS ADM2 monthly rasters and validate units, spatial coverage, and lag windows. |
 | 3 | MWI_2004_IHS-II_v01_M | analysis_dataset_synthesis_ready | fail | join_status=missing; ready_columns=0; blocked_columns=0 | Complete promoted household-climate schema and join review. |
 | 3 | MWI_2004_IHS-II_v01_M | promoted_registry_write_gate | fail | registry_analysis_ready=not_promoted; rows=0 | Write to data/ only when the promoted registry marks this country-wave as analysis-ready with nonzero rows. |
 | 4 | NGA_2012_GHSP-W2_v02_M | complete_original_raw_package | fail | intake_status=blocked_no_original_package; original_files=0; archives=0; raw_tabular=0; package_docs=0; public_docs=c... | Download/place the complete unchanged official raw package and all documentation in the target folder. |
 | 4 | NGA_2012_GHSP-W2_v02_M | archive_or_direct_file_preflight | fail | status=blocked_no_original_archive_or_direct_files; direct_raw=0; direct_docs=0; archive_members=0 | Confirm readable archive/direct raw and documentation files before schema inspection. |
 | 4 | NGA_2012_GHSP-W2_v02_M | raw_value_verification_household_person_keys | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
+| 4 | NGA_2012_GHSP-W2_v02_M | raw_value_verification_weights_and_design | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=4; raw_status=not_raw_... | Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level. |
 
 ## Machine-Readable Outputs
 

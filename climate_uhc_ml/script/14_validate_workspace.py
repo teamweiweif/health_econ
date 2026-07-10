@@ -5353,7 +5353,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and 0 <= priority_lsms_packet_raw_verified <= priority_lsms_packet_rows
         and 0 <= priority_lsms_packet_financial_ready <= priority_lsms_packet_rows
         and 0 <= priority_lsms_packet_access_ready <= priority_lsms_packet_rows
-        and priority_lsms_packet_climate_ready == 0
+        and 0 <= priority_lsms_packet_climate_ready <= priority_lsms_packet_rows
         and priority_lsms_packet_synthesis_ready == 0
         and priority_lsms_packet_analysis_ready == 0
         and priority_lsms_packet_actions >= counts["priority_lsms_isa_refocused_acquisition_queue"]

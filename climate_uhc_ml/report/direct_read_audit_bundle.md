@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 164 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 711 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 707 | Curated artifacts present and non-empty. |
+| bundle_rows | 165 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 718 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 714 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -65,6 +65,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_chirps_admin2_raw_boundary_matches | 26 | Raw Malawi 2004 district labels matched to ADM2 boundary names. |
 | mwi2004_chirps_admin2_required_months | 24 | CHIRPS monthly GeoTIFF files required for planned lag windows. |
 | mwi2004_chirps_admin2_accepted_route | 0 | Promoted climate linkage gate remains closed until extraction validation passes. |
+| mwi2004_chirps_admin2_extraction_files | 24 | CHIRPS monthly files downloaded and readable for Malawi 2004 extraction. |
+| mwi2004_chirps_admin2_district_month_rows | 672 | ADM2 district-month rainfall exposure rows. |
+| mwi2004_chirps_admin2_lag_window_rows | 1316 | Raw district-interview-month lag-window exposure rows. |
+| mwi2004_chirps_admin2_extraction_accepted_route | 1 | Whether CHIRPS extraction validation opens the climate-linkage route gate. |
 | mwi2004_health_access_label_rows | 127 | Health/access variable-value rows mapped into candidate construct decisions. |
 | mwi2004_health_access_no_money_rows | 660 | d07a/d07b rows mapped to no-money no-action candidate access failure. |
 | mwi2004_health_access_skip_leakage_rows | 6 | Aggregate skip leakage rows found in the health/access label-skip audit. |
@@ -98,7 +102,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows | 11 | Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh. |
 | priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows | 0 | Raw download candidate endpoints detected by the minimum-batch endpoint refresh. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
-| priority_lsms_isa_country_wave_packet_failed_gates | 309 | Refocused LSMS/ISA packet gates still blocking promotion. |
+| priority_lsms_isa_country_wave_packet_failed_gates | 308 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 0 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
 | priority_archive_preflight_targets | 156 | Priority file targets checked against direct files and archive members. |
 | priority_archive_preflight_missing_targets | 156 | Priority file targets still missing after direct/archive member preflight. |
@@ -548,7 +552,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 55 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 56 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -645,6 +649,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_mwi2004_acceptance_decisions_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_access_cost_barrier_verified_with_documented_exclusions | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_che10_che25_financial_inputs_verified_sdg_blocked | 1 | Direct-read bundle status count. |
+| bundle_status_mwi2004_chirps_admin2_extraction_validated | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_chirps_admin2_route_design_ready_extraction_pending | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_access_label_skip_blockers_identified | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_access_policy_ready_fail_closed | 1 | Direct-read bundle status count. |
@@ -688,7 +693,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 55 |
+| priority_bundle | 56 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -752,6 +757,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_che10_che25_financial_inputs_verified_sdg_blocked | 1 |
 | mwi2004_timing_admin_ea_verified_climate_route_blocked | 1 |
 | mwi2004_chirps_admin2_route_design_ready_extraction_pending | 1 |
+| mwi2004_chirps_admin2_extraction_validated | 1 |
 | mwi2004_health_access_label_skip_blockers_identified | 1 |
 | mwi2004_health_exceptions_unresolved | 1 |
 | mwi2004_health_access_policy_ready_fail_closed | 1 |
@@ -871,7 +877,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 707 |
+| present_nonempty | 714 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

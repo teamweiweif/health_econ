@@ -10,11 +10,11 @@ refocused_backup_country_wave_rows,9,Backup waves retained for raw-review failur
 promoted_analysis_ready_rows,0,Rows allowed into promoted analysis data.
 financial_protection_ready_countries,1,Countries meeting value-verified CHE financial-protection requirements.
 double_failure_ready_country_waves,1,Country-waves with both financial protection and access/forgone-care ready.
-accepted_chirps_era5_climate_linkage_rows,0,Country-waves with accepted CHIRPS or ERA5 linkage route.
+accepted_chirps_era5_climate_linkage_rows,1,Country-waves with accepted CHIRPS or ERA5 linkage route.
 raw_package_received_rows,1,Registry rows with some non-generated raw package receipt evidence.
 raw_value_verified_rows,1,Registry rows with accepted raw-value verification.
-gate_pass_rows,52,Promotion gate rows passing in the refocused packet matrix.
-gate_fail_rows,309,Promotion gate rows failing in the refocused packet matrix.
+gate_pass_rows,53,Promotion gate rows passing in the refocused packet matrix.
+gate_fail_rows,308,Promotion gate rows failing in the refocused packet matrix.
 albania_main_case_rows,0,Albania rows in the main refocused promoted registry; should remain zero.
 promoted_registry_data_write_status,blocked_no_promoted_rows,Data write gate implied by the promoted registry.
 modeling_gate_status,blocked,"Do not run predictive, reduced-form, causal ML, or policy-learning models until registry thresholds pass."

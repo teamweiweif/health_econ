@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by CHIRPS ADM2 extraction.
+chirps_files_required,24,Required CHIRPS monthly GeoTIFF files from the route manifest.
+chirps_files_downloaded_readable,24,Downloaded files read successfully as GeoTIFF with PIL.
+boundary_adm2_features,28,ADM2 boundary features used for district masks.
+district_month_exposure_rows,672,ADM2 district-month rainfall exposure rows.
+sampled_raw_districts,26,Raw Malawi 2004 districts observed in household data and mapped to ADM2.
+observed_raw_district_interview_month_rows,329,Observed raw district by interview-month cells in the household sample.
+lag_window_exposure_rows,1316,District-interview-month lag-window exposure rows.
+lag_window_complete_rows,1316,Lag-window rows with all required months available.
+mean_precip_min_mm,0.292594,Minimum extracted district-month mean precipitation.
+mean_precip_max_mm,404.831726,Maximum extracted district-month mean precipitation.
+geotiff_grid_consistent,1,Whether all CHIRPS rasters share the same georeference.
+accepted_chirps_route,1,Whether the CHIRPS ADM2 route passes extraction validation.
+accepted_chirps_era5_route,1,Promotion gate flag for accepted CHIRPS or ERA5 route; this is CHIRPS-only.
+current_climate_linkage_gate_status,accepted_chirps_admin2_extraction_validated,Current climate linkage gate after raster extraction validation.
+data_write_gate_status,closed,This extraction artifact does not write promoted household-climate data by itself.
