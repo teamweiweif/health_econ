@@ -89,6 +89,7 @@ python script/183_build_priority_lsms_isa_local_target_readmes.py
 python script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py
 python script/185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py
 python script/186_build_priority_lsms_isa_threshold_replacement_plan.py
+python script/187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py
 python script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
@@ -154,6 +155,7 @@ Current status:
 - The priority LSMS/ISA minimum-batch raw-value queue is `result/priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv`; it narrows the full workbook to the 10 manual-download packets.
 - The priority LSMS/ISA target-folder receipt smoke test is `result/priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv`; it confirms whether the 10 target folders contain candidate raw files before receipt/schema/value validation.
 - The priority LSMS/ISA threshold replacement plan is `result/priority_lsms_isa_threshold_replacement_plan_summary.csv`; it explains why the current 10-packet batch needs a sixth country and which backup to use if a package fails.
+- The priority LSMS/ISA minimum-batch climate linkage review queue is `result/priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv`; it maps the current 10 manual packets to timing/geography raw checks and CHIRPS/ERA5 route status.
 - The priority LSMS/ISA promotion gate dashboard is `result/priority_lsms_isa_promotion_gate_dashboard_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.

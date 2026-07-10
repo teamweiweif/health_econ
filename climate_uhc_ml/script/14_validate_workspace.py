@@ -171,6 +171,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_minimum_batch_raw_value_queue.md",
     "priority_lsms_isa_target_folder_receipt_smoke_test.md",
     "priority_lsms_isa_threshold_replacement_plan.md",
+    "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -363,6 +364,7 @@ REQUIRED_SCRIPTS = [
     "184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py",
     "185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py",
     "186_build_priority_lsms_isa_threshold_replacement_plan.py",
+    "187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -386,6 +388,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py",
     "185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py",
     "186_build_priority_lsms_isa_threshold_replacement_plan.py",
+    "187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -529,7 +532,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-186 dataset-promotion gate chain",
+        "One-command runners include the current 157-187 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -966,6 +969,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_threshold_replacement_scenarios": row_count(TEMP_DIR / "priority_lsms_isa_threshold_replacement_scenarios.csv"),
         "priority_lsms_isa_threshold_replacement_strategy": row_count(TEMP_DIR / "priority_lsms_isa_threshold_replacement_strategy.csv"),
         "priority_lsms_isa_threshold_replacement_plan_summary": row_count(RESULT_DIR / "priority_lsms_isa_threshold_replacement_plan_summary.csv"),
+        "priority_lsms_isa_minimum_batch_climate_linkage_review_queue": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.csv"),
+        "priority_lsms_isa_minimum_batch_climate_linkage_file_queue": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_file_queue.csv"),
+        "priority_lsms_isa_minimum_batch_climate_linkage_review_summary": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5845,6 +5851,42 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_replacement_gate_ok),
         f"candidate_rows={counts['priority_lsms_isa_threshold_replacement_candidate_rank']}; scenario_rows={counts['priority_lsms_isa_threshold_replacement_scenarios']}; strategy_rows={counts['priority_lsms_isa_threshold_replacement_strategy']}; summary_rows={counts['priority_lsms_isa_threshold_replacement_plan_summary']}; backups={priority_lsms_replacement_backups}; required_replacements={priority_lsms_replacement_required}; optional_buffers={priority_lsms_replacement_optional}; priority_backups={priority_lsms_replacement_priority_backups}; new_country_backups={priority_lsms_replacement_new_country_backups}; strict_priority={priority_lsms_replacement_strict_countries}_countries_{priority_lsms_replacement_strict_waves}_waves; current_minimum={priority_lsms_replacement_current_countries}_countries_{priority_lsms_replacement_current_waves}_waves; data_write={priority_lsms_replacement_data_write}; modeling_gate={priority_lsms_replacement_modeling}",
         "" if priority_lsms_replacement_gate_ok else "Run script/186_build_priority_lsms_isa_threshold_replacement_plan.py after the threshold gap panel, target smoke test, and next raw package action queue are current.",
+    )
+    priority_lsms_climate_review_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv")
+    priority_lsms_climate_review_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_dataset_rows"), "0"), 0)
+    priority_lsms_climate_review_files = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_file_rows"), "0"), 0)
+    priority_lsms_climate_review_timing_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_timing_ready_metadata_rows"), "0"), 0)
+    priority_lsms_climate_review_geography_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_geography_ready_metadata_rows"), "0"), 0)
+    priority_lsms_climate_review_point = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_point_route_rows"), "0"), 0)
+    priority_lsms_climate_review_admin = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_admin_route_rows"), "0"), 0)
+    priority_lsms_climate_review_manual = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_manual_route_rows"), "0"), 0)
+    priority_lsms_climate_review_raw_blocked = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_raw_blocked_rows"), "0"), 0)
+    priority_lsms_climate_review_source_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_source_ready_rows"), "0"), 0)
+    priority_lsms_climate_review_accepted = safe_int(next((row.get("value", "0") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_accepted_route_rows"), "0"), 0)
+    priority_lsms_climate_review_data_write = next((row.get("value", "") for row in priority_lsms_climate_review_summary if row.get("metric") == "priority_lsms_minimum_climate_review_data_write_status"), "")
+    priority_lsms_climate_review_modeling = next((row.get("value", "") for row in priority_lsms_climate_review_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_climate_review_gate_ok = (
+        counts["priority_lsms_isa_minimum_batch_climate_linkage_review_summary"] > 0
+        and counts["priority_lsms_isa_minimum_batch_climate_linkage_review_queue"] == priority_lsms_climate_review_datasets
+        and counts["priority_lsms_isa_minimum_batch_climate_linkage_file_queue"] == priority_lsms_climate_review_files
+        and file_ok(REPORT_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md")
+        and priority_lsms_climate_review_datasets == priority_lsms_manual_execution_rows
+        and priority_lsms_climate_review_timing_ready == priority_lsms_climate_review_datasets
+        and priority_lsms_climate_review_geography_ready == priority_lsms_climate_review_datasets
+        and (priority_lsms_climate_review_point + priority_lsms_climate_review_admin + priority_lsms_climate_review_manual) == priority_lsms_climate_review_datasets
+        and priority_lsms_climate_review_raw_blocked <= priority_lsms_climate_review_datasets
+        and priority_lsms_climate_review_source_ready == priority_lsms_climate_review_datasets
+        and priority_lsms_climate_review_accepted == 0
+        and priority_lsms_climate_review_data_write == "blocked_no_data_write"
+        and priority_lsms_climate_review_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA minimum-batch climate linkage review queue maps the current 10 manual packets to timing/geography raw checks",
+        status(priority_lsms_climate_review_gate_ok),
+        f"review_rows={counts['priority_lsms_isa_minimum_batch_climate_linkage_review_queue']}; file_rows={counts['priority_lsms_isa_minimum_batch_climate_linkage_file_queue']}; summary_rows={counts['priority_lsms_isa_minimum_batch_climate_linkage_review_summary']}; datasets={priority_lsms_climate_review_datasets}; timing_metadata_ready={priority_lsms_climate_review_timing_ready}; geography_metadata_ready={priority_lsms_climate_review_geography_ready}; point_routes={priority_lsms_climate_review_point}; admin_routes={priority_lsms_climate_review_admin}; manual_routes={priority_lsms_climate_review_manual}; raw_blocked={priority_lsms_climate_review_raw_blocked}; source_ready={priority_lsms_climate_review_source_ready}; accepted_routes={priority_lsms_climate_review_accepted}; data_write={priority_lsms_climate_review_data_write}; modeling_gate={priority_lsms_climate_review_modeling}",
+        "" if priority_lsms_climate_review_gate_ok else "Run script/187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py after the manual board, target smoke test, and variable evidence matrix are current.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)

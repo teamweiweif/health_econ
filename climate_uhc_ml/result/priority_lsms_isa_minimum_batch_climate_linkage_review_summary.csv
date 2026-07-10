@@ -1,0 +1,13 @@
+﻿metric,value,interpretation
+priority_lsms_minimum_climate_review_dataset_rows,10,Current manual-download minimum-batch rows covered by the climate linkage review queue.
+priority_lsms_minimum_climate_review_file_rows,102,Timing/geography candidate file rows to inspect after raw receipt.
+priority_lsms_minimum_climate_review_timing_ready_metadata_rows,10,Rows with strong official metadata timing candidates.
+priority_lsms_minimum_climate_review_geography_ready_metadata_rows,10,Rows with strong official metadata geography candidates.
+priority_lsms_minimum_climate_review_point_route_rows,8,Rows whose metadata suggest coordinate or cluster-point linkage after raw verification.
+priority_lsms_minimum_climate_review_admin_route_rows,2,Rows whose metadata suggest admin/EA aggregation after raw verification.
+priority_lsms_minimum_climate_review_manual_route_rows,0,Rows needing manual route choice after raw review.
+priority_lsms_minimum_climate_review_raw_blocked_rows,10,Rows still blocked because target folders contain no candidate raw files.
+priority_lsms_minimum_climate_review_source_ready_rows,10,Rows with CHIRPS/ERA5/NASA source plan ready but not accepted.
+priority_lsms_minimum_climate_review_accepted_route_rows,0,Rows with accepted climate linkage routes after raw timing/geography verification.
+priority_lsms_minimum_climate_review_data_write_status,blocked_no_data_write,Climate linkage review does not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

@@ -336,6 +336,7 @@ promotion:
 	$(PYTHON) script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py
 	$(PYTHON) script/185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py
 	$(PYTHON) script/186_build_priority_lsms_isa_threshold_replacement_plan.py
+	$(PYTHON) script/187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py
 	$(PYTHON) script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py

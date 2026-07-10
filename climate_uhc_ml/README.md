@@ -29,6 +29,7 @@ the required thresholds.
 - `report/priority_lsms_isa_minimum_batch_raw_value_queue.md` - 10-packet requirement/file/variable raw-value review queue.
 - `report/priority_lsms_isa_target_folder_receipt_smoke_test.md` - target-folder smoke test showing whether real raw files are present for receipt validation.
 - `report/priority_lsms_isa_threshold_replacement_plan.md` - backup/replacement plan for keeping 6 countries and 10 waves if a minimum-batch package fails.
+- `report/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md` - current 10-packet timing/geography review queue for CHIRPS/ERA5 linkage.
 - `report/priority_lsms_isa_promotion_gate_dashboard.md` - current raw-receipt-to-promotion gate dashboard.
 - `report/country_wave_promotion_packets/` - one packet per target country-wave.
 - `report/direct_read_audit_bundle.md` - compact Web-GPT-readable audit bundle.

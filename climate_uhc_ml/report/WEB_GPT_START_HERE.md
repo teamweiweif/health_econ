@@ -55,9 +55,11 @@ data gates.
    - Non-destructive smoke test showing whether target folders contain candidate raw files ready for receipt validation.
 20. `report/priority_lsms_isa_threshold_replacement_plan.md`
    - Replacement plan explaining the sixth-country need and backup order if a minimum-batch package fails.
-21. `report/priority_lsms_isa_country_wave_promotion_packets/`
+21. `report/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md`
+   - Current 10-packet timing/geography review queue for CHIRPS/ERA5 linkage after raw receipt.
+22. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-22. `report/mwi2004_requirement_acceptance_decisions.md`
+23. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -108,6 +110,7 @@ resume, read:
 - `report/priority_lsms_isa_minimum_batch_raw_value_queue.md`
 - `report/priority_lsms_isa_target_folder_receipt_smoke_test.md`
 - `report/priority_lsms_isa_threshold_replacement_plan.md`
+- `report/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -169,6 +172,13 @@ To refresh the threshold replacement and backup plan, run:
 
 ```bash
 python script/186_build_priority_lsms_isa_threshold_replacement_plan.py
+```
+
+To refresh the current 10-packet timing/geography queue for CHIRPS/ERA5 review,
+run:
+
+```bash
+python script/187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py
 ```
 
 ## Excluded From GitHub
