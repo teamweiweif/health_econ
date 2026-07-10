@@ -89,17 +89,19 @@ data gates.
    - Post-download receipt and requirement-gate handoff for the 10 locked downloads.
 37. `report/priority_lsms_isa_package_level_download_manifest.md`
    - Package-level receipt manifest for the 10 World Bank downloads, preserving expected full-file, core-row, and unique core-file checks.
-38. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
+38. `report/priority_lsms_isa_acquisition_gap_receipt_board.md`
+   - Single execution board reconciling the 10 remaining downloads, threshold gap, local receipt status, and row-specific validation commands.
+39. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
    - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
-39. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
+40. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
    - World Bank PPP/CPI candidate source ledger for Malawi 2004; the final CPI/base-period bridge remains unaccepted.
-40. `report/mwi2004_sdg382_candidate_classification_precheck.md`
+41. `report/mwi2004_sdg382_candidate_classification_precheck.md`
    - Aggregate-only candidate SDG 3.8.2 denominator/classification stress test; not promoted data.
-41. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
+42. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
    - Official UNSD nonpositive-discretionary-budget rule audit; rule accepted, final Malawi SPL bridge still blocked.
-42. `report/mwi2004_sdg382_spl_bridge_verification_gate.md`
+43. `report/mwi2004_sdg382_spl_bridge_verification_gate.md`
    - Malawi 2004 SPL bridge verifier; World Bank PPP/CPI source values are revalidated, but the annual-CPI bridge to the survey real-currency base remains unaccepted.
-43. `report/mwi2004_requirement_acceptance_decisions.md`
+44. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -157,6 +159,7 @@ resume, read:
 - `report/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md`
 - `report/priority_lsms_isa_local_stray_raw_package_locator.md`
 - `report/priority_lsms_isa_package_level_download_manifest.md`
+- `report/priority_lsms_isa_acquisition_gap_receipt_board.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -167,6 +170,7 @@ python script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py
 python script/204_build_priority_lsms_isa_manual_download_launchpad.py
 python script/205_build_priority_lsms_isa_post_download_receipt_handoff.py
 python script/206_build_priority_lsms_isa_package_level_download_manifest.py
+python script/208_build_priority_lsms_isa_acquisition_gap_receipt_board.py
 python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 ```
 
@@ -178,7 +182,9 @@ for clickable official links,
 `result/priority_lsms_isa_post_download_receipt_handoff.csv` for the post-
 download receipt gates,
 `result/priority_lsms_isa_package_level_download_manifest.csv` for the package-
-level receipt actions, and
+level receipt actions,
+`result/priority_lsms_isa_acquisition_gap_receipt_board.csv` for the unified
+threshold-gap and receipt-validation board, and
 `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv` for the broader
 legacy queue. The routers only write suggested copy commands; they do not move,
 delete, extract, or promote files.

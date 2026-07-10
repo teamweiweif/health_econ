@@ -358,6 +358,7 @@ promotion:
 	$(PYTHON) script/204_build_priority_lsms_isa_manual_download_launchpad.py
 	$(PYTHON) script/205_build_priority_lsms_isa_post_download_receipt_handoff.py
 	$(PYTHON) script/206_build_priority_lsms_isa_package_level_download_manifest.py
+	$(PYTHON) script/208_build_priority_lsms_isa_acquisition_gap_receipt_board.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py

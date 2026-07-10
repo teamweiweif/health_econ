@@ -1,0 +1,25 @@
+﻿metric,value,interpretation
+acquisition_gap_receipt_board_rows,10,Download-required package rows in the acquisition gap and receipt board.
+acquisition_gap_receipt_country_rows,5,Countries covered by the remaining package-download board.
+current_promoted_analysis_ready_rows,1,Currently promoted analysis-ready rows from the registry before these downloads.
+current_financial_protection_ready_countries,1,Current countries with value-verified financial-protection readiness.
+current_double_failure_ready_country_waves,1,Current value-verified double-failure-ready country-waves.
+current_accepted_climate_linkage_rows,1,Current accepted CHIRPS/ERA5 climate-linkage rows.
+target_financial_protection_ready_countries,6,Goal threshold before modeling can resume.
+target_double_failure_ready_country_waves,10,Goal threshold before modeling can resume.
+target_accepted_climate_linkage_rows,1,Minimum climate-linkage threshold; more rows still need country-wave linkage for final data.
+remaining_financial_country_gap,5,Countries still needed before modeling can resume.
+remaining_double_failure_wave_gap,9,Country-waves still needed before modeling can resume.
+acquisition_gap_expected_full_file_rows,838,Expected official file rows across the remaining download packages.
+acquisition_gap_missing_expected_file_rows,838,Expected official file rows currently missing.
+acquisition_gap_expected_core_file_rows,323,Requirement-linked core file rows across the remaining download packages.
+acquisition_gap_missing_core_file_rows,323,Requirement-linked core file rows currently missing.
+acquisition_gap_requirement_gate_rows,70,Receipt-level requirement gates represented in the board.
+acquisition_gap_blocked_requirement_rows,70,Requirement gates still blocked by missing local packages/core files.
+acquisition_gap_target_file_rows,0,Files currently present under exact target folders.
+acquisition_gap_incoming_file_rows,0,Files currently staged under temp/raw_downloads/_incoming.
+acquisition_gap_missing_package_rows,10,Download-required package rows with no local package or incoming file.
+acquisition_gap_local_or_incoming_package_rows,0,Rows with at least one local target or incoming candidate file.
+acquisition_gap_first_canary_idno,ETH_2021_ESPS-W5_v02_M,First package to download and validate before scaling the batch.
+data_write_gate_status,blocked_no_data_write,This board does not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

@@ -368,6 +368,9 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/priority_lsms_isa_package_level_download_manifest.csv", "priority LSMS/ISA package-level download manifest rows"),
     ("dataset_promotion", "result/priority_lsms_isa_package_level_core_file_manifest.csv", "priority LSMS/ISA package-level unique core-file manifest"),
     ("dataset_promotion", "result/priority_lsms_isa_package_level_download_manifest_summary.csv", "priority LSMS/ISA package-level download manifest summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_acquisition_gap_receipt_board.md", "priority LSMS/ISA acquisition gap receipt board report"),
+    ("dataset_promotion", "result/priority_lsms_isa_acquisition_gap_receipt_board.csv", "priority LSMS/ISA acquisition gap receipt board"),
+    ("dataset_promotion", "result/priority_lsms_isa_acquisition_gap_receipt_summary.csv", "priority LSMS/ISA acquisition gap receipt summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -827,6 +830,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/204_build_priority_lsms_isa_manual_download_launchpad.py", "priority LSMS/ISA manual download launchpad generator"),
     ("reproducibility", "script/205_build_priority_lsms_isa_post_download_receipt_handoff.py", "priority LSMS/ISA post-download receipt handoff generator"),
     ("reproducibility", "script/206_build_priority_lsms_isa_package_level_download_manifest.py", "priority LSMS/ISA package-level download manifest generator"),
+    ("reproducibility", "script/208_build_priority_lsms_isa_acquisition_gap_receipt_board.py", "priority LSMS/ISA acquisition gap receipt board generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1104,6 +1108,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_manual_launchpad_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv")
     priority_lsms_receipt_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_receipt_handoff_summary.csv")
     priority_lsms_package_manifest_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_package_level_download_manifest_summary.csv")
+    priority_lsms_acquisition_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_gap_receipt_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2162,6 +2167,21 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     add_bundle(
         rows,
         "priority_bundle",
+        "priority_lsms_isa_acquisition_gap_receipt_board",
+        "acquisition_gap_board_10_packages_threshold_gap_locked"
+        if csv_value(priority_lsms_acquisition_gap_summary, "acquisition_gap_receipt_board_rows", "0") == "10"
+        and csv_value(priority_lsms_acquisition_gap_summary, "remaining_financial_country_gap", "missing") == "5"
+        and csv_value(priority_lsms_acquisition_gap_summary, "remaining_double_failure_wave_gap", "missing") == "9"
+        and csv_value(priority_lsms_acquisition_gap_summary, "acquisition_gap_missing_package_rows", "0") == "10"
+        and csv_value(priority_lsms_acquisition_gap_summary, "modeling_gate_status", "missing") == "blocked"
+        else "acquisition_gap_receipt_board_needs_review",
+        f"rows={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_receipt_board_rows', '0')}; countries={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_receipt_country_rows', '0')}; current_promoted={csv_value(priority_lsms_acquisition_gap_summary, 'current_promoted_analysis_ready_rows', '0')}; current_financial_countries={csv_value(priority_lsms_acquisition_gap_summary, 'current_financial_protection_ready_countries', '0')}; current_double_failure_waves={csv_value(priority_lsms_acquisition_gap_summary, 'current_double_failure_ready_country_waves', '0')}; remaining_financial_gap={csv_value(priority_lsms_acquisition_gap_summary, 'remaining_financial_country_gap', 'missing')}; remaining_double_failure_gap={csv_value(priority_lsms_acquisition_gap_summary, 'remaining_double_failure_wave_gap', 'missing')}; missing_expected_files={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_missing_expected_file_rows', '0')}; missing_core_files={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_missing_core_file_rows', '0')}; blocked_requirements={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_blocked_requirement_rows', '0')}; target_files={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_target_file_rows', '0')}; incoming_files={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_incoming_file_rows', '0')}; first_canary={csv_value(priority_lsms_acquisition_gap_summary, 'acquisition_gap_first_canary_idno', '')}; modeling_gate={csv_value(priority_lsms_acquisition_gap_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "priority_lsms_isa_acquisition_gap_receipt_board.csv", RESULT_DIR / "priority_lsms_isa_acquisition_gap_receipt_summary.csv", REPORT_DIR / "priority_lsms_isa_acquisition_gap_receipt_board.md"],
+        "Acquisition gap receipt board reconciles the 10 remaining package downloads, local receipt status, threshold gap, and row-specific post-download validation commands without opening data writes or modeling.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
         "priority_analysis_dataset_synthesis_blueprint",
         "blocked_required_schema_columns_not_verified" if csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0") == "0" else "synthesis_join_candidates_ready",
         f"schema_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_schema_rows', '0')}; required_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_required_rows', '0')}; ready_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_ready_required_rows', '0')}; blocked_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_blocked_required_rows', '0')}; join_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_plan_rows', '0')}; join_ready={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_ready_rows', '0')}; candidate_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_candidate_variable_rows', '0')}; manual_verified_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_manual_verified_variable_rows', '0')}",
@@ -3124,6 +3144,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_manual_launchpad_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv")
     priority_lsms_receipt_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_receipt_handoff_summary.csv")
     priority_lsms_package_manifest_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_package_level_download_manifest_summary.csv")
+    priority_lsms_acquisition_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_gap_receipt_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3341,6 +3362,11 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_package_manifest_expected_core_rows", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_expected_core_file_rows", "0"), "interpretation": "Requirement-linked core file rows preserved from the package-level manifest."},
         {"metric": "priority_lsms_isa_package_manifest_unique_core_files", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_unique_core_file_manifest_rows", "0"), "interpretation": "Unique expected core files in the package-level manifest."},
         {"metric": "priority_lsms_isa_package_manifest_blocked_no_package", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_blocked_no_local_package_rows", "0"), "interpretation": "Package rows still lacking a local official package or incoming file."},
+        {"metric": "priority_lsms_isa_acquisition_gap_board_rows", "value": csv_value(priority_lsms_acquisition_gap_summary, "acquisition_gap_receipt_board_rows", "0"), "interpretation": "Rows in the unified acquisition gap and receipt board."},
+        {"metric": "priority_lsms_isa_acquisition_gap_remaining_financial_country_gap", "value": csv_value(priority_lsms_acquisition_gap_summary, "remaining_financial_country_gap", "missing"), "interpretation": "Financial-protection-ready countries still needed before modeling can resume."},
+        {"metric": "priority_lsms_isa_acquisition_gap_remaining_double_failure_wave_gap", "value": csv_value(priority_lsms_acquisition_gap_summary, "remaining_double_failure_wave_gap", "missing"), "interpretation": "Double-failure-ready country-waves still needed before modeling can resume."},
+        {"metric": "priority_lsms_isa_acquisition_gap_missing_package_rows", "value": csv_value(priority_lsms_acquisition_gap_summary, "acquisition_gap_missing_package_rows", "0"), "interpretation": "Download-required rows still lacking a local package or incoming file."},
+        {"metric": "priority_lsms_isa_acquisition_gap_first_canary", "value": csv_value(priority_lsms_acquisition_gap_summary, "acquisition_gap_first_canary_idno", ""), "interpretation": "First package to download and validate before scaling the remaining batch."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},

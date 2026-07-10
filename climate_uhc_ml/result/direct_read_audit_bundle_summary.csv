@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,202,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,895,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,891,Curated artifacts present and non-empty.
+bundle_rows,203,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,899,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,895,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -208,6 +208,11 @@ priority_lsms_isa_package_manifest_expected_full_files,838,Expected official fil
 priority_lsms_isa_package_manifest_expected_core_rows,323,Requirement-linked core file rows preserved from the package-level manifest.
 priority_lsms_isa_package_manifest_unique_core_files,213,Unique expected core files in the package-level manifest.
 priority_lsms_isa_package_manifest_blocked_no_package,10,Package rows still lacking a local official package or incoming file.
+priority_lsms_isa_acquisition_gap_board_rows,10,Rows in the unified acquisition gap and receipt board.
+priority_lsms_isa_acquisition_gap_remaining_financial_country_gap,5,Financial-protection-ready countries still needed before modeling can resume.
+priority_lsms_isa_acquisition_gap_remaining_double_failure_wave_gap,9,Double-failure-ready country-waves still needed before modeling can resume.
+priority_lsms_isa_acquisition_gap_missing_package_rows,10,Download-required rows still lacking a local package or incoming file.
+priority_lsms_isa_acquisition_gap_first_canary,ETH_2021_ESPS-W5_v02_M,First package to download and validate before scaling the remaining batch.
 priority_lsms_isa_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promotion packets built.
 priority_lsms_isa_country_wave_packet_failed_gates,306,Refocused LSMS/ISA packet gates still blocking promotion.
 priority_lsms_isa_country_wave_packet_analysis_ready_rows,1,Refocused LSMS/ISA packets currently approved for promoted data writes.
@@ -659,13 +664,14 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,93,Direct-read bundle section count.
+bundle_section_priority_bundle,94,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
 bundle_section_readiness,6,Direct-read bundle section count.
 bundle_section_state,3,Direct-read bundle section count.
 bundle_section_traceability,3,Direct-read bundle section count.
+bundle_status_acquisition_gap_board_10_packages_threshold_gap_locked,1,Direct-read bundle status count.
 bundle_status_acquisition_to_promotion_handoff_current_raw_acquisition_blocked,1,Direct-read bundle status count.
 bundle_status_all_download_required_waves_need_browser_manual_terms_acceptance,1,Direct-read bundle status count.
 bundle_status_archive_preflight_needs_review,1,Direct-read bundle status count.
