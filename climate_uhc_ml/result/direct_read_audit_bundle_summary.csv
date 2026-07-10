@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,173,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,759,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,755,Curated artifacts present and non-empty.
+bundle_rows,174,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,763,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,759,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -119,6 +119,9 @@ priority_lsms_isa_manual_download_progress_target_files,0,Non-generated files cu
 priority_lsms_isa_post_download_validation_ready_packets,0,Packets ready for post-download validation.
 priority_lsms_isa_post_download_validation_plan_rows,50,Post-download validation command-plan rows.
 priority_lsms_isa_post_download_validation_execute_commands,0,Validation commands selected for execution in the latest runner invocation.
+priority_lsms_isa_manual_download_execution_board_rows,10,Manual-download execution board rows.
+priority_lsms_isa_manual_download_execution_board_target_files,0,Files currently present under execution-board target folders.
+priority_lsms_isa_manual_download_execution_board_validation_ready,0,Execution-board rows ready for post-download validation.
 priority_lsms_isa_promotion_gate_country_waves,19,Country-waves tracked by the promotion gate dashboard.
 priority_lsms_isa_promotion_gate_promoted_rows,1,Country-waves already promoted analysis-ready in the gate dashboard.
 priority_lsms_isa_promotion_gate_blocked_raw_package_rows,18,Country-waves still blocked at complete official raw package receipt.
@@ -574,7 +577,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,64,Direct-read bundle section count.
+bundle_section_priority_bundle,65,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -661,6 +664,7 @@ bundle_status_limited_che_outcome_nasa_admin2_climate_linked_promoted_models_sti
 bundle_status_limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked,1,Direct-read bundle status count.
 bundle_status_limited_harmonized_household_core_promoted_outcome_climate_still_blocked,1,Direct-read bundle status count.
 bundle_status_limited_nasa_admin2_centroid_climate_exposures_promoted_linkage_still_blocked,1,Direct-read bundle status count.
+bundle_status_manual_download_execution_board_current,1,Direct-read bundle status count.
 bundle_status_manual_download_packets_current,1,Direct-read bundle status count.
 bundle_status_manual_download_progress_current,1,Direct-read bundle status count.
 bundle_status_manual_download_required,1,Direct-read bundle status count.

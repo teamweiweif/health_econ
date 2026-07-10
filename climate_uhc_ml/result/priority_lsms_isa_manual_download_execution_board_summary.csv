@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+manual_download_execution_board_rows,10,Manual-download execution rows in the current minimum-threshold board.
+manual_download_execution_board_priority_country_rows,9,Rows in the priority Ethiopia/Nigeria/Malawi/Tanzania/Uganda family.
+manual_download_execution_board_sixth_country_rows,1,Rows outside the priority family needed to reach the six-country threshold.
+manual_download_execution_board_target_file_rows,0,Files currently present under board target folders.
+manual_download_execution_board_incoming_route_rows,0,Incoming router rows currently linked to board targets.
+manual_download_execution_board_validation_ready_rows,0,Board rows ready for post-download validation.
+manual_download_execution_board_missing_full_file_rows,838,Expected official full-file rows still missing across board targets.
+manual_download_execution_board_missing_core_file_rows,323,Requirement-linked core-file rows still missing across board targets.
+manual_download_execution_board_official_url_rows,10,Board rows with official World Bank get-microdata URLs.
+countries_if_board_passes,6,Country count if the current minimum board passes all promotion gates.
+country_waves_if_board_passes,11,Country-wave count if the current minimum board passes all promotion gates.
+data_write_gate_status,blocked_no_data_write,The execution board never writes promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."
+manual_download_execution_board_status_blocked_no_local_or_incoming_files,10,Board row count by local acquisition progress status.
