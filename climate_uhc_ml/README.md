@@ -16,6 +16,7 @@ the required thresholds.
 - `result/promoted_country_wave_registry.csv` - machine-readable gate registry.
 - `result/priority_country_wave_download_queue.csv` - priority raw-data action queue.
 - `report/priority_lsms_isa_next_raw_package_action_packet.md` - exact remaining raw-package actions.
+- `report/priority_lsms_isa_incoming_raw_package_router.md` - route plan for manual downloads dropped into `_incoming`.
 - `report/priority_lsms_isa_promotion_gate_dashboard.md` - current raw-receipt-to-promotion gate dashboard.
 - `report/country_wave_promotion_packets/` - one packet per target country-wave.
 - `report/direct_read_audit_bundle.md` - compact Web-GPT-readable audit bundle.
@@ -52,4 +53,5 @@ unless its timing, geography, and outcome gates are resolved.
 Raw downloads, extracted archives, web/API caches, Stata/SPSS/SAS files, and
 temporary scratch files are deliberately excluded from the GitHub-readable
 package. Put manual raw packages under `temp/raw_downloads/` locally, then rerun
-the promotion pipeline.
+the promotion pipeline. If the target folder is uncertain, put files under
+`temp/raw_downloads/_incoming/` first and run the incoming raw package router.

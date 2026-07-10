@@ -323,6 +323,7 @@ promotion:
 	$(PYTHON) script/151_refresh_refocused_promoted_country_wave_registry.py
 	$(PYTHON) script/127_enforce_promoted_data_gate.py
 	$(PYTHON) script/172_build_priority_lsms_isa_next_raw_package_action_packet.py
+	$(PYTHON) script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 	$(PYTHON) script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py

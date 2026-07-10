@@ -29,9 +29,11 @@ data gates.
    - Current raw-receipt-to-promotion gate dashboard for 19 LSMS/ISA country-waves.
 7. `report/priority_lsms_isa_next_raw_package_action_packet.md`
    - Exact remaining raw-package acquisition actions for the minimum batch plus backups.
-8. `report/priority_lsms_isa_country_wave_promotion_packets/`
+8. `report/priority_lsms_isa_incoming_raw_package_router.md`
+   - Non-destructive route plan for files dropped into `temp/raw_downloads/_incoming/`.
+9. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-9. `report/mwi2004_requirement_acceptance_decisions.md`
+10. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -63,6 +65,19 @@ Still blocked:
 - SDG 3.8.2 discretionary-budget construction.
 - Multi-country promoted dataset synthesis.
 - All additional country-waves until complete official raw packages pass receipt, value, semantics, timing/geography, and climate-linkage gates.
+
+## Manual Download Routing
+
+If a new official raw package has been downloaded but the target IDNO folder is
+uncertain, place it under `temp/raw_downloads/_incoming/` and run:
+
+```bash
+python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
+```
+
+Then review `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv`. The
+router only writes suggested copy commands; it does not move, delete, extract,
+or promote files.
 
 ## Excluded From GitHub
 

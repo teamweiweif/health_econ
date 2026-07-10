@@ -76,6 +76,7 @@ python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
 python script/151_refresh_refocused_promoted_country_wave_registry.py
 python script/127_enforce_promoted_data_gate.py
 python script/172_build_priority_lsms_isa_next_raw_package_action_packet.py
+python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 python script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
@@ -130,6 +131,7 @@ Current status:
 - The priority LSMS/ISA minimum-batch raw intake guide is `result/priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv`.
 - The priority LSMS/ISA minimum-batch endpoint refresh is `result/priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv`.
 - The priority LSMS/ISA next raw package action packet is `result/priority_lsms_isa_next_raw_package_action_summary.csv`.
+- The priority LSMS/ISA incoming raw package router is `result/priority_lsms_isa_incoming_raw_package_router_summary.csv`; put uncertain manual downloads under `temp/raw_downloads/_incoming/` and review `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv`.
 - The priority LSMS/ISA promotion gate dashboard is `result/priority_lsms_isa_promotion_gate_dashboard_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.

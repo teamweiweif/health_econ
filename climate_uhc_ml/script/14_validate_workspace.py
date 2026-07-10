@@ -336,6 +336,7 @@ REQUIRED_SCRIPTS = [
     "171_build_mwi2004_promoted_household_climate_dataset.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
+    "174_build_priority_lsms_isa_incoming_raw_package_router.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -346,6 +347,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
+    "174_build_priority_lsms_isa_incoming_raw_package_router.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -489,7 +491,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-173 dataset-promotion gate chain",
+        "One-command runners include the current 157-174 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -889,6 +891,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_next_raw_package_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv"),
         "priority_lsms_isa_next_raw_package_core_files": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv"),
         "priority_lsms_isa_next_raw_package_action_summary": row_count(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv"),
+        "priority_lsms_isa_incoming_raw_package_route_plan": row_count(TEMP_DIR / "priority_lsms_isa_incoming_raw_package_route_plan.csv"),
+        "priority_lsms_isa_incoming_raw_package_route_candidates": row_count(TEMP_DIR / "priority_lsms_isa_incoming_raw_package_route_candidates.csv"),
+        "priority_lsms_isa_incoming_raw_package_router_summary": row_count(RESULT_DIR / "priority_lsms_isa_incoming_raw_package_router_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5298,6 +5303,35 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_next_raw_package_gate_ok),
         f"action_rows={counts['priority_lsms_isa_next_raw_package_action_queue']}; summary_rows={counts['priority_lsms_isa_next_raw_package_action_summary']}; core_rows={counts['priority_lsms_isa_next_raw_package_core_files']}; minimum_remaining={priority_lsms_next_raw_package_minimum_remaining}; backups={priority_lsms_next_raw_package_backups}; countries_if_pass={priority_lsms_next_raw_package_countries_if_pass}; waves_if_pass={priority_lsms_next_raw_package_waves_if_pass}; raw_candidates={priority_lsms_next_raw_package_raw_candidates}; credentialed_required={priority_lsms_next_raw_package_credentialed}; data_write={priority_lsms_next_raw_package_data_write}; modeling_gate={priority_lsms_next_raw_package_modeling_gate}",
         "" if priority_lsms_next_raw_package_gate_ok else "Run script/172_build_priority_lsms_isa_next_raw_package_action_packet.py after the endpoint refresh and threshold files are current.",
+    )
+    priority_lsms_incoming_router_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_incoming_raw_package_router_summary.csv")
+    priority_lsms_incoming_router_folder = next((row.get("value", "") for row in priority_lsms_incoming_router_summary if row.get("metric") == "priority_lsms_incoming_router_incoming_folder_exists"), "")
+    priority_lsms_incoming_router_action_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_incoming_router_summary if row.get("metric") == "priority_lsms_incoming_router_action_country_wave_rows"), "0"), 0)
+    priority_lsms_incoming_router_files = safe_int(next((row.get("value", "0") for row in priority_lsms_incoming_router_summary if row.get("metric") == "priority_lsms_incoming_router_incoming_file_rows"), "0"), 0)
+    priority_lsms_incoming_router_candidates = safe_int(next((row.get("value", "0") for row in priority_lsms_incoming_router_summary if row.get("metric") == "priority_lsms_incoming_router_candidate_rows"), "0"), 0)
+    priority_lsms_incoming_router_copy = safe_int(next((row.get("value", "0") for row in priority_lsms_incoming_router_summary if row.get("metric") == "priority_lsms_incoming_router_copy_candidate_rows"), "0"), 0)
+    priority_lsms_incoming_router_manual = safe_int(next((row.get("value", "0") for row in priority_lsms_incoming_router_summary if row.get("metric") == "priority_lsms_incoming_router_manual_review_rows"), "0"), 0)
+    priority_lsms_incoming_router_data_write = next((row.get("value", "") for row in priority_lsms_incoming_router_summary if row.get("metric") == "priority_lsms_incoming_router_data_write_status"), "")
+    priority_lsms_incoming_router_modeling = next((row.get("value", "") for row in priority_lsms_incoming_router_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_incoming_router_gate_ok = (
+        counts["priority_lsms_isa_incoming_raw_package_router_summary"] > 0
+        and counts["priority_lsms_isa_incoming_raw_package_route_plan"] == priority_lsms_incoming_router_files
+        and counts["priority_lsms_isa_incoming_raw_package_route_candidates"] == priority_lsms_incoming_router_candidates
+        and file_ok(REPORT_DIR / "priority_lsms_isa_incoming_raw_package_router.md")
+        and priority_lsms_incoming_router_folder == "1"
+        and priority_lsms_incoming_router_action_waves == counts["priority_lsms_isa_next_raw_package_action_queue"]
+        and priority_lsms_incoming_router_files >= priority_lsms_incoming_router_copy
+        and priority_lsms_incoming_router_files >= priority_lsms_incoming_router_manual
+        and priority_lsms_incoming_router_data_write == "blocked_no_data_write"
+        and priority_lsms_incoming_router_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA incoming raw package router scores manually downloaded files before target-folder copying",
+        status(priority_lsms_incoming_router_gate_ok),
+        f"incoming_folder={priority_lsms_incoming_router_folder}; action_waves={priority_lsms_incoming_router_action_waves}; incoming_files={priority_lsms_incoming_router_files}; candidate_rows={priority_lsms_incoming_router_candidates}; copy_candidates={priority_lsms_incoming_router_copy}; manual_review={priority_lsms_incoming_router_manual}; plan_rows={counts['priority_lsms_isa_incoming_raw_package_route_plan']}; data_write={priority_lsms_incoming_router_data_write}; modeling_gate={priority_lsms_incoming_router_modeling}",
+        "" if priority_lsms_incoming_router_gate_ok else "Run script/174_build_priority_lsms_isa_incoming_raw_package_router.py after next raw package action queue is current.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)
