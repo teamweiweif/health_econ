@@ -177,6 +177,7 @@ REQUIRED_REPORTS = [
     "mwi2004_sdg382_external_parameter_source_ledger.md",
     "mwi2004_sdg382_candidate_classification_precheck.md",
     "mwi2004_sdg382_official_denominator_rule_audit.md",
+    "mwi2004_sdg382_spl_bridge_verification_gate.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_lsms_isa_minimum_batch_promotion_unlock_board.md",
     "priority_lsms_isa_worldbank_session_bootstrap.md",
@@ -372,6 +373,7 @@ REQUIRED_SCRIPTS = [
     "190_build_mwi2004_sdg382_external_parameter_source_ledger.py",
     "191_build_mwi2004_sdg382_candidate_classification_precheck.py",
     "192_build_mwi2004_sdg382_official_denominator_rule_audit.py",
+    "207_build_mwi2004_sdg382_spl_bridge_verification_gate.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
@@ -416,6 +418,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "190_build_mwi2004_sdg382_external_parameter_source_ledger.py",
     "191_build_mwi2004_sdg382_candidate_classification_precheck.py",
     "192_build_mwi2004_sdg382_official_denominator_rule_audit.py",
+    "207_build_mwi2004_sdg382_spl_bridge_verification_gate.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
     "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
@@ -994,6 +997,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "mwi2004_sdg382_candidate_classification_precheck_summary": row_count(RESULT_DIR / "mwi2004_sdg382_candidate_classification_precheck_summary.csv"),
         "mwi2004_sdg382_official_denominator_rule_audit": row_count(RESULT_DIR / "mwi2004_sdg382_official_denominator_rule_audit.csv"),
         "mwi2004_sdg382_official_denominator_rule_summary": row_count(RESULT_DIR / "mwi2004_sdg382_official_denominator_rule_summary.csv"),
+        "mwi2004_sdg382_spl_bridge_verification_gate": row_count(RESULT_DIR / "mwi2004_sdg382_spl_bridge_verification_gate.csv"),
+        "mwi2004_sdg382_spl_bridge_verification_gate_summary": row_count(RESULT_DIR / "mwi2004_sdg382_spl_bridge_verification_gate_summary.csv"),
         "priority_lsms_isa_next_raw_package_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv"),
         "priority_lsms_isa_next_raw_package_core_files": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv"),
         "priority_lsms_isa_next_raw_package_action_summary": row_count(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv"),
@@ -4192,6 +4197,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     albania_main_rows = sum(1 for row in promotion_registry if row.get("country") == "Albania")
     promoted_rows = sum(1 for row in promotion_registry if row.get("analysis_ready_status") == "promoted_analysis_ready")
     priority_rows = sum(1 for row in promotion_registry if row.get("priority_country") == "1")
+    mwi2004_sdg382_status = next((row.get("sdg382_ready_status", "") for row in promotion_registry if row.get("idno") == "MWI_2004_IHS-II_v01_M"), "")
     packet_count = len(list((REPORT_DIR / "country_wave_promotion_packets").glob("*.md"))) if (REPORT_DIR / "country_wave_promotion_packets").exists() else 0
     modeling_gate = next((row.get("value", "") for row in promotion_summary if row.get("metric") == "modeling_gate_status"), "")
     add(
@@ -4208,9 +4214,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
             and refocused_missing == 0
             and registry_extra_non_refocused == 0
             and albania_main_rows == 0
+            and mwi2004_sdg382_status == "blocked_spl_base_period_bridge_not_accepted_ppp_cpi_values_revalidated"
             and modeling_gate == "blocked"
         ),
-        f"registry_rows={counts['promoted_country_wave_registry']}; gate_rows={counts['country_wave_promotion_gate_audit']}; summary_rows={counts['country_wave_promotion_summary']}; queue_rows={counts['priority_country_wave_download_queue']}; priority_rows={priority_rows}; promoted_rows={promoted_rows}; packets={packet_count}; refocused_coverage={refocused_registry_coverage}; refocused_missing={refocused_missing}; registry_extra_non_refocused={registry_extra_non_refocused}; albania_main_rows={albania_main_rows}; modeling_gate={modeling_gate}",
+        f"registry_rows={counts['promoted_country_wave_registry']}; gate_rows={counts['country_wave_promotion_gate_audit']}; summary_rows={counts['country_wave_promotion_summary']}; queue_rows={counts['priority_country_wave_download_queue']}; priority_rows={priority_rows}; promoted_rows={promoted_rows}; packets={packet_count}; refocused_coverage={refocused_registry_coverage}; refocused_missing={refocused_missing}; registry_extra_non_refocused={registry_extra_non_refocused}; albania_main_rows={albania_main_rows}; mwi2004_sdg382_status={mwi2004_sdg382_status}; modeling_gate={modeling_gate}",
         ""
         if counts["promoted_country_wave_registry"] > 0
         and counts["country_wave_promotion_gate_audit"] > 0
@@ -4221,6 +4228,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and refocused_missing == 0
         and registry_extra_non_refocused == 0
         and albania_main_rows == 0
+        and mwi2004_sdg382_status == "blocked_spl_base_period_bridge_not_accepted_ppp_cpi_values_revalidated"
         and modeling_gate == "blocked"
         else "Run script/151_refresh_refocused_promoted_country_wave_registry.py after the LSMS/ISA promotion packets and keep modeling blocked until registry thresholds pass.",
     )
@@ -6858,6 +6866,44 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(mwi2004_sdg382_denominator_gate_ok),
         f"audit_rows={counts['mwi2004_sdg382_official_denominator_rule_audit']}; summary_rows={counts['mwi2004_sdg382_official_denominator_rule_summary']}; household_rows={mwi2004_sdg382_denominator_households}; official_rule_accepted={mwi2004_sdg382_denominator_rule}; nonpositive_discretionary={mwi2004_sdg382_denominator_nonpositive}; positive_oop_nonpositive={mwi2004_sdg382_denominator_positive_oop_nonpositive}; official_candidate_rows={mwi2004_sdg382_denominator_official_rows}; bridge_accepted={mwi2004_sdg382_denominator_bridge}; written_to_data={mwi2004_sdg382_denominator_written}; sdg382_ready={mwi2004_sdg382_denominator_ready}; data_write={mwi2004_sdg382_denominator_data_write}; modeling_gate={mwi2004_sdg382_denominator_modeling}",
         "" if mwi2004_sdg382_denominator_gate_ok else "Run script/192_build_mwi2004_sdg382_official_denominator_rule_audit.py after the Malawi SDG 3.8.2 candidate classification precheck is current.",
+    )
+    mwi2004_sdg382_spl_bridge_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_spl_bridge_verification_gate_summary.csv")
+    mwi2004_sdg382_spl_source_revalidated = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "source_parameters_revalidated"), "")
+    mwi2004_sdg382_spl_ppp_match = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "wdi_ppp_private_consumption_2017_api_match"), "")
+    mwi2004_sdg382_spl_cpi_2004_match = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "wdi_cpi_2004_api_match"), "")
+    mwi2004_sdg382_spl_cpi_2017_match = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "wdi_cpi_2017_api_match"), "")
+    mwi2004_sdg382_spl_cpi_ratio_recomputed = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "candidate_cpi_ratio_recomputed"), "")
+    mwi2004_sdg382_spl_local_recomputed = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "candidate_local_currency_spl_recomputed"), "")
+    mwi2004_sdg382_spl_annual_bridge = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "annual_cpi_bridge_base_period_accepted"), "")
+    mwi2004_sdg382_spl_local_accepted = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "local_currency_spl_accepted"), "")
+    mwi2004_sdg382_spl_ready = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "sdg382_ready"), "")
+    mwi2004_sdg382_spl_registry_status = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "registry_sdg382_status"), "")
+    mwi2004_sdg382_spl_data_write = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "data_write_gate_status"), "")
+    mwi2004_sdg382_spl_modeling = next((row.get("value", "") for row in mwi2004_sdg382_spl_bridge_summary if row.get("metric") == "modeling_gate_status"), "")
+    mwi2004_sdg382_spl_gate_ok = (
+        counts["mwi2004_sdg382_spl_bridge_verification_gate_summary"] > 0
+        and counts["mwi2004_sdg382_spl_bridge_verification_gate"] >= 9
+        and file_ok(REPORT_DIR / "mwi2004_sdg382_spl_bridge_verification_gate.md")
+        and mwi2004_sdg382_spl_source_revalidated == "1"
+        and mwi2004_sdg382_spl_ppp_match == "1"
+        and mwi2004_sdg382_spl_cpi_2004_match == "1"
+        and mwi2004_sdg382_spl_cpi_2017_match == "1"
+        and mwi2004_sdg382_spl_cpi_ratio_recomputed == "1"
+        and mwi2004_sdg382_spl_local_recomputed == "1"
+        and mwi2004_sdg382_spl_annual_bridge == "0"
+        and mwi2004_sdg382_spl_local_accepted == "0"
+        and mwi2004_sdg382_spl_ready == "0"
+        and mwi2004_sdg382_spl_registry_status == "blocked_spl_base_period_bridge_not_accepted_ppp_cpi_values_revalidated"
+        and mwi2004_sdg382_spl_data_write == "closed"
+        and mwi2004_sdg382_spl_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Malawi 2004 SDG 3.8.2 SPL bridge verifier revalidates source values but keeps final SDG data blocked",
+        status(mwi2004_sdg382_spl_gate_ok),
+        f"audit_rows={counts['mwi2004_sdg382_spl_bridge_verification_gate']}; summary_rows={counts['mwi2004_sdg382_spl_bridge_verification_gate_summary']}; source_revalidated={mwi2004_sdg382_spl_source_revalidated}; ppp_match={mwi2004_sdg382_spl_ppp_match}; cpi_2004_match={mwi2004_sdg382_spl_cpi_2004_match}; cpi_2017_match={mwi2004_sdg382_spl_cpi_2017_match}; cpi_ratio_recomputed={mwi2004_sdg382_spl_cpi_ratio_recomputed}; local_spl_recomputed={mwi2004_sdg382_spl_local_recomputed}; annual_bridge_accepted={mwi2004_sdg382_spl_annual_bridge}; local_spl_accepted={mwi2004_sdg382_spl_local_accepted}; sdg382_ready={mwi2004_sdg382_spl_ready}; registry_status={mwi2004_sdg382_spl_registry_status}; data_write={mwi2004_sdg382_spl_data_write}; modeling_gate={mwi2004_sdg382_spl_modeling}",
+        "" if mwi2004_sdg382_spl_gate_ok else "Run script/207_build_mwi2004_sdg382_spl_bridge_verification_gate.py after World Bank PPP/CPI source values and Malawi survey price-base evidence are current.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

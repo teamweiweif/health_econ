@@ -1,0 +1,24 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by the SPL bridge verification gate.
+official_metadata_last_update,2026-03-27,Official UNSD SDG 3.8.2 metadata version checked for the formula.
+world_bank_api_revalidation_date,2026-07-10,Date the PPP/CPI source values were rechecked against the official World Bank API.
+wdi_ppp_private_consumption_2017_api_match,1,Ledger private-consumption PPP value matches the official World Bank API value.
+wdi_cpi_2004_api_match,1,Ledger 2004 CPI value matches the official World Bank API value.
+wdi_cpi_2017_api_match,1,Ledger 2017 CPI value matches the official World Bank API value.
+source_parameters_revalidated,1,All three external source values match the official API values used by the ledger.
+candidate_cpi_ratio_recomputed,1,The annual CPI 2017/2004 ratio is reproducible from source values.
+candidate_local_currency_spl_recomputed,1,"The candidate local-currency SPL is reproducible from PPP, CPI ratio, and SPL formula."
+candidate_spl_2017_ppp,2.15,Candidate SPL in 2017 PPP international dollars per person per day.
+candidate_spl_daily_raw_2004_mwk,87.5590037117,Candidate local-currency SPL in survey raw real 2004 MWK per person per day.
+survey_povline_daily_raw_2004_mwk,44.2877,Survey national poverty-line context; not the official SDG SPL by itself.
+candidate_spl_to_survey_povline_ratio,1.97705014511,Diagnostic ratio between candidate SDG SPL and survey poverty-line context.
+survey_price_index_base_status,national_february_march_2004_base,Base-period evidence from the raw price_index label.
+annual_cpi_bridge_base_period_accepted,0,Whether annual CPI is accepted as a final bridge to the survey real-currency base.
+nonpositive_discretionary_budget_rows,9073,Rows with nonpositive discretionary budget under the candidate SPL.
+official_rule_candidate_sdg382_rows,6437,Aggregate candidate SDG 3.8.2 rows under the official nonpositive rule and candidate SPL.
+external_parameter_bridge_accepted,0,"The PPP/CPI source values are verified, but the survey-base bridge is not accepted."
+local_currency_spl_accepted,0,The local-currency SPL remains candidate.
+sdg382_ready,0,Malawi 2004 SDG 3.8.2 remains blocked.
+registry_sdg382_status,blocked_spl_base_period_bridge_not_accepted_ppp_cpi_values_revalidated,More precise registry blocker after this verifier.
+data_write_gate_status,closed,No household-level SDG 3.8.2 data are written.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

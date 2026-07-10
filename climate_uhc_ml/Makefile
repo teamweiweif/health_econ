@@ -314,6 +314,7 @@ promotion:
 	$(PYTHON) script/190_build_mwi2004_sdg382_external_parameter_source_ledger.py
 	$(PYTHON) script/191_build_mwi2004_sdg382_candidate_classification_precheck.py
 	$(PYTHON) script/192_build_mwi2004_sdg382_official_denominator_rule_audit.py
+	$(PYTHON) script/207_build_mwi2004_sdg382_spl_bridge_verification_gate.py
 	$(PYTHON) script/166_build_mwi2004_timing_geography_linkage_policy.py
 	$(PYTHON) script/167_build_mwi2004_access_person_key_resolution_policy.py
 	$(PYTHON) script/168_build_mwi2004_missing_units_recall_skip_policy.py

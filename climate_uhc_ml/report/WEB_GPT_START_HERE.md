@@ -97,7 +97,9 @@ data gates.
    - Aggregate-only candidate SDG 3.8.2 denominator/classification stress test; not promoted data.
 41. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
    - Official UNSD nonpositive-discretionary-budget rule audit; rule accepted, final Malawi SPL bridge still blocked.
-42. `report/mwi2004_requirement_acceptance_decisions.md`
+42. `report/mwi2004_sdg382_spl_bridge_verification_gate.md`
+   - Malawi 2004 SPL bridge verifier; World Bank PPP/CPI source values are revalidated, but the annual-CPI bridge to the survey real-currency base remains unaccepted.
+43. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -127,8 +129,8 @@ Verified or partially accepted:
 Still blocked:
 
 - SDG 3.8.2 discretionary-budget construction.
-- SDG 3.8.2 now has a focused parameter audit, but the 2017 PPP conversion, CPI/deflator bridge, and local-currency SPL are not yet verified.
-- World Bank PPP/CPI candidates are now captured, but annual CPI has not been accepted as the bridge for the survey's February/March 2004 real-currency base.
+- SDG 3.8.2 now has focused parameter, candidate-classification, official-rule, and SPL-bridge audits, but the final local-currency SPL is not accepted.
+- World Bank PPP/CPI source values are revalidated against the official API, but annual CPI is still not accepted as the bridge for the survey's February/March 2004 real-currency base.
 - Candidate SDG 3.8.2 classification has an aggregate-only precheck, but no household-level SDG 3.8.2 data are written or promoted.
 - The official UNSD rule for nonpositive discretionary budgets is now accepted; the remaining SDG 3.8.2 blocker is the Malawi local-currency SPL bridge, not the rule itself.
 - Multi-country promoted dataset synthesis.

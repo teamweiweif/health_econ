@@ -13,6 +13,7 @@ PACKET_INDEX_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_
 PACKET_GATE_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_gate_matrix.csv"
 RECEIPT_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_receipt_checklist.csv"
 MWI2004_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv"
+MWI2004_SPL_BRIDGE_SUMMARY_PATH = RESULT_DIR / "mwi2004_sdg382_spl_bridge_verification_gate_summary.csv"
 
 REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 GATE_AUDIT_PATH = RESULT_DIR / "country_wave_promotion_gate_audit.csv"
@@ -97,6 +98,32 @@ def one_by_id(rows: list[dict[str, str]], field: str = "idno") -> dict[str, dict
         if idno and idno not in out:
             out[idno] = row
     return out
+
+
+def summary_value(rows: list[dict[str, str]], metric: str, default: str = "") -> str:
+    for row in rows:
+        if clean(row.get("metric")) == metric:
+            return clean(row.get("value")) or default
+    return default
+
+
+def sdg382_ready_status(idno: str) -> str:
+    default = "blocked_poverty_line_ppp_cpi_discretionary_budget_not_verified"
+    if idno != "MWI_2004_IHS-II_v01_M":
+        return default
+    bridge_summary = read_csv_dicts(MWI2004_SPL_BRIDGE_SUMMARY_PATH)
+    if not bridge_summary:
+        return default
+    if summary_value(bridge_summary, "sdg382_ready", "0") == "1":
+        return "ready_sdg382_discretionary_budget_40"
+    registry_status = summary_value(bridge_summary, "registry_sdg382_status", "")
+    if (
+        registry_status
+        and summary_value(bridge_summary, "source_parameters_revalidated", "0") == "1"
+        and summary_value(bridge_summary, "annual_cpi_bridge_base_period_accepted", "1") == "0"
+    ):
+        return registry_status
+    return default
 
 
 def by_id(rows: list[dict[str, str]], field: str = "idno") -> dict[str, list[dict[str, str]]]:
@@ -207,7 +234,7 @@ def build_registry_rows(
                 "local_target_folder": clean(wave.get("local_target_folder")),
                 "rows": "0" if not analysis_ready else clean(packet.get("promoted_rows")) or "0",
                 "outcome_ready_status": "outcome_ready_financial_and_access" if financial_ready and access_ready else "blocked_raw_value_verification_required",
-                "sdg382_ready_status": "blocked_poverty_line_ppp_cpi_discretionary_budget_not_verified",
+                "sdg382_ready_status": sdg382_ready_status(idno),
                 "che10_che25_ready_status": "ready_che10_che25" if financial_ready else "blocked_consumption_oop_units_recall_not_verified",
                 "access_forgone_care_ready_status": "ready_access_forgone_care" if access_ready else "blocked_health_need_care_access_values_not_verified",
                 "climate_linkage_ready_status": "accepted_chirps_or_era5_route" if climate_ready else "blocked_timing_geography_or_chirps_era5_route_not_verified",
