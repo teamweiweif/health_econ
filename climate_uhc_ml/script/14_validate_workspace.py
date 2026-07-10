@@ -156,6 +156,8 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_credentialed_raw_acquisition_workbench.md",
     "priority_lsms_isa_official_file_receipt_validator.md",
     "priority_lsms_isa_threshold_download_sequence.md",
+    "priority_lsms_isa_minimum_batch_raw_intake_guide.md",
+    "priority_lsms_isa_minimum_batch_endpoint_refresh.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -321,6 +323,8 @@ REQUIRED_SCRIPTS = [
     "152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py",
     "153_validate_priority_lsms_isa_official_file_receipt.py",
     "154_build_priority_lsms_isa_threshold_download_sequence.py",
+    "155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py",
+    "156_probe_priority_lsms_isa_minimum_batch_endpoint_refresh.py",
     "132_build_priority_analysis_dataset_synthesis_blueprint.py",
     "134_build_priority_country_wave_promotion_packets.py",
     "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
@@ -829,6 +833,13 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_threshold_minimum_batch": row_count(TEMP_DIR / "priority_lsms_isa_threshold_minimum_batch.csv"),
         "priority_lsms_isa_threshold_country_coverage": row_count(TEMP_DIR / "priority_lsms_isa_threshold_country_coverage.csv"),
         "priority_lsms_isa_threshold_download_sequence_summary": row_count(RESULT_DIR / "priority_lsms_isa_threshold_download_sequence_summary.csv"),
+        "priority_lsms_isa_minimum_batch_raw_intake_guide": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide.csv"),
+        "priority_lsms_isa_minimum_batch_expected_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_expected_file_manifest.csv"),
+        "priority_lsms_isa_minimum_batch_core_file_manifest": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_core_file_manifest.csv"),
+        "priority_lsms_isa_minimum_batch_raw_intake_guide_summary": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv"),
+        "priority_lsms_isa_minimum_batch_endpoint_refresh": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh.csv"),
+        "priority_lsms_isa_minimum_batch_endpoint_dataset_status": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_endpoint_dataset_status.csv"),
+        "priority_lsms_isa_minimum_batch_endpoint_refresh_summary": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv"),
         "priority_analysis_dataset_synthesis_blueprint": row_count(TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"),
         "priority_analysis_dataset_join_plan": row_count(TEMP_DIR / "priority_analysis_dataset_join_plan.csv"),
         "priority_analysis_dataset_synthesis_blueprint_summary": row_count(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv"),
@@ -5134,6 +5145,76 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_threshold_sequence_gate_ok),
         f"sequence_rows={counts['priority_lsms_isa_threshold_download_sequence']}; minimum_rows={counts['priority_lsms_isa_threshold_minimum_batch']}; country_rows={counts['priority_lsms_isa_threshold_country_coverage']}; summary_rows={counts['priority_lsms_isa_threshold_download_sequence_summary']}; reported_datasets={priority_lsms_threshold_sequence_datasets}; countries={priority_lsms_threshold_sequence_countries}; priority_rows={priority_lsms_threshold_sequence_priority_rows}; minimum_downloads={priority_lsms_threshold_sequence_minimum_downloads}; minimum_countries={priority_lsms_threshold_sequence_minimum_countries}; recommended_downloads={priority_lsms_threshold_sequence_recommended_downloads}; recommended_countries={priority_lsms_threshold_sequence_recommended_countries}; expected_files={priority_lsms_threshold_sequence_expected}; expected_matched={priority_lsms_threshold_sequence_expected_matched}; core_files={priority_lsms_threshold_sequence_core}; core_matched={priority_lsms_threshold_sequence_core_matched}; raw_received={priority_lsms_threshold_sequence_raw_received}; promoted={priority_lsms_threshold_sequence_promoted}; handoffs={priority_lsms_threshold_sequence_handoffs}; data_write={priority_lsms_threshold_sequence_data_write}; modeling_gate={priority_lsms_threshold_sequence_modeling_gate}",
         "" if priority_lsms_threshold_sequence_gate_ok else "Run script/154_build_priority_lsms_isa_threshold_download_sequence.py after refocused queue and official file receipt validation outputs are current.",
+    )
+    priority_lsms_minimum_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv")
+    priority_lsms_minimum_intake_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_country_wave_rows"), "0"), 0)
+    priority_lsms_minimum_intake_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_country_rows"), "0"), 0)
+    priority_lsms_minimum_intake_expected_full = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_expected_full_file_rows"), "0"), 0)
+    priority_lsms_minimum_intake_matched_full = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_matched_full_file_rows"), "0"), 0)
+    priority_lsms_minimum_intake_missing_full = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_missing_full_file_rows"), "0"), 0)
+    priority_lsms_minimum_intake_expected_core = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_expected_core_file_rows"), "0"), 0)
+    priority_lsms_minimum_intake_missing_core = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_missing_core_file_rows"), "0"), 0)
+    priority_lsms_minimum_intake_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_handoff_readmes_written"), "0"), 0)
+    priority_lsms_minimum_intake_data_write = next((row.get("value", "") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "priority_lsms_minimum_batch_data_write_status"), "")
+    priority_lsms_minimum_intake_modeling_gate = next((row.get("value", "") for row in priority_lsms_minimum_intake_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_minimum_intake_gate_ok = (
+        counts["priority_lsms_isa_minimum_batch_raw_intake_guide"] == counts["priority_lsms_isa_threshold_minimum_batch"] == 11
+        and counts["priority_lsms_isa_minimum_batch_expected_file_manifest"] == priority_lsms_minimum_intake_expected_full
+        and counts["priority_lsms_isa_minimum_batch_core_file_manifest"] == priority_lsms_minimum_intake_expected_core
+        and counts["priority_lsms_isa_minimum_batch_raw_intake_guide_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide.md")
+        and priority_lsms_minimum_intake_waves == 11
+        and priority_lsms_minimum_intake_countries >= 6
+        and priority_lsms_minimum_intake_expected_full >= 800
+        and priority_lsms_minimum_intake_expected_core >= 300
+        and priority_lsms_minimum_intake_missing_full == priority_lsms_minimum_intake_expected_full - priority_lsms_minimum_intake_matched_full
+        and priority_lsms_minimum_intake_missing_core <= priority_lsms_minimum_intake_expected_core
+        and priority_lsms_minimum_intake_handoffs == 11
+        and priority_lsms_minimum_intake_data_write == "blocked_no_value_verified_raw_packages"
+        and priority_lsms_minimum_intake_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA minimum-batch raw intake guide gives exact official file and core-file worklists for the 11-wave threshold batch",
+        status(priority_lsms_minimum_intake_gate_ok),
+        f"guide_rows={counts['priority_lsms_isa_minimum_batch_raw_intake_guide']}; expected_manifest_rows={counts['priority_lsms_isa_minimum_batch_expected_file_manifest']}; core_manifest_rows={counts['priority_lsms_isa_minimum_batch_core_file_manifest']}; summary_rows={counts['priority_lsms_isa_minimum_batch_raw_intake_guide_summary']}; reported_waves={priority_lsms_minimum_intake_waves}; countries={priority_lsms_minimum_intake_countries}; expected_full={priority_lsms_minimum_intake_expected_full}; matched_full={priority_lsms_minimum_intake_matched_full}; missing_full={priority_lsms_minimum_intake_missing_full}; expected_core={priority_lsms_minimum_intake_expected_core}; missing_core={priority_lsms_minimum_intake_missing_core}; handoffs={priority_lsms_minimum_intake_handoffs}; data_write={priority_lsms_minimum_intake_data_write}; modeling_gate={priority_lsms_minimum_intake_modeling_gate}",
+        "" if priority_lsms_minimum_intake_gate_ok else "Run script/155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py after threshold sequence and official file receipt validation outputs are current.",
+    )
+    priority_lsms_minimum_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv")
+    priority_lsms_minimum_endpoint_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_dataset_rows"), "0"), 0)
+    priority_lsms_minimum_endpoint_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_country_rows"), "0"), 0)
+    priority_lsms_minimum_endpoint_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_rows"), "0"), 0)
+    priority_lsms_minimum_endpoint_metadata = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_public_metadata_endpoint_rows"), "0"), 0)
+    priority_lsms_minimum_endpoint_gate_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_get_microdata_gate_dataset_rows"), "0"), 0)
+    priority_lsms_minimum_endpoint_raw_candidates = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_raw_download_candidate_rows"), "0"), 0)
+    priority_lsms_minimum_endpoint_credentialed = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_credentialed_download_required_rows"), "0"), 0)
+    priority_lsms_minimum_endpoint_handoffs = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_handoff_readmes_written"), "0"), 0)
+    priority_lsms_minimum_endpoint_data_write = next((row.get("value", "") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "priority_lsms_minimum_endpoint_data_write_status"), "")
+    priority_lsms_minimum_endpoint_modeling_gate = next((row.get("value", "") for row in priority_lsms_minimum_endpoint_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_minimum_endpoint_gate_ok = (
+        counts["priority_lsms_isa_minimum_batch_endpoint_refresh"] == priority_lsms_minimum_endpoint_rows
+        and counts["priority_lsms_isa_minimum_batch_endpoint_dataset_status"] == priority_lsms_minimum_endpoint_waves
+        and counts["priority_lsms_isa_minimum_batch_endpoint_refresh_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh.md")
+        and priority_lsms_minimum_endpoint_waves == 11
+        and priority_lsms_minimum_endpoint_countries >= 6
+        and priority_lsms_minimum_endpoint_rows == 88
+        and priority_lsms_minimum_endpoint_metadata >= 40
+        and priority_lsms_minimum_endpoint_gate_rows == 11
+        and 0 <= priority_lsms_minimum_endpoint_raw_candidates <= priority_lsms_minimum_endpoint_rows
+        and priority_lsms_minimum_endpoint_credentialed >= 0
+        and priority_lsms_minimum_endpoint_handoffs == 11
+        and priority_lsms_minimum_endpoint_data_write == "blocked_no_raw_package_receipt"
+        and priority_lsms_minimum_endpoint_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA minimum-batch endpoint refresh checks current official World Bank routes for the exact 11-wave threshold batch",
+        status(priority_lsms_minimum_endpoint_gate_ok),
+        f"endpoint_rows={counts['priority_lsms_isa_minimum_batch_endpoint_refresh']}; dataset_rows={counts['priority_lsms_isa_minimum_batch_endpoint_dataset_status']}; summary_rows={counts['priority_lsms_isa_minimum_batch_endpoint_refresh_summary']}; reported_waves={priority_lsms_minimum_endpoint_waves}; countries={priority_lsms_minimum_endpoint_countries}; metadata_hits={priority_lsms_minimum_endpoint_metadata}; gate_waves={priority_lsms_minimum_endpoint_gate_rows}; raw_candidates={priority_lsms_minimum_endpoint_raw_candidates}; credentialed_required={priority_lsms_minimum_endpoint_credentialed}; handoffs={priority_lsms_minimum_endpoint_handoffs}; data_write={priority_lsms_minimum_endpoint_data_write}; modeling_gate={priority_lsms_minimum_endpoint_modeling_gate}",
+        "" if priority_lsms_minimum_endpoint_gate_ok else "Run script/156_probe_priority_lsms_isa_minimum_batch_endpoint_refresh.py after the minimum-batch threshold file is current and network is available.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
