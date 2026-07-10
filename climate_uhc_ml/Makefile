@@ -344,6 +344,7 @@ promotion:
 	$(PYTHON) script/188_build_priority_lsms_isa_local_stray_raw_package_locator.py
 	$(PYTHON) script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 	$(PYTHON) script/193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py
+	$(PYTHON) script/194_build_priority_lsms_isa_worldbank_session_bootstrap.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py

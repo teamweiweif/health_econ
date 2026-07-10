@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 188 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 828 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 824 | Curated artifacts present and non-empty. |
+| bundle_rows | 189 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 832 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 828 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -161,6 +161,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_unlock_board_validation_ready | 0 | Minimum-batch rows ready for receipt validation after local package placement. |
 | priority_lsms_isa_unlock_board_projected_countries | 6 | Projected country count if every current minimum-batch package passes all promotion gates. |
 | priority_lsms_isa_unlock_board_projected_waves | 11 | Projected country-wave count if every current minimum-batch package passes all promotion gates. |
+| priority_lsms_isa_worldbank_session_bootstrap_rows | 10 | Minimum-batch rows covered by the redacted World Bank session bootstrap. |
+| priority_lsms_isa_worldbank_session_ready_for_probe | 0 | Rows ready for credentialed /download probing. |
+| priority_lsms_isa_worldbank_session_missing_session | 10 | Rows blocked because local session material is absent. |
+| priority_lsms_isa_worldbank_session_cookie_present | 0 | Whether the local cookie file exists; contents are never included. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 306 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 1 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -612,7 +616,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 79 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 80 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -772,12 +776,13 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_threshold_replacement_plan_current | 1 | Direct-read bundle status count. |
 | bundle_status_threshold_sequence_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_workbook_needs_review | 1 | Direct-read bundle status count. |
+| bundle_status_worldbank_session_bootstrap_current_missing_session_material | 1 | Direct-read bundle status count. |
 
 ## Bundle Sections
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 79 |
+| priority_bundle | 80 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -875,6 +880,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | local_stray_raw_locator_current | 1 |
 | promotion_gate_dashboard_current | 1 |
 | minimum_batch_unlock_board_current_all_raw_files_absent | 1 |
+| worldbank_session_bootstrap_current_missing_session_material | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | packet_candidates_ready_for_data_write | 1 |
@@ -985,7 +991,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 824 |
+| present_nonempty | 828 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

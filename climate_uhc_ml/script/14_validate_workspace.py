@@ -179,6 +179,7 @@ REQUIRED_REPORTS = [
     "mwi2004_sdg382_official_denominator_rule_audit.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_lsms_isa_minimum_batch_promotion_unlock_board.md",
+    "priority_lsms_isa_worldbank_session_bootstrap.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -378,6 +379,7 @@ REQUIRED_SCRIPTS = [
     "188_build_priority_lsms_isa_local_stray_raw_package_locator.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
     "193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py",
+    "194_build_priority_lsms_isa_worldbank_session_bootstrap.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -408,6 +410,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "188_build_priority_lsms_isa_local_stray_raw_package_locator.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py",
+    "194_build_priority_lsms_isa_worldbank_session_bootstrap.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -550,7 +553,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-193 dataset-promotion gate chain",
+        "One-command runners include the current 157-194 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -1006,6 +1009,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
         "priority_lsms_isa_minimum_batch_promotion_unlock_board": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_board.csv"),
         "priority_lsms_isa_minimum_batch_promotion_unlock_summary": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_summary.csv"),
+        "priority_lsms_isa_worldbank_session_bootstrap": row_count(RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap.csv"),
+        "priority_lsms_isa_worldbank_session_bootstrap_summary": row_count(RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6021,6 +6026,37 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_unlock_gate_ok),
         f"board_rows={counts['priority_lsms_isa_minimum_batch_promotion_unlock_board']}; summary_rows={counts['priority_lsms_isa_minimum_batch_promotion_unlock_summary']}; public_docs={priority_lsms_unlock_public_docs}; validation_ready={priority_lsms_unlock_ready}; blocked_no_files={priority_lsms_unlock_blocked_no_files}; target_files={priority_lsms_unlock_target_files}; missing_expected={priority_lsms_unlock_missing_expected}; missing_requirements={priority_lsms_unlock_missing_requirements}; route_payloads={priority_lsms_unlock_route_payloads}; projected_countries={priority_lsms_unlock_projected_countries}; projected_waves={priority_lsms_unlock_projected_waves}; data_write={priority_lsms_unlock_data_write}; modeling_gate={priority_lsms_unlock_modeling}",
         "" if priority_lsms_unlock_gate_ok else "Run script/193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py after promotion gate, target smoke, manual progress, and download acceptance outputs are current.",
+    )
+    priority_lsms_worldbank_session_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap_summary.csv")
+    priority_lsms_worldbank_session_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "worldbank_session_bootstrap_rows"), "0"), 0)
+    priority_lsms_worldbank_session_cookie_present = next((row.get("value", "") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "worldbank_session_cookie_file_present"), "")
+    priority_lsms_worldbank_session_cookie_status = next((row.get("value", "") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "worldbank_session_cookie_format_status"), "")
+    priority_lsms_worldbank_session_header_present = next((row.get("value", "") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "worldbank_session_header_file_present"), "")
+    priority_lsms_worldbank_session_header_status = next((row.get("value", "") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "worldbank_session_header_format_status"), "")
+    priority_lsms_worldbank_session_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "worldbank_session_bootstrap_ready_for_probe_rows"), "0"), 0)
+    priority_lsms_worldbank_session_missing = safe_int(next((row.get("value", "0") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "worldbank_session_bootstrap_missing_session_rows"), "0"), 0)
+    priority_lsms_worldbank_session_data_write = next((row.get("value", "") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_worldbank_session_modeling = next((row.get("value", "") for row in priority_lsms_worldbank_session_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_worldbank_session_gate_ok = (
+        counts["priority_lsms_isa_worldbank_session_bootstrap_summary"] > 0
+        and counts["priority_lsms_isa_worldbank_session_bootstrap"] == priority_lsms_worldbank_session_rows
+        and file_ok(REPORT_DIR / "priority_lsms_isa_worldbank_session_bootstrap.md")
+        and priority_lsms_worldbank_session_rows == 10
+        and priority_lsms_worldbank_session_ready + priority_lsms_worldbank_session_missing == priority_lsms_worldbank_session_rows
+        and priority_lsms_worldbank_session_cookie_present in {"0", "1"}
+        and priority_lsms_worldbank_session_header_present in {"0", "1"}
+        and priority_lsms_worldbank_session_cookie_status != ""
+        and priority_lsms_worldbank_session_header_status != ""
+        and priority_lsms_worldbank_session_data_write == "blocked_no_data_write"
+        and priority_lsms_worldbank_session_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA World Bank session bootstrap redacts local credential readiness for the 10 credentialed raw-package downloads",
+        status(priority_lsms_worldbank_session_gate_ok),
+        f"bootstrap_rows={counts['priority_lsms_isa_worldbank_session_bootstrap']}; summary_rows={counts['priority_lsms_isa_worldbank_session_bootstrap_summary']}; cookie_present={priority_lsms_worldbank_session_cookie_present}; cookie_status={priority_lsms_worldbank_session_cookie_status}; header_present={priority_lsms_worldbank_session_header_present}; header_status={priority_lsms_worldbank_session_header_status}; ready_for_probe={priority_lsms_worldbank_session_ready}; missing_session={priority_lsms_worldbank_session_missing}; data_write={priority_lsms_worldbank_session_data_write}; modeling_gate={priority_lsms_worldbank_session_modeling}",
+        "" if priority_lsms_worldbank_session_gate_ok else "Run script/194_build_priority_lsms_isa_worldbank_session_bootstrap.py after the minimum-batch promotion unlock board and credentialed download handoff are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

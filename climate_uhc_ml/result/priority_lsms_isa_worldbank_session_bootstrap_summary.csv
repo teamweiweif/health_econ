@@ -1,0 +1,13 @@
+﻿metric,value,interpretation
+worldbank_session_bootstrap_rows,10,Minimum-batch download rows covered by the session bootstrap.
+worldbank_session_cookie_file_present,0,Whether temp/private/worldbank_session_cookies.txt exists. Contents are never exported.
+worldbank_session_cookie_file_bytes,0,Cookie file size only; no credential values are reported.
+worldbank_session_cookie_format_status,missing,Redacted structural classification of the cookie file.
+worldbank_session_header_file_present,0,Whether temp/private/worldbank_session_headers.txt exists. Contents are never exported.
+worldbank_session_header_file_bytes,0,Header file size only; no header values are reported.
+worldbank_session_header_format_status,missing,Redacted structural classification of the header file.
+worldbank_session_bootstrap_ready_for_probe_rows,0,Rows ready to run the credentialed --probe command.
+worldbank_session_bootstrap_missing_session_rows,10,Rows blocked because no local session material is present.
+worldbank_session_bootstrap_status_blocked_missing_worldbank_session_material,10,Status count.
+data_write_gate_status,blocked_no_data_write,This bootstrap writes only result/report artifacts and does not promote datasets.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

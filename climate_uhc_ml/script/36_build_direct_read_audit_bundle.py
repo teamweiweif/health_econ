@@ -315,6 +315,9 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/priority_lsms_isa_minimum_batch_promotion_unlock_board.md", "priority LSMS/ISA minimum-batch promotion unlock board report"),
     ("dataset_promotion", "result/priority_lsms_isa_minimum_batch_promotion_unlock_board.csv", "priority LSMS/ISA minimum-batch promotion unlock board"),
     ("dataset_promotion", "result/priority_lsms_isa_minimum_batch_promotion_unlock_summary.csv", "priority LSMS/ISA minimum-batch promotion unlock summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_worldbank_session_bootstrap.md", "priority LSMS/ISA World Bank session bootstrap report"),
+    ("dataset_promotion", "result/priority_lsms_isa_worldbank_session_bootstrap.csv", "priority LSMS/ISA World Bank session bootstrap rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_worldbank_session_bootstrap_summary.csv", "priority LSMS/ISA World Bank session bootstrap summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -760,6 +763,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/188_build_priority_lsms_isa_local_stray_raw_package_locator.py", "priority LSMS/ISA local stray raw package locator generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py", "priority LSMS/ISA minimum-batch promotion unlock board generator"),
+    ("reproducibility", "script/194_build_priority_lsms_isa_worldbank_session_bootstrap.py", "priority LSMS/ISA World Bank session bootstrap generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1023,6 +1027,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_local_stray_locator_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_stray_raw_package_locator_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_unlock_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_summary.csv")
+    priority_lsms_worldbank_session_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -1899,6 +1904,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"rows={csv_value(priority_lsms_unlock_summary, 'minimum_batch_unlock_board_rows', '0')}; public_docs_complete={csv_value(priority_lsms_unlock_summary, 'minimum_batch_unlock_public_documentation_complete_rows', '0')}; validation_ready={csv_value(priority_lsms_unlock_summary, 'minimum_batch_unlock_validation_ready_rows', '0')}; blocked_no_files={csv_value(priority_lsms_unlock_summary, 'minimum_batch_unlock_blocked_no_local_or_incoming_files', '0')}; missing_expected_files={csv_value(priority_lsms_unlock_summary, 'minimum_batch_unlock_missing_expected_file_rows', '0')}; missing_core_requirements={csv_value(priority_lsms_unlock_summary, 'minimum_batch_unlock_missing_core_requirement_rows', '0')}; projected_countries={csv_value(priority_lsms_unlock_summary, 'projected_country_rows_if_all_minimum_batch_promoted', '0')}; projected_waves={csv_value(priority_lsms_unlock_summary, 'projected_country_wave_rows_if_all_minimum_batch_promoted', '0')}; modeling_gate={csv_value(priority_lsms_unlock_summary, 'modeling_gate_status', 'missing')}",
         [RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_board.csv", RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_summary.csv", REPORT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_board.md"],
         "Minimum-batch promotion unlock board condenses the 10 package URLs, target folders, public-documentation receipt, local raw-file gap, and projected 6-country/11-wave threshold contribution into one fail-closed execution matrix.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_worldbank_session_bootstrap",
+        "worldbank_session_bootstrap_current_missing_session_material"
+        if csv_value(priority_lsms_worldbank_session_summary, "worldbank_session_bootstrap_rows", "0") == "10"
+        and csv_value(priority_lsms_worldbank_session_summary, "worldbank_session_bootstrap_ready_for_probe_rows", "1") == "0"
+        else "worldbank_session_bootstrap_needs_review",
+        f"rows={csv_value(priority_lsms_worldbank_session_summary, 'worldbank_session_bootstrap_rows', '0')}; cookie_present={csv_value(priority_lsms_worldbank_session_summary, 'worldbank_session_cookie_file_present', '0')}; cookie_status={csv_value(priority_lsms_worldbank_session_summary, 'worldbank_session_cookie_format_status', 'missing')}; header_present={csv_value(priority_lsms_worldbank_session_summary, 'worldbank_session_header_file_present', '0')}; header_status={csv_value(priority_lsms_worldbank_session_summary, 'worldbank_session_header_format_status', 'missing')}; ready_for_probe={csv_value(priority_lsms_worldbank_session_summary, 'worldbank_session_bootstrap_ready_for_probe_rows', '0')}; missing_session={csv_value(priority_lsms_worldbank_session_summary, 'worldbank_session_bootstrap_missing_session_rows', '0')}; modeling_gate={csv_value(priority_lsms_worldbank_session_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap.csv", RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap_summary.csv", REPORT_DIR / "priority_lsms_isa_worldbank_session_bootstrap.md"],
+        "World Bank session bootstrap records only redacted local session-file readiness for credentialed /download probing; no cookie or header values are exported.",
     )
     add_bundle(
         rows,
@@ -2851,6 +2868,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_credentialed_download_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_download_handoff_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_unlock_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_summary.csv")
+    priority_lsms_worldbank_session_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3008,6 +3026,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_unlock_board_validation_ready", "value": csv_value(priority_lsms_unlock_summary, "minimum_batch_unlock_validation_ready_rows", "0"), "interpretation": "Minimum-batch rows ready for receipt validation after local package placement."},
         {"metric": "priority_lsms_isa_unlock_board_projected_countries", "value": csv_value(priority_lsms_unlock_summary, "projected_country_rows_if_all_minimum_batch_promoted", "0"), "interpretation": "Projected country count if every current minimum-batch package passes all promotion gates."},
         {"metric": "priority_lsms_isa_unlock_board_projected_waves", "value": csv_value(priority_lsms_unlock_summary, "projected_country_wave_rows_if_all_minimum_batch_promoted", "0"), "interpretation": "Projected country-wave count if every current minimum-batch package passes all promotion gates."},
+        {"metric": "priority_lsms_isa_worldbank_session_bootstrap_rows", "value": csv_value(priority_lsms_worldbank_session_summary, "worldbank_session_bootstrap_rows", "0"), "interpretation": "Minimum-batch rows covered by the redacted World Bank session bootstrap."},
+        {"metric": "priority_lsms_isa_worldbank_session_ready_for_probe", "value": csv_value(priority_lsms_worldbank_session_summary, "worldbank_session_bootstrap_ready_for_probe_rows", "0"), "interpretation": "Rows ready for credentialed /download probing."},
+        {"metric": "priority_lsms_isa_worldbank_session_missing_session", "value": csv_value(priority_lsms_worldbank_session_summary, "worldbank_session_bootstrap_missing_session_rows", "0"), "interpretation": "Rows blocked because local session material is absent."},
+        {"metric": "priority_lsms_isa_worldbank_session_cookie_present", "value": csv_value(priority_lsms_worldbank_session_summary, "worldbank_session_cookie_file_present", "0"), "interpretation": "Whether the local cookie file exists; contents are never included."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},
