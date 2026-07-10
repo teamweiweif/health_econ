@@ -175,6 +175,9 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/mwi2004_sdg382_discretionary_budget_parameter_audit.md", "Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit report"),
     ("dataset_promotion", "result/mwi2004_sdg382_discretionary_budget_parameter_audit.csv", "Malawi 2004 SDG 3.8.2 parameter audit table"),
     ("dataset_promotion", "result/mwi2004_sdg382_discretionary_budget_parameter_summary.csv", "Malawi 2004 SDG 3.8.2 parameter audit summary"),
+    ("dataset_promotion", "report/mwi2004_sdg382_external_parameter_source_ledger.md", "Malawi 2004 SDG 3.8.2 external parameter source ledger report"),
+    ("dataset_promotion", "result/mwi2004_sdg382_external_parameter_source_ledger.csv", "Malawi 2004 SDG 3.8.2 external parameter source ledger"),
+    ("dataset_promotion", "result/mwi2004_sdg382_external_parameter_candidate_summary.csv", "Malawi 2004 SDG 3.8.2 external parameter candidate summary"),
     ("dataset_promotion", "report/mwi2004_timing_geography_linkage_policy.md", "Malawi 2004 timing/geography linkage policy report"),
     ("dataset_promotion", "result/mwi2004_timing_geography_linkage_policy.csv", "Malawi 2004 aggregate timing/geography linkage policy"),
     ("dataset_promotion", "result/mwi2004_timing_geography_linkage_policy_summary.csv", "Malawi 2004 timing/geography linkage policy summary"),
@@ -721,6 +724,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/164_build_mwi2004_health_access_construction_policy.py", "Malawi 2004 candidate health/access construction policy generator"),
     ("reproducibility", "script/165_build_mwi2004_financial_protection_construction_policy.py", "Malawi 2004 financial-protection construction policy generator"),
     ("reproducibility", "script/189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py", "Malawi 2004 SDG 3.8.2 parameter audit generator"),
+    ("reproducibility", "script/190_build_mwi2004_sdg382_external_parameter_source_ledger.py", "Malawi 2004 SDG 3.8.2 external parameter source ledger generator"),
     ("reproducibility", "script/166_build_mwi2004_timing_geography_linkage_policy.py", "Malawi 2004 timing/geography linkage policy generator"),
     ("reproducibility", "script/167_build_mwi2004_access_person_key_resolution_policy.py", "Malawi 2004 access person-key resolution policy generator"),
     ("reproducibility", "script/168_build_mwi2004_missing_units_recall_skip_policy.py", "Malawi 2004 missing, units, recall, and skip policy generator"),
@@ -971,6 +975,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
     mwi2004_sdg382_parameter_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_summary.csv")
+    mwi2004_sdg382_external_parameter_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_external_parameter_candidate_summary.csv")
     mwi2004_timing_geography_summary = read_csv_dicts(RESULT_DIR / "mwi2004_timing_geography_linkage_policy_summary.csv")
     mwi2004_chirps_route_summary = read_csv_dicts(RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv")
     mwi2004_chirps_extraction_summary = read_csv_dicts(RESULT_DIR / "mwi2004_chirps_admin2_extraction_summary.csv")
@@ -1467,6 +1472,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"country_wave={csv_value(mwi2004_sdg382_parameter_summary, 'country_wave', 'missing')}; metadata_update={csv_value(mwi2004_sdg382_parameter_summary, 'official_metadata_last_update', 'missing')}; threshold={csv_value(mwi2004_sdg382_parameter_summary, 'official_threshold_discretionary_budget', 'missing')}; internal_rows={csv_value(mwi2004_sdg382_parameter_summary, 'household_rows_with_internal_sdg382_inputs', '0')}; positive_oop={csv_value(mwi2004_sdg382_parameter_summary, 'positive_oop_household_rows', '0')}; median_excl_oop_raw={csv_value(mwi2004_sdg382_parameter_summary, 'weighted_median_daily_consumption_excluding_oop_pc_raw', 'missing')}; external_ppp_cpi_verified={csv_value(mwi2004_sdg382_parameter_summary, 'external_ppp_cpi_parameters_verified', '0')}; spl_verified={csv_value(mwi2004_sdg382_parameter_summary, 'spl_local_currency_verified', '0')}; sdg382_ready={csv_value(mwi2004_sdg382_parameter_summary, 'sdg382_ready', '0')}; data_write={csv_value(mwi2004_sdg382_parameter_summary, 'data_write_gate_status', 'missing')}",
         [RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_audit.csv", RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_summary.csv", REPORT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_audit.md"],
         "Malawi 2004 SDG 3.8.2 parameter audit aligns with the current 2026 official discretionary-budget metadata, verifies internal raw inputs, and keeps the SDG gate fail-closed until PPP/CPI/SPL parameters are frozen.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "mwi2004_sdg382_external_parameter_source_ledger",
+        "mwi2004_sdg382_external_parameters_captured_bridge_unaccepted"
+        if csv_value(mwi2004_sdg382_external_parameter_summary, "private_consumption_ppp_source_verified", "0") == "1"
+        and csv_value(mwi2004_sdg382_external_parameter_summary, "external_parameter_bridge_accepted", "1") == "0"
+        else "mwi2004_sdg382_external_parameter_source_ledger_missing_or_inconsistent",
+        f"country_wave={csv_value(mwi2004_sdg382_external_parameter_summary, 'country_wave', 'missing')}; parameter_rows={csv_value(mwi2004_sdg382_external_parameter_summary, 'parameter_rows', '0')}; ppp_private_2017={csv_value(mwi2004_sdg382_external_parameter_summary, 'wdi_ppp_private_consumption_2017', 'missing')}; cpi_2004={csv_value(mwi2004_sdg382_external_parameter_summary, 'wdi_cpi_2004', 'missing')}; cpi_2017={csv_value(mwi2004_sdg382_external_parameter_summary, 'wdi_cpi_2017', 'missing')}; cpi_ratio={csv_value(mwi2004_sdg382_external_parameter_summary, 'candidate_cpi_ratio_2017_to_2004', 'missing')}; candidate_spl_raw={csv_value(mwi2004_sdg382_external_parameter_summary, 'candidate_spl_daily_raw_2004_mwk', 'missing')}; bridge_accepted={csv_value(mwi2004_sdg382_external_parameter_summary, 'external_parameter_bridge_accepted', 'missing')}; sdg382_ready={csv_value(mwi2004_sdg382_external_parameter_summary, 'sdg382_ready', 'missing')}; modeling_gate={csv_value(mwi2004_sdg382_external_parameter_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "mwi2004_sdg382_external_parameter_source_ledger.csv", RESULT_DIR / "mwi2004_sdg382_external_parameter_candidate_summary.csv", REPORT_DIR / "mwi2004_sdg382_external_parameter_source_ledger.md"],
+        "Malawi 2004 external parameter source ledger captures World Bank 2017 PPP and 2004/2017 CPI candidates, derives a candidate SPL bridge, and keeps SDG 3.8.2 blocked until the survey base-period bridge is accepted.",
     )
     add_bundle(
         rows,
@@ -2753,6 +2770,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
     mwi2004_sdg382_parameter_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_summary.csv")
+    mwi2004_sdg382_external_parameter_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_external_parameter_candidate_summary.csv")
     mwi2004_timing_geography_summary = read_csv_dicts(RESULT_DIR / "mwi2004_timing_geography_linkage_policy_summary.csv")
     mwi2004_chirps_route_summary = read_csv_dicts(RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv")
     mwi2004_chirps_extraction_summary = read_csv_dicts(RESULT_DIR / "mwi2004_chirps_admin2_extraction_summary.csv")
@@ -2831,6 +2849,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "mwi2004_sdg382_parameter_internal_inputs_complete", "value": csv_value(mwi2004_sdg382_parameter_summary, "raw_internal_sdg382_inputs_complete", "0"), "interpretation": "Whether Malawi 2004 has raw OOP, consumption, household size, and weights needed before parameterizing current SDG 3.8.2."},
         {"metric": "mwi2004_sdg382_parameter_external_ppp_cpi_verified", "value": csv_value(mwi2004_sdg382_parameter_summary, "external_ppp_cpi_parameters_verified", "0"), "interpretation": "Whether 2017 PPP and CPI/deflator parameters have been frozen for Malawi 2004 SDG 3.8.2."},
         {"metric": "mwi2004_sdg382_parameter_sdg382_ready", "value": csv_value(mwi2004_sdg382_parameter_summary, "sdg382_ready", "0"), "interpretation": "Current Malawi 2004 SDG 3.8.2 readiness under the 2026 discretionary-budget metadata."},
+        {"metric": "mwi2004_sdg382_external_parameter_ppp_private_2017", "value": csv_value(mwi2004_sdg382_external_parameter_summary, "wdi_ppp_private_consumption_2017", "missing"), "interpretation": "World Bank private-consumption PPP candidate captured for Malawi 2017."},
+        {"metric": "mwi2004_sdg382_external_parameter_cpi_ratio_candidate", "value": csv_value(mwi2004_sdg382_external_parameter_summary, "candidate_cpi_ratio_2017_to_2004", "missing"), "interpretation": "Annual CPI candidate bridge from 2004 to 2017; not final."},
+        {"metric": "mwi2004_sdg382_external_parameter_bridge_accepted", "value": csv_value(mwi2004_sdg382_external_parameter_summary, "external_parameter_bridge_accepted", "0"), "interpretation": "Whether the external PPP/CPI bridge is accepted for final SDG 3.8.2 classification."},
         {"metric": "mwi2004_timing_geography_policy_status", "value": csv_value(mwi2004_timing_geography_summary, "timing_geography_policy_status", "missing"), "interpretation": "Malawi 2004 timing/geography raw-value policy status."},
         {"metric": "mwi2004_timing_geography_idate_rows", "value": csv_value(mwi2004_timing_geography_summary, "idate_nonmissing_rows", "0"), "interpretation": "Rows with verified raw household interview date."},
         {"metric": "mwi2004_timing_geography_months", "value": csv_value(mwi2004_timing_geography_summary, "interview_month_count", "0"), "interpretation": "Distinct interview months for climate-window anchoring."},

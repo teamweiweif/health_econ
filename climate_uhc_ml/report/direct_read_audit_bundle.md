@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 184 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 812 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 808 | Curated artifacts present and non-empty. |
+| bundle_rows | 185 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 816 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 812 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -58,6 +58,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_sdg382_parameter_internal_inputs_complete | 1 | Whether Malawi 2004 has raw OOP, consumption, household size, and weights needed before parameterizing current SDG 3.8.2. |
 | mwi2004_sdg382_parameter_external_ppp_cpi_verified | 0 | Whether 2017 PPP and CPI/deflator parameters have been frozen for Malawi 2004 SDG 3.8.2. |
 | mwi2004_sdg382_parameter_sdg382_ready | 0 | Current Malawi 2004 SDG 3.8.2 readiness under the 2026 discretionary-budget metadata. |
+| mwi2004_sdg382_external_parameter_ppp_private_2017 | 249.104888916 | World Bank private-consumption PPP candidate captured for Malawi 2017. |
+| mwi2004_sdg382_external_parameter_cpi_ratio_candidate | 6.11673829608 | Annual CPI candidate bridge from 2004 to 2017; not final. |
+| mwi2004_sdg382_external_parameter_bridge_accepted | 0 | Whether the external PPP/CPI bridge is accepted for final SDG 3.8.2 classification. |
 | mwi2004_timing_geography_policy_status | raw_timing_admin_ea_geography_verified_climate_route_blocked | Malawi 2004 timing/geography raw-value policy status. |
 | mwi2004_timing_geography_idate_rows | 11280 | Rows with verified raw household interview date. |
 | mwi2004_timing_geography_months | 13 | Distinct interview months for climate-window anchoring. |
@@ -596,7 +599,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 75 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 76 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -711,6 +714,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_mwi2004_missing_units_recall_skip_verified | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_promoted_household_climate_dataset_ready | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_raw_backed_evidence_ready_not_final_verified | 1 | Direct-read bundle status count. |
+| bundle_status_mwi2004_sdg382_external_parameters_captured_bridge_unaccepted | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_sdg382_internal_inputs_ready_external_parameters_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_timing_admin_ea_verified_climate_route_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_available | 1 | Direct-read bundle status count. |
@@ -757,7 +761,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 75 |
+| priority_bundle | 76 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -819,6 +823,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_acceptance_decisions_fail_closed | 1 |
 | mwi2004_che10_che25_financial_inputs_verified_sdg_blocked | 1 |
 | mwi2004_sdg382_internal_inputs_ready_external_parameters_blocked | 1 |
+| mwi2004_sdg382_external_parameters_captured_bridge_unaccepted | 1 |
 | mwi2004_timing_admin_ea_verified_climate_route_blocked | 1 |
 | mwi2004_chirps_admin2_route_design_ready_extraction_pending | 1 |
 | mwi2004_chirps_admin2_extraction_validated | 1 |
@@ -961,7 +966,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 808 |
+| present_nonempty | 812 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

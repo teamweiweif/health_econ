@@ -64,6 +64,7 @@ python script/163_build_mwi2004_health_exception_audit.py
 python script/164_build_mwi2004_health_access_construction_policy.py
 python script/165_build_mwi2004_financial_protection_construction_policy.py
 python script/189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py
+python script/190_build_mwi2004_sdg382_external_parameter_source_ledger.py
 python script/166_build_mwi2004_timing_geography_linkage_policy.py
 python script/167_build_mwi2004_access_person_key_resolution_policy.py
 python script/168_build_mwi2004_missing_units_recall_skip_policy.py
@@ -160,6 +161,7 @@ Current status:
 - The priority LSMS/ISA minimum-batch climate linkage review queue is `result/priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv`; it maps the current 10 manual packets to timing/geography raw checks and CHIRPS/ERA5 route status.
 - The priority LSMS/ISA local stray raw package locator is `result/priority_lsms_isa_local_stray_raw_package_locator_summary.csv`; it searches this local workspace for candidate raw package files that were downloaded outside their expected target folders.
 - The Malawi 2004 SDG 3.8.2 parameter audit is `result/mwi2004_sdg382_discretionary_budget_parameter_summary.csv`; it checks current 2026 discretionary-budget metadata alignment and keeps SDG 3.8.2 fail-closed until PPP/CPI/SPL parameters are verified.
+- The Malawi 2004 SDG 3.8.2 external parameter source ledger is `result/mwi2004_sdg382_external_parameter_candidate_summary.csv`; it captures World Bank PPP/CPI candidates and keeps the CPI/base-period bridge unaccepted.
 - The priority LSMS/ISA promotion gate dashboard is `result/priority_lsms_isa_promotion_gate_dashboard_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.

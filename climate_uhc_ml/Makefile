@@ -311,6 +311,7 @@ promotion:
 	$(PYTHON) script/164_build_mwi2004_health_access_construction_policy.py
 	$(PYTHON) script/165_build_mwi2004_financial_protection_construction_policy.py
 	$(PYTHON) script/189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py
+	$(PYTHON) script/190_build_mwi2004_sdg382_external_parameter_source_ledger.py
 	$(PYTHON) script/166_build_mwi2004_timing_geography_linkage_policy.py
 	$(PYTHON) script/167_build_mwi2004_access_person_key_resolution_policy.py
 	$(PYTHON) script/168_build_mwi2004_missing_units_recall_skip_policy.py

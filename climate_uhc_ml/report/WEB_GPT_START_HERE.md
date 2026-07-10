@@ -63,7 +63,9 @@ data gates.
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
 24. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
    - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
-25. `report/mwi2004_requirement_acceptance_decisions.md`
+25. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
+   - World Bank PPP/CPI candidate source ledger for Malawi 2004; the final CPI/base-period bridge remains unaccepted.
+26. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -94,6 +96,7 @@ Still blocked:
 
 - SDG 3.8.2 discretionary-budget construction.
 - SDG 3.8.2 now has a focused parameter audit, but the 2017 PPP conversion, CPI/deflator bridge, and local-currency SPL are not yet verified.
+- World Bank PPP/CPI candidates are now captured, but annual CPI has not been accepted as the bridge for the survey's February/March 2004 real-currency base.
 - Multi-country promoted dataset synthesis.
 - All additional country-waves until complete official raw packages pass receipt, value, semantics, timing/geography, and climate-linkage gates.
 

@@ -174,6 +174,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md",
     "priority_lsms_isa_local_stray_raw_package_locator.md",
     "mwi2004_sdg382_discretionary_budget_parameter_audit.md",
+    "mwi2004_sdg382_external_parameter_source_ledger.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -352,6 +353,7 @@ REQUIRED_SCRIPTS = [
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
     "189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py",
+    "190_build_mwi2004_sdg382_external_parameter_source_ledger.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
@@ -379,6 +381,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
     "189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py",
+    "190_build_mwi2004_sdg382_external_parameter_source_ledger.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
     "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
@@ -538,7 +541,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-189 dataset-promotion gate chain",
+        "One-command runners include the current 157-190 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -937,6 +940,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "mwi2004_promoted_household_climate_dataset_validation": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_validation.csv"),
         "mwi2004_sdg382_discretionary_budget_parameter_audit": row_count(RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_audit.csv"),
         "mwi2004_sdg382_discretionary_budget_parameter_summary": row_count(RESULT_DIR / "mwi2004_sdg382_discretionary_budget_parameter_summary.csv"),
+        "mwi2004_sdg382_external_parameter_source_ledger": row_count(RESULT_DIR / "mwi2004_sdg382_external_parameter_source_ledger.csv"),
+        "mwi2004_sdg382_external_parameter_candidate_summary": row_count(RESULT_DIR / "mwi2004_sdg382_external_parameter_candidate_summary.csv"),
         "priority_lsms_isa_next_raw_package_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv"),
         "priority_lsms_isa_next_raw_package_core_files": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv"),
         "priority_lsms_isa_next_raw_package_action_summary": row_count(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv"),
@@ -6159,6 +6164,34 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(mwi2004_sdg382_gate_ok),
         f"audit_rows={counts['mwi2004_sdg382_discretionary_budget_parameter_audit']}; summary_rows={counts['mwi2004_sdg382_discretionary_budget_parameter_summary']}; internal_rows={mwi2004_sdg382_rows}; internal_ready={mwi2004_sdg382_internal_ready}; ppp_cpi_verified={mwi2004_sdg382_ppp_cpi}; spl_verified={mwi2004_sdg382_spl}; sdg382_ready={mwi2004_sdg382_ready}; data_write={mwi2004_sdg382_data_write}; modeling_gate={mwi2004_sdg382_modeling}",
         "" if mwi2004_sdg382_gate_ok else "Run script/189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py after Malawi financial inputs are current.",
+    )
+    mwi2004_sdg382_external_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_external_parameter_candidate_summary.csv")
+    mwi2004_sdg382_external_parameter_rows = safe_int(next((row.get("value", "0") for row in mwi2004_sdg382_external_summary if row.get("metric") == "parameter_rows"), "0"), 0)
+    mwi2004_sdg382_external_ppp = next((row.get("value", "") for row in mwi2004_sdg382_external_summary if row.get("metric") == "private_consumption_ppp_source_verified"), "")
+    mwi2004_sdg382_external_cpi = next((row.get("value", "") for row in mwi2004_sdg382_external_summary if row.get("metric") == "annual_cpi_bridge_source_verified"), "")
+    mwi2004_sdg382_external_bridge = next((row.get("value", "") for row in mwi2004_sdg382_external_summary if row.get("metric") == "external_parameter_bridge_accepted"), "")
+    mwi2004_sdg382_external_ready = next((row.get("value", "") for row in mwi2004_sdg382_external_summary if row.get("metric") == "sdg382_ready"), "")
+    mwi2004_sdg382_external_data_write = next((row.get("value", "") for row in mwi2004_sdg382_external_summary if row.get("metric") == "data_write_gate_status"), "")
+    mwi2004_sdg382_external_modeling = next((row.get("value", "") for row in mwi2004_sdg382_external_summary if row.get("metric") == "modeling_gate_status"), "")
+    mwi2004_sdg382_external_gate_ok = (
+        counts["mwi2004_sdg382_external_parameter_candidate_summary"] > 0
+        and counts["mwi2004_sdg382_external_parameter_source_ledger"] == mwi2004_sdg382_external_parameter_rows
+        and counts["mwi2004_sdg382_external_parameter_source_ledger"] >= 9
+        and file_ok(REPORT_DIR / "mwi2004_sdg382_external_parameter_source_ledger.md")
+        and mwi2004_sdg382_external_ppp == "1"
+        and mwi2004_sdg382_external_cpi == "1"
+        and mwi2004_sdg382_external_bridge == "0"
+        and mwi2004_sdg382_external_ready == "0"
+        and mwi2004_sdg382_external_data_write == "closed"
+        and mwi2004_sdg382_external_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Malawi 2004 SDG 3.8.2 external parameter ledger captures PPP/CPI candidates but keeps bridge unaccepted",
+        status(mwi2004_sdg382_external_gate_ok),
+        f"ledger_rows={counts['mwi2004_sdg382_external_parameter_source_ledger']}; summary_rows={counts['mwi2004_sdg382_external_parameter_candidate_summary']}; parameter_rows={mwi2004_sdg382_external_parameter_rows}; ppp_source_verified={mwi2004_sdg382_external_ppp}; cpi_source_verified={mwi2004_sdg382_external_cpi}; bridge_accepted={mwi2004_sdg382_external_bridge}; sdg382_ready={mwi2004_sdg382_external_ready}; data_write={mwi2004_sdg382_external_data_write}; modeling_gate={mwi2004_sdg382_external_modeling}",
+        "" if mwi2004_sdg382_external_gate_ok else "Run script/190_build_mwi2004_sdg382_external_parameter_source_ledger.py after the Malawi SDG 3.8.2 parameter audit is current.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)
