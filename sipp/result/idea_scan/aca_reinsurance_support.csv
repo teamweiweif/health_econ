@@ -1,0 +1,3 @@
+sample,person_years,persons,states,high_income_person_years,high_income_persons,active_high_income_person_years,active_high_income_persons,active_states,mean_premium_reduction_active,weighted_mean_direct_market,weighted_mean_uninsured
+all_2017_2023,116877,66365,51,58372,36825,7719,5218,16,16.14294065083029,0.11735756082524079,0.11122132336178182
+pre_arpa_2017_2020,77622,46029,51,38300,24995,2945,2278,11,17.60858010184097,0.11055968910601914,0.11486910950908312

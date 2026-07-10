@@ -1,0 +1,4 @@
+sample,person_years,persons,states,policy_state_target_person_years,policy_state_target_persons,active_treated_person_years,active_treated_persons,mean_direct_market,mean_exchange_subsidy,mean_uninsured
+maryland_yas_18_44_138_400,26620,19584,52,287,215,97,77,0.1504862963585,0.12929633609815602,0.17939774083584023
+maryland_yas_clean_26_44_138_400,18732,13716,52,164,115,57,45,0.14293033156705218,0.12430997044289824,0.18461224723583802
+new_jersey_njhps_26_64_138_1000,76892,48471,52,978,683,526,370,0.11852540924602052,0.09275098414191338,0.11017175818501496

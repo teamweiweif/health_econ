@@ -1,0 +1,4 @@
+sample,person_years,persons,states,target_person_years,expansion_state_target_person_years,active_treated_person_years,active_treated_persons,weighted_mean_dental_visits,weighted_mean_dental_any,weighted_mean_doctor_any
+medicaid_target,50091,34440,52,17689.0,853.0,165.0,155.0,1.2416058536829437,0.5272336070036415,0.6794148960611036
+public_target,50091,34440,52,20884.0,1055.0,190.0,179.0,1.2416058536829437,0.5272336070036415,0.6794148960611036
+expansion_state_medicaid_target_by_state_year_table_in_separate_csv,853,853,4,,,,,,,

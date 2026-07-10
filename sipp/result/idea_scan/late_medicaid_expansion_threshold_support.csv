@@ -1,0 +1,6 @@
+spec,label,person_months,persons,states,treated_active_person_months,eligible_person_months,active_eligible_person_months,active_eligible_persons
+broad_000_250_monthly_fpl,"monthly FPL 0-250%, eligible <=138%",312436,20838,19,24790,164485,12244,1355
+near_100_250_monthly_fpl,"monthly FPL 100-250%, eligible 100-138%",191926,16175,19,15788,43975,3242,583
+broad_000_250_annual_fpl,"annual FPL 0-250%, eligible <=138%",302453,17236,19,23802,152605,11071,931
+near_100_250_annual_fpl,"annual FPL 100-250%, eligible 100-138%",195199,12187,19,15952,45351,3221,307
+near_100_200_monthly_fpl_no_disabled_ssi,"monthly FPL 100-200%, eligible 100-138%, excluding disability/SSI",96035,10014,19,7422,32743,2410,438

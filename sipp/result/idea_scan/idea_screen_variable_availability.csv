@@ -1,0 +1,54 @@
+idea,variable,in_current_parquet,in_metadata_registry,years_present,description
+aca_ptc_400_fpl_cliff,TFINCPOV,True,True,2018;2019;2020;2021;2022;2023;2024,"Family income-to-poverty ratio in this month, excluding Type 2 individuals"
+aca_ptc_400_fpl_cliff,RHLTHMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - indicating respondent is insured (private or public coverage) in month (New as of 2014 Panel)
+aca_ptc_400_fpl_cliff,RPRITYPE2,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - Monthly Direct-Purchase Private Coverage (includes school-based coverage) (New as of 2014 Panel)
+aca_ptc_400_fpl_cliff,RMARKTPLACE,True,True,2018;2019;2020;2021;2022;2023;2024,"Monthly recode - indicates private direct purchase, Medicaid/Medical Assistance, or other coverage obtained through healthcare.gov or a state-based marketplace/exchange."
+aca_ptc_400_fpl_cliff,EPRIEXCH1,True,True,2018;2019;2020;2021;2022;2023;2024,Did respondent have coverage through a state-based Health Insurance Exchange?
+aca_ptc_400_fpl_cliff,EPRISUBS1,True,True,2018;2019;2020;2021;2022;2023;2024,Determines if Exchange premium was subsidized
+aca_ptc_400_fpl_cliff,TAGE,True,True,2018;2019;2020;2021;2022;2023;2024,Age as of last birthday
+aca_ptc_400_fpl_cliff,state_fips,True,False,,
+family_glitch_fix,RPRITYPE2,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - Monthly Direct-Purchase Private Coverage (includes school-based coverage) (New as of 2014 Panel)
+family_glitch_fix,RMARKTPLACE,True,True,2018;2019;2020;2021;2022;2023;2024,"Monthly recode - indicates private direct purchase, Medicaid/Medical Assistance, or other coverage obtained through healthcare.gov or a state-based marketplace/exchange."
+family_glitch_fix,RDIRECTANN,True,True,2022;2023;2024,Annual direct-purchase health insurance coverage recode
+family_glitch_fix,EPNSPOUSE,True,True,2018;2019;2020;2021;2022;2023;2024,Person number of spouse
+family_glitch_fix,person_id,True,False,,
+family_glitch_fix,state_fips,True,False,,
+family_glitch_fix,REMPLOYANN,False,True,2022;2023;2024,Annual employment-based health insurance coverage recode
+family_glitch_fix,employer_offer_or_family_premium,False,False,,
+arkansas_medicaid_work_requirements,state_fips,True,False,,
+arkansas_medicaid_work_requirements,TAGE,True,True,2018;2019;2020;2021;2022;2023;2024,Age as of last birthday
+arkansas_medicaid_work_requirements,TFINCPOV,True,True,2018;2019;2020;2021;2022;2023;2024,"Family income-to-poverty ratio in this month, excluding Type 2 individuals"
+arkansas_medicaid_work_requirements,EMDMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Edited Monthly Indicator for Medical Assistance (Medicaid) Coverage
+arkansas_medicaid_work_requirements,RHLTHMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - indicating respondent is insured (private or public coverage) in month (New as of 2014 Panel)
+arkansas_medicaid_work_requirements,RMESR,True,True,2018;2019;2020;2021;2022;2023;2024,Recode for monthly employment status.
+arkansas_medicaid_work_requirements,RDIS,True,True,2018;2019;2020;2021;2022;2023;2024,"Recode - indicates individual has at least one of six core disability measures (Hearing, Seeing, Cognitive, Ambulatory, Self-Care, Independent Living)"
+arkansas_medicaid_work_requirements,RSSI_MNYN,True,True,2018;2019;2020;2021;2022;2023;2024,Received SSI benefits this month
+arkansas_medicaid_work_requirements,RSNAP_MNYN,True,True,2018;2019;2020;2021;2022;2023;2024,Received SNAP benefits this month
+late_medicaid_expansion,state_fips,True,False,,
+late_medicaid_expansion,reference_year,True,False,,
+late_medicaid_expansion,reference_month,True,False,,
+late_medicaid_expansion,TAGE,True,True,2018;2019;2020;2021;2022;2023;2024,Age as of last birthday
+late_medicaid_expansion,TFINCPOV,True,True,2018;2019;2020;2021;2022;2023;2024,"Family income-to-poverty ratio in this month, excluding Type 2 individuals"
+late_medicaid_expansion,EMDMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Edited Monthly Indicator for Medical Assistance (Medicaid) Coverage
+late_medicaid_expansion,RHLTHMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - indicating respondent is insured (private or public coverage) in month (New as of 2014 Panel)
+public_charge_immigrant_chilling,ECITIZEN,False,True,2018;2019;2020;2021;2022;2023;2024,Is ... a citizen of the United States?
+public_charge_immigrant_chilling,ENATCIT,False,True,2018;2019;2020;2021;2022;2023;2024,How did ... become a U.S citizen?
+public_charge_immigrant_chilling,TYRENTRY,False,True,2018;2019;2020;2021;2022;2023;2024,When did ... come to live in the U.S.?
+public_charge_immigrant_chilling,TIMSTAT,False,True,2018;2019;2020;2021;2022;2023;2024,What was ... immigration status when he/she first moved to the United States?
+public_charge_immigrant_chilling,EMDMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Edited Monthly Indicator for Medical Assistance (Medicaid) Coverage
+public_charge_immigrant_chilling,RSNAP_MNYN,True,True,2018;2019;2020;2021;2022;2023;2024,Received SNAP benefits this month
+public_charge_immigrant_chilling,RTANF_MNYN,True,True,2018;2019;2020;2021;2022;2023;2024,Received TANF benefits this month
+adult_postpartum_medicaid_extension,EPREGWORK,False,True,2019;2020;2021;2022;2023;2024,Did you work for pay at a job or business at any time during the pregnancy leading up to the birth of your first child?
+adult_postpartum_medicaid_extension,EBIRTHWORK,False,True,2019;2020;2021;2022;2023;2024,Did you work for pay at any time after the birth of the child?
+adult_postpartum_medicaid_extension,TPSTBRTHINT,False,True,2022;2023;2024,Age of the first child when the parent started working. Refer to EPSTBRTH_TP for the unit of time attached to that age.
+adult_postpartum_medicaid_extension,EMDMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Edited Monthly Indicator for Medical Assistance (Medicaid) Coverage
+adult_postpartum_medicaid_extension,RHLTHMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - indicating respondent is insured (private or public coverage) in month (New as of 2014 Panel)
+adult_postpartum_medicaid_extension,state_fips,True,False,,
+state_reinsurance_individual_market,state_fips,True,False,,
+state_reinsurance_individual_market,reference_year,True,False,,
+state_reinsurance_individual_market,TAGE,True,True,2018;2019;2020;2021;2022;2023;2024,Age as of last birthday
+state_reinsurance_individual_market,TFINCPOV,True,True,2018;2019;2020;2021;2022;2023;2024,"Family income-to-poverty ratio in this month, excluding Type 2 individuals"
+state_reinsurance_individual_market,RPRITYPE2,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - Monthly Direct-Purchase Private Coverage (includes school-based coverage) (New as of 2014 Panel)
+state_reinsurance_individual_market,RMARKTPLACE,True,True,2018;2019;2020;2021;2022;2023;2024,"Monthly recode - indicates private direct purchase, Medicaid/Medical Assistance, or other coverage obtained through healthcare.gov or a state-based marketplace/exchange."
+state_reinsurance_individual_market,EPRISUBS1,True,True,2018;2019;2020;2021;2022;2023;2024,Determines if Exchange premium was subsidized
+state_reinsurance_individual_market,RHLTHMTH,True,True,2018;2019;2020;2021;2022;2023;2024,Recode - indicating respondent is insured (private or public coverage) in month (New as of 2014 Panel)

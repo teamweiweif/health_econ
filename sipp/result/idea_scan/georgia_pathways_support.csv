@@ -1,0 +1,6 @@
+spec,label,person_months,persons,states,ga_target_person_months,ga_target_persons,ga_post_target_person_months,ga_post_target_persons,ga_post_target_medicaid_months,ga_post_target_uninsured_months,ga_post_target_work_proxy_months
+monthly_000_200_postjul_low100,"monthly FPL 0-200%, target <=100%, post July 2023",36376,3267,10,2149,231,494,92,129,191,155
+monthly_000_200_postsep_low100,"monthly FPL 0-200%, target <=100%, post September 2023",36376,3267,10,2149,231,329,88,88,122,107
+monthly_work_proxy_postjul_low100,"monthly FPL 0-200%, work-activity proxy, target <=100%, post July 2023",19288,2032,10,697,106,155,35,38,52,155
+annual_000_200_postjul_low100,"annual FPL 0-200%, target <=100%, post July 2023",35006,2539,10,1968,152,479,81,123,198,151
+monthly_050_150_postjul_low100,"monthly FPL 50-150%, local target <=100%, post July 2023",15865,1811,10,738,109,177,38,66,83,66

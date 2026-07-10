@@ -1,0 +1,3 @@
+sample,person_years,persons,states,target_person_years,target_persons,active_treated_person_years,active_treated_persons,mean_direct_market,mean_exchange_subsidy,mean_uninsured
+family_glitch_26_64_138_600,57935,38834,52,38908,26511,6129,6123,0.13437270861239042,0.10926789062450545,0.13115801514149458
+stldi_permissive_healthy_young_2017_2021,72394,45675,52,10333,7431,5824,4745,0.10399363199625888,0.0748088326665311,0.1073768863449593

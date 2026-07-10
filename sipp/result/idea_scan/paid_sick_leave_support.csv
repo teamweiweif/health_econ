@@ -1,0 +1,5 @@
+sample,person_years,persons,states,target_person_years,clean_adopter_target_person_years,clean_active_treated_person_years,clean_active_treated_persons,broad_adopter_target_person_years,broad_active_treated_person_years,weighted_mean_sick_days,weighted_mean_sick_any,weighted_mean_doctor_any
+worker_low_educ,123078,70330,52,43776,5218,2770,1925,7089,3747,3.6281358955364618,0.43505516746514217,0.7171333332731623
+worker_low_income,123078,70330,52,36063,4279,2163,1727,5785,2960,3.6281358955364618,0.43505516746514217,0.7171333332731623
+worker_low_educ_or_income,123078,70330,52,61672,7506,3919,2825,10187,5352,3.6281358955364618,0.43505516746514217,0.7171333332731623
+all_adults_worker_target,174509,94933,52,123078,17348,9590,6175,22882,12694,6.700370336583169,0.4407586588241242,0.7228580759392611

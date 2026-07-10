@@ -1,0 +1,11 @@
+model,fpl_col,post_col,age_min,cutoff,bandwidth,person_months,persons,states,pre_below_persons,pre_above_persons,post_below_persons,post_above_persons
+monthly_fpl_age26_64_postyear_bw050,monthly_fpl,post_year2021,26,4.0,0.5,217610,23755,52,10628,9892,6173,5562
+monthly_fpl_age21_64_postyear_bw050,monthly_fpl,post_year2021,21,4.0,0.5,241512,26825,52,12046,11125,6991,6281
+monthly_fpl_age26_64_postapr2021_bw050,monthly_fpl,post_apr2021,26,4.0,0.5,217610,23755,52,11733,11026,5918,5273
+annual_fpl_age26_64_postyear_bw050,annual_fpl,post_year2021,26,4.0,0.5,222677,15012,52,5693,5310,3033,2665
+monthly_fpl_age26_64_postyear_bw025,monthly_fpl,post_year2021,26,4.0,0.25,110404,15833,52,6707,6365,3980,3775
+monthly_fpl_age26_64_postyear_bw075,monthly_fpl,post_year2021,26,4.0,0.75,325151,30062,52,14061,12504,7916,7084
+placebo_cutoff_3.0_monthly_fpl_age26_64,monthly_fpl,post_year2021,26,3.0,0.5,249204,25871,52,11493,11171,6216,6373
+placebo_cutoff_3.5_monthly_fpl_age26_64,monthly_fpl,post_year2021,26,3.5,0.5,236950,25274,52,11187,10615,6383,6155
+placebo_cutoff_4.5_monthly_fpl_age26_64,monthly_fpl,post_year2021,26,4.5,0.5,194963,22052,52,9905,8966,5579,5353
+placebo_cutoff_5.0_monthly_fpl_age26_64,monthly_fpl,post_year2021,26,5.0,0.5,173917,20301,52,8985,8182,5359,4887

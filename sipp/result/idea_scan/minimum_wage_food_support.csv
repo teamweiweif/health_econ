@@ -1,0 +1,3 @@
+sample,household_years,households,states,target_household_years,target_households,target_with_any_mw_increase_household_years,target_with_50c_increase_household_years,weighted_mean_food_insecure
+household_low_wage,98500,95960,51,21260,21192,8739,6582,0.1244082208504381
+household_low_educ,98500,95960,51,31257,30821,12579,9584,0.1244082208504381

@@ -1,0 +1,13 @@
+panel,exposure,actual_2022_2023,exposed,pairs,persons,states,mean_student_debt_amount_base
+annual_pairs,student_debt_base,0,0,31529,21923,51,0.0
+annual_pairs,student_debt_base,0,1,4807,3754,43,36766.2953071709
+annual_pairs,student_debt_base,1,0,6956,6956,51,0.0
+annual_pairs,student_debt_base,1,1,940,940,42,39425.90201851155
+annual_pairs,student_debt_10k_base,0,0,33292,22947,51,236.00743917971184
+annual_pairs,student_debt_10k_base,0,1,3044,2384,43,55053.949171689754
+annual_pairs,student_debt_10k_base,1,0,7286,7286,51,198.99951147382475
+annual_pairs,student_debt_10k_base,1,1,610,610,41,57786.431217638055
+annual_pairs,student_debt_25k_base,0,0,34362,23604,51,830.0022897291509
+annual_pairs,student_debt_25k_base,0,1,1974,1558,42,74786.54215184945
+annual_pairs,student_debt_25k_base,1,0,7498,7498,51,751.220841602998
+annual_pairs,student_debt_25k_base,1,1,398,398,39,78690.29616366644

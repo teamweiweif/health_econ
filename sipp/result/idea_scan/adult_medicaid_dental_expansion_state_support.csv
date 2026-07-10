@@ -1,0 +1,25 @@
+state_fips,state_name,reference_year,person_years,persons,dental_mean
+23,Maine,2018,13,13,0.84615386
+23,Maine,2019,11,11,0.6363636
+23,Maine,2020,16,16,0.6875
+23,Maine,2021,7,7,0.5714286
+23,Maine,2022,9,9,1.1111112
+23,Maine,2023,10,10,0.6
+33,New Hampshire,2018,5,5,1.4
+33,New Hampshire,2019,3,3,0.0
+33,New Hampshire,2020,7,7,2.7142856
+33,New Hampshire,2021,6,6,1.3333334
+33,New Hampshire,2022,3,3,0.33333334
+33,New Hampshire,2023,3,3,0.6666667
+47,Tennessee,2018,91,91,1.1348314
+47,Tennessee,2019,90,90,1.247191
+47,Tennessee,2020,84,84,0.8765432
+47,Tennessee,2021,39,39,1.1282052
+47,Tennessee,2022,50,50,1.08
+47,Tennessee,2023,45,45,1.0681819
+51,Virginia,2018,61,61,1.4333333
+51,Virginia,2019,61,61,1.2131147
+51,Virginia,2020,72,72,0.74285716
+51,Virginia,2021,60,60,1.0
+51,Virginia,2022,55,55,1.0363636
+51,Virginia,2023,52,52,1.22

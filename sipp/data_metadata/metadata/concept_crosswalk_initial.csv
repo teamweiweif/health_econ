@@ -1,0 +1,67 @@
+concept,variable_name,present,years_present,description,primary_or_alternative,construction_note
+person_month_key,SSUID,True,2018;2019;2020;2021;2022;2023;2024,"Sample unit identifier. This identifier is created by scrambling together PSU, Sequence #1, Sequence #2, and the Frame Indicator for a case. It may be used in matching sample units from different waves.",alternative_or_supporting,person_month_key
+person_month_key,PNUM,True,2018;2019;2020;2021;2022;2023;2024,Person number,alternative_or_supporting,person_month_key
+person_month_key,MONTHCODE,True,2018;2019;2020;2021;2022;2023;2024,Value of reference month,alternative_or_supporting,person_month_key
+person_month_key,SPANEL,True,2018;2019;2020;2021;2022;2023;2024,Panel year,alternative_or_supporting,person_month_key
+person_month_key,SWAVE,True,2018;2019;2020;2021;2022;2023;2024,Wave number of interview,alternative_or_supporting,person_month_key
+state_time,TEHC_ST,True,2018;2019;2020;2021;2022;2023;2024,Monthly state of residence,primary,state_time
+state_time,TST_INTV,True,2018;2019;2020;2021;2022;2023;2024,State of residence for the interview address,alternative_or_supporting,state_time
+state_time,MONTHCODE,True,2018;2019;2020;2021;2022;2023;2024,Value of reference month,alternative_or_supporting,person_month_key
+weights,WPFINWGT,True,2018;2019;2020;2021;2022;2023;2024,Final person weight,primary,weights
+weights,GVARSTR,True,2018;2019;2020;2021;2022;2023;2024,Variance pseudo stratum code. Strata formed for half sample variance estimation,alternative_or_supporting,weights
+coverage_any_public_private,RHLTHMTH,True,2018;2019;2020;2021;2022;2023;2024,Recode - indicating respondent is insured (private or public coverage) in month (New as of 2014 Panel),primary,coverage_any_public_private
+coverage_any_public_private,RPUBMTH,True,2018;2019;2020;2021;2022;2023;2024,Monthly recode- Public Coverage during the month (New as of 2014 Panel),alternative_or_supporting,coverage_any_public_private
+coverage_any_public_private,RPRIMTH,True,2018;2019;2020;2021;2022;2023;2024,Recode - Private Coverage during the month (New as of 2014 Panel),alternative_or_supporting,coverage_any_public_private
+medicaid,EMDMTH,True,2018;2019;2020;2021;2022;2023;2024,Edited Monthly Indicator for Medical Assistance (Medicaid) Coverage,primary,primary monthly Medicaid measure after agreement audit against RPUBTYPE2
+medicaid,RPUBTYPE2,True,2018;2019;2020;2021;2022;2023;2024,Recode - Medical Assistance Public Coverage during the month,alternative_or_supporting,alternative monthly Medicaid measure for sensitivity
+medicaid,EMD_BMONTH,True,2018;2019;2020;2021;2022;2023;2024,Begin month of Medicaid spell.,alternative_or_supporting,medicaid
+medicaid,EMD_EMONTH,True,2018;2019;2020;2021;2022;2023;2024,Last month of Medicaid spell.,alternative_or_supporting,medicaid
+medicaid,RMCAIDANN,True,2022;2023;2024,Annual Medicaid/Medical Assistance health insurance coverage recode,alternative_or_supporting,medicaid
+medicare_exclusion,ECRMTH,True,2018;2019;2020;2021;2022;2023;2024,Edited Monthly Indicator for Medicare Coverage,alternative_or_supporting,medicare_exclusion
+medicare_exclusion,RPUBTYPE1,True,2018;2019;2020;2021;2022;2023;2024,Recode - Medicare Public Coverage (including Part A) during the month,alternative_or_supporting,medicare_exclusion
+direct_purchase_exchange,RMARKTPLACE,True,2018;2019;2020;2021;2022;2023;2024,"Monthly recode - indicates private direct purchase, Medicaid/Medical Assistance, or other coverage obtained through healthcare.gov or a state-based marketplace/exchange.",alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,RPRITYPE2,True,2018;2019;2020;2021;2022;2023;2024,Recode - Monthly Direct-Purchase Private Coverage (includes school-based coverage) (New as of 2014 Panel),alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,EPRIEXCH1,True,2018;2019;2020;2021;2022;2023;2024,Did respondent have coverage through a state-based Health Insurance Exchange?,alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,EPRIEXCH2,True,2018;2019;2020;2021;2022;2023;2024,Did respondent have coverage through a state-based Health Insurance Exchange?,alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,EPRISUBS1,True,2018;2019;2020;2021;2022;2023;2024,Determines if Exchange premium was subsidized,alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,EPRISUBS2,True,2018;2019;2020;2021;2022;2023;2024,Determines if Exchange premium was subsidized,alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,EMDEXCH,True,2018;2019;2020;2021;2022;2023;2024,Determines if coverage is through a state based Health Insurance Marketplace/Exchange.,alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,EMDSUBS,True,2018;2019;2020;2021;2022;2023;2024,Determines if cost of the premium is subsidized.,alternative_or_supporting,direct_purchase_exchange
+direct_purchase_exchange,RDIRECTANN,True,2022;2023;2024,Annual direct-purchase health insurance coverage recode,alternative_or_supporting,direct_purchase_exchange
+income_poverty,TFINCPOV,True,2018;2019;2020;2021;2022;2023;2024,"Family income-to-poverty ratio in this month, excluding Type 2 individuals",primary,primary family monthly income-to-poverty running variable
+income_poverty,THINCPOV,True,2018;2019;2020;2021;2022;2023;2024,"Household income-to-poverty ratio in this month, excluding Type 2 individuals",alternative_or_supporting,income_poverty
+income_poverty,TFCYINCPOV,True,2018;2019;2020;2021;2022;2023;2024,"Family income-to-poverty ratio in this calendar year, excluding Type 2 individuals",alternative_or_supporting,income_poverty
+income_poverty,THCYINCPOV,True,2018;2019;2020;2021;2022;2023;2024,"Household income-to-poverty ratio in this calendar year, excluding Type 2 individuals",alternative_or_supporting,income_poverty
+income_poverty,TFTOTINC,True,2018;2019;2020;2021;2022;2023;2024,"Sum of monthly earnings and income received by family members age 15 and older, as well as SSI payments received by children under age 15",alternative_or_supporting,income_poverty
+income_poverty,THTOTINC,True,2018;2019;2020;2021;2022;2023;2024,"Sum of monthly earnings and income received by household members age 15 and older, as well as SSI payments received by children under age 15",alternative_or_supporting,income_poverty
+income_poverty,TPTOTINC,True,2018;2019;2020;2021;2022;2023;2024,"Sum of personal monthly earnings and income for people age 15 and older, as well as children under age 15 who received SSI payments",alternative_or_supporting,income_poverty
+employment,RMESR,True,2018;2019;2020;2021;2022;2023;2024,Recode for monthly employment status.,alternative_or_supporting,employment
+employment,RWKESR1,True,2018;2019;2020;2021;2022;2023;2024,Employment status recode for week 1,alternative_or_supporting,employment
+employment,RWKESR2,True,2018;2019;2020;2021;2022;2023;2024,Employment status recode for week 2,alternative_or_supporting,employment
+employment,RWKESR3,True,2018;2019;2020;2021;2022;2023;2024,Employment status recode for week 3,alternative_or_supporting,employment
+employment,RWKESR4,True,2018;2019;2020;2021;2022;2023;2024,Employment status recode for week 4,alternative_or_supporting,employment
+employment,RWKESR5,True,2018;2019;2020;2021;2022;2023;2024,Employment status recode for week 5,alternative_or_supporting,employment
+employment,RMWKWJB,True,2018;2019;2020;2021;2022;2023;2024,Number of weeks with a job during the month.,alternative_or_supporting,employment
+employment,TPEARN,True,2018;2019;2020;2021;2022;2023;2024,"Sum of earnings and profits/losses from all jobs, varying with the number of days in the month (comparable to RPEARN in 1996, 2001, and 2014 SIPP panels).",alternative_or_supporting,employment
+program_stack,RSNAP_MNYN,True,2018;2019;2020;2021;2022;2023;2024,Received SNAP benefits this month,alternative_or_supporting,program_stack
+program_stack,RTANF_MNYN,True,2018;2019;2020;2021;2022;2023;2024,Received TANF benefits this month,alternative_or_supporting,program_stack
+program_stack,RSSI_MNYN,True,2018;2019;2020;2021;2022;2023;2024,Received SSI benefits this month,alternative_or_supporting,program_stack
+program_stack,RWIC_MNYN,True,2018;2019;2020;2021;2022;2023;2024,Received WIC benefits this month,alternative_or_supporting,program_stack
+program_stack,EUC1MNYN,True,2018;2019;2020;2021;2022;2023;2024,"Whether regular, government-provided Unemployment Compensation payments were received in a given month",alternative_or_supporting,program_stack
+program_stack,EUC2MNYN,True,2018;2019;2020;2021;2022;2023;2024,"Whether supplemental, employer-provided Unemployment Compensation payments were received in a given month",alternative_or_supporting,program_stack
+program_stack,EUC3MNYN,True,2018;2019;2020;2021;2022;2023;2024,"Whether other Unemployment Compensation payments, including union benefits, were received in a given month",alternative_or_supporting,program_stack
+health_need,EHLTSTAT,True,2018;2019;2020;2021;2022;2023;2024,What is ... health status?,alternative_or_supporting,health_need
+health_need,RDIS,True,2018;2019;2020;2021;2022;2023;2024,"Recode - indicates individual has at least one of six core disability measures (Hearing, Seeing, Cognitive, Ambulatory, Self-Care, Independent Living)",alternative_or_supporting,health_need
+health_need,RDIS_ALT,True,2018;2019;2020;2021;2022;2023;2024,"Recode Indicates individual has at least one disability as indicated by any of the six core disability questions, three child disability questions, or two work disability questions.",alternative_or_supporting,health_need
+household_instability,TMOVER,True,2018;2019;2020;2021;2022;2023;2024,Recoded variable indicating mover status,alternative_or_supporting,household_instability
+household_instability,TRESDUR,True,2018;2019;2020;2021;2022;2023;2024,Recoded variable indicating the number of months the respondent resided in the unit,alternative_or_supporting,household_instability
+household_instability,ERESIDENCEID,True,2018;2019;2020;2021;2022;2023;2024,"This field stores a unique six-digit identifier for residence addresses. Length: 6 Min: 100001 Max: 400999 Status Flag: ARESIDENCEID Printed On: Monday, August 17, 2020 Page 11",alternative_or_supporting,household_instability
+household_instability,ERP,True,2018;2019;2020;2021;2022;2023;2024,Identifies if adult is a reference parent to any household children under 18 years old,alternative_or_supporting,household_instability
+household_instability,EPNSPOUSE,True,2018;2019;2020;2021;2022;2023;2024,Person number of spouse,alternative_or_supporting,household_instability
+financial_utilization,TMDPAY,True,2018;2019;2020;2021;2022;2023;2024,How much did ... pay for his/her non-premium medical out-of-pocket expenditures on medical care?,alternative_or_supporting,financial_utilization
+financial_utilization,TVISDOC,True,2018;2019;2020;2021;2022;2023;2024,"How many times did ... see or talk to a doctor, nurse, or any other type of medical provider about his/her health?",alternative_or_supporting,financial_utilization
+financial_utilization,TVISDENT,True,2018;2019;2020;2021;2022;2023;2024,How many visits has ... made to a dentist or other dental professional?,alternative_or_supporting,financial_utilization
+financial_utilization,THOSPNIT,True,2018;2019;2020;2021;2022;2023;2024,How many nights did ... spend in the hospital?,alternative_or_supporting,financial_utilization
+financial_utilization,TDAYSICK,True,2018;2019;2020;2021;2022;2023;2024,How many days did illness or injury keep ... in bed more than half of the day?,alternative_or_supporting,financial_utilization
+financial_utilization,RFOODR,True,2018;2019;2020;2021;2022;2023;2024,Recode for the raw food security score that is a count of affirmative responses.,alternative_or_supporting,financial_utilization
+financial_utilization,RFOODS,True,2018;2019;2020;2021;2022;2023;2024,Recode variable for food security status.,alternative_or_supporting,financial_utilization

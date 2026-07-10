@@ -1,0 +1,5 @@
+sensitivity,person_months,persons,states,hcg_target_post_pm,hcg_target_post_persons,sbm_target_post_pm,sbm_target_post_persons
+main,47048,8208,47,2361,600,1085,286
+nondisabled,37031,6562,47,1783,456,854,232
+no_medicaid,34128,6086,47,1682,431,568,157
+broad_no_medicaid,49823,8104,47,6299,1199,1900,422

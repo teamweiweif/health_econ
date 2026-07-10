@@ -1,0 +1,4 @@
+sample,person_years,persons,states,no_comprehensive_pre_person_years,post_new_protection_person_years,mean_oop_amount,mean_oop_gt_1000
+private_care_users_26_64,45491,31226,52,18284,8220,1404.6092386993494,0.2877543167500953
+private_hospital_users_26_64,3696,3378,52,1577,692,2223.3264802865538,0.4011714956063428
+public_care_users_placebo_26_64,14122,10253,52,5668,2514,593.6901889597362,0.11589358417267728

@@ -1,0 +1,13 @@
+panel,model,outcome,coef,se_person,t_person,se_state,t_state,n_person_months,n_persons,bandwidth,donut,threshold,post_col,stars_person,stars_state,coef_fmt
+"Primary source-decomposition, monthly FPL 350-450%",main_age26_64,uninsured,-0.0277,0.0141,-1.96,0.0151,-1.83,"215,972","23,888",,,,post_year2021,**,*,-0.0277** (0.0141)
+"Primary source-decomposition, monthly FPL 350-450%",main_age26_64,market_or_subsidy,0.0202,0.0137,1.47,0.0147,1.37,"215,972","23,888",,,,post_year2021,,,+0.0202 (0.0137)
+"Primary source-decomposition, monthly FPL 350-450%",main_age26_64,direct_purchase,0.0208,0.0137,1.52,0.0145,1.43,"215,972","23,888",,,,post_year2021,,,+0.0208 (0.0137)
+"Primary source-decomposition, monthly FPL 350-450%",main_age26_64,source_employer_related,0.0301,0.0190,1.59,0.0244,1.24,"215,972","23,888",,,,post_year2021,,,+0.0301 (0.0190)
+Mechanism sample: lagged non-employer,lag_nonemployer_months,uninsured,-0.0457,0.0331,-1.38,0.0425,-1.08,"71,638","9,878",,,,post_year2021,,,-0.0457 (0.0331)
+Mechanism sample: lagged non-employer,lag_nonemployer_months,market_or_subsidy,0.0739,0.0328,2.25,0.0350,2.11,"71,638","9,878",,,,post_year2021,**,**,+0.0739** (0.0328)
+Mechanism sample: lagged non-employer,lag_nonemployer_months,direct_purchase,0.0735,0.0328,2.24,0.0334,2.20,"71,638","9,878",,,,post_year2021,**,**,+0.0735** (0.0328)
+Mechanism sample: lagged non-employer,lag_nonemployer_months,source_employer_related,-0.0100,0.0058,-1.72,0.0066,-1.52,"71,638","9,878",,,,post_year2021,*,,-0.0100* (0.0058)
+Placebo/substitution sample: lagged current employer,lag_current_employer_months,uninsured,-0.0011,0.0021,-0.52,0.0019,-0.56,"126,551","14,453",,,,post_year2021,,,-0.0011 (0.0021)
+Placebo/substitution sample: lagged current employer,lag_current_employer_months,market_or_subsidy,0.0136,0.0064,2.12,0.0078,1.74,"126,551","14,453",,,,post_year2021,**,*,+0.0136** (0.0064)
+Placebo/substitution sample: lagged current employer,lag_current_employer_months,direct_purchase,0.0138,0.0064,2.17,0.0078,1.78,"126,551","14,453",,,,post_year2021,**,*,+0.0138** (0.0064)
+Placebo/substitution sample: lagged current employer,lag_current_employer_months,source_employer_related,-0.0007,0.0029,-0.24,0.0026,-0.26,"126,551","14,453",,,,post_year2021,,,-0.0007 (0.0029)

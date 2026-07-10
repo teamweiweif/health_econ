@@ -1,0 +1,5 @@
+model,fpl_col,post_col,age_min,bandwidth,person_months,persons,states,missing_rpritype1
+monthly_fpl_age26_64_postyear_bw050,monthly_fpl,post_year2021,26,0.5,217610,23755,52,26281
+monthly_fpl_age21_64_postyear_bw050,monthly_fpl,post_year2021,21,0.5,241512,26825,52,28724
+monthly_fpl_age26_64_postapr2021_bw050,monthly_fpl,post_apr2021,26,0.5,217610,23755,52,26281
+annual_fpl_age26_64_postyear_bw050,annual_fpl,post_year2021,26,0.5,222677,15012,52,27025

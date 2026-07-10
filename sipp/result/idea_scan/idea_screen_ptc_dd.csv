@@ -1,0 +1,7 @@
+design,outcome,dd_above400_minus_below400_post2021_minus_pre,rows,persons,above400_persons,below400_persons,above400_market_events,above400_uninsured_events
+PTC 400% FPL difference-in-discontinuities screen,direct_purchase,-0.024222564940115363,454440,27496,13990,16892,14319,17393
+PTC 400% FPL difference-in-discontinuities screen,marketplace,-0.030474384071114927,454440,27496,13990,16892,14319,17393
+PTC 400% FPL difference-in-discontinuities screen,subsidized_private,-0.017605471158959343,454440,27496,13990,16892,14319,17393
+PTC 400% FPL difference-in-discontinuities screen,market_or_subsidy,-0.030516562580470877,454440,27496,13990,16892,14319,17393
+PTC 400% FPL difference-in-discontinuities screen,uninsured,-0.0056298993010381465,454440,27496,13990,16892,14319,17393
+PTC 400% FPL difference-in-discontinuities screen,any_coverage,0.005629899301038188,454440,27496,13990,16892,14319,17393

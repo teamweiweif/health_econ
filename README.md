@@ -12,6 +12,7 @@ lightweight outputs, and a GitHub-friendly data metadata layer.
 | `ccbhc_expansion_capacity/` | 2024 CCBHC Medicaid Demonstration expansion and behavioral-health capacity | Monitoring package; no-go for a current causal paper |
 | `nursing_home_staffing_reporting/` | CMS 2022 nursing-home staffing transparency and Five-Star rating changes | Large staffing panel; weak current causal design because pretrends/placebo fail |
 | `climate_uhc_ml/` | Climate shocks, UHC financial protection, and household-climate dataset promotion | Dataset-promotion registry active; modeling remains blocked until raw packages and climate-linkage gates pass |
+| `sipp/` | SIPP 2018-2024 adult health-insurance policy idea search, led by ARPA 400% FPL subsidy-cliff removal | Conditional go for ARPA 400% FPL difference-in-discontinuities design |
 
 ## Data Policy
 
@@ -36,7 +37,10 @@ The full local download audit summary is stored in
 `download_audit_summary.csv`. At the time of the original three-project push all
 422 source files across those local project folders were readable with zero read
 errors. Newer project folders may carry their own source inventories and direct
-read audit bundles.
+read audit bundles. The `sipp/` folder follows this lightweight-publication
+pattern with `data_metadata/local_file_inventory.csv` and
+`data_metadata/excluded_file_inventory.csv` documenting which local raw,
+analysis-ready, and intermediate data files were excluded from GitHub.
 
 ## Refreshing Metadata
 

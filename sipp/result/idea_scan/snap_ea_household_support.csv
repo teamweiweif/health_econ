@@ -1,0 +1,4 @@
+sample,household_years,households,states,target_household_years,early_end_target_household_years,active_treated_household_years,weighted_mean_food_insecure,weighted_mean_very_low_food,weighted_mean_food_score
+household_lag_snap_2018_2022,19492,19449,51,5054,1402,303,0.2036805053874149,0.08954247672873342,0.8837649860053158
+household_lag_snap_2018_2023,22366,22319,51,5862,1609,510,0.2101612392216946,0.09159381039703775,0.9070307457761178
+household_current_snap_2018_2022,40328,39188,51,10219,2829,636,0.2040275824856071,0.09106576681841,0.8897217804967816

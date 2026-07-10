@@ -1,0 +1,4 @@
+sample,person_years,persons,states,target_person_years,target_persons,early_target_2021_persons,early_target_2021_person_years,control_target_2021_persons,weighted_mean_food_insecure
+balanced_target_ui,4516,2218,51,263,127,45,45,85,0.15921040532485964
+balanced_target_broad,4516,2218,51,1758,859,387,390,484,0.15921040532485964
+unbalanced_target_ui,10386,7943,52,601,462,152,152,315,0.1646258781730098

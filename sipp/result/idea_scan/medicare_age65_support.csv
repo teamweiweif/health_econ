@@ -1,0 +1,5 @@
+spec,label,person_months,persons,age_min,age_max,below65_person_months,above65_person_months,below65_persons,above65_persons
+age60_70_pooled,Age 60-70 pooled age-65 local linear,644849,29792,60.0,70.0,303254,341595,17016,18044
+age62_68_pooled,Age 62-68 pooled age-65 local linear,414962,21068,62.0,68.0,182945,232017,12374,13920
+age60_70_rd_did_arpa,Age 60-70 RD-DID: age-65 discontinuity change after 2021,644849,29792,60.0,70.0,303254,341595,17016,18044
+age62_68_rd_did_arpa,Age 62-68 RD-DID: age-65 discontinuity change after 2021,414962,21068,62.0,68.0,182945,232017,12374,13920

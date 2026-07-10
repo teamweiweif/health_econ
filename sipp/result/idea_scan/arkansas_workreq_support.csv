@@ -1,0 +1,5 @@
+sample,term,person_months,persons,states,arkansas_target_person_months,arkansas_target_persons,active_arkansas_target_person_months,active_arkansas_target_persons,weighted_mean_medicaid,weighted_mean_uninsured,weighted_mean_employed
+fpl100_2017_2019,ar_target_x_2018_active,26395,2707,9,547,51,88,17,0.23875790787223922,0.42516883259084126,0.40916446254726824
+fpl138_2017_2019,ar_target_x_2018_active,37000,3478,9,821,67,148,24,0.22813459888217183,0.4148908037692448,0.4966406737608966
+fpl138_2017_2019,ar_target_x_full_active,37000,3478,9,821,67,188,30,0.22813459888217183,0.4148908037692448,0.4966406737608966
+baseline_medicaid_2018_fpl138,ar_target_x_2018_active,2924,295,9,97,10,58,10,0.9933300633805162,0.006669936619483838,0.37690533829535394

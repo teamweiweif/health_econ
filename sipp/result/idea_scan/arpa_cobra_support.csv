@@ -1,0 +1,9 @@
+sample,inv_col,events,persons,treated_events,treated_persons,control_invol_events,control_voluntary_events,treated_lag_current_employer_events,treated_lag_private_events,states
+aprsep_exclude2020_all,involuntary,6322,5630,296,283,1765,4261,151,203,49
+aprsep_exclude2020_all,involuntary_noseason,6322,5630,196,191,1192,4934,96,129,49
+aprsep_exclude2020_lag_current_employer,involuntary,3462,3176,151,147,933,2378,151,151,48
+aprsep_exclude2020_lag_current_employer,involuntary_noseason,3462,3176,96,93,626,2740,96,96,48
+allmonths_exclude2020_all,involuntary,11916,9501,296,283,3803,7817,151,203,49
+allmonths_exclude2020_all,involuntary_noseason,11916,9501,196,191,2592,9128,96,129,49
+allmonths_exclude2020_lag_current_employer,involuntary,6273,5348,151,147,1906,4216,151,151,49
+allmonths_exclude2020_lag_current_employer,involuntary_noseason,6273,5348,96,93,1315,4862,96,96,49

@@ -1,0 +1,5 @@
+sample,persons,early_persons,control_persons,uc_months,nonemployment_months,analysis_rows
+at_risk_uc,624,183,446,3698,2688,3701
+at_risk_layofflooking,678,279,416,1179,5655,4052
+at_risk_nonemployment,3511,1646,1925,2011,35677,21012
+at_risk_broad,3811,1728,2143,3744,35714,22777

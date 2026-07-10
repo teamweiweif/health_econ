@@ -1,0 +1,197 @@
+sample,state_fips,state_name,reference_year,person_years,persons,active,sick_days_mean,doctor_any_mean
+worker_low_educ,08,Colorado,2017,161,161,0,1.8695652,0.6894409937888198
+worker_low_educ,08,Colorado,2018,77,77,0,1.9466667,0.6883116883116883
+worker_low_educ,08,Colorado,2019,172,172,0,2.1597633,0.627906976744186
+worker_low_educ,08,Colorado,2020,139,139,0,2.7826087,0.697841726618705
+worker_low_educ,08,Colorado,2021,132,132,1,4.8320613,0.6212121212121212
+worker_low_educ,08,Colorado,2022,116,116,1,6.156522,0.5948275862068966
+worker_low_educ,08,Colorado,2023,97,97,1,3.0957446,0.5876288659793815
+worker_low_educ,24,Maryland,2017,122,122,0,4.844262,0.639344262295082
+worker_low_educ,24,Maryland,2018,84,84,1,4.890244,0.7380952380952381
+worker_low_educ,24,Maryland,2019,103,103,1,1.950495,0.7087378640776699
+worker_low_educ,24,Maryland,2020,96,96,1,3.6774194,0.6458333333333334
+worker_low_educ,24,Maryland,2021,72,72,1,2.3888888,0.7361111111111112
+worker_low_educ,24,Maryland,2022,71,71,1,2.7183099,0.676056338028169
+worker_low_educ,24,Maryland,2023,73,73,1,5.0416665,0.6712328767123288
+worker_low_educ,34,New Jersey,2017,160,160,0,4.725,0.71875
+worker_low_educ,34,New Jersey,2018,86,86,0,7.1,0.6162790697674418
+worker_low_educ,34,New Jersey,2019,90,90,1,4.1444445,0.6888888888888889
+worker_low_educ,34,New Jersey,2020,90,90,1,2.8068182,0.6888888888888889
+worker_low_educ,34,New Jersey,2021,80,80,1,3.78481,0.625
+worker_low_educ,34,New Jersey,2022,80,80,1,6.3116884,0.725
+worker_low_educ,34,New Jersey,2023,76,76,1,1.0666667,0.5921052631578947
+worker_low_educ,35,New Mexico,2017,77,77,0,4.090909,0.6233766233766234
+worker_low_educ,35,New Mexico,2018,42,42,0,0.9268293,0.5952380952380952
+worker_low_educ,35,New Mexico,2019,51,51,0,1.2745098,0.47058823529411764
+worker_low_educ,35,New Mexico,2020,43,43,0,1.7857143,0.6511627906976745
+worker_low_educ,35,New Mexico,2021,34,34,0,5.147059,0.7058823529411765
+worker_low_educ,35,New Mexico,2022,31,31,0,13.774194,0.7096774193548387
+worker_low_educ,35,New Mexico,2023,27,27,1,3.2592592,0.6296296296296297
+worker_low_educ,36,New York,2017,341,341,0,3.903226,0.6891495601173021
+worker_low_educ,36,New York,2018,210,210,0,2.6633663,0.7523809523809524
+worker_low_educ,36,New York,2019,278,278,0,2.7372262,0.7014388489208633
+worker_low_educ,36,New York,2020,207,207,0,3.3235295,0.7584541062801933
+worker_low_educ,36,New York,2021,210,210,1,3.72549,0.638095238095238
+worker_low_educ,36,New York,2022,230,230,1,5.575221,0.6652173913043479
+worker_low_educ,36,New York,2023,227,227,1,3.96875,0.6916299559471366
+worker_low_educ,44,Rhode Island,2017,14,14,0,2.7857144,0.6428571428571429
+worker_low_educ,44,Rhode Island,2018,9,9,0,1.0,0.8888888888888888
+worker_low_educ,44,Rhode Island,2019,13,13,1,1.6153846,0.7692307692307693
+worker_low_educ,44,Rhode Island,2020,10,10,1,2.7,0.9
+worker_low_educ,44,Rhode Island,2021,15,15,1,2.4666667,0.8
+worker_low_educ,44,Rhode Island,2022,24,24,1,1.4583334,0.4166666666666667
+worker_low_educ,44,Rhode Island,2023,10,10,1,9.1,0.4
+worker_low_educ,53,Washington,2017,194,194,0,2.9226804,0.6958762886597938
+worker_low_educ,53,Washington,2018,132,132,1,3.967742,0.7045454545454546
+worker_low_educ,53,Washington,2019,133,133,1,5.3384614,0.6616541353383458
+worker_low_educ,53,Washington,2020,179,179,1,3.5144508,0.6312849162011173
+worker_low_educ,53,Washington,2021,116,116,1,3.8793104,0.6637931034482759
+worker_low_educ,53,Washington,2022,105,105,1,5.875,0.7142857142857143
+worker_low_educ,53,Washington,2023,79,79,1,6.088608,0.7974683544303798
+worker_low_income,08,Colorado,2017,117,117,0,3.3333333,0.6495726495726496
+worker_low_income,08,Colorado,2018,56,56,0,3.7777777,0.6785714285714286
+worker_low_income,08,Colorado,2019,141,141,0,3.5289855,0.6808510638297872
+worker_low_income,08,Colorado,2020,122,122,0,5.7,0.6557377049180327
+worker_low_income,08,Colorado,2021,93,93,1,5.728261,0.6451612903225806
+worker_low_income,08,Colorado,2022,83,83,1,11.109756,0.6987951807228916
+worker_low_income,08,Colorado,2023,67,67,1,2.8461537,0.7014925373134329
+worker_low_income,24,Maryland,2017,91,91,0,6.197802,0.7362637362637363
+worker_low_income,24,Maryland,2018,60,60,1,2.517857,0.65
+worker_low_income,24,Maryland,2019,80,80,1,5.205128,0.8
+worker_low_income,24,Maryland,2020,61,61,1,5.5423727,0.7377049180327869
+worker_low_income,24,Maryland,2021,50,50,1,2.367347,0.72
+worker_low_income,24,Maryland,2022,46,46,1,5.478261,0.6521739130434783
+worker_low_income,24,Maryland,2023,49,49,1,5.2291665,0.7959183673469388
+worker_low_income,34,New Jersey,2017,114,114,0,5.1491227,0.6666666666666666
+worker_low_income,34,New Jersey,2018,50,50,0,12.270833,0.58
+worker_low_income,34,New Jersey,2019,76,76,1,2.96,0.631578947368421
+worker_low_income,34,New Jersey,2020,79,79,1,3.936709,0.6582278481012658
+worker_low_income,34,New Jersey,2021,69,69,1,5.362319,0.6376811594202898
+worker_low_income,34,New Jersey,2022,41,41,1,10.230769,0.7073170731707317
+worker_low_income,34,New Jersey,2023,59,59,1,3.0517242,0.6271186440677966
+worker_low_income,35,New Mexico,2017,85,85,0,5.4235296,0.6705882352941176
+worker_low_income,35,New Mexico,2018,54,54,0,1.4814814,0.6851851851851852
+worker_low_income,35,New Mexico,2019,60,60,0,3.4333334,0.5166666666666667
+worker_low_income,35,New Mexico,2020,48,48,0,6.8541665,0.6875
+worker_low_income,35,New Mexico,2021,33,33,0,5.3939395,0.7272727272727273
+worker_low_income,35,New Mexico,2022,26,26,0,4.423077,0.8076923076923077
+worker_low_income,35,New Mexico,2023,26,26,1,4.923077,0.6923076923076923
+worker_low_income,36,New York,2017,346,346,0,5.99711,0.6791907514450867
+worker_low_income,36,New York,2018,173,173,0,5.236686,0.7745664739884393
+worker_low_income,36,New York,2019,266,266,0,8.0950575,0.7030075187969925
+worker_low_income,36,New York,2020,163,163,0,2.7861636,0.7484662576687117
+worker_low_income,36,New York,2021,174,174,1,3.6294117,0.6494252873563219
+worker_low_income,36,New York,2022,212,212,1,4.8523808,0.6509433962264151
+worker_low_income,36,New York,2023,171,171,1,5.748503,0.695906432748538
+worker_low_income,44,Rhode Island,2017,14,14,0,0.64285713,0.5714285714285714
+worker_low_income,44,Rhode Island,2018,9,9,0,2.6666667,0.7777777777777778
+worker_low_income,44,Rhode Island,2019,10,10,1,3.0,0.7
+worker_low_income,44,Rhode Island,2020,5,5,1,1.6,0.6
+worker_low_income,44,Rhode Island,2021,8,8,1,9.375,0.75
+worker_low_income,44,Rhode Island,2022,23,23,1,0.39130434,0.34782608695652173
+worker_low_income,44,Rhode Island,2023,6,6,1,12.833333,0.8333333333333334
+worker_low_income,53,Washington,2017,148,148,0,5.310811,0.6621621621621622
+worker_low_income,53,Washington,2018,107,107,1,5.5238094,0.7102803738317757
+worker_low_income,53,Washington,2019,116,116,1,7.160714,0.6896551724137931
+worker_low_income,53,Washington,2020,123,123,1,4.6776857,0.6585365853658537
+worker_low_income,53,Washington,2021,91,91,1,2.4725275,0.7362637362637363
+worker_low_income,53,Washington,2022,98,98,1,6.3958335,0.6326530612244898
+worker_low_income,53,Washington,2023,80,80,1,6.8125,0.7625
+worker_low_educ_or_income,08,Colorado,2017,222,222,0,2.6666667,0.6891891891891891
+worker_low_educ_or_income,08,Colorado,2018,116,116,0,2.7522123,0.7413793103448276
+worker_low_educ_or_income,08,Colorado,2019,256,256,0,2.7171314,0.6796875
+worker_low_educ_or_income,08,Colorado,2020,212,212,0,3.947619,0.6792452830188679
+worker_low_educ_or_income,08,Colorado,2021,177,177,1,5.130682,0.6497175141242938
+worker_low_educ_or_income,08,Colorado,2022,164,164,1,7.9506173,0.6341463414634146
+worker_low_educ_or_income,08,Colorado,2023,129,129,1,3.36,0.6124031007751938
+worker_low_educ_or_income,24,Maryland,2017,168,168,0,4.25,0.6964285714285714
+worker_low_educ_or_income,24,Maryland,2018,117,117,1,4.616071,0.7264957264957265
+worker_low_educ_or_income,24,Maryland,2019,141,141,1,3.6058395,0.7375886524822695
+worker_low_educ_or_income,24,Maryland,2020,123,123,1,3.525,0.6747967479674797
+worker_low_educ_or_income,24,Maryland,2021,95,95,1,2.3085105,0.7157894736842105
+worker_low_educ_or_income,24,Maryland,2022,95,95,1,3.5473685,0.7157894736842105
+worker_low_educ_or_income,24,Maryland,2023,92,92,1,4.3777776,0.6847826086956522
+worker_low_educ_or_income,34,New Jersey,2017,217,217,0,4.064516,0.7235023041474654
+worker_low_educ_or_income,34,New Jersey,2018,104,104,0,7.5816326,0.6153846153846154
+worker_low_educ_or_income,34,New Jersey,2019,133,133,1,3.3636363,0.6691729323308271
+worker_low_educ_or_income,34,New Jersey,2020,140,140,1,2.9202898,0.7071428571428572
+worker_low_educ_or_income,34,New Jersey,2021,118,118,1,4.3333335,0.6440677966101694
+worker_low_educ_or_income,34,New Jersey,2022,105,105,1,8.673267,0.7238095238095238
+worker_low_educ_or_income,34,New Jersey,2023,104,104,1,2.1262136,0.6442307692307693
+worker_low_educ_or_income,35,New Mexico,2017,119,119,0,4.07563,0.6386554621848739
+worker_low_educ_or_income,35,New Mexico,2018,74,74,0,1.4109589,0.6756756756756757
+worker_low_educ_or_income,35,New Mexico,2019,85,85,0,2.7058823,0.5176470588235295
+worker_low_educ_or_income,35,New Mexico,2020,67,67,0,5.3636365,0.6567164179104478
+worker_low_educ_or_income,35,New Mexico,2021,50,50,0,6.22,0.7
+worker_low_educ_or_income,35,New Mexico,2022,43,43,0,10.976745,0.7674418604651163
+worker_low_educ_or_income,35,New Mexico,2023,37,37,1,3.9189188,0.6756756756756757
+worker_low_educ_or_income,36,New York,2017,529,529,0,4.6030245,0.7013232514177694
+worker_low_educ_or_income,36,New York,2018,309,309,0,3.61,0.7702265372168284
+worker_low_educ_or_income,36,New York,2019,422,422,0,5.9036145,0.7203791469194313
+worker_low_educ_or_income,36,New York,2020,293,293,0,3.2020905,0.757679180887372
+worker_low_educ_or_income,36,New York,2021,301,301,1,3.877551,0.6445182724252492
+worker_low_educ_or_income,36,New York,2022,332,332,1,5.8623853,0.6506024096385542
+worker_low_educ_or_income,36,New York,2023,308,308,1,4.6567655,0.6915584415584416
+worker_low_educ_or_income,44,Rhode Island,2017,22,22,0,1.9090909,0.5909090909090909
+worker_low_educ_or_income,44,Rhode Island,2018,15,15,0,2.0,0.8666666666666667
+worker_low_educ_or_income,44,Rhode Island,2019,17,17,1,2.0,0.8235294117647058
+worker_low_educ_or_income,44,Rhode Island,2020,14,14,1,2.2142856,0.8571428571428571
+worker_low_educ_or_income,44,Rhode Island,2021,20,20,1,4.9,0.8
+worker_low_educ_or_income,44,Rhode Island,2022,36,36,1,1.1944444,0.4166666666666667
+worker_low_educ_or_income,44,Rhode Island,2023,14,14,1,7.0,0.5
+worker_low_educ_or_income,53,Washington,2017,264,264,0,4.215909,0.696969696969697
+worker_low_educ_or_income,53,Washington,2018,193,193,1,4.3891892,0.7253886010362695
+worker_low_educ_or_income,53,Washington,2019,200,200,1,5.0051546,0.69
+worker_low_educ_or_income,53,Washington,2020,245,245,1,3.9495797,0.6448979591836734
+worker_low_educ_or_income,53,Washington,2021,173,173,1,3.4855492,0.6936416184971098
+worker_low_educ_or_income,53,Washington,2022,166,166,1,5.9018407,0.6566265060240963
+worker_low_educ_or_income,53,Washington,2023,130,130,1,5.876923,0.7692307692307693
+all_adults_worker_target,08,Colorado,2017,446,446,0,3.190583,0.742152466367713
+all_adults_worker_target,08,Colorado,2018,293,293,0,2.6853147,0.7474402730375427
+all_adults_worker_target,08,Colorado,2019,534,534,0,2.6880908,0.7078651685393258
+all_adults_worker_target,08,Colorado,2020,525,525,0,3.303263,0.6933333333333334
+all_adults_worker_target,08,Colorado,2021,418,418,1,4.0483093,0.722488038277512
+all_adults_worker_target,08,Colorado,2022,421,421,1,5.545673,0.7387173396674585
+all_adults_worker_target,08,Colorado,2023,330,330,1,3.0928793,0.6454545454545455
+all_adults_worker_target,24,Maryland,2017,397,397,0,3.5012593,0.7657430730478589
+all_adults_worker_target,24,Maryland,2018,305,305,1,4.0540543,0.7639344262295082
+all_adults_worker_target,24,Maryland,2019,358,358,1,4.793201,0.7374301675977654
+all_adults_worker_target,24,Maryland,2020,365,365,1,3.362117,0.6821917808219178
+all_adults_worker_target,24,Maryland,2021,281,281,1,3.3537905,0.7437722419928826
+all_adults_worker_target,24,Maryland,2022,279,279,1,3.2888086,0.8351254480286738
+all_adults_worker_target,24,Maryland,2023,269,269,1,4.728302,0.7806691449814126
+all_adults_worker_target,34,New Jersey,2017,477,477,0,3.3501048,0.7358490566037735
+all_adults_worker_target,34,New Jersey,2018,254,254,0,4.900415,0.6259842519685039
+all_adults_worker_target,34,New Jersey,2019,308,308,1,3.0618892,0.7402597402597403
+all_adults_worker_target,34,New Jersey,2020,330,330,1,2.3065016,0.7333333333333333
+all_adults_worker_target,34,New Jersey,2021,254,254,1,2.86166,0.7165354330708661
+all_adults_worker_target,34,New Jersey,2022,259,259,1,5.5396824,0.7606177606177607
+all_adults_worker_target,34,New Jersey,2023,264,264,1,2.958175,0.75
+all_adults_worker_target,35,New Mexico,2017,189,189,0,4.698413,0.7566137566137566
+all_adults_worker_target,35,New Mexico,2018,128,128,0,2.023622,0.75
+all_adults_worker_target,35,New Mexico,2019,158,158,0,2.4177215,0.6329113924050633
+all_adults_worker_target,35,New Mexico,2020,127,127,0,4.744,0.7165354330708661
+all_adults_worker_target,35,New Mexico,2021,93,93,0,4.3626375,0.6236559139784946
+all_adults_worker_target,35,New Mexico,2022,84,84,0,6.821429,0.7619047619047619
+all_adults_worker_target,35,New Mexico,2023,68,68,1,3.0441177,0.7058823529411765
+all_adults_worker_target,36,New York,2017,1119,1119,0,3.9356568,0.7515638963360143
+all_adults_worker_target,36,New York,2018,694,694,0,3.0338235,0.8097982708933718
+all_adults_worker_target,36,New York,2019,903,903,0,4.4418344,0.7851605758582503
+all_adults_worker_target,36,New York,2020,672,672,0,2.7511313,0.7976190476190477
+all_adults_worker_target,36,New York,2021,646,646,1,3.1200633,0.7012383900928792
+all_adults_worker_target,36,New York,2022,657,657,1,4.6107693,0.7062404870624048
+all_adults_worker_target,36,New York,2023,649,649,1,4.266355,0.7349768875192604
+all_adults_worker_target,44,Rhode Island,2017,43,43,0,1.7674419,0.6744186046511628
+all_adults_worker_target,44,Rhode Island,2018,41,41,0,1.6341463,0.9024390243902439
+all_adults_worker_target,44,Rhode Island,2019,52,52,1,2.3529413,0.8653846153846154
+all_adults_worker_target,44,Rhode Island,2020,40,40,1,5.0,0.85
+all_adults_worker_target,44,Rhode Island,2021,42,42,1,4.452381,0.8095238095238095
+all_adults_worker_target,44,Rhode Island,2022,55,55,1,1.2545455,0.4909090909090909
+all_adults_worker_target,44,Rhode Island,2023,41,41,1,4.585366,0.5609756097560976
+all_adults_worker_target,53,Washington,2017,581,581,0,4.6592083,0.7693631669535284
+all_adults_worker_target,53,Washington,2018,504,504,1,3.6028514,0.7916666666666666
+all_adults_worker_target,53,Washington,2019,517,517,1,4.0673265,0.7562862669245648
+all_adults_worker_target,53,Washington,2020,603,603,1,4.0860033,0.6898839137645107
+all_adults_worker_target,53,Washington,2021,456,456,1,4.0198674,0.7697368421052632
+all_adults_worker_target,53,Washington,2022,447,447,1,4.609481,0.7494407158836689
+all_adults_worker_target,53,Washington,2023,372,372,1,6.1563344,0.8145161290322581

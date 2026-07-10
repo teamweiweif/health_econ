@@ -1,0 +1,16 @@
+{
+  "panel": "D:\\GlobalHealthPolicy Dropbox\\Fan Bowei\\nh_staffing\\sipp\\data\\analysis_ready\\sipp_2018_2024_person_month_panel.parquet",
+  "metadata": "D:\\GlobalHealthPolicy Dropbox\\Fan Bowei\\nh_staffing\\sipp\\data\\metadata\\variable_registry.csv",
+  "rows": 4051455,
+  "persons": 170366,
+  "outputs": [
+    "idea_screen_candidate_summary.csv",
+    "idea_screen_late_expansion.csv",
+    "idea_screen_manifest.json",
+    "idea_screen_ptc_bins.csv",
+    "idea_screen_ptc_dd.csv",
+    "idea_screen_reinsurance.csv",
+    "idea_screen_variable_availability.csv",
+    "idea_screen_work_requirements.csv"
+  ]
+}

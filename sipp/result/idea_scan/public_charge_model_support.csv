@@ -1,0 +1,4 @@
+spec,fpl_col,low_cut,person_months,persons,states,noncitizen_person_months,low_noncitizen_person_months,low_noncitizen_persons
+monthly_low250,monthly_fpl,2.5,1543116,79568,52,150321,93408,5770
+monthly_low150,monthly_fpl,1.5,1543116,79568,52,150321,56043,4184
+annual_low250,annual_fpl,2.5,1523390,74655,52,149555,92403,5032

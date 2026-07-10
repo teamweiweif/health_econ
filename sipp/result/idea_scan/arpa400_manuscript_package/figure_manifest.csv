@@ -1,0 +1,5 @@
+figure,file,use,exists
+Figure 1,sipp/result/idea_scan/arpa400_paper_bins_main.png,"Binned uninsured and source means around 400% FPL, main sample.",True
+Figure 2,sipp/result/idea_scan/arpa400_paper_bins_lag_nonemployer.png,Binned mechanism plot for lagged non-employer sample.,True
+Figure 3,sipp/result/idea_scan/arpa400_paper_bins_lag_current_employer.png,Mechanism contrast for lagged current-employer sample.,True
+Figure 4,sipp/result/idea_scan/arpa400_bandwidth_robustness_coefficients.png,Bandwidth robustness coefficients for main and mechanism estimates.,True

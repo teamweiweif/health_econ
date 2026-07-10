@@ -1,0 +1,10 @@
+reference_year,policy_regime,rows,persons,medicaid_months,temporary_cross_up_1m,temporary_cross_up_2m,temporary_cross_up_3m,medicaid_exits,exit_to_uninsured,exit_to_private,persistent_uninsured_2m,persistent_uninsured_3m
+2017,pre_phe,19380,2738,6481,66,101,137,1,1,0,1,0
+2018,pre_phe,13175,1917,4828,43,57,80,65,29,31,29,29
+2019,pre_phe,13556,1986,5052,58,88,106,35,20,14,20,20
+2020,phe_continuous_enrollment,11756,2196,4039,47,82,106,1,0,1,0,0
+2020,pre_phe,2391,1302,835,21,32,43,41,21,20,21,19
+2021,phe_continuous_enrollment,10241,1621,4131,38,66,94,5,3,2,3,3
+2022,phe_continuous_enrollment,9893,1527,3695,45,69,81,28,11,14,9,9
+2023,early_unwinding,6443,1191,2595,16,21,28,15,8,7,8,8
+2023,phe_continuous_enrollment,2244,870,882,9,11,14,21,6,15,6,5
