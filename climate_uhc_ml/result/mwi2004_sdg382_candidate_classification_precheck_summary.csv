@@ -1,0 +1,19 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by the candidate SDG 3.8.2 classification precheck.
+candidate_spl_daily_raw_2004_mwk,87.5590037117,Candidate SPL from the external parameter source ledger; not final.
+household_rows,11280,Household rows in the internal SDG 3.8.2 frame.
+weighted_population,12328479.8922,Population-weighted denominator before final SDG 3.8.2 acceptance.
+positive_oop_household_rows,7765,Households with positive OOP health spending.
+nonpositive_discretionary_budget_rows,9073,Rows where total consumption minus candidate SPL is nonpositive.
+positive_discretionary_classified_rows,2207,Rows classified under the strict positive-discretionary-budget diagnostic variant.
+positive_discretionary_candidate_sdg382_rows,119,Candidate catastrophic rows under the strict diagnostic variant.
+positive_discretionary_candidate_sdg382_weighted_rate,0.00902823398559,Population-weighted candidate rate under the strict diagnostic variant.
+floor_variant_candidate_sdg382_rows,122,Candidate catastrophic rows under the denominator-floor sensitivity variant.
+floor_variant_candidate_sdg382_weighted_rate,0.00929136456778,Population-weighted candidate rate under the denominator-floor sensitivity variant.
+external_ppp_source_verified,1,Whether PPP source candidate is captured in the external ledger.
+external_cpi_source_verified,1,Whether CPI source candidates are captured in the external ledger.
+external_parameter_bridge_accepted,0,Whether the external PPP/CPI/base-period bridge is accepted.
+candidate_classification_written_to_data,0,No household-level candidate classification was written to data/.
+sdg382_ready,0,The candidate classification precheck does not open the SDG 3.8.2 gate.
+data_write_gate_status,closed,This precheck writes aggregate result/report artifacts only.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
