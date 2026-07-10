@@ -164,13 +164,22 @@ def summary_row(metric: str, value: Any, interpretation: str) -> dict[str, str]:
     return {"metric": metric, "value": str(value), "interpretation": interpretation}
 
 
-def build_summary(progress_rows: list[dict[str, str]], plan_rows: list[dict[str, str]], command_logs: list[dict[str, str]], execute: bool) -> list[dict[str, str]]:
+def build_summary(
+    progress_rows: list[dict[str, str]],
+    plan_rows: list[dict[str, str]],
+    command_logs: list[dict[str, str]],
+    execute: bool,
+    progress_row_count_before_filter: int,
+    filter_description: str,
+) -> list[dict[str, str]]:
     ready_packets = {clean(row.get("idno")) for row in progress_rows if clean(row.get("progress_status")) == READY_STATUS and safe_int(row.get("target_file_count")) > 0}
     execute_commands = [row for row in plan_rows if clean(row.get("execute_command")) == "1"]
     attempted = [row for row in command_logs if clean(row.get("attempted")) == "1"]
     failed = [row for row in attempted if clean(row.get("returncode")) not in {"", "0"}]
     return [
         summary_row("post_download_validation_runner_mode", "execute" if execute else "dry_run", "Runner mode for this invocation."),
+        summary_row("post_download_validation_runner_filter", filter_description, "Subset filter used for this invocation."),
+        summary_row("post_download_validation_progress_rows_before_filter", progress_row_count_before_filter, "Progress rows available before optional filtering."),
         summary_row("post_download_validation_progress_packet_rows", len(progress_rows), "Manual-download progress rows considered by the runner."),
         summary_row("post_download_validation_ready_packet_rows", len(ready_packets), "Packets with local target files ready for validation."),
         summary_row("post_download_validation_plan_rows", len(plan_rows), "Command-plan rows written by the runner."),
@@ -207,6 +216,8 @@ def write_report(summary_rows: list[dict[str, str]], plan_rows: list[dict[str, s
         "## Summary",
         "",
         f"- Mode: {metric.get('post_download_validation_runner_mode', 'dry_run')}",
+        f"- Filter: {metric.get('post_download_validation_runner_filter', 'all')}",
+        f"- Progress rows before filter: {metric.get('post_download_validation_progress_rows_before_filter', '0')}",
         f"- Progress packets considered: {metric.get('post_download_validation_progress_packet_rows', '0')}",
         f"- Validation-ready packets: {metric.get('post_download_validation_ready_packet_rows', '0')}",
         f"- Plan rows: {metric.get('post_download_validation_plan_rows', '0')}",
@@ -236,6 +247,14 @@ def write_report(summary_rows: list[dict[str, str]], plan_rows: list[dict[str, s
         "- `temp/priority_lsms_isa_post_download_validation_command_log.csv`",
         "- `result/priority_lsms_isa_post_download_validation_runner_summary.csv`",
         "",
+        "## Commands",
+        "",
+        "```bash",
+        "python script/178_build_priority_lsms_isa_post_download_validation_runner.py",
+        "python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M",
+        "python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M --execute",
+        "```",
+        "",
         "## Stop Rule",
         "",
         "The runner only handles post-download validation scripts. Data writes and",
@@ -247,24 +266,45 @@ def write_report(summary_rows: list[dict[str, str]], plan_rows: list[dict[str, s
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build or execute the priority LSMS/ISA post-download validation run plan.")
     parser.add_argument("--execute", action="store_true", help="Execute allowlisted validation commands for packets with target files present.")
+    parser.add_argument("--idno", action="append", default=[], help="Restrict to one IDNO; repeat to include several target waves.")
     return parser.parse_args()
+
+
+def filter_progress_rows(progress_rows: list[dict[str, str]], idnos: list[str]) -> tuple[list[dict[str, str]], str]:
+    wanted = {clean(idno) for idno in idnos if clean(idno)}
+    if not wanted:
+        return progress_rows, "all"
+    selected = [row for row in progress_rows if clean(row.get("idno")) in wanted]
+    if not selected:
+        available = ", ".join(clean(row.get("idno")) for row in progress_rows[:20])
+        raise SystemExit(f"No rows matched --idno {', '.join(sorted(wanted))}. Available examples: {available}")
+    return selected, "idno=" + ";".join(sorted(wanted))
 
 
 def main() -> None:
     args = parse_args()
     ensure_dirs()
     progress_rows = read_csv_dicts(PROGRESS_PATH)
-    plan_rows = build_run_plan(progress_rows, execute=args.execute)
+    selected_rows, filter_description = filter_progress_rows(progress_rows, args.idno)
+    plan_rows = build_run_plan(selected_rows, execute=args.execute)
     command_logs = execute_plan(plan_rows)
-    summary_rows = build_summary(progress_rows, plan_rows, command_logs, execute=args.execute)
+    summary_rows = build_summary(
+        selected_rows,
+        plan_rows,
+        command_logs,
+        execute=args.execute,
+        progress_row_count_before_filter=len(progress_rows),
+        filter_description=filter_description,
+    )
     write_csv(RUN_PLAN_PATH, plan_rows, RUN_PLAN_COLUMNS)
     write_csv(COMMAND_LOG_PATH, command_logs, COMMAND_LOG_COLUMNS)
     write_csv(SUMMARY_PATH, summary_rows, SUMMARY_COLUMNS)
     write_report(summary_rows, plan_rows)
-    append_log(TEMP_DIR / "audit_log.md", "Built priority LSMS/ISA post-download validation runner plan.")
+    append_log(TEMP_DIR / "audit_log.md", f"Built priority LSMS/ISA post-download validation runner plan filter={filter_description}.")
     print(
         "Priority LSMS/ISA post-download validation runner complete: "
         f"mode={'execute' if args.execute else 'dry_run'}, "
+        f"filter={filter_description}, "
         f"ready_packets={next((row['value'] for row in summary_rows if row['metric'] == 'post_download_validation_ready_packet_rows'), '0')}, "
         f"execute_commands={next((row['value'] for row in summary_rows if row['metric'] == 'post_download_validation_execute_command_rows'), '0')}"
     )

@@ -1,5 +1,7 @@
 ﻿metric,value,interpretation
 post_download_validation_runner_mode,dry_run,Runner mode for this invocation.
+post_download_validation_runner_filter,all,Subset filter used for this invocation.
+post_download_validation_progress_rows_before_filter,10,Progress rows available before optional filtering.
 post_download_validation_progress_packet_rows,10,Manual-download progress rows considered by the runner.
 post_download_validation_ready_packet_rows,0,Packets with local target files ready for validation.
 post_download_validation_plan_rows,50,Command-plan rows written by the runner.

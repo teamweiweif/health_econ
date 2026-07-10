@@ -33,6 +33,8 @@ STARTER_COLUMNS = [
     "open_target_folder_command",
     "python_probe_command",
     "python_execute_command",
+    "post_download_runner_dry_run_command",
+    "post_download_runner_execute_command",
     "post_download_validation_commands",
     "starter_status",
     "data_write_gate_status",
@@ -105,6 +107,8 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], str]:
                 "open_target_folder_command": f"Invoke-Item {ps_quote(target)}",
                 "python_probe_command": clean(row.get("python_probe_command")),
                 "python_execute_command": clean(row.get("python_execute_command")),
+                "post_download_runner_dry_run_command": f"python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno {idno}",
+                "post_download_runner_execute_command": f"python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno {idno} --execute",
                 "post_download_validation_commands": clean(row.get("post_download_validation_commands")),
                 "starter_status": starter_status,
                 "data_write_gate_status": "blocked_no_data_write",
@@ -153,6 +157,8 @@ def write_powershell_starter(rows: list[dict[str, str]]) -> None:
                 f"        Target = {ps_quote(row['local_target_folder'].rstrip('/'))}",
                 f"        Probe = {ps_quote(row['python_probe_command'])}",
                 f"        Execute = {ps_quote(row['python_execute_command'])}",
+                f"        ValidationDryRun = {ps_quote(row['post_download_runner_dry_run_command'])}",
+                f"        ValidationExecute = {ps_quote(row['post_download_runner_execute_command'])}",
                 "    }",
             ]
         )
@@ -171,6 +177,9 @@ def write_powershell_starter(rows: list[dict[str, str]]) -> None:
             "    Write-Host \"After accepting terms or placing files, run:\"",
             "    Write-Host \"  $($Row.Probe)\"",
             "    Write-Host \"  $($Row.Execute)\"",
+            "    Write-Host \"After files are present, run:\"",
+            "    Write-Host \"  $($Row.ValidationDryRun)\"",
+            "    Write-Host \"  $($Row.ValidationExecute)\"",
             "}",
             "",
         ]
@@ -224,6 +233,10 @@ per-IDNO probe/execute and post-download validation commands listed below.
 ## Starter Rows
 
 {markdown_table(rows, ['canary_sequence_rank', 'canary_role', 'country', 'wave', 'idno', 'starter_status', 'local_target_folder', 'python_probe_command'], 12)}
+
+## Per-Wave Validation Runner
+
+{markdown_table(rows, ['canary_sequence_rank', 'idno', 'post_download_runner_dry_run_command', 'post_download_runner_execute_command'], 12)}
 
 ## Stop Rule
 

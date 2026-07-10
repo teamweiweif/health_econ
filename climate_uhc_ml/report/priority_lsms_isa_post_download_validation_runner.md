@@ -9,6 +9,8 @@ It does not download, copy, delete, extract, write promoted `data/`, or run mode
 ## Summary
 
 - Mode: dry_run
+- Filter: all
+- Progress rows before filter: 10
 - Progress packets considered: 10
 - Validation-ready packets: 0
 - Plan rows: 50
@@ -57,6 +59,14 @@ It does not download, copy, delete, extract, write promoted `data/`, or run mode
 - `temp/priority_lsms_isa_post_download_validation_run_plan.csv`
 - `temp/priority_lsms_isa_post_download_validation_command_log.csv`
 - `result/priority_lsms_isa_post_download_validation_runner_summary.csv`
+
+## Commands
+
+```bash
+python script/178_build_priority_lsms_isa_post_download_validation_runner.py
+python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M
+python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M --execute
+```
 
 ## Stop Rule
 
