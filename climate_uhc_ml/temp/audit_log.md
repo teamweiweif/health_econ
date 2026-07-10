@@ -1658,3 +1658,11 @@
 - 2026-07-10T00:53:04+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
 - 2026-07-10T00:53:50+00:00 - Direct-read audit bundle rows=152 manifest_rows=653.
 - 2026-07-10T00:53:57+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T02:37:08+00:00 - Built priority LSMS/ISA received raw value profile variables=84 key_design_geo_rows=459 requirements=7.
+- 2026-07-10T02:39:37+00:00 - Built priority LSMS/ISA received raw value profile variables=84 key_design_geo_rows=459 requirements=7.
+- 2026-07-10T02:39:41+00:00 - Built priority LSMS/ISA raw value verification workbook requirements=152 variables=1531 files=629.
+- 2026-07-10T02:39:46+00:00 - Built priority LSMS-ISA country-wave promotion packets packets=19 gates=361 actions=19.
+- 2026-07-10T02:39:50+00:00 - Refreshed promoted country-wave registry to refocused LSMS/ISA queue rows=19 gates=361.
+- 2026-07-10T02:39:57+00:00 - Promoted data gate promoted_rows=0 before=0 after=0 quarantined=0.
+- 2026-07-10T02:40:09+00:00 - Direct-read audit bundle rows=153 manifest_rows=659.
+- 2026-07-10T02:40:14+00:00 - Workspace validation complete=464 incomplete_or_failed=0.

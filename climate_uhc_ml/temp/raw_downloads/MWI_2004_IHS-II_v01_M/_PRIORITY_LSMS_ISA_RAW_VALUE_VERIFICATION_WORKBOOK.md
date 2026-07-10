@@ -13,31 +13,31 @@ documentation are present and readable.
 
 | requirement | requirement_role | candidate_variable_rows | candidate_file_rows | current_verification_status |
 |---|---|---|---|---|
-| household_person_keys | merge_key_gate | 12 | 12 | ready_for_manual_raw_value_review_schema_evidence_available |
-| weights_and_design | survey_design_gate | 12 | 12 | ready_for_manual_raw_value_review_schema_evidence_available |
-| consumption_or_income | financial_denominator_gate | 12 | 3 | ready_for_manual_raw_value_review_schema_evidence_available |
-| oop_health_expenditure | financial_outcome_gate | 12 | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
-| health_need_and_access | access_outcome_gate | 12 | 2 | ready_for_manual_raw_value_review_schema_evidence_available |
-| survey_timing | climate_timing_gate | 12 | 7 | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | climate_geography_gate | 12 | 12 | ready_for_manual_raw_value_review_schema_evidence_available |
+| household_person_keys | merge_key_gate | 12 | 12 | ready_for_manual_raw_value_review_value_profile_available |
+| weights_and_design | survey_design_gate | 12 | 12 | ready_for_manual_raw_value_review_value_profile_available |
+| consumption_or_income | financial_denominator_gate | 12 | 3 | ready_for_manual_raw_value_review_value_profile_available |
+| oop_health_expenditure | financial_outcome_gate | 12 | 1 | ready_for_manual_raw_value_review_value_profile_available |
+| health_need_and_access | access_outcome_gate | 12 | 2 | ready_for_manual_raw_value_review_value_profile_available |
+| survey_timing | climate_timing_gate | 12 | 7 | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | climate_geography_gate | 12 | 12 | ready_for_manual_raw_value_review_value_profile_available |
 | missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | blocked_archive_or_direct_file_preflight_not_ready |
 
 ## File Review Preview
 
 | requirement | file_name | candidate_variable_rows | top_variable_names | current_file_verification_status |
 |---|---|---|---|---|
-| climate_geography | sec_a.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | sec_f.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | sec_g.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | sec_h.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | sec_i.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | sec_j1.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | sec_j2.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| climate_geography | sec_k.NSDstat | 1 | type | ready_for_manual_raw_value_review_schema_evidence_available |
-| consumption_or_income | sec_j1.NSDstat | 10 | add;case_id;dist;ea;hhid;hhsize;hhwght;j01a;j02a;j03a | ready_for_manual_raw_value_review_schema_evidence_available |
-| consumption_or_income | sec_i.NSDstat | 1 | i03both | ready_for_manual_raw_value_review_schema_evidence_available |
-| consumption_or_income | sec_aa.NSDstat | 1 | aa01 | ready_for_manual_raw_value_review_schema_evidence_available |
-| health_need_and_access | sec_d.NSDstat | 7 | d05a;d05aoth;d05b;d05both;d27a;d27b;d04 | ready_for_manual_raw_value_review_schema_evidence_available |
+| climate_geography | sec_a.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | sec_f.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | sec_g.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | sec_h.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | sec_i.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | sec_j1.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | sec_j2.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| climate_geography | sec_k.NSDstat | 1 | type | ready_for_manual_raw_value_review_value_profile_available |
+| consumption_or_income | sec_j1.NSDstat | 10 | add;case_id;dist;ea;hhid;hhsize;hhwght;j01a;j02a;j03a | ready_for_manual_raw_value_review_value_profile_available |
+| consumption_or_income | sec_i.NSDstat | 1 | i03both | ready_for_manual_raw_value_review_value_profile_available |
+| consumption_or_income | sec_aa.NSDstat | 1 | aa01 | ready_for_manual_raw_value_review_value_profile_available |
+| health_need_and_access | sec_d.NSDstat | 7 | d05a;d05aoth;d05b;d05both;d27a;d27b;d04 | ready_for_manual_raw_value_review_value_profile_available |
 
 ## Workbook Files
 

@@ -16,6 +16,7 @@ RAW_INTAKE_LEDGER_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger
 ARCHIVE_PREFLIGHT_PATH = TEMP_DIR / "priority_lsms_isa_archive_member_preflight.csv"
 PACKET_INDEX_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_index.csv"
 SCHEMA_EVIDENCE_PATH = TEMP_DIR / "priority_lsms_isa_received_raw_requirement_evidence.csv"
+VALUE_PROFILE_PATH = TEMP_DIR / "priority_lsms_isa_received_raw_value_profile.csv"
 
 REQUIREMENT_WORKBOOK_PATH = TEMP_DIR / "priority_lsms_isa_raw_value_requirement_workbook.csv"
 VARIABLE_WORKBOOK_PATH = TEMP_DIR / "priority_lsms_isa_raw_value_variable_workbook.csv"
@@ -225,10 +226,12 @@ def raw_folder_path(folder: str, idno: str) -> Path:
     return RAW_ROOT / idno
 
 
-def current_status(raw_row: dict[str, str], archive_row: dict[str, str], schema_present_rows: int = 0) -> str:
+def current_status(raw_row: dict[str, str], archive_row: dict[str, str], schema_present_rows: int = 0, value_profile_rows: int = 0) -> str:
     if safe_int(raw_row.get("original_file_count")) == 0:
         return "blocked_no_original_package"
     if clean(archive_row.get("archive_preflight_status")) != "ready_for_raw_receipt_schema_and_manual_review":
+        if value_profile_rows > 0:
+            return "ready_for_manual_raw_value_review_value_profile_available"
         if schema_present_rows > 0:
             return "ready_for_manual_raw_value_review_schema_evidence_available"
         return "blocked_archive_or_direct_file_preflight_not_ready"
@@ -239,6 +242,14 @@ def schema_evidence_counts(rows: list[dict[str, str]]) -> Counter[tuple[str, str
     counts: Counter[tuple[str, str]] = Counter()
     for row in rows:
         if row.get("raw_variable_present") == "1":
+            counts[(clean(row.get("idno")), clean(row.get("requirement")))] += 1
+    return counts
+
+
+def value_profile_counts(rows: list[dict[str, str]]) -> Counter[tuple[str, str]]:
+    counts: Counter[tuple[str, str]] = Counter()
+    for row in rows:
+        if safe_int(row.get("nonmissing_count")) > 0:
             counts[(clean(row.get("idno")), clean(row.get("requirement")))] += 1
     return counts
 
@@ -274,6 +285,7 @@ def build_requirement_rows(
     raw_by_id: dict[str, dict[str, str]],
     archive_by_id: dict[str, dict[str, str]],
     schema_counts: Counter[tuple[str, str]],
+    value_counts: Counter[tuple[str, str]],
 ) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for wave in queue_rows:
@@ -282,7 +294,7 @@ def build_requirement_rows(
         archive = archive_by_id.get(idno, {})
         for cov in coverage_by_id.get(idno, []):
             requirement = clean(cov.get("requirement"))
-            status = current_status(raw, archive, schema_counts.get((idno, requirement), 0))
+            status = current_status(raw, archive, schema_counts.get((idno, requirement), 0), value_counts.get((idno, requirement), 0))
             spec = requirement_spec(requirement)
             rows.append(
                 {
@@ -324,6 +336,7 @@ def build_variable_rows(
     raw_by_id: dict[str, dict[str, str]],
     archive_by_id: dict[str, dict[str, str]],
     schema_counts: Counter[tuple[str, str]],
+    value_counts: Counter[tuple[str, str]],
 ) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for row in matrix_rows:
@@ -333,7 +346,7 @@ def build_variable_rows(
         archive = archive_by_id.get(idno, {})
         requirement = clean(row.get("requirement"))
         spec = requirement_spec(requirement)
-        status = current_status(raw, archive, schema_counts.get((idno, requirement), 0))
+        status = current_status(raw, archive, schema_counts.get((idno, requirement), 0), value_counts.get((idno, requirement), 0))
         rows.append(
             {
                 "download_priority_order": clean(row.get("download_priority_order")),
@@ -374,6 +387,7 @@ def build_file_rows(
     raw_by_id: dict[str, dict[str, str]],
     archive_by_id: dict[str, dict[str, str]],
     schema_counts: Counter[tuple[str, str]],
+    value_counts: Counter[tuple[str, str]],
 ) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for row in shortlist_rows:
@@ -402,7 +416,7 @@ def build_file_rows(
                 "required_checks": spec["checks"],
                 "raw_package_status": clean(raw.get("intake_acceptance_status")) or "missing",
                 "archive_preflight_status": clean(archive.get("archive_preflight_status")) or "missing",
-                "current_file_verification_status": current_status(raw, archive, schema_counts.get((idno, requirement), 0)),
+                "current_file_verification_status": current_status(raw, archive, schema_counts.get((idno, requirement), 0), value_counts.get((idno, requirement), 0)),
                 "fill_file_present_direct_or_archive": "",
                 "fill_file_readable": "",
                 "fill_schema_extracted": "",
@@ -563,10 +577,11 @@ def main() -> None:
     raw_by_id = one_by_id(read_csv_dicts(RAW_INTAKE_LEDGER_PATH))
     archive_by_id = one_by_id(read_csv_dicts(ARCHIVE_PREFLIGHT_PATH))
     schema_counts = schema_evidence_counts(read_csv_dicts(SCHEMA_EVIDENCE_PATH))
+    value_counts = value_profile_counts(read_csv_dicts(VALUE_PROFILE_PATH))
 
-    requirement_rows = build_requirement_rows(queue_rows, coverage_by_id, raw_by_id, archive_by_id, schema_counts)
-    variable_rows = build_variable_rows(queue_by_id, matrix_rows, raw_by_id, archive_by_id, schema_counts)
-    file_rows = build_file_rows(queue_by_id, shortlist_rows, raw_by_id, archive_by_id, schema_counts)
+    requirement_rows = build_requirement_rows(queue_rows, coverage_by_id, raw_by_id, archive_by_id, schema_counts, value_counts)
+    variable_rows = build_variable_rows(queue_by_id, matrix_rows, raw_by_id, archive_by_id, schema_counts, value_counts)
+    file_rows = build_file_rows(queue_by_id, shortlist_rows, raw_by_id, archive_by_id, schema_counts, value_counts)
     handoff_count = write_handoffs(queue_rows, by_id(requirement_rows), by_id(file_rows))
     summary_rows = build_summary(requirement_rows, variable_rows, file_rows, handoff_count)
 
