@@ -61,15 +61,17 @@ data gates.
    - Non-destructive local workspace scan for already-downloaded raw packages outside the expected target folders.
 23. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-24. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
+24. `report/priority_lsms_isa_minimum_batch_promotion_unlock_board.md`
+   - One-row-per-wave unlock board for the 10 raw packages needed to reach the 6-country / 10-wave modeling threshold.
+25. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
    - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
-25. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
+26. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
    - World Bank PPP/CPI candidate source ledger for Malawi 2004; the final CPI/base-period bridge remains unaccepted.
-26. `report/mwi2004_sdg382_candidate_classification_precheck.md`
+27. `report/mwi2004_sdg382_candidate_classification_precheck.md`
    - Aggregate-only candidate SDG 3.8.2 denominator/classification stress test; not promoted data.
-27. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
+28. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
    - Official UNSD nonpositive-discretionary-budget rule audit; rule accepted, final Malawi SPL bridge still blocked.
-28. `report/mwi2004_requirement_acceptance_decisions.md`
+29. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status

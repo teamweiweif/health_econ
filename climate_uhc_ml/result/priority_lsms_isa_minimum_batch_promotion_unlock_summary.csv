@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+minimum_batch_unlock_board_rows,10,Manual-download country-waves in the current minimum batch.
+minimum_batch_unlock_public_documentation_complete_rows,10,Rows with complete public catalog/DDI/variables/get-microdata documentation receipt.
+minimum_batch_unlock_validation_ready_rows,0,Rows with enough local files to begin receipt validation.
+minimum_batch_unlock_blocked_no_local_or_incoming_files,10,Rows still lacking placed official raw package files or incoming route matches.
+minimum_batch_unlock_target_file_rows,0,Non-generated files currently found in target folders by the manual progress tracker.
+minimum_batch_unlock_target_total_bytes,0,Total bytes currently found in target folders by the manual progress tracker.
+minimum_batch_unlock_missing_expected_file_rows,838,Expected official files still absent according to the download acceptance matrix.
+minimum_batch_unlock_missing_core_requirement_rows,70,Requirement-level core file checks still blocked by missing official files.
+minimum_batch_unlock_public_route_raw_payload_candidate_rows,0,Raw payload candidates found by public route probing.
+minimum_batch_unlock_public_route_access_gate_rows,80,"Route probes that hit login, registration, terms, or data-dictionary gates."
+current_promoted_analysis_ready_rows,1,Country-waves already promoted in the registry.
+projected_country_wave_rows_if_all_minimum_batch_promoted,11,Promoted country-wave count if every minimum-batch package passes all gates.
+projected_country_rows_if_all_minimum_batch_promoted,6,Country count if the promoted row plus every minimum-batch package passes all gates.
+minimum_batch_unlock_needed_for_modeling_threshold,10,All current minimum-batch packages are still needed to reach both 6-country and 10-wave thresholds.
+data_write_gate_status,blocked_no_data_write,This board writes only result/report artifacts and does not promote datasets.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

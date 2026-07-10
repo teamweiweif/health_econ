@@ -178,6 +178,7 @@ REQUIRED_REPORTS = [
     "mwi2004_sdg382_candidate_classification_precheck.md",
     "mwi2004_sdg382_official_denominator_rule_audit.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
+    "priority_lsms_isa_minimum_batch_promotion_unlock_board.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -376,6 +377,7 @@ REQUIRED_SCRIPTS = [
     "187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py",
     "188_build_priority_lsms_isa_local_stray_raw_package_locator.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
+    "193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -405,6 +407,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py",
     "188_build_priority_lsms_isa_local_stray_raw_package_locator.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
+    "193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -547,7 +550,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-192 dataset-promotion gate chain",
+        "One-command runners include the current 157-193 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -1001,6 +1004,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
+        "priority_lsms_isa_minimum_batch_promotion_unlock_board": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_board.csv"),
+        "priority_lsms_isa_minimum_batch_promotion_unlock_summary": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -5978,6 +5983,44 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_promotion_gate_ok),
         f"country_waves={counts['priority_lsms_isa_promotion_gate_dashboard']}; requirement_rows={counts['priority_lsms_isa_promotion_gate_requirement_dashboard']}; summary_rows={counts['priority_lsms_isa_promotion_gate_dashboard_summary']}; promoted={priority_lsms_promotion_gate_promoted}; blocked_raw_package={priority_lsms_promotion_gate_blocked_raw}; ready_for_packet={priority_lsms_promotion_gate_ready_packet}; minimum_remaining={priority_lsms_promotion_gate_minimum_remaining}; backups={priority_lsms_promotion_gate_backups}; data_write={priority_lsms_promotion_gate_data_write}; modeling_gate={priority_lsms_promotion_gate_modeling}",
         "" if priority_lsms_promotion_gate_ok else "Run script/173_build_priority_lsms_isa_promotion_gate_dashboard.py after receipt/schema/value/semantics and registry outputs are current.",
+    )
+    priority_lsms_unlock_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_summary.csv")
+    priority_lsms_unlock_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_board_rows"), "0"), 0)
+    priority_lsms_unlock_public_docs = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_public_documentation_complete_rows"), "0"), 0)
+    priority_lsms_unlock_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_validation_ready_rows"), "0"), 0)
+    priority_lsms_unlock_blocked_no_files = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_blocked_no_local_or_incoming_files"), "0"), 0)
+    priority_lsms_unlock_target_files = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_target_file_rows"), "0"), 0)
+    priority_lsms_unlock_missing_expected = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_missing_expected_file_rows"), "0"), 0)
+    priority_lsms_unlock_missing_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_missing_core_requirement_rows"), "0"), 0)
+    priority_lsms_unlock_route_payloads = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "minimum_batch_unlock_public_route_raw_payload_candidate_rows"), "0"), 0)
+    priority_lsms_unlock_projected_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "projected_country_wave_rows_if_all_minimum_batch_promoted"), "0"), 0)
+    priority_lsms_unlock_projected_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_unlock_summary if row.get("metric") == "projected_country_rows_if_all_minimum_batch_promoted"), "0"), 0)
+    priority_lsms_unlock_data_write = next((row.get("value", "") for row in priority_lsms_unlock_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_unlock_modeling = next((row.get("value", "") for row in priority_lsms_unlock_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_unlock_gate_ok = (
+        counts["priority_lsms_isa_minimum_batch_promotion_unlock_summary"] > 0
+        and counts["priority_lsms_isa_minimum_batch_promotion_unlock_board"] == priority_lsms_unlock_rows
+        and file_ok(REPORT_DIR / "priority_lsms_isa_minimum_batch_promotion_unlock_board.md")
+        and priority_lsms_unlock_rows == 10
+        and priority_lsms_unlock_public_docs == 10
+        and priority_lsms_unlock_ready == 0
+        and priority_lsms_unlock_blocked_no_files == 10
+        and priority_lsms_unlock_target_files == 0
+        and priority_lsms_unlock_missing_expected > 0
+        and priority_lsms_unlock_missing_requirements > 0
+        and priority_lsms_unlock_route_payloads == 0
+        and priority_lsms_unlock_projected_waves == 11
+        and priority_lsms_unlock_projected_countries == 6
+        and priority_lsms_unlock_data_write == "blocked_no_data_write"
+        and priority_lsms_unlock_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA minimum-batch promotion unlock board condenses the 10 package raw-file bottleneck and threshold contribution",
+        status(priority_lsms_unlock_gate_ok),
+        f"board_rows={counts['priority_lsms_isa_minimum_batch_promotion_unlock_board']}; summary_rows={counts['priority_lsms_isa_minimum_batch_promotion_unlock_summary']}; public_docs={priority_lsms_unlock_public_docs}; validation_ready={priority_lsms_unlock_ready}; blocked_no_files={priority_lsms_unlock_blocked_no_files}; target_files={priority_lsms_unlock_target_files}; missing_expected={priority_lsms_unlock_missing_expected}; missing_requirements={priority_lsms_unlock_missing_requirements}; route_payloads={priority_lsms_unlock_route_payloads}; projected_countries={priority_lsms_unlock_projected_countries}; projected_waves={priority_lsms_unlock_projected_waves}; data_write={priority_lsms_unlock_data_write}; modeling_gate={priority_lsms_unlock_modeling}",
+        "" if priority_lsms_unlock_gate_ok else "Run script/193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py after promotion gate, target smoke, manual progress, and download acceptance outputs are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
