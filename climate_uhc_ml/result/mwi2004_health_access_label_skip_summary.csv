@@ -1,0 +1,11 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by this health/access label-skip decision artifact.
+label_decision_rows,127,Variable-value rows with value labels and proposed construct mappings.
+mapping_ready_rows,39,Variable-value rows with an explicit mapping ready for policy review.
+manual_review_rows,88,Variable-value rows still requiring manual review.
+financial_barrier_no_money_rows,660,d07a/d07b rows mapped to no-money no-action candidate access failure.
+formal_facility_care_rows,5516,d07a/d07b rows mapped to formal facility care.
+informal_or_self_care_rows,6655,d07a/d07b rows mapped to informal/self-care actions.
+total_skip_leakage_rows,6,Aggregate skip leakage across d07a/d07b/d17/d20 checks.
+health_access_label_skip_decision,label_skip_mapping_has_skip_or_manual_review_blockers,Decision for the health/access label-skip mapping layer; still not final raw-value verification.
+data_write_gate_status,closed,This artifact cannot write data or open modeling gates.

@@ -1,0 +1,17 @@
+﻿country,wave,idno,metric,value,status,interpretation
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,sec_d_rows,51292,pass,Rows read from the health module.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d04_illness_injury_yes_rows,14143,pass,Recent illness/injury need denominator candidate.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d07a_nonmissing_when_d04_yes,14105,pass,Problem 1 action rows among recent illness/injury respondents.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d07b_nonmissing_when_d04_yes,1574,review,Problem 2 action rows among recent illness/injury respondents.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d07a_skip_leakage_when_d04_not_yes,6,blocker,Problem 1 action nonmissing outside d04==Yes.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d07b_skip_leakage_when_d04_not_yes,0,pass,Problem 2 action nonmissing outside d04==Yes.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,care_action_no_money_rows,660,review,d07a/d07b rows whose value labels indicate did nothing/no money.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,care_action_did_nothing_rows,2012,review,d07a/d07b rows whose value labels indicate did nothing for any reason.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,care_action_formal_facility_rows,5516,review,d07a/d07b rows mapped to formal health facility care.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,care_action_informal_or_self_care_rows,6655,review,"d07a/d07b rows mapped to medicine purchase, traditional care, or self/informal care."
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d15_hospitalization_yes_rows,2051,pass,Hospitalization need/severity candidate.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d17_skip_leakage_when_d15_not_yes,0,pass,Borrow/sell assets for hospitalization nonmissing outside d15==Yes.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d18_traditional_healer_overnight_yes_rows,421,review,Traditional healer overnight-stay candidate.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d20_skip_leakage_when_d18_not_yes,0,pass,Borrow/sell assets for traditional healer nonmissing outside d18==Yes.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,d26_chronic_illness_yes_rows,4918,pass,Chronic illness need denominator candidate.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,total_skip_leakage_rows,6,blocker,Aggregate skip leakage across d07a/d07b/d17/d20 checks.

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import csv
 import tempfile
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -23,6 +24,7 @@ METRIC_PATH = TEMP_DIR / "mwi2004_requirement_acceptance_metrics.csv"
 SUMMARY_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv"
 REPORT_PATH = REPORT_DIR / "mwi2004_requirement_acceptance_decisions.md"
 HANDOFF_PATH = RAW_DIR / "_MWI2004_REQUIREMENT_ACCEPTANCE_DECISIONS.md"
+HEALTH_ACCESS_LABEL_SKIP_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv"
 
 DECISION_COLUMNS = [
     "country",
@@ -45,6 +47,20 @@ def clean(value: Any) -> str:
     if value is None:
         return ""
     return " ".join(str(value).split())
+
+
+def read_csv_dicts(path: Path) -> list[dict[str, str]]:
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8-sig", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def summary_value(rows: list[dict[str, str]], metric_name: str, default: str = "") -> str:
+    for row in rows:
+        if clean(row.get("metric")) == metric_name:
+            return clean(row.get("value")) or default
+    return default
 
 
 def fmt(value: Any) -> str:
@@ -141,6 +157,12 @@ def markdown_table(rows: list[dict[str, str]], columns: list[str], limit: int = 
 def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
     if not ZIP_PATH.exists():
         raise FileNotFoundError(f"Missing raw package: {ZIP_PATH}")
+    health_label_summary = read_csv_dicts(HEALTH_ACCESS_LABEL_SKIP_SUMMARY_PATH)
+    health_label_decision = summary_value(health_label_summary, "health_access_label_skip_decision")
+    health_label_rows = summary_value(health_label_summary, "label_decision_rows", "0")
+    health_manual_review_rows = summary_value(health_label_summary, "manual_review_rows", "0")
+    health_no_money_rows = summary_value(health_label_summary, "financial_barrier_no_money_rows", "0")
+    health_skip_leakage_rows = summary_value(health_label_summary, "total_skip_leakage_rows", "missing")
 
     household, _ = read_member(
         ZIP_PATH,
@@ -259,11 +281,15 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         },
         {
             "requirement": "health_need_and_access",
-            "mechanical_raw_check_decision": "blocked_construct_label_skip_review_required",
+            "mechanical_raw_check_decision": (
+                "blocked_health_access_label_skip_or_manual_review_required"
+                if health_label_decision == "label_skip_mapping_has_skip_or_manual_review_blockers"
+                else "blocked_construct_label_skip_review_required"
+            ),
             "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"d04 illness yes rows={illness_yes}; d07 no-money label hits={no_money_action}; d15/d17/d20/d26 are present.",
-            "remaining_blocker": "Need/access and forgone-care labels, skip patterns, and double-count rules are not accepted.",
-            "next_action": "Build a label/skip decision table for d04, d07a/d07b, d15, d17/d20, d26, and maternal-care variables.",
+            "acceptance_evidence": f"d04 illness yes rows={illness_yes}; d07 no-money label hits={no_money_action}; label_decision_rows={health_label_rows}; no_money_rows={health_no_money_rows}; skip_leakage_rows={health_skip_leakage_rows}; d15/d17/d20/d26 are present.",
+            "remaining_blocker": f"Health/access label-skip artifact status={health_label_decision or 'missing'}; manual_review_rows={health_manual_review_rows}; resolve d07 skip leakage, double-counting, formal-vs-informal care grouping, and person-join exceptions.",
+            "next_action": "Resolve d07a skip leakage rows, classify remaining manual-review care-action labels, and set double-count/formal-care policy.",
         },
         {
             "requirement": "survey_timing",

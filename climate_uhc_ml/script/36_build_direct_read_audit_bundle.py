@@ -167,6 +167,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/mwi2004_requirement_acceptance_decisions.csv", "Malawi 2004 requirement-level accept/block decision table"),
     ("dataset_promotion", "temp/mwi2004_requirement_acceptance_metrics.csv", "Malawi 2004 aggregate acceptance metrics without raw IDs"),
     ("dataset_promotion", "result/mwi2004_requirement_acceptance_summary.csv", "Malawi 2004 requirement acceptance summary"),
+    ("dataset_promotion", "report/mwi2004_health_access_label_skip_decisions.md", "Malawi 2004 health/access label and skip decision report"),
+    ("dataset_promotion", "result/mwi2004_health_access_label_skip_decisions.csv", "Malawi 2004 health/access value-label construct decisions"),
+    ("dataset_promotion", "temp/mwi2004_health_access_skip_consistency_metrics.csv", "Malawi 2004 health/access aggregate skip consistency metrics"),
+    ("dataset_promotion", "result/mwi2004_health_access_label_skip_summary.csv", "Malawi 2004 health/access label-skip summary"),
     ("dataset_promotion", "report/priority_lsms_isa_raw_package_receipt_checklist.md", "priority LSMS/ISA raw package receipt checklist report"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_receipt_checklist.csv", "priority LSMS/ISA dataset raw package receipt checklist"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_requirement_receipt_checklist.csv", "priority LSMS/ISA requirement raw package receipt checklist"),
@@ -608,6 +612,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/159_build_priority_lsms_isa_received_raw_semantics_review.py", "priority LSMS/ISA received raw semantics review generator"),
     ("reproducibility", "script/160_build_mwi2004_raw_requirement_verification.py", "Malawi 2004 focused raw requirement verification generator"),
     ("reproducibility", "script/161_build_mwi2004_requirement_acceptance_decisions.py", "Malawi 2004 focused requirement acceptance decision generator"),
+    ("reproducibility", "script/162_build_mwi2004_health_access_label_skip_decisions.py", "Malawi 2004 health/access label-skip decision generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -833,6 +838,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
+    mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -1280,6 +1286,17 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"country_wave={csv_value(mwi2004_acceptance_summary, 'country_wave', 'missing')}; decisions={csv_value(mwi2004_acceptance_summary, 'decision_rows', '0')}; mechanical_pass_or_partial={csv_value(mwi2004_acceptance_summary, 'mechanical_raw_checks_pass_or_partial', '0')}; hard_blocked={csv_value(mwi2004_acceptance_summary, 'hard_blocked_requirements', '0')}; final_verified={csv_value(mwi2004_acceptance_summary, 'final_verified_requirements', '0')}; health_unmatched={csv_value(mwi2004_acceptance_summary, 'health_person_unmatched_to_roster', 'missing')}; oop_tolerance={csv_value(mwi2004_acceptance_summary, 'oop_component_diff_le_0_01_rows', 'missing')}; data_write={csv_value(mwi2004_acceptance_summary, 'data_write_gate_status', 'missing')}",
         [RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv", TEMP_DIR / "mwi2004_requirement_acceptance_metrics.csv", RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv", REPORT_DIR / "mwi2004_requirement_acceptance_decisions.md"],
         "Focused Malawi 2004 acceptance decisions convert raw evidence into requirement-level pass/block actions without exporting raw IDs, without final value verification, and without opening data writes.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "mwi2004_health_access_label_skip_decisions",
+        "mwi2004_health_access_label_skip_blockers_identified"
+        if csv_value(mwi2004_health_access_summary, "label_decision_rows", "0") != "0"
+        else "mwi2004_health_access_label_skip_missing",
+        f"country_wave={csv_value(mwi2004_health_access_summary, 'country_wave', 'missing')}; label_rows={csv_value(mwi2004_health_access_summary, 'label_decision_rows', '0')}; mapping_ready={csv_value(mwi2004_health_access_summary, 'mapping_ready_rows', '0')}; manual_review={csv_value(mwi2004_health_access_summary, 'manual_review_rows', '0')}; no_money_rows={csv_value(mwi2004_health_access_summary, 'financial_barrier_no_money_rows', 'missing')}; formal_care={csv_value(mwi2004_health_access_summary, 'formal_facility_care_rows', 'missing')}; skip_leakage={csv_value(mwi2004_health_access_summary, 'total_skip_leakage_rows', 'missing')}; decision={csv_value(mwi2004_health_access_summary, 'health_access_label_skip_decision', 'missing')}; data_write={csv_value(mwi2004_health_access_summary, 'data_write_gate_status', 'missing')}",
+        [RESULT_DIR / "mwi2004_health_access_label_skip_decisions.csv", TEMP_DIR / "mwi2004_health_access_skip_consistency_metrics.csv", RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv", REPORT_DIR / "mwi2004_health_access_label_skip_decisions.md"],
+        "Focused Malawi 2004 health/access label-skip decisions map raw value labels into illness, care-seeking, forgone-care, coping, chronic, and maternal-care roles while preserving final verification and data-write blockers.",
     )
     add_bundle(
         rows,
@@ -2256,6 +2273,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
+    mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -2308,6 +2326,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "mwi2004_requirement_acceptance_decision_rows", "value": csv_value(mwi2004_acceptance_summary, "decision_rows", "0"), "interpretation": "Malawi 2004 requirement-level accept/block decisions."},
         {"metric": "mwi2004_requirement_acceptance_mechanical_pass_or_partial", "value": csv_value(mwi2004_acceptance_summary, "mechanical_raw_checks_pass_or_partial", "0"), "interpretation": "Requirements with mechanical raw evidence that passes but remains short of final verification."},
         {"metric": "mwi2004_requirement_acceptance_final_verified", "value": csv_value(mwi2004_acceptance_summary, "final_verified_requirements", "0"), "interpretation": "Requirements accepted as final verified in Malawi 2004; should remain zero until all construct and linkage gates pass."},
+        {"metric": "mwi2004_health_access_label_rows", "value": csv_value(mwi2004_health_access_summary, "label_decision_rows", "0"), "interpretation": "Health/access variable-value rows mapped into candidate construct decisions."},
+        {"metric": "mwi2004_health_access_no_money_rows", "value": csv_value(mwi2004_health_access_summary, "financial_barrier_no_money_rows", "0"), "interpretation": "d07a/d07b rows mapped to no-money no-action candidate access failure."},
+        {"metric": "mwi2004_health_access_skip_leakage_rows", "value": csv_value(mwi2004_health_access_summary, "total_skip_leakage_rows", "0"), "interpretation": "Aggregate skip leakage rows found in the health/access label-skip audit."},
         {"metric": "priority_lsms_isa_receipt_checklist_dataset_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_dataset_rows", "0"), "interpretation": "Dataset-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_requirement_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_requirement_rows", "0"), "interpretation": "Requirement-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_package_received_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_package_received_rows", "0"), "interpretation": "Refocused LSMS/ISA waves with original package receipt evidence."},
