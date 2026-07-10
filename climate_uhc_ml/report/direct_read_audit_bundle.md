@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 191 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 840 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 836 | Curated artifacts present and non-empty. |
+| bundle_rows | 192 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 846 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 842 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -174,6 +174,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_browser_download_starter_ready | 10 | Starter rows with official URLs and target folders. |
 | priority_lsms_isa_browser_download_first_canary | ETH_2021_ESPS-W5_v02_M | First wave to try before scaling manual/browser downloads. |
 | priority_lsms_isa_browser_download_target_files | 0 | Existing target-folder files before browser/manual download. |
+| priority_lsms_isa_first_canary_idno | ETH_2021_ESPS-W5_v02_M | First canary IDNO covered by the dedicated download runbook. |
+| priority_lsms_isa_first_canary_unique_core_files | 25 | Unique core files in the first canary checklist. |
+| priority_lsms_isa_first_canary_requirement_core_file_rows | 36 | Requirement-file linkage rows in the first canary checklist. |
+| priority_lsms_isa_first_canary_target_files | 0 | Current first canary target-folder file count. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 306 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 1 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -625,7 +629,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 82 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 83 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -706,6 +710,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_download_execution_ready_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning | 1 | Direct-read bundle status count. |
 | bundle_status_file_level_routes_confirmed_non_public_raw | 1 | Direct-read bundle status count. |
+| bundle_status_first_canary_download_runbook_current_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_first_pass_queue_ready_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_harmonization_value_audit_required | 1 | Direct-read bundle status count. |
 | bundle_status_incoming_router_ready | 1 | Direct-read bundle status count. |
@@ -793,7 +798,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 82 |
+| priority_bundle | 83 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -894,6 +899,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | worldbank_session_bootstrap_current_missing_session_material | 1 |
 | credentialed_fetch_command_packet_current_missing_session_material | 1 |
 | browser_download_starter_ready_for_manual_terms_acceptance | 1 |
+| first_canary_download_runbook_current_raw_missing | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | packet_candidates_ready_for_data_write | 1 |
@@ -1004,7 +1010,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 836 |
+| present_nonempty | 842 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

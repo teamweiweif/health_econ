@@ -182,6 +182,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_worldbank_session_bootstrap.md",
     "priority_lsms_isa_credentialed_fetch_command_packet.md",
     "priority_lsms_isa_browser_download_starter.md",
+    "priority_lsms_isa_first_canary_runbook.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -384,6 +385,7 @@ REQUIRED_SCRIPTS = [
     "194_build_priority_lsms_isa_worldbank_session_bootstrap.py",
     "195_build_priority_lsms_isa_credentialed_fetch_command_packet.py",
     "196_build_priority_lsms_isa_browser_download_starter.py",
+    "197_build_priority_lsms_isa_first_canary_runbook.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -417,6 +419,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "194_build_priority_lsms_isa_worldbank_session_bootstrap.py",
     "195_build_priority_lsms_isa_credentialed_fetch_command_packet.py",
     "196_build_priority_lsms_isa_browser_download_starter.py",
+    "197_build_priority_lsms_isa_first_canary_runbook.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1021,6 +1024,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_credentialed_fetch_command_packet_summary": row_count(RESULT_DIR / "priority_lsms_isa_credentialed_fetch_command_packet_summary.csv"),
         "priority_lsms_isa_browser_download_starter": row_count(RESULT_DIR / "priority_lsms_isa_browser_download_starter.csv"),
         "priority_lsms_isa_browser_download_starter_summary": row_count(RESULT_DIR / "priority_lsms_isa_browser_download_starter_summary.csv"),
+        "priority_lsms_isa_first_canary_download_runbook": row_count(RESULT_DIR / "priority_lsms_isa_first_canary_download_runbook.csv"),
+        "priority_lsms_isa_first_canary_core_file_checklist": row_count(RESULT_DIR / "priority_lsms_isa_first_canary_core_file_checklist.csv"),
+        "priority_lsms_isa_first_canary_requirement_gate_checklist": row_count(RESULT_DIR / "priority_lsms_isa_first_canary_requirement_gate_checklist.csv"),
+        "priority_lsms_isa_first_canary_runbook_summary": row_count(RESULT_DIR / "priority_lsms_isa_first_canary_runbook_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6128,6 +6135,38 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_browser_starter_gate_ok),
         f"starter_rows={counts['priority_lsms_isa_browser_download_starter']}; summary_rows={counts['priority_lsms_isa_browser_download_starter_summary']}; ready_rows={priority_lsms_browser_starter_ready}; priority_country_rows={priority_lsms_browser_starter_priority}; sixth_country_rows={priority_lsms_browser_starter_sixth}; expected_core_files={priority_lsms_browser_starter_expected_files}; target_files={priority_lsms_browser_starter_target_files}; first_canary={priority_lsms_browser_starter_first_canary}; data_write={priority_lsms_browser_starter_data_write}; modeling_gate={priority_lsms_browser_starter_modeling}",
         "" if priority_lsms_browser_starter_gate_ok else "Run script/196_build_priority_lsms_isa_browser_download_starter.py after the credentialed fetch command packet is current.",
+    )
+    priority_lsms_first_canary_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_first_canary_runbook_summary.csv")
+    priority_lsms_first_canary_idno = next((row.get("value", "") for row in priority_lsms_first_canary_summary if row.get("metric") == "first_canary_idno"), "")
+    priority_lsms_first_canary_unique_core = safe_int(next((row.get("value", "0") for row in priority_lsms_first_canary_summary if row.get("metric") == "first_canary_expected_unique_core_file_rows"), "0"), 0)
+    priority_lsms_first_canary_requirement_core = safe_int(next((row.get("value", "0") for row in priority_lsms_first_canary_summary if row.get("metric") == "first_canary_requirement_core_file_rows"), "0"), 0)
+    priority_lsms_first_canary_requirement_gates = safe_int(next((row.get("value", "0") for row in priority_lsms_first_canary_summary if row.get("metric") == "first_canary_requirement_gate_rows"), "0"), 0)
+    priority_lsms_first_canary_target_files = safe_int(next((row.get("value", "0") for row in priority_lsms_first_canary_summary if row.get("metric") == "first_canary_target_file_count"), "0"), 0)
+    priority_lsms_first_canary_progress = next((row.get("value", "") for row in priority_lsms_first_canary_summary if row.get("metric") == "first_canary_progress_status"), "")
+    priority_lsms_first_canary_data_write = next((row.get("value", "") for row in priority_lsms_first_canary_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_first_canary_modeling = next((row.get("value", "") for row in priority_lsms_first_canary_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_first_canary_gate_ok = (
+        counts["priority_lsms_isa_first_canary_download_runbook"] == 1
+        and counts["priority_lsms_isa_first_canary_core_file_checklist"] == priority_lsms_first_canary_unique_core
+        and counts["priority_lsms_isa_first_canary_requirement_gate_checklist"] == priority_lsms_first_canary_requirement_gates
+        and counts["priority_lsms_isa_first_canary_runbook_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_first_canary_runbook.md")
+        and priority_lsms_first_canary_idno == priority_lsms_browser_starter_first_canary
+        and priority_lsms_first_canary_unique_core > 0
+        and priority_lsms_first_canary_requirement_core >= priority_lsms_first_canary_unique_core
+        and priority_lsms_first_canary_requirement_gates == 7
+        and priority_lsms_first_canary_target_files >= 0
+        and priority_lsms_first_canary_progress != ""
+        and priority_lsms_first_canary_data_write == "blocked_no_data_write"
+        and priority_lsms_first_canary_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA first canary runbook condenses the Ethiopia 2021-2022 raw-package download and receipt gates",
+        status(priority_lsms_first_canary_gate_ok),
+        f"runbook_rows={counts['priority_lsms_isa_first_canary_download_runbook']}; unique_core_files={priority_lsms_first_canary_unique_core}; requirement_core_file_rows={priority_lsms_first_canary_requirement_core}; requirement_gates={priority_lsms_first_canary_requirement_gates}; target_files={priority_lsms_first_canary_target_files}; progress={priority_lsms_first_canary_progress}; idno={priority_lsms_first_canary_idno}; data_write={priority_lsms_first_canary_data_write}; modeling_gate={priority_lsms_first_canary_modeling}",
+        "" if priority_lsms_first_canary_gate_ok else "Run script/197_build_priority_lsms_isa_first_canary_runbook.py after the browser download starter and download acceptance matrix are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

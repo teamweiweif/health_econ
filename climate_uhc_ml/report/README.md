@@ -100,6 +100,7 @@ python script/193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.p
 python script/194_build_priority_lsms_isa_worldbank_session_bootstrap.py
 python script/195_build_priority_lsms_isa_credentialed_fetch_command_packet.py
 python script/196_build_priority_lsms_isa_browser_download_starter.py
+python script/197_build_priority_lsms_isa_first_canary_runbook.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
 python script/26_build_objective_traceability_audit.py
@@ -170,6 +171,7 @@ Current status:
 - The priority LSMS/ISA World Bank session bootstrap is `result/priority_lsms_isa_worldbank_session_bootstrap_summary.csv`; it redacts and checks only local session-file readiness for credentialed `/download` probing.
 - The priority LSMS/ISA credentialed fetch command packet is `result/priority_lsms_isa_credentialed_fetch_command_packet_summary.csv`; it lists per-wave `/download` commands, target payload paths, and post-download validation chains without exporting credentials or raw data.
 - The priority LSMS/ISA browser download starter is `result/priority_lsms_isa_browser_download_starter_summary.csv`; it generates per-wave browser/open-folder commands and a local `temp/priority_lsms_isa_browser_download_starter.ps1` helper for manual World Bank terms acceptance and file placement.
+- The priority LSMS/ISA first canary runbook is `result/priority_lsms_isa_first_canary_runbook_summary.csv`; it condenses the Ethiopia 2021-2022 first-canary download URL, target folder, 25 unique core files, 36 requirement-file checks, and post-download validation commands.
 - The Malawi 2004 SDG 3.8.2 parameter audit is `result/mwi2004_sdg382_discretionary_budget_parameter_summary.csv`; it checks current 2026 discretionary-budget metadata alignment and keeps SDG 3.8.2 fail-closed until PPP/CPI/SPL parameters are verified.
 - The Malawi 2004 SDG 3.8.2 external parameter source ledger is `result/mwi2004_sdg382_external_parameter_candidate_summary.csv`; it captures World Bank PPP/CPI candidates and keeps the CPI/base-period bridge unaccepted.
 - The Malawi 2004 SDG 3.8.2 candidate classification precheck is `result/mwi2004_sdg382_candidate_classification_precheck_summary.csv`; it reports aggregate-only candidate rates under strict and denominator-floor sensitivity variants without opening the SDG gate.

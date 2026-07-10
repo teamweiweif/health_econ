@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+first_canary_idno,ETH_2021_ESPS-W5_v02_M,IDNO selected as the first manual-download canary.
+first_canary_country,Ethiopia,Country for the first canary.
+first_canary_wave,2021-2022,Survey wave for the first canary.
+first_canary_expected_official_file_rows,68,Official file rows expected from the complete package.
+first_canary_expected_unique_core_file_rows,25,Unique official core files to check immediately after package placement.
+first_canary_requirement_core_file_rows,36,Requirement-file linkage rows; one file can support multiple requirements.
+first_canary_requirement_gate_rows,7,Promotion requirement rows covered by this canary.
+first_canary_missing_unique_core_file_rows,25,Unique core files still missing locally.
+first_canary_missing_requirement_core_file_rows,36,Requirement-file linkage rows still blocked by missing files.
+first_canary_blocked_requirement_rows,7,Requirement rows still blocked by missing files.
+first_canary_target_file_count,0,Candidate raw files currently present in the target folder.
+first_canary_progress_status,blocked_no_local_or_incoming_files,Manual-download progress status for the canary.
+data_write_gate_status,blocked_no_data_write,This runbook writes only result/report artifacts.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
