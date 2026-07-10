@@ -359,13 +359,22 @@ def summary_row(metric: str, value: Any, interpretation: str) -> dict[str, str]:
     return {"metric": metric, "value": str(value), "interpretation": interpretation}
 
 
-def build_summary(plan_rows: list[dict[str, str]], mode: str, cookie_present: bool, header_present: bool) -> list[dict[str, str]]:
+def build_summary(
+    plan_rows: list[dict[str, str]],
+    mode: str,
+    cookie_present: bool,
+    header_present: bool,
+    board_row_count: int,
+    filter_description: str,
+) -> list[dict[str, str]]:
     def count_status(status: str) -> int:
         return sum(1 for row in plan_rows if row.get("response_classification") == status)
 
     saved_rows = [row for row in plan_rows if clean(row.get("saved_path"))]
     rows = [
         summary_row("credentialed_download_handoff_mode", mode, "Runner mode for this invocation."),
+        summary_row("credentialed_download_handoff_filter", filter_description, "Subset filter used for this invocation."),
+        summary_row("credentialed_download_handoff_board_rows_before_filter", board_row_count, "Board rows available before optional filtering."),
         summary_row("credentialed_download_handoff_rows", len(plan_rows), "Minimum-batch credentialed download handoff rows."),
         summary_row("credentialed_download_handoff_cookie_file_present", "1" if cookie_present else "0", "Whether temp/private/worldbank_session_cookies.txt exists and was loaded."),
         summary_row("credentialed_download_handoff_header_file_present", "1" if header_present else "0", "Whether temp/private/worldbank_session_headers.txt exists and was loaded."),
@@ -416,6 +425,8 @@ def write_report(plan_rows: list[dict[str, str]], summary_rows: list[dict[str, s
         "## Summary",
         "",
         f"- Mode: {metric.get('credentialed_download_handoff_mode', 'dry_run')}",
+        f"- Filter: {metric.get('credentialed_download_handoff_filter', 'all')}",
+        f"- Board rows before filter: {metric.get('credentialed_download_handoff_board_rows_before_filter', '0')}",
         f"- Rows: {metric.get('credentialed_download_handoff_rows', '0')}",
         f"- Cookie file present: {metric.get('credentialed_download_handoff_cookie_file_present', '0')}",
         f"- Header file present: {metric.get('credentialed_download_handoff_header_file_present', '0')}",
@@ -454,6 +465,8 @@ def write_report(plan_rows: list[dict[str, str]], summary_rows: list[dict[str, s
         "python script/180_build_priority_lsms_isa_credentialed_download_handoff.py",
         "python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --probe",
         "python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --execute",
+        "python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --idno ETH_2021_ESPS-W5_v02_M --probe",
+        "python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --idno ETH_2021_ESPS-W5_v02_M --execute",
         "```",
         "",
         "## Outputs",
@@ -476,7 +489,19 @@ def parse_args() -> argparse.Namespace:
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--probe", action="store_true", help="Probe credentialed /download routes without saving raw files.")
     mode.add_argument("--execute", action="store_true", help="Save raw payloads when authenticated /download responses look like raw packages.")
+    parser.add_argument("--idno", action="append", default=[], help="Restrict to one IDNO; repeat to run several target waves.")
     return parser.parse_args()
+
+
+def filter_board_rows(board_rows: list[dict[str, str]], idnos: list[str]) -> tuple[list[dict[str, str]], str]:
+    wanted = {clean(idno) for idno in idnos if clean(idno)}
+    if not wanted:
+        return board_rows, "all"
+    selected = [row for row in board_rows if clean(row.get("idno")) in wanted]
+    if not selected:
+        available = ", ".join(clean(row.get("idno")) for row in board_rows[:20])
+        raise SystemExit(f"No rows matched --idno {', '.join(sorted(wanted))}. Available examples: {available}")
+    return selected, "idno=" + ";".join(sorted(wanted))
 
 
 def main() -> None:
@@ -484,22 +509,23 @@ def main() -> None:
     args = parse_args()
     mode = "execute" if args.execute else "probe" if args.probe else "dry_run"
     board_rows = read_csv_dicts(BOARD_PATH)
+    selected_rows, filter_description = filter_board_rows(board_rows, args.idno)
     session, cookie_present, header_present = make_session()
     plan_rows: list[dict[str, str]] = []
     log_rows: list[dict[str, str]] = []
-    for row in sorted(board_rows, key=lambda r: safe_int(r.get("download_rank"), 9999)):
+    for row in sorted(selected_rows, key=lambda r: safe_int(r.get("download_rank"), 9999)):
         plan, log = attempt_download(session, row, mode, cookie_present, header_present)
         plan_rows.append(plan)
         log_rows.append(log)
-    summary_rows = build_summary(plan_rows, mode, cookie_present, header_present)
+    summary_rows = build_summary(plan_rows, mode, cookie_present, header_present, len(board_rows), filter_description)
     write_csv(PLAN_PATH, plan_rows, PLAN_COLUMNS)
     write_csv(LOG_PATH, log_rows, LOG_COLUMNS)
     write_csv(SUMMARY_PATH, summary_rows, SUMMARY_COLUMNS)
     write_report(plan_rows, summary_rows)
-    append_log(TEMP_DIR / "audit_log.md", f"Built priority LSMS/ISA credentialed download handoff mode={mode} rows={len(plan_rows)}.")
+    append_log(TEMP_DIR / "audit_log.md", f"Built priority LSMS/ISA credentialed download handoff mode={mode} filter={filter_description} rows={len(plan_rows)}.")
     saved = sum(1 for row in plan_rows if clean(row.get("saved_path")))
     attempted = sum(1 for row in plan_rows if row.get("request_attempted") == "1")
-    print(f"Priority LSMS/ISA credentialed download handoff complete: mode={mode}, attempted={attempted}, saved={saved}")
+    print(f"Priority LSMS/ISA credentialed download handoff complete: mode={mode}, filter={filter_description}, attempted={attempted}, saved={saved}")
 
 
 if __name__ == "__main__":

@@ -17,6 +17,8 @@ It does not extract archives, write promoted `data/`, or run models.
 ## Summary
 
 - Mode: dry_run
+- Filter: all
+- Board rows before filter: 10
 - Rows: 10
 - Cookie file present: 0
 - Header file present: 0
@@ -52,6 +54,8 @@ It does not extract archives, write promoted `data/`, or run models.
 python script/180_build_priority_lsms_isa_credentialed_download_handoff.py
 python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --probe
 python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --execute
+python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --idno ETH_2021_ESPS-W5_v02_M --probe
+python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --idno ETH_2021_ESPS-W5_v02_M --execute
 ```
 
 ## Outputs
