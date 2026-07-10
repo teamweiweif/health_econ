@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,172,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,754,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,750,Curated artifacts present and non-empty.
+bundle_rows,173,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,759,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,755,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -116,6 +116,9 @@ priority_lsms_isa_manual_download_packet_reports,10,Per-IDNO markdown packet rep
 priority_lsms_isa_manual_download_progress_validation_ready,0,Manual download packets with local target files ready for validation.
 priority_lsms_isa_manual_download_progress_blocked_no_files,10,Manual download packets still lacking local target files or incoming route matches.
 priority_lsms_isa_manual_download_progress_target_files,0,Non-generated files currently found under packet target folders.
+priority_lsms_isa_post_download_validation_ready_packets,0,Packets ready for post-download validation.
+priority_lsms_isa_post_download_validation_plan_rows,50,Post-download validation command-plan rows.
+priority_lsms_isa_post_download_validation_execute_commands,0,Validation commands selected for execution in the latest runner invocation.
 priority_lsms_isa_promotion_gate_country_waves,19,Country-waves tracked by the promotion gate dashboard.
 priority_lsms_isa_promotion_gate_promoted_rows,1,Country-waves already promoted analysis-ready in the gate dashboard.
 priority_lsms_isa_promotion_gate_blocked_raw_package_rows,18,Country-waves still blocked at complete official raw package receipt.
@@ -571,7 +574,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,63,Direct-read bundle section count.
+bundle_section_priority_bundle,64,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -692,6 +695,7 @@ bundle_status_open_registry_has_promoted_rows,1,Direct-read bundle status count.
 bundle_status_packet_candidates_ready_for_data_write,1,Direct-read bundle status count.
 bundle_status_partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass,1,Direct-read bundle status count.
 bundle_status_pass,2,Direct-read bundle status count.
+bundle_status_post_download_validation_dry_run_current,1,Direct-read bundle status count.
 bundle_status_present_raw_waves_require_wave_specific_schema_value_key_timing_audits,1,Direct-read bundle status count.
 bundle_status_promotion_gate_dashboard_current,1,Direct-read bundle status count.
 bundle_status_public_documentation_complete_raw_still_blocked,1,Direct-read bundle status count.

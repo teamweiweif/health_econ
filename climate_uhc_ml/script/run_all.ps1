@@ -88,6 +88,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/175_build_priority_lsms_isa_threshold_gap_control_panel.py
 & $Python script/176_build_priority_lsms_isa_manual_download_packets.py
 & $Python script/177_build_priority_lsms_isa_manual_download_progress_tracker.py
+& $Python script/178_build_priority_lsms_isa_post_download_validation_runner.py
 & $Python script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 & $Python script/36_build_direct_read_audit_bundle.py
 & $Python script/28_audit_python_environment.py

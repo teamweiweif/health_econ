@@ -162,6 +162,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_threshold_gap_control_panel.md",
     "priority_lsms_isa_manual_download_packets.md",
     "priority_lsms_isa_manual_download_progress_tracker.md",
+    "priority_lsms_isa_post_download_validation_runner.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -345,6 +346,7 @@ REQUIRED_SCRIPTS = [
     "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
     "176_build_priority_lsms_isa_manual_download_packets.py",
     "177_build_priority_lsms_isa_manual_download_progress_tracker.py",
+    "178_build_priority_lsms_isa_post_download_validation_runner.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -359,6 +361,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
     "176_build_priority_lsms_isa_manual_download_packets.py",
     "177_build_priority_lsms_isa_manual_download_progress_tracker.py",
+    "178_build_priority_lsms_isa_post_download_validation_runner.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -502,7 +505,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-177 dataset-promotion gate chain",
+        "One-command runners include the current 157-178 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -913,6 +916,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_manual_download_packet_summary": row_count(RESULT_DIR / "priority_lsms_isa_manual_download_packet_summary.csv"),
         "priority_lsms_isa_manual_download_progress_tracker": row_count(TEMP_DIR / "priority_lsms_isa_manual_download_progress_tracker.csv"),
         "priority_lsms_isa_manual_download_progress_summary": row_count(RESULT_DIR / "priority_lsms_isa_manual_download_progress_summary.csv"),
+        "priority_lsms_isa_post_download_validation_run_plan": row_count(TEMP_DIR / "priority_lsms_isa_post_download_validation_run_plan.csv"),
+        "priority_lsms_isa_post_download_validation_command_log": row_count(TEMP_DIR / "priority_lsms_isa_post_download_validation_command_log.csv"),
+        "priority_lsms_isa_post_download_validation_runner_summary": row_count(RESULT_DIR / "priority_lsms_isa_post_download_validation_runner_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5457,6 +5463,39 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_manual_progress_gate_ok),
         f"tracker_rows={counts['priority_lsms_isa_manual_download_progress_tracker']}; summary_rows={counts['priority_lsms_isa_manual_download_progress_summary']}; packets={priority_lsms_manual_progress_packets}; target_files={priority_lsms_manual_progress_target_files}; incoming_routes={priority_lsms_manual_progress_incoming_routes}; validation_ready={priority_lsms_manual_progress_validation_ready}; blocked_no_files={priority_lsms_manual_progress_blocked_no_files}; data_write={priority_lsms_manual_progress_data_write}; modeling_gate={priority_lsms_manual_progress_modeling}",
         "" if priority_lsms_manual_progress_gate_ok else "Run script/177_build_priority_lsms_isa_manual_download_progress_tracker.py after manual download packets and incoming router are current.",
+    )
+    priority_lsms_post_download_validation_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_validation_runner_summary.csv")
+    priority_lsms_post_download_validation_mode = next((row.get("value", "") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "post_download_validation_runner_mode"), "")
+    priority_lsms_post_download_validation_progress_packets = safe_int(next((row.get("value", "0") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "post_download_validation_progress_packet_rows"), "0"), 0)
+    priority_lsms_post_download_validation_ready_packets = safe_int(next((row.get("value", "0") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "post_download_validation_ready_packet_rows"), "0"), 0)
+    priority_lsms_post_download_validation_plan_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "post_download_validation_plan_rows"), "0"), 0)
+    priority_lsms_post_download_validation_execute_commands = safe_int(next((row.get("value", "0") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "post_download_validation_execute_command_rows"), "0"), 0)
+    priority_lsms_post_download_validation_attempted = safe_int(next((row.get("value", "0") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "post_download_validation_attempted_command_rows"), "0"), 0)
+    priority_lsms_post_download_validation_failed = safe_int(next((row.get("value", "0") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "post_download_validation_failed_command_rows"), "0"), 0)
+    priority_lsms_post_download_validation_data_write = next((row.get("value", "") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_post_download_validation_modeling = next((row.get("value", "") for row in priority_lsms_post_download_validation_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_post_download_validation_gate_ok = (
+        counts["priority_lsms_isa_post_download_validation_runner_summary"] > 0
+        and counts["priority_lsms_isa_post_download_validation_run_plan"] == priority_lsms_post_download_validation_plan_rows
+        and counts["priority_lsms_isa_post_download_validation_command_log"] == priority_lsms_post_download_validation_plan_rows
+        and file_ok(REPORT_DIR / "priority_lsms_isa_post_download_validation_runner.md")
+        and priority_lsms_post_download_validation_mode == "dry_run"
+        and priority_lsms_post_download_validation_progress_packets == priority_lsms_manual_progress_packets
+        and priority_lsms_post_download_validation_ready_packets == priority_lsms_manual_progress_validation_ready
+        and priority_lsms_post_download_validation_plan_rows == priority_lsms_manual_progress_packets * 5
+        and priority_lsms_post_download_validation_execute_commands == 0
+        and priority_lsms_post_download_validation_attempted == 0
+        and priority_lsms_post_download_validation_failed == 0
+        and priority_lsms_post_download_validation_data_write == "blocked_no_data_write"
+        and priority_lsms_post_download_validation_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA post-download validation runner builds a dry-run plan and only executes allowlisted validation commands with explicit flag",
+        status(priority_lsms_post_download_validation_gate_ok),
+        f"plan_rows={counts['priority_lsms_isa_post_download_validation_run_plan']}; command_log_rows={counts['priority_lsms_isa_post_download_validation_command_log']}; summary_rows={counts['priority_lsms_isa_post_download_validation_runner_summary']}; mode={priority_lsms_post_download_validation_mode}; progress_packets={priority_lsms_post_download_validation_progress_packets}; ready_packets={priority_lsms_post_download_validation_ready_packets}; execute_commands={priority_lsms_post_download_validation_execute_commands}; attempted={priority_lsms_post_download_validation_attempted}; failed={priority_lsms_post_download_validation_failed}; data_write={priority_lsms_post_download_validation_data_write}; modeling_gate={priority_lsms_post_download_validation_modeling}",
+        "" if priority_lsms_post_download_validation_gate_ok else "Run script/178_build_priority_lsms_isa_post_download_validation_runner.py in dry-run mode after the manual progress tracker is current.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)

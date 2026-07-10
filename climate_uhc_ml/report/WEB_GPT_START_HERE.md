@@ -37,9 +37,11 @@ data gates.
    - Per-wave manual download packet index for the 10 remaining minimum-batch raw packages.
 11. `report/priority_lsms_isa_manual_download_progress_tracker.md`
    - Local tracker showing whether downloaded files are present and ready for validation.
-12. `report/priority_lsms_isa_country_wave_promotion_packets/`
+12. `report/priority_lsms_isa_post_download_validation_runner.md`
+   - Dry-run validation plan; explicit `--execute` only after target folders contain official raw files.
+13. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-13. `report/mwi2004_requirement_acceptance_decisions.md`
+14. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -81,6 +83,7 @@ resume, read:
 - `temp/priority_lsms_isa_threshold_gap_download_panel.csv`
 - `report/priority_lsms_isa_manual_download_packets.md`
 - `report/priority_lsms_isa_manual_download_progress_tracker.md`
+- `report/priority_lsms_isa_post_download_validation_runner.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:

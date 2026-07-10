@@ -253,6 +253,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/priority_lsms_isa_manual_download_progress_tracker.md", "priority LSMS/ISA manual download progress tracker report"),
     ("dataset_promotion", "temp/priority_lsms_isa_manual_download_progress_tracker.csv", "priority LSMS/ISA manual download progress tracker"),
     ("dataset_promotion", "result/priority_lsms_isa_manual_download_progress_summary.csv", "priority LSMS/ISA manual download progress summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_post_download_validation_runner.md", "priority LSMS/ISA post-download validation runner report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_post_download_validation_run_plan.csv", "priority LSMS/ISA post-download validation run plan"),
+    ("dataset_promotion", "temp/priority_lsms_isa_post_download_validation_command_log.csv", "priority LSMS/ISA post-download validation command log"),
+    ("dataset_promotion", "result/priority_lsms_isa_post_download_validation_runner_summary.csv", "priority LSMS/ISA post-download validation runner summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -685,6 +689,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/175_build_priority_lsms_isa_threshold_gap_control_panel.py", "priority LSMS/ISA threshold gap control panel generator"),
     ("reproducibility", "script/176_build_priority_lsms_isa_manual_download_packets.py", "priority LSMS/ISA manual download packet generator"),
     ("reproducibility", "script/177_build_priority_lsms_isa_manual_download_progress_tracker.py", "priority LSMS/ISA manual download progress tracker generator"),
+    ("reproducibility", "script/178_build_priority_lsms_isa_post_download_validation_runner.py", "priority LSMS/ISA post-download validation runner generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -932,6 +937,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_threshold_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_gap_control_panel_summary.csv")
     priority_lsms_manual_download_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_packet_summary.csv")
     priority_lsms_manual_download_progress_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_progress_summary.csv")
+    priority_lsms_post_download_validation_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_validation_runner_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1597,6 +1603,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"packets={csv_value(priority_lsms_manual_download_progress_summary, 'manual_download_progress_packet_rows', '0')}; target_files={csv_value(priority_lsms_manual_download_progress_summary, 'manual_download_progress_target_file_rows', '0')}; incoming_routes={csv_value(priority_lsms_manual_download_progress_summary, 'manual_download_progress_incoming_route_rows', '0')}; validation_ready={csv_value(priority_lsms_manual_download_progress_summary, 'manual_download_progress_validation_ready_packets', '0')}; blocked_no_files={csv_value(priority_lsms_manual_download_progress_summary, 'manual_download_progress_blocked_no_file_packets', '0')}; modeling_gate={csv_value(priority_lsms_manual_download_progress_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_manual_download_progress_tracker.csv", RESULT_DIR / "priority_lsms_isa_manual_download_progress_summary.csv", REPORT_DIR / "priority_lsms_isa_manual_download_progress_tracker.md"],
         "Manual download progress tracker links each packet to local target-folder and incoming-route status so newly placed files can move into validation without guessing.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_post_download_validation_runner",
+        "post_download_validation_dry_run_current"
+        if csv_value(priority_lsms_post_download_validation_summary, "post_download_validation_runner_mode", "missing") == "dry_run"
+        and csv_value(priority_lsms_post_download_validation_summary, "data_write_gate_status", "missing") == "blocked_no_data_write"
+        else "post_download_validation_runner_needs_review",
+        f"mode={csv_value(priority_lsms_post_download_validation_summary, 'post_download_validation_runner_mode', 'missing')}; ready_packets={csv_value(priority_lsms_post_download_validation_summary, 'post_download_validation_ready_packet_rows', '0')}; plan_rows={csv_value(priority_lsms_post_download_validation_summary, 'post_download_validation_plan_rows', '0')}; execute_commands={csv_value(priority_lsms_post_download_validation_summary, 'post_download_validation_execute_command_rows', '0')}; attempted={csv_value(priority_lsms_post_download_validation_summary, 'post_download_validation_attempted_command_rows', '0')}; failed={csv_value(priority_lsms_post_download_validation_summary, 'post_download_validation_failed_command_rows', '0')}; modeling_gate={csv_value(priority_lsms_post_download_validation_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_post_download_validation_run_plan.csv", TEMP_DIR / "priority_lsms_isa_post_download_validation_command_log.csv", RESULT_DIR / "priority_lsms_isa_post_download_validation_runner_summary.csv", REPORT_DIR / "priority_lsms_isa_post_download_validation_runner.md"],
+        "Post-download validation runner builds a dry-run plan, and can explicitly execute allowlisted receipt/schema/value/semantics checks once packet target folders contain official raw files.",
     )
     add_bundle(
         rows,
@@ -2552,6 +2570,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_threshold_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_gap_control_panel_summary.csv")
     priority_lsms_manual_download_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_packet_summary.csv")
     priority_lsms_manual_download_progress_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_progress_summary.csv")
+    priority_lsms_post_download_validation_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_validation_runner_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -2678,6 +2697,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_manual_download_progress_validation_ready", "value": csv_value(priority_lsms_manual_download_progress_summary, "manual_download_progress_validation_ready_packets", "0"), "interpretation": "Manual download packets with local target files ready for validation."},
         {"metric": "priority_lsms_isa_manual_download_progress_blocked_no_files", "value": csv_value(priority_lsms_manual_download_progress_summary, "manual_download_progress_blocked_no_file_packets", "0"), "interpretation": "Manual download packets still lacking local target files or incoming route matches."},
         {"metric": "priority_lsms_isa_manual_download_progress_target_files", "value": csv_value(priority_lsms_manual_download_progress_summary, "manual_download_progress_target_file_rows", "0"), "interpretation": "Non-generated files currently found under packet target folders."},
+        {"metric": "priority_lsms_isa_post_download_validation_ready_packets", "value": csv_value(priority_lsms_post_download_validation_summary, "post_download_validation_ready_packet_rows", "0"), "interpretation": "Packets ready for post-download validation."},
+        {"metric": "priority_lsms_isa_post_download_validation_plan_rows", "value": csv_value(priority_lsms_post_download_validation_summary, "post_download_validation_plan_rows", "0"), "interpretation": "Post-download validation command-plan rows."},
+        {"metric": "priority_lsms_isa_post_download_validation_execute_commands", "value": csv_value(priority_lsms_post_download_validation_summary, "post_download_validation_execute_command_rows", "0"), "interpretation": "Validation commands selected for execution in the latest runner invocation."},
         {"metric": "priority_lsms_isa_promotion_gate_country_waves", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_country_wave_rows", "0"), "interpretation": "Country-waves tracked by the promotion gate dashboard."},
         {"metric": "priority_lsms_isa_promotion_gate_promoted_rows", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_promoted_rows", "0"), "interpretation": "Country-waves already promoted analysis-ready in the gate dashboard."},
         {"metric": "priority_lsms_isa_promotion_gate_blocked_raw_package_rows", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_blocked_raw_package_rows", "0"), "interpretation": "Country-waves still blocked at complete official raw package receipt."},

@@ -1,0 +1,10 @@
+﻿metric,value,interpretation
+post_download_validation_runner_mode,dry_run,Runner mode for this invocation.
+post_download_validation_progress_packet_rows,10,Manual-download progress rows considered by the runner.
+post_download_validation_ready_packet_rows,0,Packets with local target files ready for validation.
+post_download_validation_plan_rows,50,Command-plan rows written by the runner.
+post_download_validation_execute_command_rows,0,Validation commands selected for execution.
+post_download_validation_attempted_command_rows,0,Validation commands attempted in this invocation.
+post_download_validation_failed_command_rows,0,Attempted validation commands with nonzero return codes.
+data_write_gate_status,blocked_no_data_write,Post-download validation runner does not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

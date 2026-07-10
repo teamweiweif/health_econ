@@ -80,6 +80,7 @@ python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 python script/175_build_priority_lsms_isa_threshold_gap_control_panel.py
 python script/176_build_priority_lsms_isa_manual_download_packets.py
 python script/177_build_priority_lsms_isa_manual_download_progress_tracker.py
+python script/178_build_priority_lsms_isa_post_download_validation_runner.py
 python script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
@@ -138,6 +139,7 @@ Current status:
 - The priority LSMS/ISA threshold gap control panel is `result/priority_lsms_isa_threshold_gap_control_panel_summary.csv`; it shows the current country/wave gap and the 10 remaining minimum-batch raw package downloads.
 - The priority LSMS/ISA manual download packets are indexed in `result/priority_lsms_isa_manual_download_packet_summary.csv` and `report/priority_lsms_isa_manual_download_packets.md`.
 - The priority LSMS/ISA manual download progress tracker is `result/priority_lsms_isa_manual_download_progress_summary.csv`; it reports whether packet target folders contain files ready for validation.
+- The priority LSMS/ISA post-download validation runner is `result/priority_lsms_isa_post_download_validation_runner_summary.csv`; default pipeline mode is dry-run, with explicit `--execute` available after target files are present.
 - The priority LSMS/ISA promotion gate dashboard is `result/priority_lsms_isa_promotion_gate_dashboard_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.
