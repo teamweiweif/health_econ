@@ -200,6 +200,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/mwi2004_missing_units_recall_skip_policy.md", "Malawi 2004 missing, units, recall, and skip policy report"),
     ("dataset_promotion", "result/mwi2004_missing_units_recall_skip_policy.csv", "Malawi 2004 aggregate missing, units, recall, and skip policy"),
     ("dataset_promotion", "result/mwi2004_missing_units_recall_skip_policy_summary.csv", "Malawi 2004 missing, units, recall, and skip policy summary"),
+    ("dataset_promotion", "report/mwi2004_promoted_household_climate_dataset.md", "Malawi 2004 promoted household-climate dataset synthesis report"),
+    ("dataset_promotion", "result/mwi2004_promoted_household_climate_dataset_summary.csv", "Malawi 2004 promoted household-climate dataset summary"),
+    ("dataset_promotion", "result/mwi2004_promoted_household_climate_dataset_dictionary.csv", "Malawi 2004 promoted household-climate dataset dictionary"),
+    ("dataset_promotion", "result/mwi2004_promoted_household_climate_dataset_validation.csv", "Malawi 2004 promoted household-climate dataset validation"),
     ("dataset_promotion", "report/priority_lsms_isa_raw_package_receipt_checklist.md", "priority LSMS/ISA raw package receipt checklist report"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_receipt_checklist.csv", "priority LSMS/ISA dataset raw package receipt checklist"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_requirement_receipt_checklist.csv", "priority LSMS/ISA requirement raw package receipt checklist"),
@@ -650,6 +654,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/168_build_mwi2004_missing_units_recall_skip_policy.py", "Malawi 2004 missing, units, recall, and skip policy generator"),
     ("reproducibility", "script/169_build_mwi2004_chirps_admin2_route_policy.py", "Malawi 2004 CHIRPS ADM2 route policy generator"),
     ("reproducibility", "script/170_extract_mwi2004_chirps_admin2_exposures.py", "Malawi 2004 CHIRPS ADM2 extraction generator"),
+    ("reproducibility", "script/171_build_mwi2004_promoted_household_climate_dataset.py", "Malawi 2004 promoted household-climate dataset generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -884,6 +889,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
     mwi2004_access_resolution_summary = read_csv_dicts(RESULT_DIR / "mwi2004_access_person_key_resolution_policy_summary.csv")
     mwi2004_missing_units_summary = read_csv_dicts(RESULT_DIR / "mwi2004_missing_units_recall_skip_policy_summary.csv")
+    mwi2004_promoted_dataset_summary = read_csv_dicts(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -1430,6 +1436,17 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"country_wave={csv_value(mwi2004_missing_units_summary, 'country_wave', 'missing')}; status={csv_value(mwi2004_missing_units_summary, 'missing_units_recall_skip_policy_status', 'missing')}; financial_units={csv_value(mwi2004_missing_units_summary, 'financial_units_verified', '0')}; access_units={csv_value(mwi2004_missing_units_summary, 'access_units_recall_skip_verified', '0')}; timing_units={csv_value(mwi2004_missing_units_summary, 'timing_units_verified', '0')}; geography_units={csv_value(mwi2004_missing_units_summary, 'geography_units_verified', '0')}; sdg382_ready={csv_value(mwi2004_missing_units_summary, 'sdg382_ready', '0')}; accepted_route={csv_value(mwi2004_missing_units_summary, 'accepted_chirps_era5_route', '0')}; data_write={csv_value(mwi2004_missing_units_summary, 'data_write_gate_status', 'missing')}",
         [RESULT_DIR / "mwi2004_missing_units_recall_skip_policy.csv", RESULT_DIR / "mwi2004_missing_units_recall_skip_policy_summary.csv", REPORT_DIR / "mwi2004_missing_units_recall_skip_policy.md"],
         "Focused Malawi 2004 policy accepts units, recall periods, missing values, and skip handling for CHE10/CHE25 and cost-barrier access while keeping SDG 3.8.2, climate linkage, and data writes blocked.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "mwi2004_promoted_household_climate_dataset",
+        "mwi2004_promoted_household_climate_dataset_ready"
+        if csv_value(mwi2004_promoted_dataset_summary, "analysis_ready_status", "not_promoted") == "promoted_analysis_ready"
+        else "mwi2004_promoted_household_climate_dataset_missing_or_blocked",
+        f"country_wave={csv_value(mwi2004_promoted_dataset_summary, 'country_wave', 'missing')}; status={csv_value(mwi2004_promoted_dataset_summary, 'analysis_ready_status', 'missing')}; rows={csv_value(mwi2004_promoted_dataset_summary, 'promoted_rows', '0')}; che10={csv_value(mwi2004_promoted_dataset_summary, 'che10_rows', '0')}; che25={csv_value(mwi2004_promoted_dataset_summary, 'che25_rows', '0')}; cost_barrier_households={csv_value(mwi2004_promoted_dataset_summary, 'households_any_cost_barrier_forgone_care', '0')}; both_che10_cost={csv_value(mwi2004_promoted_dataset_summary, 'both_che10_and_cost_barrier_rows', '0')}; climate_complete={csv_value(mwi2004_promoted_dataset_summary, 'climate_exposure_complete_rows', '0')}; data_write={csv_value(mwi2004_promoted_dataset_summary, 'data_write_gate_status', 'missing')}; modeling_gate={csv_value(mwi2004_promoted_dataset_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv", RESULT_DIR / "mwi2004_promoted_household_climate_dataset_dictionary.csv", RESULT_DIR / "mwi2004_promoted_household_climate_dataset_validation.csv", REPORT_DIR / "mwi2004_promoted_household_climate_dataset.md"],
+        "Focused Malawi 2004 promoted synthesis joins verified CHE10/CHE25, cost-barrier access, and CHIRPS ADM2 lag windows into the first household-climate analysis dataset while leaving SDG 3.8.2 and all modeling gates blocked.",
     )
     add_bundle(
         rows,
@@ -2415,6 +2432,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
     mwi2004_access_resolution_summary = read_csv_dicts(RESULT_DIR / "mwi2004_access_person_key_resolution_policy_summary.csv")
     mwi2004_missing_units_summary = read_csv_dicts(RESULT_DIR / "mwi2004_missing_units_recall_skip_policy_summary.csv")
+    mwi2004_promoted_dataset_summary = read_csv_dicts(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -2502,6 +2520,13 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "mwi2004_health_access_policy_final_verified", "value": csv_value(mwi2004_access_resolution_summary, "health_access_final_verified", "0"), "interpretation": "Whether Malawi 2004 acute need and cost-barrier access are final verified for the stated scope."},
         {"metric": "mwi2004_missing_units_recall_skip_status", "value": csv_value(mwi2004_missing_units_summary, "missing_units_recall_skip_policy_status", "missing"), "interpretation": "Malawi 2004 missing, units, recall, and skip policy status."},
         {"metric": "mwi2004_missing_units_recall_skip_final_verified", "value": csv_value(mwi2004_missing_units_summary, "missing_units_recall_skip_policy_final_verified", "0"), "interpretation": "Whether missing, units, recall, and skip policy is final verified for accepted constructs."},
+        {"metric": "mwi2004_promoted_dataset_status", "value": csv_value(mwi2004_promoted_dataset_summary, "analysis_ready_status", "not_promoted"), "interpretation": "Whether the Malawi 2004 household-climate synthesis is promoted analysis-ready."},
+        {"metric": "mwi2004_promoted_dataset_rows", "value": csv_value(mwi2004_promoted_dataset_summary, "promoted_rows", "0"), "interpretation": "Household rows in the local promoted Malawi 2004 dataset."},
+        {"metric": "mwi2004_promoted_dataset_che10_rows", "value": csv_value(mwi2004_promoted_dataset_summary, "che10_rows", "0"), "interpretation": "Promoted Malawi 2004 CHE10 household rows."},
+        {"metric": "mwi2004_promoted_dataset_che25_rows", "value": csv_value(mwi2004_promoted_dataset_summary, "che25_rows", "0"), "interpretation": "Promoted Malawi 2004 CHE25 household rows."},
+        {"metric": "mwi2004_promoted_dataset_cost_barrier_households", "value": csv_value(mwi2004_promoted_dataset_summary, "households_any_cost_barrier_forgone_care", "0"), "interpretation": "Promoted Malawi 2004 households with any cost-barrier forgone care."},
+        {"metric": "mwi2004_promoted_dataset_climate_complete_rows", "value": csv_value(mwi2004_promoted_dataset_summary, "climate_exposure_complete_rows", "0"), "interpretation": "Promoted Malawi 2004 household rows with complete 1/3/6/12 month CHIRPS exposures."},
+        {"metric": "mwi2004_promoted_dataset_data_write_gate", "value": csv_value(mwi2004_promoted_dataset_summary, "data_write_gate_status", "missing"), "interpretation": "Controlled data-write gate outcome for the Malawi 2004 promoted synthesis."},
         {"metric": "priority_lsms_isa_receipt_checklist_dataset_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_dataset_rows", "0"), "interpretation": "Dataset-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_requirement_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_requirement_rows", "0"), "interpretation": "Requirement-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_package_received_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_package_received_rows", "0"), "interpretation": "Refocused LSMS/ISA waves with original package receipt evidence."},

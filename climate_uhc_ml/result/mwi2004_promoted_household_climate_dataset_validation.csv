@@ -1,0 +1,13 @@
+﻿validation_component,status,evidence,required_action
+upstream_financial_gate,pass,che10_che25_financial_inputs_ready=1,
+upstream_access_gate,pass,access_forgone_care_inputs_ready=1,
+upstream_missing_units_gate,pass,missing_units_recall_skip_policy_final_verified=1,
+upstream_climate_gate,pass,accepted_chirps_era5_route=1,
+row_count_matches_financial_universe,pass,rows=11280; expected_financial_rows=11280,
+case_id_unique,pass,unique_case_ids=11280; rows=11280,
+financial_outcomes_complete,pass,che10_rows=208; che25_rows=17,
+access_household_aggregation_complete,pass,matched_persons=51286; acute_need_persons=14143; cost_barrier_persons=631,
+climate_lag_windows_complete,pass,household_rows=11280; complete_climate_rows=11280,
+admin2_crosswalk_complete,pass,mapped_adm2_rows=11280; rows=11280,
+data_file_written,pass,path=data\mwi2004_household_climate_analysis.csv; exists=1; bytes=3155221,
+dictionary_written,pass,path=result\mwi2004_promoted_household_climate_dataset_dictionary.csv; exists=1,

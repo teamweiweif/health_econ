@@ -1,8 +1,8 @@
 ﻿metric,value,interpretation
-registry_promoted_analysis_ready_rows,0,Country-waves currently allowed to write promoted datasets into data/.
-data_dataset_files_before_gate,0,Dataset-like files found in data/ before enforcing the gate.
-data_dataset_files_after_gate,0,Dataset-like files left in data/ after enforcing the gate.
+registry_promoted_analysis_ready_rows,1,Country-waves currently allowed to write promoted datasets into data/.
+data_dataset_files_before_gate,1,Dataset-like files found in data/ before enforcing the gate.
+data_dataset_files_after_gate,1,Dataset-like files left in data/ after enforcing the gate.
 quarantined_diagnostic_data_files,0,Pre-promotion data files preserved under temp/diagnostic_data_quarantine/current/ and removed from data/.
 current_diagnostic_quarantine_files,4,Diagnostic or pre-promotion dataset files currently indexed under temp/diagnostic_data_quarantine/current/.
 data_readme_written,1,Whether data/README.md records the current promoted-data status.
-promoted_data_gate_status,closed_no_promoted_rows,Current write gate status for promoted data outputs.
+promoted_data_gate_status,open_registry_has_promoted_rows,Current write gate status for promoted data outputs.

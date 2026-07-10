@@ -12,15 +12,15 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 165 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 718 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 714 | Curated artifacts present and non-empty. |
+| bundle_rows | 166 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 723 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 719 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
-| analysis_ready_data_files | 0 | Dataset-like files currently present in data/, excluding README/.gitkeep. |
-| promoted_data_gate_status | closed_no_promoted_rows | Current promoted-data write gate status. |
-| promoted_data_gate_registry_promoted_rows | 0 | Registry rows currently allowed to write promoted datasets into data/. |
+| analysis_ready_data_files | 1 | Dataset-like files currently present in data/, excluding README/.gitkeep. |
+| promoted_data_gate_status | open_registry_has_promoted_rows | Current promoted-data write gate status. |
+| promoted_data_gate_registry_promoted_rows | 1 | Registry rows currently allowed to write promoted datasets into data/. |
 | promoted_data_gate_quarantined_files | 0 | Pre-promotion diagnostic files moved from data/ to temp/. |
 | priority_lsms_isa_public_documentation_dataset_rows | 19 | Refocused LSMS/ISA waves covered by the public documentation receipt. |
 | priority_lsms_isa_public_documentation_core_complete_rows | 19 | Refocused LSMS/ISA waves with all core public metadata/documentation resources saved. |
@@ -85,6 +85,13 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_health_access_policy_final_verified | 1 | Whether Malawi 2004 acute need and cost-barrier access are final verified for the stated scope. |
 | mwi2004_missing_units_recall_skip_status | raw_missing_units_recall_skip_policy_verified_for_accepted_constructs | Malawi 2004 missing, units, recall, and skip policy status. |
 | mwi2004_missing_units_recall_skip_final_verified | 1 | Whether missing, units, recall, and skip policy is final verified for accepted constructs. |
+| mwi2004_promoted_dataset_status | promoted_analysis_ready | Whether the Malawi 2004 household-climate synthesis is promoted analysis-ready. |
+| mwi2004_promoted_dataset_rows | 11280 | Household rows in the local promoted Malawi 2004 dataset. |
+| mwi2004_promoted_dataset_che10_rows | 208 | Promoted Malawi 2004 CHE10 household rows. |
+| mwi2004_promoted_dataset_che25_rows | 17 | Promoted Malawi 2004 CHE25 household rows. |
+| mwi2004_promoted_dataset_cost_barrier_households | 519 | Promoted Malawi 2004 households with any cost-barrier forgone care. |
+| mwi2004_promoted_dataset_climate_complete_rows | 11280 | Promoted Malawi 2004 household rows with complete 1/3/6/12 month CHIRPS exposures. |
+| mwi2004_promoted_dataset_data_write_gate | open_promoted_dataset_written | Controlled data-write gate outcome for the Malawi 2004 promoted synthesis. |
 | priority_lsms_isa_receipt_checklist_dataset_rows | 19 | Dataset-level raw package receipt checklist rows. |
 | priority_lsms_isa_receipt_checklist_requirement_rows | 152 | Requirement-level raw package receipt checklist rows. |
 | priority_lsms_isa_receipt_checklist_package_received_rows | 1 | Refocused LSMS/ISA waves with original package receipt evidence. |
@@ -102,8 +109,8 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows | 11 | Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh. |
 | priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows | 0 | Raw download candidate endpoints detected by the minimum-batch endpoint refresh. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
-| priority_lsms_isa_country_wave_packet_failed_gates | 308 | Refocused LSMS/ISA packet gates still blocking promotion. |
-| priority_lsms_isa_country_wave_packet_analysis_ready_rows | 0 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
+| priority_lsms_isa_country_wave_packet_failed_gates | 306 | Refocused LSMS/ISA packet gates still blocking promotion. |
+| priority_lsms_isa_country_wave_packet_analysis_ready_rows | 1 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
 | priority_archive_preflight_targets | 156 | Priority file targets checked against direct files and archive members. |
 | priority_archive_preflight_missing_targets | 156 | Priority file targets still missing after direct/archive member preflight. |
 | priority_manual_verification_dataset_rows | 13 | Priority waves evaluated by the manual verification decision gate. |
@@ -552,7 +559,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 56 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 57 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -594,7 +601,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_current_boundary_name_match_incomplete_historical_crosswalk_no_gps | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_diary_timing_metadata_candidate_no_raw_merge_semantics | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_extracted_package_missing_bookmetadata_and_coordinate_values | 1 | Direct-read bundle status count. |
-| bundle_status_blocked_fail_closed | 2 | Direct-read bundle status count. |
+| bundle_status_blocked_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_followup_confirms_no_public_2002_district_boundary_source | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_gadm_boundary_lead_no_verified_2002_historical_provenance | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_geoboundaries_2_0_1_boundary_year_2013_not_verified_2002 | 1 | Direct-read bundle status count. |
@@ -619,7 +626,6 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_raw_timing_geography_not_verified | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_required_schema_columns_not_verified | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns | 3 | Direct-read bundle status count. |
-| bundle_status_closed_no_promoted_rows | 1 | Direct-read bundle status count. |
 | bundle_status_complete | 4 | Direct-read bundle status count. |
 | bundle_status_core_public_documentation_saved_raw_gate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_core_wave_replacement_needed_before_download_execution | 1 | Direct-read bundle status count. |
@@ -655,6 +661,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_mwi2004_health_access_policy_ready_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_exceptions_unresolved | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_missing_units_recall_skip_verified | 1 | Direct-read bundle status count. |
+| bundle_status_mwi2004_promoted_household_climate_dataset_ready | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_raw_backed_evidence_ready_not_final_verified | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_timing_admin_ea_verified_climate_route_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_available | 1 | Direct-read bundle status count. |
@@ -665,6 +672,8 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_not_received_no_original_raw_package | 1 | Direct-read bundle status count. |
 | bundle_status_official_file_receipt_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_official_metadata_evidence_present_raw_gate_still_blocked | 1 | Direct-read bundle status count. |
+| bundle_status_open_registry_has_promoted_rows | 1 | Direct-read bundle status count. |
+| bundle_status_packet_candidates_ready_for_data_write | 1 | Direct-read bundle status count. |
 | bundle_status_partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass | 1 | Direct-read bundle status count. |
 | bundle_status_pass | 2 | Direct-read bundle status count. |
 | bundle_status_present_raw_waves_require_wave_specific_schema_value_key_timing_audits | 1 | Direct-read bundle status count. |
@@ -693,7 +702,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 56 |
+| priority_bundle | 57 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -716,7 +725,6 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | complete | 4 |
 | metadata_only_requires_raw_verification | 4 |
 | blocked_timing_geography_outcome_semantics_units_recall_skip_patterns | 3 |
-| blocked_fail_closed | 2 |
 | documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready | 2 |
 | temp_candidate_not_analysis_ready | 2 |
 | not_final_outcomes_timing_geography_recall_blocked | 2 |
@@ -763,6 +771,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_health_access_policy_ready_fail_closed | 1 |
 | mwi2004_access_cost_barrier_verified_with_documented_exclusions | 1 |
 | mwi2004_missing_units_recall_skip_verified | 1 |
+| mwi2004_promoted_household_climate_dataset_ready | 1 |
 | receipt_checklist_needs_review | 1 |
 | credentialed_workbench_needs_review | 1 |
 | official_file_receipt_needs_review | 1 |
@@ -770,7 +779,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | minimum_batch_intake_needs_review | 1 |
 | credentialed_download_required_no_public_raw_route | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
-| closed_no_promoted_rows | 1 |
+| blocked_fail_closed | 1 |
+| packet_candidates_ready_for_data_write | 1 |
+| open_registry_has_promoted_rows | 1 |
 | raw_archives_available_requires_value_verification | 1 |
 | raw_value_summary_available_manual_review_required | 1 |
 | temp_candidate_timing_geography_observed_outcome_semantics_pending | 1 |
@@ -877,7 +888,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 714 |
+| present_nonempty | 719 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

@@ -207,7 +207,7 @@ def build_registry_rows(
                 "local_target_folder": clean(wave.get("local_target_folder")),
                 "rows": "0" if not analysis_ready else clean(packet.get("promoted_rows")) or "0",
                 "outcome_ready_status": "outcome_ready_financial_and_access" if financial_ready and access_ready else "blocked_raw_value_verification_required",
-                "sdg382_ready_status": "ready_sdg382" if financial_ready and analysis_ready else "blocked_poverty_line_ppp_cpi_discretionary_budget_not_verified",
+                "sdg382_ready_status": "blocked_poverty_line_ppp_cpi_discretionary_budget_not_verified",
                 "che10_che25_ready_status": "ready_che10_che25" if financial_ready else "blocked_consumption_oop_units_recall_not_verified",
                 "access_forgone_care_ready_status": "ready_access_forgone_care" if access_ready else "blocked_health_need_care_access_values_not_verified",
                 "climate_linkage_ready_status": "accepted_chirps_or_era5_route" if climate_ready else "blocked_timing_geography_or_chirps_era5_route_not_verified",

@@ -331,6 +331,9 @@ REQUIRED_SCRIPTS = [
     "151_refresh_refocused_promoted_country_wave_registry.py",
     "167_build_mwi2004_access_person_key_resolution_policy.py",
     "168_build_mwi2004_missing_units_recall_skip_policy.py",
+    "169_build_mwi2004_chirps_admin2_route_policy.py",
+    "170_extract_mwi2004_chirps_admin2_exposures.py",
+    "171_build_mwi2004_promoted_household_climate_dataset.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -853,6 +856,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_country_wave_promotion_packet_gate_matrix": row_count(TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_gate_matrix.csv"),
         "priority_lsms_isa_country_wave_promotion_packet_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_action_queue.csv"),
         "priority_lsms_isa_country_wave_promotion_packet_summary": row_count(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv"),
+        "mwi2004_promoted_household_climate_dataset_summary": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv"),
+        "mwi2004_promoted_household_climate_dataset_dictionary": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_dictionary.csv"),
+        "mwi2004_promoted_household_climate_dataset_validation": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_validation.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -5338,7 +5344,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     priority_lsms_packet_gate_ok = (
         counts["priority_lsms_isa_country_wave_promotion_packet_index"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and counts["priority_lsms_isa_country_wave_promotion_packet_gate_matrix"] >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 19
-        and counts["priority_lsms_isa_country_wave_promotion_packet_action_queue"] >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and counts["priority_lsms_isa_country_wave_promotion_packet_action_queue"] >= counts["priority_lsms_isa_refocused_acquisition_queue"] - max(priority_lsms_packet_analysis_ready, 0)
         and counts["priority_lsms_isa_country_wave_promotion_packet_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_country_wave_promotion_packets.md")
         and priority_lsms_packet_rows >= counts["priority_lsms_isa_refocused_acquisition_queue"]
@@ -5350,16 +5356,16 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_packet_public_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and priority_lsms_packet_variable_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and 0 <= priority_lsms_packet_raw_ready <= priority_lsms_packet_rows
-        and 0 <= priority_lsms_packet_raw_verified <= priority_lsms_packet_rows
-        and 0 <= priority_lsms_packet_financial_ready <= priority_lsms_packet_rows
-        and 0 <= priority_lsms_packet_access_ready <= priority_lsms_packet_rows
-        and 0 <= priority_lsms_packet_climate_ready <= priority_lsms_packet_rows
-        and priority_lsms_packet_synthesis_ready == 0
-        and priority_lsms_packet_analysis_ready == 0
-        and priority_lsms_packet_actions >= counts["priority_lsms_isa_refocused_acquisition_queue"]
+        and 1 <= priority_lsms_packet_raw_verified <= priority_lsms_packet_rows
+        and 1 <= priority_lsms_packet_financial_ready <= priority_lsms_packet_rows
+        and 1 <= priority_lsms_packet_access_ready <= priority_lsms_packet_rows
+        and 1 <= priority_lsms_packet_climate_ready <= priority_lsms_packet_rows
+        and 1 <= priority_lsms_packet_synthesis_ready <= priority_lsms_packet_rows
+        and 1 <= priority_lsms_packet_analysis_ready <= priority_lsms_packet_rows
+        and priority_lsms_packet_actions >= counts["priority_lsms_isa_refocused_acquisition_queue"] - priority_lsms_packet_analysis_ready
         and priority_lsms_packet_reports >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and priority_lsms_packet_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
-        and priority_lsms_packet_data_write == "blocked_no_promoted_rows"
+        and priority_lsms_packet_data_write == "open_registry_has_promoted_rows"
         and priority_lsms_packet_modeling_gate == "blocked"
     )
     add(
@@ -5369,6 +5375,29 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_packet_gate_ok),
         f"index_rows={counts['priority_lsms_isa_country_wave_promotion_packet_index']}; gate_rows={counts['priority_lsms_isa_country_wave_promotion_packet_gate_matrix']}; action_rows={counts['priority_lsms_isa_country_wave_promotion_packet_action_queue']}; summary_rows={counts['priority_lsms_isa_country_wave_promotion_packet_summary']}; reported_packets={priority_lsms_packet_rows}; core_rows={priority_lsms_packet_core_rows}; backup_rows={priority_lsms_packet_backup_rows}; reported_gate_rows={priority_lsms_packet_gate_rows}; passed_gates={priority_lsms_packet_passed_gates}; failed_gates={priority_lsms_packet_failed_gates}; public_ready={priority_lsms_packet_public_ready}; variable_ready={priority_lsms_packet_variable_ready}; raw_ready={priority_lsms_packet_raw_ready}; raw_verified={priority_lsms_packet_raw_verified}; financial_ready={priority_lsms_packet_financial_ready}; access_ready={priority_lsms_packet_access_ready}; climate_ready={priority_lsms_packet_climate_ready}; synthesis_ready={priority_lsms_packet_synthesis_ready}; analysis_ready={priority_lsms_packet_analysis_ready}; actions={priority_lsms_packet_actions}; reports={priority_lsms_packet_reports}; handoffs={priority_lsms_packet_handoffs}; data_write={priority_lsms_packet_data_write}; modeling_gate={priority_lsms_packet_modeling_gate}",
         "" if priority_lsms_packet_gate_ok else "Run script/148_build_priority_lsms_isa_country_wave_promotion_packets.py after LSMS/ISA documentation, variable evidence, raw intake, and archive preflight gates.",
+    )
+    mwi2004_promoted_summary = read_csv_dicts(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv")
+    mwi2004_promoted_validation = read_csv_dicts(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_validation.csv")
+    mwi2004_promoted_status = next((row.get("value", "") for row in mwi2004_promoted_summary if row.get("metric") == "analysis_ready_status"), "")
+    mwi2004_promoted_rows = safe_int(next((row.get("value", "0") for row in mwi2004_promoted_summary if row.get("metric") == "promoted_rows"), "0"), 0)
+    mwi2004_promoted_validation_fail = sum(1 for row in mwi2004_promoted_validation if row.get("status") != "pass")
+    mwi2004_promoted_ok = (
+        counts["mwi2004_promoted_household_climate_dataset_summary"] > 0
+        and counts["mwi2004_promoted_household_climate_dataset_dictionary"] >= 30
+        and counts["mwi2004_promoted_household_climate_dataset_validation"] > 0
+        and file_ok(REPORT_DIR / "mwi2004_promoted_household_climate_dataset.md")
+        and file_ok(DATA_DIR / "mwi2004_household_climate_analysis.csv")
+        and mwi2004_promoted_status == "promoted_analysis_ready"
+        and mwi2004_promoted_rows > 0
+        and mwi2004_promoted_validation_fail == 0
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Malawi 2004 promoted household-climate dataset has verified financial, access, and CHIRPS ADM2 exposure joins",
+        status(mwi2004_promoted_ok),
+        f"summary_rows={counts['mwi2004_promoted_household_climate_dataset_summary']}; dictionary_rows={counts['mwi2004_promoted_household_climate_dataset_dictionary']}; validation_rows={counts['mwi2004_promoted_household_climate_dataset_validation']}; status={mwi2004_promoted_status}; rows={mwi2004_promoted_rows}; validation_fail={mwi2004_promoted_validation_fail}; data_exists={(DATA_DIR / 'mwi2004_household_climate_analysis.csv').exists()}",
+        "" if mwi2004_promoted_ok else "Run script/171_build_mwi2004_promoted_household_climate_dataset.py after Malawi financial/access/missing-unit and CHIRPS gates pass.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

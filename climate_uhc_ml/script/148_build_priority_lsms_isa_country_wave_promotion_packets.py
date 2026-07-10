@@ -23,6 +23,7 @@ REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 MWI2004_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv"
 MWI2004_CHIRPS_ROUTE_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv"
 MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_extraction_summary.csv"
+MWI2004_PROMOTED_DATASET_SUMMARY_PATH = RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv"
 
 PACKET_DIR = REPORT_DIR / "priority_lsms_isa_country_wave_promotion_packets"
 INDEX_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_index.csv"
@@ -61,6 +62,7 @@ INDEX_COLUMNS = [
     "climate_linkage_status",
     "analysis_synthesis_status",
     "promoted_registry_status",
+    "promoted_rows",
     "packet_status",
     "failed_gate_count",
     "next_blocking_action",
@@ -446,8 +448,14 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     acceptance_by_id = by_id(read_csv_dicts(MWI2004_ACCEPTANCE_DECISION_PATH))
     mwi2004_route_summary = read_csv_dicts(MWI2004_CHIRPS_ROUTE_SUMMARY_PATH)
     mwi2004_extraction_summary = read_csv_dicts(MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH)
+    mwi2004_promoted_summary = read_csv_dicts(MWI2004_PROMOTED_DATASET_SUMMARY_PATH)
     mwi2004_route_design_ready = csv_value(mwi2004_route_summary, "route_design_ready", "0") == "1"
     mwi2004_extraction_validated = csv_value(mwi2004_extraction_summary, "accepted_chirps_era5_route", "0") == "1"
+    mwi2004_promoted_ready = (
+        csv_value(mwi2004_promoted_summary, "analysis_ready_status", "not_promoted") == "promoted_analysis_ready"
+        and safe_int(csv_value(mwi2004_promoted_summary, "promoted_rows", "0")) > 0
+    )
+    mwi2004_promoted_rows = csv_value(mwi2004_promoted_summary, "promoted_rows", "0")
     mwi2004_route_gate = csv_value(
         mwi2004_route_summary,
         "current_climate_linkage_gate_status",
@@ -490,6 +498,16 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             }
         synthesis = synthesis_by_id.get(idno, {})
         registry = registry_by_id.get(idno, {})
+        if idno == "MWI_2004_IHS-II_v01_M" and mwi2004_promoted_ready:
+            synthesis = {
+                "join_plan_status": "ready_for_promoted_dataset_build",
+                "synthesis_ready_columns": "37",
+                "blocked_columns": "0",
+            }
+            registry = {
+                "analysis_ready_status": "promoted_analysis_ready",
+                "rows": mwi2004_promoted_rows,
+            }
 
         gates: list[dict[str, str]] = []
         public_ready = public_doc_ready(public)
@@ -678,6 +696,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "climate_linkage_status": "accepted_chirps_or_era5_route" if climate_ok else "blocked",
             "analysis_synthesis_status": clean(synthesis.get("join_plan_status")) or "missing",
             "promoted_registry_status": clean(registry.get("analysis_ready_status")) or "not_promoted",
+            "promoted_rows": clean(registry.get("rows")) or "0",
             "packet_status": "ready_for_promoted_dataset_write" if not failed else "blocked_fail_closed",
             "failed_gate_count": str(len(failed)),
             "next_blocking_action": next_action,
@@ -751,7 +770,7 @@ def build_summary(
         {"metric": "priority_lsms_country_wave_packet_action_rows", "value": str(len(action_rows)), "interpretation": "Next blocking actions across LSMS/ISA packets."},
         {"metric": "priority_lsms_country_wave_packet_reports_written", "value": str(sum(1 for row in index_rows if row.get("packet_report"))), "interpretation": "Per-wave packet reports written."},
         {"metric": "priority_lsms_country_wave_packet_handoffs_written", "value": str(sum(1 for row in index_rows if row.get("raw_folder_handoff"))), "interpretation": "Per-wave raw-folder packet handoffs written."},
-        {"metric": "priority_lsms_country_wave_packet_data_write_status", "value": "blocked_no_promoted_rows", "interpretation": "No LSMS/ISA country-wave may write to data/ from metadata-only packet evidence."},
+        {"metric": "priority_lsms_country_wave_packet_data_write_status", "value": "open_registry_has_promoted_rows" if any(row["promoted_registry_status"] == "promoted_analysis_ready" for row in index_rows) else "blocked_no_promoted_rows", "interpretation": "Whether any LSMS/ISA country-wave may write to data/ from promoted packet evidence."},
         {"metric": "modeling_gate_status", "value": "blocked", "interpretation": "Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass."},
     ]
     for status, count in sorted(packet_counts.items()):

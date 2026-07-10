@@ -8,11 +8,11 @@ Official get-microdata URL: https://microdata.worldbank.org/catalog/2307/get-mic
 
 Target raw folder: `temp/raw_downloads/MWI_2004_IHS-II_v01_M/`
 
-Current packet status: `blocked_fail_closed`
+Current packet status: `ready_for_promoted_dataset_write`
 
-Analysis-ready status: `not_promoted`
+Analysis-ready status: `promoted_analysis_ready`
 
-Next blocking action: `complete_analysis_dataset_synthesis_join_review`
+Next blocking action: `ready_for_promoted_dataset_write`
 
 ## Gate Matrix
 
@@ -35,8 +35,8 @@ Next blocking action: `complete_analysis_dataset_synthesis_join_review`
 | access_forgone_care_inputs_ready | pass | requires verified illness/need, care-seeking, and access-barrier raw variables. |  |
 | timing_geography_ready_for_climate | pass | requires verified survey timing and GPS/cluster/EA/admin geography. |  |
 | accepted_chirps_or_era5_linkage_route | pass | accepted_route=accepted_chirps_admin2_extraction_validated; current_gate=accepted_chirps_admin2_extraction_validated;... |  |
-| analysis_dataset_synthesis_ready | fail | join_status=missing; ready_columns=0; blocked_columns=0 | Complete promoted household-climate schema and join review. |
-| promoted_registry_write_gate | fail | registry_analysis_ready=not_promoted; rows=0 | Write to data/ only when the promoted registry marks this country-wave as analysis-ready with nonzero rows. |
+| analysis_dataset_synthesis_ready | pass | join_status=ready_for_promoted_dataset_build; ready_columns=37; blocked_columns=0 |  |
+| promoted_registry_write_gate | pass | registry_analysis_ready=promoted_analysis_ready; rows=11280 |  |
 
 ## Requirement Variable Evidence
 
@@ -139,4 +139,4 @@ write this country-wave into `data/` until the complete original raw package,
 all raw value/key/unit/skip-pattern checks, outcome gates, and an accepted
 CHIRPS or ERA5 linkage route pass.
 
-Failed gates currently blocking promotion: 2.
+Failed gates currently blocking promotion: 0.

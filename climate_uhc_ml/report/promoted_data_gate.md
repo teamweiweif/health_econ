@@ -10,18 +10,19 @@ other pre-promotion outputs belong in `temp/`, not in `data/`.
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| registry_promoted_analysis_ready_rows | 0 | Country-waves currently allowed to write promoted datasets into data/. |
-| data_dataset_files_before_gate | 0 | Dataset-like files found in data/ before enforcing the gate. |
-| data_dataset_files_after_gate | 0 | Dataset-like files left in data/ after enforcing the gate. |
+| registry_promoted_analysis_ready_rows | 1 | Country-waves currently allowed to write promoted datasets into data/. |
+| data_dataset_files_before_gate | 1 | Dataset-like files found in data/ before enforcing the gate. |
+| data_dataset_files_after_gate | 1 | Dataset-like files left in data/ after enforcing the gate. |
 | quarantined_diagnostic_data_files | 0 | Pre-promotion data files preserved under temp/diagnostic_data_quarantine/current/ and removed from data/. |
 | current_diagnostic_quarantine_files | 4 | Diagnostic or pre-promotion dataset files currently indexed under temp/diagnostic_data_quarantine/current/. |
 | data_readme_written | 1 | Whether data/README.md records the current promoted-data status. |
-| promoted_data_gate_status | closed_no_promoted_rows | Current write gate status for promoted data outputs. |
+| promoted_data_gate_status | open_registry_has_promoted_rows | Current write gate status for promoted data outputs. |
 
 ## Data File Actions
 
 | Original path | Action | Quarantine path | Reason |
 |---|---|---|---|
+| data/mwi2004_household_climate_analysis.csv | kept_registry_has_promoted_rows |  | Registry has promoted rows; downstream promoted-data builder must maintain file-level lineage. |
 | data/climate_exposures_nasa_power.csv | already_quarantined | temp/diagnostic_data_quarantine/current/climate_exposures_nasa_power.csv | Diagnostic or pre-promotion dataset file is preserved in temp/ and not present in data/. |
 | data/climate_linked_household.csv | already_quarantined | temp/diagnostic_data_quarantine/current/climate_linked_household.csv | Diagnostic or pre-promotion dataset file is preserved in temp/ and not present in data/. |
 | data/harmonized_household.csv | already_quarantined | temp/diagnostic_data_quarantine/current/harmonized_household.csv | Diagnostic or pre-promotion dataset file is preserved in temp/ and not present in data/. |

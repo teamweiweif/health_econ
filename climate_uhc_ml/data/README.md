@@ -6,9 +6,9 @@ Status: dataset-promotion gate enforced.
 raw package present, value/unit/recall/missing-code verification complete,
 financial/access outcome gates resolved, and accepted climate linkage ready.
 
-Current promoted rows in `result/promoted_country_wave_registry.csv`: 0
+Current promoted rows in `result/promoted_country_wave_registry.csv`: 1
 
-Current promoted dataset files kept in `data/`: 0
+Current promoted dataset files kept in `data/`: 1
 
 Diagnostic or pre-promotion files quarantined this run: 0
 
