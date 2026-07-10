@@ -79,15 +79,17 @@ data gates.
    - Target-scope lock showing 6 countries, 11 target waves, 1 promoted Malawi anchor, and 10 official raw packages still required.
 32. `report/priority_lsms_isa_acquisition_route_decision.md`
    - Per-wave acquisition route decision showing that all 10 download-required waves currently require browser/manual World Bank terms acceptance and local file placement.
-33. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
+33. `report/priority_lsms_isa_scoped_incoming_package_router.md`
+   - Current 10-wave incoming-package router for files dropped into `temp/raw_downloads/_incoming/`.
+34. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
    - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
-34. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
+35. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
    - World Bank PPP/CPI candidate source ledger for Malawi 2004; the final CPI/base-period bridge remains unaccepted.
-35. `report/mwi2004_sdg382_candidate_classification_precheck.md`
+36. `report/mwi2004_sdg382_candidate_classification_precheck.md`
    - Aggregate-only candidate SDG 3.8.2 denominator/classification stress test; not promoted data.
-36. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
+37. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
    - Official UNSD nonpositive-discretionary-budget rule audit; rule accepted, final Malawi SPL bridge still blocked.
-37. `report/mwi2004_requirement_acceptance_decisions.md`
+38. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -149,12 +151,15 @@ If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
 
 ```bash
+python script/202_build_priority_lsms_isa_scoped_incoming_package_router.py
 python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 ```
 
-Then review `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv`. The
-router only writes suggested copy commands; it does not move, delete, extract,
-or promote files.
+Then review `result/priority_lsms_isa_scoped_incoming_package_router.csv` for
+the current locked 10-wave scope, and
+`temp/priority_lsms_isa_incoming_raw_package_route_plan.csv` for the broader
+legacy queue. The routers only write suggested copy commands; they do not move,
+delete, extract, or promote files.
 
 If a logged-in World Bank Microdata browser session has accepted the required
 terms, put a cookie export or raw `Cookie:` header in

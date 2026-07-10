@@ -187,6 +187,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_acquisition_to_promotion_handoff.md",
     "priority_lsms_isa_dataset_scope_lock.md",
     "priority_lsms_isa_acquisition_route_decision.md",
+    "priority_lsms_isa_scoped_incoming_package_router.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -394,6 +395,7 @@ REQUIRED_SCRIPTS = [
     "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
     "200_build_priority_lsms_isa_dataset_scope_lock.py",
     "201_build_priority_lsms_isa_acquisition_route_decision.py",
+    "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -432,6 +434,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
     "200_build_priority_lsms_isa_dataset_scope_lock.py",
     "201_build_priority_lsms_isa_acquisition_route_decision.py",
+    "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1052,6 +1055,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_acquisition_route_decision": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision.csv"),
         "priority_lsms_isa_acquisition_route_evidence": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_route_evidence.csv"),
         "priority_lsms_isa_acquisition_route_decision_summary": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv"),
+        "priority_lsms_isa_scoped_incoming_package_router": row_count(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router.csv"),
+        "priority_lsms_isa_scoped_incoming_package_router_evidence": row_count(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_evidence.csv"),
+        "priority_lsms_isa_scoped_incoming_package_router_summary": row_count(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6334,6 +6340,42 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_acquisition_route_gate_ok),
         f"route_rows={priority_lsms_acquisition_route_rows}; countries={priority_lsms_acquisition_route_countries}; priority_rows={priority_lsms_acquisition_route_priority_rows}; sixth_country_rows={priority_lsms_acquisition_route_sixth_rows}; local_files={priority_lsms_acquisition_route_local_files}; public_raw_candidates={priority_lsms_acquisition_route_public_raw}; credentialed_probe_ready={priority_lsms_acquisition_route_probe_ready}; browser_manual_required={priority_lsms_acquisition_route_browser_manual}; access_gate_rows={priority_lsms_acquisition_route_access_gate}; expected_core_files={priority_lsms_acquisition_route_core_rows}; data_write={priority_lsms_acquisition_route_data_write}; modeling_gate={priority_lsms_acquisition_route_modeling}",
         "" if priority_lsms_acquisition_route_gate_ok else "Run script/201_build_priority_lsms_isa_acquisition_route_decision.py after endpoint, session, browser starter, scope lock, and unlock-board artifacts are current.",
+    )
+    priority_lsms_scoped_incoming_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv")
+    priority_lsms_scoped_incoming_targets = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_target_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_country_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_priority_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_priority_country_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_sixth_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_sixth_country_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_files = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_incoming_file_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_evidence = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_candidate_evidence_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_core_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_expected_core_file_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_copy = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_copy_candidate_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_pending = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_pending_drop_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_manual = safe_int(next((row.get("value", "0") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "scoped_incoming_router_manual_review_rows"), "0"), 0)
+    priority_lsms_scoped_incoming_data_write = next((row.get("value", "") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_scoped_incoming_modeling = next((row.get("value", "") for row in priority_lsms_scoped_incoming_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_scoped_incoming_gate_ok = (
+        counts["priority_lsms_isa_scoped_incoming_package_router"] == priority_lsms_scoped_incoming_targets
+        and counts["priority_lsms_isa_scoped_incoming_package_router_evidence"] == priority_lsms_scoped_incoming_evidence
+        and counts["priority_lsms_isa_scoped_incoming_package_router_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_scoped_incoming_package_router.md")
+        and priority_lsms_scoped_incoming_targets == 10
+        and priority_lsms_scoped_incoming_countries == 5
+        and priority_lsms_scoped_incoming_priority_rows == 9
+        and priority_lsms_scoped_incoming_sixth_rows == 1
+        and priority_lsms_scoped_incoming_core_rows == 323
+        and priority_lsms_scoped_incoming_copy + priority_lsms_scoped_incoming_pending + priority_lsms_scoped_incoming_manual == priority_lsms_scoped_incoming_targets
+        and (priority_lsms_scoped_incoming_files > 0 or priority_lsms_scoped_incoming_pending == 10)
+        and priority_lsms_scoped_incoming_data_write == "blocked_no_data_write"
+        and priority_lsms_scoped_incoming_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA scoped incoming package router maps _incoming files only to the 10 locked download-required waves",
+        status(priority_lsms_scoped_incoming_gate_ok),
+        f"targets={priority_lsms_scoped_incoming_targets}; countries={priority_lsms_scoped_incoming_countries}; priority_rows={priority_lsms_scoped_incoming_priority_rows}; sixth_country_rows={priority_lsms_scoped_incoming_sixth_rows}; incoming_files={priority_lsms_scoped_incoming_files}; evidence_rows={priority_lsms_scoped_incoming_evidence}; expected_core_files={priority_lsms_scoped_incoming_core_rows}; copy_candidates={priority_lsms_scoped_incoming_copy}; pending_drop={priority_lsms_scoped_incoming_pending}; manual_review={priority_lsms_scoped_incoming_manual}; data_write={priority_lsms_scoped_incoming_data_write}; modeling_gate={priority_lsms_scoped_incoming_modeling}",
+        "" if priority_lsms_scoped_incoming_gate_ok else "Run script/202_build_priority_lsms_isa_scoped_incoming_package_router.py after acquisition route decision is current and any incoming files are placed.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

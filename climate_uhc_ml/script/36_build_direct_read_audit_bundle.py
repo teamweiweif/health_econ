@@ -345,6 +345,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/priority_lsms_isa_acquisition_route_decision.csv", "priority LSMS/ISA acquisition route decision rows"),
     ("dataset_promotion", "result/priority_lsms_isa_acquisition_route_evidence.csv", "priority LSMS/ISA acquisition route evidence rows"),
     ("dataset_promotion", "result/priority_lsms_isa_acquisition_route_decision_summary.csv", "priority LSMS/ISA acquisition route decision summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_scoped_incoming_package_router.md", "priority LSMS/ISA scoped incoming package router report"),
+    ("dataset_promotion", "result/priority_lsms_isa_scoped_incoming_package_router.csv", "priority LSMS/ISA scoped incoming package router rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_scoped_incoming_package_router_evidence.csv", "priority LSMS/ISA scoped incoming package router evidence rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_scoped_incoming_package_router_summary.csv", "priority LSMS/ISA scoped incoming package router summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -798,6 +802,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py", "priority LSMS/ISA acquisition-to-promotion handoff generator"),
     ("reproducibility", "script/200_build_priority_lsms_isa_dataset_scope_lock.py", "priority LSMS/ISA dataset scope lock generator"),
     ("reproducibility", "script/201_build_priority_lsms_isa_acquisition_route_decision.py", "priority LSMS/ISA acquisition route decision generator"),
+    ("reproducibility", "script/202_build_priority_lsms_isa_scoped_incoming_package_router.py", "priority LSMS/ISA scoped incoming package router generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1069,6 +1074,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff_summary.csv")
     priority_lsms_scope_lock_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_summary.csv")
     priority_lsms_acquisition_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv")
+    priority_lsms_scoped_incoming_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2049,6 +2055,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     add_bundle(
         rows,
         "priority_bundle",
+        "priority_lsms_isa_scoped_incoming_package_router",
+        "waiting_for_incoming_packages"
+        if csv_value(priority_lsms_scoped_incoming_summary, "scoped_incoming_router_target_rows", "0") == "10"
+        and csv_value(priority_lsms_scoped_incoming_summary, "scoped_incoming_router_pending_drop_rows", "0") == "10"
+        and csv_value(priority_lsms_scoped_incoming_summary, "modeling_gate_status", "missing") == "blocked"
+        else "scoped_incoming_router_needs_review",
+        f"targets={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_target_rows', '0')}; countries={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_country_rows', '0')}; incoming_files={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_incoming_file_rows', '0')}; evidence_rows={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_candidate_evidence_rows', '0')}; expected_core_files={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_expected_core_file_rows', '0')}; copy_candidates={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_copy_candidate_rows', '0')}; pending_drop={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_pending_drop_rows', '0')}; manual_review={csv_value(priority_lsms_scoped_incoming_summary, 'scoped_incoming_router_manual_review_rows', '0')}; modeling_gate={csv_value(priority_lsms_scoped_incoming_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router.csv", RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_evidence.csv", RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv", REPORT_DIR / "priority_lsms_isa_scoped_incoming_package_router.md"],
+        "Scoped incoming package router maps files dropped into temp/raw_downloads/_incoming to the 10 locked download-required waves, without moving raw files or opening data writes.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
         "priority_analysis_dataset_synthesis_blueprint",
         "blocked_required_schema_columns_not_verified" if csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0") == "0" else "synthesis_join_candidates_ready",
         f"schema_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_schema_rows', '0')}; required_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_required_rows', '0')}; ready_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_ready_required_rows', '0')}; blocked_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_blocked_required_rows', '0')}; join_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_plan_rows', '0')}; join_ready={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_ready_rows', '0')}; candidate_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_candidate_variable_rows', '0')}; manual_verified_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_manual_verified_variable_rows', '0')}",
@@ -3005,6 +3024,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff_summary.csv")
     priority_lsms_scope_lock_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_summary.csv")
     priority_lsms_acquisition_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv")
+    priority_lsms_scoped_incoming_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3198,6 +3218,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_acquisition_route_decision_public_raw_candidate_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_public_raw_candidate_rows", "0"), "interpretation": "Download-required waves with public raw-route candidate evidence requiring terms review."},
         {"metric": "priority_lsms_isa_acquisition_route_decision_credentialed_probe_ready_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_credentialed_probe_ready_rows", "0"), "interpretation": "Download-required waves with local redacted session material available for credentialed probing."},
         {"metric": "priority_lsms_isa_acquisition_route_decision_browser_manual_required_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_browser_manual_required_rows", "0"), "interpretation": "Download-required waves currently requiring browser/manual World Bank terms acceptance."},
+        {"metric": "priority_lsms_isa_scoped_incoming_router_targets", "value": csv_value(priority_lsms_scoped_incoming_summary, "scoped_incoming_router_target_rows", "0"), "interpretation": "Locked download-required waves covered by the scoped incoming router."},
+        {"metric": "priority_lsms_isa_scoped_incoming_router_incoming_files", "value": csv_value(priority_lsms_scoped_incoming_summary, "scoped_incoming_router_incoming_file_rows", "0"), "interpretation": "Files currently staged under temp/raw_downloads/_incoming for the scoped router."},
+        {"metric": "priority_lsms_isa_scoped_incoming_router_pending_drop_rows", "value": csv_value(priority_lsms_scoped_incoming_summary, "scoped_incoming_router_pending_drop_rows", "0"), "interpretation": "Scoped target waves still waiting for an incoming package drop."},
+        {"metric": "priority_lsms_isa_scoped_incoming_router_copy_candidates", "value": csv_value(priority_lsms_scoped_incoming_summary, "scoped_incoming_router_copy_candidate_rows", "0"), "interpretation": "Scoped target waves with a suggested incoming file to copy after review."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},

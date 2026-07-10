@@ -1,0 +1,14 @@
+﻿metric,value,interpretation
+scoped_incoming_router_target_rows,10,Download-required waves from the locked 10-wave route decision scope.
+scoped_incoming_router_country_rows,5,Countries covered by the scoped incoming router.
+scoped_incoming_router_priority_country_rows,9,"Rows from Ethiopia, Nigeria, Malawi, Tanzania, or Uganda."
+scoped_incoming_router_sixth_country_rows,1,Rows supplying the sixth country.
+scoped_incoming_router_incoming_file_rows,0,Files currently staged under temp/raw_downloads/_incoming.
+scoped_incoming_router_candidate_evidence_rows,10,"Incoming-package evidence rows, including fail-closed waiting rows."
+scoped_incoming_router_expected_core_file_rows,323,Expected core-file checks across the 10 target waves.
+scoped_incoming_router_copy_candidate_rows,0,Targets with a single suggested incoming file to copy after review.
+scoped_incoming_router_pending_drop_rows,10,Targets still waiting for an incoming package drop.
+scoped_incoming_router_manual_review_rows,0,Targets requiring manual route review.
+data_write_gate_status,blocked_no_data_write,The router only writes manifests and reports.
+modeling_gate_status,blocked,No modeling is opened by incoming package routing.
+scoped_incoming_router_status_waiting_for_incoming_package,10,Scoped incoming router route status count.
