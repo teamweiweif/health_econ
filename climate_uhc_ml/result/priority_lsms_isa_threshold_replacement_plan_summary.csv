@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+priority_lsms_replacement_backup_candidate_rows,8,Backup country-waves available after the current minimum batch.
+priority_lsms_replacement_scenario_rows,10,Single minimum-batch failure scenarios evaluated.
+priority_lsms_replacement_strategy_rows,3,Download-batch strategy rows evaluated.
+priority_lsms_replacement_required_for_threshold_rows,2,Failure scenarios where a replacement is required to keep 6 countries and 10 waves.
+priority_lsms_replacement_optional_buffer_rows,8,Failure scenarios where thresholds still pass but the one-wave buffer is lost.
+priority_lsms_replacement_priority_country_backup_rows,6,Backup rows from the priority country set.
+priority_lsms_replacement_new_country_backup_rows,2,Backup rows that can add a new country for the 6-country threshold.
+priority_lsms_replacement_strict_priority_countries,5,Countries covered if Nepal and all other non-priority countries are excluded.
+priority_lsms_replacement_strict_priority_waves,10,Country-waves covered if Nepal and all other non-priority countries are excluded.
+priority_lsms_replacement_current_minimum_countries,6,Countries covered by the current minimum batch if all rows pass.
+priority_lsms_replacement_current_minimum_waves,11,Country-waves covered by the current minimum batch if all rows pass.
+priority_lsms_replacement_top_selected_replacement_ids,MWI_2019_IHS-V_v06_M:8;UGA_2011_UNPS_v02_M:1;JAM_1997_SLC_v01_M:1,Replacement IDs selected across single-failure scenarios.
+priority_lsms_replacement_data_write_status,blocked_no_data_write,Replacement planning never writes promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

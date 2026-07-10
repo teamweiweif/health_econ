@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,180,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,792,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,788,Curated artifacts present and non-empty.
+bundle_rows,181,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,798,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,794,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -580,7 +580,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,71,Direct-read bundle section count.
+bundle_section_priority_bundle,72,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -730,5 +730,6 @@ bundle_status_temp_candidate_not_analysis_ready,2,Direct-read bundle status coun
 bundle_status_temp_candidate_timing_geography_observed_outcome_semantics_pending,1,Direct-read bundle status count.
 bundle_status_threshold_campaign_ready_raw_missing,1,Direct-read bundle status count.
 bundle_status_threshold_gap_control_panel_current,1,Direct-read bundle status count.
+bundle_status_threshold_replacement_plan_current,1,Direct-read bundle status count.
 bundle_status_threshold_sequence_needs_review,1,Direct-read bundle status count.
 bundle_status_workbook_needs_review,1,Direct-read bundle status count.

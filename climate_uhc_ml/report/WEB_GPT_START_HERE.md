@@ -53,9 +53,11 @@ data gates.
    - Requirement, file, and variable raw-value review queue for the 10 manual packets.
 19. `report/priority_lsms_isa_target_folder_receipt_smoke_test.md`
    - Non-destructive smoke test showing whether target folders contain candidate raw files ready for receipt validation.
-20. `report/priority_lsms_isa_country_wave_promotion_packets/`
+20. `report/priority_lsms_isa_threshold_replacement_plan.md`
+   - Replacement plan explaining the sixth-country need and backup order if a minimum-batch package fails.
+21. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-21. `report/mwi2004_requirement_acceptance_decisions.md`
+22. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -105,6 +107,7 @@ resume, read:
 - `report/priority_lsms_isa_local_target_readmes.md`
 - `report/priority_lsms_isa_minimum_batch_raw_value_queue.md`
 - `report/priority_lsms_isa_target_folder_receipt_smoke_test.md`
+- `report/priority_lsms_isa_threshold_replacement_plan.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -160,6 +163,12 @@ To smoke-test known target folders before receipt/schema/value validation, run:
 
 ```bash
 python script/185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py
+```
+
+To refresh the threshold replacement and backup plan, run:
+
+```bash
+python script/186_build_priority_lsms_isa_threshold_replacement_plan.py
 ```
 
 ## Excluded From GitHub

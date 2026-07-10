@@ -283,6 +283,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_target_folder_receipt_status.csv", "priority LSMS/ISA target-folder receipt status"),
     ("dataset_promotion", "temp/priority_lsms_isa_target_folder_receipt_file_inventory.csv", "priority LSMS/ISA target-folder receipt file inventory"),
     ("dataset_promotion", "result/priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv", "priority LSMS/ISA target-folder receipt smoke-test summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_threshold_replacement_plan.md", "priority LSMS/ISA threshold replacement plan report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_threshold_replacement_candidate_rank.csv", "priority LSMS/ISA threshold replacement candidate rank"),
+    ("dataset_promotion", "temp/priority_lsms_isa_threshold_replacement_scenarios.csv", "priority LSMS/ISA threshold replacement scenarios"),
+    ("dataset_promotion", "temp/priority_lsms_isa_threshold_replacement_strategy.csv", "priority LSMS/ISA threshold replacement strategy table"),
+    ("dataset_promotion", "result/priority_lsms_isa_threshold_replacement_plan_summary.csv", "priority LSMS/ISA threshold replacement plan summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -723,6 +728,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/183_build_priority_lsms_isa_local_target_readmes.py", "priority LSMS/ISA local target readme generator"),
     ("reproducibility", "script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py", "priority LSMS/ISA minimum-batch raw-value queue generator"),
     ("reproducibility", "script/185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py", "priority LSMS/ISA target-folder receipt smoke-test generator"),
+    ("reproducibility", "script/186_build_priority_lsms_isa_threshold_replacement_plan.py", "priority LSMS/ISA threshold replacement plan generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -978,6 +984,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_local_target_readme_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_target_readme_summary.csv")
     priority_lsms_minimum_batch_raw_value_queue_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv")
     priority_lsms_target_folder_smoke_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv")
+    priority_lsms_threshold_replacement_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_replacement_plan_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1745,6 +1752,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_dataset_rows', '0')}; target_folders_present={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_target_folders_present', '0')}; files={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_file_inventory_rows', '0')}; placeholders={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_placeholder_instruction_rows', '0')}; candidate_raw_files={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_candidate_raw_file_rows', '0')}; candidate_docs={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_candidate_documentation_file_rows', '0')}; ready_for_receipt={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_ready_for_receipt_validation_rows', '0')}; blocked_no_candidate_raw={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_blocked_no_candidate_raw_rows', '0')}; manual_review={csv_value(priority_lsms_target_folder_smoke_summary, 'priority_lsms_target_smoke_manual_review_rows', '0')}; modeling_gate={csv_value(priority_lsms_target_folder_smoke_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_target_folder_receipt_status.csv", TEMP_DIR / "priority_lsms_isa_target_folder_receipt_file_inventory.csv", RESULT_DIR / "priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv", REPORT_DIR / "priority_lsms_isa_target_folder_receipt_smoke_test.md"],
         "Target-folder receipt smoke test separates generated instructions from real candidate raw packages in the 10 minimum-batch folders before receipt/schema/value validation.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_threshold_replacement_plan",
+        "threshold_replacement_plan_current"
+        if csv_value(priority_lsms_threshold_replacement_summary, "priority_lsms_replacement_scenario_rows", "0") == "10"
+        and csv_value(priority_lsms_threshold_replacement_summary, "priority_lsms_replacement_data_write_status", "missing") == "blocked_no_data_write"
+        else "threshold_replacement_plan_needs_review",
+        f"backup_candidates={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_backup_candidate_rows', '0')}; scenarios={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_scenario_rows', '0')}; strategies={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_strategy_rows', '0')}; required_replacements={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_required_for_threshold_rows', '0')}; optional_buffers={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_optional_buffer_rows', '0')}; strict_priority_countries={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_strict_priority_countries', '0')}; strict_priority_waves={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_strict_priority_waves', '0')}; current_minimum_countries={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_current_minimum_countries', '0')}; current_minimum_waves={csv_value(priority_lsms_threshold_replacement_summary, 'priority_lsms_replacement_current_minimum_waves', '0')}; modeling_gate={csv_value(priority_lsms_threshold_replacement_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_threshold_replacement_candidate_rank.csv", TEMP_DIR / "priority_lsms_isa_threshold_replacement_scenarios.csv", TEMP_DIR / "priority_lsms_isa_threshold_replacement_strategy.csv", RESULT_DIR / "priority_lsms_isa_threshold_replacement_plan_summary.csv", REPORT_DIR / "priority_lsms_isa_threshold_replacement_plan.md"],
+        "Threshold replacement plan explains why Nepal is currently used as the sixth-country candidate and which backup wave should replace each single minimum-batch failure.",
     )
     add_bundle(
         rows,

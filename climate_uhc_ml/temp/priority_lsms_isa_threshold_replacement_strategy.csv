@@ -1,0 +1,4 @@
+﻿strategy,countries_if_all_pass,country_waves_if_all_pass,priority_country_rows,nonpriority_country_rows,country_threshold_status,wave_threshold_status,interpretation,data_write_gate_status,modeling_gate_status
+current_minimum_batch_all_passes,6,11,10,1,passes,passes,Current minimum batch reaches 6 countries and 11 waves only if Nepal is retained as the sixth-country candidate.,blocked_no_data_write,blocked
+strict_five_priority_countries_only,5,10,10,0,fails_short_by_1,passes,"Strictly using Ethiopia, Nigeria, Malawi, Tanzania, and Uganda reaches 10 waves but only 5 countries, so the 6-country modeling gate remains blocked.",blocked_no_data_write,blocked
+priority_countries_plus_first_sixth_country,6,11,10,1,passes,passes,Priority-country waves plus the first non-priority sixth-country candidate restore the 6-country threshold.,blocked_no_data_write,blocked
