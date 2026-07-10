@@ -185,6 +185,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_first_canary_runbook.md",
     "priority_lsms_isa_local_raw_presence_audit.md",
     "priority_lsms_isa_acquisition_to_promotion_handoff.md",
+    "priority_lsms_isa_dataset_scope_lock.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -390,6 +391,7 @@ REQUIRED_SCRIPTS = [
     "197_build_priority_lsms_isa_first_canary_runbook.py",
     "198_build_priority_lsms_isa_local_raw_presence_audit.py",
     "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
+    "200_build_priority_lsms_isa_dataset_scope_lock.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -426,6 +428,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "197_build_priority_lsms_isa_first_canary_runbook.py",
     "198_build_priority_lsms_isa_local_raw_presence_audit.py",
     "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
+    "200_build_priority_lsms_isa_dataset_scope_lock.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1040,6 +1043,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_acquisition_to_promotion_handoff": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff.csv"),
         "priority_lsms_isa_acquisition_to_promotion_gate_checklist": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_gate_checklist.csv"),
         "priority_lsms_isa_acquisition_to_promotion_handoff_summary": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff_summary.csv"),
+        "priority_lsms_isa_dataset_scope_lock": row_count(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock.csv"),
+        "priority_lsms_isa_dataset_scope_lock_gate_matrix": row_count(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_gate_matrix.csv"),
+        "priority_lsms_isa_dataset_scope_lock_summary": row_count(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6240,6 +6246,47 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_handoff_gate_ok),
         f"handoff_rows={priority_lsms_handoff_rows}; gate_rows={priority_lsms_handoff_gate_rows}; minimum_acquire={priority_lsms_handoff_minimum_acquire}; promoted_current={priority_lsms_handoff_promoted_current}; raw_validation_ready={priority_lsms_handoff_raw_validation_ready}; acquire_raw={priority_lsms_handoff_acquire_raw}; data_write={priority_lsms_handoff_data_write}; modeling_gate={priority_lsms_handoff_modeling}",
         "" if priority_lsms_handoff_gate_ok else "Run script/199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py after the local raw presence audit and manual execution board are current.",
+    )
+    priority_lsms_scope_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_summary.csv")
+    priority_lsms_scope_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_rows"), "0"), 0)
+    priority_lsms_scope_country_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_country_rows"), "0"), 0)
+    priority_lsms_scope_priority_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_priority_country_rows"), "0"), 0)
+    priority_lsms_scope_priority_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_priority_country_wave_rows"), "0"), 0)
+    priority_lsms_scope_nonpriority_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_nonpriority_country_wave_rows"), "0"), 0)
+    priority_lsms_scope_download_required = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_download_required_rows"), "0"), 0)
+    priority_lsms_scope_promoted_anchor = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_promoted_anchor_rows"), "0"), 0)
+    priority_lsms_scope_raw_missing_download = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_raw_missing_download_required_rows"), "0"), 0)
+    priority_lsms_scope_period_min = next((row.get("value", "") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_wave_period_min"), "")
+    priority_lsms_scope_period_max = next((row.get("value", "") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_wave_period_max"), "")
+    priority_lsms_scope_gate_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_scope_summary if row.get("metric") == "dataset_scope_lock_gate_matrix_rows"), "0"), 0)
+    priority_lsms_scope_data_write = next((row.get("value", "") for row in priority_lsms_scope_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_scope_modeling = next((row.get("value", "") for row in priority_lsms_scope_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_scope_gate_ok = (
+        counts["priority_lsms_isa_dataset_scope_lock"] == priority_lsms_scope_rows
+        and counts["priority_lsms_isa_dataset_scope_lock_gate_matrix"] == priority_lsms_scope_gate_rows
+        and counts["priority_lsms_isa_dataset_scope_lock_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_dataset_scope_lock.md")
+        and priority_lsms_scope_rows == 11
+        and priority_lsms_scope_country_rows == 6
+        and priority_lsms_scope_priority_countries == 5
+        and priority_lsms_scope_priority_waves == 10
+        and priority_lsms_scope_nonpriority_waves == 1
+        and priority_lsms_scope_download_required == 10
+        and priority_lsms_scope_promoted_anchor == 1
+        and priority_lsms_scope_raw_missing_download == 10
+        and priority_lsms_scope_period_min == "2004-2005"
+        and priority_lsms_scope_period_max == "2021-2022"
+        and priority_lsms_scope_gate_rows == 5
+        and priority_lsms_scope_data_write == "blocked_no_data_write"
+        and priority_lsms_scope_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA dataset scope lock fixes the 6-country 11-wave target and separates implemented anchors from raw packages still required",
+        status(priority_lsms_scope_gate_ok),
+        f"scope_rows={priority_lsms_scope_rows}; countries={priority_lsms_scope_country_rows}; priority_countries={priority_lsms_scope_priority_countries}; priority_waves={priority_lsms_scope_priority_waves}; nonpriority_waves={priority_lsms_scope_nonpriority_waves}; download_required={priority_lsms_scope_download_required}; promoted_anchor={priority_lsms_scope_promoted_anchor}; raw_missing_download={priority_lsms_scope_raw_missing_download}; period={priority_lsms_scope_period_min}..{priority_lsms_scope_period_max}; gate_rows={priority_lsms_scope_gate_rows}; data_write={priority_lsms_scope_data_write}; modeling_gate={priority_lsms_scope_modeling}",
+        "" if priority_lsms_scope_gate_ok else "Run script/200_build_priority_lsms_isa_dataset_scope_lock.py after the threshold batch, manual download board, raw presence audit, and unlock board are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

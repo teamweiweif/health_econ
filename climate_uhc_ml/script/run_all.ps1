@@ -111,6 +111,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/197_build_priority_lsms_isa_first_canary_runbook.py
 & $Python script/198_build_priority_lsms_isa_local_raw_presence_audit.py
 & $Python script/199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py
+& $Python script/200_build_priority_lsms_isa_dataset_scope_lock.py
 & $Python script/36_build_direct_read_audit_bundle.py
 & $Python script/28_audit_python_environment.py
 & $Python script/26_build_objective_traceability_audit.py

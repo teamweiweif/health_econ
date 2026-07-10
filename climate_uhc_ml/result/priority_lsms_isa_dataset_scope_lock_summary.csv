@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+dataset_scope_lock_rows,11,Locked target country-wave rows in the threshold scope.
+dataset_scope_lock_country_rows,6,Countries represented if all locked target rows pass promotion gates.
+dataset_scope_lock_priority_country_rows,5,Priority countries represented in the locked scope.
+dataset_scope_lock_priority_country_wave_rows,10,"Locked target rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda."
+dataset_scope_lock_nonpriority_country_wave_rows,1,Locked target rows outside the five priority countries.
+dataset_scope_lock_download_required_rows,10,Rows still requiring official raw-package acquisition.
+dataset_scope_lock_promoted_anchor_rows,1,Rows already promoted and serving as current anchors.
+dataset_scope_lock_raw_missing_download_required_rows,10,Download-required rows with no local raw-like files yet.
+dataset_scope_lock_wave_period_min,2004-2005,Earliest wave label in the locked target scope.
+dataset_scope_lock_wave_period_max,2021-2022,Latest wave label in the locked target scope.
+dataset_scope_lock_gate_matrix_rows,5,"Scenario/gate rows explaining implemented, download-required, priority-only, and sixth-country scope."
+dataset_scope_lock_replacement_backup_candidate_rows,8,Backup candidates available if the locked sixth-country or priority waves fail.
+data_write_gate_status,blocked_no_data_write,Scope lock writes only audit artifacts and does not promote datasets.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
