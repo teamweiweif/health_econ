@@ -14,6 +14,7 @@ REPORT_PATH = REPORT_DIR / "priority_lsms_isa_browser_download_starter.md"
 POWERSHELL_STARTER_PATH = TEMP_DIR / "priority_lsms_isa_browser_download_starter.ps1"
 
 PRIORITY_COUNTRIES = {"Ethiopia", "Nigeria", "Malawi", "Tanzania", "Uganda"}
+POST_DOWNLOAD_VALIDATION_SCOPE = "selected_idno_triggers_batch_rebuild"
 
 STARTER_COLUMNS = [
     "download_rank",
@@ -35,6 +36,7 @@ STARTER_COLUMNS = [
     "python_execute_command",
     "post_download_runner_dry_run_command",
     "post_download_runner_execute_command",
+    "post_download_validation_scope",
     "post_download_validation_commands",
     "starter_status",
     "data_write_gate_status",
@@ -109,6 +111,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], str]:
                 "python_execute_command": clean(row.get("python_execute_command")),
                 "post_download_runner_dry_run_command": f"python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno {idno}",
                 "post_download_runner_execute_command": f"python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno {idno} --execute",
+                "post_download_validation_scope": POST_DOWNLOAD_VALIDATION_SCOPE,
                 "post_download_validation_commands": clean(row.get("post_download_validation_commands")),
                 "starter_status": starter_status,
                 "data_write_gate_status": "blocked_no_data_write",
@@ -131,6 +134,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], str]:
         {"metric": "browser_download_starter_expected_core_file_rows", "value": str(expected_core_files), "interpretation": "Core raw-file rows expected after the packages are placed."},
         {"metric": "browser_download_starter_target_file_count", "value": str(target_file_count), "interpretation": "Existing target-folder files before browser/manual download."},
         {"metric": "browser_download_starter_first_canary_idno", "value": first_canary, "interpretation": "First wave to try before scaling the browser/manual download workflow."},
+        {"metric": "post_download_validation_scope", "value": POST_DOWNLOAD_VALIDATION_SCOPE, "interpretation": "The per-IDNO runner command gates execution on one packet, while downstream validation scripts rebuild canonical batch outputs."},
         {"metric": "browser_download_starter_local_ps1_path", "value": rel(POWERSHELL_STARTER_PATH), "interpretation": "Local helper script generated under temp; not intended for Git commit."},
         {"metric": "data_write_gate_status", "value": "blocked_no_data_write", "interpretation": "This starter writes only command artifacts and a temp helper script, not promoted data."},
         {"metric": "modeling_gate_status", "value": "blocked", "interpretation": "No predictive, reduced-form, causal ML, or policy learning is opened."},
@@ -236,7 +240,11 @@ per-IDNO probe/execute and post-download validation commands listed below.
 
 ## Per-Wave Validation Runner
 
-{markdown_table(rows, ['canary_sequence_rank', 'idno', 'post_download_runner_dry_run_command', 'post_download_runner_execute_command'], 12)}
+{markdown_table(rows, ['canary_sequence_rank', 'idno', 'post_download_runner_dry_run_command', 'post_download_runner_execute_command', 'post_download_validation_scope'], 12)}
+
+The `--idno` runner commands are canary gates. Once the selected packet has
+official raw files, the downstream validation scripts rebuild the canonical
+batch receipt, schema, value-profile, and semantics outputs.
 
 ## Stop Rule
 

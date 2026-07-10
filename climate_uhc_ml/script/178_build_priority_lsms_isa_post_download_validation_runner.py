@@ -28,6 +28,7 @@ RUN_PLAN_COLUMNS = [
     "runner_decision",
     "command_rank",
     "command",
+    "validation_command_scope",
     "execute_command",
     "local_target_folder",
     "packet_report_path",
@@ -53,6 +54,7 @@ VALIDATION_COMMAND_ALLOWLIST = {
     "script/158_build_priority_lsms_isa_received_raw_value_profile.py",
     "script/159_build_priority_lsms_isa_received_raw_semantics_review.py",
 }
+VALIDATION_COMMAND_SCOPE = "batch_rebuild_after_selected_packet_ready"
 
 
 def read_csv_dicts(path: Path) -> list[dict[str, str]]:
@@ -116,6 +118,7 @@ def build_run_plan(progress_rows: list[dict[str, str]], execute: bool) -> list[d
                     "runner_decision": decision,
                     "command_rank": str(command_rank),
                     "command": command,
+                    "validation_command_scope": VALIDATION_COMMAND_SCOPE if command else "",
                     "execute_command": "1" if decision == "execute_validation_command" else "0",
                     "local_target_folder": clean(progress.get("local_target_folder")),
                     "packet_report_path": clean(progress.get("packet_report_path")),
@@ -183,6 +186,7 @@ def build_summary(
         summary_row("post_download_validation_progress_packet_rows", len(progress_rows), "Manual-download progress rows considered by the runner."),
         summary_row("post_download_validation_ready_packet_rows", len(ready_packets), "Packets with local target files ready for validation."),
         summary_row("post_download_validation_plan_rows", len(plan_rows), "Command-plan rows written by the runner."),
+        summary_row("post_download_validation_command_scope", VALIDATION_COMMAND_SCOPE, "Allowlisted validation scripts rebuild canonical batch audit outputs after selected packets are ready."),
         summary_row("post_download_validation_execute_command_rows", len(execute_commands), "Validation commands selected for execution."),
         summary_row("post_download_validation_attempted_command_rows", len(attempted), "Validation commands attempted in this invocation."),
         summary_row("post_download_validation_failed_command_rows", len(failed), "Attempted validation commands with nonzero return codes."),
@@ -212,6 +216,8 @@ def write_report(summary_rows: list[dict[str, str]], plan_rows: list[dict[str, s
         "official raw package files are present in packet target folders.",
         "",
         "It does not download, copy, delete, extract, write promoted `data/`, or run models.",
+        "`--idno` restricts which packet can trigger the runner; the allowlisted",
+        "validation scripts rebuild the canonical batch audit outputs.",
         "",
         "## Summary",
         "",
@@ -221,6 +227,7 @@ def write_report(summary_rows: list[dict[str, str]], plan_rows: list[dict[str, s
         f"- Progress packets considered: {metric.get('post_download_validation_progress_packet_rows', '0')}",
         f"- Validation-ready packets: {metric.get('post_download_validation_ready_packet_rows', '0')}",
         f"- Plan rows: {metric.get('post_download_validation_plan_rows', '0')}",
+        f"- Command scope: {metric.get('post_download_validation_command_scope', VALIDATION_COMMAND_SCOPE)}",
         f"- Execute command rows: {metric.get('post_download_validation_execute_command_rows', '0')}",
         f"- Attempted commands: {metric.get('post_download_validation_attempted_command_rows', '0')}",
         f"- Failed commands: {metric.get('post_download_validation_failed_command_rows', '0')}",
@@ -237,6 +244,7 @@ def write_report(summary_rows: list[dict[str, str]], plan_rows: list[dict[str, s
                 "runner_decision",
                 "command_rank",
                 "command",
+                "validation_command_scope",
             ],
             limit=30,
         ),

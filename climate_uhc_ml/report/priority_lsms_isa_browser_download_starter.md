@@ -28,6 +28,7 @@ per-IDNO probe/execute and post-download validation commands listed below.
 | browser_download_starter_expected_core_file_rows | 323 | Core raw-file rows expected after the packages are placed. |
 | browser_download_starter_target_file_count | 0 | Existing target-folder files before browser/manual download. |
 | browser_download_starter_first_canary_idno | ETH_2021_ESPS-W5_v02_M | First wave to try before scaling the browser/manual download workflow. |
+| post_download_validation_scope | selected_idno_triggers_batch_rebuild | The per-IDNO runner command gates execution on one packet, while downstream validation scripts rebuild canonical batc... |
 | browser_download_starter_local_ps1_path | temp/priority_lsms_isa_browser_download_starter.ps1 | Local helper script generated under temp; not intended for Git commit. |
 | data_write_gate_status | blocked_no_data_write | This starter writes only command artifacts and a temp helper script, not promoted data. |
 | modeling_gate_status | blocked | No predictive, reduced-form, causal ML, or policy learning is opened. |
@@ -49,18 +50,22 @@ per-IDNO probe/execute and post-download validation commands listed below.
 
 ## Per-Wave Validation Runner
 
-| canary_sequence_rank | idno | post_download_runner_dry_run_command | post_download_runner_execute_command |
-| --- | --- | --- | --- |
-| 1 | ETH_2021_ESPS-W5_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M --execute |
-| 2 | ETH_2018_ESS_v04_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2018_ESS_v04_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2018_ESS_v04_M --execute |
-| 3 | NGA_2012_GHSP-W2_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2012_GHSP-W2_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2012_GHSP-W2_v02_M --execute |
-| 4 | NGA_2015_GHSP-W3_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2015_GHSP-W3_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2015_GHSP-W3_v02_M --execute |
-| 5 | NGA_2010_GHSP-W1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2010_GHSP-W1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2010_GHSP-W1_v03_M --execute |
-| 6 | TZA_2008_NPS-R1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2008_NPS-R1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2008_NPS-R1_v03_M --execute |
-| 7 | TZA_2010_NPS-R2_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2010_NPS-R2_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2010_NPS-R2_v03_M --execute |
-| 8 | TZA_2012_NPS-R3_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2012_NPS-R3_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2012_NPS-R3_v01_M --execute |
-| 9 | UGA_2019_UNPS_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno UGA_2019_UNPS_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno UGA_2019_UNPS_v03_M --execute |
-| 10 | NPL_2010_LSS-III_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NPL_2010_LSS-III_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NPL_2010_LSS-III_v01_M --execute |
+| canary_sequence_rank | idno | post_download_runner_dry_run_command | post_download_runner_execute_command | post_download_validation_scope |
+| --- | --- | --- | --- | --- |
+| 1 | ETH_2021_ESPS-W5_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2021_ESPS-W5_v02_M --execute | selected_idno_triggers_batch_rebuild |
+| 2 | ETH_2018_ESS_v04_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2018_ESS_v04_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno ETH_2018_ESS_v04_M --execute | selected_idno_triggers_batch_rebuild |
+| 3 | NGA_2012_GHSP-W2_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2012_GHSP-W2_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2012_GHSP-W2_v02_M --execute | selected_idno_triggers_batch_rebuild |
+| 4 | NGA_2015_GHSP-W3_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2015_GHSP-W3_v02_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2015_GHSP-W3_v02_M --execute | selected_idno_triggers_batch_rebuild |
+| 5 | NGA_2010_GHSP-W1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2010_GHSP-W1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NGA_2010_GHSP-W1_v03_M --execute | selected_idno_triggers_batch_rebuild |
+| 6 | TZA_2008_NPS-R1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2008_NPS-R1_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2008_NPS-R1_v03_M --execute | selected_idno_triggers_batch_rebuild |
+| 7 | TZA_2010_NPS-R2_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2010_NPS-R2_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2010_NPS-R2_v03_M --execute | selected_idno_triggers_batch_rebuild |
+| 8 | TZA_2012_NPS-R3_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2012_NPS-R3_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno TZA_2012_NPS-R3_v01_M --execute | selected_idno_triggers_batch_rebuild |
+| 9 | UGA_2019_UNPS_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno UGA_2019_UNPS_v03_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno UGA_2019_UNPS_v03_M --execute | selected_idno_triggers_batch_rebuild |
+| 10 | NPL_2010_LSS-III_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NPL_2010_LSS-III_v01_M | python script/178_build_priority_lsms_isa_post_download_validation_runner.py --idno NPL_2010_LSS-III_v01_M --execute | selected_idno_triggers_batch_rebuild |
+
+The `--idno` runner commands are canary gates. Once the selected packet has
+official raw files, the downstream validation scripts rebuild the canonical
+batch receipt, schema, value-profile, and semantics outputs.
 
 ## Stop Rule
 
