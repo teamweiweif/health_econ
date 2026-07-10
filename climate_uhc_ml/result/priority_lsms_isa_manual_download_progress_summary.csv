@@ -1,0 +1,11 @@
+﻿metric,value,interpretation
+manual_download_progress_packet_rows,10,Manual-download packets tracked for local file progress.
+manual_download_progress_target_file_rows,0,Non-generated files currently found under packet target folders.
+manual_download_progress_target_total_bytes,0,Bytes currently found under packet target folders.
+manual_download_progress_incoming_route_rows,0,Incoming route rows currently mapped to tracked packet IDNOs.
+manual_download_progress_incoming_copy_candidate_rows,0,Incoming files with one selected packet target.
+manual_download_progress_validation_ready_packets,0,Packets with target files present and ready for receipt/schema/value validation.
+manual_download_progress_blocked_no_file_packets,10,Packets still lacking local target files or incoming route matches.
+data_write_gate_status,blocked_no_data_write,Progress tracking does not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."
+manual_download_progress_status_blocked_no_local_or_incoming_files,10,Packet count by local download progress status.

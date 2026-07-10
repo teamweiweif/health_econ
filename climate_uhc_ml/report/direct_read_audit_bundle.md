@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 171 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 750 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 746 | Curated artifacts present and non-empty. |
+| bundle_rows | 172 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 754 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 750 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -126,6 +126,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_manual_download_packet_rows | 10 | Remaining minimum-batch waves with per-wave manual download packets. |
 | priority_lsms_isa_manual_download_packet_core_rows | 323 | Core-file rows listed across manual download packets. |
 | priority_lsms_isa_manual_download_packet_reports | 10 | Per-IDNO markdown packet reports written. |
+| priority_lsms_isa_manual_download_progress_validation_ready | 0 | Manual download packets with local target files ready for validation. |
+| priority_lsms_isa_manual_download_progress_blocked_no_files | 10 | Manual download packets still lacking local target files or incoming route matches. |
+| priority_lsms_isa_manual_download_progress_target_files | 0 | Non-generated files currently found under packet target folders. |
 | priority_lsms_isa_promotion_gate_country_waves | 19 | Country-waves tracked by the promotion gate dashboard. |
 | priority_lsms_isa_promotion_gate_promoted_rows | 1 | Country-waves already promoted analysis-ready in the gate dashboard. |
 | priority_lsms_isa_promotion_gate_blocked_raw_package_rows | 18 | Country-waves still blocked at complete official raw package receipt. |
@@ -581,7 +584,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 62 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 63 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -669,6 +672,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_limited_harmonized_household_core_promoted_outcome_climate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_limited_nasa_admin2_centroid_climate_exposures_promoted_linkage_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_manual_download_packets_current | 1 | Direct-read bundle status count. |
+| bundle_status_manual_download_progress_current | 1 | Direct-read bundle status count. |
 | bundle_status_manual_download_required | 1 | Direct-read bundle status count. |
 | bundle_status_manual_raw_download_required | 10 | Direct-read bundle status count. |
 | bundle_status_manual_raw_package_required | 1 | Direct-read bundle status count. |
@@ -729,7 +733,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 62 |
+| priority_bundle | 63 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -809,6 +813,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | incoming_router_ready | 1 |
 | threshold_gap_control_panel_current | 1 |
 | manual_download_packets_current | 1 |
+| manual_download_progress_current | 1 |
 | promotion_gate_dashboard_current | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
@@ -920,7 +925,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 746 |
+| present_nonempty | 750 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:
