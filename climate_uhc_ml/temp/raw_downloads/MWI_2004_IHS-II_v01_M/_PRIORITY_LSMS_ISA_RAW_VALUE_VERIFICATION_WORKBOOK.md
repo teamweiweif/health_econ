@@ -20,7 +20,7 @@ documentation are present and readable.
 | health_need_and_access | access_outcome_gate | 12 | 2 | ready_for_manual_raw_value_review_value_profile_available |
 | survey_timing | climate_timing_gate | 12 | 7 | ready_for_manual_raw_value_review_value_profile_available |
 | climate_geography | climate_geography_gate | 12 | 12 | ready_for_manual_raw_value_review_value_profile_available |
-| missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | blocked_archive_or_direct_file_preflight_not_ready |
+| missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | ready_for_manual_raw_value_review_semantics_review_available |
 
 ## File Review Preview
 

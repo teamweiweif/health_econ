@@ -153,6 +153,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_received_raw_key_design_geography_profile.csv", "priority LSMS/ISA received raw key design geography profile"),
     ("dataset_promotion", "temp/priority_lsms_isa_received_raw_value_requirement_profile.csv", "priority LSMS/ISA received raw requirement value profile"),
     ("dataset_promotion", "result/priority_lsms_isa_received_raw_value_profile_summary.csv", "priority LSMS/ISA received raw value profile summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_received_raw_semantics_review.md", "priority LSMS/ISA received raw semantics review report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_received_raw_semantics_variable_review.csv", "priority LSMS/ISA received raw variable semantics review"),
+    ("dataset_promotion", "temp/priority_lsms_isa_received_raw_semantics_requirement_review.csv", "priority LSMS/ISA received raw requirement semantics review"),
+    ("dataset_promotion", "temp/priority_lsms_isa_received_raw_documentation_scope_review.csv", "priority LSMS/ISA received raw documentation scope review"),
+    ("dataset_promotion", "result/priority_lsms_isa_received_raw_semantics_review_summary.csv", "priority LSMS/ISA received raw semantics review summary"),
     ("dataset_promotion", "report/priority_lsms_isa_raw_package_receipt_checklist.md", "priority LSMS/ISA raw package receipt checklist report"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_receipt_checklist.csv", "priority LSMS/ISA dataset raw package receipt checklist"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_requirement_receipt_checklist.csv", "priority LSMS/ISA requirement raw package receipt checklist"),
@@ -591,6 +596,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/145_build_priority_lsms_isa_archive_member_preflight.py", "priority LSMS/ISA archive/direct-file preflight generator"),
     ("reproducibility", "script/149_build_priority_lsms_isa_raw_value_verification_workbook.py", "priority LSMS/ISA raw value verification workbook generator"),
     ("reproducibility", "script/158_build_priority_lsms_isa_received_raw_value_profile.py", "priority LSMS/ISA received raw value profile generator"),
+    ("reproducibility", "script/159_build_priority_lsms_isa_received_raw_semantics_review.py", "priority LSMS/ISA received raw semantics review generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -813,6 +819,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_raw_value_workbook_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv")
     priority_lsms_received_raw_schema_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_schema_audit_summary.csv")
     priority_lsms_received_raw_value_profile_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_value_profile_summary.csv")
+    priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -1227,6 +1234,17 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_profile_dataset_rows', '0')}; variables={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_profile_variable_rows', '0')}; nonmissing_variables={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_profile_nonmissing_variable_rows', '0')}; value_label_variables={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_profile_value_label_rows', '0')}; key_design_geo_rows={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_key_design_geography_profile_rows', '0')}; requirement_profiles={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_requirement_profile_rows', '0')}; requirements_with_profiles={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_profile_requirements_with_profiles', '0')}; raw_verified={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_profile_raw_value_verified_rows', '0')}; data_write={csv_value(priority_lsms_received_raw_value_profile_summary, 'priority_lsms_received_raw_value_profile_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_received_raw_value_profile_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_received_raw_value_profile.csv", TEMP_DIR / "priority_lsms_isa_received_raw_key_design_geography_profile.csv", TEMP_DIR / "priority_lsms_isa_received_raw_value_requirement_profile.csv", RESULT_DIR / "priority_lsms_isa_received_raw_value_profile_summary.csv", REPORT_DIR / "priority_lsms_isa_received_raw_value_profile.md"],
         "Received raw value profile reads candidate variables and utility key/design/geography fields from the local official archive into distribution evidence for manual verification; it still does not certify raw-value verification or write promoted data.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_received_raw_semantics_review",
+        "received_raw_semantics_review_ready_for_manual_value_review"
+        if csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_requirement_rows", "0") != "0"
+        else "received_raw_semantics_review_needs_review",
+        f"datasets={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_dataset_rows', '0')}; variables={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_variable_rows', '0')}; ddi_documented_variables={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_ddi_documented_variable_rows', '0')}; requirements={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_requirement_rows', '0')}; documentation_scope={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_documentation_scope_rows', '0')}; missing_unit_recall_skip_rows={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows', '0')}; raw_verified={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_raw_value_verified_rows', '0')}; data_write={csv_value(priority_lsms_received_raw_semantics_summary, 'priority_lsms_received_raw_semantics_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_received_raw_semantics_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_received_raw_semantics_variable_review.csv", TEMP_DIR / "priority_lsms_isa_received_raw_semantics_requirement_review.csv", TEMP_DIR / "priority_lsms_isa_received_raw_documentation_scope_review.csv", RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv", REPORT_DIR / "priority_lsms_isa_received_raw_semantics_review.md"],
+        "Received raw semantics review aligns official DDI/catalog documentation to value profiles for units, recall periods, missing-code, skip-pattern, and merge-level review; it still does not certify raw-value verification or write promoted data.",
     )
     add_bundle(
         rows,
@@ -2200,6 +2218,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_raw_value_workbook_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv")
     priority_lsms_received_raw_schema_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_schema_audit_summary.csv")
     priority_lsms_received_raw_value_profile_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_value_profile_summary.csv")
+    priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -2242,6 +2261,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_received_raw_value_profile_nonmissing_variable_rows", "value": csv_value(priority_lsms_received_raw_value_profile_summary, "priority_lsms_received_raw_value_profile_nonmissing_variable_rows", "0"), "interpretation": "Candidate variables with at least one nonmissing raw value."},
         {"metric": "priority_lsms_isa_received_raw_key_design_geography_profile_rows", "value": csv_value(priority_lsms_received_raw_value_profile_summary, "priority_lsms_received_raw_key_design_geography_profile_rows", "0"), "interpretation": "Utility key, design, and geography variables profiled from received raw files."},
         {"metric": "priority_lsms_isa_received_raw_value_profile_requirements_with_profiles", "value": csv_value(priority_lsms_received_raw_value_profile_summary, "priority_lsms_received_raw_value_profile_requirements_with_profiles", "0"), "interpretation": "Requirements with value-profile evidence available for manual review."},
+        {"metric": "priority_lsms_isa_received_raw_semantics_variable_rows", "value": csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_variable_rows", "0"), "interpretation": "Variable-level semantics review rows from value and utility profiles."},
+        {"metric": "priority_lsms_isa_received_raw_semantics_ddi_documented_variable_rows", "value": csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_ddi_documented_variable_rows", "0"), "interpretation": "Profiled variables matched to official DDI documentation."},
+        {"metric": "priority_lsms_isa_received_raw_semantics_requirement_rows", "value": csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_requirement_rows", "0"), "interpretation": "Requirement-level semantics review rows."},
+        {"metric": "priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows", "value": csv_value(priority_lsms_received_raw_semantics_summary, "priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows", "0"), "interpretation": "Documentation-semantics gate rows backed by review evidence."},
         {"metric": "priority_lsms_isa_receipt_checklist_dataset_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_dataset_rows", "0"), "interpretation": "Dataset-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_requirement_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_requirement_rows", "0"), "interpretation": "Requirement-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_package_received_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_package_received_rows", "0"), "interpretation": "Refocused LSMS/ISA waves with original package receipt evidence."},
