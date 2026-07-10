@@ -334,6 +334,7 @@ REQUIRED_SCRIPTS = [
     "169_build_mwi2004_chirps_admin2_route_policy.py",
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
+    "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -859,6 +860,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "mwi2004_promoted_household_climate_dataset_summary": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv"),
         "mwi2004_promoted_household_climate_dataset_dictionary": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_dictionary.csv"),
         "mwi2004_promoted_household_climate_dataset_validation": row_count(RESULT_DIR / "mwi2004_promoted_household_climate_dataset_validation.csv"),
+        "priority_lsms_isa_next_raw_package_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv"),
+        "priority_lsms_isa_next_raw_package_core_files": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv"),
+        "priority_lsms_isa_next_raw_package_action_summary": row_count(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -5230,6 +5234,41 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_minimum_endpoint_gate_ok),
         f"endpoint_rows={counts['priority_lsms_isa_minimum_batch_endpoint_refresh']}; dataset_rows={counts['priority_lsms_isa_minimum_batch_endpoint_dataset_status']}; summary_rows={counts['priority_lsms_isa_minimum_batch_endpoint_refresh_summary']}; reported_waves={priority_lsms_minimum_endpoint_waves}; countries={priority_lsms_minimum_endpoint_countries}; metadata_hits={priority_lsms_minimum_endpoint_metadata}; gate_waves={priority_lsms_minimum_endpoint_gate_rows}; raw_candidates={priority_lsms_minimum_endpoint_raw_candidates}; credentialed_required={priority_lsms_minimum_endpoint_credentialed}; handoffs={priority_lsms_minimum_endpoint_handoffs}; data_write={priority_lsms_minimum_endpoint_data_write}; modeling_gate={priority_lsms_minimum_endpoint_modeling_gate}",
         "" if priority_lsms_minimum_endpoint_gate_ok else "Run script/156_probe_priority_lsms_isa_minimum_batch_endpoint_refresh.py after the minimum-batch threshold file is current and network is available.",
+    )
+    priority_lsms_next_raw_package_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv")
+    priority_lsms_next_raw_package_actions = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "next_raw_package_action_rows"), "0"), 0)
+    priority_lsms_next_raw_package_minimum_remaining = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "minimum_batch_remaining_action_rows"), "0"), 0)
+    priority_lsms_next_raw_package_backups = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "backup_after_minimum_action_rows"), "0"), 0)
+    priority_lsms_next_raw_package_core_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "core_file_action_rows"), "0"), 0)
+    priority_lsms_next_raw_package_countries_if_pass = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "countries_if_minimum_batch_passes"), "0"), 0)
+    priority_lsms_next_raw_package_waves_if_pass = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "country_waves_if_minimum_batch_passes"), "0"), 0)
+    priority_lsms_next_raw_package_raw_candidates = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "official_raw_download_candidate_rows"), "0"), 0)
+    priority_lsms_next_raw_package_credentialed = safe_int(next((row.get("value", "0") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "credentialed_download_required_rows"), "0"), 0)
+    priority_lsms_next_raw_package_data_write = next((row.get("value", "") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_next_raw_package_modeling_gate = next((row.get("value", "") for row in priority_lsms_next_raw_package_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_next_raw_package_gate_ok = (
+        counts["priority_lsms_isa_next_raw_package_action_summary"] > 0
+        and counts["priority_lsms_isa_next_raw_package_action_queue"] == priority_lsms_next_raw_package_actions
+        and counts["priority_lsms_isa_next_raw_package_core_files"] == priority_lsms_next_raw_package_core_rows
+        and file_ok(REPORT_DIR / "priority_lsms_isa_next_raw_package_action_packet.md")
+        and priority_lsms_next_raw_package_actions >= 10
+        and priority_lsms_next_raw_package_minimum_remaining == 10
+        and priority_lsms_next_raw_package_backups >= 0
+        and priority_lsms_next_raw_package_core_rows > 0
+        and priority_lsms_next_raw_package_countries_if_pass == 6
+        and priority_lsms_next_raw_package_waves_if_pass == 11
+        and priority_lsms_next_raw_package_raw_candidates == 0
+        and priority_lsms_next_raw_package_credentialed == 11
+        and priority_lsms_next_raw_package_data_write == "blocked_raw_package_acquisition_required"
+        and priority_lsms_next_raw_package_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA next raw package action packet identifies the exact remaining raw package acquisitions before any additional data writes or ML",
+        status(priority_lsms_next_raw_package_gate_ok),
+        f"action_rows={counts['priority_lsms_isa_next_raw_package_action_queue']}; summary_rows={counts['priority_lsms_isa_next_raw_package_action_summary']}; core_rows={counts['priority_lsms_isa_next_raw_package_core_files']}; minimum_remaining={priority_lsms_next_raw_package_minimum_remaining}; backups={priority_lsms_next_raw_package_backups}; countries_if_pass={priority_lsms_next_raw_package_countries_if_pass}; waves_if_pass={priority_lsms_next_raw_package_waves_if_pass}; raw_candidates={priority_lsms_next_raw_package_raw_candidates}; credentialed_required={priority_lsms_next_raw_package_credentialed}; data_write={priority_lsms_next_raw_package_data_write}; modeling_gate={priority_lsms_next_raw_package_modeling_gate}",
+        "" if priority_lsms_next_raw_package_gate_ok else "Run script/172_build_priority_lsms_isa_next_raw_package_action_packet.py after the endpoint refresh and threshold files are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

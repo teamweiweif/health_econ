@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+next_raw_package_action_rows,18,Country-waves requiring raw package acquisition or backup acquisition action.
+minimum_batch_remaining_action_rows,10,Unpromoted minimum-batch waves still needing complete official raw packages.
+backup_after_minimum_action_rows,8,Backup waves queued after the minimum batch.
+core_file_action_rows,592,Requirement-file rows to verify after raw packages are placed.
+unique_core_files_remaining_minimum_batch,213,Sum of per-wave unique core files in the remaining minimum batch.
+current_promoted_analysis_ready_rows,1,Current promoted registry rows before additional raw acquisition.
+current_promoted_country_rows,1,Current promoted countries before additional raw acquisition.
+countries_if_minimum_batch_passes,6,Countries covered if current promoted rows plus remaining minimum batch all pass verification.
+country_waves_if_minimum_batch_passes,11,Country-waves covered if current promoted rows plus remaining minimum batch all pass verification.
+official_raw_download_candidate_rows,0,Current endpoint-refresh raw download candidates; zero means login/terms workflow remains required.
+credentialed_download_required_rows,11,Minimum-batch waves whose current get-microdata page requires credentialed access.
+data_write_gate_status,blocked_raw_package_acquisition_required,This packet only controls raw acquisition; it does not permit promoted data writes.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."
+wave_handoff_readmes_written,18,Per-wave next raw package handoff files written under target folders.

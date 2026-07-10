@@ -232,6 +232,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_endpoint_refresh.csv", "priority LSMS/ISA minimum-batch endpoint refresh"),
     ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_endpoint_dataset_status.csv", "priority LSMS/ISA minimum-batch endpoint dataset status"),
     ("dataset_promotion", "result/priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv", "priority LSMS/ISA minimum-batch endpoint refresh summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_next_raw_package_action_packet.md", "priority LSMS/ISA next raw package action packet"),
+    ("dataset_promotion", "temp/priority_lsms_isa_next_raw_package_action_queue.csv", "priority LSMS/ISA next raw package action queue"),
+    ("dataset_promotion", "temp/priority_lsms_isa_next_raw_package_core_files.csv", "priority LSMS/ISA next raw package core files"),
+    ("dataset_promotion", "result/priority_lsms_isa_next_raw_package_action_summary.csv", "priority LSMS/ISA next raw package action summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -655,6 +659,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/169_build_mwi2004_chirps_admin2_route_policy.py", "Malawi 2004 CHIRPS ADM2 route policy generator"),
     ("reproducibility", "script/170_extract_mwi2004_chirps_admin2_exposures.py", "Malawi 2004 CHIRPS ADM2 extraction generator"),
     ("reproducibility", "script/171_build_mwi2004_promoted_household_climate_dataset.py", "Malawi 2004 promoted household-climate dataset generator"),
+    ("reproducibility", "script/172_build_priority_lsms_isa_next_raw_package_action_packet.py", "priority LSMS/ISA next raw package action packet generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -896,6 +901,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_threshold_sequence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_download_sequence_summary.csv")
     priority_lsms_minimum_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv")
     priority_lsms_minimum_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv")
+    priority_lsms_next_raw_package_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -1501,6 +1507,17 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"waves={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_dataset_rows', '0')}; countries={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_country_rows', '0')}; endpoints={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_rows', '0')}; metadata_hits={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_public_metadata_endpoint_rows', '0')}; gate_waves={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_get_microdata_gate_dataset_rows', '0')}; raw_candidates={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_raw_download_candidate_rows', '0')}; credentialed_required={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_credentialed_download_required_rows', '0')}; handoffs={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_handoff_readmes_written', '0')}; data_write={csv_value(priority_lsms_minimum_endpoint_summary, 'priority_lsms_minimum_endpoint_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_minimum_endpoint_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh.csv", TEMP_DIR / "priority_lsms_isa_minimum_batch_endpoint_dataset_status.csv", RESULT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv", REPORT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh.md"],
         "Minimum-batch endpoint refresh re-probes official World Bank metadata and get-microdata routes for the exact 11-wave threshold batch without downloading or accepting raw payloads.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_next_raw_package_action_packet",
+        "minimum_batch_raw_package_actions_ready"
+        if csv_value(priority_lsms_next_raw_package_summary, "minimum_batch_remaining_action_rows", "0") == "10"
+        else "next_raw_package_action_packet_needs_review",
+        f"actions={csv_value(priority_lsms_next_raw_package_summary, 'next_raw_package_action_rows', '0')}; minimum_remaining={csv_value(priority_lsms_next_raw_package_summary, 'minimum_batch_remaining_action_rows', '0')}; backups={csv_value(priority_lsms_next_raw_package_summary, 'backup_after_minimum_action_rows', '0')}; core_file_rows={csv_value(priority_lsms_next_raw_package_summary, 'core_file_action_rows', '0')}; current_promoted={csv_value(priority_lsms_next_raw_package_summary, 'current_promoted_analysis_ready_rows', '0')}; countries_if_minimum_passes={csv_value(priority_lsms_next_raw_package_summary, 'countries_if_minimum_batch_passes', '0')}; waves_if_minimum_passes={csv_value(priority_lsms_next_raw_package_summary, 'country_waves_if_minimum_batch_passes', '0')}; raw_endpoint_candidates={csv_value(priority_lsms_next_raw_package_summary, 'official_raw_download_candidate_rows', '0')}; credentialed_required={csv_value(priority_lsms_next_raw_package_summary, 'credentialed_download_required_rows', '0')}; data_write={csv_value(priority_lsms_next_raw_package_summary, 'data_write_gate_status', 'missing')}; modeling_gate={csv_value(priority_lsms_next_raw_package_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv", TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv", RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv", REPORT_DIR / "priority_lsms_isa_next_raw_package_action_packet.md"],
+        "Next raw package action packet converts the minimum-batch endpoint/access blocker into a file-level acquisition queue for the remaining 10 threshold waves plus backups.",
     )
     add_bundle(
         rows,
@@ -2439,6 +2456,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_threshold_sequence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_download_sequence_summary.csv")
     priority_lsms_minimum_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv")
     priority_lsms_minimum_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv")
+    priority_lsms_next_raw_package_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2543,6 +2561,11 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_minimum_batch_missing_core_file_rows", "value": csv_value(priority_lsms_minimum_intake_summary, "priority_lsms_minimum_batch_missing_core_file_rows", "0"), "interpretation": "Core official files still missing locally for the 11-wave minimum batch."},
         {"metric": "priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows", "value": csv_value(priority_lsms_minimum_endpoint_summary, "priority_lsms_minimum_endpoint_credentialed_download_required_rows", "0"), "interpretation": "Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh."},
         {"metric": "priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows", "value": csv_value(priority_lsms_minimum_endpoint_summary, "priority_lsms_minimum_endpoint_raw_download_candidate_rows", "0"), "interpretation": "Raw download candidate endpoints detected by the minimum-batch endpoint refresh."},
+        {"metric": "priority_lsms_isa_next_raw_package_actions", "value": csv_value(priority_lsms_next_raw_package_summary, "next_raw_package_action_rows", "0"), "interpretation": "Country-waves in the next raw package acquisition queue."},
+        {"metric": "priority_lsms_isa_next_raw_package_minimum_remaining", "value": csv_value(priority_lsms_next_raw_package_summary, "minimum_batch_remaining_action_rows", "0"), "interpretation": "Remaining minimum-batch waves requiring complete official raw packages."},
+        {"metric": "priority_lsms_isa_next_raw_package_core_file_rows", "value": csv_value(priority_lsms_next_raw_package_summary, "core_file_action_rows", "0"), "interpretation": "Core requirement-file rows to confirm after raw package placement."},
+        {"metric": "priority_lsms_isa_next_raw_package_countries_if_pass", "value": csv_value(priority_lsms_next_raw_package_summary, "countries_if_minimum_batch_passes", "0"), "interpretation": "Countries covered if the current promoted row plus remaining minimum batch all pass verification."},
+        {"metric": "priority_lsms_isa_next_raw_package_waves_if_pass", "value": csv_value(priority_lsms_next_raw_package_summary, "country_waves_if_minimum_batch_passes", "0"), "interpretation": "Country-waves covered if the current promoted row plus remaining minimum batch all pass verification."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},
