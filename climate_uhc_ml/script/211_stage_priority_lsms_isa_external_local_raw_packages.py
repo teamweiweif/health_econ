@@ -156,11 +156,11 @@ def validation_commands(idno: str) -> str:
     )
 
 
-def selected_rows(idnos: set[str]) -> list[dict[str, str]]:
+def selected_rows(idnos: set[str], intake_decisions: set[str]) -> list[dict[str, str]]:
     rows = [
         row
         for row in read_csv_dicts(INTAKE_DECISION_PATH)
-        if clean(row.get("intake_decision")) == "copy_review_ready_pending_official_provenance"
+        if clean(row.get("intake_decision")) in intake_decisions
     ]
     if idnos:
         rows = [row for row in rows if clean(row.get("idno")) in idnos]
@@ -279,7 +279,7 @@ def build_summary(plan_rows: list[dict[str, str]], file_rows: list[dict[str, str
     }
     return [
         {"metric": "external_local_raw_staging_mode", "value": "execute" if execute else "dry_run", "interpretation": "Whether this run copied files or only produced a plan."},
-        {"metric": "external_local_raw_staging_plan_rows", "value": str(len(plan_rows)), "interpretation": "Copy-review-ready rows considered for external local staging."},
+        {"metric": "external_local_raw_staging_plan_rows", "value": str(len(plan_rows)), "interpretation": "Explicitly selected intake-decision rows considered for external local staging."},
         {"metric": "external_local_raw_staging_file_manifest_rows", "value": str(len(file_rows)), "interpretation": "Source files covered by the staging plan or execution manifest."},
         {"metric": "external_local_raw_staging_executed_dataset_rows", "value": str(len(executed_ids)), "interpretation": "Datasets copied into temp/raw_downloads by this run."},
         {"metric": "external_local_raw_staging_copied_file_rows", "value": str(sum(1 for row in file_rows if row.get("file_staging_action") == "copied")), "interpretation": "Files copied into temp/raw_downloads by this run."},
@@ -328,6 +328,7 @@ def write_report(plan_rows: list[dict[str, str]], summary: list[dict[str, str]])
                 "country",
                 "wave",
                 "idno",
+                "intake_decision",
                 "source_file_rows",
                 "source_total_bytes",
                 "target_preexisting_payload_rows",
@@ -347,6 +348,15 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--execute", action="store_true", help="Copy files into temp/raw_downloads. Default is dry-run.")
     parser.add_argument("--idno", action="append", default=[], help="Restrict to one IDNO. Can be repeated.")
+    parser.add_argument(
+        "--include-intake-decision",
+        action="append",
+        default=[],
+        help=(
+            "Include rows with this intake_decision. Can be repeated. "
+            "Default: copy_review_ready_pending_official_provenance."
+        ),
+    )
     parser.add_argument("--include-existing-targets", action="store_true", help="Allow copying into targets that already contain raw/documentation payload files.")
     return parser.parse_args()
 
@@ -355,9 +365,12 @@ def main() -> None:
     args = parse_args()
     ensure_dirs()
     idnos = {clean(value) for value in args.idno if clean(value)}
+    intake_decisions = {clean(value) for value in args.include_intake_decision if clean(value)}
+    if not intake_decisions:
+        intake_decisions = {"copy_review_ready_pending_official_provenance"}
     plan_rows: list[dict[str, str]] = []
     file_rows: list[dict[str, str]] = []
-    for row in selected_rows(idnos):
+    for row in selected_rows(idnos, intake_decisions):
         plan_row, row_file_rows = plan_for_row(row, args.execute, args.include_existing_targets)
         plan_rows.append(plan_row)
         file_rows.extend(row_file_rows)

@@ -1,17 +1,17 @@
 ﻿metric,value,interpretation
 priority_lsms_archive_preflight_dataset_rows,19,Refocused LSMS/ISA targets checked by archive/direct-file preflight.
-priority_lsms_archive_preflight_direct_file_rows,305,Direct non-generated original candidate files found under target folders.
+priority_lsms_archive_preflight_direct_file_rows,972,Direct non-generated original candidate files found under target folders.
 priority_lsms_archive_preflight_direct_archive_rows,1,Direct archive/compressed package candidates found.
-priority_lsms_archive_preflight_direct_raw_tabular_rows,299,Direct raw tabular/workbook candidates found.
-priority_lsms_archive_preflight_direct_documentation_rows,5,Direct documentation candidates found.
+priority_lsms_archive_preflight_direct_raw_tabular_rows,956,Direct raw tabular/workbook candidates found.
+priority_lsms_archive_preflight_direct_documentation_rows,15,Direct documentation candidates found.
 priority_lsms_archive_preflight_public_documentation_snapshot_rows,133,Saved official public documentation snapshots accepted as documentation evidence.
 priority_lsms_archive_preflight_archive_member_rows,52,Readable archive member rows found without extraction.
 priority_lsms_archive_preflight_archive_raw_tabular_member_rows,52,Raw tabular-like archive members found.
 priority_lsms_archive_preflight_archive_documentation_member_rows,0,Documentation-like archive members found.
-priority_lsms_archive_preflight_ready_dataset_rows,4,Targets ready for schema and manual raw review.
-priority_lsms_archive_preflight_blocked_dataset_rows,15,Targets still blocked before schema/manual raw review.
+priority_lsms_archive_preflight_ready_dataset_rows,10,Targets ready for schema and manual raw review.
+priority_lsms_archive_preflight_blocked_dataset_rows,9,Targets still blocked before schema/manual raw review.
 priority_lsms_archive_preflight_requirement_rows,152,Requirement rows covered by archive/direct-file preflight.
-priority_lsms_archive_preflight_blocked_requirement_rows,120,Requirement rows blocked because no archive/direct raw evidence is available.
+priority_lsms_archive_preflight_blocked_requirement_rows,72,Requirement rows blocked because no archive/direct raw evidence is available.
 priority_lsms_archive_preflight_handoff_readmes_written,19,Per-target archive preflight handoff files written.
 priority_lsms_archive_preflight_data_write_status,blocked_no_promoted_rows,No country-wave may write to data/ from archive preflight alone.
 modeling_gate_status,blocked,Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass.
@@ -19,5 +19,5 @@ priority_lsms_archive_preflight_queue_role_core_replacement_primary,2,Archive pr
 priority_lsms_archive_preflight_queue_role_core_selected_lsms_isa_aligned,8,Archive preflight target count by refocused queue role.
 priority_lsms_archive_preflight_queue_role_replacement_backup_wave,6,Archive preflight target count by refocused queue role.
 priority_lsms_archive_preflight_queue_role_sixth_country_backup_candidate,3,Archive preflight target count by refocused queue role.
-priority_lsms_archive_preflight_status_blocked_no_original_archive_or_direct_files,15,Archive preflight dataset status count.
-priority_lsms_archive_preflight_status_ready_for_raw_receipt_schema_and_manual_review,4,Archive preflight dataset status count.
+priority_lsms_archive_preflight_status_blocked_no_original_archive_or_direct_files,9,Archive preflight dataset status count.
+priority_lsms_archive_preflight_status_ready_for_raw_receipt_schema_and_manual_review,10,Archive preflight dataset status count.

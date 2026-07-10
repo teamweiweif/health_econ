@@ -9,21 +9,21 @@ local package PDF documentation.
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| priority_lsms_focused_raw_value_decision_dataset_rows | 3 | Received raw datasets with focused decision rows. |
-| priority_lsms_focused_raw_value_documentation_file_rows | 5 | Local PDF documentation files parsed for received raw datasets. |
-| priority_lsms_focused_raw_value_documentation_extracted_rows | 5 | PDF documentation files with extracted text. |
-| priority_lsms_focused_raw_value_variable_decision_rows | 432 | Variable-level focused raw value decision rows. |
-| priority_lsms_focused_raw_value_requirement_decision_rows | 21 | Requirement-level focused raw value decision rows. |
+| priority_lsms_focused_raw_value_decision_dataset_rows | 5 | Received raw datasets with focused decision rows. |
+| priority_lsms_focused_raw_value_documentation_file_rows | 7 | Local PDF documentation files parsed for received raw datasets. |
+| priority_lsms_focused_raw_value_documentation_extracted_rows | 7 | PDF documentation files with extracted text. |
+| priority_lsms_focused_raw_value_variable_decision_rows | 810 | Variable-level focused raw value decision rows. |
+| priority_lsms_focused_raw_value_requirement_decision_rows | 35 | Requirement-level focused raw value decision rows. |
 | priority_lsms_focused_raw_value_requirement_raw_value_verified_rows | 0 | No requirement is value-verified by this fail-closed documentation crosswalk. |
 | priority_lsms_focused_raw_value_data_write_status | blocked_decision_packet_only | Focused raw value decisions do not write promoted data. |
 | modeling_gate_status | blocked | Models remain blocked until promoted registry thresholds and climate linkage pass. |
-| priority_lsms_focused_raw_value_documentation_status_extracted | 5 | PDF extraction status count. |
-| priority_lsms_focused_raw_value_documentation_match_documented_by_variable_code | 122 | Variable documentation match status count. |
-| priority_lsms_focused_raw_value_documentation_match_label_terms_found_needs_manual_confirmation | 142 | Variable documentation match status count. |
-| priority_lsms_focused_raw_value_documentation_match_not_found_in_local_pdf_text | 131 | Variable documentation match status count. |
-| priority_lsms_focused_raw_value_documentation_match_weak_label_term_found_needs_manual_confirmation | 37 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_status_extracted | 7 | PDF extraction status count. |
+| priority_lsms_focused_raw_value_documentation_match_documented_by_variable_code | 248 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_match_label_terms_found_needs_manual_confirmation | 252 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_match_not_found_in_local_pdf_text | 195 | Variable documentation match status count. |
+| priority_lsms_focused_raw_value_documentation_match_weak_label_term_found_needs_manual_confirmation | 115 | Variable documentation match status count. |
 | priority_lsms_focused_raw_value_requirement_mechanical_mechanical_raw_profile_available_documentation_crosscheck_missing | 1 | Requirement mechanical decision status count. |
-| priority_lsms_focused_raw_value_requirement_mechanical_mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | 20 | Requirement mechanical decision status count. |
+| priority_lsms_focused_raw_value_requirement_mechanical_mechanical_raw_profile_plus_documentation_hits_needs_reviewer_acceptance | 34 | Requirement mechanical decision status count. |
 
 ## Documentation Parsed
 
@@ -34,6 +34,8 @@ local package PDF documentation.
 | TZA_2010_NPS-R2_v03_M | NPS_Household_Qx_English_Year_2.pdf | 48 | 86669 | extracted |
 | TZA_2012_NPS-R3_v01_M | NPS_Household_Qx_Y3_Final_English.pdf | 52 | 89586 | extracted |
 | TZA_2012_NPS-R3_v01_M | NPS_Wave_3 _Final _Report.pdf | 120 | 245665 | extracted |
+| MWI_2016_IHS-IV_v04_M | fourth_integrated_household_survey_2016_2017_household_questionnaire.pdf | 69 | 138331 | extracted |
+| MWI_2010_IHS-III_v01_M | IHS3.Household.Qx.FINAL.pdf | 64 | 112495 | extracted |
 
 ## Requirement Decisions
 

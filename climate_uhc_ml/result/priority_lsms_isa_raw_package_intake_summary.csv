@@ -1,14 +1,14 @@
 ﻿metric,value,interpretation
 priority_lsms_raw_intake_dataset_rows,19,Refocused LSMS/ISA acquisition targets with raw-package intake ledger rows.
-priority_lsms_raw_intake_file_manifest_rows,779,"Files found under target folders, including generated handoffs and original candidates."
-priority_lsms_raw_intake_generated_handoff_files,474,Generated markdown handoffs ignored as raw receipt evidence.
-priority_lsms_raw_intake_original_file_rows,305,Non-generated candidate original files found in refocused target folders.
+priority_lsms_raw_intake_file_manifest_rows,1455,"Files found under target folders, including generated handoffs and original candidates."
+priority_lsms_raw_intake_generated_handoff_files,483,Generated markdown handoffs ignored as raw receipt evidence.
+priority_lsms_raw_intake_original_file_rows,972,Non-generated candidate original files found in refocused target folders.
 priority_lsms_raw_intake_archive_file_rows,1,Archive/compressed package candidates found.
-priority_lsms_raw_intake_raw_tabular_file_rows,299,Raw tabular/workbook candidates found.
-priority_lsms_raw_intake_documentation_file_rows,5,Documentation candidates found.
-priority_lsms_raw_intake_missing_package_rows,15,Targets with no original package or documentation files yet.
+priority_lsms_raw_intake_raw_tabular_file_rows,956,Raw tabular/workbook candidates found.
+priority_lsms_raw_intake_documentation_file_rows,15,Documentation candidates found.
+priority_lsms_raw_intake_missing_package_rows,9,Targets with no original package or documentation files yet.
 priority_lsms_raw_intake_acceptance_requirement_rows,152,Requirement rows carried into raw-package acceptance matrix.
-priority_lsms_raw_intake_blocked_requirement_rows,128,Requirement rows blocked because no original package is present.
+priority_lsms_raw_intake_blocked_requirement_rows,80,Requirement rows blocked because no original package is present.
 priority_lsms_raw_intake_handoff_readmes_written,19,Per-target raw-package intake handoff files written.
 priority_lsms_raw_intake_data_write_status,blocked_no_promoted_rows,No country-wave may write to data/ from this intake packet.
 modeling_gate_status,blocked,Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass.
@@ -17,5 +17,5 @@ priority_lsms_raw_intake_queue_role_core_selected_lsms_isa_aligned,8,Raw-package
 priority_lsms_raw_intake_queue_role_replacement_backup_wave,6,Raw-package intake row count by refocused queue role.
 priority_lsms_raw_intake_queue_role_sixth_country_backup_candidate,3,Raw-package intake row count by refocused queue role.
 priority_lsms_raw_intake_status_blocked_missing_documentation,1,Raw-package intake acceptance status count.
-priority_lsms_raw_intake_status_blocked_no_original_package,15,Raw-package intake acceptance status count.
-priority_lsms_raw_intake_status_ready_for_schema_and_manual_value_review,3,Raw-package intake acceptance status count.
+priority_lsms_raw_intake_status_blocked_no_original_package,9,Raw-package intake acceptance status count.
+priority_lsms_raw_intake_status_ready_for_schema_and_manual_value_review,9,Raw-package intake acceptance status count.

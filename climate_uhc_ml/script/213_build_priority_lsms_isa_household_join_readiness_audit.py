@@ -301,6 +301,100 @@ WAVE_CONFIGS: dict[str, dict[str, Any]] = {
             "household_person_keys": ["consumption_aggregate", "household_header_timing_design", "health_access_oop", "climate_geography"],
         },
     },
+    "MWI_2016_IHS-IV_v04_M": {
+        "key": "case_id",
+        "base_components": ["consumption_aggregate"],
+        "components": [
+            {
+                "component": "consumption_aggregate",
+                "role": "consumption_or_income;oop_health_expenditure;weights_and_design;survey_timing;climate_geography",
+                "file": "IHS4 Consumption Aggregate.dta",
+                "key": "case_id",
+                "person_key": "",
+                "required": ["case_id", "expagg", "rexpagg", "rexp_cat06", "hh_wgt", "ea_id", "district", "region", "sdate", "smonth", "syear"],
+            },
+            {
+                "component": "household_header_timing_design",
+                "role": "survey_timing;weights_and_design;climate_geography",
+                "file": "HH_MOD_A_FILT.dta",
+                "key": "case_id",
+                "person_key": "",
+                "required": ["case_id", "HHID", "ea_id", "region", "district", "interviewDate", "hh_wgt"],
+            },
+            {
+                "component": "health_access_oop",
+                "role": "health_need_and_access;oop_health_expenditure",
+                "file": "HH_MOD_D.dta",
+                "key": "case_id",
+                "person_key": "PID",
+                "required": ["case_id", "PID", "hh_d04", "hh_d07a", "hh_d08", "hh_d10", "hh_d13", "hh_d14", "hh_d15", "hh_d17"],
+            },
+            {
+                "component": "climate_geography",
+                "role": "climate_geography",
+                "file": "HouseholdGeovariables_stata11/HouseholdGeovariablesIHS4.dta",
+                "key": "case_id",
+                "person_key": "",
+                "required": ["case_id", "HHID", "lat_modified", "lon_modified"],
+            },
+        ],
+        "role_components": {
+            "consumption_or_income": ["consumption_aggregate"],
+            "weights_and_design": ["consumption_aggregate", "household_header_timing_design"],
+            "oop_health_expenditure": ["consumption_aggregate", "health_access_oop"],
+            "health_need_and_access": ["health_access_oop"],
+            "survey_timing": ["consumption_aggregate", "household_header_timing_design"],
+            "climate_geography": ["consumption_aggregate", "household_header_timing_design", "climate_geography"],
+            "household_person_keys": ["consumption_aggregate", "household_header_timing_design", "health_access_oop", "climate_geography"],
+        },
+    },
+    "MWI_2010_IHS-III_v01_M": {
+        "key": "case_id",
+        "base_components": ["consumption_aggregate"],
+        "components": [
+            {
+                "component": "consumption_aggregate",
+                "role": "consumption_or_income;oop_health_expenditure;weights_and_design;survey_timing;climate_geography",
+                "file": "Panel/Round 1 (2010) Consumption Aggregate.dta",
+                "key": "case_id",
+                "person_key": "",
+                "required": ["case_id", "rexpagg", "rexp_cat06", "hhweight", "ea_id", "district", "intmonth", "intyear"],
+            },
+            {
+                "component": "household_header_timing_design",
+                "role": "survey_timing;weights_and_design;climate_geography",
+                "file": "Panel/Household/hh_mod_a_filt.dta",
+                "key": "case_id",
+                "person_key": "",
+                "required": ["case_id", "ea_id", "hh_wgt", "hh_a01", "hh_a02", "hh_a23a_1", "hh_a23b_1", "hh_a23c_1", "hh_a23a_2", "hh_a23b_2", "hh_a23c_2"],
+            },
+            {
+                "component": "health_access_oop",
+                "role": "health_need_and_access;oop_health_expenditure",
+                "file": "Panel/Household/hh_mod_d.dta",
+                "key": "case_id",
+                "person_key": "id_code",
+                "required": ["case_id", "id_code", "hh_d04", "hh_d07a", "hh_d08", "hh_d10", "hh_d13", "hh_d14", "hh_d15", "hh_d17"],
+            },
+            {
+                "component": "climate_geography",
+                "role": "climate_geography",
+                "file": "Panel/Geovariables/householdgeovariables_ihs3_rerelease.dta",
+                "key": "case_id",
+                "person_key": "",
+                "required": ["case_id", "ea_id", "lat_modified", "lon_modified"],
+            },
+        ],
+        "role_components": {
+            "consumption_or_income": ["consumption_aggregate"],
+            "weights_and_design": ["consumption_aggregate", "household_header_timing_design"],
+            "oop_health_expenditure": ["consumption_aggregate", "health_access_oop"],
+            "health_need_and_access": ["health_access_oop"],
+            "survey_timing": ["consumption_aggregate", "household_header_timing_design"],
+            "climate_geography": ["consumption_aggregate", "household_header_timing_design", "climate_geography"],
+            "household_person_keys": ["consumption_aggregate", "household_header_timing_design", "health_access_oop", "climate_geography"],
+        },
+    },
 }
 
 
@@ -651,8 +745,8 @@ def write_report(
     REPORT_PATH.write_text(
         f"""# Priority LSMS-ISA Household Join Readiness Audit
 
-Status: raw-backed household join audit for the received Nigeria 2015,
-Tanzania 2010, and Tanzania 2012 LSMS/ISA packages. This is a
+Status: raw-backed household join audit for received priority LSMS/ISA
+packages with configured join paths. This is a
 promotion-control artifact; it does not write to `data/` and does not mark any
 requirement as value-verified.
 

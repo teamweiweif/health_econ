@@ -5288,11 +5288,11 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["priority_lsms_isa_requirement_acceptance_decisions"] == priority_lsms_focused_requirements
         and counts["priority_lsms_isa_focused_raw_value_decision_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_focused_raw_value_decision_packet.md")
-        and priority_lsms_focused_datasets == 3
-        and priority_lsms_focused_docs >= 5
+        and priority_lsms_focused_datasets == 5
+        and priority_lsms_focused_docs >= 7
         and priority_lsms_focused_docs_extracted == priority_lsms_focused_docs
-        and priority_lsms_focused_variables >= 400
-        and priority_lsms_focused_requirements == 21
+        and priority_lsms_focused_variables >= 800
+        and priority_lsms_focused_requirements == 35
         and priority_lsms_focused_verified == 0
         and priority_lsms_focused_data_write == "blocked_decision_packet_only"
         and priority_lsms_focused_modeling_gate == "blocked"
@@ -5319,10 +5319,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["priority_lsms_isa_household_join_readiness"] == priority_lsms_join_datasets
         and counts["priority_lsms_isa_household_join_readiness_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_household_join_readiness_audit.md")
-        and priority_lsms_join_datasets == 3
-        and priority_lsms_join_files == 15
-        and priority_lsms_join_pairs == 17
-        and priority_lsms_join_complete == 3
+        and priority_lsms_join_datasets == 5
+        and priority_lsms_join_files == 23
+        and priority_lsms_join_pairs == 23
+        and priority_lsms_join_complete == 5
         and priority_lsms_join_verified == 0
         and priority_lsms_join_data_write == "blocked_join_audit_only"
         and priority_lsms_join_modeling_gate == "blocked"
@@ -6816,10 +6816,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["priority_lsms_isa_external_local_raw_staging_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_external_local_raw_staging.md")
         and priority_lsms_external_staging_mode == "execute"
-        and priority_lsms_external_staging_plan_rows == 3
-        and priority_lsms_external_staging_file_rows == 304
-        and priority_lsms_external_staging_executed_rows == 3
-        and priority_lsms_external_staging_copied_rows == 304
+        and priority_lsms_external_staging_plan_rows == 6
+        and priority_lsms_external_staging_file_rows == 667
+        and priority_lsms_external_staging_executed_rows == 6
+        and priority_lsms_external_staging_copied_rows == 667
         and priority_lsms_external_staging_blocked_rows == 0
         and priority_lsms_external_staging_provenance_rows == 0
         and priority_lsms_external_staging_data_write == "blocked_no_data_write"

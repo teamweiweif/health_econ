@@ -1,9 +1,9 @@
 ﻿metric,value,interpretation
 external_local_raw_staging_mode,execute,Whether this run copied files or only produced a plan.
-external_local_raw_staging_plan_rows,3,Copy-review-ready rows considered for external local staging.
-external_local_raw_staging_file_manifest_rows,304,Source files covered by the staging plan or execution manifest.
-external_local_raw_staging_executed_dataset_rows,3,Datasets copied into temp/raw_downloads by this run.
-external_local_raw_staging_copied_file_rows,304,Files copied into temp/raw_downloads by this run.
+external_local_raw_staging_plan_rows,6,Explicitly selected intake-decision rows considered for external local staging.
+external_local_raw_staging_file_manifest_rows,667,Source files covered by the staging plan or execution manifest.
+external_local_raw_staging_executed_dataset_rows,6,Datasets copied into temp/raw_downloads by this run.
+external_local_raw_staging_copied_file_rows,667,Files copied into temp/raw_downloads by this run.
 external_local_raw_staging_skipped_existing_file_rows,0,Destination files already present with the same size.
 external_local_raw_staging_blocked_file_rows,0,Files not copied because of safety or copy errors.
 external_local_raw_staging_provenance_accepted_rows,0,Staging does not accept external local provenance as official receipt.

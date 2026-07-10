@@ -13,19 +13,19 @@ This checklist does not verify raw values and does not promote data.
 |---|---:|---|
 | priority_lsms_receipt_checklist_dataset_rows | 19 | Refocused LSMS/ISA dataset-level raw package receipt checklist rows. |
 | priority_lsms_receipt_checklist_requirement_rows | 152 | Requirement-level receipt checklist rows joined to raw-value workbook gates. |
-| priority_lsms_receipt_checklist_package_received_rows | 4 | Datasets with at least one original non-generated package or documentation file in the target folder. |
+| priority_lsms_receipt_checklist_package_received_rows | 10 | Datasets with at least one original non-generated package or documentation file in the target folder. |
 | priority_lsms_receipt_checklist_public_documentation_snapshot_rows | 133 | Saved official public documentation snapshots used as documentation evidence. |
-| priority_lsms_receipt_checklist_complete_package_received_rows | 4 | Datasets whose local receipt appears complete enough for raw value review. |
-| priority_lsms_receipt_checklist_ready_for_raw_value_review_rows | 4 | Dataset rows ready to proceed to raw value workbook review. |
-| priority_lsms_receipt_checklist_blocked_no_original_package_rows | 15 | Dataset rows still missing original official packages. |
-| priority_lsms_receipt_checklist_blocked_requirement_rows | 120 | Requirement rows blocked before raw value review. |
+| priority_lsms_receipt_checklist_complete_package_received_rows | 10 | Datasets whose local receipt appears complete enough for raw value review. |
+| priority_lsms_receipt_checklist_ready_for_raw_value_review_rows | 10 | Dataset rows ready to proceed to raw value workbook review. |
+| priority_lsms_receipt_checklist_blocked_no_original_package_rows | 9 | Dataset rows still missing original official packages. |
+| priority_lsms_receipt_checklist_blocked_requirement_rows | 72 | Requirement rows blocked before raw value review. |
 | priority_lsms_receipt_checklist_handoff_readmes_written | 19 | Per-wave raw-folder receipt checklist handoffs written. |
 | priority_lsms_receipt_checklist_data_write_status | blocked_no_promoted_rows | No country-wave may write to data/ from an unaccepted receipt checklist. |
 | modeling_gate_status | blocked | Models remain blocked until receipt, raw-value, climate-linkage, and promoted-registry thresholds pass. |
-| priority_lsms_receipt_checklist_dataset_status_blocked_no_original_package | 15 | Dataset receipt status count. |
-| priority_lsms_receipt_checklist_dataset_status_ready_for_raw_value_review | 4 | Dataset receipt status count. |
-| priority_lsms_receipt_checklist_requirement_status_blocked_no_original_package | 120 | Requirement receipt status count. |
-| priority_lsms_receipt_checklist_requirement_status_ready_for_raw_value_review | 32 | Requirement receipt status count. |
+| priority_lsms_receipt_checklist_dataset_status_blocked_no_original_package | 9 | Dataset receipt status count. |
+| priority_lsms_receipt_checklist_dataset_status_ready_for_raw_value_review | 10 | Dataset receipt status count. |
+| priority_lsms_receipt_checklist_requirement_status_blocked_no_original_package | 72 | Requirement receipt status count. |
+| priority_lsms_receipt_checklist_requirement_status_ready_for_raw_value_review | 80 | Requirement receipt status count. |
 
 ## Dataset Receipt Checklist Preview
 
@@ -34,10 +34,10 @@ This checklist does not verify raw values and does not promote data.
 | 1 | ETH_2021_ESPS-W5_v02_M | Ethiopia | 2021-2022 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 2 | ETH_2018_ESS_v04_M | Ethiopia | 2018-2019 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 3 | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | 1 | 0 | 0 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
-| 4 | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
+| 4 | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | 122 | 120 | 2 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
 | 5 | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | 117 | 115 | 2 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
-| 6 | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
-| 7 | TZA_2008_NPS-R1_v03_M | Tanzania | 2008-2009 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
+| 6 | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | 111 | 107 | 4 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
+| 7 | TZA_2008_NPS-R1_v03_M | Tanzania | 2008-2009 | 67 | 66 | 1 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
 | 8 | TZA_2010_NPS-R2_v03_M | Tanzania | 2010-2011 | 100 | 99 | 1 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
 | 9 | TZA_2012_NPS-R3_v01_M | Tanzania | 2012-2013 | 87 | 85 | 2 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
 | 10 | UGA_2019_UNPS_v03_M | Uganda | 2019-2020 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
@@ -45,9 +45,9 @@ This checklist does not verify raw values and does not promote data.
 | 12 | KGZ_1993_KMPS_v01_M | Kyrgyz Republic | 1993 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 13 | NPL_2010_LSS-III_v01_M | Nepal | 2010-2011 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 14 | MWI_2019_IHS-V_v06_M | Malawi | 2019-2020 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
-| 15 | MWI_2016_IHS-IV_v04_M | Malawi | 2016-2017 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
-| 16 | MWI_2010_IHS-III_v01_M | Malawi | 2010-2011 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
-| 17 | UGA_2011_UNPS_v02_M | Uganda | 2011-2012 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
+| 15 | MWI_2016_IHS-IV_v04_M | Malawi | 2016-2017 | 105 | 104 | 1 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
+| 16 | MWI_2010_IHS-III_v01_M | Malawi | 2010-2011 | 157 | 156 | 1 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
+| 17 | UGA_2011_UNPS_v02_M | Uganda | 2011-2012 | 105 | 104 | 1 | 7 | ready_for_raw_value_review | Proceed to raw value workbook review and fill only evidence-backed acceptance fields. |
 | 18 | UGA_2018_UNPS_v02_M | Uganda | 2018-2019 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 19 | UGA_2015_UNPS_v02_M | Uganda | 2015-2016 | 0 | 0 | 0 | 7 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 
@@ -79,14 +79,14 @@ This checklist does not verify raw values and does not promote data.
 | 3 | MWI_2004_IHS-II_v01_M | survey_timing | 12 | 7 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
 | 3 | MWI_2004_IHS-II_v01_M | climate_geography | 12 | 12 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
 | 3 | MWI_2004_IHS-II_v01_M | missing_codes_units_recall_skip_patterns | 0 | 0 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
-| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | 12 | 12 | blocked_no_original_package | blocked_no_original_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | 12 | 4 | blocked_no_original_package | blocked_no_original_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | consumption_or_income | 12 | 4 | blocked_no_original_package | blocked_no_original_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | oop_health_expenditure | 6 | 1 | blocked_no_original_package | blocked_no_original_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | health_need_and_access | 12 | 3 | blocked_no_original_package | blocked_no_original_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | survey_timing | 12 | 1 | blocked_no_original_package | blocked_no_original_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | climate_geography | 12 | 5 | blocked_no_original_package | blocked_no_original_package |
-| 4 | NGA_2012_GHSP-W2_v02_M | missing_codes_units_recall_skip_patterns | 0 | 0 | blocked_no_original_package | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | 12 | 12 | ready_for_raw_value_review | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | 12 | 4 | ready_for_raw_value_review | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | consumption_or_income | 12 | 4 | ready_for_raw_value_review | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | oop_health_expenditure | 6 | 1 | ready_for_raw_value_review | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | health_need_and_access | 12 | 3 | ready_for_raw_value_review | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | survey_timing | 12 | 1 | ready_for_raw_value_review | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | climate_geography | 12 | 5 | ready_for_raw_value_review | blocked_no_original_package |
+| 4 | NGA_2012_GHSP-W2_v02_M | missing_codes_units_recall_skip_patterns | 0 | 0 | ready_for_raw_value_review | blocked_no_original_package |
 | 5 | NGA_2015_GHSP-W3_v02_M | household_person_keys | 12 | 12 | ready_for_raw_value_review | blocked_no_original_package |
 | 5 | NGA_2015_GHSP-W3_v02_M | weights_and_design | 12 | 5 | ready_for_raw_value_review | blocked_no_original_package |
 | 5 | NGA_2015_GHSP-W3_v02_M | consumption_or_income | 12 | 3 | ready_for_raw_value_review | blocked_no_original_package |
@@ -95,22 +95,22 @@ This checklist does not verify raw values and does not promote data.
 | 5 | NGA_2015_GHSP-W3_v02_M | survey_timing | 12 | 1 | ready_for_raw_value_review | blocked_no_original_package |
 | 5 | NGA_2015_GHSP-W3_v02_M | climate_geography | 12 | 6 | ready_for_raw_value_review | blocked_no_original_package |
 | 5 | NGA_2015_GHSP-W3_v02_M | missing_codes_units_recall_skip_patterns | 0 | 0 | ready_for_raw_value_review | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | household_person_keys | 12 | 12 | blocked_no_original_package | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | weights_and_design | 12 | 8 | blocked_no_original_package | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | consumption_or_income | 12 | 2 | blocked_no_original_package | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | oop_health_expenditure | 5 | 1 | blocked_no_original_package | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | health_need_and_access | 12 | 3 | blocked_no_original_package | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | survey_timing | 12 | 2 | blocked_no_original_package | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | climate_geography | 12 | 3 | blocked_no_original_package | blocked_no_original_package |
-| 6 | NGA_2010_GHSP-W1_v03_M | missing_codes_units_recall_skip_patterns | 0 | 0 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | household_person_keys | 12 | 11 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | weights_and_design | 12 | 7 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | consumption_or_income | 12 | 3 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | oop_health_expenditure | 12 | 2 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | health_need_and_access | 12 | 2 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | survey_timing | 12 | 5 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | climate_geography | 12 | 9 | blocked_no_original_package | blocked_no_original_package |
-| 7 | TZA_2008_NPS-R1_v03_M | missing_codes_units_recall_skip_patterns | 0 | 0 | blocked_no_original_package | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | household_person_keys | 12 | 12 | ready_for_raw_value_review | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | weights_and_design | 12 | 8 | ready_for_raw_value_review | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | consumption_or_income | 12 | 2 | ready_for_raw_value_review | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | oop_health_expenditure | 5 | 1 | ready_for_raw_value_review | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | health_need_and_access | 12 | 3 | ready_for_raw_value_review | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | survey_timing | 12 | 2 | ready_for_raw_value_review | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | climate_geography | 12 | 3 | ready_for_raw_value_review | blocked_no_original_package |
+| 6 | NGA_2010_GHSP-W1_v03_M | missing_codes_units_recall_skip_patterns | 0 | 0 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | household_person_keys | 12 | 11 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | weights_and_design | 12 | 7 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | consumption_or_income | 12 | 3 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | oop_health_expenditure | 12 | 2 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | health_need_and_access | 12 | 2 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | survey_timing | 12 | 5 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | climate_geography | 12 | 9 | ready_for_raw_value_review | blocked_no_original_package |
+| 7 | TZA_2008_NPS-R1_v03_M | missing_codes_units_recall_skip_patterns | 0 | 0 | ready_for_raw_value_review | blocked_no_original_package |
 | 8 | TZA_2010_NPS-R2_v03_M | household_person_keys | 12 | 11 | ready_for_raw_value_review | blocked_no_original_package |
 | 8 | TZA_2010_NPS-R2_v03_M | weights_and_design | 12 | 11 | ready_for_raw_value_review | blocked_no_original_package |
 | 8 | TZA_2010_NPS-R2_v03_M | consumption_or_income | 12 | 3 | ready_for_raw_value_review | blocked_no_original_package |

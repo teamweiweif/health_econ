@@ -8,18 +8,18 @@ this review.
 
 | metric | value | interpretation |
 |---|---:|---|
-| priority_lsms_received_raw_semantics_dataset_rows | 3 | Datasets with received raw semantics review evidence. |
-| priority_lsms_received_raw_semantics_variable_rows | 435 | Variable-level semantics review rows from value and utility profiles. |
+| priority_lsms_received_raw_semantics_dataset_rows | 5 | Datasets with received raw semantics review evidence. |
+| priority_lsms_received_raw_semantics_variable_rows | 988 | Variable-level semantics review rows from value and utility profiles. |
 | priority_lsms_received_raw_semantics_ddi_documented_variable_rows | 0 | Profiled variables matched to official DDI documentation. |
-| priority_lsms_received_raw_semantics_requirement_rows | 24 | Requirement-level semantics review rows. |
+| priority_lsms_received_raw_semantics_requirement_rows | 40 | Requirement-level semantics review rows. |
 | priority_lsms_received_raw_semantics_documentation_scope_rows | 6 | Study-level documentation scope rows. |
-| priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 3 | Documentation-semantics gate rows now backed by review evidence. |
+| priority_lsms_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 5 | Documentation-semantics gate rows now backed by review evidence. |
 | priority_lsms_received_raw_semantics_raw_value_verified_rows | 0 | Semantics review does not value-verify any country-wave. |
 | priority_lsms_received_raw_semantics_data_write_status | blocked_semantics_review_only | Semantics review evidence does not write promoted analysis data. |
 | modeling_gate_status | blocked | Models remain blocked until promoted registry thresholds and climate linkage pass. |
-| priority_lsms_received_raw_semantics_status_missing_ddi_documentation_for_profiled_variable | 435 | Variable-level semantics review status count. |
-| priority_lsms_received_raw_semantics_requirement_status_semantics_review_available_not_value_verified | 24 | Requirement-level semantics review status count. |
-| priority_lsms_received_raw_semantics_handoff_readmes_written | 3 | Per-dataset semantics review handoffs written. |
+| priority_lsms_received_raw_semantics_status_missing_ddi_documentation_for_profiled_variable | 988 | Variable-level semantics review status count. |
+| priority_lsms_received_raw_semantics_requirement_status_semantics_review_available_not_value_verified | 40 | Requirement-level semantics review status count. |
+| priority_lsms_received_raw_semantics_handoff_readmes_written | 5 | Per-dataset semantics review handoffs written. |
 
 ## Documentation Scope
 
@@ -36,6 +36,22 @@ this review.
 
 | country | wave | idno | requirement | semantics_variable_rows | ddi_documented_variable_rows | documentation_recall_periods | documentation_units_or_scales | semantics_requirement_status |
 |---|---|---|---|---|---|---|---|---|
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | climate_geography | 21 | 0 |  |  | semantics_review_available_not_value_verified |
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | consumption_or_income | 13 | 0 | past_month | money_amount_local_currency_needs_malawi_kwacha_confirmation; money_amount_local_currency_needs_malawi_kwacha_confirm... | semantics_review_available_not_value_verified |
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | health_need_and_access | 24 | 0 | past_2_weeks | distance_unit_pair_or_code_needs_category_check; distance_unit_pair_or_code_needs_category_check; unit_variable | semantics_review_available_not_value_verified |
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | household_person_keys | 175 | 0 |  |  | semantics_review_available_not_value_verified |
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | missing_codes_units_recall_skip_patterns | 288 | 0 | interview_date; interview_month; past_2_weeks; past_4_weeks; past_month | distance_unit_pair_or_code_needs_category_check; distance_unit_pair_or_code_needs_category_check; unit_variable; mone... | semantics_review_available_not_value_verified |
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | oop_health_expenditure | 10 | 0 | past_4_weeks | money_amount_local_currency_needs_malawi_kwacha_confirmation | semantics_review_available_not_value_verified |
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | survey_timing | 23 | 0 | interview_date; interview_month | month | semantics_review_available_not_value_verified |
+| Malawi | 2010-2011 | MWI_2010_IHS-III_v01_M | weights_and_design | 22 | 0 |  | survey_weight | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | climate_geography | 17 | 0 |  |  | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | consumption_or_income | 12 | 0 |  | money_amount_local_currency_needs_malawi_kwacha_confirmation | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | health_need_and_access | 12 | 0 | past_2_weeks | distance_unit_pair_or_code_needs_category_check; money_amount_local_currency_needs_malawi_kwacha_confirmation; money_... | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | household_person_keys | 190 | 0 |  |  | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | missing_codes_units_recall_skip_patterns | 265 | 0 | interview_date; past_2_weeks; past_4_weeks | distance_unit_pair_or_code_needs_category_check; money_amount_local_currency_needs_malawi_kwacha_confirmation; money_... | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | oop_health_expenditure | 10 | 0 | past_4_weeks | money_amount_local_currency_needs_malawi_kwacha_confirmation; money_amount_local_currency_needs_malawi_kwacha_confirm... | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | survey_timing | 12 | 0 | interview_date |  | semantics_review_available_not_value_verified |
+| Malawi | 2016-2017 | MWI_2016_IHS-IV_v04_M | weights_and_design | 12 | 0 |  |  | semantics_review_available_not_value_verified |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | climate_geography | 122 | 0 |  |  | semantics_review_available_not_value_verified |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | consumption_or_income | 12 | 0 |  | money_amount_local_currency_needs_malawi_kwacha_confirmation | semantics_review_available_not_value_verified |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | health_need_and_access | 12 | 0 | past_4_weeks | money_amount_local_currency_needs_malawi_kwacha_confirmation; month | semantics_review_available_not_value_verified |
@@ -65,86 +81,86 @@ this review.
 
 | review_source | requirement | actual_member_name | variable_name | ddi_file_content | documentation_recall_period | documentation_unit_or_scale | documentation_missing_code_evidence | documentation_skip_evidence | semantics_review_status |
 |---|---|---|---|---|---|---|---|---|---|
-| raw_value_profile | weights_and_design | cons_agg_wave3_visit1.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | cons_agg_wave3_visit1.dta | hhweight |  |  | survey_weight |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit1.dta | totcons |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit1.dta | nfdfoth |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit1.dta | fdfishpr |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit1.dta | fdothpr |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit1.dta | fdrestby |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | cons_agg_wave3_visit1.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | cons_agg_wave3_visit2.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | cons_agg_wave3_visit2.dta | hhweight |  |  | survey_weight |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit2.dta | totcons |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit2.dta | nfdfoth |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit2.dta | fdfishpr |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit2.dta | fdothpr |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | cons_agg_wave3_visit2.dta | fdrestby |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | cons_agg_wave3_visit2.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | HHTrack.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | HHTrack.dta | wt_combined |  |  | survey_weight |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | HHTrack.dta | wt_w1_w2_w3 |  |  | survey_weight |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | HHTrack.dta | wt_w1_w3 |  |  | survey_weight |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | HHTrack.dta | wt_w1v1 |  |  | survey_weight |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | HHTrack.dta | wt_w1v2 |  |  | survey_weight |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | HHTrack.dta | wt_w2_w3 |  |  | survey_weight |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | NGA_HouseholdGeovars_Y3.dta | LAT_DD_MOD |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | NGA_HouseholdGeovars_Y3.dta | LON_DD_MOD |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect10b_harvestw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect11a1_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect11a_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect12_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect1_harvestw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sect1_harvestw3.dta | s1q31a |  |  |  | raw_possible_codes=99 | question_text_suggests_skip_or_universe | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sect1_harvestw3.dta | s1q31b |  |  |  |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sect1_harvestw3.dta | s1q31c |  |  |  |  | question_text_suggests_skip_or_universe | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sect1_harvestw3.dta | s1q31d |  |  |  |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect1_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect3_plantingw3.dta | s3q9b |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | oop_health_expenditure | sect4a_harvestw3.dta | s4aq20 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation | raw_possible_codes=4=4. OTHER RELATIVE; 8=8. OTHER ORGANISATION; 11=11. OTHER (SPECIFY) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | oop_health_expenditure | sect4a_harvestw3.dta | s4aq20b |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | oop_health_expenditure | sect4a_harvestw3.dta | s4aq13 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | question_text_suggests_skip_or_universe; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | oop_health_expenditure | sect4a_harvestw3.dta | s4aq35a |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | oop_health_expenditure | sect4a_harvestw3.dta | s4aq35b |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | oop_health_expenditure | sect4a_harvestw3.dta | s4aq35c |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq15 |  |  | month |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq16 |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq17 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq1 |  | past_4_weeks |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq6a |  |  |  | raw_possible_codes=13=13. OTHER (SPECIFY) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq6a_os |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq6b |  |  |  | raw_possible_codes=13=13. OTHER (SPECIFY) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq6b_os |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq3 |  | past_4_weeks |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq3b |  |  |  | raw_possible_codes=12=12. OTHER (SPECIFY) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | health_need_and_access | sect4a_harvestw3.dta | s4aq3b_os |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect7a_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | sect7b_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | sect8a_plantingw3.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | consumption_or_income | sect8a_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | secta10_harvestw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | secta_harvestw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq14ah |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq14am |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq14bh |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq14bm |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq17ah |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq17am |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq17bh |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq17bm |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq20ah |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq20am |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq20bh |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | survey_timing | secta_harvestw3.dta | saq20bm |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | secta_plantingw3.dta | hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | sectc1_harvestw3.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sectc1_harvestw3.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sectc1_harvestw3.dta | lga |  |  |  |  | question_text_suggests_skip_or_universe; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | weights_and_design | sectc2_harvestw3.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sectc2_harvestw3.dta | ea |  |  |  | raw_possible_codes=96; 998 |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | climate_geography | sectc2_harvestw3.dta | lga |  |  |  |  | question_text_suggests_skip_or_universe; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | AG_SEC10B.dta | y2_hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
-| raw_value_profile | household_person_keys | AG_SEC7A.dta | y2_hhid |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_b.dta | ag_b05a |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_b.dta | ag_b05b |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_b.dta | ag_b05a |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_b.dta | ag_b05b |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_g.dta | ag_g12a |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_g.dta | ag_g12b |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_g.dta | ag_g12a |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_g.dta | ag_g12b |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_m.dta | ag_m12a |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_m.dta | ag_m12b |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_m.dta | ag_m12a |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | ag_mod_m.dta | ag_m12b |  |  | month |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | com_ca.dta | com_ca07 |  | interview_date |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | com_ca.dta | com_ca07 |  | interview_date |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd60a |  |  | distance_unit_pair_or_code_needs_category_check | raw_possible_codes=98 |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd60b |  |  | distance_unit_pair_or_code_needs_category_check; unit_variable |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd53 |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd54 |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd51a |  |  | distance_unit_pair_or_code_needs_category_check |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd51b |  |  | distance_unit_pair_or_code_needs_category_check; unit_variable |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd60a |  |  | distance_unit_pair_or_code_needs_category_check | raw_possible_codes=98 |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd60b |  |  | distance_unit_pair_or_code_needs_category_check; unit_variable |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd53 |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd54 |  |  |  |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd51a |  |  | distance_unit_pair_or_code_needs_category_check |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | com_cd.dta | com_cd51b |  |  | distance_unit_pair_or_code_needs_category_check; unit_variable |  | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_a_filt.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_a_filt.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23_1 |  | interview_date |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23_2 |  | interview_date |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23b_1 |  | interview_month | month |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23b_2 |  | interview_month | month |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_a_filt.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_a_filt.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_a_filt.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23_1 |  | interview_date |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23_2 |  | interview_date |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23b_1 |  | interview_month | month |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | survey_timing | hh_mod_a_filt.dta | hh_a23b_2 |  | interview_month | month |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_a_filt.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d11 |  | past_4_weeks | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d15 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d16 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d21 |  | past_4_weeks | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d14 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d04 |  | past_2_weeks |  |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05a |  |  |  | raw_possible_codes=30=Other (specify) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05a_os |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05b |  |  |  | raw_possible_codes=30=Other (specify) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05b_os |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d34a |  |  |  | raw_possible_codes=15=Other (specify) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d11 |  | past_4_weeks | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d15 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d16 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d21 |  | past_4_weeks | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | oop_health_expenditure | hh_mod_d.dta | hh_d14 |  |  | money_amount_local_currency_needs_malawi_kwacha_confirmation |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d04 |  | past_2_weeks |  |  | raw_conditional_nonmissing; question_text_suggests_skip_or_universe; conditional_missingness; questionnaire_skip_likely | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05a |  |  |  | raw_possible_codes=30=Other (specify) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05a_os |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05b |  |  |  | raw_possible_codes=30=Other (specify) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d05b_os |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | health_need_and_access | hh_mod_d.dta | hh_d34a |  |  |  | raw_possible_codes=15=Other (specify) | raw_conditional_nonmissing; conditional_missingness | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_h.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_h.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_h.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_h.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_h.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_h.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_i1.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_i1.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_i1.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_i1.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_i1.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_i1.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_i2.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_i2.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_i2.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | household_person_keys | hh_mod_i2.dta | case_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | weights_and_design | hh_mod_i2.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
+| raw_value_profile | climate_geography | hh_mod_i2.dta | ea_id |  |  |  |  |  | missing_ddi_documentation_for_profiled_variable |
 
 ## Interpretation
 
