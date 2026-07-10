@@ -33,7 +33,7 @@ and does not treat metadata as raw data.
 |---|---|---|---|---|---|---|---|
 | 1 | ETH_2021_ESPS-W5_v02_M | Ethiopia | 2021-2022 | 68 | 36 | blocked_no_original_package | ready_for_credentialed_manual_download |
 | 2 | ETH_2018_ESS_v04_M | Ethiopia | 2018-2019 | 68 | 35 | blocked_no_original_package | ready_for_credentialed_manual_download |
-| 3 | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | 52 | 37 | blocked_no_raw_tabular_file | ready_for_credentialed_manual_download |
+| 3 | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | 52 | 37 | ready_for_raw_value_review | ready_for_credentialed_manual_download |
 | 4 | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | 103 | 26 | blocked_no_original_package | ready_for_credentialed_manual_download |
 | 5 | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | 104 | 26 | blocked_no_original_package | ready_for_credentialed_manual_download |
 | 6 | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | 99 | 27 | blocked_no_original_package | ready_for_credentialed_manual_download |
@@ -126,15 +126,15 @@ and does not treat metadata as raw data.
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | 6 | sect9_hh_w4.dta | 1 | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | 7 | sect1_hh_w4.dta | 1 | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | 8 | sect10d1_hh_w4.dta | 1 | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 1 | sec_a.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 2 | sec_f.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 3 | sec_g.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 4 | sec_h.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 5 | sec_i.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 6 | sec_j1.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 7 | sec_j2.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 8 | sec_k.NSDstat | 1 | blocked_no_raw_tabular_file |
-| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | 1 | sec_j1.NSDstat | 10 | blocked_no_raw_tabular_file |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 1 | sec_a.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 2 | sec_f.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 3 | sec_g.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 4 | sec_h.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 5 | sec_i.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 6 | sec_j1.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 7 | sec_j2.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 8 | sec_k.NSDstat | 1 | ready_for_raw_value_review |
+| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | 1 | sec_j1.NSDstat | 10 | ready_for_raw_value_review |
 
 ## Full Official File Manifest Preview
 
