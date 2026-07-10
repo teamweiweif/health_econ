@@ -332,6 +332,7 @@ promotion:
 	$(PYTHON) script/180_build_priority_lsms_isa_credentialed_download_handoff.py
 	$(PYTHON) script/181_probe_priority_lsms_isa_resource_download_routes.py
 	$(PYTHON) script/182_build_priority_lsms_isa_download_acceptance_matrix.py
+	$(PYTHON) script/183_build_priority_lsms_isa_local_target_readmes.py
 	$(PYTHON) script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py

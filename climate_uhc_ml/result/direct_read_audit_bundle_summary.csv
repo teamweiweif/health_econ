@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,177,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,777,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,773,Curated artifacts present and non-empty.
+bundle_rows,178,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,781,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,777,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -580,7 +580,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,68,Direct-read bundle section count.
+bundle_section_priority_bundle,69,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -669,6 +669,7 @@ bundle_status_limited_che_outcome_nasa_admin2_climate_linked_promoted_models_sti
 bundle_status_limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked,1,Direct-read bundle status count.
 bundle_status_limited_harmonized_household_core_promoted_outcome_climate_still_blocked,1,Direct-read bundle status count.
 bundle_status_limited_nasa_admin2_centroid_climate_exposures_promoted_linkage_still_blocked,1,Direct-read bundle status count.
+bundle_status_local_target_readmes_current,1,Direct-read bundle status count.
 bundle_status_manual_download_execution_board_current,1,Direct-read bundle status count.
 bundle_status_manual_download_packets_current,1,Direct-read bundle status count.
 bundle_status_manual_download_progress_current,1,Direct-read bundle status count.

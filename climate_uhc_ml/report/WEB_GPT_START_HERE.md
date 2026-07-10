@@ -47,9 +47,11 @@ data gates.
    - Bounded public file-route probe for the 10 manual packets.
 16. `report/priority_lsms_isa_download_acceptance_matrix.md`
    - Expected-file and requirement-level acceptance matrix for downloaded packages.
-17. `report/priority_lsms_isa_country_wave_promotion_packets/`
+17. `report/priority_lsms_isa_local_target_readmes.md`
+   - Manifest of local target-folder README files written under ignored `temp/raw_downloads/<IDNO>/`.
+18. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-18. `report/mwi2004_requirement_acceptance_decisions.md`
+19. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -96,6 +98,7 @@ resume, read:
 - `report/priority_lsms_isa_credentialed_download_handoff.md`
 - `report/priority_lsms_isa_resource_download_route_probe.md`
 - `report/priority_lsms_isa_download_acceptance_matrix.md`
+- `report/priority_lsms_isa_local_target_readmes.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -132,6 +135,13 @@ acceptance checklist:
 
 ```bash
 python script/182_build_priority_lsms_isa_download_acceptance_matrix.py
+```
+
+To refresh the local target-folder README files under ignored
+`temp/raw_downloads/<IDNO>/`, run:
+
+```bash
+python script/183_build_priority_lsms_isa_local_target_readmes.py
 ```
 
 ## Excluded From GitHub

@@ -167,6 +167,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_credentialed_download_handoff.md",
     "priority_lsms_isa_resource_download_route_probe.md",
     "priority_lsms_isa_download_acceptance_matrix.md",
+    "priority_lsms_isa_local_target_readmes.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -355,6 +356,7 @@ REQUIRED_SCRIPTS = [
     "180_build_priority_lsms_isa_credentialed_download_handoff.py",
     "181_probe_priority_lsms_isa_resource_download_routes.py",
     "182_build_priority_lsms_isa_download_acceptance_matrix.py",
+    "183_build_priority_lsms_isa_local_target_readmes.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -374,6 +376,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "180_build_priority_lsms_isa_credentialed_download_handoff.py",
     "181_probe_priority_lsms_isa_resource_download_routes.py",
     "182_build_priority_lsms_isa_download_acceptance_matrix.py",
+    "183_build_priority_lsms_isa_local_target_readmes.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -517,7 +520,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-182 dataset-promotion gate chain",
+        "One-command runners include the current 157-183 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -941,6 +944,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_download_acceptance_file_matrix": row_count(TEMP_DIR / "priority_lsms_isa_download_acceptance_file_matrix.csv"),
         "priority_lsms_isa_download_acceptance_requirement_matrix": row_count(TEMP_DIR / "priority_lsms_isa_download_acceptance_requirement_matrix.csv"),
         "priority_lsms_isa_download_acceptance_matrix_summary": row_count(RESULT_DIR / "priority_lsms_isa_download_acceptance_matrix_summary.csv"),
+        "priority_lsms_isa_local_target_readme_manifest": row_count(TEMP_DIR / "priority_lsms_isa_local_target_readme_manifest.csv"),
+        "priority_lsms_isa_local_target_readme_summary": row_count(RESULT_DIR / "priority_lsms_isa_local_target_readme_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5669,6 +5674,36 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_download_acceptance_gate_ok),
         f"file_rows={counts['priority_lsms_isa_download_acceptance_file_matrix']}; requirement_rows={counts['priority_lsms_isa_download_acceptance_requirement_matrix']}; summary_rows={counts['priority_lsms_isa_download_acceptance_matrix_summary']}; datasets={priority_lsms_download_acceptance_datasets}; expected_files={priority_lsms_download_acceptance_expected_files}; core_files={priority_lsms_download_acceptance_core_files}; missing_files={priority_lsms_download_acceptance_missing_files}; present_files={priority_lsms_download_acceptance_present_files}; blocked_requirements={priority_lsms_download_acceptance_blocked_reqs}; ready_requirements={priority_lsms_download_acceptance_ready_reqs}; official_urls={priority_lsms_download_acceptance_urls}; route_raw={priority_lsms_download_acceptance_route_raw}; route_failed={priority_lsms_download_acceptance_route_failed}; data_write={priority_lsms_download_acceptance_data_write}; modeling_gate={priority_lsms_download_acceptance_modeling}",
         "" if priority_lsms_download_acceptance_gate_ok else "Run script/182_build_priority_lsms_isa_download_acceptance_matrix.py after the manual board, official file receipt validator, and resource route probe are current.",
+    )
+    priority_lsms_local_target_readme_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_target_readme_summary.csv")
+    priority_lsms_local_target_readmes = safe_int(next((row.get("value", "0") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "local_target_readme_rows"), "0"), 0)
+    priority_lsms_local_target_expected_files = safe_int(next((row.get("value", "0") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "local_target_readme_expected_file_rows"), "0"), 0)
+    priority_lsms_local_target_missing_files = safe_int(next((row.get("value", "0") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "local_target_readme_missing_expected_file_rows"), "0"), 0)
+    priority_lsms_local_target_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "local_target_readme_requirement_rows"), "0"), 0)
+    priority_lsms_local_target_blocked_reqs = safe_int(next((row.get("value", "0") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "local_target_readme_blocked_requirement_rows"), "0"), 0)
+    priority_lsms_local_target_ready_reqs = safe_int(next((row.get("value", "0") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "local_target_readme_ready_requirement_rows"), "0"), 0)
+    priority_lsms_local_target_data_write = next((row.get("value", "") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_local_target_modeling = next((row.get("value", "") for row in priority_lsms_local_target_readme_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_local_target_gate_ok = (
+        counts["priority_lsms_isa_local_target_readme_summary"] > 0
+        and counts["priority_lsms_isa_local_target_readme_manifest"] == priority_lsms_local_target_readmes
+        and file_ok(REPORT_DIR / "priority_lsms_isa_local_target_readmes.md")
+        and priority_lsms_local_target_readmes == priority_lsms_manual_execution_rows
+        and priority_lsms_local_target_expected_files == priority_lsms_download_acceptance_expected_files
+        and priority_lsms_local_target_missing_files == priority_lsms_download_acceptance_missing_files
+        and priority_lsms_local_target_requirements == priority_lsms_download_acceptance_requirement_rows
+        and priority_lsms_local_target_blocked_reqs == priority_lsms_download_acceptance_blocked_reqs
+        and priority_lsms_local_target_ready_reqs == priority_lsms_download_acceptance_ready_reqs
+        and priority_lsms_local_target_data_write == "blocked_no_data_write"
+        and priority_lsms_local_target_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA local target readmes place acceptance instructions into ignored raw target folders",
+        status(priority_lsms_local_target_gate_ok),
+        f"manifest_rows={counts['priority_lsms_isa_local_target_readme_manifest']}; summary_rows={counts['priority_lsms_isa_local_target_readme_summary']}; readmes={priority_lsms_local_target_readmes}; expected_files={priority_lsms_local_target_expected_files}; missing_files={priority_lsms_local_target_missing_files}; requirements={priority_lsms_local_target_requirements}; blocked_requirements={priority_lsms_local_target_blocked_reqs}; ready_requirements={priority_lsms_local_target_ready_reqs}; data_write={priority_lsms_local_target_data_write}; modeling_gate={priority_lsms_local_target_modeling}",
+        "" if priority_lsms_local_target_gate_ok else "Run script/183_build_priority_lsms_isa_local_target_readmes.py after the download acceptance matrix is current.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)

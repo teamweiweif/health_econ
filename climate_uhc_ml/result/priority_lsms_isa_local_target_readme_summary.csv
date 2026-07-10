@@ -1,0 +1,9 @@
+﻿metric,value,interpretation
+local_target_readme_rows,10,Per-target local README files generated.
+local_target_readme_expected_file_rows,838,Expected official files covered by target-folder README files.
+local_target_readme_missing_expected_file_rows,838,Expected official files still missing across target folders.
+local_target_readme_requirement_rows,70,Requirement rows covered by target-folder README files.
+local_target_readme_blocked_requirement_rows,70,Requirement rows still blocked by missing files.
+local_target_readme_ready_requirement_rows,0,Requirement rows ready for raw value review.
+data_write_gate_status,blocked_no_data_write,Target-folder readmes are local handoff metadata and never write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."
