@@ -1,0 +1,14 @@
+﻿metric,value,interpretation
+download_acceptance_dataset_rows,10,Manual-download packet rows covered by the acceptance matrix.
+download_acceptance_expected_file_rows,838,Official expected file rows in the 10-packet acceptance matrix.
+download_acceptance_core_requirement_rows,70,Requirement-level acceptance rows built from core files.
+download_acceptance_core_file_rows,323,Requirement-linked core file rows represented in the acceptance matrix.
+download_acceptance_missing_expected_file_rows,838,Expected official files still absent from local target folders.
+download_acceptance_present_file_rows,0,Expected official files present locally but still needing raw value review.
+download_acceptance_missing_core_requirement_rows,70,Requirement rows still blocked by missing core files.
+download_acceptance_ready_requirement_rows,0,Requirement rows whose core files are present and ready for raw value review.
+download_acceptance_official_url_rows,10,Packet rows with official get-microdata URLs.
+download_acceptance_resource_route_raw_payload_rows,0,Public resource-route raw payload candidates from the latest route probe.
+download_acceptance_resource_route_request_failed_rows,0,Failed public resource-route requests from the latest route probe.
+data_write_gate_status,blocked_no_data_write,The acceptance matrix is a receipt checklist only and never writes promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

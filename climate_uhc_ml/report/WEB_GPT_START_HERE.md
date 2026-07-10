@@ -45,9 +45,11 @@ data gates.
    - Local-only cookie/header handoff for probing or executing World Bank get-microdata downloads after browser login.
 15. `report/priority_lsms_isa_resource_download_route_probe.md`
    - Bounded public file-route probe for the 10 manual packets.
-16. `report/priority_lsms_isa_country_wave_promotion_packets/`
+16. `report/priority_lsms_isa_download_acceptance_matrix.md`
+   - Expected-file and requirement-level acceptance matrix for downloaded packages.
+17. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-17. `report/mwi2004_requirement_acceptance_decisions.md`
+18. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -93,6 +95,7 @@ resume, read:
 - `report/priority_lsms_isa_manual_download_execution_board.md`
 - `report/priority_lsms_isa_credentialed_download_handoff.md`
 - `report/priority_lsms_isa_resource_download_route_probe.md`
+- `report/priority_lsms_isa_download_acceptance_matrix.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -122,6 +125,13 @@ without using cookies or saving data, run:
 
 ```bash
 python script/181_probe_priority_lsms_isa_resource_download_routes.py
+```
+
+After packages are placed locally, regenerate the expected-file and requirement
+acceptance checklist:
+
+```bash
+python script/182_build_priority_lsms_isa_download_acceptance_matrix.py
 ```
 
 ## Excluded From GitHub

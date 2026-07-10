@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,176,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,772,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,768,Curated artifacts present and non-empty.
+bundle_rows,177,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,777,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,773,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -580,7 +580,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,67,Direct-read bundle section count.
+bundle_section_priority_bundle,68,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -655,6 +655,7 @@ bundle_status_credentialed_download_required_no_public_raw_route,1,Direct-read b
 bundle_status_credentialed_workbench_needs_review,1,Direct-read bundle status count.
 bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready,2,Direct-read bundle status count.
 bundle_status_documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready,1,Direct-read bundle status count.
+bundle_status_download_acceptance_matrix_current,1,Direct-read bundle status count.
 bundle_status_download_execution_ready_raw_missing,1,Direct-read bundle status count.
 bundle_status_fail_closed_design_scorecard_currently_no_go_for_estimation_or_policy_learning,1,Direct-read bundle status count.
 bundle_status_file_level_routes_confirmed_non_public_raw,1,Direct-read bundle status count.

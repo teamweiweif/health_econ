@@ -84,6 +84,7 @@ python script/178_build_priority_lsms_isa_post_download_validation_runner.py
 python script/179_build_priority_lsms_isa_manual_download_execution_board.py
 python script/180_build_priority_lsms_isa_credentialed_download_handoff.py
 python script/181_probe_priority_lsms_isa_resource_download_routes.py
+python script/182_build_priority_lsms_isa_download_acceptance_matrix.py
 python script/173_build_priority_lsms_isa_promotion_gate_dashboard.py
 python script/35_build_empirical_readiness_dashboard.py
 python script/36_build_direct_read_audit_bundle.py
@@ -144,6 +145,7 @@ Current status:
 - The priority LSMS/ISA manual download progress tracker is `result/priority_lsms_isa_manual_download_progress_summary.csv`; it reports whether packet target folders contain files ready for validation.
 - The priority LSMS/ISA post-download validation runner is `result/priority_lsms_isa_post_download_validation_runner_summary.csv`; default pipeline mode is dry-run, with explicit `--execute` available after target files are present.
 - The priority LSMS/ISA public resource-route probe is `result/priority_lsms_isa_resource_download_route_probe_summary.csv`; it checks common file-id routes without saving raw payloads.
+- The priority LSMS/ISA download acceptance matrix is `result/priority_lsms_isa_download_acceptance_matrix_summary.csv`; it lists expected files and requirement rows to accept after packages are placed.
 - The priority LSMS/ISA promotion gate dashboard is `result/priority_lsms_isa_promotion_gate_dashboard_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.

@@ -267,6 +267,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/priority_lsms_isa_resource_download_route_probe.md", "priority LSMS/ISA public resource route probe report"),
     ("dataset_promotion", "temp/priority_lsms_isa_resource_download_route_probe.csv", "priority LSMS/ISA public resource route probe rows"),
     ("dataset_promotion", "result/priority_lsms_isa_resource_download_route_probe_summary.csv", "priority LSMS/ISA public resource route probe summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_download_acceptance_matrix.md", "priority LSMS/ISA download acceptance matrix report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_download_acceptance_file_matrix.csv", "priority LSMS/ISA download acceptance expected-file matrix"),
+    ("dataset_promotion", "temp/priority_lsms_isa_download_acceptance_requirement_matrix.csv", "priority LSMS/ISA download acceptance requirement matrix"),
+    ("dataset_promotion", "result/priority_lsms_isa_download_acceptance_matrix_summary.csv", "priority LSMS/ISA download acceptance matrix summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -703,6 +707,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/179_build_priority_lsms_isa_manual_download_execution_board.py", "priority LSMS/ISA manual download execution board generator"),
     ("reproducibility", "script/180_build_priority_lsms_isa_credentialed_download_handoff.py", "priority LSMS/ISA credentialed download handoff generator"),
     ("reproducibility", "script/181_probe_priority_lsms_isa_resource_download_routes.py", "priority LSMS/ISA public resource download route probe"),
+    ("reproducibility", "script/182_build_priority_lsms_isa_download_acceptance_matrix.py", "priority LSMS/ISA download acceptance matrix generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -954,6 +959,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_manual_download_execution_board_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_execution_board_summary.csv")
     priority_lsms_credentialed_download_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_download_handoff_summary.csv")
     priority_lsms_resource_download_route_probe_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_resource_download_route_probe_summary.csv")
+    priority_lsms_download_acceptance_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_download_acceptance_matrix_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1670,6 +1676,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_datasets', '0')}; sampled_files={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_sampled_files', '0')}; route_rows={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_route_rows', '0')}; raw_payload={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_raw_payload_candidate_rows', '0')}; access_gate={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_access_gate_rows', '0')}; data_dictionary_html={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_data_dictionary_html_rows', '0')}; http_error={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_http_error_rows', '0')}; request_failed={csv_value(priority_lsms_resource_download_route_probe_summary, 'resource_download_route_probe_request_failed_rows', '0')}; modeling_gate={csv_value(priority_lsms_resource_download_route_probe_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_resource_download_route_probe.csv", RESULT_DIR / "priority_lsms_isa_resource_download_route_probe_summary.csv", REPORT_DIR / "priority_lsms_isa_resource_download_route_probe.md"],
         "Resource download route probe checks common World Bank file-id/data-dictionary routes for the 10 manual packets without cookies, raw saves, or data writes.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_download_acceptance_matrix",
+        "download_acceptance_matrix_current"
+        if csv_value(priority_lsms_download_acceptance_summary, "download_acceptance_dataset_rows", "0") == "10"
+        and csv_value(priority_lsms_download_acceptance_summary, "download_acceptance_missing_expected_file_rows", "0") == csv_value(priority_lsms_manual_download_execution_board_summary, "manual_download_execution_board_missing_full_file_rows", "-1")
+        and csv_value(priority_lsms_download_acceptance_summary, "data_write_gate_status", "missing") == "blocked_no_data_write"
+        else "download_acceptance_matrix_needs_review",
+        f"datasets={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_dataset_rows', '0')}; expected_files={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_expected_file_rows', '0')}; core_files={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_core_file_rows', '0')}; missing_files={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_missing_expected_file_rows', '0')}; present_files={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_present_file_rows', '0')}; blocked_requirements={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_missing_core_requirement_rows', '0')}; ready_requirements={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_ready_requirement_rows', '0')}; raw_route_candidates={csv_value(priority_lsms_download_acceptance_summary, 'download_acceptance_resource_route_raw_payload_rows', '0')}; modeling_gate={csv_value(priority_lsms_download_acceptance_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_download_acceptance_file_matrix.csv", TEMP_DIR / "priority_lsms_isa_download_acceptance_requirement_matrix.csv", RESULT_DIR / "priority_lsms_isa_download_acceptance_matrix_summary.csv", REPORT_DIR / "priority_lsms_isa_download_acceptance_matrix.md"],
+        "Download acceptance matrix turns the 10 manual packets into expected-file and requirement-level receipt gates before raw value review or data promotion.",
     )
     add_bundle(
         rows,

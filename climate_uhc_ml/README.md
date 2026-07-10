@@ -24,6 +24,7 @@ the required thresholds.
 - `report/priority_lsms_isa_manual_download_execution_board.md` - one-table download URL, target-folder, missing-file, and validation command board.
 - `report/priority_lsms_isa_credentialed_download_handoff.md` - local-only World Bank session handoff for credentialed get-microdata downloads.
 - `report/priority_lsms_isa_resource_download_route_probe.md` - bounded public resource-route probe for the 10 manual packets.
+- `report/priority_lsms_isa_download_acceptance_matrix.md` - expected-file and requirement-level acceptance matrix for downloaded packages.
 - `report/priority_lsms_isa_promotion_gate_dashboard.md` - current raw-receipt-to-promotion gate dashboard.
 - `report/country_wave_promotion_packets/` - one packet per target country-wave.
 - `report/direct_read_audit_bundle.md` - compact Web-GPT-readable audit bundle.
