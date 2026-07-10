@@ -53,6 +53,7 @@ python script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py
 python script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py
 python script/153_validate_priority_lsms_isa_official_file_receipt.py
 python script/154_build_priority_lsms_isa_threshold_download_sequence.py
+python script/155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py
 python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 python script/134_build_priority_country_wave_promotion_packets.py
 python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
@@ -108,6 +109,7 @@ Current status:
 - The priority LSMS/ISA credentialed raw acquisition workbench is `result/priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv`.
 - The priority LSMS/ISA official file receipt validator is `result/priority_lsms_isa_official_file_receipt_validator_summary.csv`.
 - The priority LSMS/ISA threshold download sequence is `result/priority_lsms_isa_threshold_download_sequence_summary.csv`.
+- The priority LSMS/ISA minimum-batch raw intake guide is `result/priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.
 - The refocused 19-wave LSMS/ISA country-wave promotion packets are indexed in `result/priority_lsms_isa_country_wave_promotion_packet_summary.csv`.

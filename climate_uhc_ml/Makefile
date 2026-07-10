@@ -300,6 +300,7 @@ promotion:
 	$(PYTHON) script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py
 	$(PYTHON) script/153_validate_priority_lsms_isa_official_file_receipt.py
 	$(PYTHON) script/154_build_priority_lsms_isa_threshold_download_sequence.py
+	$(PYTHON) script/155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py
 	$(PYTHON) script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 	$(PYTHON) script/134_build_priority_country_wave_promotion_packets.py
 	$(PYTHON) script/148_build_priority_lsms_isa_country_wave_promotion_packets.py
