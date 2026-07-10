@@ -1,0 +1,17 @@
+﻿metric,value,interpretation
+post_download_receipt_handoff_rows,10,Post-download receipt handoff rows for locked download-required waves.
+post_download_receipt_country_rows,5,Countries covered by the post-download handoff.
+post_download_receipt_priority_country_rows,9,Rows from priority countries.
+post_download_receipt_sixth_country_rows,1,Rows supplying the sixth country.
+post_download_receipt_expected_file_rows,838,Expected official file rows across handoff targets.
+post_download_receipt_missing_expected_file_rows,838,Expected official file rows currently missing.
+post_download_receipt_requirement_gate_rows,70,Requirement-level gates exported for direct review.
+post_download_receipt_blocked_requirement_rows,70,Requirement gates blocked by missing core files.
+post_download_receipt_ready_requirement_rows,0,Requirement gates whose core files are present.
+post_download_receipt_expected_core_file_rows,323,Requirement-linked core file rows in the handoff.
+post_download_receipt_missing_core_file_rows,323,Requirement-linked core file rows currently missing.
+post_download_receipt_target_file_rows,0,Files currently present under exact target folders.
+post_download_receipt_incoming_file_rows,0,Files currently staged under temp/raw_downloads/_incoming.
+post_download_receipt_blocked_no_target_files_rows,10,Handoff rows still blocked because target folders contain no files.
+data_write_gate_status,blocked_no_data_write,The handoff does not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

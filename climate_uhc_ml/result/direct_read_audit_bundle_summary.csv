@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,199,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,881,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,877,Curated artifacts present and non-empty.
+bundle_rows,200,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,886,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,882,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -195,6 +195,10 @@ priority_lsms_isa_webgpt_download_browser_manual_rows,10,Web GPT control rows st
 priority_lsms_isa_manual_launchpad_rows,10,Manual-download launchpad rows for official World Bank pages.
 priority_lsms_isa_manual_launchpad_open_official_rows,10,Launchpad rows still requiring official page opening and terms acceptance.
 priority_lsms_isa_manual_launchpad_html_written,1,Whether the clickable HTML launchpad was written.
+priority_lsms_isa_receipt_handoff_rows,10,Post-download receipt handoff rows for the locked download-required waves.
+priority_lsms_isa_receipt_handoff_missing_expected_files,838,Expected official file rows still missing after the current receipt check.
+priority_lsms_isa_receipt_handoff_blocked_requirements,70,Requirement gates still blocked by missing core official files.
+priority_lsms_isa_receipt_handoff_blocked_no_target_files,10,Locked download-required waves whose target folders still contain no raw package files.
 priority_lsms_isa_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promotion packets built.
 priority_lsms_isa_country_wave_packet_failed_gates,306,Refocused LSMS/ISA packet gates still blocking promotion.
 priority_lsms_isa_country_wave_packet_analysis_ready_rows,1,Refocused LSMS/ISA packets currently approved for promoted data writes.
@@ -646,7 +650,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,90,Direct-read bundle section count.
+bundle_section_priority_bundle,91,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -705,6 +709,7 @@ bundle_status_blocked_no_alb2002_outcome_ready_for_promotion,1,Direct-read bundl
 bundle_status_blocked_no_albania_wave_ready_for_first_analysis_promotion,1,Direct-read bundle status count.
 bundle_status_blocked_no_public_2002_district_boundary_source_verified,1,Direct-read bundle status count.
 bundle_status_blocked_no_raw_or_archive_file,1,Direct-read bundle status count.
+bundle_status_blocked_no_target_files,1,Direct-read bundle status count.
 bundle_status_blocked_official_access_required_no_original_package,1,Direct-read bundle status count.
 bundle_status_blocked_outcome_semantics_units_recall_skip_patterns_unreviewed,1,Direct-read bundle status count.
 bundle_status_blocked_public_metadata_not_household_climate_linkage_ready,1,Direct-read bundle status count.

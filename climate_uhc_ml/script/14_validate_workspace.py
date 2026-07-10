@@ -190,6 +190,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_scoped_incoming_package_router.md",
     "priority_lsms_isa_webgpt_download_control_manifest.md",
     "priority_lsms_isa_manual_download_launchpad.md",
+    "priority_lsms_isa_post_download_receipt_handoff.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -400,6 +401,7 @@ REQUIRED_SCRIPTS = [
     "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
     "203_build_priority_lsms_isa_webgpt_download_control_manifest.py",
     "204_build_priority_lsms_isa_manual_download_launchpad.py",
+    "205_build_priority_lsms_isa_post_download_receipt_handoff.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -441,6 +443,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
     "203_build_priority_lsms_isa_webgpt_download_control_manifest.py",
     "204_build_priority_lsms_isa_manual_download_launchpad.py",
+    "205_build_priority_lsms_isa_post_download_receipt_handoff.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1069,6 +1072,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_webgpt_download_control_summary": row_count(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv"),
         "priority_lsms_isa_manual_download_launchpad": row_count(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad.csv"),
         "priority_lsms_isa_manual_download_launchpad_summary": row_count(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv"),
+        "priority_lsms_isa_post_download_receipt_handoff": row_count(RESULT_DIR / "priority_lsms_isa_post_download_receipt_handoff.csv"),
+        "priority_lsms_isa_post_download_receipt_requirement_gate": row_count(RESULT_DIR / "priority_lsms_isa_post_download_receipt_requirement_gate.csv"),
+        "priority_lsms_isa_post_download_receipt_handoff_summary": row_count(RESULT_DIR / "priority_lsms_isa_post_download_receipt_handoff_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6463,6 +6469,53 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_manual_launchpad_gate_ok),
         f"rows={priority_lsms_manual_launchpad_rows}; countries={priority_lsms_manual_launchpad_countries}; priority_rows={priority_lsms_manual_launchpad_priority_rows}; sixth_country_rows={priority_lsms_manual_launchpad_sixth_rows}; expected_full_files={priority_lsms_manual_launchpad_full_files}; expected_core_files={priority_lsms_manual_launchpad_core_files}; target_files={priority_lsms_manual_launchpad_target_files}; incoming_files={priority_lsms_manual_launchpad_incoming_files}; open_official={priority_lsms_manual_launchpad_open_rows}; html_written={priority_lsms_manual_launchpad_html}; data_write={priority_lsms_manual_launchpad_data_write}; modeling_gate={priority_lsms_manual_launchpad_modeling}",
         "" if priority_lsms_manual_launchpad_gate_ok else "Run script/204_build_priority_lsms_isa_manual_download_launchpad.py after the Web GPT download control manifest is current.",
+    )
+    priority_lsms_receipt_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_receipt_handoff_summary.csv")
+    priority_lsms_receipt_handoff_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_handoff_rows"), "0"), 0)
+    priority_lsms_receipt_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_country_rows"), "0"), 0)
+    priority_lsms_receipt_priority_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_priority_country_rows"), "0"), 0)
+    priority_lsms_receipt_sixth_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_sixth_country_rows"), "0"), 0)
+    priority_lsms_receipt_expected_files = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_expected_file_rows"), "0"), 0)
+    priority_lsms_receipt_missing_expected = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_missing_expected_file_rows"), "0"), 0)
+    priority_lsms_receipt_requirement_gates = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_requirement_gate_rows"), "0"), 0)
+    priority_lsms_receipt_blocked_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_blocked_requirement_rows"), "0"), 0)
+    priority_lsms_receipt_ready_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_ready_requirement_rows"), "0"), 0)
+    priority_lsms_receipt_expected_core = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_expected_core_file_rows"), "0"), 0)
+    priority_lsms_receipt_missing_core = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_missing_core_file_rows"), "0"), 0)
+    priority_lsms_receipt_target_files = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_target_file_rows"), "0"), 0)
+    priority_lsms_receipt_incoming_files = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_incoming_file_rows"), "0"), 0)
+    priority_lsms_receipt_blocked_no_target = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "post_download_receipt_blocked_no_target_files_rows"), "0"), 0)
+    priority_lsms_receipt_data_write = next((row.get("value", "") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_receipt_modeling = next((row.get("value", "") for row in priority_lsms_receipt_handoff_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_receipt_handoff_gate_ok = (
+        counts["priority_lsms_isa_post_download_receipt_handoff"] == priority_lsms_receipt_handoff_rows
+        and counts["priority_lsms_isa_post_download_receipt_requirement_gate"] == priority_lsms_receipt_requirement_gates
+        and counts["priority_lsms_isa_post_download_receipt_handoff_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_post_download_receipt_handoff.md")
+        and priority_lsms_receipt_handoff_rows == 10
+        and priority_lsms_receipt_countries == 5
+        and priority_lsms_receipt_priority_rows == 9
+        and priority_lsms_receipt_sixth_rows == 1
+        and priority_lsms_receipt_expected_files == 838
+        and priority_lsms_receipt_missing_expected == 838
+        and priority_lsms_receipt_requirement_gates == 70
+        and priority_lsms_receipt_blocked_requirements == 70
+        and priority_lsms_receipt_ready_requirements == 0
+        and priority_lsms_receipt_expected_core == 323
+        and priority_lsms_receipt_missing_core == 323
+        and priority_lsms_receipt_target_files == 0
+        and priority_lsms_receipt_incoming_files == 0
+        and priority_lsms_receipt_blocked_no_target == 10
+        and priority_lsms_receipt_data_write == "blocked_no_data_write"
+        and priority_lsms_receipt_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA post-download receipt handoff exports receipt and requirement gates for the 10 locked downloads",
+        status(priority_lsms_receipt_handoff_gate_ok),
+        f"rows={priority_lsms_receipt_handoff_rows}; countries={priority_lsms_receipt_countries}; priority_rows={priority_lsms_receipt_priority_rows}; sixth_country_rows={priority_lsms_receipt_sixth_rows}; expected_files={priority_lsms_receipt_expected_files}; missing_expected={priority_lsms_receipt_missing_expected}; requirement_gates={priority_lsms_receipt_requirement_gates}; blocked_requirements={priority_lsms_receipt_blocked_requirements}; ready_requirements={priority_lsms_receipt_ready_requirements}; expected_core_files={priority_lsms_receipt_expected_core}; missing_core_files={priority_lsms_receipt_missing_core}; target_files={priority_lsms_receipt_target_files}; incoming_files={priority_lsms_receipt_incoming_files}; blocked_no_target={priority_lsms_receipt_blocked_no_target}; data_write={priority_lsms_receipt_data_write}; modeling_gate={priority_lsms_receipt_modeling}",
+        "" if priority_lsms_receipt_handoff_gate_ok else "Run script/205_build_priority_lsms_isa_post_download_receipt_handoff.py after the manual launchpad, progress tracker, acceptance matrix, and target README manifest are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

@@ -85,15 +85,17 @@ data gates.
    - One-table direct-read acquisition control board and expected core-file checklist for the 10 download-required waves.
 35. `report/priority_lsms_isa_manual_download_launchpad.html`
    - Clickable manual-download launchpad for the 10 official World Bank pages and local target folders.
-36. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
+36. `report/priority_lsms_isa_post_download_receipt_handoff.md`
+   - Post-download receipt and requirement-gate handoff for the 10 locked downloads.
+37. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
    - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
-37. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
+38. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
    - World Bank PPP/CPI candidate source ledger for Malawi 2004; the final CPI/base-period bridge remains unaccepted.
-38. `report/mwi2004_sdg382_candidate_classification_precheck.md`
+39. `report/mwi2004_sdg382_candidate_classification_precheck.md`
    - Aggregate-only candidate SDG 3.8.2 denominator/classification stress test; not promoted data.
-39. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
+40. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
    - Official UNSD nonpositive-discretionary-budget rule audit; rule accepted, final Malawi SPL bridge still blocked.
-40. `report/mwi2004_requirement_acceptance_decisions.md`
+41. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -158,6 +160,7 @@ uncertain, place it under `temp/raw_downloads/_incoming/` and run:
 python script/202_build_priority_lsms_isa_scoped_incoming_package_router.py
 python script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py
 python script/204_build_priority_lsms_isa_manual_download_launchpad.py
+python script/205_build_priority_lsms_isa_post_download_receipt_handoff.py
 python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 ```
 
@@ -165,7 +168,9 @@ Then review `result/priority_lsms_isa_scoped_incoming_package_router.csv` for
 the current locked 10-wave scope,
 `result/priority_lsms_isa_webgpt_download_control_manifest.csv` for one direct
 acquisition board, `report/priority_lsms_isa_manual_download_launchpad.html`
-for clickable official links, and
+for clickable official links,
+`result/priority_lsms_isa_post_download_receipt_handoff.csv` for the post-
+download receipt gates, and
 `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv` for the broader
 legacy queue. The routers only write suggested copy commands; they do not move,
 delete, extract, or promote files.
