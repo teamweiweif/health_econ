@@ -181,6 +181,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_minimum_batch_promotion_unlock_board.md",
     "priority_lsms_isa_worldbank_session_bootstrap.md",
     "priority_lsms_isa_credentialed_fetch_command_packet.md",
+    "priority_lsms_isa_browser_download_starter.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -382,6 +383,7 @@ REQUIRED_SCRIPTS = [
     "193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py",
     "194_build_priority_lsms_isa_worldbank_session_bootstrap.py",
     "195_build_priority_lsms_isa_credentialed_fetch_command_packet.py",
+    "196_build_priority_lsms_isa_browser_download_starter.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -414,6 +416,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "193_build_priority_lsms_isa_minimum_batch_promotion_unlock_board.py",
     "194_build_priority_lsms_isa_worldbank_session_bootstrap.py",
     "195_build_priority_lsms_isa_credentialed_fetch_command_packet.py",
+    "196_build_priority_lsms_isa_browser_download_starter.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -556,7 +559,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-195 dataset-promotion gate chain",
+        "One-command runners include the current 157-196 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -1016,6 +1019,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_worldbank_session_bootstrap_summary": row_count(RESULT_DIR / "priority_lsms_isa_worldbank_session_bootstrap_summary.csv"),
         "priority_lsms_isa_credentialed_fetch_command_packet": row_count(RESULT_DIR / "priority_lsms_isa_credentialed_fetch_command_packet.csv"),
         "priority_lsms_isa_credentialed_fetch_command_packet_summary": row_count(RESULT_DIR / "priority_lsms_isa_credentialed_fetch_command_packet_summary.csv"),
+        "priority_lsms_isa_browser_download_starter": row_count(RESULT_DIR / "priority_lsms_isa_browser_download_starter.csv"),
+        "priority_lsms_isa_browser_download_starter_summary": row_count(RESULT_DIR / "priority_lsms_isa_browser_download_starter_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6091,6 +6096,38 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_fetch_command_gate_ok),
         f"packet_rows={counts['priority_lsms_isa_credentialed_fetch_command_packet']}; summary_rows={counts['priority_lsms_isa_credentialed_fetch_command_packet_summary']}; countries={priority_lsms_fetch_command_countries}; expected_core_files={priority_lsms_fetch_command_expected_files}; target_files={priority_lsms_fetch_command_target_files}; ready_for_probe={priority_lsms_fetch_command_ready}; missing_session={priority_lsms_fetch_command_missing}; data_write={priority_lsms_fetch_command_data_write}; modeling_gate={priority_lsms_fetch_command_modeling}",
         "" if priority_lsms_fetch_command_gate_ok else "Run script/195_build_priority_lsms_isa_credentialed_fetch_command_packet.py after the World Bank session bootstrap is current.",
+    )
+    priority_lsms_browser_starter_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_browser_download_starter_summary.csv")
+    priority_lsms_browser_starter_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_browser_starter_summary if row.get("metric") == "browser_download_starter_rows"), "0"), 0)
+    priority_lsms_browser_starter_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_browser_starter_summary if row.get("metric") == "browser_download_starter_ready_rows"), "0"), 0)
+    priority_lsms_browser_starter_priority = safe_int(next((row.get("value", "0") for row in priority_lsms_browser_starter_summary if row.get("metric") == "browser_download_starter_priority_country_rows"), "0"), 0)
+    priority_lsms_browser_starter_sixth = safe_int(next((row.get("value", "0") for row in priority_lsms_browser_starter_summary if row.get("metric") == "browser_download_starter_sixth_country_rows"), "0"), 0)
+    priority_lsms_browser_starter_expected_files = safe_int(next((row.get("value", "0") for row in priority_lsms_browser_starter_summary if row.get("metric") == "browser_download_starter_expected_core_file_rows"), "0"), 0)
+    priority_lsms_browser_starter_target_files = safe_int(next((row.get("value", "0") for row in priority_lsms_browser_starter_summary if row.get("metric") == "browser_download_starter_target_file_count"), "0"), 0)
+    priority_lsms_browser_starter_first_canary = next((row.get("value", "") for row in priority_lsms_browser_starter_summary if row.get("metric") == "browser_download_starter_first_canary_idno"), "")
+    priority_lsms_browser_starter_data_write = next((row.get("value", "") for row in priority_lsms_browser_starter_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_browser_starter_modeling = next((row.get("value", "") for row in priority_lsms_browser_starter_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_browser_starter_gate_ok = (
+        counts["priority_lsms_isa_browser_download_starter_summary"] > 0
+        and counts["priority_lsms_isa_browser_download_starter"] == priority_lsms_browser_starter_rows
+        and file_ok(REPORT_DIR / "priority_lsms_isa_browser_download_starter.md")
+        and priority_lsms_browser_starter_rows == 10
+        and priority_lsms_browser_starter_ready == 10
+        and priority_lsms_browser_starter_priority >= 9
+        and priority_lsms_browser_starter_sixth == 1
+        and priority_lsms_browser_starter_expected_files > 0
+        and priority_lsms_browser_starter_target_files >= 0
+        and priority_lsms_browser_starter_first_canary != ""
+        and priority_lsms_browser_starter_data_write == "blocked_no_data_write"
+        and priority_lsms_browser_starter_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA browser download starter provides canary browser/open-folder commands for manual World Bank raw-package placement",
+        status(priority_lsms_browser_starter_gate_ok),
+        f"starter_rows={counts['priority_lsms_isa_browser_download_starter']}; summary_rows={counts['priority_lsms_isa_browser_download_starter_summary']}; ready_rows={priority_lsms_browser_starter_ready}; priority_country_rows={priority_lsms_browser_starter_priority}; sixth_country_rows={priority_lsms_browser_starter_sixth}; expected_core_files={priority_lsms_browser_starter_expected_files}; target_files={priority_lsms_browser_starter_target_files}; first_canary={priority_lsms_browser_starter_first_canary}; data_write={priority_lsms_browser_starter_data_write}; modeling_gate={priority_lsms_browser_starter_modeling}",
+        "" if priority_lsms_browser_starter_gate_ok else "Run script/196_build_priority_lsms_isa_browser_download_starter.py after the credentialed fetch command packet is current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

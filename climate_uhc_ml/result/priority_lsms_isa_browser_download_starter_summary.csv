@@ -1,0 +1,11 @@
+﻿metric,value,interpretation
+browser_download_starter_rows,10,Minimum-batch rows covered by the browser download starter.
+browser_download_starter_ready_rows,10,Rows with both official URL and local target folder commands.
+browser_download_starter_priority_country_rows,9,"Rows from Ethiopia, Nigeria, Malawi, Tanzania, or Uganda."
+browser_download_starter_sixth_country_rows,1,Rows included to meet the sixth-country threshold.
+browser_download_starter_expected_core_file_rows,323,Core raw-file rows expected after the packages are placed.
+browser_download_starter_target_file_count,0,Existing target-folder files before browser/manual download.
+browser_download_starter_first_canary_idno,ETH_2021_ESPS-W5_v02_M,First wave to try before scaling the browser/manual download workflow.
+browser_download_starter_local_ps1_path,temp/priority_lsms_isa_browser_download_starter.ps1,Local helper script generated under temp; not intended for Git commit.
+data_write_gate_status,blocked_no_data_write,"This starter writes only command artifacts and a temp helper script, not promoted data."
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
