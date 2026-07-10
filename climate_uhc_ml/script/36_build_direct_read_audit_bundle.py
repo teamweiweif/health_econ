@@ -353,6 +353,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/priority_lsms_isa_webgpt_download_control_manifest.csv", "priority LSMS/ISA Web GPT download control manifest"),
     ("dataset_promotion", "result/priority_lsms_isa_webgpt_expected_core_file_manifest.csv", "priority LSMS/ISA Web GPT expected core-file manifest"),
     ("dataset_promotion", "result/priority_lsms_isa_webgpt_download_control_summary.csv", "priority LSMS/ISA Web GPT download control summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_manual_download_launchpad.md", "priority LSMS/ISA manual download launchpad report"),
+    ("dataset_promotion", "report/priority_lsms_isa_manual_download_launchpad.html", "priority LSMS/ISA clickable manual download launchpad"),
+    ("dataset_promotion", "result/priority_lsms_isa_manual_download_launchpad.csv", "priority LSMS/ISA manual download launchpad rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_manual_download_launchpad_summary.csv", "priority LSMS/ISA manual download launchpad summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -808,6 +812,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/201_build_priority_lsms_isa_acquisition_route_decision.py", "priority LSMS/ISA acquisition route decision generator"),
     ("reproducibility", "script/202_build_priority_lsms_isa_scoped_incoming_package_router.py", "priority LSMS/ISA scoped incoming package router generator"),
     ("reproducibility", "script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py", "priority LSMS/ISA Web GPT download control manifest generator"),
+    ("reproducibility", "script/204_build_priority_lsms_isa_manual_download_launchpad.py", "priority LSMS/ISA manual download launchpad generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1081,6 +1086,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_acquisition_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv")
     priority_lsms_scoped_incoming_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv")
     priority_lsms_webgpt_download_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv")
+    priority_lsms_manual_launchpad_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2087,6 +2093,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     add_bundle(
         rows,
         "priority_bundle",
+        "priority_lsms_isa_manual_download_launchpad",
+        "ready_for_browser_manual_open"
+        if csv_value(priority_lsms_manual_launchpad_summary, "manual_download_launchpad_rows", "0") == "10"
+        and csv_value(priority_lsms_manual_launchpad_summary, "manual_download_launchpad_open_official_page_rows", "0") == "10"
+        and csv_value(priority_lsms_manual_launchpad_summary, "modeling_gate_status", "missing") == "blocked"
+        else "manual_download_launchpad_needs_review",
+        f"rows={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_rows', '0')}; countries={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_country_rows', '0')}; expected_full_files={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_expected_full_file_rows', '0')}; expected_core_files={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_expected_core_file_rows', '0')}; target_files={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_target_file_rows', '0')}; incoming_files={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_incoming_file_rows', '0')}; open_official={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_open_official_page_rows', '0')}; html_written={csv_value(priority_lsms_manual_launchpad_summary, 'manual_download_launchpad_html_written', '0')}; modeling_gate={csv_value(priority_lsms_manual_launchpad_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "priority_lsms_isa_manual_download_launchpad.csv", RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv", REPORT_DIR / "priority_lsms_isa_manual_download_launchpad.md", REPORT_DIR / "priority_lsms_isa_manual_download_launchpad.html"],
+        "Manual download launchpad provides clickable official World Bank links, target folders, and validation commands for the 10 download-required waves.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
         "priority_analysis_dataset_synthesis_blueprint",
         "blocked_required_schema_columns_not_verified" if csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0") == "0" else "synthesis_join_candidates_ready",
         f"schema_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_schema_rows', '0')}; required_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_required_rows', '0')}; ready_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_ready_required_rows', '0')}; blocked_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_blocked_required_rows', '0')}; join_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_plan_rows', '0')}; join_ready={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_ready_rows', '0')}; candidate_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_candidate_variable_rows', '0')}; manual_verified_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_manual_verified_variable_rows', '0')}",
@@ -3045,6 +3064,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_acquisition_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv")
     priority_lsms_scoped_incoming_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv")
     priority_lsms_webgpt_download_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv")
+    priority_lsms_manual_launchpad_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3246,6 +3266,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_webgpt_download_expected_full_files", "value": csv_value(priority_lsms_webgpt_download_summary, "webgpt_download_control_expected_full_file_rows", "0"), "interpretation": "Expected official file rows in the Web GPT download control manifest."},
         {"metric": "priority_lsms_isa_webgpt_download_expected_core_files", "value": csv_value(priority_lsms_webgpt_download_summary, "webgpt_download_control_expected_core_file_rows", "0"), "interpretation": "Expected core-file rows exported for direct review."},
         {"metric": "priority_lsms_isa_webgpt_download_browser_manual_rows", "value": csv_value(priority_lsms_webgpt_download_summary, "webgpt_download_control_browser_manual_rows", "0"), "interpretation": "Web GPT control rows still requiring browser/manual World Bank terms acceptance."},
+        {"metric": "priority_lsms_isa_manual_launchpad_rows", "value": csv_value(priority_lsms_manual_launchpad_summary, "manual_download_launchpad_rows", "0"), "interpretation": "Manual-download launchpad rows for official World Bank pages."},
+        {"metric": "priority_lsms_isa_manual_launchpad_open_official_rows", "value": csv_value(priority_lsms_manual_launchpad_summary, "manual_download_launchpad_open_official_page_rows", "0"), "interpretation": "Launchpad rows still requiring official page opening and terms acceptance."},
+        {"metric": "priority_lsms_isa_manual_launchpad_html_written", "value": csv_value(priority_lsms_manual_launchpad_summary, "manual_download_launchpad_html_written", "0"), "interpretation": "Whether the clickable HTML launchpad was written."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},

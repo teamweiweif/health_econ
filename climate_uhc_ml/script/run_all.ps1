@@ -115,6 +115,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/201_build_priority_lsms_isa_acquisition_route_decision.py
 & $Python script/202_build_priority_lsms_isa_scoped_incoming_package_router.py
 & $Python script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py
+& $Python script/204_build_priority_lsms_isa_manual_download_launchpad.py
 & $Python script/36_build_direct_read_audit_bundle.py
 & $Python script/28_audit_python_environment.py
 & $Python script/26_build_objective_traceability_audit.py

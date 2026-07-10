@@ -189,6 +189,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_acquisition_route_decision.md",
     "priority_lsms_isa_scoped_incoming_package_router.md",
     "priority_lsms_isa_webgpt_download_control_manifest.md",
+    "priority_lsms_isa_manual_download_launchpad.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -398,6 +399,7 @@ REQUIRED_SCRIPTS = [
     "201_build_priority_lsms_isa_acquisition_route_decision.py",
     "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
     "203_build_priority_lsms_isa_webgpt_download_control_manifest.py",
+    "204_build_priority_lsms_isa_manual_download_launchpad.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -438,6 +440,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "201_build_priority_lsms_isa_acquisition_route_decision.py",
     "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
     "203_build_priority_lsms_isa_webgpt_download_control_manifest.py",
+    "204_build_priority_lsms_isa_manual_download_launchpad.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1064,6 +1067,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_webgpt_download_control_manifest": row_count(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_manifest.csv"),
         "priority_lsms_isa_webgpt_expected_core_file_manifest": row_count(RESULT_DIR / "priority_lsms_isa_webgpt_expected_core_file_manifest.csv"),
         "priority_lsms_isa_webgpt_download_control_summary": row_count(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv"),
+        "priority_lsms_isa_manual_download_launchpad": row_count(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad.csv"),
+        "priority_lsms_isa_manual_download_launchpad_summary": row_count(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6419,6 +6424,45 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_webgpt_download_gate_ok),
         f"rows={priority_lsms_webgpt_download_rows}; countries={priority_lsms_webgpt_download_countries}; priority_rows={priority_lsms_webgpt_download_priority_rows}; sixth_country_rows={priority_lsms_webgpt_download_sixth_rows}; expected_full_files={priority_lsms_webgpt_download_full_files}; expected_core_files={priority_lsms_webgpt_download_core_files}; target_files={priority_lsms_webgpt_download_target_files}; incoming_files={priority_lsms_webgpt_download_incoming_files}; browser_manual={priority_lsms_webgpt_download_browser_manual}; data_write={priority_lsms_webgpt_download_data_write}; modeling_gate={priority_lsms_webgpt_download_modeling}",
         "" if priority_lsms_webgpt_download_gate_ok else "Run script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py after route, browser, credentialed, and scoped incoming artifacts are current.",
+    )
+    priority_lsms_manual_launchpad_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv")
+    priority_lsms_manual_launchpad_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_country_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_priority_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_priority_country_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_sixth_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_sixth_country_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_full_files = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_expected_full_file_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_core_files = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_expected_core_file_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_target_files = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_target_file_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_incoming_files = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_incoming_file_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_open_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_open_official_page_rows"), "0"), 0)
+    priority_lsms_manual_launchpad_html = next((row.get("value", "") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "manual_download_launchpad_html_written"), "")
+    priority_lsms_manual_launchpad_data_write = next((row.get("value", "") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_manual_launchpad_modeling = next((row.get("value", "") for row in priority_lsms_manual_launchpad_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_manual_launchpad_gate_ok = (
+        counts["priority_lsms_isa_manual_download_launchpad"] == priority_lsms_manual_launchpad_rows
+        and counts["priority_lsms_isa_manual_download_launchpad_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_manual_download_launchpad.md")
+        and file_ok(REPORT_DIR / "priority_lsms_isa_manual_download_launchpad.html")
+        and priority_lsms_manual_launchpad_rows == 10
+        and priority_lsms_manual_launchpad_countries == 5
+        and priority_lsms_manual_launchpad_priority_rows == 9
+        and priority_lsms_manual_launchpad_sixth_rows == 1
+        and priority_lsms_manual_launchpad_full_files >= priority_lsms_manual_launchpad_core_files
+        and priority_lsms_manual_launchpad_core_files == 323
+        and priority_lsms_manual_launchpad_target_files == 0
+        and priority_lsms_manual_launchpad_incoming_files == 0
+        and priority_lsms_manual_launchpad_open_rows == 10
+        and priority_lsms_manual_launchpad_html == "1"
+        and priority_lsms_manual_launchpad_data_write == "blocked_no_data_write"
+        and priority_lsms_manual_launchpad_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA manual download launchpad gives clickable official links and target folders for the 10 browser/manual World Bank downloads",
+        status(priority_lsms_manual_launchpad_gate_ok),
+        f"rows={priority_lsms_manual_launchpad_rows}; countries={priority_lsms_manual_launchpad_countries}; priority_rows={priority_lsms_manual_launchpad_priority_rows}; sixth_country_rows={priority_lsms_manual_launchpad_sixth_rows}; expected_full_files={priority_lsms_manual_launchpad_full_files}; expected_core_files={priority_lsms_manual_launchpad_core_files}; target_files={priority_lsms_manual_launchpad_target_files}; incoming_files={priority_lsms_manual_launchpad_incoming_files}; open_official={priority_lsms_manual_launchpad_open_rows}; html_written={priority_lsms_manual_launchpad_html}; data_write={priority_lsms_manual_launchpad_data_write}; modeling_gate={priority_lsms_manual_launchpad_modeling}",
+        "" if priority_lsms_manual_launchpad_gate_ok else "Run script/204_build_priority_lsms_isa_manual_download_launchpad.py after the Web GPT download control manifest is current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

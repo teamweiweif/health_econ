@@ -1,0 +1,14 @@
+﻿metric,value,interpretation
+manual_download_launchpad_rows,10,Manual-download launchpad rows for the locked download-required waves.
+manual_download_launchpad_country_rows,5,Countries covered by the launchpad.
+manual_download_launchpad_priority_country_rows,9,Rows from priority countries.
+manual_download_launchpad_sixth_country_rows,1,Rows supplying the sixth country.
+manual_download_launchpad_expected_full_file_rows,838,Expected official file rows across launchpad targets.
+manual_download_launchpad_expected_core_file_rows,323,Expected core-file rows across launchpad targets.
+manual_download_launchpad_target_file_rows,0,Files currently present under exact target folders.
+manual_download_launchpad_incoming_file_rows,0,Files currently staged under temp/raw_downloads/_incoming.
+manual_download_launchpad_open_official_page_rows,10,"Rows still requiring official page opening, terms acceptance, and package placement."
+manual_download_launchpad_html_written,1,Whether the clickable HTML launchpad was written.
+data_write_gate_status,blocked_no_data_write,The launchpad writes only acquisition-control artifacts.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
+manual_download_launchpad_status_open_official_page_accept_terms_download_package,10,Manual-download launchpad status count.

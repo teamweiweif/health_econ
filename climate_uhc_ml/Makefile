@@ -354,6 +354,7 @@ promotion:
 	$(PYTHON) script/201_build_priority_lsms_isa_acquisition_route_decision.py
 	$(PYTHON) script/202_build_priority_lsms_isa_scoped_incoming_package_router.py
 	$(PYTHON) script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py
+	$(PYTHON) script/204_build_priority_lsms_isa_manual_download_launchpad.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py

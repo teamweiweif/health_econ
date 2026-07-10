@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 198 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 876 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 872 | Curated artifacts present and non-empty. |
+| bundle_rows | 199 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 881 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 877 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -205,6 +205,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_webgpt_download_expected_full_files | 838 | Expected official file rows in the Web GPT download control manifest. |
 | priority_lsms_isa_webgpt_download_expected_core_files | 323 | Expected core-file rows exported for direct review. |
 | priority_lsms_isa_webgpt_download_browser_manual_rows | 10 | Web GPT control rows still requiring browser/manual World Bank terms acceptance. |
+| priority_lsms_isa_manual_launchpad_rows | 10 | Manual-download launchpad rows for official World Bank pages. |
+| priority_lsms_isa_manual_launchpad_open_official_rows | 10 | Launchpad rows still requiring official page opening and terms acceptance. |
+| priority_lsms_isa_manual_launchpad_html_written | 1 | Whether the clickable HTML launchpad was written. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 306 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 1 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -656,7 +659,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 89 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 90 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -808,6 +811,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_raw_schema_inspected_harmonization_pending | 1 | Direct-read bundle status count. |
 | bundle_status_raw_value_summary_available_manual_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_ready | 1 | Direct-read bundle status count. |
+| bundle_status_ready_for_browser_manual_open | 1 | Direct-read bundle status count. |
 | bundle_status_ready_for_credentialed_manual_download | 1 | Direct-read bundle status count. |
 | bundle_status_receipt_checklist_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_received_raw_schema_ready_for_manual_value_review | 1 | Direct-read bundle status count. |
@@ -831,7 +835,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 89 |
+| priority_bundle | 90 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -939,6 +943,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | all_download_required_waves_need_browser_manual_terms_acceptance | 1 |
 | waiting_for_incoming_packages | 1 |
 | browser_manual_terms_acceptance_required | 1 |
+| ready_for_browser_manual_open | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | packet_candidates_ready_for_data_write | 1 |
@@ -1049,7 +1054,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 872 |
+| present_nonempty | 877 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:
