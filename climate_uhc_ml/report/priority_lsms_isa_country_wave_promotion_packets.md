@@ -16,14 +16,14 @@ until complete original raw packages and raw value checks pass.
 | priority_lsms_country_wave_packet_core_rows | 10 | Core selected/refocused replacement packets. |
 | priority_lsms_country_wave_packet_backup_rows | 9 | Backup and sixth-country candidate packets. |
 | priority_lsms_country_wave_packet_gate_rows | 361 | Gate rows across LSMS/ISA promotion packets. |
-| priority_lsms_country_wave_packet_passed_gate_rows | 40 | Packet gates currently passing. |
-| priority_lsms_country_wave_packet_failed_gate_rows | 321 | Packet gates still blocking promotion. |
+| priority_lsms_country_wave_packet_passed_gate_rows | 44 | Packet gates currently passing. |
+| priority_lsms_country_wave_packet_failed_gate_rows | 317 | Packet gates still blocking promotion. |
 | priority_lsms_country_wave_packet_public_documentation_ready_rows | 19 | Packets with complete public documentation receipt. |
 | priority_lsms_country_wave_packet_variable_evidence_ready_rows | 19 | Packets with official variable evidence coverage ready for raw review. |
 | priority_lsms_country_wave_packet_raw_package_ready_rows | 1 | Packets with complete original raw package receipt and documentation. |
 | priority_lsms_country_wave_packet_archive_preflight_ready_rows | 1 | Packets with readable archive/direct raw preflight. |
 | priority_lsms_country_wave_packet_raw_value_verified_rows | 0 | Packets with all required raw values verified. |
-| priority_lsms_country_wave_packet_financial_ready_rows | 0 | Packets ready for financial-protection outcomes. |
+| priority_lsms_country_wave_packet_financial_ready_rows | 1 | Packets ready for financial-protection outcomes. |
 | priority_lsms_country_wave_packet_access_ready_rows | 0 | Packets ready for access/forgone-care outcomes. |
 | priority_lsms_country_wave_packet_climate_ready_rows | 0 | Packets with accepted CHIRPS/ERA5 climate-linkage route. |
 | priority_lsms_country_wave_packet_analysis_synthesis_ready_rows | 0 | Packets ready for promoted dataset synthesis. |
@@ -124,11 +124,11 @@ until complete original raw packages and raw value checks pass.
 | 2 | ETH_2018_ESS_v04_M | analysis_dataset_synthesis_ready | fail | join_status=blocked_required_schema_columns_not_verified; ready_columns=0; blocked_columns=22 | Complete promoted household-climate schema and join review. |
 | 2 | ETH_2018_ESS_v04_M | promoted_registry_write_gate | fail | registry_analysis_ready=not_promoted; rows=0 | Write to data/ only when the promoted registry marks this country-wave as analysis-ready with nonzero rows. |
 | 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_household_person_keys | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Use the health exception audit to decide whether nonroster health rows can be excluded, reconciled, or documented as ... |
-| 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_weights_and_design | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Record accepted survey design variables and sensitivity plan. |
-| 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_consumption_or_income | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=3; raw_status=not_raw_... | Write denominator policy for CHE10/CHE25 and separate SDG 3.8.2 capacity-to-pay review. |
-| 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_oop_health_expenditure | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=1; raw_status=not_raw_... | Document OOP inclusion/exclusion and annual aggregate preference. |
 | 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_health_need_and_access | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=2; raw_status=not_raw_... | Review the candidate construction policy, then resolve d07a skip leakage, classify remaining manual-review care-actio... |
 | 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_survey_timing | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=7; raw_status=not_raw_... | Choose interview-month exposure windows for rainfall/heat measures. |
+| 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_climate_geography | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Define EA/admin climate linkage route and required boundary/crosswalk source. |
+| 3 | MWI_2004_IHS-II_v01_M | raw_value_verification_missing_codes_units_recall_skip_patterns | fail | metadata=documentation_and_raw_review_required_no_variable_shortlist; candidates=0; files=0; raw_status=not_raw_value... | Write variable-level policy table and rerun requirement acceptance. |
+| 3 | MWI_2004_IHS-II_v01_M | all_required_raw_values_verified | fail | verified_requirement_rows=3/8 | Complete raw-backed verification for every required promotion requirement. |
 
 ## Machine-Readable Outputs
 

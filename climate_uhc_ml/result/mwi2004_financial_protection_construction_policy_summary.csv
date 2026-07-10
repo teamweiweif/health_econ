@@ -1,0 +1,21 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by this financial-protection construction policy.
+household_financial_rows,11280,Rows meeting verified household financial input requirements for CHE10/CHE25 candidates.
+household_case_id_duplicate_rows,0,"Duplicate household keys across household, poverty, and expenditure files."
+positive_household_weight_rows,11280,Rows with positive hhwght in the poverty/consumption file.
+strata_distinct,30,Distinct survey strata in the household financial universe.
+psu_distinct,564,Distinct V51 household EA/PSU identifiers after join.
+rexpagg_positive_rows,11280,Positive total annual household expenditure rows.
+rexp_cat06_nonmissing_rows,11280,Nonmissing annual household health OOP aggregate rows.
+oop_component_diff_le_0_01_rows,11280/11280,OOP aggregate-component agreement under 0.01 local currency tolerance.
+che10_candidate_rows,208,Candidate CHE10 rows among verified household financial inputs.
+che10_candidate_weighted_rate,0.0185338,"Weighted CHE10 candidate rate; audit statistic only, not promoted data."
+che25_candidate_rows,17,Candidate CHE25 rows among verified household financial inputs.
+che25_candidate_weighted_rate,0.0014615,"Weighted CHE25 candidate rate; audit statistic only, not promoted data."
+weights_design_final_verified_for_financial,1,"Weight, strata, and household PSU fields are accepted for household financial CHE candidates."
+consumption_or_income_final_verified_for_che,1,rexpagg is accepted as CHE10/CHE25 total-budget denominator.
+oop_health_expenditure_final_verified_for_che,1,rexp_cat06 is accepted as annual household health OOP aggregate for CHE10/CHE25.
+che10_che25_financial_inputs_ready,1,Financial-protection inputs are raw-value verified for CHE10/CHE25 only.
+sdg382_ready,0,SDG 3.8.2 remains blocked by discretionary-budget/societal-poverty-line policy.
+financial_policy_status,che10_che25_financial_inputs_verified_sdg382_blocked,CHE10/CHE25 financial inputs accepted; SDG 3.8.2 and data writes remain blocked.
+data_write_gate_status,closed,No promoted dataset may be written from this policy artifact alone.

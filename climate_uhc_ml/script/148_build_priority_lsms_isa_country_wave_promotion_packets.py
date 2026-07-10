@@ -227,7 +227,22 @@ def raw_package_ready(intake: dict[str, str], public: dict[str, str], archive: d
     return has_original_package and has_raw_container and archive_ready(archive) and (has_package_docs or has_public_docs)
 
 
-def requirement_verified(coverage_rows: list[dict[str, str]], requirement: str) -> bool:
+def focused_requirement_verified(decision: dict[str, str]) -> bool:
+    final_decision = clean(decision.get("final_verification_decision")).lower()
+    return final_decision.startswith("raw_value_verified") or final_decision in {
+        "final_verified",
+        "manual_raw_value_verified",
+        "verified_raw_value",
+    }
+
+
+def requirement_verified(
+    coverage_rows: list[dict[str, str]],
+    requirement: str,
+    focused_decision: dict[str, str] | None = None,
+) -> bool:
+    if focused_decision and focused_requirement_verified(focused_decision):
+        return True
     for row in coverage_rows:
         if clean(row.get("requirement")) == requirement:
             return clean(row.get("raw_value_verification_status")) in {
@@ -448,20 +463,24 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         archive_ok = archive_ready(archive)
         raw_verified_count = sum(
             1
-            for row in coverage_rows
-            if clean(row.get("raw_value_verification_status"))
-            not in {"", "not_raw_value_verified", "raw_not_inspected"}
+            for requirement in REQUIREMENTS
+            if requirement_verified(coverage_rows, requirement, acceptance_by_requirement.get(requirement))
         )
         all_requirements_verified = len(coverage_rows) >= len(REQUIREMENTS) and all(
-            requirement_verified(coverage_rows, requirement) for requirement in REQUIREMENTS
+            requirement_verified(coverage_rows, requirement, acceptance_by_requirement.get(requirement))
+            for requirement in REQUIREMENTS
         )
         financial_ready = all(
-            requirement_verified(coverage_rows, requirement)
+            requirement_verified(coverage_rows, requirement, acceptance_by_requirement.get(requirement))
             for requirement in ["weights_and_design", "consumption_or_income", "oop_health_expenditure"]
         )
-        access_ready = requirement_verified(coverage_rows, "health_need_and_access")
+        access_ready = requirement_verified(
+            coverage_rows,
+            "health_need_and_access",
+            acceptance_by_requirement.get("health_need_and_access"),
+        )
         timing_geo_ready = all(
-            requirement_verified(coverage_rows, requirement)
+            requirement_verified(coverage_rows, requirement, acceptance_by_requirement.get(requirement))
             for requirement in ["survey_timing", "climate_geography"]
         )
         climate_ok = climate_ready(climate)
@@ -514,7 +533,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
                 gates,
                 wave,
                 f"raw_value_verification_{requirement}",
-                requirement_verified(coverage_rows, requirement),
+                requirement_verified(coverage_rows, requirement, decision),
                 f"metadata={row.get('coverage_status', 'missing')}; candidates={row.get('candidate_variable_rows', '0')}; files={row.get('candidate_file_rows', '0')}; raw_status={row.get('raw_value_verification_status', 'missing')}; top_files={row.get('top_file_names', '')}{focused_evidence}",
                 decision.get("next_action")
                 or "Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level.",

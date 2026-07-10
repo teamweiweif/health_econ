@@ -23,15 +23,15 @@ Next blocking action: `complete_raw_value_key_unit_verification`
 | complete_original_raw_package | pass | intake_status=blocked_missing_documentation; original_files=1; archives=1; raw_tabular=0; package_docs=0; public_docs... |  |
 | archive_or_direct_file_preflight | pass | status=ready_for_raw_receipt_schema_and_manual_review; direct_raw=0; direct_docs=0; archive_members=52 |  |
 | raw_value_verification_household_person_keys | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Use the health exception audit to decide whether nonroster health rows can be excluded, reconciled, or documented as ... |
-| raw_value_verification_weights_and_design | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Record accepted survey design variables and sensitivity plan. |
-| raw_value_verification_consumption_or_income | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=3; raw_status=not_raw_... | Write denominator policy for CHE10/CHE25 and separate SDG 3.8.2 capacity-to-pay review. |
-| raw_value_verification_oop_health_expenditure | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=1; raw_status=not_raw_... | Document OOP inclusion/exclusion and annual aggregate preference. |
+| raw_value_verification_weights_and_design | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... |  |
+| raw_value_verification_consumption_or_income | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=3; raw_status=not_raw_... |  |
+| raw_value_verification_oop_health_expenditure | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=1; raw_status=not_raw_... |  |
 | raw_value_verification_health_need_and_access | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=2; raw_status=not_raw_... | Review the candidate construction policy, then resolve d07a skip leakage, classify remaining manual-review care-actio... |
 | raw_value_verification_survey_timing | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=7; raw_status=not_raw_... | Choose interview-month exposure windows for rainfall/heat measures. |
 | raw_value_verification_climate_geography | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Define EA/admin climate linkage route and required boundary/crosswalk source. |
 | raw_value_verification_missing_codes_units_recall_skip_patterns | fail | metadata=documentation_and_raw_review_required_no_variable_shortlist; candidates=0; files=0; raw_status=not_raw_value... | Write variable-level policy table and rerun requirement acceptance. |
-| all_required_raw_values_verified | fail | verified_requirement_rows=0/8 | Complete raw-backed verification for every required promotion requirement. |
-| financial_protection_inputs_ready | fail | requires verified weights/design, total consumption or income, and OOP health expenditure. | Verify financial-protection inputs before CHE10/CHE25 or SDG 3.8.2 readiness can be claimed. |
+| all_required_raw_values_verified | fail | verified_requirement_rows=3/8 | Complete raw-backed verification for every required promotion requirement. |
+| financial_protection_inputs_ready | pass | requires verified weights/design, total consumption or income, and OOP health expenditure. |  |
 | access_forgone_care_inputs_ready | fail | requires verified illness/need, care-seeking, and access-barrier raw variables. | Verify illness/need and care-seeking/access variables before double-failure readiness can be claimed. |
 | timing_geography_ready_for_climate | fail | requires verified survey timing and GPS/cluster/EA/admin geography. | Verify timing and geography raw fields before accepting a climate linkage route. |
 | accepted_chirps_or_era5_linkage_route | fail | accepted_route=missing; current_gate=missing; planned_level= | Accept a CHIRPS or ERA5 route only after timing/geography verification passes. |
@@ -123,9 +123,9 @@ Next blocking action: `complete_raw_value_key_unit_verification`
 | requirement | mechanical_raw_check_decision | final_verification_decision | remaining_blocker |
 |---|---|---|---|
 | household_person_keys | blocked_person_join_exception_review_required | not_final_verified | Resolve or document health-module person keys absent from the roster before full double-failure person-level verifica... |
-| weights_and_design | mechanical_raw_check_pass_documentation_policy_pending | not_final_verified | Confirm official survey-design guidance and PSU choice across household, poverty, expenditure, and health files. |
-| consumption_or_income | mechanical_raw_check_pass_sdg_policy_pending | not_final_verified | CHE10/CHE25 denominator is mechanically ready, but SDG 3.8.2 societal poverty-line/discretionary-budget mapping is no... |
-| oop_health_expenditure | mechanical_raw_check_pass_construct_policy_pending | not_final_verified | Accept OOP construct scope and whether survey-team annual aggregate is preferred over health-module recall items. |
+| weights_and_design | raw_value_verified_financial_policy_accepted | raw_value_verified_for_che10_che25 | Household financial survey design is accepted for CHE10/CHE25; recheck person-level design and cross-country modeling... |
+| consumption_or_income | raw_value_verified_che_denominator_sdg_policy_blocked | raw_value_verified_for_che10_che25 | rexpagg is accepted as CHE10/CHE25 total-budget denominator; SDG 3.8.2 societal poverty-line/discretionary-budget map... |
+| oop_health_expenditure | raw_value_verified_oop_aggregate_policy_accepted | raw_value_verified_for_che10_che25 | rexp_cat06 is accepted as annual household health OOP aggregate for CHE10/CHE25; health-module recall spending remain... |
 | health_need_and_access | blocked_health_access_policy_ready_active_exceptions | not_final_verified | Health/access construction policy status=candidate_policy_ready_active_skip_and_provider_blockers; final_health_acces... |
 | survey_timing | mechanical_raw_check_pass_climate_window_pending | not_final_verified | Climate exposure window and aggregation month are not accepted. |
 | climate_geography | admin_ea_raw_check_pass_climate_route_pending | not_final_verified | Accepted CHIRPS/ERA5 route is still missing; admin/EA geography needs boundary/crosswalk and exposure aggregation dec... |
@@ -139,4 +139,4 @@ write this country-wave into `data/` until the complete original raw package,
 all raw value/key/unit/skip-pattern checks, outcome gates, and an accepted
 CHIRPS or ERA5 linkage route pass.
 
-Failed gates currently blocking promotion: 15.
+Failed gates currently blocking promotion: 11.

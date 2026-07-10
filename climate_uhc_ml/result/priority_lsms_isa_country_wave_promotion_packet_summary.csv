@@ -3,14 +3,14 @@ priority_lsms_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promot
 priority_lsms_country_wave_packet_core_rows,10,Core selected/refocused replacement packets.
 priority_lsms_country_wave_packet_backup_rows,9,Backup and sixth-country candidate packets.
 priority_lsms_country_wave_packet_gate_rows,361,Gate rows across LSMS/ISA promotion packets.
-priority_lsms_country_wave_packet_passed_gate_rows,40,Packet gates currently passing.
-priority_lsms_country_wave_packet_failed_gate_rows,321,Packet gates still blocking promotion.
+priority_lsms_country_wave_packet_passed_gate_rows,44,Packet gates currently passing.
+priority_lsms_country_wave_packet_failed_gate_rows,317,Packet gates still blocking promotion.
 priority_lsms_country_wave_packet_public_documentation_ready_rows,19,Packets with complete public documentation receipt.
 priority_lsms_country_wave_packet_variable_evidence_ready_rows,19,Packets with official variable evidence coverage ready for raw review.
 priority_lsms_country_wave_packet_raw_package_ready_rows,1,Packets with complete original raw package receipt and documentation.
 priority_lsms_country_wave_packet_archive_preflight_ready_rows,1,Packets with readable archive/direct raw preflight.
 priority_lsms_country_wave_packet_raw_value_verified_rows,0,Packets with all required raw values verified.
-priority_lsms_country_wave_packet_financial_ready_rows,0,Packets ready for financial-protection outcomes.
+priority_lsms_country_wave_packet_financial_ready_rows,1,Packets ready for financial-protection outcomes.
 priority_lsms_country_wave_packet_access_ready_rows,0,Packets ready for access/forgone-care outcomes.
 priority_lsms_country_wave_packet_climate_ready_rows,0,Packets with accepted CHIRPS/ERA5 climate-linkage route.
 priority_lsms_country_wave_packet_analysis_synthesis_ready_rows,0,Packets ready for promoted dataset synthesis.

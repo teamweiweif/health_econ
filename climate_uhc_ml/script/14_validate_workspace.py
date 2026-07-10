@@ -5348,7 +5348,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_packet_variable_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and 0 <= priority_lsms_packet_raw_ready <= priority_lsms_packet_rows
         and priority_lsms_packet_raw_verified == 0
-        and priority_lsms_packet_financial_ready == 0
+        and 0 <= priority_lsms_packet_financial_ready <= priority_lsms_packet_rows
         and priority_lsms_packet_access_ready == 0
         and priority_lsms_packet_climate_ready == 0
         and priority_lsms_packet_synthesis_ready == 0
@@ -5362,7 +5362,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "dataset_promotion",
-        "Priority LSMS/ISA country-wave promotion packets cover every refocused target with fail-closed raw, climate, synthesis, and registry gates",
+        "Priority LSMS/ISA country-wave promotion packets cover every refocused target with fail-closed access, climate, synthesis, and registry gates",
         status(priority_lsms_packet_gate_ok),
         f"index_rows={counts['priority_lsms_isa_country_wave_promotion_packet_index']}; gate_rows={counts['priority_lsms_isa_country_wave_promotion_packet_gate_matrix']}; action_rows={counts['priority_lsms_isa_country_wave_promotion_packet_action_queue']}; summary_rows={counts['priority_lsms_isa_country_wave_promotion_packet_summary']}; reported_packets={priority_lsms_packet_rows}; core_rows={priority_lsms_packet_core_rows}; backup_rows={priority_lsms_packet_backup_rows}; reported_gate_rows={priority_lsms_packet_gate_rows}; passed_gates={priority_lsms_packet_passed_gates}; failed_gates={priority_lsms_packet_failed_gates}; public_ready={priority_lsms_packet_public_ready}; variable_ready={priority_lsms_packet_variable_ready}; raw_ready={priority_lsms_packet_raw_ready}; raw_verified={priority_lsms_packet_raw_verified}; financial_ready={priority_lsms_packet_financial_ready}; access_ready={priority_lsms_packet_access_ready}; climate_ready={priority_lsms_packet_climate_ready}; synthesis_ready={priority_lsms_packet_synthesis_ready}; analysis_ready={priority_lsms_packet_analysis_ready}; actions={priority_lsms_packet_actions}; reports={priority_lsms_packet_reports}; handoffs={priority_lsms_packet_handoffs}; data_write={priority_lsms_packet_data_write}; modeling_gate={priority_lsms_packet_modeling_gate}",
         "" if priority_lsms_packet_gate_ok else "Run script/148_build_priority_lsms_isa_country_wave_promotion_packets.py after LSMS/ISA documentation, variable evidence, raw intake, and archive preflight gates.",

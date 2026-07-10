@@ -27,6 +27,7 @@ HANDOFF_PATH = RAW_DIR / "_MWI2004_REQUIREMENT_ACCEPTANCE_DECISIONS.md"
 HEALTH_ACCESS_LABEL_SKIP_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv"
 HEALTH_EXCEPTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_exception_summary.csv"
 HEALTH_ACCESS_CONSTRUCTION_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv"
+FINANCIAL_PROTECTION_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv"
 
 DECISION_COLUMNS = [
     "country",
@@ -162,6 +163,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     health_label_summary = read_csv_dicts(HEALTH_ACCESS_LABEL_SKIP_SUMMARY_PATH)
     health_exception_summary = read_csv_dicts(HEALTH_EXCEPTION_SUMMARY_PATH)
     health_construction_summary = read_csv_dicts(HEALTH_ACCESS_CONSTRUCTION_POLICY_SUMMARY_PATH)
+    financial_policy_summary = read_csv_dicts(FINANCIAL_PROTECTION_POLICY_SUMMARY_PATH)
     health_label_decision = summary_value(health_label_summary, "health_access_label_skip_decision")
     health_label_rows = summary_value(health_label_summary, "label_decision_rows", "0")
     health_manual_review_rows = summary_value(health_label_summary, "manual_review_rows", "0")
@@ -177,6 +179,15 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     health_policy_formal_extended = summary_value(health_construction_summary, "formal_care_extended_rows", "missing")
     health_policy_skip_exceptions = summary_value(health_construction_summary, "d07a_d07b_skip_exception_rows", "missing")
     health_policy_final_verified = summary_value(health_construction_summary, "final_health_access_verified", "0")
+    financial_policy_status = summary_value(financial_policy_summary, "financial_policy_status", "missing")
+    financial_inputs_ready = summary_value(financial_policy_summary, "che10_che25_financial_inputs_ready", "0")
+    weights_final_verified = summary_value(financial_policy_summary, "weights_design_final_verified_for_financial", "0")
+    consumption_final_verified = summary_value(financial_policy_summary, "consumption_or_income_final_verified_for_che", "0")
+    oop_final_verified = summary_value(financial_policy_summary, "oop_health_expenditure_final_verified_for_che", "0")
+    household_financial_rows = summary_value(financial_policy_summary, "household_financial_rows", "missing")
+    che10_candidate_rows = summary_value(financial_policy_summary, "che10_candidate_rows", "missing")
+    che25_candidate_rows = summary_value(financial_policy_summary, "che25_candidate_rows", "missing")
+    sdg382_ready = summary_value(financial_policy_summary, "sdg382_ready", "0")
 
     household, _ = read_member(
         ZIP_PATH,
@@ -271,27 +282,27 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         },
         {
             "requirement": "weights_and_design",
-            "mechanical_raw_check_decision": "mechanical_raw_check_pass_documentation_policy_pending",
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"hhwght positive={int((pd.to_numeric(household['hhwght'], errors='coerce') > 0).sum())}/{len(household)}; strata={household['strata'].dropna().nunique()}; health psu={health['psu'].dropna().nunique()}.",
-            "remaining_blocker": "Confirm official survey-design guidance and PSU choice across household, poverty, expenditure, and health files.",
-            "next_action": "Record accepted survey design variables and sensitivity plan.",
+            "mechanical_raw_check_decision": "raw_value_verified_financial_policy_accepted" if weights_final_verified == "1" else "mechanical_raw_check_pass_documentation_policy_pending",
+            "final_verification_decision": "raw_value_verified_for_che10_che25" if weights_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"hhwght positive={int((pd.to_numeric(household['hhwght'], errors='coerce') > 0).sum())}/{len(household)}; strata={household['strata'].dropna().nunique()}; health psu={health['psu'].dropna().nunique()}; household_financial_rows={household_financial_rows}; financial_policy_status={financial_policy_status}.",
+            "remaining_blocker": "Household financial survey design is accepted for CHE10/CHE25; recheck person-level design and cross-country modeling design before access, double-failure, or ML use." if weights_final_verified == "1" else "Confirm official survey-design guidance and PSU choice across household, poverty, expenditure, and health files.",
+            "next_action": "Keep household financial design fixed for CHE10/CHE25; verify person-level/access design separately before double-failure promotion." if weights_final_verified == "1" else "Record accepted survey design variables and sensitivity plan.",
         },
         {
             "requirement": "consumption_or_income",
-            "mechanical_raw_check_decision": "mechanical_raw_check_pass_sdg_policy_pending",
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"rexpagg positive={int((rexpagg > 0).sum())}/{len(pov)}; povline and price_index are present.",
-            "remaining_blocker": "CHE10/CHE25 denominator is mechanically ready, but SDG 3.8.2 societal poverty-line/discretionary-budget mapping is not accepted.",
-            "next_action": "Write denominator policy for CHE10/CHE25 and separate SDG 3.8.2 capacity-to-pay review.",
+            "mechanical_raw_check_decision": "raw_value_verified_che_denominator_sdg_policy_blocked" if consumption_final_verified == "1" else "mechanical_raw_check_pass_sdg_policy_pending",
+            "final_verification_decision": "raw_value_verified_for_che10_che25" if consumption_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"rexpagg positive={int((rexpagg > 0).sum())}/{len(pov)}; povline and price_index are present; household_financial_rows={household_financial_rows}; che10_rows={che10_candidate_rows}; che25_rows={che25_candidate_rows}; sdg382_ready={sdg382_ready}.",
+            "remaining_blocker": "rexpagg is accepted as CHE10/CHE25 total-budget denominator; SDG 3.8.2 societal poverty-line/discretionary-budget mapping remains blocked." if consumption_final_verified == "1" else "CHE10/CHE25 denominator is mechanically ready, but SDG 3.8.2 societal poverty-line/discretionary-budget mapping is not accepted.",
+            "next_action": "Resolve SDG 3.8.2 discretionary-budget policy separately; do not use SDG status for promotion yet." if consumption_final_verified == "1" else "Write denominator policy for CHE10/CHE25 and separate SDG 3.8.2 capacity-to-pay review.",
         },
         {
             "requirement": "oop_health_expenditure",
-            "mechanical_raw_check_decision": "mechanical_raw_check_pass_construct_policy_pending",
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"rexp_cat06 nonmissing={int(oop.notna().sum())}/{len(pov)}; component diff<=0.01 rows={diff_le_cent}/{len(diff)}; max diff={fmt(diff.max() if len(diff) else None)}.",
-            "remaining_blocker": "Accept OOP construct scope and whether survey-team annual aggregate is preferred over health-module recall items.",
-            "next_action": "Document OOP inclusion/exclusion and annual aggregate preference.",
+            "mechanical_raw_check_decision": "raw_value_verified_oop_aggregate_policy_accepted" if oop_final_verified == "1" else "mechanical_raw_check_pass_construct_policy_pending",
+            "final_verification_decision": "raw_value_verified_for_che10_che25" if oop_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"rexp_cat06 nonmissing={int(oop.notna().sum())}/{len(pov)}; component diff<=0.01 rows={diff_le_cent}/{len(diff)}; max diff={fmt(diff.max() if len(diff) else None)}; financial_policy_status={financial_policy_status}.",
+            "remaining_blocker": "rexp_cat06 is accepted as annual household health OOP aggregate for CHE10/CHE25; health-module recall spending remains context only." if oop_final_verified == "1" else "Accept OOP construct scope and whether survey-team annual aggregate is preferred over health-module recall items.",
+            "next_action": "Keep rexp_cat06 as the CHE OOP input; do not substitute person-level health-module recall sums for household CHE." if oop_final_verified == "1" else "Document OOP inclusion/exclusion and annual aggregate preference.",
         },
         {
             "requirement": "health_need_and_access",
@@ -335,16 +346,25 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     for row in decisions:
         row.update({"country": COUNTRY, "wave": WAVE, "idno": IDNO, "data_write_gate_effect": "does_not_open_data_gate"})
 
-    mechanical_pass_or_partial = sum("pass" in row["mechanical_raw_check_decision"] for row in decisions)
+    mechanical_pass_or_partial = sum(
+        "pass" in row["mechanical_raw_check_decision"] or row["mechanical_raw_check_decision"].startswith("raw_value_verified")
+        for row in decisions
+    )
     hard_blocked = sum(row["mechanical_raw_check_decision"].startswith("blocked") for row in decisions)
+    final_verified = sum(row["final_verification_decision"].startswith("raw_value_verified") for row in decisions)
     summary = [
         {"metric": "country_wave", "value": IDNO, "interpretation": "Country-wave adjudicated in this focused acceptance decision."},
         {"metric": "decision_rows", "value": str(len(decisions)), "interpretation": "Requirement-level acceptance decision rows."},
         {"metric": "mechanical_raw_checks_pass_or_partial", "value": str(mechanical_pass_or_partial), "interpretation": "Requirements with raw mechanical evidence that passes but still needs policy/documentation acceptance."},
         {"metric": "hard_blocked_requirements", "value": str(hard_blocked), "interpretation": "Requirements still blocked even before final climate/data promotion."},
-        {"metric": "final_verified_requirements", "value": "0", "interpretation": "Requirements accepted as final raw-value verified; remains zero."},
+        {"metric": "final_verified_requirements", "value": str(final_verified), "interpretation": "Requirements accepted as final raw-value verified for their stated scope."},
         {"metric": "health_person_unmatched_to_roster", "value": str(len(health_keys - individ_keys)), "interpretation": "Health-module person keys absent from roster; raw IDs intentionally not exported."},
         {"metric": "oop_component_diff_le_0_01_rows", "value": f"{diff_le_cent}/{len(diff)}", "interpretation": "OOP aggregate-component numeric agreement under tolerance."},
+        {"metric": "financial_policy_status", "value": financial_policy_status, "interpretation": "CHE10/CHE25 financial input policy status."},
+        {"metric": "che10_che25_financial_inputs_ready", "value": financial_inputs_ready, "interpretation": "Whether financial-protection inputs are raw-value verified for CHE10/CHE25."},
+        {"metric": "sdg382_ready", "value": sdg382_ready, "interpretation": "Whether SDG 3.8.2 discretionary-budget inputs are ready; remains zero."},
+        {"metric": "che10_candidate_rows", "value": che10_candidate_rows, "interpretation": "Candidate CHE10 rows from the accepted financial input policy."},
+        {"metric": "che25_candidate_rows", "value": che25_candidate_rows, "interpretation": "Candidate CHE25 rows from the accepted financial input policy."},
         {"metric": "health_access_construction_policy_status", "value": health_policy_status, "interpretation": "Candidate health/access construction policy status; still not final verification."},
         {"metric": "health_access_policy_acute_need_denominator_rows", "value": health_policy_denominator, "interpretation": "Roster-matched d04==Yes rows under the candidate access denominator."},
         {"metric": "health_access_policy_no_money_rows", "value": health_policy_no_money, "interpretation": "Candidate no-money forgone-care rows counted once per person row."},
@@ -355,6 +375,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
 
 
 def write_report(decisions: list[dict[str, str]], metrics: list[dict[str, str]], summary: list[dict[str, str]]) -> None:
+    final_verified_requirements = summary_value(summary, "final_verified_requirements", "0")
     report = f"""# Malawi 2004 Requirement Acceptance Decisions
 
 Dataset: `{IDNO}` - {COUNTRY} {WAVE}
@@ -377,11 +398,12 @@ accept/block decisions. It does not export raw person IDs, does not write to
 
 ## Gate Decision
 
-The current decision remains fail-closed: `final_verified_requirements=0` and
-`data_write_gate_status=closed`. Malawi 2004 has strong financial-protection
-raw evidence, but full promotion still requires person-join exception review,
-health/access construct mapping, missing/skip/unit/recall policy, and an
-accepted CHIRPS or ERA5 climate-linkage route.
+The current decision remains fail-closed: `final_verified_requirements={final_verified_requirements}`
+and `data_write_gate_status=closed`. Malawi 2004 now has CHE10/CHE25
+financial-protection inputs accepted where the financial construction policy
+supports them, but full promotion still requires person-join exception review,
+health/access construct mapping, missing/skip/unit/recall policy, SDG 3.8.2
+denominator policy, and an accepted CHIRPS or ERA5 climate-linkage route.
 """
     REPORT_PATH.write_text(report, encoding="utf-8")
     HANDOFF_PATH.write_text(report, encoding="utf-8")
