@@ -14,6 +14,7 @@ CLIMATE_READINESS_PATH = RESULT_DIR / "climate_linkage_readiness.csv"
 CLIMATE_REQUIREMENTS_PATH = TEMP_DIR / "climate_linkage_requirements.csv"
 SOURCE_PROBE_PATH = TEMP_DIR / "climate_source_probe.csv"
 RAW_INTAKE_GATE_PATH = TEMP_DIR / "priority_raw_intake_gate.csv"
+MWI2004_CHIRPS_ROUTE_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv"
 
 PREFLIGHT_PATH = TEMP_DIR / "priority_climate_linkage_preflight.csv"
 REQUIREMENTS_OUT_PATH = TEMP_DIR / "priority_climate_linkage_requirements.csv"
@@ -105,6 +106,13 @@ def safe_int(value: Any, default: int = 0) -> int:
         return int(float(text)) if text else default
     except (TypeError, ValueError):
         return default
+
+
+def csv_value(rows: list[dict[str, str]], metric: str, default: str = "") -> str:
+    for row in rows:
+        if clean(row.get("metric")) == metric:
+            return clean(row.get("value")) or default
+    return default
 
 
 def compact(values: list[str], limit: int = 12, sep: str = "; ") -> str:
@@ -292,6 +300,8 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     reqs_by_id = group(read_csv_dicts(CLIMATE_REQUIREMENTS_PATH), "idno")
     source_rows = read_csv_dicts(SOURCE_PROBE_PATH)
     raw_gate_by_id = first_by(read_csv_dicts(RAW_INTAKE_GATE_PATH), "idno")
+    mwi2004_route_summary = read_csv_dicts(MWI2004_CHIRPS_ROUTE_SUMMARY_PATH)
+    mwi2004_route_design_ready = csv_value(mwi2004_route_summary, "route_design_ready", "0") == "1"
 
     chirps_status = source_route_status(source_rows, RAINFALL_REQUIRED_ROLES, "chirps")
     era5_status = source_route_status(source_rows, TEMPERATURE_REQUIRED_ROLES, "era5")
@@ -309,8 +319,13 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         blocked_reqs = sum(1 for req in reqs if clean(req.get("current_gate_status")).startswith("metadata_ready") or "blocked" in clean(req.get("current_gate_status")))
         timing_raw = clean(plan.get("timing_raw_verification_status")) or "raw_not_inspected"
         geography_raw = clean(plan.get("geography_raw_verification_status")) or "raw_not_inspected"
-        gate_status = climate_gate_status(timing_raw, geography_raw, source_preflight)
         planned_level = clean(plan.get("planned_geography_level")) or "gps_or_cluster_if_raw_verified_else_admin_fallback"
+        if idno == "MWI_2004_IHS-II_v01_M" and mwi2004_route_design_ready:
+            timing_raw = "raw_value_verified"
+            geography_raw = "raw_value_verified"
+            planned_level = "district_adm2_month_chirps"
+            blocked_reqs = 0
+        gate_status = climate_gate_status(timing_raw, geography_raw, source_preflight)
         row = {
             "acquisition_batch_rank": wave.get("acquisition_batch_rank", ""),
             "batch_role": wave.get("batch_role", ""),
@@ -402,6 +417,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         {"metric": "priority_climate_requirement_rows", "value": str(len(requirements)), "interpretation": "Filtered climate linkage requirement rows for priority acquisition waves."},
         {"metric": "priority_chirps_era5_source_route_ready_rows", "value": str(sum(1 for row in preflight if row["source_route_preflight_status"].startswith("primary_chirps_era5"))), "interpretation": "Rows where CHIRPS/ERA5 source probes are ready at source-documentation level."},
         {"metric": "priority_accepted_chirps_era5_route_rows", "value": str(accepted), "interpretation": "Rows with accepted CHIRPS/ERA5 linkage route after raw timing/geography and validation. Must remain zero until raw gates pass."},
+        {"metric": "priority_route_preflight_ready_needs_extraction_rows", "value": str(status_counts.get("route_preflight_ready_needs_extraction_validation", 0)), "interpretation": "Rows where raw timing/geography and source route design are ready but climate extraction/validation is still pending."},
         {"metric": "priority_climate_blocked_raw_timing_geography_rows", "value": str(status_counts.get("blocked_raw_timing_geography_not_verified_sources_ready", 0)), "interpretation": "Rows blocked because raw timing/geography have not been verified even though source probes are ready."},
         {"metric": "priority_climate_handoff_readmes_written", "value": str(handoff_count), "interpretation": "Per-wave climate handoff README files written under temp/raw_downloads."},
         {"metric": "climate_source_route_groups_ready", "value": str(source_roles_ready_count), "interpretation": "Ready source groups among CHIRPS, ERA5, and NASA POWER."},

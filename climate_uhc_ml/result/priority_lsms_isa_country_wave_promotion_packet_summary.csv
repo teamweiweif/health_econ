@@ -21,5 +21,5 @@ priority_lsms_country_wave_packet_handoffs_written,19,Per-wave raw-folder packet
 priority_lsms_country_wave_packet_data_write_status,blocked_no_promoted_rows,No LSMS/ISA country-wave may write to data/ from metadata-only packet evidence.
 modeling_gate_status,blocked,Models remain blocked until raw-backed promotion thresholds and accepted climate linkage pass.
 priority_lsms_country_wave_packet_status_blocked_fail_closed,19,Packet status count.
-priority_lsms_country_wave_packet_next_action_accept_chirps_or_era5_linkage_route,1,Next blocking action count.
 priority_lsms_country_wave_packet_next_action_download_or_place_complete_original_raw_package,18,Next blocking action count.
+priority_lsms_country_wave_packet_next_action_extract_validate_chirps_adm2_exposures,1,Next blocking action count.

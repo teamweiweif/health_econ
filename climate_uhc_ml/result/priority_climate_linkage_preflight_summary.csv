@@ -6,6 +6,7 @@ priority_climate_preflight_backup_rows,3,Sixth-country backup rows covered by cl
 priority_climate_requirement_rows,143,Filtered climate linkage requirement rows for priority acquisition waves.
 priority_chirps_era5_source_route_ready_rows,13,Rows where CHIRPS/ERA5 source probes are ready at source-documentation level.
 priority_accepted_chirps_era5_route_rows,0,Rows with accepted CHIRPS/ERA5 linkage route after raw timing/geography and validation. Must remain zero until raw gates pass.
+priority_route_preflight_ready_needs_extraction_rows,0,Rows where raw timing/geography and source route design are ready but climate extraction/validation is still pending.
 priority_climate_blocked_raw_timing_geography_rows,13,Rows blocked because raw timing/geography have not been verified even though source probes are ready.
 priority_climate_handoff_readmes_written,13,Per-wave climate handoff README files written under temp/raw_downloads.
 climate_source_route_groups_ready,3,"Ready source groups among CHIRPS, ERA5, and NASA POWER."

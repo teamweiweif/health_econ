@@ -21,6 +21,7 @@ CLIMATE_PREFLIGHT_PATH = TEMP_DIR / "priority_climate_linkage_preflight.csv"
 SYNTHESIS_JOIN_PATH = TEMP_DIR / "priority_analysis_dataset_join_plan.csv"
 REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 MWI2004_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv"
+MWI2004_CHIRPS_ROUTE_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv"
 
 PACKET_DIR = REPORT_DIR / "priority_lsms_isa_country_wave_promotion_packets"
 INDEX_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_index.csv"
@@ -112,6 +113,13 @@ def safe_int(value: Any, default: int = 0) -> int:
         return int(float(text)) if text else default
     except (TypeError, ValueError):
         return default
+
+
+def csv_value(rows: list[dict[str, str]], metric: str, default: str = "") -> str:
+    for row in rows:
+        if clean(row.get("metric")) == metric:
+            return clean(row.get("value")) or default
+    return default
 
 
 def rel(path: Path) -> str:
@@ -435,6 +443,13 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     synthesis_by_id = one_by_id(read_csv_dicts(SYNTHESIS_JOIN_PATH))
     registry_by_id = one_by_id(read_csv_dicts(REGISTRY_PATH))
     acceptance_by_id = by_id(read_csv_dicts(MWI2004_ACCEPTANCE_DECISION_PATH))
+    mwi2004_route_summary = read_csv_dicts(MWI2004_CHIRPS_ROUTE_SUMMARY_PATH)
+    mwi2004_route_design_ready = csv_value(mwi2004_route_summary, "route_design_ready", "0") == "1"
+    mwi2004_route_gate = csv_value(
+        mwi2004_route_summary,
+        "current_climate_linkage_gate_status",
+        "route_preflight_ready_needs_extraction_validation",
+    )
 
     index_rows: list[dict[str, str]] = []
     gate_rows: list[dict[str, str]] = []
@@ -453,6 +468,12 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             clean(row.get("requirement")): row for row in acceptance_rows if clean(row.get("requirement"))
         }
         climate = climate_by_id.get(idno, {})
+        if idno == "MWI_2004_IHS-II_v01_M" and mwi2004_route_design_ready:
+            climate = {
+                "accepted_chirps_era5_route_status": "not_accepted_extraction_and_validation_pending",
+                "current_climate_linkage_gate_status": mwi2004_route_gate,
+                "planned_geography_level": "district_adm2_month_chirps",
+            }
         synthesis = synthesis_by_id.get(idno, {})
         registry = registry_by_id.get(idno, {})
 
@@ -576,7 +597,9 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "accepted_chirps_or_era5_linkage_route",
             climate_ok,
             f"accepted_route={climate.get('accepted_chirps_era5_route_status', 'missing')}; current_gate={climate.get('current_climate_linkage_gate_status', 'missing')}; planned_level={climate.get('planned_geography_level', '')}",
-            "Accept a CHIRPS or ERA5 route only after timing/geography verification passes.",
+            "Download/extract CHIRPS ADM2 monthly rasters and validate units, spatial coverage, and lag windows."
+            if clean(climate.get("current_climate_linkage_gate_status")) == "route_preflight_ready_needs_extraction_validation"
+            else "Accept a CHIRPS or ERA5 route only after timing/geography verification passes.",
         )
         add_gate(
             gates,
@@ -606,8 +629,12 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             next_action = "complete_raw_value_key_unit_verification"
             next_action_text = "Verify merge keys, weights/design, consumption/income, OOP, access, timing, geography, missing codes, units, recall periods, and skip patterns."
         elif not climate_ok:
-            next_action = "accept_chirps_or_era5_linkage_route"
-            next_action_text = "Accept a CHIRPS or ERA5 linkage route after raw timing/geography verification."
+            if clean(climate.get("current_climate_linkage_gate_status")) == "route_preflight_ready_needs_extraction_validation":
+                next_action = "extract_validate_chirps_adm2_exposures"
+                next_action_text = "Download/extract CHIRPS ADM2 monthly rasters, validate coverage/units/lag windows, then decide whether the climate linkage route can be accepted."
+            else:
+                next_action = "accept_chirps_or_era5_linkage_route"
+                next_action_text = "Accept a CHIRPS or ERA5 linkage route after raw timing/geography verification."
         elif not synthesis_ok:
             next_action = "complete_analysis_dataset_synthesis_join_review"
             next_action_text = "Complete the promoted household-climate schema and join review."

@@ -1,0 +1,20 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by the CHIRPS ADM2 route policy.
+climate_route_policy_status,chirps_admin2_district_month_route_design_ready_extraction_validation_pending,Route design status before climate raster extraction.
+route_design_ready,1,"Whether raw timing, raw district labels, ADM2 boundary names, and CHIRPS download manifest form a coherent route design."
+accepted_chirps_era5_route,0,The promoted climate gate remains closed until CHIRPS extraction and validation pass.
+current_climate_linkage_gate_status,route_preflight_ready_needs_extraction_validation,Updated preflight status for Malawi 2004 climate linkage.
+raw_district_rows,26,Raw Malawi 2004 district labels observed in household data.
+boundary_adm2_features,28,ADM2 features in the local geoBoundaries Malawi boundary file.
+raw_district_boundary_matches,26,Raw district labels matched to ADM2 boundary names after normalization.
+raw_district_boundary_unmatched,0,Raw district labels not matched to ADM2 boundary names; must be zero before extraction.
+boundary_no_sample_rows,2,ADM2 boundary districts with no sampled households in Malawi 2004.
+boundary_no_sample_names,Likoma;Neno,Boundary districts present but absent from the raw sample.
+interview_month_count,13,Distinct raw interview months.
+interview_month_min,2004-03,Earliest raw interview month.
+interview_month_max,2005-03,Latest raw interview month.
+required_chirps_months,24,"CHIRPS monthly files needed for 1, 3, 6, and 12 complete-month windows."
+required_chirps_month_min,2003-03,Earliest required CHIRPS month.
+required_chirps_month_max,2005-02,Latest required CHIRPS month.
+boundary_file_sha256,5fe9b6313ee3eaf6d2b8a4579b7a7fa75dc1b16b9324a436f5a359da23527ea6,Checksum of the local boundary file used for route validation; raw boundary file is not intended for GitHub publication.
+data_write_gate_status,closed,No promoted household-climate data are written by this route policy.

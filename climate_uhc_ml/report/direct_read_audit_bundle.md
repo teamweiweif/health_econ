@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 163 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 705 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 701 | Curated artifacts present and non-empty. |
+| bundle_rows | 164 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 711 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 707 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -61,6 +61,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_timing_geography_household_ea | 564 | Distinct household EA/admin keys. |
 | mwi2004_timing_geography_ready_for_route_review | 1 | Whether raw timing and geography are ready for climate-route review. |
 | mwi2004_timing_geography_accepted_chirps_era5_route | 0 | Whether CHIRPS/ERA5 route is accepted; should remain zero. |
+| mwi2004_chirps_admin2_route_design_ready | 1 | Whether Malawi 2004 has a CHIRPS ADM2 route design ready for raster extraction. |
+| mwi2004_chirps_admin2_raw_boundary_matches | 26 | Raw Malawi 2004 district labels matched to ADM2 boundary names. |
+| mwi2004_chirps_admin2_required_months | 24 | CHIRPS monthly GeoTIFF files required for planned lag windows. |
+| mwi2004_chirps_admin2_accepted_route | 0 | Promoted climate linkage gate remains closed until extraction validation passes. |
 | mwi2004_health_access_label_rows | 127 | Health/access variable-value rows mapped into candidate construct decisions. |
 | mwi2004_health_access_no_money_rows | 660 | d07a/d07b rows mapped to no-money no-action candidate access failure. |
 | mwi2004_health_access_skip_leakage_rows | 6 | Aggregate skip leakage rows found in the health/access label-skip audit. |
@@ -544,7 +548,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 54 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 55 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -641,6 +645,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_mwi2004_acceptance_decisions_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_access_cost_barrier_verified_with_documented_exclusions | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_che10_che25_financial_inputs_verified_sdg_blocked | 1 | Direct-read bundle status count. |
+| bundle_status_mwi2004_chirps_admin2_route_design_ready_extraction_pending | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_access_label_skip_blockers_identified | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_access_policy_ready_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_exceptions_unresolved | 1 | Direct-read bundle status count. |
@@ -683,7 +688,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 54 |
+| priority_bundle | 55 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -746,6 +751,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_acceptance_decisions_fail_closed | 1 |
 | mwi2004_che10_che25_financial_inputs_verified_sdg_blocked | 1 |
 | mwi2004_timing_admin_ea_verified_climate_route_blocked | 1 |
+| mwi2004_chirps_admin2_route_design_ready_extraction_pending | 1 |
 | mwi2004_health_access_label_skip_blockers_identified | 1 |
 | mwi2004_health_exceptions_unresolved | 1 |
 | mwi2004_health_access_policy_ready_fail_closed | 1 |
@@ -865,7 +871,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 701 |
+| present_nonempty | 707 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

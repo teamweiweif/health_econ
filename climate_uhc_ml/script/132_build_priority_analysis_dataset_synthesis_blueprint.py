@@ -15,6 +15,7 @@ VARIABLE_AUDIT_PATH = TEMP_DIR / "priority_manual_variable_decision_audit.csv"
 RECEIPT_LEDGER_PATH = TEMP_DIR / "priority_raw_package_receipt_ledger.csv"
 CLIMATE_PREFLIGHT_PATH = TEMP_DIR / "priority_climate_linkage_preflight.csv"
 PROMOTED_REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
+MWI2004_CHIRPS_ROUTE_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv"
 
 BLUEPRINT_PATH = TEMP_DIR / "priority_analysis_dataset_synthesis_blueprint.csv"
 JOIN_PLAN_PATH = TEMP_DIR / "priority_analysis_dataset_join_plan.csv"
@@ -141,6 +142,13 @@ def safe_int(value: Any, default: int = 0) -> int:
         return default
 
 
+def csv_value(rows: list[dict[str, str]], metric: str, default: str = "") -> str:
+    for row in rows:
+        if clean(row.get("metric")) == metric:
+            return clean(row.get("value")) or default
+    return default
+
+
 def rel(path: Path) -> str:
     try:
         return str(path.relative_to(PROJECT_ROOT)).replace("\\", "/")
@@ -250,8 +258,14 @@ def synthesis_status(
     if candidate_count == 0:
         return "blocked_no_metadata_candidate", "no metadata candidate variable found for this output column"
     if derivation_type.startswith("derived_from_chirps") or derivation_type.startswith("derived_from_era5") or derivation_type == "derived_from_verified_linkage":
-        if "blocked" in climate_gate or "not_verified" in climate_gate or "not_accepted" in climate_gate:
-            return "blocked_climate_linkage_not_ready", "raw timing/geography and accepted CHIRPS/ERA5 route not verified"
+        if (
+            "blocked" in climate_gate
+            or "not_verified" in climate_gate
+            or "not_accepted" in climate_gate
+            or "extraction_validation" in climate_gate
+            or "pending" in climate_gate
+        ):
+            return "blocked_climate_linkage_not_ready", "raw timing/geography, accepted CHIRPS/ERA5 route, extraction, and validation not complete"
     if verified_count == 0:
         return "blocked_manual_variable_verification_missing", "candidate raw variables have not passed manual value/unit/key verification"
     if required == "yes":
@@ -329,6 +343,13 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     receipt_by_id = first_by(read_csv_dicts(RECEIPT_LEDGER_PATH), "idno")
     climate_by_id = first_by(read_csv_dicts(CLIMATE_PREFLIGHT_PATH), "idno")
     registry_by_id = first_by(read_csv_dicts(PROMOTED_REGISTRY_PATH), "idno")
+    mwi2004_route_summary = read_csv_dicts(MWI2004_CHIRPS_ROUTE_SUMMARY_PATH)
+    mwi2004_route_design_ready = csv_value(mwi2004_route_summary, "route_design_ready", "0") == "1"
+    mwi2004_route_gate = csv_value(
+        mwi2004_route_summary,
+        "current_climate_linkage_gate_status",
+        "route_preflight_ready_needs_extraction_validation",
+    )
 
     blueprint_rows: list[dict[str, str]] = []
     join_rows: list[dict[str, str]] = []
@@ -338,6 +359,8 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         receipt = receipt_by_id.get(idno, {})
         raw_receipt_status = receipt.get("receipt_status", "receipt_ledger_missing")
         climate_gate = climate_by_id.get(idno, {}).get("current_climate_linkage_gate_status", "missing_climate_preflight")
+        if idno == "MWI_2004_IHS-II_v01_M" and mwi2004_route_design_ready:
+            climate_gate = mwi2004_route_gate
         analysis_ready = registry_by_id.get(idno, {}).get("analysis_ready_status", "not_in_registry")
         concept_audits = concept_audits_by_id.get(idno, {})
         variable_rows = vars_by_id.get(idno, [])
