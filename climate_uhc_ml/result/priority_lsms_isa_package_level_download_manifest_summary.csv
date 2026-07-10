@@ -1,0 +1,16 @@
+﻿metric,value,interpretation
+package_level_download_manifest_rows,10,Package-level rows for locked download-required country-waves.
+package_level_download_country_rows,5,Countries covered by the package-level manifest.
+package_level_download_priority_country_rows,9,Package-level rows from the five priority countries.
+package_level_download_sixth_country_rows,1,Package-level rows supplying the sixth-country buffer.
+package_level_download_expected_full_file_rows,838,Expected official file rows after complete packages are placed or extracted.
+package_level_download_expected_core_file_rows,323,Requirement-linked core file rows after complete packages are placed or extracted.
+package_level_download_unique_core_file_manifest_rows,213,Unique expected core files represented in the package-level core manifest.
+package_level_download_requirement_gate_rows,70,Requirement-level gates covered by package receipt.
+package_level_download_blocked_requirement_gate_rows,70,Requirement gates blocked until complete package receipt.
+package_level_download_target_file_rows,0,Files currently present under exact target folders.
+package_level_download_incoming_file_rows,0,Files currently staged under temp/raw_downloads/_incoming.
+package_level_download_blocked_no_local_package_rows,10,Package rows still lacking local package or incoming files.
+package_level_download_first_canary_idno,ETH_2021_ESPS-W5_v02_M,First package to download and validate before scaling.
+data_write_gate_status,blocked_no_data_write,The manifest does not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

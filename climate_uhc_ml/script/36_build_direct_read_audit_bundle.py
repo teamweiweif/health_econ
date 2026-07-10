@@ -361,6 +361,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/priority_lsms_isa_post_download_receipt_handoff.csv", "priority LSMS/ISA post-download receipt handoff rows"),
     ("dataset_promotion", "result/priority_lsms_isa_post_download_receipt_requirement_gate.csv", "priority LSMS/ISA post-download receipt requirement gates"),
     ("dataset_promotion", "result/priority_lsms_isa_post_download_receipt_handoff_summary.csv", "priority LSMS/ISA post-download receipt handoff summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_package_level_download_manifest.md", "priority LSMS/ISA package-level download manifest report"),
+    ("dataset_promotion", "result/priority_lsms_isa_package_level_download_manifest.csv", "priority LSMS/ISA package-level download manifest rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_package_level_core_file_manifest.csv", "priority LSMS/ISA package-level unique core-file manifest"),
+    ("dataset_promotion", "result/priority_lsms_isa_package_level_download_manifest_summary.csv", "priority LSMS/ISA package-level download manifest summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -818,6 +822,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py", "priority LSMS/ISA Web GPT download control manifest generator"),
     ("reproducibility", "script/204_build_priority_lsms_isa_manual_download_launchpad.py", "priority LSMS/ISA manual download launchpad generator"),
     ("reproducibility", "script/205_build_priority_lsms_isa_post_download_receipt_handoff.py", "priority LSMS/ISA post-download receipt handoff generator"),
+    ("reproducibility", "script/206_build_priority_lsms_isa_package_level_download_manifest.py", "priority LSMS/ISA package-level download manifest generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1093,6 +1098,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_webgpt_download_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv")
     priority_lsms_manual_launchpad_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv")
     priority_lsms_receipt_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_receipt_handoff_summary.csv")
+    priority_lsms_package_manifest_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_package_level_download_manifest_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2125,6 +2131,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     add_bundle(
         rows,
         "priority_bundle",
+        "priority_lsms_isa_package_level_download_manifest",
+        "blocked_no_local_package"
+        if csv_value(priority_lsms_package_manifest_summary, "package_level_download_manifest_rows", "0") == "10"
+        and csv_value(priority_lsms_package_manifest_summary, "package_level_download_blocked_no_local_package_rows", "0") == "10"
+        and csv_value(priority_lsms_package_manifest_summary, "modeling_gate_status", "missing") == "blocked"
+        else "package_level_manifest_needs_review",
+        f"rows={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_manifest_rows', '0')}; countries={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_country_rows', '0')}; expected_full_files={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_expected_full_file_rows', '0')}; expected_core_rows={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_expected_core_file_rows', '0')}; unique_core_files={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_unique_core_file_manifest_rows', '0')}; requirement_gates={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_requirement_gate_rows', '0')}; blocked_requirements={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_blocked_requirement_gate_rows', '0')}; target_files={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_target_file_rows', '0')}; incoming_files={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_incoming_file_rows', '0')}; blocked_no_package={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_blocked_no_local_package_rows', '0')}; first_canary={csv_value(priority_lsms_package_manifest_summary, 'package_level_download_first_canary_idno', '')}; modeling_gate={csv_value(priority_lsms_package_manifest_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "priority_lsms_isa_package_level_download_manifest.csv", RESULT_DIR / "priority_lsms_isa_package_level_core_file_manifest.csv", RESULT_DIR / "priority_lsms_isa_package_level_download_manifest_summary.csv", REPORT_DIR / "priority_lsms_isa_package_level_download_manifest.md"],
+        "Package-level download manifest translates the file-level acceptance matrix into 10 complete official package receipt actions while preserving expected full-file, requirement-linked core-row, and unique core-file counts.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
         "priority_analysis_dataset_synthesis_blueprint",
         "blocked_required_schema_columns_not_verified" if csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0") == "0" else "synthesis_join_candidates_ready",
         f"schema_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_schema_rows', '0')}; required_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_required_rows', '0')}; ready_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_ready_required_rows', '0')}; blocked_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_blocked_required_rows', '0')}; join_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_plan_rows', '0')}; join_ready={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_ready_rows', '0')}; candidate_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_candidate_variable_rows', '0')}; manual_verified_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_manual_verified_variable_rows', '0')}",
@@ -3085,6 +3104,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_webgpt_download_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv")
     priority_lsms_manual_launchpad_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_launchpad_summary.csv")
     priority_lsms_receipt_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_post_download_receipt_handoff_summary.csv")
+    priority_lsms_package_manifest_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_package_level_download_manifest_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3293,6 +3313,11 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_receipt_handoff_missing_expected_files", "value": csv_value(priority_lsms_receipt_handoff_summary, "post_download_receipt_missing_expected_file_rows", "0"), "interpretation": "Expected official file rows still missing after the current receipt check."},
         {"metric": "priority_lsms_isa_receipt_handoff_blocked_requirements", "value": csv_value(priority_lsms_receipt_handoff_summary, "post_download_receipt_blocked_requirement_rows", "0"), "interpretation": "Requirement gates still blocked by missing core official files."},
         {"metric": "priority_lsms_isa_receipt_handoff_blocked_no_target_files", "value": csv_value(priority_lsms_receipt_handoff_summary, "post_download_receipt_blocked_no_target_files_rows", "0"), "interpretation": "Locked download-required waves whose target folders still contain no raw package files."},
+        {"metric": "priority_lsms_isa_package_manifest_rows", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_manifest_rows", "0"), "interpretation": "Package-level download actions for locked World Bank targets."},
+        {"metric": "priority_lsms_isa_package_manifest_expected_full_files", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_expected_full_file_rows", "0"), "interpretation": "Expected official file rows preserved from the package-level manifest."},
+        {"metric": "priority_lsms_isa_package_manifest_expected_core_rows", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_expected_core_file_rows", "0"), "interpretation": "Requirement-linked core file rows preserved from the package-level manifest."},
+        {"metric": "priority_lsms_isa_package_manifest_unique_core_files", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_unique_core_file_manifest_rows", "0"), "interpretation": "Unique expected core files in the package-level manifest."},
+        {"metric": "priority_lsms_isa_package_manifest_blocked_no_package", "value": csv_value(priority_lsms_package_manifest_summary, "package_level_download_blocked_no_local_package_rows", "0"), "interpretation": "Package rows still lacking a local official package or incoming file."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},
