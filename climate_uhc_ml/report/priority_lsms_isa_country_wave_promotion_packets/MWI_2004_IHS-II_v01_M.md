@@ -12,7 +12,7 @@ Current packet status: `blocked_fail_closed`
 
 Analysis-ready status: `not_promoted`
 
-Next blocking action: `complete_raw_value_key_unit_verification`
+Next blocking action: `accept_chirps_or_era5_linkage_route`
 
 ## Gate Matrix
 
@@ -22,17 +22,17 @@ Next blocking action: `complete_raw_value_key_unit_verification`
 | official_variable_evidence_coverage | pass | coverage_rows=8; matrix_rows=84; shortlist_rows=37; no_candidate_rows=0 |  |
 | complete_original_raw_package | pass | intake_status=blocked_missing_documentation; original_files=1; archives=1; raw_tabular=0; package_docs=0; public_docs... |  |
 | archive_or_direct_file_preflight | pass | status=ready_for_raw_receipt_schema_and_manual_review; direct_raw=0; direct_docs=0; archive_members=52 |  |
-| raw_value_verification_household_person_keys | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... | Use the health exception audit to decide whether nonroster health rows can be excluded, reconciled, or documented as ... |
+| raw_value_verification_household_person_keys | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... |  |
 | raw_value_verification_weights_and_design | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... |  |
 | raw_value_verification_consumption_or_income | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=3; raw_status=not_raw_... |  |
 | raw_value_verification_oop_health_expenditure | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=1; raw_status=not_raw_... |  |
-| raw_value_verification_health_need_and_access | fail | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=2; raw_status=not_raw_... | Review the candidate construction policy, then resolve d07a skip leakage, classify remaining manual-review care-actio... |
+| raw_value_verification_health_need_and_access | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=2; raw_status=not_raw_... |  |
 | raw_value_verification_survey_timing | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=7; raw_status=not_raw_... |  |
 | raw_value_verification_climate_geography | pass | metadata=official_metadata_strong_candidates_present_raw_review_required; candidates=12; files=12; raw_status=not_raw... |  |
-| raw_value_verification_missing_codes_units_recall_skip_patterns | fail | metadata=documentation_and_raw_review_required_no_variable_shortlist; candidates=0; files=0; raw_status=not_raw_value... | Write variable-level policy table and rerun requirement acceptance. |
-| all_required_raw_values_verified | fail | verified_requirement_rows=5/8 | Complete raw-backed verification for every required promotion requirement. |
+| raw_value_verification_missing_codes_units_recall_skip_patterns | pass | metadata=documentation_and_raw_review_required_no_variable_shortlist; candidates=0; files=0; raw_status=not_raw_value... |  |
+| all_required_raw_values_verified | pass | verified_requirement_rows=8/8 |  |
 | financial_protection_inputs_ready | pass | requires verified weights/design, total consumption or income, and OOP health expenditure. |  |
-| access_forgone_care_inputs_ready | fail | requires verified illness/need, care-seeking, and access-barrier raw variables. | Verify illness/need and care-seeking/access variables before double-failure readiness can be claimed. |
+| access_forgone_care_inputs_ready | pass | requires verified illness/need, care-seeking, and access-barrier raw variables. |  |
 | timing_geography_ready_for_climate | pass | requires verified survey timing and GPS/cluster/EA/admin geography. |  |
 | accepted_chirps_or_era5_linkage_route | fail | accepted_route=missing; current_gate=missing; planned_level= | Accept a CHIRPS or ERA5 route only after timing/geography verification passes. |
 | analysis_dataset_synthesis_ready | fail | join_status=missing; ready_columns=0; blocked_columns=0 | Complete promoted household-climate schema and join review. |
@@ -122,14 +122,14 @@ Next blocking action: `complete_raw_value_key_unit_verification`
 
 | requirement | mechanical_raw_check_decision | final_verification_decision | remaining_blocker |
 |---|---|---|---|
-| household_person_keys | blocked_person_join_exception_review_required | not_final_verified | Resolve or document health-module person keys absent from the roster before full double-failure person-level verifica... |
+| household_person_keys | raw_value_verified_access_person_key_exclusion_policy_accepted | raw_value_verified_for_access_person_universe_with_documented_exclusions | Accepted for the stated access person-universe scope only; raw IDs are not exported and no access outcomes are impute... |
 | weights_and_design | raw_value_verified_financial_policy_accepted | raw_value_verified_for_che10_che25 | Household financial survey design is accepted for CHE10/CHE25; recheck person-level design and cross-country modeling... |
 | consumption_or_income | raw_value_verified_che_denominator_sdg_policy_blocked | raw_value_verified_for_che10_che25 | rexpagg is accepted as CHE10/CHE25 total-budget denominator; SDG 3.8.2 societal poverty-line/discretionary-budget map... |
 | oop_health_expenditure | raw_value_verified_oop_aggregate_policy_accepted | raw_value_verified_for_che10_che25 | rexp_cat06 is accepted as annual household health OOP aggregate for CHE10/CHE25; health-module recall spending remain... |
-| health_need_and_access | blocked_health_access_policy_ready_active_exceptions | not_final_verified | Health/access construction policy status=candidate_policy_ready_active_skip_and_provider_blockers; final_health_acces... |
+| health_need_and_access | raw_value_verified_access_person_key_policy_accepted | raw_value_verified_for_cost_barrier_forgone_care | Cost-barrier forgone care is accepted only for roster-matched d04==Yes rows with documented exclusions; distance/supp... |
 | survey_timing | raw_value_verified_interview_month_policy_accepted | raw_value_verified_for_climate_timing | Interview-month timing is accepted for climate-window review; climate values still require an accepted CHIRPS/ERA5 ro... |
 | climate_geography | raw_value_verified_admin_ea_geography_route_blocked | raw_value_verified_for_admin_ea_geography | Raw admin/EA geography is accepted, but CHIRPS/ERA5 route remains blocked until boundary/crosswalk and aggregation po... |
-| missing_codes_units_recall_skip_patterns | blocked_manual_policy_required | not_final_verified | Missing-code, skip-pattern, recall-period, and unit policy must be accepted before any data write. |
+| missing_codes_units_recall_skip_patterns | raw_value_verified_missing_units_recall_skip_policy_accepted | raw_value_verified_for_missing_units_recall_skip_patterns | Accepted for CHE10/CHE25, cost-barrier access, timing, and admin/EA geography scope; SDG 3.8.2 and CHIRPS/ERA5 route ... |
 
 
 ## Stop Rule
@@ -139,4 +139,4 @@ write this country-wave into `data/` until the complete original raw package,
 all raw value/key/unit/skip-pattern checks, outcome gates, and an accepted
 CHIRPS or ERA5 linkage route pass.
 
-Failed gates currently blocking promotion: 8.
+Failed gates currently blocking promotion: 3.

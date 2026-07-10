@@ -1,9 +1,9 @@
 ﻿metric,value,interpretation
 country_wave,MWI_2004_IHS-II_v01_M,Country-wave adjudicated in this focused acceptance decision.
 decision_rows,8,Requirement-level acceptance decision rows.
-mechanical_raw_checks_pass_or_partial,5,Requirements with raw mechanical evidence that passes but still needs policy/documentation acceptance.
-hard_blocked_requirements,3,Requirements still blocked even before final climate/data promotion.
-final_verified_requirements,5,Requirements accepted as final raw-value verified for their stated scope.
+mechanical_raw_checks_pass_or_partial,8,Requirements with raw mechanical evidence that passes but still needs policy/documentation acceptance.
+hard_blocked_requirements,0,Requirements still blocked even before final climate/data promotion.
+final_verified_requirements,8,Requirements accepted as final raw-value verified for their stated scope.
 health_person_unmatched_to_roster,6,Health-module person keys absent from roster; raw IDs intentionally not exported.
 oop_component_diff_le_0_01_rows,11280/11280,OOP aggregate-component numeric agreement under tolerance.
 financial_policy_status,che10_che25_financial_inputs_verified_sdg382_blocked,CHE10/CHE25 financial input policy status.
@@ -19,5 +19,10 @@ accepted_chirps_era5_route,0,Whether a CHIRPS/ERA5 route is accepted; remains ze
 health_access_construction_policy_status,candidate_policy_ready_active_skip_and_provider_blockers,Candidate health/access construction policy status; still not final verification.
 health_access_policy_acute_need_denominator_rows,14143,Roster-matched d04==Yes rows under the candidate access denominator.
 health_access_policy_no_money_rows,631,Candidate no-money forgone-care rows counted once per person row.
-health_access_policy_final_verified,0,Whether the health/access construct is final verified; must remain zero here.
+access_resolution_status,access_person_keys_and_cost_barrier_forgone_care_verified_with_documented_exclusions,Access/person-key resolution policy status.
+access_person_key_final_verified,1,Whether person-key exceptions are accepted for the stated access scope.
+health_access_policy_final_verified,1,Whether the acute need and cost-barrier access construct is final verified for the stated scope.
+access_forgone_care_inputs_ready,1,Whether Malawi 2004 access/forgone-care inputs are ready for the stated cost-barrier outcome.
+missing_units_recall_skip_policy_status,raw_missing_units_recall_skip_policy_verified_for_accepted_constructs,"Missing-code, units, recall, and skip-pattern policy status."
+missing_units_recall_skip_policy_final_verified,1,"Whether missing-code, units, recall, and skip-pattern rules are accepted for the current verified scope."
 data_write_gate_status,closed,No promoted dataset may be written from this decision artifact.

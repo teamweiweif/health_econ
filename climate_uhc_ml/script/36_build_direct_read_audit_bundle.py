@@ -183,6 +183,12 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/mwi2004_health_access_construction_policy.md", "Malawi 2004 candidate health/access construction policy report"),
     ("dataset_promotion", "result/mwi2004_health_access_construction_policy.csv", "Malawi 2004 aggregate candidate health/access construction policy"),
     ("dataset_promotion", "result/mwi2004_health_access_construction_policy_summary.csv", "Malawi 2004 candidate health/access construction policy summary"),
+    ("dataset_promotion", "report/mwi2004_access_person_key_resolution_policy.md", "Malawi 2004 access person-key resolution policy report"),
+    ("dataset_promotion", "result/mwi2004_access_person_key_resolution_policy.csv", "Malawi 2004 aggregate access person-key resolution policy"),
+    ("dataset_promotion", "result/mwi2004_access_person_key_resolution_policy_summary.csv", "Malawi 2004 access person-key resolution policy summary"),
+    ("dataset_promotion", "report/mwi2004_missing_units_recall_skip_policy.md", "Malawi 2004 missing, units, recall, and skip policy report"),
+    ("dataset_promotion", "result/mwi2004_missing_units_recall_skip_policy.csv", "Malawi 2004 aggregate missing, units, recall, and skip policy"),
+    ("dataset_promotion", "result/mwi2004_missing_units_recall_skip_policy_summary.csv", "Malawi 2004 missing, units, recall, and skip policy summary"),
     ("dataset_promotion", "report/priority_lsms_isa_raw_package_receipt_checklist.md", "priority LSMS/ISA raw package receipt checklist report"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_receipt_checklist.csv", "priority LSMS/ISA dataset raw package receipt checklist"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_requirement_receipt_checklist.csv", "priority LSMS/ISA requirement raw package receipt checklist"),
@@ -629,6 +635,8 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/164_build_mwi2004_health_access_construction_policy.py", "Malawi 2004 candidate health/access construction policy generator"),
     ("reproducibility", "script/165_build_mwi2004_financial_protection_construction_policy.py", "Malawi 2004 financial-protection construction policy generator"),
     ("reproducibility", "script/166_build_mwi2004_timing_geography_linkage_policy.py", "Malawi 2004 timing/geography linkage policy generator"),
+    ("reproducibility", "script/167_build_mwi2004_access_person_key_resolution_policy.py", "Malawi 2004 access person-key resolution policy generator"),
+    ("reproducibility", "script/168_build_mwi2004_missing_units_recall_skip_policy.py", "Malawi 2004 missing, units, recall, and skip policy generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -859,6 +867,8 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     mwi2004_health_exception_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_exception_summary.csv")
     mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
+    mwi2004_access_resolution_summary = read_csv_dicts(RESULT_DIR / "mwi2004_access_person_key_resolution_policy_summary.csv")
+    mwi2004_missing_units_summary = read_csv_dicts(RESULT_DIR / "mwi2004_missing_units_recall_skip_policy_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -1361,6 +1371,28 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"country_wave={csv_value(mwi2004_health_policy_summary, 'country_wave', 'missing')}; denominator={csv_value(mwi2004_health_policy_summary, 'acute_need_denominator_rows', 'missing')}; no_money={csv_value(mwi2004_health_policy_summary, 'financial_barrier_forgone_care_rows', 'missing')}; formal_core={csv_value(mwi2004_health_policy_summary, 'formal_care_core_rows', 'missing')}; formal_extended={csv_value(mwi2004_health_policy_summary, 'formal_care_extended_rows', 'missing')}; informal_self={csv_value(mwi2004_health_policy_summary, 'informal_or_self_care_rows', 'missing')}; skip_exceptions={csv_value(mwi2004_health_policy_summary, 'd07a_d07b_skip_exception_rows', 'missing')}; final_verified={csv_value(mwi2004_health_policy_summary, 'final_health_access_verified', '0')}; data_write={csv_value(mwi2004_health_policy_summary, 'data_write_gate_status', 'missing')}",
         [RESULT_DIR / "mwi2004_health_access_construction_policy.csv", RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv", REPORT_DIR / "mwi2004_health_access_construction_policy.md"],
         "Focused Malawi 2004 construction policy proposes an aggregate health/access denominator, no-money forgone-care rule, provider grouping sensitivities, and coping context while keeping final verification and data writes blocked.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "mwi2004_access_person_key_resolution_policy",
+        "mwi2004_access_cost_barrier_verified_with_documented_exclusions"
+        if csv_value(mwi2004_access_resolution_summary, "health_access_final_verified", "0") == "1"
+        else "mwi2004_access_resolution_still_blocked",
+        f"country_wave={csv_value(mwi2004_access_resolution_summary, 'country_wave', 'missing')}; status={csv_value(mwi2004_access_resolution_summary, 'access_resolution_status', 'missing')}; matched_rows={csv_value(mwi2004_access_resolution_summary, 'analytic_roster_matched_health_rows', 'missing')}; denominator={csv_value(mwi2004_access_resolution_summary, 'acute_need_denominator_rows', 'missing')}; no_money={csv_value(mwi2004_access_resolution_summary, 'cost_barrier_forgone_care_rows', 'missing')}; health_unmatched={csv_value(mwi2004_access_resolution_summary, 'health_person_unmatched_to_roster', 'missing')}; roster_unmatched={csv_value(mwi2004_access_resolution_summary, 'roster_person_unmatched_to_health', 'missing')}; skip_no_money={csv_value(mwi2004_access_resolution_summary, 'd07a_d07b_skip_exception_no_money_rows', 'missing')}; access_ready={csv_value(mwi2004_access_resolution_summary, 'access_forgone_care_inputs_ready', '0')}; data_write={csv_value(mwi2004_access_resolution_summary, 'data_write_gate_status', 'missing')}",
+        [RESULT_DIR / "mwi2004_access_person_key_resolution_policy.csv", RESULT_DIR / "mwi2004_access_person_key_resolution_policy_summary.csv", REPORT_DIR / "mwi2004_access_person_key_resolution_policy.md"],
+        "Focused Malawi 2004 access/person-key policy accepts cost-barrier forgone care for roster-matched d04==Yes rows with documented nonroster and skip-leakage exclusions, while keeping data writes and climate linkage blocked.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "mwi2004_missing_units_recall_skip_policy",
+        "mwi2004_missing_units_recall_skip_verified"
+        if csv_value(mwi2004_missing_units_summary, "missing_units_recall_skip_policy_final_verified", "0") == "1"
+        else "mwi2004_missing_units_recall_skip_still_blocked",
+        f"country_wave={csv_value(mwi2004_missing_units_summary, 'country_wave', 'missing')}; status={csv_value(mwi2004_missing_units_summary, 'missing_units_recall_skip_policy_status', 'missing')}; financial_units={csv_value(mwi2004_missing_units_summary, 'financial_units_verified', '0')}; access_units={csv_value(mwi2004_missing_units_summary, 'access_units_recall_skip_verified', '0')}; timing_units={csv_value(mwi2004_missing_units_summary, 'timing_units_verified', '0')}; geography_units={csv_value(mwi2004_missing_units_summary, 'geography_units_verified', '0')}; sdg382_ready={csv_value(mwi2004_missing_units_summary, 'sdg382_ready', '0')}; accepted_route={csv_value(mwi2004_missing_units_summary, 'accepted_chirps_era5_route', '0')}; data_write={csv_value(mwi2004_missing_units_summary, 'data_write_gate_status', 'missing')}",
+        [RESULT_DIR / "mwi2004_missing_units_recall_skip_policy.csv", RESULT_DIR / "mwi2004_missing_units_recall_skip_policy_summary.csv", REPORT_DIR / "mwi2004_missing_units_recall_skip_policy.md"],
+        "Focused Malawi 2004 policy accepts units, recall periods, missing values, and skip handling for CHE10/CHE25 and cost-barrier access while keeping SDG 3.8.2, climate linkage, and data writes blocked.",
     )
     add_bundle(
         rows,
@@ -2342,6 +2374,8 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     mwi2004_health_exception_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_exception_summary.csv")
     mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
+    mwi2004_access_resolution_summary = read_csv_dicts(RESULT_DIR / "mwi2004_access_person_key_resolution_policy_summary.csv")
+    mwi2004_missing_units_summary = read_csv_dicts(RESULT_DIR / "mwi2004_missing_units_recall_skip_policy_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -2411,10 +2445,16 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "mwi2004_health_exception_d07a_overlap", "value": csv_value(mwi2004_health_exception_summary, "d07a_skip_leakage_overlap_with_unmatched_health_rows", "missing"), "interpretation": "Overlap between d07a skip leakage and health-module person keys absent from the roster."},
         {"metric": "mwi2004_health_exception_explained_by_nonroster", "value": csv_value(mwi2004_health_exception_summary, "d07a_skip_leakage_explained_by_nonroster_rows", "missing"), "interpretation": "Whether d07a skip leakage is fully explained by nonroster health rows."},
         {"metric": "mwi2004_health_exception_policy_status", "value": csv_value(mwi2004_health_exception_summary, "exception_policy_status", "missing"), "interpretation": "Exception audit status for person-key and skip-leakage resolution."},
-        {"metric": "mwi2004_health_access_policy_status", "value": csv_value(mwi2004_health_policy_summary, "construction_policy_status", "missing"), "interpretation": "Candidate health/access construction policy status; still fail-closed."},
+        {"metric": "mwi2004_health_access_policy_status", "value": csv_value(mwi2004_health_policy_summary, "construction_policy_status", "missing"), "interpretation": "Candidate health/access construction policy status."},
         {"metric": "mwi2004_health_access_policy_denominator_rows", "value": csv_value(mwi2004_health_policy_summary, "acute_need_denominator_rows", "0"), "interpretation": "Roster-matched d04==Yes rows under the candidate access denominator."},
         {"metric": "mwi2004_health_access_policy_no_money_rows", "value": csv_value(mwi2004_health_policy_summary, "financial_barrier_forgone_care_rows", "0"), "interpretation": "Candidate no-money forgone-care rows counted once per person row."},
-        {"metric": "mwi2004_health_access_policy_final_verified", "value": csv_value(mwi2004_health_policy_summary, "final_health_access_verified", "0"), "interpretation": "Whether Malawi 2004 health/access policy is final verified; should remain zero."},
+        {"metric": "mwi2004_health_access_resolution_status", "value": csv_value(mwi2004_access_resolution_summary, "access_resolution_status", "missing"), "interpretation": "Malawi 2004 access/person-key resolution status."},
+        {"metric": "mwi2004_health_access_resolution_denominator_rows", "value": csv_value(mwi2004_access_resolution_summary, "acute_need_denominator_rows", "0"), "interpretation": "Accepted roster-matched acute-need denominator rows."},
+        {"metric": "mwi2004_health_access_resolution_no_money_rows", "value": csv_value(mwi2004_access_resolution_summary, "cost_barrier_forgone_care_rows", "0"), "interpretation": "Accepted cost-barrier forgone-care rows."},
+        {"metric": "mwi2004_health_access_resolution_skip_no_money_rows", "value": csv_value(mwi2004_access_resolution_summary, "d07a_d07b_skip_exception_no_money_rows", "0"), "interpretation": "No-money rows among documented skip exceptions; must be zero for accepted exclusion."},
+        {"metric": "mwi2004_health_access_policy_final_verified", "value": csv_value(mwi2004_access_resolution_summary, "health_access_final_verified", "0"), "interpretation": "Whether Malawi 2004 acute need and cost-barrier access are final verified for the stated scope."},
+        {"metric": "mwi2004_missing_units_recall_skip_status", "value": csv_value(mwi2004_missing_units_summary, "missing_units_recall_skip_policy_status", "missing"), "interpretation": "Malawi 2004 missing, units, recall, and skip policy status."},
+        {"metric": "mwi2004_missing_units_recall_skip_final_verified", "value": csv_value(mwi2004_missing_units_summary, "missing_units_recall_skip_policy_final_verified", "0"), "interpretation": "Whether missing, units, recall, and skip policy is final verified for accepted constructs."},
         {"metric": "priority_lsms_isa_receipt_checklist_dataset_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_dataset_rows", "0"), "interpretation": "Dataset-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_requirement_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_requirement_rows", "0"), "interpretation": "Requirement-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_package_received_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_package_received_rows", "0"), "interpretation": "Refocused LSMS/ISA waves with original package receipt evidence."},

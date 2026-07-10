@@ -329,6 +329,8 @@ REQUIRED_SCRIPTS = [
     "134_build_priority_country_wave_promotion_packets.py",
     "148_build_priority_lsms_isa_country_wave_promotion_packets.py",
     "151_refresh_refocused_promoted_country_wave_registry.py",
+    "167_build_mwi2004_access_person_key_resolution_policy.py",
+    "168_build_mwi2004_missing_units_recall_skip_policy.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -5347,9 +5349,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_packet_public_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and priority_lsms_packet_variable_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and 0 <= priority_lsms_packet_raw_ready <= priority_lsms_packet_rows
-        and priority_lsms_packet_raw_verified == 0
+        and 0 <= priority_lsms_packet_raw_verified <= priority_lsms_packet_rows
         and 0 <= priority_lsms_packet_financial_ready <= priority_lsms_packet_rows
-        and priority_lsms_packet_access_ready == 0
+        and 0 <= priority_lsms_packet_access_ready <= priority_lsms_packet_rows
         and priority_lsms_packet_climate_ready == 0
         and priority_lsms_packet_synthesis_ready == 0
         and priority_lsms_packet_analysis_ready == 0

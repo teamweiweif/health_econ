@@ -29,6 +29,8 @@ HEALTH_EXCEPTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_exception_summary.c
 HEALTH_ACCESS_CONSTRUCTION_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv"
 FINANCIAL_PROTECTION_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv"
 TIMING_GEOGRAPHY_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_timing_geography_linkage_policy_summary.csv"
+ACCESS_PERSON_KEY_RESOLUTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_access_person_key_resolution_policy_summary.csv"
+MISSING_UNITS_RECALL_SKIP_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_missing_units_recall_skip_policy_summary.csv"
 
 DECISION_COLUMNS = [
     "country",
@@ -166,6 +168,8 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     health_construction_summary = read_csv_dicts(HEALTH_ACCESS_CONSTRUCTION_POLICY_SUMMARY_PATH)
     financial_policy_summary = read_csv_dicts(FINANCIAL_PROTECTION_POLICY_SUMMARY_PATH)
     timing_geography_summary = read_csv_dicts(TIMING_GEOGRAPHY_POLICY_SUMMARY_PATH)
+    access_resolution_summary = read_csv_dicts(ACCESS_PERSON_KEY_RESOLUTION_SUMMARY_PATH)
+    missing_units_recall_skip_summary = read_csv_dicts(MISSING_UNITS_RECALL_SKIP_POLICY_SUMMARY_PATH)
     health_label_decision = summary_value(health_label_summary, "health_access_label_skip_decision")
     health_label_rows = summary_value(health_label_summary, "label_decision_rows", "0")
     health_manual_review_rows = summary_value(health_label_summary, "manual_review_rows", "0")
@@ -181,6 +185,17 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     health_policy_formal_extended = summary_value(health_construction_summary, "formal_care_extended_rows", "missing")
     health_policy_skip_exceptions = summary_value(health_construction_summary, "d07a_d07b_skip_exception_rows", "missing")
     health_policy_final_verified = summary_value(health_construction_summary, "final_health_access_verified", "0")
+    access_resolution_status = summary_value(access_resolution_summary, "access_resolution_status", "missing")
+    access_person_key_final_verified = summary_value(access_resolution_summary, "person_key_policy_final_verified_for_access", "0")
+    access_final_verified = summary_value(access_resolution_summary, "health_access_final_verified", "0")
+    access_inputs_ready = summary_value(access_resolution_summary, "access_forgone_care_inputs_ready", "0")
+    access_resolution_denominator = summary_value(access_resolution_summary, "acute_need_denominator_rows", health_policy_denominator)
+    access_resolution_no_money = summary_value(access_resolution_summary, "cost_barrier_forgone_care_rows", health_policy_no_money)
+    access_nonroster_d04_yes = summary_value(access_resolution_summary, "nonroster_d04_yes_rows", "missing")
+    access_nonroster_no_money = summary_value(access_resolution_summary, "nonroster_no_money_rows", "missing")
+    access_skip_no_money = summary_value(access_resolution_summary, "d07a_d07b_skip_exception_no_money_rows", "missing")
+    missing_policy_status = summary_value(missing_units_recall_skip_summary, "missing_units_recall_skip_policy_status", "missing")
+    missing_policy_final_verified = summary_value(missing_units_recall_skip_summary, "missing_units_recall_skip_policy_final_verified", "0")
     financial_policy_status = summary_value(financial_policy_summary, "financial_policy_status", "missing")
     financial_inputs_ready = summary_value(financial_policy_summary, "che10_che25_financial_inputs_ready", "0")
     weights_final_verified = summary_value(financial_policy_summary, "weights_design_final_verified_for_financial", "0")
@@ -285,11 +300,11 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     decisions = [
         {
             "requirement": "household_person_keys",
-            "mechanical_raw_check_decision": "blocked_person_join_exception_review_required",
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"household/exp/pov case_id joins pass; health->roster unmatched={len(health_keys - individ_keys)}; roster->health unmatched={len(individ_keys - health_keys)}; exception_status={health_exception_status}.",
-            "remaining_blocker": "Resolve or document health-module person keys absent from the roster before full double-failure person-level verification; raw IDs are not exported.",
-            "next_action": "Use the health exception audit to decide whether nonroster health rows can be excluded, reconciled, or documented as valid exceptions.",
+            "mechanical_raw_check_decision": "raw_value_verified_access_person_key_exclusion_policy_accepted" if access_person_key_final_verified == "1" else "blocked_person_join_exception_review_required",
+            "final_verification_decision": "raw_value_verified_for_access_person_universe_with_documented_exclusions" if access_person_key_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"household/exp/pov case_id joins pass; health->roster unmatched={len(health_keys - individ_keys)}; roster->health unmatched={len(individ_keys - health_keys)}; exception_status={health_exception_status}; access_resolution_status={access_resolution_status}; nonroster_d04_yes={access_nonroster_d04_yes}; nonroster_no_money={access_nonroster_no_money}.",
+            "remaining_blocker": "Accepted for the stated access person-universe scope only; raw IDs are not exported and no access outcomes are imputed for roster-only health absences." if access_person_key_final_verified == "1" else "Resolve or document health-module person keys absent from the roster before full double-failure person-level verification; raw IDs are not exported.",
+            "next_action": "Keep the documented exclusion/no-imputation policy attached to any Malawi 2004 access or double-failure use." if access_person_key_final_verified == "1" else "Use the health exception audit to decide whether nonroster health rows can be excluded, reconciled, or documented as valid exceptions.",
         },
         {
             "requirement": "weights_and_design",
@@ -318,16 +333,18 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         {
             "requirement": "health_need_and_access",
             "mechanical_raw_check_decision": (
-                "blocked_health_access_policy_ready_active_exceptions"
+                "raw_value_verified_access_person_key_policy_accepted"
+                if access_final_verified == "1"
+                else "blocked_health_access_policy_ready_active_exceptions"
                 if health_policy_status == "candidate_policy_ready_active_skip_and_provider_blockers"
                 else "blocked_health_access_label_skip_or_manual_review_required"
                 if health_label_decision == "label_skip_mapping_has_skip_or_manual_review_blockers"
                 else "blocked_construct_label_skip_review_required"
             ),
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"d04 illness yes rows={illness_yes}; d07 no-money label hits={no_money_action}; label_decision_rows={health_label_rows}; no_money_rows={health_no_money_rows}; policy_denominator={health_policy_denominator}; policy_no_money_rows={health_policy_no_money}; formal_core={health_policy_formal_core}; formal_extended={health_policy_formal_extended}; skip_leakage_rows={health_skip_leakage_rows}; policy_skip_exceptions={health_policy_skip_exceptions}; d07a_leak_overlap_with_nonroster={health_exception_overlap}; explained_by_nonroster={health_exception_explained}; d15/d17/d20/d26 are present.",
-            "remaining_blocker": f"Health/access construction policy status={health_policy_status}; final_health_access_verified={health_policy_final_verified}; label-skip status={health_label_decision or 'missing'}; exception_status={health_exception_status}; manual_review_rows={health_manual_review_rows}; d07 skip leakage is not resolved by person-join exceptions unless explained_by_nonroster=1.",
-            "next_action": "Review the candidate construction policy, then resolve d07a skip leakage, classify remaining manual-review care-action labels, and accept double-count/formal-care/provider-grouping rules.",
+            "final_verification_decision": "raw_value_verified_for_cost_barrier_forgone_care" if access_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"d04 illness yes rows={illness_yes}; d07 no-money label hits={no_money_action}; label_decision_rows={health_label_rows}; label_no_money_rows={health_no_money_rows}; accepted_denominator={access_resolution_denominator}; accepted_no_money_rows={access_resolution_no_money}; formal_core={health_policy_formal_core}; formal_extended={health_policy_formal_extended}; skip_leakage_rows={health_skip_leakage_rows}; policy_skip_exceptions={health_policy_skip_exceptions}; skip_exception_no_money={access_skip_no_money}; d07a_leak_overlap_with_nonroster={health_exception_overlap}; explained_by_nonroster={health_exception_explained}; access_resolution_status={access_resolution_status}.",
+            "remaining_blocker": "Cost-barrier forgone care is accepted only for roster-matched d04==Yes rows with documented exclusions; distance/supply barriers and full nonfinancial access taxonomy remain out of scope." if access_final_verified == "1" else f"Health/access construction policy status={health_policy_status}; final_health_access_verified={health_policy_final_verified}; label-skip status={health_label_decision or 'missing'}; exception_status={health_exception_status}; manual_review_rows={health_manual_review_rows}; d07 skip leakage is not resolved by person-join exceptions unless explained_by_nonroster=1.",
+            "next_action": "Use the accepted access/person-key policy for double-failure readiness, but do not write promoted data until missing/units/recall and climate-route gates pass." if access_final_verified == "1" else "Review the candidate construction policy, then resolve d07a skip leakage, classify remaining manual-review care-action labels, and accept double-count/formal-care/provider-grouping rules.",
         },
         {
             "requirement": "survey_timing",
@@ -347,11 +364,11 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         },
         {
             "requirement": "missing_codes_units_recall_skip_patterns",
-            "mechanical_raw_check_decision": "blocked_manual_policy_required",
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": "Raw value labels and profiles exist, but construct-level missing/skip/unit/recall rules are not finalized.",
-            "remaining_blocker": "Missing-code, skip-pattern, recall-period, and unit policy must be accepted before any data write.",
-            "next_action": "Write variable-level policy table and rerun requirement acceptance.",
+            "mechanical_raw_check_decision": "raw_value_verified_missing_units_recall_skip_policy_accepted" if missing_policy_final_verified == "1" else "blocked_manual_policy_required",
+            "final_verification_decision": "raw_value_verified_for_missing_units_recall_skip_patterns" if missing_policy_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"Raw value labels and profiles exist; missing_units_recall_skip_policy_status={missing_policy_status}; financial_units_verified={summary_value(missing_units_recall_skip_summary, 'financial_units_verified', '0')}; access_units_recall_skip_verified={summary_value(missing_units_recall_skip_summary, 'access_units_recall_skip_verified', '0')}; timing_units_verified={summary_value(missing_units_recall_skip_summary, 'timing_units_verified', '0')}; geography_units_verified={summary_value(missing_units_recall_skip_summary, 'geography_units_verified', '0')}.",
+            "remaining_blocker": "Accepted for CHE10/CHE25, cost-barrier access, timing, and admin/EA geography scope; SDG 3.8.2 and CHIRPS/ERA5 route remain separate blockers." if missing_policy_final_verified == "1" else "Missing-code, skip-pattern, recall-period, and unit policy must be accepted before any data write.",
+            "next_action": "Proceed to CHIRPS/ERA5 route and promoted synthesis review; do not write data while climate route is blocked." if missing_policy_final_verified == "1" else "Write variable-level policy table and rerun requirement acceptance.",
         },
     ]
     for row in decisions:
@@ -384,7 +401,12 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         {"metric": "health_access_construction_policy_status", "value": health_policy_status, "interpretation": "Candidate health/access construction policy status; still not final verification."},
         {"metric": "health_access_policy_acute_need_denominator_rows", "value": health_policy_denominator, "interpretation": "Roster-matched d04==Yes rows under the candidate access denominator."},
         {"metric": "health_access_policy_no_money_rows", "value": health_policy_no_money, "interpretation": "Candidate no-money forgone-care rows counted once per person row."},
-        {"metric": "health_access_policy_final_verified", "value": health_policy_final_verified, "interpretation": "Whether the health/access construct is final verified; must remain zero here."},
+        {"metric": "access_resolution_status", "value": access_resolution_status, "interpretation": "Access/person-key resolution policy status."},
+        {"metric": "access_person_key_final_verified", "value": access_person_key_final_verified, "interpretation": "Whether person-key exceptions are accepted for the stated access scope."},
+        {"metric": "health_access_policy_final_verified", "value": access_final_verified, "interpretation": "Whether the acute need and cost-barrier access construct is final verified for the stated scope."},
+        {"metric": "access_forgone_care_inputs_ready", "value": access_inputs_ready, "interpretation": "Whether Malawi 2004 access/forgone-care inputs are ready for the stated cost-barrier outcome."},
+        {"metric": "missing_units_recall_skip_policy_status", "value": missing_policy_status, "interpretation": "Missing-code, units, recall, and skip-pattern policy status."},
+        {"metric": "missing_units_recall_skip_policy_final_verified", "value": missing_policy_final_verified, "interpretation": "Whether missing-code, units, recall, and skip-pattern rules are accepted for the current verified scope."},
         {"metric": "data_write_gate_status", "value": "closed", "interpretation": "No promoted dataset may be written from this decision artifact."},
     ]
     return decisions, metrics, summary
@@ -416,10 +438,10 @@ accept/block decisions. It does not export raw person IDs, does not write to
 
 The current decision remains fail-closed: `final_verified_requirements={final_verified_requirements}`
 and `data_write_gate_status=closed`. Malawi 2004 now has CHE10/CHE25
-financial-protection inputs accepted where the financial construction policy
-supports them, but full promotion still requires person-join exception review,
-health/access construct mapping, missing/skip/unit/recall policy, SDG 3.8.2
-denominator policy, and an accepted CHIRPS or ERA5 climate-linkage route.
+financial-protection inputs and a scope-limited cost-barrier forgone-care input
+accepted where the construction policies support them, but full promotion still
+requires missing/skip/unit/recall policy, SDG 3.8.2 denominator policy, an
+accepted CHIRPS or ERA5 climate-linkage route, and promoted-dataset synthesis.
 """
     REPORT_PATH.write_text(report, encoding="utf-8")
     HANDOFF_PATH.write_text(report, encoding="utf-8")

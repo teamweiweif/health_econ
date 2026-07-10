@@ -24,13 +24,15 @@ the required thresholds.
 - Priority-country rows: 16 rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda.
 - Promoted analysis-ready rows: 0.
 - Financial-protection-ready countries: 1 of 6 required.
-- Double-failure-ready country-waves: 0 of 10 required.
+- Double-failure-ready country-waves: 1 of 10 required.
+- Raw-value-verified country-waves: 1.
 - Accepted CHIRPS/ERA5 climate-linkage routes: 0 of 1 required.
 
 Malawi 2004 is the current raw-backed audit row. CHE10/CHE25 financial inputs and
-survey timing/geography have been verified for their stated scope, but health
-access, SDG 3.8.2, accepted CHIRPS/ERA5 linkage, and promoted dataset synthesis
-remain blocked.
+cost-barrier forgone-care/access inputs have been verified for their stated
+scope. Survey timing and admin/EA geography are verified for route review. SDG
+3.8.2, accepted CHIRPS/ERA5 linkage, and promoted dataset synthesis remain
+blocked.
 
 Albania remains a diagnostic template only. It is not the main empirical case
 unless its timing, geography, and outcome gates are resolved.

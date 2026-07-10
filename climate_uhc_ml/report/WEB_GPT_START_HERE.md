@@ -36,7 +36,8 @@ data gates.
 - Priority-country rows: 16 rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda.
 - Promoted analysis-ready rows: 0.
 - Financial-protection-ready countries: 1.
-- Double-failure-ready country-waves: 0.
+- Double-failure-ready country-waves: 1.
+- Raw-value-verified country-waves: 1.
 - Accepted CHIRPS/ERA5 climate-linkage routes: 0.
 - Data-write gate: closed because no country-wave is promoted.
 - Modeling gate: blocked.
@@ -48,12 +49,13 @@ Malawi 2004 is the only row with received official raw package evidence so far.
 Verified or partially accepted:
 
 - CHE10/CHE25 financial inputs are verified for the stated scope.
+- Acute need and cost-barrier forgone-care inputs are verified for the stated scope.
+- Missing, unit, recall-period, and skip-pattern policy is accepted for the current verified constructs.
 - Household interview timing and EA/admin geography are verified for route review.
 
 Still blocked:
 
 - SDG 3.8.2 discretionary-budget construction.
-- Final health-access/forgone-care construct.
 - Accepted CHIRPS or ERA5 climate route.
 - Promoted analysis dataset synthesis.
 

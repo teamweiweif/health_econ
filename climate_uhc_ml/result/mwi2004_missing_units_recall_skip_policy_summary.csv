@@ -1,0 +1,11 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by this missing/units/recall/skip policy.
+missing_units_recall_skip_policy_status,raw_missing_units_recall_skip_policy_verified_for_accepted_constructs,Final policy status for accepted Malawi 2004 constructs.
+missing_units_recall_skip_policy_final_verified,1,"Whether missing-code, unit, recall, and skip rules are accepted for the current CHE10/CHE25 and cost-barrier access scope."
+financial_units_verified,1,Whether financial units/recall are accepted for CHE10/CHE25.
+access_units_recall_skip_verified,1,"Whether access recall, value labels, and skip policy are accepted for cost-barrier forgone care."
+timing_units_verified,1,Whether interview timing units are accepted for climate-window route review.
+geography_units_verified,1,Whether admin/EA geography units are accepted for route review.
+sdg382_ready,0,SDG 3.8.2 remains blocked even when CHE10/CHE25 units are accepted.
+accepted_chirps_era5_route,0,Climate route remains blocked.
+data_write_gate_status,closed,This policy verifies raw-value semantics only; it does not write promoted data.

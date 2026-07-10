@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,161,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,697,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,693,Curated artifacts present and non-empty.
+bundle_rows,163,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,705,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,701,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -35,8 +35,8 @@ mwi2004_raw_requirement_verification_requirements,8,Malawi 2004 promotion requir
 mwi2004_raw_requirement_verification_key_or_join_checks,10/11,Malawi 2004 mechanical uniqueness and join checks passing in focused raw review.
 mwi2004_raw_requirement_verification_decision,not_final_verified,Focused Malawi 2004 decision; it should remain not_final_verified until manual construct and climate-linkage acceptance pass.
 mwi2004_requirement_acceptance_decision_rows,8,Malawi 2004 requirement-level accept/block decisions.
-mwi2004_requirement_acceptance_mechanical_pass_or_partial,5,Requirements with mechanical raw evidence that passes but remains short of final verification.
-mwi2004_requirement_acceptance_final_verified,5,Requirements accepted as final verified for their stated scope; this does not by itself open data writes.
+mwi2004_requirement_acceptance_mechanical_pass_or_partial,8,Requirements with mechanical raw evidence that passes but remains short of final verification.
+mwi2004_requirement_acceptance_final_verified,8,Requirements accepted as final verified for their stated scope; this does not by itself open data writes.
 mwi2004_financial_policy_status,che10_che25_financial_inputs_verified_sdg382_blocked,Malawi 2004 CHE10/CHE25 financial policy status.
 mwi2004_financial_policy_household_rows,11280,Household rows with verified financial inputs for CHE10/CHE25 candidates.
 mwi2004_financial_policy_che10_rows,208,Candidate CHE10 rows from accepted financial inputs.
@@ -54,10 +54,16 @@ mwi2004_health_access_skip_leakage_rows,6,Aggregate skip leakage rows found in t
 mwi2004_health_exception_d07a_overlap,0,Overlap between d07a skip leakage and health-module person keys absent from the roster.
 mwi2004_health_exception_explained_by_nonroster,0,Whether d07a skip leakage is fully explained by nonroster health rows.
 mwi2004_health_exception_policy_status,policy_pending_exception_unresolved,Exception audit status for person-key and skip-leakage resolution.
-mwi2004_health_access_policy_status,candidate_policy_ready_active_skip_and_provider_blockers,Candidate health/access construction policy status; still fail-closed.
+mwi2004_health_access_policy_status,candidate_policy_ready_active_skip_and_provider_blockers,Candidate health/access construction policy status.
 mwi2004_health_access_policy_denominator_rows,14143,Roster-matched d04==Yes rows under the candidate access denominator.
 mwi2004_health_access_policy_no_money_rows,631,Candidate no-money forgone-care rows counted once per person row.
-mwi2004_health_access_policy_final_verified,0,Whether Malawi 2004 health/access policy is final verified; should remain zero.
+mwi2004_health_access_resolution_status,access_person_keys_and_cost_barrier_forgone_care_verified_with_documented_exclusions,Malawi 2004 access/person-key resolution status.
+mwi2004_health_access_resolution_denominator_rows,14143,Accepted roster-matched acute-need denominator rows.
+mwi2004_health_access_resolution_no_money_rows,631,Accepted cost-barrier forgone-care rows.
+mwi2004_health_access_resolution_skip_no_money_rows,0,No-money rows among documented skip exceptions; must be zero for accepted exclusion.
+mwi2004_health_access_policy_final_verified,1,Whether Malawi 2004 acute need and cost-barrier access are final verified for the stated scope.
+mwi2004_missing_units_recall_skip_status,raw_missing_units_recall_skip_policy_verified_for_accepted_constructs,"Malawi 2004 missing, units, recall, and skip policy status."
+mwi2004_missing_units_recall_skip_final_verified,1,"Whether missing, units, recall, and skip policy is final verified for accepted constructs."
 priority_lsms_isa_receipt_checklist_dataset_rows,19,Dataset-level raw package receipt checklist rows.
 priority_lsms_isa_receipt_checklist_requirement_rows,152,Requirement-level raw package receipt checklist rows.
 priority_lsms_isa_receipt_checklist_package_received_rows,1,Refocused LSMS/ISA waves with original package receipt evidence.
@@ -75,7 +81,7 @@ priority_lsms_isa_minimum_batch_missing_core_file_rows,323,Core official files s
 priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows,11,Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh.
 priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows,0,Raw download candidate endpoints detected by the minimum-batch endpoint refresh.
 priority_lsms_isa_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promotion packets built.
-priority_lsms_isa_country_wave_packet_failed_gates,314,Refocused LSMS/ISA packet gates still blocking promotion.
+priority_lsms_isa_country_wave_packet_failed_gates,309,Refocused LSMS/ISA packet gates still blocking promotion.
 priority_lsms_isa_country_wave_packet_analysis_ready_rows,0,Refocused LSMS/ISA packets currently approved for promoted data writes.
 priority_archive_preflight_targets,156,Priority file targets checked against direct files and archive members.
 priority_archive_preflight_missing_targets,156,Priority file targets still missing after direct/archive member preflight.
@@ -525,7 +531,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,52,Direct-read bundle section count.
+bundle_section_priority_bundle,54,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -620,10 +626,12 @@ bundle_status_metadata_only_requires_raw_verification,4,Direct-read bundle statu
 bundle_status_metadata_variable_candidates_ready_raw_review_required,1,Direct-read bundle status count.
 bundle_status_minimum_batch_intake_needs_review,1,Direct-read bundle status count.
 bundle_status_mwi2004_acceptance_decisions_fail_closed,1,Direct-read bundle status count.
+bundle_status_mwi2004_access_cost_barrier_verified_with_documented_exclusions,1,Direct-read bundle status count.
 bundle_status_mwi2004_che10_che25_financial_inputs_verified_sdg_blocked,1,Direct-read bundle status count.
 bundle_status_mwi2004_health_access_label_skip_blockers_identified,1,Direct-read bundle status count.
 bundle_status_mwi2004_health_access_policy_ready_fail_closed,1,Direct-read bundle status count.
 bundle_status_mwi2004_health_exceptions_unresolved,1,Direct-read bundle status count.
+bundle_status_mwi2004_missing_units_recall_skip_verified,1,Direct-read bundle status count.
 bundle_status_mwi2004_raw_backed_evidence_ready_not_final_verified,1,Direct-read bundle status count.
 bundle_status_mwi2004_timing_admin_ea_verified_climate_route_blocked,1,Direct-read bundle status count.
 bundle_status_not_available,1,Direct-read bundle status count.

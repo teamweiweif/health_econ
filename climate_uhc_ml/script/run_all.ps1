@@ -63,6 +63,15 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/154_build_priority_lsms_isa_threshold_download_sequence.py
 & $Python script/155_build_priority_lsms_isa_minimum_batch_raw_intake_guide.py
 & $Python script/156_probe_priority_lsms_isa_minimum_batch_endpoint_refresh.py
+& $Python script/160_build_mwi2004_raw_requirement_verification.py
+& $Python script/162_build_mwi2004_health_access_label_skip_decisions.py
+& $Python script/163_build_mwi2004_health_exception_audit.py
+& $Python script/164_build_mwi2004_health_access_construction_policy.py
+& $Python script/165_build_mwi2004_financial_protection_construction_policy.py
+& $Python script/166_build_mwi2004_timing_geography_linkage_policy.py
+& $Python script/167_build_mwi2004_access_person_key_resolution_policy.py
+& $Python script/168_build_mwi2004_missing_units_recall_skip_policy.py
+& $Python script/161_build_mwi2004_requirement_acceptance_decisions.py
 & $Python script/132_build_priority_analysis_dataset_synthesis_blueprint.py
 & $Python script/134_build_priority_country_wave_promotion_packets.py
 & $Python script/148_build_priority_lsms_isa_country_wave_promotion_packets.py

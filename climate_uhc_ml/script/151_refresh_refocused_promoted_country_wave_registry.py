@@ -174,7 +174,8 @@ def build_registry_rows(
         climate_status = clean(packet.get("climate_linkage_status")) or "blocked"
         analysis_status = clean(packet.get("promoted_registry_status")) or "not_promoted"
         raw_package = clean(receipt.get("current_receipt_status")) or clean(packet.get("raw_package_status")) or "missing"
-        raw_value = clean(packet.get("raw_value_verification_status")) or "blocked_not_raw_value_verified"
+        packet_raw_value = clean(packet.get("raw_value_verification_status"))
+        raw_value = "raw_value_verified" if packet_raw_value == "all_verified" else packet_raw_value or "blocked_not_raw_value_verified"
         financial_ready = is_ready(financial_status)
         access_ready = is_ready(access_status)
         climate_ready = accepted_climate(climate_status)
