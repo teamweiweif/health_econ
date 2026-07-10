@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,192,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,846,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,842,Curated artifacts present and non-empty.
+bundle_rows,193,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,851,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,847,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -165,6 +165,10 @@ priority_lsms_isa_first_canary_idno,ETH_2021_ESPS-W5_v02_M,First canary IDNO cov
 priority_lsms_isa_first_canary_unique_core_files,25,Unique core files in the first canary checklist.
 priority_lsms_isa_first_canary_requirement_core_file_rows,36,Requirement-file linkage rows in the first canary checklist.
 priority_lsms_isa_first_canary_target_files,0,Current first canary target-folder file count.
+priority_lsms_isa_local_raw_presence_registry_rows,19,Promotion registry rows audited for local raw-like files.
+priority_lsms_isa_local_raw_presence_registry_raw_present,1,Registry rows with local raw-like files.
+priority_lsms_isa_local_raw_presence_minimum_batch_raw_absent,10,Minimum-batch rows still lacking local raw-like files.
+priority_lsms_isa_local_raw_presence_diagnostic_albania_raw_files,4,Registry-outside Albania raw files retained as diagnostic-only.
 priority_lsms_isa_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promotion packets built.
 priority_lsms_isa_country_wave_packet_failed_gates,306,Refocused LSMS/ISA packet gates still blocking promotion.
 priority_lsms_isa_country_wave_packet_analysis_ready_rows,1,Refocused LSMS/ISA packets currently approved for promoted data writes.
@@ -616,7 +620,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,83,Direct-read bundle section count.
+bundle_section_priority_bundle,84,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -708,6 +712,7 @@ bundle_status_limited_che_outcome_nasa_admin2_climate_linked_promoted_models_sti
 bundle_status_limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked,1,Direct-read bundle status count.
 bundle_status_limited_harmonized_household_core_promoted_outcome_climate_still_blocked,1,Direct-read bundle status count.
 bundle_status_limited_nasa_admin2_centroid_climate_exposures_promoted_linkage_still_blocked,1,Direct-read bundle status count.
+bundle_status_local_raw_presence_current_only_mwi2004_registry_raw,1,Direct-read bundle status count.
 bundle_status_local_stray_raw_locator_current,1,Direct-read bundle status count.
 bundle_status_local_target_readmes_current,1,Direct-read bundle status count.
 bundle_status_manual_download_execution_board_current,1,Direct-read bundle status count.

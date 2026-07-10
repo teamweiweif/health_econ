@@ -1,0 +1,10 @@
+﻿metric,value,interpretation
+local_raw_presence_registry_rows,19,Promotion registry rows audited for local raw-like files.
+local_raw_presence_registry_raw_present_rows,1,Registry rows with at least one local raw-like file.
+local_raw_presence_registry_raw_absent_rows,18,Registry rows with no local raw-like files in their target folder.
+local_raw_presence_minimum_batch_raw_absent_rows,10,Minimum-batch rows still lacking local raw-like files.
+local_raw_presence_nonregistry_raw_file_rows,4,Raw-like files under temp/raw_downloads that are outside the current promotion registry.
+local_raw_presence_diagnostic_albania_raw_file_rows,4,"Albania raw-like files retained as diagnostic-only, not a main empirical sample."
+local_raw_presence_promoted_rows,1,Registry rows currently promoted analysis-ready.
+data_write_gate_status,blocked_no_data_write,This audit writes only result/report artifacts and does not promote datasets.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

@@ -329,6 +329,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/priority_lsms_isa_first_canary_core_file_checklist.csv", "priority LSMS/ISA first canary core file checklist"),
     ("dataset_promotion", "result/priority_lsms_isa_first_canary_requirement_gate_checklist.csv", "priority LSMS/ISA first canary requirement gate checklist"),
     ("dataset_promotion", "result/priority_lsms_isa_first_canary_runbook_summary.csv", "priority LSMS/ISA first canary runbook summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_local_raw_presence_audit.md", "priority LSMS/ISA local raw presence audit report"),
+    ("dataset_promotion", "result/priority_lsms_isa_local_raw_presence_audit.csv", "priority LSMS/ISA local raw presence audit rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_local_nonregistry_raw_files.csv", "priority LSMS/ISA local nonregistry raw-like files"),
+    ("dataset_promotion", "result/priority_lsms_isa_local_raw_presence_summary.csv", "priority LSMS/ISA local raw presence summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -778,6 +782,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/195_build_priority_lsms_isa_credentialed_fetch_command_packet.py", "priority LSMS/ISA credentialed fetch command packet generator"),
     ("reproducibility", "script/196_build_priority_lsms_isa_browser_download_starter.py", "priority LSMS/ISA browser download starter generator"),
     ("reproducibility", "script/197_build_priority_lsms_isa_first_canary_runbook.py", "priority LSMS/ISA first canary runbook generator"),
+    ("reproducibility", "script/198_build_priority_lsms_isa_local_raw_presence_audit.py", "priority LSMS/ISA local raw presence audit generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1045,6 +1050,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_fetch_command_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_fetch_command_packet_summary.csv")
     priority_lsms_browser_starter_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_browser_download_starter_summary.csv")
     priority_lsms_first_canary_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_first_canary_runbook_summary.csv")
+    priority_lsms_raw_presence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_raw_presence_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -1969,6 +1975,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"idno={csv_value(priority_lsms_first_canary_summary, 'first_canary_idno', '')}; country={csv_value(priority_lsms_first_canary_summary, 'first_canary_country', '')}; wave={csv_value(priority_lsms_first_canary_summary, 'first_canary_wave', '')}; official_files={csv_value(priority_lsms_first_canary_summary, 'first_canary_expected_official_file_rows', '0')}; unique_core_files={csv_value(priority_lsms_first_canary_summary, 'first_canary_expected_unique_core_file_rows', '0')}; requirement_core_file_rows={csv_value(priority_lsms_first_canary_summary, 'first_canary_requirement_core_file_rows', '0')}; requirement_gates={csv_value(priority_lsms_first_canary_summary, 'first_canary_requirement_gate_rows', '0')}; target_files={csv_value(priority_lsms_first_canary_summary, 'first_canary_target_file_count', '0')}; progress={csv_value(priority_lsms_first_canary_summary, 'first_canary_progress_status', '')}; modeling_gate={csv_value(priority_lsms_first_canary_summary, 'modeling_gate_status', 'missing')}",
         [RESULT_DIR / "priority_lsms_isa_first_canary_download_runbook.csv", RESULT_DIR / "priority_lsms_isa_first_canary_core_file_checklist.csv", RESULT_DIR / "priority_lsms_isa_first_canary_requirement_gate_checklist.csv", RESULT_DIR / "priority_lsms_isa_first_canary_runbook_summary.csv", REPORT_DIR / "priority_lsms_isa_first_canary_runbook.md"],
         "First canary runbook condenses the Ethiopia 2021-2022 get-microdata URL, target folder, unique core files, requirement gates, and post-download validation commands into one execution artifact.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_local_raw_presence_audit",
+        "local_raw_presence_current_only_mwi2004_registry_raw"
+        if csv_value(priority_lsms_raw_presence_summary, "local_raw_presence_registry_raw_present_rows", "0") == "1"
+        and csv_value(priority_lsms_raw_presence_summary, "local_raw_presence_minimum_batch_raw_absent_rows", "0") == "10"
+        else "local_raw_presence_needs_review",
+        f"registry_rows={csv_value(priority_lsms_raw_presence_summary, 'local_raw_presence_registry_rows', '0')}; registry_raw_present={csv_value(priority_lsms_raw_presence_summary, 'local_raw_presence_registry_raw_present_rows', '0')}; registry_raw_absent={csv_value(priority_lsms_raw_presence_summary, 'local_raw_presence_registry_raw_absent_rows', '0')}; minimum_batch_raw_absent={csv_value(priority_lsms_raw_presence_summary, 'local_raw_presence_minimum_batch_raw_absent_rows', '0')}; nonregistry_raw_files={csv_value(priority_lsms_raw_presence_summary, 'local_raw_presence_nonregistry_raw_file_rows', '0')}; diagnostic_albania_raw_files={csv_value(priority_lsms_raw_presence_summary, 'local_raw_presence_diagnostic_albania_raw_file_rows', '0')}; modeling_gate={csv_value(priority_lsms_raw_presence_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "priority_lsms_isa_local_raw_presence_audit.csv", RESULT_DIR / "priority_lsms_isa_local_nonregistry_raw_files.csv", RESULT_DIR / "priority_lsms_isa_local_raw_presence_summary.csv", REPORT_DIR / "priority_lsms_isa_local_raw_presence_audit.md"],
+        "Local raw presence audit checks every promoted-registry row for raw-like files and keeps Albania raw files diagnostic-only outside the main promotion registry.",
     )
     add_bundle(
         rows,
@@ -2925,6 +2943,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_fetch_command_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_fetch_command_packet_summary.csv")
     priority_lsms_browser_starter_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_browser_download_starter_summary.csv")
     priority_lsms_first_canary_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_first_canary_runbook_summary.csv")
+    priority_lsms_raw_presence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_raw_presence_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3099,6 +3118,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_first_canary_unique_core_files", "value": csv_value(priority_lsms_first_canary_summary, "first_canary_expected_unique_core_file_rows", "0"), "interpretation": "Unique core files in the first canary checklist."},
         {"metric": "priority_lsms_isa_first_canary_requirement_core_file_rows", "value": csv_value(priority_lsms_first_canary_summary, "first_canary_requirement_core_file_rows", "0"), "interpretation": "Requirement-file linkage rows in the first canary checklist."},
         {"metric": "priority_lsms_isa_first_canary_target_files", "value": csv_value(priority_lsms_first_canary_summary, "first_canary_target_file_count", "0"), "interpretation": "Current first canary target-folder file count."},
+        {"metric": "priority_lsms_isa_local_raw_presence_registry_rows", "value": csv_value(priority_lsms_raw_presence_summary, "local_raw_presence_registry_rows", "0"), "interpretation": "Promotion registry rows audited for local raw-like files."},
+        {"metric": "priority_lsms_isa_local_raw_presence_registry_raw_present", "value": csv_value(priority_lsms_raw_presence_summary, "local_raw_presence_registry_raw_present_rows", "0"), "interpretation": "Registry rows with local raw-like files."},
+        {"metric": "priority_lsms_isa_local_raw_presence_minimum_batch_raw_absent", "value": csv_value(priority_lsms_raw_presence_summary, "local_raw_presence_minimum_batch_raw_absent_rows", "0"), "interpretation": "Minimum-batch rows still lacking local raw-like files."},
+        {"metric": "priority_lsms_isa_local_raw_presence_diagnostic_albania_raw_files", "value": csv_value(priority_lsms_raw_presence_summary, "local_raw_presence_diagnostic_albania_raw_file_rows", "0"), "interpretation": "Registry-outside Albania raw files retained as diagnostic-only."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},

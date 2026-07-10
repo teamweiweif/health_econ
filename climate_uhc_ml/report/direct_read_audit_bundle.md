@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 192 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 846 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 842 | Curated artifacts present and non-empty. |
+| bundle_rows | 193 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 851 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 847 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -178,6 +178,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_first_canary_unique_core_files | 25 | Unique core files in the first canary checklist. |
 | priority_lsms_isa_first_canary_requirement_core_file_rows | 36 | Requirement-file linkage rows in the first canary checklist. |
 | priority_lsms_isa_first_canary_target_files | 0 | Current first canary target-folder file count. |
+| priority_lsms_isa_local_raw_presence_registry_rows | 19 | Promotion registry rows audited for local raw-like files. |
+| priority_lsms_isa_local_raw_presence_registry_raw_present | 1 | Registry rows with local raw-like files. |
+| priority_lsms_isa_local_raw_presence_minimum_batch_raw_absent | 10 | Minimum-batch rows still lacking local raw-like files. |
+| priority_lsms_isa_local_raw_presence_diagnostic_albania_raw_files | 4 | Registry-outside Albania raw files retained as diagnostic-only. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 306 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 1 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -629,7 +633,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 83 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 84 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -721,6 +725,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_limited_harmonized_household_core_promoted_outcome_climate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_limited_nasa_admin2_centroid_climate_exposures_promoted_linkage_still_blocked | 1 | Direct-read bundle status count. |
+| bundle_status_local_raw_presence_current_only_mwi2004_registry_raw | 1 | Direct-read bundle status count. |
 | bundle_status_local_stray_raw_locator_current | 1 | Direct-read bundle status count. |
 | bundle_status_local_target_readmes_current | 1 | Direct-read bundle status count. |
 | bundle_status_manual_download_execution_board_current | 1 | Direct-read bundle status count. |
@@ -798,7 +803,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 83 |
+| priority_bundle | 84 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -900,6 +905,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | credentialed_fetch_command_packet_current_missing_session_material | 1 |
 | browser_download_starter_ready_for_manual_terms_acceptance | 1 |
 | first_canary_download_runbook_current_raw_missing | 1 |
+| local_raw_presence_current_only_mwi2004_registry_raw | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | packet_candidates_ready_for_data_write | 1 |
@@ -1010,7 +1016,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 842 |
+| present_nonempty | 847 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

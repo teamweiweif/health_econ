@@ -348,6 +348,7 @@ promotion:
 	$(PYTHON) script/195_build_priority_lsms_isa_credentialed_fetch_command_packet.py
 	$(PYTHON) script/196_build_priority_lsms_isa_browser_download_starter.py
 	$(PYTHON) script/197_build_priority_lsms_isa_first_canary_runbook.py
+	$(PYTHON) script/198_build_priority_lsms_isa_local_raw_presence_audit.py
 	$(PYTHON) script/35_build_empirical_readiness_dashboard.py
 	$(PYTHON) script/36_build_direct_read_audit_bundle.py
 	$(PYTHON) script/26_build_objective_traceability_audit.py
