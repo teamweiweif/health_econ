@@ -335,6 +335,7 @@ REQUIRED_SCRIPTS = [
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
+    "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -863,6 +864,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_next_raw_package_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv"),
         "priority_lsms_isa_next_raw_package_core_files": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv"),
         "priority_lsms_isa_next_raw_package_action_summary": row_count(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv"),
+        "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
+        "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
+        "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -5269,6 +5273,39 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_next_raw_package_gate_ok),
         f"action_rows={counts['priority_lsms_isa_next_raw_package_action_queue']}; summary_rows={counts['priority_lsms_isa_next_raw_package_action_summary']}; core_rows={counts['priority_lsms_isa_next_raw_package_core_files']}; minimum_remaining={priority_lsms_next_raw_package_minimum_remaining}; backups={priority_lsms_next_raw_package_backups}; countries_if_pass={priority_lsms_next_raw_package_countries_if_pass}; waves_if_pass={priority_lsms_next_raw_package_waves_if_pass}; raw_candidates={priority_lsms_next_raw_package_raw_candidates}; credentialed_required={priority_lsms_next_raw_package_credentialed}; data_write={priority_lsms_next_raw_package_data_write}; modeling_gate={priority_lsms_next_raw_package_modeling_gate}",
         "" if priority_lsms_next_raw_package_gate_ok else "Run script/172_build_priority_lsms_isa_next_raw_package_action_packet.py after the endpoint refresh and threshold files are current.",
+    )
+    priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
+    priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)
+    priority_lsms_promotion_gate_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_requirement_rows"), "0"), 0)
+    priority_lsms_promotion_gate_promoted = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_promoted_rows"), "0"), 0)
+    priority_lsms_promotion_gate_blocked_raw = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_blocked_raw_package_rows"), "0"), 0)
+    priority_lsms_promotion_gate_ready_packet = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_ready_for_packet_rows"), "0"), 0)
+    priority_lsms_promotion_gate_minimum_remaining = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_minimum_remaining_rows"), "0"), 0)
+    priority_lsms_promotion_gate_backups = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_backup_rows"), "0"), 0)
+    priority_lsms_promotion_gate_data_write = next((row.get("value", "") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_promotion_gate_modeling = next((row.get("value", "") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_promotion_gate_ok = (
+        counts["priority_lsms_isa_promotion_gate_dashboard_summary"] > 0
+        and counts["priority_lsms_isa_promotion_gate_dashboard"] == priority_lsms_promotion_gate_country_waves
+        and counts["priority_lsms_isa_promotion_gate_requirement_dashboard"] == priority_lsms_promotion_gate_requirements
+        and file_ok(REPORT_DIR / "priority_lsms_isa_promotion_gate_dashboard.md")
+        and priority_lsms_promotion_gate_country_waves == 19
+        and priority_lsms_promotion_gate_requirements == 152
+        and priority_lsms_promotion_gate_promoted == 1
+        and priority_lsms_promotion_gate_blocked_raw == 18
+        and priority_lsms_promotion_gate_ready_packet == 0
+        and priority_lsms_promotion_gate_minimum_remaining == 10
+        and priority_lsms_promotion_gate_backups == 8
+        and priority_lsms_promotion_gate_data_write == "blocked_for_unpromoted_rows"
+        and priority_lsms_promotion_gate_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA promotion gate dashboard synthesizes receipt, schema, value, semantics, registry, and data-write gates",
+        status(priority_lsms_promotion_gate_ok),
+        f"country_waves={counts['priority_lsms_isa_promotion_gate_dashboard']}; requirement_rows={counts['priority_lsms_isa_promotion_gate_requirement_dashboard']}; summary_rows={counts['priority_lsms_isa_promotion_gate_dashboard_summary']}; promoted={priority_lsms_promotion_gate_promoted}; blocked_raw_package={priority_lsms_promotion_gate_blocked_raw}; ready_for_packet={priority_lsms_promotion_gate_ready_packet}; minimum_remaining={priority_lsms_promotion_gate_minimum_remaining}; backups={priority_lsms_promotion_gate_backups}; data_write={priority_lsms_promotion_gate_data_write}; modeling_gate={priority_lsms_promotion_gate_modeling}",
+        "" if priority_lsms_promotion_gate_ok else "Run script/173_build_priority_lsms_isa_promotion_gate_dashboard.py after receipt/schema/value/semantics and registry outputs are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

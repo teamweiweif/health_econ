@@ -236,6 +236,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_next_raw_package_action_queue.csv", "priority LSMS/ISA next raw package action queue"),
     ("dataset_promotion", "temp/priority_lsms_isa_next_raw_package_core_files.csv", "priority LSMS/ISA next raw package core files"),
     ("dataset_promotion", "result/priority_lsms_isa_next_raw_package_action_summary.csv", "priority LSMS/ISA next raw package action summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
+    ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
+    ("dataset_promotion", "result/priority_lsms_isa_promotion_gate_dashboard_summary.csv", "priority LSMS/ISA promotion gate dashboard summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -660,6 +664,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/170_extract_mwi2004_chirps_admin2_exposures.py", "Malawi 2004 CHIRPS ADM2 extraction generator"),
     ("reproducibility", "script/171_build_mwi2004_promoted_household_climate_dataset.py", "Malawi 2004 promoted household-climate dataset generator"),
     ("reproducibility", "script/172_build_priority_lsms_isa_next_raw_package_action_packet.py", "priority LSMS/ISA next raw package action packet generator"),
+    ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -902,6 +907,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_minimum_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv")
     priority_lsms_minimum_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv")
     priority_lsms_next_raw_package_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv")
+    priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -1518,6 +1524,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"actions={csv_value(priority_lsms_next_raw_package_summary, 'next_raw_package_action_rows', '0')}; minimum_remaining={csv_value(priority_lsms_next_raw_package_summary, 'minimum_batch_remaining_action_rows', '0')}; backups={csv_value(priority_lsms_next_raw_package_summary, 'backup_after_minimum_action_rows', '0')}; core_file_rows={csv_value(priority_lsms_next_raw_package_summary, 'core_file_action_rows', '0')}; current_promoted={csv_value(priority_lsms_next_raw_package_summary, 'current_promoted_analysis_ready_rows', '0')}; countries_if_minimum_passes={csv_value(priority_lsms_next_raw_package_summary, 'countries_if_minimum_batch_passes', '0')}; waves_if_minimum_passes={csv_value(priority_lsms_next_raw_package_summary, 'country_waves_if_minimum_batch_passes', '0')}; raw_endpoint_candidates={csv_value(priority_lsms_next_raw_package_summary, 'official_raw_download_candidate_rows', '0')}; credentialed_required={csv_value(priority_lsms_next_raw_package_summary, 'credentialed_download_required_rows', '0')}; data_write={csv_value(priority_lsms_next_raw_package_summary, 'data_write_gate_status', 'missing')}; modeling_gate={csv_value(priority_lsms_next_raw_package_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv", TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv", RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv", REPORT_DIR / "priority_lsms_isa_next_raw_package_action_packet.md"],
         "Next raw package action packet converts the minimum-batch endpoint/access blocker into a file-level acquisition queue for the remaining 10 threshold waves plus backups.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_promotion_gate_dashboard",
+        "promotion_gate_dashboard_current"
+        if csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_promoted_rows", "0") == "1"
+        and csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_blocked_raw_package_rows", "0") == "18"
+        else "promotion_gate_dashboard_needs_review",
+        f"country_waves={csv_value(priority_lsms_promotion_gate_summary, 'priority_lsms_promotion_gate_country_wave_rows', '0')}; requirement_rows={csv_value(priority_lsms_promotion_gate_summary, 'priority_lsms_promotion_gate_requirement_rows', '0')}; promoted={csv_value(priority_lsms_promotion_gate_summary, 'priority_lsms_promotion_gate_promoted_rows', '0')}; blocked_raw_package={csv_value(priority_lsms_promotion_gate_summary, 'priority_lsms_promotion_gate_blocked_raw_package_rows', '0')}; ready_for_packet={csv_value(priority_lsms_promotion_gate_summary, 'priority_lsms_promotion_gate_ready_for_packet_rows', '0')}; minimum_remaining={csv_value(priority_lsms_promotion_gate_summary, 'priority_lsms_promotion_gate_minimum_remaining_rows', '0')}; backups={csv_value(priority_lsms_promotion_gate_summary, 'priority_lsms_promotion_gate_backup_rows', '0')}; data_write={csv_value(priority_lsms_promotion_gate_summary, 'data_write_gate_status', 'missing')}; modeling_gate={csv_value(priority_lsms_promotion_gate_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv", TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv", RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv", REPORT_DIR / "priority_lsms_isa_promotion_gate_dashboard.md"],
+        "Promotion gate dashboard combines registry, raw receipt, schema, value-profile, and semantics evidence into one fail-closed country-wave and requirement view.",
     )
     add_bundle(
         rows,
@@ -2457,6 +2475,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_minimum_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_intake_guide_summary.csv")
     priority_lsms_minimum_endpoint_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_endpoint_refresh_summary.csv")
     priority_lsms_next_raw_package_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv")
+    priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2566,6 +2585,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_next_raw_package_core_file_rows", "value": csv_value(priority_lsms_next_raw_package_summary, "core_file_action_rows", "0"), "interpretation": "Core requirement-file rows to confirm after raw package placement."},
         {"metric": "priority_lsms_isa_next_raw_package_countries_if_pass", "value": csv_value(priority_lsms_next_raw_package_summary, "countries_if_minimum_batch_passes", "0"), "interpretation": "Countries covered if the current promoted row plus remaining minimum batch all pass verification."},
         {"metric": "priority_lsms_isa_next_raw_package_waves_if_pass", "value": csv_value(priority_lsms_next_raw_package_summary, "country_waves_if_minimum_batch_passes", "0"), "interpretation": "Country-waves covered if the current promoted row plus remaining minimum batch all pass verification."},
+        {"metric": "priority_lsms_isa_promotion_gate_country_waves", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_country_wave_rows", "0"), "interpretation": "Country-waves tracked by the promotion gate dashboard."},
+        {"metric": "priority_lsms_isa_promotion_gate_promoted_rows", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_promoted_rows", "0"), "interpretation": "Country-waves already promoted analysis-ready in the gate dashboard."},
+        {"metric": "priority_lsms_isa_promotion_gate_blocked_raw_package_rows", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_blocked_raw_package_rows", "0"), "interpretation": "Country-waves still blocked at complete official raw package receipt."},
+        {"metric": "priority_lsms_isa_promotion_gate_requirement_rows", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_requirement_rows", "0"), "interpretation": "Requirement-level gate rows tracked by the promotion dashboard."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},

@@ -1,0 +1,15 @@
+﻿metric,value,interpretation
+priority_lsms_promotion_gate_country_wave_rows,19,Country-waves tracked in the promotion-gate dashboard.
+priority_lsms_promotion_gate_requirement_rows,152,Requirement-level gate rows tracked across country-waves.
+priority_lsms_promotion_gate_promoted_rows,1,Rows already promoted analysis-ready in the registry.
+priority_lsms_promotion_gate_blocked_raw_package_rows,18,Rows still blocked because complete official raw package receipt is missing.
+priority_lsms_promotion_gate_ready_for_packet_rows,0,Rows whose requirement gates are ready for a promotion packet but are not yet in data/.
+priority_lsms_promotion_gate_minimum_remaining_rows,10,Unpromoted minimum-batch rows still tracked here.
+priority_lsms_promotion_gate_backup_rows,8,Backup rows tracked after the minimum batch.
+priority_lsms_promotion_gate_requirement_blocked_raw_package_rows,144,Requirement rows blocked at raw package receipt.
+data_write_gate_status,blocked_for_unpromoted_rows,No new unpromoted country-wave may be written to data/ from this dashboard.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."
+priority_lsms_promotion_gate_status_blocked_at_raw_package_receipt,18,Country-wave count by promotion readiness status.
+priority_lsms_promotion_gate_status_promoted_analysis_ready,1,Country-wave count by promotion readiness status.
+priority_lsms_promotion_gate_requirement_status_accepted_via_promoted_registry,8,Requirement-row count by gate status.
+priority_lsms_promotion_gate_requirement_status_blocked_raw_package_not_received,144,Requirement-row count by gate status.
