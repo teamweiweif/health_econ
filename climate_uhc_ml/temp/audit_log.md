@@ -1638,3 +1638,23 @@
 - 2026-07-10T00:36:02+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
 - 2026-07-10T00:36:45+00:00 - Direct-read audit bundle rows=151 manifest_rows=648.
 - 2026-07-10T00:36:47+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T00:46:04+00:00 - Priority LSMS/ISA received raw schema audit datasets=1 files=52 variables=1901 evidence_rows=84.
+- 2026-07-10T00:47:23+00:00 - Built priority LSMS/ISA raw value verification workbook requirements=152 variables=1531 files=629.
+- 2026-07-10T00:47:23+00:00 - Built priority LSMS/ISA raw package receipt checklist datasets=19 requirements=152.
+- 2026-07-10T00:47:23+00:00 - Built priority LSMS-ISA country-wave promotion packets packets=19 gates=361 actions=19.
+- 2026-07-10T00:47:23+00:00 - Refreshed promoted country-wave registry to refocused LSMS/ISA queue rows=19 gates=361.
+- 2026-07-10T00:47:23+00:00 - Promoted data gate promoted_rows=0 before=0 after=0 quarantined=0.
+- 2026-07-10T00:47:28+00:00 - Direct-read audit bundle rows=151 manifest_rows=648.
+- 2026-07-10T00:47:30+00:00 - Workspace validation complete=463 incomplete_or_failed=1.
+- 2026-07-10T00:48:07+00:00 - Direct-read audit bundle rows=151 manifest_rows=648.
+- 2026-07-10T00:48:09+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T00:52:14+00:00 - Priority LSMS/ISA received raw schema audit datasets=1 files=52 variables=1901 evidence_rows=84.
+- 2026-07-10T00:52:20+00:00 - Built priority LSMS/ISA raw value verification workbook requirements=152 variables=1531 files=629.
+- 2026-07-10T00:52:34+00:00 - Built priority LSMS/ISA raw package receipt checklist datasets=19 requirements=152.
+- 2026-07-10T00:52:40+00:00 - Built priority LSMS-ISA country-wave promotion packets packets=19 gates=361 actions=19.
+- 2026-07-10T00:52:44+00:00 - Refreshed promoted country-wave registry to refocused LSMS/ISA queue rows=19 gates=361.
+- 2026-07-10T00:52:48+00:00 - Promoted data gate promoted_rows=0 before=0 after=0 quarantined=0.
+- 2026-07-10T00:52:57+00:00 - Direct-read audit bundle rows=152 manifest_rows=653.
+- 2026-07-10T00:53:04+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T00:53:50+00:00 - Direct-read audit bundle rows=152 manifest_rows=653.
+- 2026-07-10T00:53:57+00:00 - Workspace validation complete=464 incomplete_or_failed=0.

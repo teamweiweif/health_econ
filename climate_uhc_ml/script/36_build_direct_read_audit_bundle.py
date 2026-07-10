@@ -143,6 +143,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_raw_value_variable_workbook.csv", "priority LSMS/ISA variable raw value verification workbook"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_value_file_workbook.csv", "priority LSMS/ISA file raw value verification workbook"),
     ("dataset_promotion", "result/priority_lsms_isa_raw_value_verification_workbook_summary.csv", "priority LSMS/ISA raw value verification workbook summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_received_raw_schema_audit.md", "priority LSMS/ISA received raw schema audit report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_received_raw_schema_file_inventory.csv", "priority LSMS/ISA received raw schema file inventory"),
+    ("dataset_promotion", "temp/priority_lsms_isa_received_raw_variable_schema.csv", "priority LSMS/ISA received raw variable schema"),
+    ("dataset_promotion", "temp/priority_lsms_isa_received_raw_requirement_evidence.csv", "priority LSMS/ISA received raw requirement evidence"),
+    ("dataset_promotion", "result/priority_lsms_isa_received_raw_schema_audit_summary.csv", "priority LSMS/ISA received raw schema audit summary"),
     ("dataset_promotion", "report/priority_lsms_isa_raw_package_receipt_checklist.md", "priority LSMS/ISA raw package receipt checklist report"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_receipt_checklist.csv", "priority LSMS/ISA dataset raw package receipt checklist"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_requirement_receipt_checklist.csv", "priority LSMS/ISA requirement raw package receipt checklist"),
@@ -800,6 +805,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
     priority_lsms_archive_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_archive_member_preflight_summary.csv")
     priority_lsms_raw_value_workbook_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv")
+    priority_lsms_received_raw_schema_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_schema_audit_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -1192,6 +1198,17 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_dataset_rows', '0')}; requirements={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_requirement_rows', '0')}; variables={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_variable_rows', '0')}; files={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_file_rows', '0')}; handoffs={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_handoff_readmes_written', '0')}; ready_review={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_ready_for_manual_review_rows', '0')}; blocked_requirements={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_blocked_requirement_rows', '0')}; raw_verified={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_raw_value_verified_rows', '0')}; data_write={csv_value(priority_lsms_raw_value_workbook_summary, 'priority_lsms_raw_value_workbook_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_raw_value_workbook_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_raw_value_requirement_workbook.csv", TEMP_DIR / "priority_lsms_isa_raw_value_variable_workbook.csv", TEMP_DIR / "priority_lsms_isa_raw_value_file_workbook.csv", RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv", REPORT_DIR / "priority_lsms_isa_raw_value_verification_workbook.md"],
         "Raw value verification workbook turns official candidate variables and files into fillable requirement, variable, and file review rows; all rows remain unverified until original raw files are checked.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_received_raw_schema_audit",
+        "received_raw_schema_ready_for_manual_value_review"
+        if csv_value(priority_lsms_received_raw_schema_summary, "priority_lsms_received_raw_requirement_candidate_present_rows", "0") != "0"
+        else "received_raw_schema_needs_review",
+        f"datasets={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_schema_dataset_rows', '0')}; files={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_schema_file_rows', '0')}; readable_files={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_schema_readable_file_rows', '0')}; variables={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_schema_variable_rows', '0')}; candidate_rows={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_requirement_candidate_rows', '0')}; present_candidates={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_requirement_candidate_present_rows', '0')}; failed_files={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_schema_failed_file_rows', '0')}; data_write={csv_value(priority_lsms_received_raw_schema_summary, 'priority_lsms_received_raw_schema_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_received_raw_schema_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_received_raw_schema_file_inventory.csv", TEMP_DIR / "priority_lsms_isa_received_raw_variable_schema.csv", TEMP_DIR / "priority_lsms_isa_received_raw_requirement_evidence.csv", RESULT_DIR / "priority_lsms_isa_received_raw_schema_audit_summary.csv", REPORT_DIR / "priority_lsms_isa_received_raw_schema_audit.md"],
+        "Received raw schema audit reads the locally received official archive into metadata-only schema and value-stat evidence, making Malawi ready for manual raw value review while keeping data writes and modeling blocked.",
     )
     add_bundle(
         rows,
@@ -2163,6 +2180,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_raw_intake_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_intake_summary.csv")
     priority_lsms_archive_preflight_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_archive_member_preflight_summary.csv")
     priority_lsms_raw_value_workbook_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv")
+    priority_lsms_received_raw_schema_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_schema_audit_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -2197,6 +2215,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_raw_value_workbook_requirement_rows", "value": csv_value(priority_lsms_raw_value_workbook_summary, "priority_lsms_raw_value_workbook_requirement_rows", "0"), "interpretation": "Requirement-level raw value verification workbook rows."},
         {"metric": "priority_lsms_isa_raw_value_workbook_variable_rows", "value": csv_value(priority_lsms_raw_value_workbook_summary, "priority_lsms_raw_value_workbook_variable_rows", "0"), "interpretation": "Variable-level raw value verification workbook rows."},
         {"metric": "priority_lsms_isa_raw_value_workbook_file_rows", "value": csv_value(priority_lsms_raw_value_workbook_summary, "priority_lsms_raw_value_workbook_file_rows", "0"), "interpretation": "File-level raw value verification workbook rows."},
+        {"metric": "priority_lsms_isa_received_raw_schema_file_rows", "value": csv_value(priority_lsms_received_raw_schema_summary, "priority_lsms_received_raw_schema_file_rows", "0"), "interpretation": "Received official raw archive files included in the metadata-only schema audit."},
+        {"metric": "priority_lsms_isa_received_raw_schema_readable_file_rows", "value": csv_value(priority_lsms_received_raw_schema_summary, "priority_lsms_received_raw_schema_readable_file_rows", "0"), "interpretation": "Received official raw files readable by the schema audit."},
+        {"metric": "priority_lsms_isa_received_raw_schema_variable_rows", "value": csv_value(priority_lsms_received_raw_schema_summary, "priority_lsms_received_raw_schema_variable_rows", "0"), "interpretation": "Variables extracted from the received official raw archive schema."},
+        {"metric": "priority_lsms_isa_received_raw_schema_candidate_present_rows", "value": csv_value(priority_lsms_received_raw_schema_summary, "priority_lsms_received_raw_requirement_candidate_present_rows", "0"), "interpretation": "Requirement candidate variables present in the received official raw archive."},
         {"metric": "priority_lsms_isa_receipt_checklist_dataset_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_dataset_rows", "0"), "interpretation": "Dataset-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_requirement_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_requirement_rows", "0"), "interpretation": "Requirement-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_package_received_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_package_received_rows", "0"), "interpretation": "Refocused LSMS/ISA waves with original package receipt evidence."},

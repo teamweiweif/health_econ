@@ -4978,8 +4978,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_workbook_variables == counts["priority_lsms_isa_raw_value_variable_workbook"]
         and priority_lsms_workbook_files == counts["priority_lsms_isa_raw_value_file_workbook"]
         and priority_lsms_workbook_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
-        and priority_lsms_workbook_ready_review == 0
-        and priority_lsms_workbook_blocked_requirements >= priority_lsms_workbook_requirements
+        and 0 <= priority_lsms_workbook_ready_review <= priority_lsms_workbook_requirements
+        and priority_lsms_workbook_blocked_requirements + priority_lsms_workbook_ready_review >= priority_lsms_workbook_requirements
         and priority_lsms_workbook_raw_verified == 0
         and priority_lsms_workbook_data_write == "blocked_no_promoted_rows"
         and priority_lsms_workbook_modeling_gate == "blocked"

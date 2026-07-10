@@ -16,8 +16,8 @@ This workbook does not verify raw values by itself.
 | priority_lsms_raw_value_workbook_variable_rows | 1531 | Candidate variable-level raw-value verification rows. |
 | priority_lsms_raw_value_workbook_file_rows | 629 | Candidate file-level raw-value verification rows. |
 | priority_lsms_raw_value_workbook_handoff_readmes_written | 19 | Per-wave raw-folder workbook handoffs written. |
-| priority_lsms_raw_value_workbook_ready_for_manual_review_rows | 0 | Requirement rows ready for manual raw value review because raw package and archive preflight are present. |
-| priority_lsms_raw_value_workbook_blocked_requirement_rows | 152 | Requirement rows still blocked before raw value review. |
+| priority_lsms_raw_value_workbook_ready_for_manual_review_rows | 7 | Requirement rows ready for manual raw value review through full archive preflight or received raw schema evidence. |
+| priority_lsms_raw_value_workbook_blocked_requirement_rows | 145 | Requirement rows still blocked before raw value review. |
 | priority_lsms_raw_value_workbook_raw_value_verified_rows | 0 | Workbook rows are unverified until reviewer evidence fields are filled and accepted. |
 | priority_lsms_raw_value_workbook_data_write_status | blocked_no_promoted_rows | No country-wave may write to data/ from an unfilled verification workbook. |
 | modeling_gate_status | blocked | Models remain blocked until promoted registry thresholds and accepted climate linkage pass. |
@@ -25,12 +25,13 @@ This workbook does not verify raw values by itself.
 | priority_lsms_raw_value_workbook_queue_role_core_selected_lsms_isa_aligned | 8 | Dataset count by refocused queue role. |
 | priority_lsms_raw_value_workbook_queue_role_replacement_backup_wave | 6 | Dataset count by refocused queue role. |
 | priority_lsms_raw_value_workbook_queue_role_sixth_country_backup_candidate | 3 | Dataset count by refocused queue role. |
-| priority_lsms_raw_value_workbook_requirement_status_blocked_archive_or_direct_file_preflight_not_ready | 8 | Requirement workbook status count. |
+| priority_lsms_raw_value_workbook_requirement_status_blocked_archive_or_direct_file_preflight_not_ready | 1 | Requirement workbook status count. |
 | priority_lsms_raw_value_workbook_requirement_status_blocked_no_original_package | 144 | Requirement workbook status count. |
-| priority_lsms_raw_value_workbook_variable_status_blocked_archive_or_direct_file_preflight_not_ready | 84 | Variable workbook status count. |
+| priority_lsms_raw_value_workbook_requirement_status_ready_for_manual_raw_value_review_schema_evidence_available | 7 | Requirement workbook status count. |
 | priority_lsms_raw_value_workbook_variable_status_blocked_no_original_package | 1447 | Variable workbook status count. |
-| priority_lsms_raw_value_workbook_file_status_blocked_archive_or_direct_file_preflight_not_ready | 37 | File workbook status count. |
+| priority_lsms_raw_value_workbook_variable_status_ready_for_manual_raw_value_review_schema_evidence_available | 84 | Variable workbook status count. |
 | priority_lsms_raw_value_workbook_file_status_blocked_no_original_package | 592 | File workbook status count. |
+| priority_lsms_raw_value_workbook_file_status_ready_for_manual_raw_value_review_schema_evidence_available | 37 | File workbook status count. |
 
 ## Requirement Workbook Preview
 
@@ -52,13 +53,13 @@ This workbook does not verify raw values by itself.
 | 2 | ETH_2018_ESS_v04_M | survey_timing | climate_timing_gate | 12 | 7 | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | climate_geography | climate_geography_gate | 12 | 6 | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | merge_key_gate | 12 | 12 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | weights_and_design | survey_design_gate | 12 | 12 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | financial_denominator_gate | 12 | 3 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | oop_health_expenditure | financial_outcome_gate | 12 | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | health_need_and_access | access_outcome_gate | 12 | 2 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | climate_timing_gate | 12 | 7 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | climate_geography_gate | 12 | 12 | blocked_archive_or_direct_file_preflight_not_ready |
+| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | merge_key_gate | 12 | 12 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | weights_and_design | survey_design_gate | 12 | 12 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | financial_denominator_gate | 12 | 3 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | oop_health_expenditure | financial_outcome_gate | 12 | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | health_need_and_access | access_outcome_gate | 12 | 2 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | survey_timing | climate_timing_gate | 12 | 7 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | climate_geography_gate | 12 | 12 | ready_for_manual_raw_value_review_schema_evidence_available |
 | 3 | MWI_2004_IHS-II_v01_M | missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | blocked_archive_or_direct_file_preflight_not_ready |
 | 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | merge_key_gate | 12 | 12 | blocked_no_original_package |
 | 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | survey_design_gate | 12 | 4 | blocked_no_original_package |
@@ -277,15 +278,15 @@ This workbook does not verify raw values by itself.
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | 6 | sect9_hh_w4.dta | 1 | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | 7 | sect1_hh_w4.dta | 1 | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | 8 | sect10d1_hh_w4.dta | 1 | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 1 | sec_a.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 2 | sec_f.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 3 | sec_g.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 4 | sec_h.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 5 | sec_i.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 6 | sec_j1.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 7 | sec_j2.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 8 | sec_k.NSDstat | 1 | blocked_archive_or_direct_file_preflight_not_ready |
-| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | 1 | sec_j1.NSDstat | 10 | blocked_archive_or_direct_file_preflight_not_ready |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 1 | sec_a.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 2 | sec_f.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 3 | sec_g.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 4 | sec_h.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 5 | sec_i.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 6 | sec_j1.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 7 | sec_j2.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 8 | sec_k.NSDstat | 1 | ready_for_manual_raw_value_review_schema_evidence_available |
+| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | 1 | sec_j1.NSDstat | 10 | ready_for_manual_raw_value_review_schema_evidence_available |
 
 ## Machine-Readable Outputs
 
