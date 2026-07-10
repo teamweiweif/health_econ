@@ -174,6 +174,9 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/mwi2004_health_exception_audit.md", "Malawi 2004 health person-key and skip exception audit report"),
     ("dataset_promotion", "result/mwi2004_health_exception_audit.csv", "Malawi 2004 aggregate health exception audit without raw IDs"),
     ("dataset_promotion", "result/mwi2004_health_exception_summary.csv", "Malawi 2004 health exception audit summary"),
+    ("dataset_promotion", "report/mwi2004_health_access_construction_policy.md", "Malawi 2004 candidate health/access construction policy report"),
+    ("dataset_promotion", "result/mwi2004_health_access_construction_policy.csv", "Malawi 2004 aggregate candidate health/access construction policy"),
+    ("dataset_promotion", "result/mwi2004_health_access_construction_policy_summary.csv", "Malawi 2004 candidate health/access construction policy summary"),
     ("dataset_promotion", "report/priority_lsms_isa_raw_package_receipt_checklist.md", "priority LSMS/ISA raw package receipt checklist report"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_receipt_checklist.csv", "priority LSMS/ISA dataset raw package receipt checklist"),
     ("dataset_promotion", "temp/priority_lsms_isa_raw_package_requirement_receipt_checklist.csv", "priority LSMS/ISA requirement raw package receipt checklist"),
@@ -617,6 +620,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/161_build_mwi2004_requirement_acceptance_decisions.py", "Malawi 2004 focused requirement acceptance decision generator"),
     ("reproducibility", "script/162_build_mwi2004_health_access_label_skip_decisions.py", "Malawi 2004 health/access label-skip decision generator"),
     ("reproducibility", "script/163_build_mwi2004_health_exception_audit.py", "Malawi 2004 health person-key and skip exception audit generator"),
+    ("reproducibility", "script/164_build_mwi2004_health_access_construction_policy.py", "Malawi 2004 candidate health/access construction policy generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -844,6 +848,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     mwi2004_health_exception_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_exception_summary.csv")
+    mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -1313,6 +1318,17 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"country_wave={csv_value(mwi2004_health_exception_summary, 'country_wave', 'missing')}; health_unmatched={csv_value(mwi2004_health_exception_summary, 'health_person_unmatched_to_roster', 'missing')}; roster_unmatched={csv_value(mwi2004_health_exception_summary, 'roster_person_unmatched_to_health', 'missing')}; d07a_leakage={csv_value(mwi2004_health_exception_summary, 'd07a_skip_leakage_rows', 'missing')}; overlap={csv_value(mwi2004_health_exception_summary, 'd07a_skip_leakage_overlap_with_unmatched_health_rows', 'missing')}; explained_by_nonroster={csv_value(mwi2004_health_exception_summary, 'd07a_skip_leakage_explained_by_nonroster_rows', 'missing')}; other_leakage={csv_value(mwi2004_health_exception_summary, 'other_skip_leakage_rows', 'missing')}; data_write={csv_value(mwi2004_health_exception_summary, 'data_write_gate_status', 'missing')}",
         [RESULT_DIR / "mwi2004_health_exception_audit.csv", RESULT_DIR / "mwi2004_health_exception_summary.csv", REPORT_DIR / "mwi2004_health_exception_audit.md"],
         "Focused Malawi 2004 health exception audit tests whether person-key exceptions explain skip leakage, exports no raw IDs, and keeps health/access verification blocked when exceptions are separate.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "mwi2004_health_access_construction_policy",
+        "mwi2004_health_access_policy_ready_fail_closed"
+        if csv_value(mwi2004_health_policy_summary, "construction_policy_status", "missing") == "candidate_policy_ready_active_skip_and_provider_blockers"
+        else "mwi2004_health_access_policy_missing",
+        f"country_wave={csv_value(mwi2004_health_policy_summary, 'country_wave', 'missing')}; denominator={csv_value(mwi2004_health_policy_summary, 'acute_need_denominator_rows', 'missing')}; no_money={csv_value(mwi2004_health_policy_summary, 'financial_barrier_forgone_care_rows', 'missing')}; formal_core={csv_value(mwi2004_health_policy_summary, 'formal_care_core_rows', 'missing')}; formal_extended={csv_value(mwi2004_health_policy_summary, 'formal_care_extended_rows', 'missing')}; informal_self={csv_value(mwi2004_health_policy_summary, 'informal_or_self_care_rows', 'missing')}; skip_exceptions={csv_value(mwi2004_health_policy_summary, 'd07a_d07b_skip_exception_rows', 'missing')}; final_verified={csv_value(mwi2004_health_policy_summary, 'final_health_access_verified', '0')}; data_write={csv_value(mwi2004_health_policy_summary, 'data_write_gate_status', 'missing')}",
+        [RESULT_DIR / "mwi2004_health_access_construction_policy.csv", RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv", REPORT_DIR / "mwi2004_health_access_construction_policy.md"],
+        "Focused Malawi 2004 construction policy proposes an aggregate health/access denominator, no-money forgone-care rule, provider grouping sensitivities, and coping context while keeping final verification and data writes blocked.",
     )
     add_bundle(
         rows,
@@ -2291,6 +2307,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     mwi2004_health_exception_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_exception_summary.csv")
+    mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_credentialed_workbench_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
     priority_lsms_official_file_receipt_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_official_file_receipt_validator_summary.csv")
@@ -2349,6 +2366,10 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "mwi2004_health_exception_d07a_overlap", "value": csv_value(mwi2004_health_exception_summary, "d07a_skip_leakage_overlap_with_unmatched_health_rows", "missing"), "interpretation": "Overlap between d07a skip leakage and health-module person keys absent from the roster."},
         {"metric": "mwi2004_health_exception_explained_by_nonroster", "value": csv_value(mwi2004_health_exception_summary, "d07a_skip_leakage_explained_by_nonroster_rows", "missing"), "interpretation": "Whether d07a skip leakage is fully explained by nonroster health rows."},
         {"metric": "mwi2004_health_exception_policy_status", "value": csv_value(mwi2004_health_exception_summary, "exception_policy_status", "missing"), "interpretation": "Exception audit status for person-key and skip-leakage resolution."},
+        {"metric": "mwi2004_health_access_policy_status", "value": csv_value(mwi2004_health_policy_summary, "construction_policy_status", "missing"), "interpretation": "Candidate health/access construction policy status; still fail-closed."},
+        {"metric": "mwi2004_health_access_policy_denominator_rows", "value": csv_value(mwi2004_health_policy_summary, "acute_need_denominator_rows", "0"), "interpretation": "Roster-matched d04==Yes rows under the candidate access denominator."},
+        {"metric": "mwi2004_health_access_policy_no_money_rows", "value": csv_value(mwi2004_health_policy_summary, "financial_barrier_forgone_care_rows", "0"), "interpretation": "Candidate no-money forgone-care rows counted once per person row."},
+        {"metric": "mwi2004_health_access_policy_final_verified", "value": csv_value(mwi2004_health_policy_summary, "final_health_access_verified", "0"), "interpretation": "Whether Malawi 2004 health/access policy is final verified; should remain zero."},
         {"metric": "priority_lsms_isa_receipt_checklist_dataset_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_dataset_rows", "0"), "interpretation": "Dataset-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_requirement_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_requirement_rows", "0"), "interpretation": "Requirement-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_isa_receipt_checklist_package_received_rows", "value": csv_value(priority_lsms_receipt_checklist_summary, "priority_lsms_receipt_checklist_package_received_rows", "0"), "interpretation": "Refocused LSMS/ISA waves with original package receipt evidence."},

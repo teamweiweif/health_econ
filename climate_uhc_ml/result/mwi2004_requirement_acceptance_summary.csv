@@ -6,4 +6,8 @@ hard_blocked_requirements,3,Requirements still blocked even before final climate
 final_verified_requirements,0,Requirements accepted as final raw-value verified; remains zero.
 health_person_unmatched_to_roster,6,Health-module person keys absent from roster; raw IDs intentionally not exported.
 oop_component_diff_le_0_01_rows,11280/11280,OOP aggregate-component numeric agreement under tolerance.
+health_access_construction_policy_status,candidate_policy_ready_active_skip_and_provider_blockers,Candidate health/access construction policy status; still not final verification.
+health_access_policy_acute_need_denominator_rows,14143,Roster-matched d04==Yes rows under the candidate access denominator.
+health_access_policy_no_money_rows,631,Candidate no-money forgone-care rows counted once per person row.
+health_access_policy_final_verified,0,Whether the health/access construct is final verified; must remain zero here.
 data_write_gate_status,closed,No promoted dataset may be written from this decision artifact.

@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 158 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 685 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 681 | Curated artifacts present and non-empty. |
+| bundle_rows | 159 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 689 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 685 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -56,6 +56,10 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_health_exception_d07a_overlap | 0 | Overlap between d07a skip leakage and health-module person keys absent from the roster. |
 | mwi2004_health_exception_explained_by_nonroster | 0 | Whether d07a skip leakage is fully explained by nonroster health rows. |
 | mwi2004_health_exception_policy_status | policy_pending_exception_unresolved | Exception audit status for person-key and skip-leakage resolution. |
+| mwi2004_health_access_policy_status | candidate_policy_ready_active_skip_and_provider_blockers | Candidate health/access construction policy status; still fail-closed. |
+| mwi2004_health_access_policy_denominator_rows | 14143 | Roster-matched d04==Yes rows under the candidate access denominator. |
+| mwi2004_health_access_policy_no_money_rows | 631 | Candidate no-money forgone-care rows counted once per person row. |
+| mwi2004_health_access_policy_final_verified | 0 | Whether Malawi 2004 health/access policy is final verified; should remain zero. |
 | priority_lsms_isa_receipt_checklist_dataset_rows | 19 | Dataset-level raw package receipt checklist rows. |
 | priority_lsms_isa_receipt_checklist_requirement_rows | 152 | Requirement-level raw package receipt checklist rows. |
 | priority_lsms_isa_receipt_checklist_package_received_rows | 1 | Refocused LSMS/ISA waves with original package receipt evidence. |
@@ -523,7 +527,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 49 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 50 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -619,6 +623,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_minimum_batch_intake_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_acceptance_decisions_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_access_label_skip_blockers_identified | 1 | Direct-read bundle status count. |
+| bundle_status_mwi2004_health_access_policy_ready_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_exceptions_unresolved | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_raw_backed_evidence_ready_not_final_verified | 1 | Direct-read bundle status count. |
 | bundle_status_not_available | 1 | Direct-read bundle status count. |
@@ -657,8 +662,8 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
+| priority_bundle | 50 |
 | climate_outcome_gate | 50 |
-| priority_bundle | 49 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -720,6 +725,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_acceptance_decisions_fail_closed | 1 |
 | mwi2004_health_access_label_skip_blockers_identified | 1 |
 | mwi2004_health_exceptions_unresolved | 1 |
+| mwi2004_health_access_policy_ready_fail_closed | 1 |
 | receipt_checklist_needs_review | 1 |
 | credentialed_workbench_needs_review | 1 |
 | official_file_receipt_needs_review | 1 |
@@ -834,7 +840,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 681 |
+| present_nonempty | 685 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

@@ -1719,3 +1719,9 @@
 - 2026-07-10T03:58:06+00:00 - Refreshed promoted country-wave registry to refocused LSMS/ISA queue rows=19 gates=361.
 - 2026-07-10T03:58:17+00:00 - Direct-read audit bundle rows=158 manifest_rows=685.
 - 2026-07-10T03:58:29+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T04:06:50+00:00 - Built Malawi 2004 health/access construction policy for MWI_2004_IHS-II_v01_M.
+- 2026-07-10T04:06:57+00:00 - Built Malawi 2004 requirement acceptance decisions for MWI_2004_IHS-II_v01_M.
+- 2026-07-10T04:07:03+00:00 - Built priority LSMS-ISA country-wave promotion packets packets=19 gates=361 actions=19.
+- 2026-07-10T04:07:07+00:00 - Refreshed promoted country-wave registry to refocused LSMS/ISA queue rows=19 gates=361.
+- 2026-07-10T04:07:17+00:00 - Direct-read audit bundle rows=159 manifest_rows=689.
+- 2026-07-10T04:07:24+00:00 - Workspace validation complete=464 incomplete_or_failed=0.

@@ -1,0 +1,18 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by this health/access construction policy.
+analytic_roster_matched_health_rows,51286,Candidate analytic person rows in sec_d matched to individual roster.
+acute_need_denominator_rows,14143,Roster-matched d04==Yes rows.
+financial_barrier_forgone_care_rows,631,Candidate no-money forgone-care rows counted once per person row.
+formal_care_core_rows,5130,Candidate government/private facility care rows.
+formal_care_extended_rows,5593,Candidate formal care rows adding church/mission facility.
+informal_or_self_care_rows,6282,Candidate informal/self-care context rows.
+d07a_d07b_skip_exception_rows,6,d07a/d07b nonmissing rows outside d04==Yes under roster-matched candidate universe.
+no_second_action_only_rows,443,Rows with d07b indicating no other action taken among acute-need rows.
+hospitalization_need_rows,2051,Roster-matched d15==Yes rows.
+hospitalization_coping_rows,458,Roster-matched d15==Yes and d17==Yes rows.
+traditional_healer_need_rows,421,Roster-matched d18==Yes rows.
+traditional_healer_coping_rows,185,Roster-matched d18==Yes and d20==Yes rows.
+chronic_need_context_rows,4918,Roster-matched d26==Yes rows.
+construction_policy_status,candidate_policy_ready_active_skip_and_provider_blockers,Policy is explicit enough for review but not final verification.
+final_health_access_verified,0,Health/access construct is not final verified.
+data_write_gate_status,closed,No promoted data may be written from this policy artifact.
