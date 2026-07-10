@@ -198,6 +198,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_external_local_raw_intake_decision.md",
     "priority_lsms_isa_external_local_raw_staging.md",
     "priority_lsms_isa_focused_raw_value_decision_packet.md",
+    "priority_lsms_isa_household_join_readiness_audit.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -416,12 +417,14 @@ REQUIRED_SCRIPTS = [
     "210_build_priority_lsms_isa_external_local_raw_intake_decision.py",
     "211_stage_priority_lsms_isa_external_local_raw_packages.py",
     "212_build_priority_lsms_isa_focused_raw_value_decision_packet.py",
+    "213_build_priority_lsms_isa_household_join_readiness_audit.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
     "158_build_priority_lsms_isa_received_raw_value_profile.py",
     "159_build_priority_lsms_isa_received_raw_semantics_review.py",
     "212_build_priority_lsms_isa_focused_raw_value_decision_packet.py",
+    "213_build_priority_lsms_isa_household_join_readiness_audit.py",
     "169_build_mwi2004_chirps_admin2_route_policy.py",
     "170_extract_mwi2004_chirps_admin2_exposures.py",
     "171_build_mwi2004_promoted_household_climate_dataset.py",
@@ -971,6 +974,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_focused_raw_value_variable_decisions": row_count(TEMP_DIR / "priority_lsms_isa_focused_raw_value_variable_decisions.csv"),
         "priority_lsms_isa_requirement_acceptance_decisions": row_count(RESULT_DIR / "priority_lsms_isa_requirement_acceptance_decisions.csv"),
         "priority_lsms_isa_focused_raw_value_decision_summary": row_count(RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv"),
+        "priority_lsms_isa_household_join_file_audit": row_count(TEMP_DIR / "priority_lsms_isa_household_join_file_audit.csv"),
+        "priority_lsms_isa_household_join_pair_audit": row_count(TEMP_DIR / "priority_lsms_isa_household_join_pair_audit.csv"),
+        "priority_lsms_isa_household_join_readiness": row_count(RESULT_DIR / "priority_lsms_isa_household_join_readiness.csv"),
+        "priority_lsms_isa_household_join_readiness_summary": row_count(RESULT_DIR / "priority_lsms_isa_household_join_readiness_summary.csv"),
         "priority_lsms_isa_raw_package_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_receipt_checklist.csv"),
         "priority_lsms_isa_raw_package_requirement_receipt_checklist": row_count(TEMP_DIR / "priority_lsms_isa_raw_package_requirement_receipt_checklist.csv"),
         "priority_lsms_isa_raw_package_receipt_checklist_summary": row_count(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv"),
@@ -5297,6 +5304,36 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_focused_gate_ok),
         f"doc_rows={counts['priority_lsms_isa_focused_raw_value_documentation_inventory']}; variable_rows={counts['priority_lsms_isa_focused_raw_value_variable_decisions']}; requirement_rows={counts['priority_lsms_isa_requirement_acceptance_decisions']}; summary_rows={counts['priority_lsms_isa_focused_raw_value_decision_summary']}; reported_datasets={priority_lsms_focused_datasets}; docs={priority_lsms_focused_docs}; docs_extracted={priority_lsms_focused_docs_extracted}; variables={priority_lsms_focused_variables}; requirements={priority_lsms_focused_requirements}; raw_verified={priority_lsms_focused_verified}; data_write={priority_lsms_focused_data_write}; modeling_gate={priority_lsms_focused_modeling_gate}",
         "" if priority_lsms_focused_gate_ok else "Run script/212_build_priority_lsms_isa_focused_raw_value_decision_packet.py after received raw value profiles are current.",
+    )
+    priority_lsms_join_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_household_join_readiness_summary.csv")
+    priority_lsms_join_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_join_summary if row.get("metric") == "priority_lsms_household_join_dataset_rows"), "0"), 0)
+    priority_lsms_join_files = safe_int(next((row.get("value", "0") for row in priority_lsms_join_summary if row.get("metric") == "priority_lsms_household_join_file_audit_rows"), "0"), 0)
+    priority_lsms_join_pairs = safe_int(next((row.get("value", "0") for row in priority_lsms_join_summary if row.get("metric") == "priority_lsms_household_join_pair_audit_rows"), "0"), 0)
+    priority_lsms_join_complete = safe_int(next((row.get("value", "0") for row in priority_lsms_join_summary if row.get("metric") == "priority_lsms_household_join_complete_join_path_rows"), "0"), 0)
+    priority_lsms_join_verified = safe_int(next((row.get("value", "0") for row in priority_lsms_join_summary if row.get("metric") == "priority_lsms_household_join_raw_value_verified_rows"), "0"), 0)
+    priority_lsms_join_data_write = next((row.get("value", "") for row in priority_lsms_join_summary if row.get("metric") == "priority_lsms_household_join_data_write_status"), "")
+    priority_lsms_join_modeling_gate = next((row.get("value", "") for row in priority_lsms_join_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_join_gate_ok = (
+        counts["priority_lsms_isa_household_join_file_audit"] == priority_lsms_join_files
+        and counts["priority_lsms_isa_household_join_pair_audit"] == priority_lsms_join_pairs
+        and counts["priority_lsms_isa_household_join_readiness"] == priority_lsms_join_datasets
+        and counts["priority_lsms_isa_household_join_readiness_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_household_join_readiness_audit.md")
+        and priority_lsms_join_datasets == 2
+        and priority_lsms_join_files == 11
+        and priority_lsms_join_pairs == 14
+        and priority_lsms_join_complete == 2
+        and priority_lsms_join_verified == 0
+        and priority_lsms_join_data_write == "blocked_join_audit_only"
+        and priority_lsms_join_modeling_gate == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA household join readiness audit verifies raw-backed household join paths while staying fail-closed",
+        status(priority_lsms_join_gate_ok),
+        f"file_rows={counts['priority_lsms_isa_household_join_file_audit']}; pair_rows={counts['priority_lsms_isa_household_join_pair_audit']}; readiness_rows={counts['priority_lsms_isa_household_join_readiness']}; summary_rows={counts['priority_lsms_isa_household_join_readiness_summary']}; reported_datasets={priority_lsms_join_datasets}; reported_files={priority_lsms_join_files}; reported_pairs={priority_lsms_join_pairs}; complete_join_paths={priority_lsms_join_complete}; raw_verified={priority_lsms_join_verified}; data_write={priority_lsms_join_data_write}; modeling_gate={priority_lsms_join_modeling_gate}",
+        "" if priority_lsms_join_gate_ok else "Run script/213_build_priority_lsms_isa_household_join_readiness_audit.py after focused raw value decisions are current.",
     )
     priority_lsms_receipt_checklist_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_package_receipt_checklist_summary.csv")
     priority_lsms_receipt_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_dataset_rows"), "0"), 0)

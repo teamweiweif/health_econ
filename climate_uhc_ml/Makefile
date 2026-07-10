@@ -306,6 +306,7 @@ promotion:
 	$(PYTHON) script/158_build_priority_lsms_isa_received_raw_value_profile.py
 	$(PYTHON) script/159_build_priority_lsms_isa_received_raw_semantics_review.py
 	$(PYTHON) script/212_build_priority_lsms_isa_focused_raw_value_decision_packet.py
+	$(PYTHON) script/213_build_priority_lsms_isa_household_join_readiness_audit.py
 	$(PYTHON) script/160_build_mwi2004_raw_requirement_verification.py
 	$(PYTHON) script/162_build_mwi2004_health_access_label_skip_decisions.py
 	$(PYTHON) script/163_build_mwi2004_health_exception_audit.py

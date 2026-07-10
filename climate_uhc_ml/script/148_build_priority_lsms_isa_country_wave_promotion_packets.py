@@ -22,6 +22,7 @@ SYNTHESIS_JOIN_PATH = TEMP_DIR / "priority_analysis_dataset_join_plan.csv"
 REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 MWI2004_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv"
 FOCUSED_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "priority_lsms_isa_requirement_acceptance_decisions.csv"
+HOUSEHOLD_JOIN_READINESS_PATH = RESULT_DIR / "priority_lsms_isa_household_join_readiness.csv"
 MWI2004_CHIRPS_ROUTE_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_route_policy_summary.csv"
 MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_chirps_admin2_extraction_summary.csv"
 MWI2004_PROMOTED_DATASET_SUMMARY_PATH = RESULT_DIR / "mwi2004_promoted_household_climate_dataset_summary.csv"
@@ -312,6 +313,7 @@ def write_packet(
     variable_rows: list[dict[str, str]],
     archive_req_rows: list[dict[str, str]],
     acceptance_rows: list[dict[str, str]],
+    household_join_row: dict[str, str],
 ) -> str:
     PACKET_DIR.mkdir(parents=True, exist_ok=True)
     path = PACKET_DIR / f"{wave['idno']}.md"
@@ -378,6 +380,31 @@ def write_packet(
 
 {markdown_table(acceptance_preview, ['requirement', 'mechanical_raw_check_decision', 'final_verification_decision', 'remaining_blocker'], 12)}
 """
+    household_join_section = ""
+    if household_join_row:
+        household_join_preview = [
+            {
+                "best_base_file": household_join_row.get("best_base_file", ""),
+                "consumption_or_income": household_join_row.get("consumption_or_income_join_ready", ""),
+                "weights_and_design": household_join_row.get("weights_and_design_join_ready", ""),
+                "oop_health_expenditure": household_join_row.get("oop_health_expenditure_join_ready", ""),
+                "health_need_and_access": household_join_row.get("health_need_and_access_join_ready", ""),
+                "survey_timing": household_join_row.get("survey_timing_join_ready", ""),
+                "climate_geography": household_join_row.get("climate_geography_join_ready", ""),
+                "complete_join_path": household_join_row.get("complete_household_join_path_ready", ""),
+                "status": household_join_row.get("household_join_readiness_status", ""),
+                "remaining_blockers": household_join_row.get("remaining_blockers", ""),
+            }
+        ]
+        household_join_section = f"""
+
+## Household Join Readiness
+
+{markdown_table(household_join_preview, ['best_base_file', 'consumption_or_income', 'weights_and_design', 'oop_health_expenditure', 'health_need_and_access', 'survey_timing', 'climate_geography', 'complete_join_path', 'status', 'remaining_blockers'], 1)}
+
+This join audit is raw-backed structural evidence only. It does not verify raw
+values, accept climate linkage, write to `data/`, or open modeling.
+"""
     path.write_text(
         f"""# Priority LSMS-ISA Country-Wave Promotion Packet
 
@@ -417,7 +444,7 @@ Next blocking action: `{index_row.get('next_blocking_action', '')}`
 
 ## Archive/Direct-File Requirement Preflight
 
-{markdown_table(archive_preview, ['requirement', 'metadata_status', 'requirement_preflight_status'], 12)}{acceptance_section}
+{markdown_table(archive_preview, ['requirement', 'metadata_status', 'requirement_preflight_status'], 12)}{acceptance_section}{household_join_section}
 
 ## Stop Rule
 
@@ -450,6 +477,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         read_csv_dicts(MWI2004_ACCEPTANCE_DECISION_PATH)
         + read_csv_dicts(FOCUSED_ACCEPTANCE_DECISION_PATH)
     )
+    household_join_by_id = one_by_id(read_csv_dicts(HOUSEHOLD_JOIN_READINESS_PATH))
     mwi2004_route_summary = read_csv_dicts(MWI2004_CHIRPS_ROUTE_SUMMARY_PATH)
     mwi2004_extraction_summary = read_csv_dicts(MWI2004_CHIRPS_EXTRACTION_SUMMARY_PATH)
     mwi2004_promoted_summary = read_csv_dicts(MWI2004_PROMOTED_DATASET_SUMMARY_PATH)
@@ -717,6 +745,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             matrix_rows,
             archive_req_by_id.get(idno, []),
             acceptance_rows,
+            household_join_by_id.get(idno, {}),
         )
         index_row["packet_report"] = packet_path
         index_row["raw_folder_handoff"] = write_raw_handoff(wave, packet_path, len(failed))

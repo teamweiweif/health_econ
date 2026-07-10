@@ -67,6 +67,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/158_build_priority_lsms_isa_received_raw_value_profile.py
 & $Python script/159_build_priority_lsms_isa_received_raw_semantics_review.py
 & $Python script/212_build_priority_lsms_isa_focused_raw_value_decision_packet.py
+& $Python script/213_build_priority_lsms_isa_household_join_readiness_audit.py
 & $Python script/160_build_mwi2004_raw_requirement_verification.py
 & $Python script/162_build_mwi2004_health_access_label_skip_decisions.py
 & $Python script/163_build_mwi2004_health_exception_audit.py

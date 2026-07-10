@@ -165,6 +165,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_focused_raw_value_variable_decisions.csv", "priority LSMS/ISA focused raw value variable decisions"),
     ("dataset_promotion", "result/priority_lsms_isa_requirement_acceptance_decisions.csv", "priority LSMS/ISA focused requirement acceptance decisions"),
     ("dataset_promotion", "result/priority_lsms_isa_focused_raw_value_decision_summary.csv", "priority LSMS/ISA focused raw value decision summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_household_join_readiness_audit.md", "priority LSMS/ISA household join readiness audit"),
+    ("dataset_promotion", "temp/priority_lsms_isa_household_join_file_audit.csv", "priority LSMS/ISA household join file audit"),
+    ("dataset_promotion", "temp/priority_lsms_isa_household_join_pair_audit.csv", "priority LSMS/ISA household join pair audit"),
+    ("dataset_promotion", "result/priority_lsms_isa_household_join_readiness.csv", "priority LSMS/ISA household join readiness rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_household_join_readiness_summary.csv", "priority LSMS/ISA household join readiness summary"),
     ("dataset_promotion", "report/mwi2004_raw_requirement_verification.md", "Malawi 2004 focused raw requirement verification report"),
     ("dataset_promotion", "temp/mwi2004_raw_requirement_evidence.csv", "Malawi 2004 focused requirement-level raw-backed evidence"),
     ("dataset_promotion", "temp/mwi2004_raw_module_join_evidence.csv", "Malawi 2004 focused key and module join evidence"),
@@ -800,6 +805,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/158_build_priority_lsms_isa_received_raw_value_profile.py", "priority LSMS/ISA received raw value profile generator"),
     ("reproducibility", "script/159_build_priority_lsms_isa_received_raw_semantics_review.py", "priority LSMS/ISA received raw semantics review generator"),
     ("reproducibility", "script/212_build_priority_lsms_isa_focused_raw_value_decision_packet.py", "priority LSMS/ISA focused raw value decision packet generator"),
+    ("reproducibility", "script/213_build_priority_lsms_isa_household_join_readiness_audit.py", "priority LSMS/ISA household join readiness audit generator"),
     ("reproducibility", "script/160_build_mwi2004_raw_requirement_verification.py", "Malawi 2004 focused raw requirement verification generator"),
     ("reproducibility", "script/161_build_mwi2004_requirement_acceptance_decisions.py", "Malawi 2004 focused requirement acceptance decision generator"),
     ("reproducibility", "script/162_build_mwi2004_health_access_label_skip_decisions.py", "Malawi 2004 health/access label-skip decision generator"),
@@ -1076,6 +1082,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_received_raw_value_profile_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_value_profile_summary.csv")
     priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
     priority_lsms_focused_raw_value_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv")
+    priority_lsms_household_join_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_household_join_readiness_summary.csv")
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
@@ -1565,6 +1572,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_decision_dataset_rows', '0')}; documentation_files={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_documentation_file_rows', '0')}; extracted_docs={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_documentation_extracted_rows', '0')}; variables={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_variable_decision_rows', '0')}; requirements={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_requirement_decision_rows', '0')}; raw_verified={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_requirement_raw_value_verified_rows', 'missing')}; data_write={csv_value(priority_lsms_focused_raw_value_summary, 'priority_lsms_focused_raw_value_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_focused_raw_value_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_focused_raw_value_documentation_inventory.csv", TEMP_DIR / "priority_lsms_isa_focused_raw_value_variable_decisions.csv", RESULT_DIR / "priority_lsms_isa_requirement_acceptance_decisions.csv", RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv", REPORT_DIR / "priority_lsms_isa_focused_raw_value_decision_packet.md"],
         "Focused raw value decision packet crosswalks received raw value profiles against local PDF documentation for Nigeria 2015 and Tanzania 2012, but leaves every requirement blocked until reviewer acceptance.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_household_join_readiness_audit",
+        "household_join_readiness_ready_fail_closed"
+        if csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_dataset_rows", "0") != "0"
+        and csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_complete_join_path_rows", "0") != "0"
+        and csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_raw_value_verified_rows", "1") == "0"
+        else "household_join_readiness_missing_or_overopened",
+        f"datasets={csv_value(priority_lsms_household_join_summary, 'priority_lsms_household_join_dataset_rows', '0')}; file_rows={csv_value(priority_lsms_household_join_summary, 'priority_lsms_household_join_file_audit_rows', '0')}; pair_rows={csv_value(priority_lsms_household_join_summary, 'priority_lsms_household_join_pair_audit_rows', '0')}; complete_join_paths={csv_value(priority_lsms_household_join_summary, 'priority_lsms_household_join_complete_join_path_rows', '0')}; raw_verified={csv_value(priority_lsms_household_join_summary, 'priority_lsms_household_join_raw_value_verified_rows', 'missing')}; data_write={csv_value(priority_lsms_household_join_summary, 'priority_lsms_household_join_data_write_status', 'missing')}; modeling_gate={csv_value(priority_lsms_household_join_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_household_join_file_audit.csv", TEMP_DIR / "priority_lsms_isa_household_join_pair_audit.csv", RESULT_DIR / "priority_lsms_isa_household_join_readiness.csv", RESULT_DIR / "priority_lsms_isa_household_join_readiness_summary.csv", REPORT_DIR / "priority_lsms_isa_household_join_readiness_audit.md"],
+        "Household join readiness audit confirms that received Nigeria 2015 and Tanzania 2012 raw packages have household-level join paths across consumption/OOP/access/timing/geography modules, while raw-value acceptance, climate linkage, data writes, and modeling remain blocked.",
     )
     add_bundle(
         rows,
@@ -3177,6 +3197,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_received_raw_value_profile_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_value_profile_summary.csv")
     priority_lsms_received_raw_semantics_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_received_raw_semantics_review_summary.csv")
     priority_lsms_focused_raw_value_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_focused_raw_value_decision_summary.csv")
+    priority_lsms_household_join_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_household_join_readiness_summary.csv")
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
@@ -3272,6 +3293,11 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_focused_raw_value_variable_decision_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_variable_decision_rows", "0"), "interpretation": "Variable-level focused raw value decision rows."},
         {"metric": "priority_lsms_isa_focused_raw_value_requirement_decision_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_requirement_decision_rows", "0"), "interpretation": "Requirement-level focused raw value decision rows."},
         {"metric": "priority_lsms_isa_focused_raw_value_verified_rows", "value": csv_value(priority_lsms_focused_raw_value_summary, "priority_lsms_focused_raw_value_requirement_raw_value_verified_rows", "0"), "interpretation": "Focused decision packet remains fail-closed and should be zero until reviewer acceptance exists."},
+        {"metric": "priority_lsms_isa_household_join_dataset_rows", "value": csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_dataset_rows", "0"), "interpretation": "Received LSMS/ISA country-waves included in household join readiness audit."},
+        {"metric": "priority_lsms_isa_household_join_file_audit_rows", "value": csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_file_audit_rows", "0"), "interpretation": "Core raw files audited for household keys and required fields."},
+        {"metric": "priority_lsms_isa_household_join_pair_audit_rows", "value": csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_pair_audit_rows", "0"), "interpretation": "Base-to-component join coverage checks."},
+        {"metric": "priority_lsms_isa_household_join_complete_path_rows", "value": csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_complete_join_path_rows", "0"), "interpretation": "Country-waves with all required household join paths ready for manual value/climate review."},
+        {"metric": "priority_lsms_isa_household_join_raw_value_verified_rows", "value": csv_value(priority_lsms_household_join_summary, "priority_lsms_household_join_raw_value_verified_rows", "0"), "interpretation": "Raw-value-verified rows should remain zero until reviewer acceptance exists."},
         {"metric": "mwi2004_raw_requirement_verification_requirements", "value": csv_value(mwi2004_raw_requirement_summary, "requirements_with_raw_backed_evidence", "0"), "interpretation": "Malawi 2004 promotion requirements with focused raw-backed verification evidence."},
         {"metric": "mwi2004_raw_requirement_verification_key_or_join_checks", "value": csv_value(mwi2004_raw_requirement_summary, "key_or_join_checks_passing", "0"), "interpretation": "Malawi 2004 mechanical uniqueness and join checks passing in focused raw review."},
         {"metric": "mwi2004_raw_requirement_verification_decision", "value": csv_value(mwi2004_raw_requirement_summary, "raw_value_verification_decision", "missing"), "interpretation": "Focused Malawi 2004 decision; it should remain not_final_verified until manual construct and climate-linkage acceptance pass."},
