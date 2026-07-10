@@ -13,16 +13,18 @@ This checklist does not verify raw values and does not promote data.
 |---|---:|---|
 | priority_lsms_receipt_checklist_dataset_rows | 19 | Refocused LSMS/ISA dataset-level raw package receipt checklist rows. |
 | priority_lsms_receipt_checklist_requirement_rows | 152 | Requirement-level receipt checklist rows joined to raw-value workbook gates. |
-| priority_lsms_receipt_checklist_package_received_rows | 0 | Datasets with at least one original non-generated package or documentation file in the target folder. |
+| priority_lsms_receipt_checklist_package_received_rows | 1 | Datasets with at least one original non-generated package or documentation file in the target folder. |
 | priority_lsms_receipt_checklist_complete_package_received_rows | 0 | Datasets whose local receipt appears complete enough for raw value review. |
 | priority_lsms_receipt_checklist_ready_for_raw_value_review_rows | 0 | Dataset rows ready to proceed to raw value workbook review. |
-| priority_lsms_receipt_checklist_blocked_no_original_package_rows | 19 | Dataset rows still missing original official packages. |
+| priority_lsms_receipt_checklist_blocked_no_original_package_rows | 18 | Dataset rows still missing original official packages. |
 | priority_lsms_receipt_checklist_blocked_requirement_rows | 152 | Requirement rows blocked before raw value review. |
 | priority_lsms_receipt_checklist_handoff_readmes_written | 19 | Per-wave raw-folder receipt checklist handoffs written. |
 | priority_lsms_receipt_checklist_data_write_status | blocked_no_promoted_rows | No country-wave may write to data/ from an unaccepted receipt checklist. |
 | modeling_gate_status | blocked | Models remain blocked until receipt, raw-value, climate-linkage, and promoted-registry thresholds pass. |
-| priority_lsms_receipt_checklist_dataset_status_blocked_no_original_package | 19 | Dataset receipt status count. |
-| priority_lsms_receipt_checklist_requirement_status_blocked_no_original_package | 152 | Requirement receipt status count. |
+| priority_lsms_receipt_checklist_dataset_status_blocked_no_original_package | 18 | Dataset receipt status count. |
+| priority_lsms_receipt_checklist_dataset_status_blocked_no_raw_tabular_file | 1 | Dataset receipt status count. |
+| priority_lsms_receipt_checklist_requirement_status_blocked_no_original_package | 144 | Requirement receipt status count. |
+| priority_lsms_receipt_checklist_requirement_status_blocked_no_raw_tabular_file | 8 | Requirement receipt status count. |
 
 ## Dataset Receipt Checklist Preview
 
@@ -30,7 +32,7 @@ This checklist does not verify raw values and does not promote data.
 |---|---|---|---|---|---|---|---|---|
 | 1 | ETH_2021_ESPS-W5_v02_M | Ethiopia | 2021-2022 | 0 | 0 | 0 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 2 | ETH_2018_ESS_v04_M | Ethiopia | 2018-2019 | 0 | 0 | 0 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
-| 3 | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | 0 | 0 | 0 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
+| 3 | MWI_2004_IHS-II_v01_M | Malawi | 2004-2005 | 1 | 0 | 0 | blocked_no_raw_tabular_file | Confirm the received package contains raw tabular microdata files or archive members. |
 | 4 | NGA_2012_GHSP-W2_v02_M | Nigeria | 2012-2013 | 0 | 0 | 0 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 5 | NGA_2015_GHSP-W3_v02_M | Nigeria | 2015-2016 | 0 | 0 | 0 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
 | 6 | NGA_2010_GHSP-W1_v03_M | Nigeria | 2010-2011 | 0 | 0 | 0 | blocked_no_original_package | Place the complete unchanged official raw package and all documentation in the target folder. |
@@ -68,14 +70,14 @@ This checklist does not verify raw values and does not promote data.
 | 2 | ETH_2018_ESS_v04_M | survey_timing | 12 | 7 | blocked_no_original_package | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | climate_geography | 12 | 6 | blocked_no_original_package | blocked_no_original_package |
 | 2 | ETH_2018_ESS_v04_M | missing_codes_units_recall_skip_patterns | 0 | 0 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | 12 | 12 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | weights_and_design | 12 | 12 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | 12 | 3 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | oop_health_expenditure | 12 | 1 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | health_need_and_access | 12 | 2 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | 12 | 7 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 12 | 12 | blocked_no_original_package | blocked_no_original_package |
-| 3 | MWI_2004_IHS-II_v01_M | missing_codes_units_recall_skip_patterns | 0 | 0 | blocked_no_original_package | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | 12 | 12 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | weights_and_design | 12 | 12 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | 12 | 3 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | oop_health_expenditure | 12 | 1 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | health_need_and_access | 12 | 2 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | survey_timing | 12 | 7 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | climate_geography | 12 | 12 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| 3 | MWI_2004_IHS-II_v01_M | missing_codes_units_recall_skip_patterns | 0 | 0 | blocked_no_raw_tabular_file | blocked_no_original_package |
 | 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | 12 | 12 | blocked_no_original_package | blocked_no_original_package |
 | 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | 12 | 4 | blocked_no_original_package | blocked_no_original_package |
 | 4 | NGA_2012_GHSP-W2_v02_M | consumption_or_income | 12 | 4 | blocked_no_original_package | blocked_no_original_package |

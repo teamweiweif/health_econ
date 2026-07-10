@@ -8,11 +8,11 @@ Official get-microdata URL: https://microdata.worldbank.org/catalog/2307/get-mic
 
 Target folder: `temp/raw_downloads/MWI_2004_IHS-II_v01_M/`
 
-Current intake status: `blocked_no_original_package`
+Current intake status: `blocked_missing_documentation`
 
-Original files counted: 0
+Original files counted: 1
 
-Generated handoff files ignored: 3
+Generated handoff files ignored: 14
 
 ## Minimum Acceptance Rule
 

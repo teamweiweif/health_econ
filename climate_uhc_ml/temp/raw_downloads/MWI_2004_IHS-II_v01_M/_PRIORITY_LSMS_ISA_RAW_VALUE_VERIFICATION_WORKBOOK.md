@@ -13,31 +13,31 @@ documentation are present and readable.
 
 | requirement | requirement_role | candidate_variable_rows | candidate_file_rows | current_verification_status |
 |---|---|---|---|---|
-| household_person_keys | merge_key_gate | 12 | 12 | blocked_no_original_package |
-| weights_and_design | survey_design_gate | 12 | 12 | blocked_no_original_package |
-| consumption_or_income | financial_denominator_gate | 12 | 3 | blocked_no_original_package |
-| oop_health_expenditure | financial_outcome_gate | 12 | 1 | blocked_no_original_package |
-| health_need_and_access | access_outcome_gate | 12 | 2 | blocked_no_original_package |
-| survey_timing | climate_timing_gate | 12 | 7 | blocked_no_original_package |
-| climate_geography | climate_geography_gate | 12 | 12 | blocked_no_original_package |
-| missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | blocked_no_original_package |
+| household_person_keys | merge_key_gate | 12 | 12 | blocked_archive_or_direct_file_preflight_not_ready |
+| weights_and_design | survey_design_gate | 12 | 12 | blocked_archive_or_direct_file_preflight_not_ready |
+| consumption_or_income | financial_denominator_gate | 12 | 3 | blocked_archive_or_direct_file_preflight_not_ready |
+| oop_health_expenditure | financial_outcome_gate | 12 | 1 | blocked_archive_or_direct_file_preflight_not_ready |
+| health_need_and_access | access_outcome_gate | 12 | 2 | blocked_archive_or_direct_file_preflight_not_ready |
+| survey_timing | climate_timing_gate | 12 | 7 | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | climate_geography_gate | 12 | 12 | blocked_archive_or_direct_file_preflight_not_ready |
+| missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | blocked_archive_or_direct_file_preflight_not_ready |
 
 ## File Review Preview
 
 | requirement | file_name | candidate_variable_rows | top_variable_names | current_file_verification_status |
 |---|---|---|---|---|
-| climate_geography | sec_a.NSDstat | 1 | type | blocked_no_original_package |
-| climate_geography | sec_f.NSDstat | 1 | type | blocked_no_original_package |
-| climate_geography | sec_g.NSDstat | 1 | type | blocked_no_original_package |
-| climate_geography | sec_h.NSDstat | 1 | type | blocked_no_original_package |
-| climate_geography | sec_i.NSDstat | 1 | type | blocked_no_original_package |
-| climate_geography | sec_j1.NSDstat | 1 | type | blocked_no_original_package |
-| climate_geography | sec_j2.NSDstat | 1 | type | blocked_no_original_package |
-| climate_geography | sec_k.NSDstat | 1 | type | blocked_no_original_package |
-| consumption_or_income | sec_j1.NSDstat | 10 | add;case_id;dist;ea;hhid;hhsize;hhwght;j01a;j02a;j03a | blocked_no_original_package |
-| consumption_or_income | sec_i.NSDstat | 1 | i03both | blocked_no_original_package |
-| consumption_or_income | sec_aa.NSDstat | 1 | aa01 | blocked_no_original_package |
-| health_need_and_access | sec_d.NSDstat | 7 | d05a;d05aoth;d05b;d05both;d27a;d27b;d04 | blocked_no_original_package |
+| climate_geography | sec_a.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | sec_f.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | sec_g.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | sec_h.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | sec_i.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | sec_j1.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | sec_j2.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| climate_geography | sec_k.NSDstat | 1 | type | blocked_archive_or_direct_file_preflight_not_ready |
+| consumption_or_income | sec_j1.NSDstat | 10 | add;case_id;dist;ea;hhid;hhsize;hhwght;j01a;j02a;j03a | blocked_archive_or_direct_file_preflight_not_ready |
+| consumption_or_income | sec_i.NSDstat | 1 | i03both | blocked_archive_or_direct_file_preflight_not_ready |
+| consumption_or_income | sec_aa.NSDstat | 1 | aa01 | blocked_archive_or_direct_file_preflight_not_ready |
+| health_need_and_access | sec_d.NSDstat | 7 | d05a;d05aoth;d05b;d05both;d27a;d27b;d04 | blocked_archive_or_direct_file_preflight_not_ready |
 
 ## Workbook Files
 

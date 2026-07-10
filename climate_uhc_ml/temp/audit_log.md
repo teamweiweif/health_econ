@@ -1599,3 +1599,42 @@
 - 2026-07-09T23:54:15+00:00 - Priority LSMS/ISA threshold download sequence rows=19 minimum_rows=11 countries=8.
 - 2026-07-09T23:54:20+00:00 - Direct-read audit bundle rows=149 manifest_rows=637.
 - 2026-07-09T23:54:22+00:00 - Workspace validation complete=458 incomplete_or_failed=0.
+- 2026-07-10T00:04:43+00:00 - Built priority LSMS/ISA credentialed raw acquisition workbench datasets=19 core_files=629.
+- 2026-07-10T00:04:43+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-10T00:04:43+00:00 - Priority LSMS/ISA threshold download sequence rows=19 minimum_rows=11 countries=8.
+- 2026-07-10T00:04:43+00:00 - Priority LSMS/ISA minimum-batch raw intake guide rows=11 expected_files=890 core_files=360.
+- 2026-07-10T00:04:48+00:00 - Direct-read audit bundle rows=149 manifest_rows=643.
+- 2026-07-10T00:04:50+00:00 - Workspace validation complete=458 incomplete_or_failed=0.
+- 2026-07-10T00:17:52+00:00 - Priority LSMS/ISA minimum-batch endpoint refresh datasets=11 endpoints=88.
+- 2026-07-10T00:20:39+00:00 - Priority LSMS/ISA minimum-batch endpoint refresh datasets=11 endpoints=88.
+- 2026-07-10T00:20:44+00:00 - Direct-read audit bundle rows=151 manifest_rows=648.
+- 2026-07-10T00:20:46+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T00:21:19+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-10T00:21:19+00:00 - Priority LSMS/ISA threshold download sequence rows=19 minimum_rows=11 countries=8.
+- 2026-07-10T00:21:19+00:00 - Priority LSMS/ISA minimum-batch raw intake guide rows=11 expected_files=890 core_files=360.
+- 2026-07-10T00:21:24+00:00 - Direct-read audit bundle rows=151 manifest_rows=648.
+- 2026-07-10T00:21:27+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T00:30:40+00:00 - Audited raw download folder: files=496 raw_like_files=5 targets=37.
+- 2026-07-10T00:30:40+00:00 - Built priority LSMS-ISA raw package intake packet ledger_rows=19 acceptance_rows=152 original_files=1.
+- 2026-07-10T00:30:40+00:00 - Built priority LSMS-ISA archive member preflight datasets=19 direct_files=1 archive_members=52.
+- 2026-07-10T00:30:40+00:00 - Built priority LSMS/ISA raw package receipt checklist datasets=19 requirements=152.
+- 2026-07-10T00:30:40+00:00 - Built priority LSMS/ISA credentialed raw acquisition workbench datasets=19 core_files=629.
+- 2026-07-10T00:30:41+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-10T00:34:24+00:00 - Audited raw download folder: files=496 raw_like_files=5 targets=37.
+- 2026-07-10T00:34:25+00:00 - Built priority LSMS-ISA raw package intake packet ledger_rows=19 acceptance_rows=152 original_files=1.
+- 2026-07-10T00:34:25+00:00 - Built priority LSMS-ISA archive member preflight datasets=19 direct_files=1 archive_members=52.
+- 2026-07-10T00:34:25+00:00 - Built priority LSMS/ISA raw package receipt checklist datasets=19 requirements=152.
+- 2026-07-10T00:34:25+00:00 - Built priority LSMS/ISA credentialed raw acquisition workbench datasets=19 core_files=629.
+- 2026-07-10T00:34:25+00:00 - Priority LSMS/ISA official file receipt validator datasets=19 expected_files=1597 core_files=629.
+- 2026-07-10T00:34:25+00:00 - Priority LSMS/ISA threshold download sequence rows=19 minimum_rows=11 countries=8.
+- 2026-07-10T00:34:25+00:00 - Priority LSMS/ISA minimum-batch raw intake guide rows=11 expected_files=890 core_files=360.
+- 2026-07-10T00:34:25+00:00 - Built priority LSMS/ISA raw value verification workbook requirements=152 variables=1531 files=629.
+- 2026-07-10T00:34:26+00:00 - Built priority analysis dataset synthesis blueprint schema_rows=572 join_rows=13.
+- 2026-07-10T00:34:27+00:00 - Built priority LSMS-ISA country-wave promotion packets packets=19 gates=361 actions=19.
+- 2026-07-10T00:34:27+00:00 - Refreshed promoted country-wave registry to refocused LSMS/ISA queue rows=19 gates=361.
+- 2026-07-10T00:34:27+00:00 - Promoted data gate promoted_rows=0 before=0 after=0 quarantined=0.
+- 2026-07-10T00:34:33+00:00 - Direct-read audit bundle rows=151 manifest_rows=648.
+- 2026-07-10T00:34:36+00:00 - Workspace validation complete=460 incomplete_or_failed=4.
+- 2026-07-10T00:36:02+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T00:36:45+00:00 - Direct-read audit bundle rows=151 manifest_rows=648.
+- 2026-07-10T00:36:47+00:00 - Workspace validation complete=464 incomplete_or_failed=0.

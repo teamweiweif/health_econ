@@ -1,1 +1,2 @@
 ﻿download_priority_order,country,wave,idno,relative_path,file_name,suffix,bytes,file_role,direct_file_acceptance_status
+3,Malawi,2004-2005,MWI_2004_IHS-II_v01_M,temp/raw_downloads/MWI_2004_IHS-II_v01_M/MWI_2004_IHS-II_v01_M_Stata8.zip,MWI_2004_IHS-II_v01_M_Stata8.zip,.zip,27963246,official_archive_or_compressed_package_candidate,direct_file_present_pending_schema_or_documentation_review

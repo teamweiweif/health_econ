@@ -4,22 +4,22 @@ Status: this audit checks files placed under `temp/raw_downloads/`; it does not 
 
 ## File Manifest
 
-- Files under `temp/raw_downloads/`: 43
+- Files under `temp/raw_downloads/`: 496
 - Expected target folders: 37
-- Targets with raw tabular/archive files: 1
+- Targets with raw tabular/archive files: 2
 
 | File role | Count |
 |---|---:|
-| documentation_or_metadata | 37 |
-| archive | 4 |
+| documentation_or_metadata | 489 |
+| archive | 5 |
 | readme_or_instructions | 2 |
 
 ## Target Folder Status
 
 | Target status | Count |
 |---|---:|
-| documentation_only_present | 36 |
-| raw_or_archive_files_present | 1 |
+| documentation_only_present | 35 |
+| raw_or_archive_files_present | 2 |
 
 ## Machine-Readable Outputs
 

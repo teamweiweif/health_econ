@@ -6,7 +6,7 @@ Official get-microdata URL: https://microdata.worldbank.org/catalog/2307/get-mic
 
 Target folder: `temp/raw_downloads/MWI_2004_IHS-II_v01_M/`
 
-Current receipt status: `blocked_no_original_package`
+Current receipt status: `blocked_no_raw_tabular_file`
 
 ## Manual Download Action
 

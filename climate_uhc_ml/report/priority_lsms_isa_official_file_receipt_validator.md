@@ -3,7 +3,9 @@
 Status: fail-closed official file receipt validation for the refocused
 LSMS/ISA dataset-promotion campaign. This validator compares local direct files
 and readable archive members against the official World Bank DDI file names.
-It does not download, extract, convert, or promote data.
+It also records constrained same-basename format aliases when a DDI entry such
+as `.NSDstat` corresponds to a real package member such as `.dta`. It does not
+download, extract, convert, or promote data.
 
 ## Summary
 
@@ -11,15 +13,17 @@ It does not download, extract, convert, or promote data.
 |---|---:|---|
 | priority_lsms_official_file_receipt_dataset_rows | 19 | Refocused LSMS/ISA datasets checked against the official DDI file universe. |
 | priority_lsms_official_file_receipt_expected_file_rows | 1597 | Official DDI file rows expected after complete package receipt. |
-| priority_lsms_official_file_receipt_expected_file_matched_rows | 0 | Expected official files matched by direct files or archive members. |
-| priority_lsms_official_file_receipt_expected_file_missing_rows | 1597 | Official DDI file rows still not found locally. |
+| priority_lsms_official_file_receipt_expected_file_matched_rows | 52 | Expected official files matched by direct files or archive members. |
+| priority_lsms_official_file_receipt_expected_file_alias_matched_rows | 52 | Expected files matched through a constrained same-basename DDI format alias, most commonly NSDstat to Stata. |
+| priority_lsms_official_file_receipt_expected_file_missing_rows | 1545 | Official DDI file rows still not found locally. |
 | priority_lsms_official_file_receipt_core_file_rows | 629 | Core requirement/file rows that must be present before raw-value review. |
-| priority_lsms_official_file_receipt_core_file_matched_rows | 0 | Core expected files matched locally. |
-| priority_lsms_official_file_receipt_core_file_missing_rows | 629 | Core expected files still missing locally. |
-| priority_lsms_official_file_receipt_core_complete_dataset_rows | 0 | Datasets whose expected core files all match local package evidence. |
-| priority_lsms_official_file_receipt_complete_dataset_rows | 0 | Datasets with all expected official file rows matched, pending schema and value checks. |
-| priority_lsms_official_file_receipt_original_or_member_rows | 0 | Non-generated direct original files plus archive member rows indexed. |
-| priority_lsms_official_file_receipt_generated_handoff_rows | 237 | Generated handoff files ignored as raw receipt evidence. |
+| priority_lsms_official_file_receipt_core_file_matched_rows | 37 | Core expected files matched locally. |
+| priority_lsms_official_file_receipt_core_file_alias_matched_rows | 37 | Core files matched through a constrained same-basename DDI format alias. |
+| priority_lsms_official_file_receipt_core_file_missing_rows | 592 | Core expected files still missing locally. |
+| priority_lsms_official_file_receipt_core_complete_dataset_rows | 1 | Datasets whose expected core files all match local package evidence. |
+| priority_lsms_official_file_receipt_complete_dataset_rows | 1 | Datasets with all expected official file rows matched, pending schema and value checks. |
+| priority_lsms_official_file_receipt_original_or_member_rows | 53 | Non-generated direct original files plus archive member rows indexed. |
+| priority_lsms_official_file_receipt_generated_handoff_rows | 430 | Generated handoff files ignored as raw receipt evidence. |
 | priority_lsms_official_file_receipt_handoff_readmes_written | 19 | Per-wave official file receipt validator handoffs written. |
 | priority_lsms_official_file_receipt_data_write_status | blocked_no_promoted_rows | Official file receipt alone never writes promoted data. |
 | modeling_gate_status | blocked | Models remain blocked until raw value, climate linkage, and promoted-registry thresholds pass. |
@@ -27,7 +31,8 @@ It does not download, extract, convert, or promote data.
 | priority_lsms_official_file_receipt_queue_role_core_selected_lsms_isa_aligned | 8 | Official file receipt validator row count by refocused queue role. |
 | priority_lsms_official_file_receipt_queue_role_replacement_backup_wave | 6 | Official file receipt validator row count by refocused queue role. |
 | priority_lsms_official_file_receipt_queue_role_sixth_country_backup_candidate | 3 | Official file receipt validator row count by refocused queue role. |
-| priority_lsms_official_file_receipt_status_blocked_no_original_package | 19 | Official file receipt dataset status count. |
+| priority_lsms_official_file_receipt_status_blocked_no_original_package | 18 | Official file receipt dataset status count. |
+| priority_lsms_official_file_receipt_status_official_file_receipt_complete_pending_schema_value_review | 1 | Official file receipt dataset status count. |
 
 ## Dataset Receipt Status
 
@@ -35,7 +40,7 @@ It does not download, extract, convert, or promote data.
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | core_selected_lsms_isa_aligned | Ethiopia | 2021-2022 | ETH_2021_ESPS-W5_v02_M | 0 | 68 | 0 | 36 | blocked_no_original_package |
 | 2 | core_selected_lsms_isa_aligned | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 0 | 68 | 0 | 35 | blocked_no_original_package |
-| 3 | core_replacement_primary | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 0 | 52 | 0 | 37 | blocked_no_original_package |
+| 3 | core_replacement_primary | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 52 | 52 | 37 | 37 | official_file_receipt_complete_pending_schema_value_review |
 | 4 | core_selected_lsms_isa_aligned | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 0 | 103 | 0 | 26 | blocked_no_original_package |
 | 5 | core_selected_lsms_isa_aligned | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 0 | 104 | 0 | 26 | blocked_no_original_package |
 | 6 | core_selected_lsms_isa_aligned | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 0 | 99 | 0 | 27 | blocked_no_original_package |
@@ -59,7 +64,6 @@ It does not download, extract, convert, or promote data.
 |---|---|---|---|---|---|
 | 1 | Ethiopia | ETH_2021_ESPS-W5_v02_M | temp/raw_downloads/ETH_2021_ESPS-W5_v02_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 2 | Ethiopia | ETH_2018_ESS_v04_M | temp/raw_downloads/ETH_2018_ESS_v04_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
-| 3 | Malawi | MWI_2004_IHS-II_v01_M | temp/raw_downloads/MWI_2004_IHS-II_v01_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 4 | Nigeria | NGA_2012_GHSP-W2_v02_M | temp/raw_downloads/NGA_2012_GHSP-W2_v02_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 5 | Nigeria | NGA_2015_GHSP-W3_v02_M | temp/raw_downloads/NGA_2015_GHSP-W3_v02_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
 | 6 | Nigeria | NGA_2010_GHSP-W1_v03_M | temp/raw_downloads/NGA_2010_GHSP-W1_v03_M/ | blocked_no_original_package | Place the complete unchanged official raw package and documentation in the target folder. |
@@ -152,35 +156,35 @@ It does not download, extract, convert, or promote data.
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | sect9_hh_w4.dta | ea_id | missing_expected_core_file |
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | sect1_hh_w4.dta | ea_id | missing_expected_core_file |
 | 2 | ETH_2018_ESS_v04_M | weights_and_design | sect10d1_hh_w4.dta | ea_id | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_a.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_f.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_g.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_h.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_i.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_j1.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_j2.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | climate_geography | sec_k.NSDstat | type | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | sec_j1.NSDstat | add;case_id;dist;ea;hhid;hhsize;hhwght;j01a;j02a;j03a | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | sec_i.NSDstat | i03both | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | consumption_or_income | sec_aa.NSDstat | aa01 | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | health_need_and_access | sec_d.NSDstat | d05a;d05aoth;d05b;d05both;d27a;d27b;d04 | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | health_need_and_access | mod_d.NSDstat | cd51b;cd_51a;cd47;cd57a;cd_50 | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_b.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_a.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_f.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_g.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_h.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_i.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_j1.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | household_person_keys | sec_j2.NSDstat | hhid | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | oop_health_expenditure | sec_d.NSDstat | d13;d12;d14;d16;d19;add;case_id;d02;d03;d04;d05a;d05aoth | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | sec_z1.NSDstat | z08a;z08b;z10a;z10b | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | ihs2_household.NSDstat | idate | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | sec_c.NSDstat | c14;c16 | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | sec_v.NSDstat | v09a;v09b | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | ihs2_individ.NSDstat | age_months | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | sec_a.NSDstat | a14b | missing_expected_core_file |
-| 3 | MWI_2004_IHS-II_v01_M | survey_timing | sec_q1.NSDstat | q03 | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | climate_geography | HHTrack | ea;lga;state;zone | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | climate_geography | secta_harvestw2 | ea;lga;state;zone | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | climate_geography | NGA_HouseholdGeovars_Y2 | LAT_DD_MOD;LON_DD_MOD | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | climate_geography | cons_agg_wave2_visit1 | ea | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | climate_geography | cons_agg_wave2_visit2 | ea | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | consumption_or_income | cons_agg_wave2_visit1 | totcons;nfdfoth;fdfishpr;fdothpr;fdrestby | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | consumption_or_income | cons_agg_wave2_visit2 | totcons;nfdfoth;fdfishpr;fdothpr;fdrestby | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | consumption_or_income | sect8e_plantingw2 | s8q10 | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | consumption_or_income | sect8a_plantingw2 | ea | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | health_need_and_access | sect4a_harvestw2 | s4aq15;s4aq16;s4aq17;s4aq1;s4aq3;s4aq20;s4aq6a;s4aq6b;s4aq6c | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | health_need_and_access | secta7_harvestw2 | cost_cd;cost_desc | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | health_need_and_access | sect4b_harvestw2 | s4bq3 | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | sect1_plantingw2 | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | sect1_harvestw2 | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | secta10_harvestw2 | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | sect11a_plantingw2 | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | sect11a1_plantingw2 | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | sect12_plantingw2 | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | HHTrack | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | household_person_keys | secta_harvestw2 | hhid | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | oop_health_expenditure | sect4a_harvestw2 | s4aq20;s4aq20b;s4aq13;s4aq35a;s4aq35b;s4aq35c | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | survey_timing | secta_harvestw2 | saq14ah;saq14am;saq14bh;saq14bm;saq18ah;saq18am;saq18bh;saq18bm;saq22ah;saq22am;saq22bh;saq22bm | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | HHTrack | wt_combined;wt_w1v1;wt_w1v2;wt_w2v1;wt_w2v2;wt_wave1;wt_wave2 | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | cons_agg_wave2_visit1 | ea;hhweight | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | cons_agg_wave2_visit2 | ea;hhweight | missing_expected_core_file |
+| 4 | NGA_2012_GHSP-W2_v02_M | weights_and_design | secta_harvestw2 | wt_combined | missing_expected_core_file |
+| 5 | NGA_2015_GHSP-W3_v02_M | climate_geography | sect1_harvestw3 | s1q31a;s1q31b;s1q31c;s1q31d | missing_expected_core_file |
+| 5 | NGA_2015_GHSP-W3_v02_M | climate_geography | NGA_HouseholdGeovars_Y3 | LAT_DD_MOD;LON_DD_MOD | missing_expected_core_file |
+| 5 | NGA_2015_GHSP-W3_v02_M | climate_geography | sectc1_harvestw3 | ea;lga | missing_expected_core_file |
 
 ## Outputs
 

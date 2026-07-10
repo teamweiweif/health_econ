@@ -18,19 +18,19 @@ Official URL: https://microdata.worldbank.org/catalog/2307/get-microdata
 
 Target folder: `temp/raw_downloads/MWI_2004_IHS-II_v01_M/`
 
-Official file receipt status: `blocked_no_original_package`
+Official file receipt status: `official_file_receipt_complete_pending_schema_value_review`
 
 Expected official files: 52
 
-Expected matched files: 0
+Expected matched files: 52
 
 Core files: 37
 
-Core matched files: 0
+Core matched files: 37
 
 ## Next Action
 
-Download the complete unchanged official World Bank package and documentation, then place it in the target folder.
+Run schema, raw-value, outcome, timing, geography, and climate-linkage verification before any data write.
 
 ## Post-Download Validation
 

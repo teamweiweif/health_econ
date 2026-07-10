@@ -102,6 +102,18 @@ CORE_MATCH_COLUMNS = [
 
 SUMMARY_COLUMNS = ["metric", "value", "interpretation"]
 
+RAW_FILE_ALIAS_EXTENSIONS = (
+    ".dta",
+    ".sav",
+    ".por",
+    ".sas7bdat",
+    ".xpt",
+    ".csv",
+    ".txt",
+    ".xlsx",
+    ".xls",
+)
+
 
 def read_csv_dicts(path: Path) -> list[dict[str, str]]:
     if not path.exists():
@@ -147,6 +159,39 @@ def file_key(value: str) -> str:
     if not text:
         return ""
     return PurePosixPath(text).name.lower()
+
+
+def expected_file_lookup_keys(expected_name: str) -> list[tuple[str, str]]:
+    key = file_key(expected_name)
+    if not key:
+        return []
+    keys = [("exact", key)]
+    if key.endswith(".nsdstat"):
+        stem = key[: -len(".nsdstat")]
+        keys.extend((f"alias_nsdstat_to_{ext.lstrip('.')}", f"{stem}{ext}") for ext in RAW_FILE_ALIAS_EXTENSIONS)
+    return keys
+
+
+def matched_locations(
+    actual_by_id_key: dict[str, dict[str, list[str]]],
+    idno: str,
+    expected_name: str,
+) -> list[str]:
+    for method, key in expected_file_lookup_keys(expected_name):
+        locations = actual_by_id_key.get(idno, {}).get(key, [])
+        if locations and method == "exact":
+            return locations
+        if locations:
+            return [f"{location}[{method}]" for location in locations]
+    return []
+
+
+def source_type(location: str) -> str:
+    base = "archive" if location.startswith("archive:") else "direct"
+    if "[alias_" in location:
+        alias = location.rsplit("[", 1)[-1].rstrip("]")
+        return f"{base}_{alias}"
+    return base
 
 
 def raw_folder_path(folder: str, idno: str) -> Path:
@@ -222,8 +267,8 @@ def build_full_matches(
         idno = clean(expected.get("idno"))
         expected_name = clean(expected.get("file_name"))
         key = file_key(expected_name)
-        locations = actual_by_id_key.get(idno, {}).get(key, [])
-        source_types = ["archive" if item.startswith("archive:") else "direct" for item in locations]
+        locations = matched_locations(actual_by_id_key, idno, expected_name)
+        source_types = [source_type(item) for item in locations]
         rows.append(
             {
                 "download_priority_order": clean(expected.get("download_priority_order")),
@@ -253,7 +298,7 @@ def build_core_matches(
         idno = clean(core.get("idno"))
         expected_name = clean(core.get("file_name"))
         key = file_key(expected_name)
-        locations = actual_by_id_key.get(idno, {}).get(key, [])
+        locations = matched_locations(actual_by_id_key, idno, expected_name)
         rows.append(
             {
                 "download_priority_order": clean(core.get("download_priority_order")),
@@ -413,13 +458,17 @@ def build_summary(
     role_counts = Counter(row.get("queue_role", "") for row in dataset_rows)
     full_matched = sum(1 for row in full_rows if row.get("official_file_match_status") == "matched_expected_official_file")
     core_matched = sum(1 for row in core_rows if row.get("official_core_file_match_status") == "matched_expected_core_file")
+    full_alias_matched = sum(1 for row in full_rows if "[alias_" in row.get("matched_local_locations", ""))
+    core_alias_matched = sum(1 for row in core_rows if "[alias_" in row.get("matched_local_locations", ""))
     rows = [
         {"metric": "priority_lsms_official_file_receipt_dataset_rows", "value": str(len(dataset_rows)), "interpretation": "Refocused LSMS/ISA datasets checked against the official DDI file universe."},
         {"metric": "priority_lsms_official_file_receipt_expected_file_rows", "value": str(len(full_rows)), "interpretation": "Official DDI file rows expected after complete package receipt."},
         {"metric": "priority_lsms_official_file_receipt_expected_file_matched_rows", "value": str(full_matched), "interpretation": "Expected official files matched by direct files or archive members."},
+        {"metric": "priority_lsms_official_file_receipt_expected_file_alias_matched_rows", "value": str(full_alias_matched), "interpretation": "Expected files matched through a constrained same-basename DDI format alias, most commonly NSDstat to Stata."},
         {"metric": "priority_lsms_official_file_receipt_expected_file_missing_rows", "value": str(len(full_rows) - full_matched), "interpretation": "Official DDI file rows still not found locally."},
         {"metric": "priority_lsms_official_file_receipt_core_file_rows", "value": str(len(core_rows)), "interpretation": "Core requirement/file rows that must be present before raw-value review."},
         {"metric": "priority_lsms_official_file_receipt_core_file_matched_rows", "value": str(core_matched), "interpretation": "Core expected files matched locally."},
+        {"metric": "priority_lsms_official_file_receipt_core_file_alias_matched_rows", "value": str(core_alias_matched), "interpretation": "Core files matched through a constrained same-basename DDI format alias."},
         {"metric": "priority_lsms_official_file_receipt_core_file_missing_rows", "value": str(len(core_rows) - core_matched), "interpretation": "Core expected files still missing locally."},
         {"metric": "priority_lsms_official_file_receipt_core_complete_dataset_rows", "value": str(sum(1 for row in dataset_rows if safe_int(row.get("official_core_missing_rows")) == 0 and safe_int(row.get("official_core_file_rows")) > 0)), "interpretation": "Datasets whose expected core files all match local package evidence."},
         {"metric": "priority_lsms_official_file_receipt_complete_dataset_rows", "value": str(status_counts.get("official_file_receipt_complete_pending_schema_value_review", 0)), "interpretation": "Datasets with all expected official file rows matched, pending schema and value checks."},
@@ -451,7 +500,9 @@ def write_report(
 Status: fail-closed official file receipt validation for the refocused
 LSMS/ISA dataset-promotion campaign. This validator compares local direct files
 and readable archive members against the official World Bank DDI file names.
-It does not download, extract, convert, or promote data.
+It also records constrained same-basename format aliases when a DDI entry such
+as `.NSDstat` corresponds to a real package member such as `.dta`. It does not
+download, extract, convert, or promote data.
 
 ## Summary
 

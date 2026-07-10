@@ -12,7 +12,7 @@ Current intake status: `blocked_no_original_package`
 
 Original files counted: 0
 
-Generated handoff files ignored: 2
+Generated handoff files ignored: 11
 
 ## Minimum Acceptance Rule
 

@@ -4895,11 +4895,12 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_raw_intake_dataset_rows >= priority_refocused_queue_rows
         and priority_raw_intake_manifest_rows >= priority_raw_intake_generated
         and priority_raw_intake_generated >= priority_refocused_queue_rows
-        and priority_raw_intake_original == 0
-        and priority_raw_intake_archives == 0
-        and priority_raw_intake_tabular == 0
-        and priority_raw_intake_docs == 0
-        and priority_raw_intake_missing >= priority_raw_intake_dataset_rows
+        and 0 <= priority_raw_intake_original <= priority_raw_intake_dataset_rows
+        and 0 <= priority_raw_intake_archives <= priority_raw_intake_original
+        and 0 <= priority_raw_intake_tabular <= priority_raw_intake_original
+        and 0 <= priority_raw_intake_docs <= priority_raw_intake_original
+        and 0 <= priority_raw_intake_missing <= priority_raw_intake_dataset_rows
+        and priority_raw_intake_missing + priority_raw_intake_original >= priority_raw_intake_dataset_rows
         and priority_raw_intake_requirements >= priority_refocused_requirement_rows
         and priority_raw_intake_blocked_requirements >= priority_raw_intake_requirements
         and priority_raw_intake_handoffs >= priority_raw_intake_dataset_rows
@@ -4909,7 +4910,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "dataset_promotion",
-        "Priority LSMS/ISA raw-package intake packet scans refocused target folders and keeps all requirements blocked until original packages arrive",
+        "Priority LSMS/ISA raw-package intake packet scans refocused target folders and keeps all requirements blocked until package and review gates pass",
         status(priority_raw_intake_gate_ok),
         f"ledger_rows={counts['priority_lsms_isa_raw_package_intake_ledger']}; manifest_rows={counts['priority_lsms_isa_raw_package_file_manifest']}; acceptance_rows={counts['priority_lsms_isa_raw_package_acceptance_matrix']}; summary_rows={counts['priority_lsms_isa_raw_package_intake_summary']}; reported_datasets={priority_raw_intake_dataset_rows}; reported_manifest={priority_raw_intake_manifest_rows}; generated_handoffs={priority_raw_intake_generated}; original_files={priority_raw_intake_original}; archives={priority_raw_intake_archives}; raw_tabular={priority_raw_intake_tabular}; documentation={priority_raw_intake_docs}; missing_packages={priority_raw_intake_missing}; requirements={priority_raw_intake_requirements}; blocked_requirements={priority_raw_intake_blocked_requirements}; handoffs={priority_raw_intake_handoffs}; data_write={priority_raw_intake_data_write}; modeling_gate={priority_raw_intake_modeling_gate}",
         "" if priority_raw_intake_gate_ok else "Run script/144_build_priority_lsms_isa_raw_package_intake_packet.py after the refocused acquisition queue is current.",
@@ -4934,11 +4935,11 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and counts["priority_lsms_isa_archive_member_preflight_summary"] > 0
         and file_ok(REPORT_DIR / "priority_lsms_isa_archive_member_preflight.md")
         and priority_archive_preflight_datasets >= priority_refocused_queue_rows
-        and priority_archive_preflight_direct_files == 0
-        and priority_archive_preflight_direct_archives == 0
-        and priority_archive_preflight_direct_raw == 0
-        and priority_archive_preflight_direct_docs == 0
-        and priority_archive_preflight_members == 0
+        and 0 <= priority_archive_preflight_direct_files <= priority_archive_preflight_datasets
+        and 0 <= priority_archive_preflight_direct_archives <= priority_archive_preflight_direct_files
+        and 0 <= priority_archive_preflight_direct_raw <= priority_archive_preflight_direct_files
+        and 0 <= priority_archive_preflight_direct_docs <= priority_archive_preflight_direct_files
+        and priority_archive_preflight_members >= 0
         and priority_archive_preflight_ready == 0
         and priority_archive_preflight_blocked >= priority_archive_preflight_datasets
         and priority_archive_preflight_requirements >= priority_refocused_requirement_rows
@@ -4950,7 +4951,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "dataset_promotion",
-        "Priority LSMS/ISA archive/direct-file preflight checks raw package contents without extraction and remains blocked when no original files exist",
+        "Priority LSMS/ISA archive/direct-file preflight checks raw package contents without extraction and remains blocked until documentation and review gates pass",
         status(priority_archive_preflight_gate_ok),
         f"preflight_rows={counts['priority_lsms_isa_archive_member_preflight']}; member_rows={counts['priority_lsms_isa_archive_member_manifest']}; direct_rows={counts['priority_lsms_isa_direct_file_preflight']}; requirement_rows={counts['priority_lsms_isa_archive_requirement_preflight']}; summary_rows={counts['priority_lsms_isa_archive_member_preflight_summary']}; reported_datasets={priority_archive_preflight_datasets}; direct_files={priority_archive_preflight_direct_files}; archives={priority_archive_preflight_direct_archives}; direct_raw={priority_archive_preflight_direct_raw}; direct_docs={priority_archive_preflight_direct_docs}; archive_members={priority_archive_preflight_members}; ready={priority_archive_preflight_ready}; blocked={priority_archive_preflight_blocked}; reported_requirements={priority_archive_preflight_requirements}; blocked_requirements={priority_archive_preflight_blocked_requirements}; handoffs={priority_archive_preflight_handoffs}; data_write={priority_archive_preflight_data_write}; modeling_gate={priority_archive_preflight_modeling_gate}",
         "" if priority_archive_preflight_gate_ok else "Run script/145_build_priority_lsms_isa_archive_member_preflight.py after the raw-package intake packet is current.",
@@ -5009,10 +5010,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and file_ok(REPORT_DIR / "priority_lsms_isa_raw_package_receipt_checklist.md")
         and priority_lsms_receipt_datasets == counts["priority_lsms_isa_raw_package_receipt_checklist"]
         and priority_lsms_receipt_requirements == counts["priority_lsms_isa_raw_package_requirement_receipt_checklist"]
-        and priority_lsms_receipt_package_received == 0
-        and priority_lsms_receipt_complete_received == 0
+        and 0 <= priority_lsms_receipt_package_received <= priority_lsms_receipt_datasets
+        and 0 <= priority_lsms_receipt_complete_received <= priority_lsms_receipt_package_received
         and priority_lsms_receipt_ready_review == 0
-        and priority_lsms_receipt_blocked_no_original >= priority_lsms_receipt_datasets
+        and priority_lsms_receipt_blocked_no_original + priority_lsms_receipt_package_received >= priority_lsms_receipt_datasets
         and priority_lsms_receipt_blocked_requirements >= priority_lsms_receipt_requirements
         and priority_lsms_receipt_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and priority_lsms_receipt_data_write == "blocked_no_promoted_rows"
@@ -5046,8 +5047,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_credentialed_full_files == counts["priority_lsms_isa_credentialed_raw_full_file_manifest"]
         and priority_lsms_credentialed_core_files == counts["priority_lsms_isa_credentialed_raw_core_file_checklist"]
         and priority_lsms_credentialed_access_gate >= counts["priority_lsms_isa_refocused_acquisition_queue"]
-        and priority_lsms_credentialed_received == 0
-        and priority_lsms_credentialed_targets_missing >= priority_lsms_credentialed_core_files
+        and 0 <= priority_lsms_credentialed_received <= priority_lsms_credentialed_datasets
+        and 0 <= priority_lsms_credentialed_targets_missing <= priority_lsms_credentialed_core_files
+        and (priority_lsms_credentialed_received > 0 or priority_lsms_credentialed_targets_missing >= priority_lsms_credentialed_core_files)
         and priority_lsms_credentialed_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and priority_lsms_credentialed_data_write == "blocked_no_promoted_rows"
         and priority_lsms_credentialed_modeling_gate == "blocked"

@@ -34,18 +34,18 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_raw_value_workbook_file_rows | 629 | File-level raw value verification workbook rows. |
 | priority_lsms_isa_receipt_checklist_dataset_rows | 19 | Dataset-level raw package receipt checklist rows. |
 | priority_lsms_isa_receipt_checklist_requirement_rows | 152 | Requirement-level raw package receipt checklist rows. |
-| priority_lsms_isa_receipt_checklist_package_received_rows | 0 | Refocused LSMS/ISA waves with original package receipt evidence. |
+| priority_lsms_isa_receipt_checklist_package_received_rows | 1 | Refocused LSMS/ISA waves with original package receipt evidence. |
 | priority_lsms_isa_credentialed_workbench_dataset_rows | 19 | Credentialed raw acquisition workbench dataset rows. |
 | priority_lsms_isa_credentialed_workbench_core_file_rows | 629 | Core file rows to confirm after official package download. |
-| priority_lsms_isa_credentialed_workbench_package_received_rows | 0 | Credentialed workbench waves with original package receipt evidence. |
+| priority_lsms_isa_credentialed_workbench_package_received_rows | 1 | Credentialed workbench waves with original package receipt evidence. |
 | priority_lsms_isa_official_file_receipt_expected_file_rows | 1597 | Official DDI files expected after package receipt. |
-| priority_lsms_isa_official_file_receipt_expected_file_matched_rows | 0 | Expected official DDI files matched locally. |
-| priority_lsms_isa_official_file_receipt_core_file_missing_rows | 629 | Core expected files still missing locally. |
+| priority_lsms_isa_official_file_receipt_expected_file_matched_rows | 52 | Expected official DDI files matched locally. |
+| priority_lsms_isa_official_file_receipt_core_file_missing_rows | 592 | Core expected files still missing locally. |
 | priority_lsms_isa_threshold_sequence_minimum_download_rows | 11 | Minimum downloads needed to test 10-wave and 6-country thresholds if every wave passes verification. |
 | priority_lsms_isa_threshold_sequence_recommended_download_rows | 13 | Recommended threshold downloads including all sixth-country candidates. |
-| priority_lsms_isa_threshold_sequence_raw_package_received_rows | 0 | Threshold sequence rows with non-blocked official file receipt status. |
+| priority_lsms_isa_threshold_sequence_raw_package_received_rows | 1 | Threshold sequence rows with non-blocked official file receipt status. |
 | priority_lsms_isa_minimum_batch_expected_full_file_rows | 890 | Expected official DDI file rows across the 11-wave minimum batch. |
-| priority_lsms_isa_minimum_batch_missing_core_file_rows | 360 | Core official files still missing locally for the 11-wave minimum batch. |
+| priority_lsms_isa_minimum_batch_missing_core_file_rows | 323 | Core official files still missing locally for the 11-wave minimum batch. |
 | priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows | 11 | Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh. |
 | priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows | 0 | Raw download candidate endpoints detected by the minimum-batch endpoint refresh. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
@@ -110,13 +110,13 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_refocused_requirement_rows | 152 | Requirement rows for refocused selected and backup targets. |
 | priority_lsms_refocused_data_write_status | blocked_no_promoted_rows | Promoted-data write status for the refocused queue. |
 | priority_lsms_raw_intake_dataset_rows | 19 | Refocused LSMS/ISA targets covered by raw-package intake ledger. |
-| priority_lsms_raw_intake_original_file_rows | 0 | Non-generated original package/documentation candidates found in target folders. |
-| priority_lsms_raw_intake_missing_package_rows | 19 | Refocused targets with no original package files yet. |
+| priority_lsms_raw_intake_original_file_rows | 1 | Non-generated original package/documentation candidates found in target folders. |
+| priority_lsms_raw_intake_missing_package_rows | 18 | Refocused targets with no original package files yet. |
 | priority_lsms_raw_intake_blocked_requirement_rows | 152 | Raw-package acceptance requirements still blocked. |
 | priority_lsms_raw_intake_data_write_status | blocked_no_promoted_rows | Promoted-data write status for the raw intake packet. |
 | priority_lsms_archive_preflight_dataset_rows | 19 | Refocused targets covered by archive/direct-file preflight. |
-| priority_lsms_archive_preflight_direct_file_rows | 0 | Direct non-generated original files detected by archive preflight. |
-| priority_lsms_archive_preflight_archive_member_rows | 0 | Readable archive member rows detected without extraction. |
+| priority_lsms_archive_preflight_direct_file_rows | 1 | Direct non-generated original files detected by archive preflight. |
+| priority_lsms_archive_preflight_archive_member_rows | 52 | Readable archive member rows detected without extraction. |
 | priority_lsms_archive_preflight_blocked_dataset_rows | 19 | Refocused targets still blocked before schema/manual raw review. |
 | priority_lsms_archive_preflight_blocked_requirement_rows | 152 | Archive preflight requirement rows still blocked. |
 | priority_lsms_archive_preflight_data_write_status | blocked_no_promoted_rows | Promoted-data write status for archive preflight. |
@@ -506,7 +506,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_readiness | 6 | Direct-read bundle section count. |
 | bundle_section_state | 3 | Direct-read bundle section count. |
 | bundle_section_traceability | 3 | Direct-read bundle section count. |
-| bundle_status_archive_preflight_ready_no_original_files | 1 | Direct-read bundle status count. |
+| bundle_status_archive_preflight_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_available | 2 | Direct-read bundle status count. |
 | bundle_status_blocked_alb2002_access_candidate_not_promoted_due_denominator_skip_climate_gates | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_alb2002_access_need_denominator_policy_not_outcome_ready | 1 | Direct-read bundle status count. |
@@ -554,7 +554,6 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_blocked_no_alb2002_boundary_source_ready_for_climate_linkage | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_alb2002_outcome_ready_for_promotion | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_albania_wave_ready_for_first_analysis_promotion | 1 | Direct-read bundle status count. |
-| bundle_status_blocked_no_original_package | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_public_2002_district_boundary_source_verified | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_no_raw_or_archive_file | 1 | Direct-read bundle status count. |
 | bundle_status_blocked_official_access_required_no_original_package | 1 | Direct-read bundle status count. |
@@ -572,6 +571,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_core_public_documentation_saved_raw_gate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_core_wave_replacement_needed_before_download_execution | 1 | Direct-read bundle status count. |
 | bundle_status_credentialed_download_required_no_public_raw_route | 1 | Direct-read bundle status count. |
+| bundle_status_credentialed_workbench_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready | 2 | Direct-read bundle status count. |
 | bundle_status_documented_alb2002_oop_skipped_values_zero_only_but_oop_policy_not_ready | 1 | Direct-read bundle status count. |
 | bundle_status_download_execution_ready_raw_missing | 1 | Direct-read bundle status count. |
@@ -592,12 +592,14 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_manual_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_metadata_only_requires_raw_verification | 4 | Direct-read bundle status count. |
 | bundle_status_metadata_variable_candidates_ready_raw_review_required | 1 | Direct-read bundle status count. |
+| bundle_status_minimum_batch_intake_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_not_available | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_outcome_semantics_climate_crosswalk_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_timing_geography_recall_blocked | 2 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_timing_geography_recall_semantics_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_ready_for_verified_recipe | 1 | Direct-read bundle status count. |
 | bundle_status_not_received_no_original_raw_package | 1 | Direct-read bundle status count. |
+| bundle_status_official_file_receipt_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_official_metadata_evidence_present_raw_gate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_partial_gate_delta_documented_keep_data_empty_until_outcome_sdg_geography_gates_pass | 1 | Direct-read bundle status count. |
 | bundle_status_pass | 2 | Direct-read bundle status count. |
@@ -605,21 +607,19 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_public_documentation_complete_raw_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_public_metadata_only_raw_gate_confirmed | 1 | Direct-read bundle status count. |
 | bundle_status_raw_archives_available_requires_value_verification | 1 | Direct-read bundle status count. |
-| bundle_status_raw_package_intake_ready_no_original_files | 1 | Direct-read bundle status count. |
+| bundle_status_raw_package_intake_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_raw_schema_claims_only_no_analysis_dataset_claims | 1 | Direct-read bundle status count. |
 | bundle_status_raw_schema_inspected_harmonization_pending | 1 | Direct-read bundle status count. |
 | bundle_status_raw_value_summary_available_manual_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_ready | 1 | Direct-read bundle status count. |
 | bundle_status_ready_for_credentialed_manual_download | 1 | Direct-read bundle status count. |
-| bundle_status_ready_for_manual_credentialed_download | 1 | Direct-read bundle status count. |
-| bundle_status_ready_for_manual_threshold_downloads | 1 | Direct-read bundle status count. |
-| bundle_status_ready_for_minimum_batch_manual_intake | 1 | Direct-read bundle status count. |
-| bundle_status_receipt_checklist_ready_no_original_files | 1 | Direct-read bundle status count. |
+| bundle_status_receipt_checklist_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_refocused_manual_download_queue_ready_raw_missing | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_no_interview_timing_coarse_geography_outcome_semantics_pending | 1 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_not_analysis_ready | 2 | Direct-read bundle status count. |
 | bundle_status_temp_candidate_timing_geography_observed_outcome_semantics_pending | 1 | Direct-read bundle status count. |
 | bundle_status_threshold_campaign_ready_raw_missing | 1 | Direct-read bundle status count. |
+| bundle_status_threshold_sequence_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_workbook_ready_blocked_no_original_files | 1 | Direct-read bundle status count. |
 
 ## Bundle Sections
@@ -679,14 +679,14 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | refocused_manual_download_queue_ready_raw_missing | 1 |
 | public_documentation_complete_raw_still_blocked | 1 |
 | metadata_variable_candidates_ready_raw_review_required | 1 |
-| raw_package_intake_ready_no_original_files | 1 |
-| archive_preflight_ready_no_original_files | 1 |
+| raw_package_intake_needs_review | 1 |
+| archive_preflight_needs_review | 1 |
 | workbook_ready_blocked_no_original_files | 1 |
-| receipt_checklist_ready_no_original_files | 1 |
-| ready_for_manual_credentialed_download | 1 |
-| blocked_no_original_package | 1 |
-| ready_for_manual_threshold_downloads | 1 |
-| ready_for_minimum_batch_manual_intake | 1 |
+| receipt_checklist_needs_review | 1 |
+| credentialed_workbench_needs_review | 1 |
+| official_file_receipt_needs_review | 1 |
+| threshold_sequence_needs_review | 1 |
+| minimum_batch_intake_needs_review | 1 |
 | credentialed_download_required_no_public_raw_route | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | closed_no_promoted_rows | 1 |

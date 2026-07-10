@@ -20,10 +20,10 @@ datasets, or write `data/`.
 | priority_lsms_threshold_sequence_recommended_country_rows | 8 | Distinct countries represented by the recommended threshold batch. |
 | priority_lsms_threshold_sequence_full_download_rows | 19 | Full refocused acquisition queue including same-country replacement backups. |
 | priority_lsms_threshold_sequence_expected_file_rows | 1597 | Official DDI files expected across the full refocused queue. |
-| priority_lsms_threshold_sequence_expected_file_matched_rows | 0 | Expected official files currently matched locally. |
+| priority_lsms_threshold_sequence_expected_file_matched_rows | 52 | Expected official files currently matched locally. |
 | priority_lsms_threshold_sequence_core_file_rows | 629 | Core official file rows across the full refocused queue. |
-| priority_lsms_threshold_sequence_core_file_matched_rows | 0 | Core official files currently matched locally. |
-| priority_lsms_threshold_sequence_raw_package_received_rows | 0 | Rows with any non-blocked official file receipt status. |
+| priority_lsms_threshold_sequence_core_file_matched_rows | 37 | Core official files currently matched locally. |
+| priority_lsms_threshold_sequence_raw_package_received_rows | 1 | Rows with any non-blocked official file receipt status. |
 | priority_lsms_threshold_sequence_promoted_analysis_ready_rows | 0 | Rows analysis-ready in the promoted registry. |
 | priority_lsms_threshold_sequence_handoff_readmes_written | 19 | Per-wave threshold download sequence handoffs written. |
 | priority_lsms_threshold_sequence_data_write_status | blocked_no_promoted_rows | Threshold sequencing never writes promoted data. |
@@ -46,7 +46,7 @@ and climate-linkage gates: 10 core waves plus one sixth-country candidate.
 |---|---|---|---|---|---|---|---|
 | 1 | minimum_10_wave_core | Ethiopia | 2021-2022 | ETH_2021_ESPS-W5_v02_M | 68 | 36 | blocked_no_original_package |
 | 2 | minimum_10_wave_core | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 68 | 35 | blocked_no_original_package |
-| 3 | minimum_10_wave_core | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 52 | 37 | blocked_no_original_package |
+| 3 | minimum_10_wave_core | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 52 | 37 | official_file_receipt_complete_pending_schema_value_review |
 | 4 | minimum_10_wave_core | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 103 | 26 | blocked_no_original_package |
 | 5 | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 104 | 26 | blocked_no_original_package |
 | 6 | minimum_10_wave_core | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 99 | 27 | blocked_no_original_package |
@@ -62,7 +62,7 @@ and climate-linkage gates: 10 core waves plus one sixth-country candidate.
 |---|---|---|---|---|---|---|---|
 | 1 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Ethiopia | 2021-2022 | ETH_2021_ESPS-W5_v02_M | 7 | blocked_no_original_package |
 | 2 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 7 | blocked_no_original_package |
-| 3 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 7 | blocked_no_original_package |
+| 3 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 7 | official_file_receipt_complete_pending_schema_value_review |
 | 4 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 7 | blocked_no_original_package |
 | 5 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 7 | blocked_no_original_package |
 | 6 | phase_1_core_10_wave_double_failure_base | minimum_10_wave_core | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 7 | blocked_no_original_package |
