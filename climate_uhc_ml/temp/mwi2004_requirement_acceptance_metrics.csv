@@ -1,0 +1,20 @@
+﻿country,wave,idno,metric,value,status,interpretation
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,household_case_id_distinct,11280,pass,Distinct household case_id keys in ihs2_household.dta.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,exp_case_id_unmatched_to_household,0,pass,Expenditure case_id keys absent from household file.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,pov_case_id_unmatched_to_household,0,pass,Poverty/consumption case_id keys absent from household file.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,health_person_keys_unmatched_to_roster,6,blocker,Health module case_id+memid keys absent from individual roster; raw IDs are intentionally not exported.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,roster_person_keys_unmatched_to_health,2,review,Individual roster case_id+memid keys absent from health module; raw IDs are intentionally not exported.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,household_hhwght_positive_rows,11280/11280,pass,Positive household weight coverage.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,household_strata_distinct,30,pass,Distinct household strata values.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,health_psu_distinct,564,pass,Distinct health-module PSU values.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,household_ea_keys_matched_to_ea_file,564,pass,Household dist+ta+ea keys matched to EA auxiliary file.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,household_interview_date_min,2004-03-08,pass,Earliest raw household interview date from idate.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,household_interview_date_max,2005-03-31,pass,Latest raw household interview date from idate.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,rexpagg_positive_rows,11280/11280,pass,Positive total annual household expenditure rows.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,rexp_cat06_nonmissing_rows,11280/11280,pass,Nonmissing annual household health expenditure aggregate rows.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,oop_aggregate_component_max_abs_diff,0.00294495,pass,Max absolute difference between rexp_cat06 and the sum of real health components.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,oop_aggregate_component_diff_le_0_01_rows,11280/11280,pass,Rows whose OOP aggregate-component difference is within 0.01 local currency units.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,candidate_che10_rows,208,diagnostic_not_final,Candidate CHE10 count from rexp_cat06/rexpagg; not final indicator.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,candidate_che25_rows,17,diagnostic_not_final,Candidate CHE25 count from rexp_cat06/rexpagg; not final indicator.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,illness_injury_past_2_weeks_yes_rows,14143,pass,Rows with d04 illness/injury yes.
+Malawi,2004-2005,MWI_2004_IHS-II_v01_M,care_action_no_money_label_hits,660,review,Rows where d07a/d07b labels indicate no-money non-care action; requires skip and double-count review.

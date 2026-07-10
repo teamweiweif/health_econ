@@ -1,0 +1,9 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave adjudicated in this focused acceptance decision.
+decision_rows,8,Requirement-level acceptance decision rows.
+mechanical_raw_checks_pass_or_partial,5,Requirements with raw mechanical evidence that passes but still needs policy/documentation acceptance.
+hard_blocked_requirements,3,Requirements still blocked even before final climate/data promotion.
+final_verified_requirements,0,Requirements accepted as final raw-value verified; remains zero.
+health_person_unmatched_to_roster,6,Health-module person keys absent from roster; raw IDs intentionally not exported.
+oop_component_diff_le_0_01_rows,11280/11280,OOP aggregate-component numeric agreement under tolerance.
+data_write_gate_status,closed,No promoted dataset may be written from this decision artifact.

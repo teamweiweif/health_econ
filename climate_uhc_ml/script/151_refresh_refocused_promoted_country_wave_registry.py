@@ -12,6 +12,7 @@ QUEUE_PATH = TEMP_DIR / "priority_lsms_isa_refocused_acquisition_queue.csv"
 PACKET_INDEX_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_index.csv"
 PACKET_GATE_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_gate_matrix.csv"
 RECEIPT_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_receipt_checklist.csv"
+MWI2004_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv"
 
 REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
 GATE_AUDIT_PATH = RESULT_DIR / "country_wave_promotion_gate_audit.csv"
@@ -139,11 +140,26 @@ def failed_gate_blockers(gate_rows: list[dict[str, str]]) -> str:
     return f"failed_gates={len(failed)} ({gate_names}); required_actions={actions}"
 
 
+def focused_decision_blockers(decision_rows: list[dict[str, str]]) -> str:
+    if not decision_rows:
+        return ""
+    blockers = []
+    for row in decision_rows:
+        if clean(row.get("final_verification_decision")) == "not_final_verified":
+            blockers.append(
+                f"{row.get('requirement', '')}: {row.get('mechanical_raw_check_decision', '')} - {row.get('remaining_blocker', '')}"
+            )
+    if not blockers:
+        return ""
+    return "focused_raw_acceptance_blockers=" + compact(blockers, 5)
+
+
 def build_registry_rows(
     queue_rows: list[dict[str, str]],
     packet_by_id: dict[str, dict[str, str]],
     receipt_by_id: dict[str, dict[str, str]],
     gates_by_id: dict[str, list[dict[str, str]]],
+    acceptance_by_id: dict[str, list[dict[str, str]]],
 ) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for wave in queue_rows:
@@ -151,6 +167,7 @@ def build_registry_rows(
         packet = packet_by_id.get(idno, {})
         receipt = receipt_by_id.get(idno, {})
         gate_rows = gates_by_id.get(idno, [])
+        acceptance_rows = acceptance_by_id.get(idno, [])
         country = clean(wave.get("country"))
         financial_status = clean(packet.get("financial_protection_status")) or "blocked"
         access_status = clean(packet.get("access_forgone_care_status")) or "blocked"
@@ -169,6 +186,7 @@ def build_registry_rows(
             [
                 receipt_blocker,
                 failed_gate_blockers(gate_rows),
+                focused_decision_blockers(acceptance_rows),
                 "no accepted CHIRPS or ERA5 climate-linkage route" if not climate_ready else "",
                 "raw values, labels, units, recall periods, missing codes, skip patterns, and merge keys not verified"
                 if not financial_ready or not access_ready
@@ -225,6 +243,18 @@ def build_download_queue(registry_rows: list[dict[str, str]], queue_by_id: dict[
         wave = queue_by_id.get(row["idno"], {})
         if row.get("analysis_ready_status") == "promoted_analysis_ready":
             continue
+        if row.get("raw_package_status") == "blocked_no_original_package":
+            next_action = "download_or_place_complete_original_raw_package"
+            top_expected = "complete unchanged official raw package plus documentation; see per-wave receipt checklist"
+        elif row.get("raw_value_verification_status") != "raw_value_verified":
+            next_action = "complete_raw_value_key_unit_verification"
+            top_expected = "received raw package is present; resolve remaining raw value, key, unit, recall, skip, and construct blockers"
+        elif row.get("climate_linkage_ready_status") != "accepted_chirps_or_era5_route":
+            next_action = "accept_chirps_or_era5_linkage_route"
+            top_expected = "raw values are verified but climate timing/geography route remains blocked"
+        else:
+            next_action = "complete_analysis_dataset_synthesis_join_review"
+            top_expected = "upstream gates are nearly ready; complete household-climate synthesis and registry write gate"
         rows.append(
             {
                 "action_rank": clean(wave.get("download_priority_order")),
@@ -235,9 +265,9 @@ def build_download_queue(registry_rows: list[dict[str, str]], queue_by_id: dict[
                 "official_url": row["official_url"],
                 "local_target_folder": row["local_target_folder"],
                 "raw_package_status": row["raw_package_status"],
-                "top_expected_files_or_modules": "complete unchanged official raw package plus documentation; see per-wave receipt checklist",
+                "top_expected_files_or_modules": top_expected,
                 "promotion_packet": row["promotion_packet"],
-                "next_action": "download_or_place_complete_original_raw_package",
+                "next_action": next_action,
             }
         )
     return sorted(rows, key=lambda r: safe_int(r.get("action_rank"), 999999))
@@ -350,9 +380,16 @@ def main() -> None:
     packet_rows = read_csv_dicts(PACKET_INDEX_PATH)
     packet_gate_rows = read_csv_dicts(PACKET_GATE_PATH)
     receipt_rows = read_csv_dicts(RECEIPT_PATH)
+    acceptance_rows = read_csv_dicts(MWI2004_ACCEPTANCE_DECISION_PATH)
 
     queue_by_id = one_by_id(queue_rows)
-    registry_rows = build_registry_rows(queue_rows, one_by_id(packet_rows), one_by_id(receipt_rows), by_id(packet_gate_rows))
+    registry_rows = build_registry_rows(
+        queue_rows,
+        one_by_id(packet_rows),
+        one_by_id(receipt_rows),
+        by_id(packet_gate_rows),
+        by_id(acceptance_rows),
+    )
     gate_rows = build_gate_rows(packet_gate_rows)
     download_rows = build_download_queue(registry_rows, queue_by_id)
     summary_rows = build_summary(registry_rows, queue_rows, gate_rows)

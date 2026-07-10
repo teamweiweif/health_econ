@@ -20,6 +20,7 @@ ARCHIVE_REQUIREMENT_PATH = TEMP_DIR / "priority_lsms_isa_archive_requirement_pre
 CLIMATE_PREFLIGHT_PATH = TEMP_DIR / "priority_climate_linkage_preflight.csv"
 SYNTHESIS_JOIN_PATH = TEMP_DIR / "priority_analysis_dataset_join_plan.csv"
 REGISTRY_PATH = RESULT_DIR / "promoted_country_wave_registry.csv"
+MWI2004_ACCEPTANCE_DECISION_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_decisions.csv"
 
 PACKET_DIR = REPORT_DIR / "priority_lsms_isa_country_wave_promotion_packets"
 INDEX_PATH = TEMP_DIR / "priority_lsms_isa_country_wave_promotion_packet_index.csv"
@@ -283,6 +284,7 @@ def write_packet(
     shortlist_rows: list[dict[str, str]],
     variable_rows: list[dict[str, str]],
     archive_req_rows: list[dict[str, str]],
+    acceptance_rows: list[dict[str, str]],
 ) -> str:
     PACKET_DIR.mkdir(parents=True, exist_ok=True)
     path = PACKET_DIR / f"{wave['idno']}.md"
@@ -332,6 +334,23 @@ def write_packet(
         }
         for row in archive_req_rows[:12]
     ]
+    acceptance_preview = [
+        {
+            "requirement": row.get("requirement", ""),
+            "mechanical_raw_check_decision": row.get("mechanical_raw_check_decision", ""),
+            "final_verification_decision": row.get("final_verification_decision", ""),
+            "remaining_blocker": row.get("remaining_blocker", ""),
+        }
+        for row in acceptance_rows
+    ]
+    acceptance_section = ""
+    if acceptance_preview:
+        acceptance_section = f"""
+
+## Focused Raw Acceptance Decisions
+
+{markdown_table(acceptance_preview, ['requirement', 'mechanical_raw_check_decision', 'final_verification_decision', 'remaining_blocker'], 12)}
+"""
     path.write_text(
         f"""# Priority LSMS-ISA Country-Wave Promotion Packet
 
@@ -371,7 +390,7 @@ Next blocking action: `{index_row.get('next_blocking_action', '')}`
 
 ## Archive/Direct-File Requirement Preflight
 
-{markdown_table(archive_preview, ['requirement', 'metadata_status', 'requirement_preflight_status'], 12)}
+{markdown_table(archive_preview, ['requirement', 'metadata_status', 'requirement_preflight_status'], 12)}{acceptance_section}
 
 ## Stop Rule
 
@@ -400,6 +419,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     climate_by_id = one_by_id(read_csv_dicts(CLIMATE_PREFLIGHT_PATH))
     synthesis_by_id = one_by_id(read_csv_dicts(SYNTHESIS_JOIN_PATH))
     registry_by_id = one_by_id(read_csv_dicts(REGISTRY_PATH))
+    acceptance_by_id = by_id(read_csv_dicts(MWI2004_ACCEPTANCE_DECISION_PATH))
 
     index_rows: list[dict[str, str]] = []
     gate_rows: list[dict[str, str]] = []
@@ -413,6 +433,10 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         shortlist_rows = shortlist_by_id.get(idno, [])
         intake = intake_by_id.get(idno, {})
         archive = archive_by_id.get(idno, {})
+        acceptance_rows = acceptance_by_id.get(idno, [])
+        acceptance_by_requirement = {
+            clean(row.get("requirement")): row for row in acceptance_rows if clean(row.get("requirement"))
+        }
         climate = climate_by_id.get(idno, {})
         synthesis = synthesis_by_id.get(idno, {})
         registry = registry_by_id.get(idno, {})
@@ -478,13 +502,22 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         )
         for requirement in REQUIREMENTS:
             row = next((item for item in coverage_rows if clean(item.get("requirement")) == requirement), {})
+            decision = acceptance_by_requirement.get(requirement, {})
+            focused_evidence = ""
+            if decision:
+                focused_evidence = (
+                    f"; focused_decision={decision.get('mechanical_raw_check_decision', '')}"
+                    f"; final={decision.get('final_verification_decision', '')}"
+                    f"; blocker={decision.get('remaining_blocker', '')}"
+                )
             add_gate(
                 gates,
                 wave,
                 f"raw_value_verification_{requirement}",
                 requirement_verified(coverage_rows, requirement),
-                f"metadata={row.get('coverage_status', 'missing')}; candidates={row.get('candidate_variable_rows', '0')}; files={row.get('candidate_file_rows', '0')}; raw_status={row.get('raw_value_verification_status', 'missing')}; top_files={row.get('top_file_names', '')}",
-                "Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level.",
+                f"metadata={row.get('coverage_status', 'missing')}; candidates={row.get('candidate_variable_rows', '0')}; files={row.get('candidate_file_rows', '0')}; raw_status={row.get('raw_value_verification_status', 'missing')}; top_files={row.get('top_file_names', '')}{focused_evidence}",
+                decision.get("next_action")
+                or "Verify this requirement against raw files, value labels, units, recall periods, skip patterns, and merge level.",
             )
         add_gate(
             gates,
@@ -600,6 +633,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             shortlist_rows,
             matrix_rows,
             archive_req_by_id.get(idno, []),
+            acceptance_rows,
         )
         index_row["packet_report"] = packet_path
         index_row["raw_folder_handoff"] = write_raw_handoff(wave, packet_path, len(failed))
