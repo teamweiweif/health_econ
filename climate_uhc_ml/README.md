@@ -18,6 +18,7 @@ the required thresholds.
 - `report/priority_lsms_isa_next_raw_package_action_packet.md` - exact remaining raw-package actions.
 - `report/priority_lsms_isa_incoming_raw_package_router.md` - route plan for manual downloads dropped into `_incoming`.
 - `report/priority_lsms_isa_threshold_gap_control_panel.md` - shortest current country/wave gap and minimum-batch download panel.
+- `report/priority_lsms_isa_manual_download_packets.md` - per-wave manual download packets for the 10 remaining minimum-batch packages.
 - `report/priority_lsms_isa_promotion_gate_dashboard.md` - current raw-receipt-to-promotion gate dashboard.
 - `report/country_wave_promotion_packets/` - one packet per target country-wave.
 - `report/direct_read_audit_bundle.md` - compact Web-GPT-readable audit bundle.

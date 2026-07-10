@@ -1,0 +1,12 @@
+﻿metric,value,interpretation
+manual_download_packet_rows,10,Remaining minimum-batch country-waves with a manual download packet.
+manual_download_packet_priority_country_rows,9,"Packets for Ethiopia, Nigeria, Malawi, Tanzania, and Uganda."
+manual_download_packet_sixth_country_rows,1,Packets for sixth-country threshold candidates.
+manual_download_packet_expected_full_file_rows,838,Expected official full-file rows across packeted downloads.
+manual_download_packet_missing_full_file_rows,838,Expected official full-file rows still missing across packeted downloads.
+manual_download_packet_core_file_rows,323,Requirement-linked core-file rows written to packet core-file CSV.
+manual_download_packet_missing_core_file_rows,323,Requirement-linked core-file rows still missing across packeted downloads.
+manual_download_packet_full_manifest_rows_available,890,Minimum-batch expected full-file manifest rows available as source evidence.
+manual_download_packet_reports_written,10,Per-IDNO markdown packets written under report/priority_lsms_isa_manual_download_packets/.
+data_write_gate_status,blocked_no_data_write,Manual download packets do not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

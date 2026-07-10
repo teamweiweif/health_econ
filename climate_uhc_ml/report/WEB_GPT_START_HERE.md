@@ -33,9 +33,11 @@ data gates.
    - Non-destructive route plan for files dropped into `temp/raw_downloads/_incoming/`.
 9. `report/priority_lsms_isa_threshold_gap_control_panel.md`
    - Short control panel showing the current 5-country/9-wave gap, minimum-batch downloads, and country/wave buffer.
-10. `report/priority_lsms_isa_country_wave_promotion_packets/`
+10. `report/priority_lsms_isa_manual_download_packets.md`
+   - Per-wave manual download packet index for the 10 remaining minimum-batch raw packages.
+11. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-11. `report/mwi2004_requirement_acceptance_decisions.md`
+12. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -75,6 +77,7 @@ resume, read:
 
 - `report/priority_lsms_isa_threshold_gap_control_panel.md`
 - `temp/priority_lsms_isa_threshold_gap_download_panel.csv`
+- `report/priority_lsms_isa_manual_download_packets.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:

@@ -246,6 +246,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_threshold_gap_download_panel.csv", "priority LSMS/ISA threshold gap download control panel"),
     ("dataset_promotion", "result/priority_lsms_isa_threshold_gap_country_panel.csv", "priority LSMS/ISA threshold gap country control panel"),
     ("dataset_promotion", "result/priority_lsms_isa_threshold_gap_control_panel_summary.csv", "priority LSMS/ISA threshold gap control panel summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_manual_download_packets.md", "priority LSMS/ISA manual download packet index report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_manual_download_packet_index.csv", "priority LSMS/ISA manual download packet index"),
+    ("dataset_promotion", "temp/priority_lsms_isa_manual_download_packet_core_files.csv", "priority LSMS/ISA manual download packet core-file rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_manual_download_packet_summary.csv", "priority LSMS/ISA manual download packet summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -676,6 +680,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/172_build_priority_lsms_isa_next_raw_package_action_packet.py", "priority LSMS/ISA next raw package action packet generator"),
     ("reproducibility", "script/174_build_priority_lsms_isa_incoming_raw_package_router.py", "priority LSMS/ISA incoming raw package router generator"),
     ("reproducibility", "script/175_build_priority_lsms_isa_threshold_gap_control_panel.py", "priority LSMS/ISA threshold gap control panel generator"),
+    ("reproducibility", "script/176_build_priority_lsms_isa_manual_download_packets.py", "priority LSMS/ISA manual download packet generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -921,6 +926,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_next_raw_package_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv")
     priority_lsms_incoming_router_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_incoming_raw_package_router_summary.csv")
     priority_lsms_threshold_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_gap_control_panel_summary.csv")
+    priority_lsms_manual_download_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_packet_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1562,6 +1568,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"current_promoted={csv_value(priority_lsms_threshold_gap_summary, 'current_promoted_analysis_ready_rows', '0')}; current_countries={csv_value(priority_lsms_threshold_gap_summary, 'current_promoted_country_rows', '0')}; country_gap={csv_value(priority_lsms_threshold_gap_summary, 'current_country_gap_to_threshold', '0')}; wave_gap={csv_value(priority_lsms_threshold_gap_summary, 'current_country_wave_gap_to_threshold', '0')}; minimum_remaining_downloads={csv_value(priority_lsms_threshold_gap_summary, 'minimum_threshold_batch_remaining_download_rows', '0')}; countries_if_minimum_passes={csv_value(priority_lsms_threshold_gap_summary, 'countries_if_minimum_remaining_passes', '0')}; waves_if_minimum_passes={csv_value(priority_lsms_threshold_gap_summary, 'country_waves_if_minimum_remaining_passes', '0')}; country_buffer={csv_value(priority_lsms_threshold_gap_summary, 'country_buffer_if_minimum_remaining_passes', '0')}; wave_buffer={csv_value(priority_lsms_threshold_gap_summary, 'country_wave_buffer_if_minimum_remaining_passes', '0')}; missing_core_files={csv_value(priority_lsms_threshold_gap_summary, 'minimum_batch_missing_core_file_rows', '0')}; modeling_gate={csv_value(priority_lsms_threshold_gap_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_threshold_gap_download_panel.csv", RESULT_DIR / "priority_lsms_isa_threshold_gap_country_panel.csv", RESULT_DIR / "priority_lsms_isa_threshold_gap_control_panel_summary.csv", REPORT_DIR / "priority_lsms_isa_threshold_gap_control_panel.md"],
         "Threshold gap control panel states the exact remaining minimum-batch raw downloads and the current country/wave buffer before any model can be rerun.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_manual_download_packets",
+        "manual_download_packets_current"
+        if csv_value(priority_lsms_manual_download_packet_summary, "manual_download_packet_rows", "0") == "10"
+        and csv_value(priority_lsms_manual_download_packet_summary, "data_write_gate_status", "missing") == "blocked_no_data_write"
+        else "manual_download_packets_need_review",
+        f"packets={csv_value(priority_lsms_manual_download_packet_summary, 'manual_download_packet_rows', '0')}; priority_country_packets={csv_value(priority_lsms_manual_download_packet_summary, 'manual_download_packet_priority_country_rows', '0')}; sixth_country_packets={csv_value(priority_lsms_manual_download_packet_summary, 'manual_download_packet_sixth_country_rows', '0')}; missing_full_files={csv_value(priority_lsms_manual_download_packet_summary, 'manual_download_packet_missing_full_file_rows', '0')}; core_file_rows={csv_value(priority_lsms_manual_download_packet_summary, 'manual_download_packet_core_file_rows', '0')}; missing_core_files={csv_value(priority_lsms_manual_download_packet_summary, 'manual_download_packet_missing_core_file_rows', '0')}; reports={csv_value(priority_lsms_manual_download_packet_summary, 'manual_download_packet_reports_written', '0')}; modeling_gate={csv_value(priority_lsms_manual_download_packet_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_manual_download_packet_index.csv", TEMP_DIR / "priority_lsms_isa_manual_download_packet_core_files.csv", RESULT_DIR / "priority_lsms_isa_manual_download_packet_summary.csv", REPORT_DIR / "priority_lsms_isa_manual_download_packets.md"],
+        "Manual download packets turn each remaining minimum-batch raw package into a per-wave official link, local target folder, core-file checklist, and post-download validation command.",
     )
     add_bundle(
         rows,
@@ -2515,6 +2533,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_next_raw_package_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv")
     priority_lsms_incoming_router_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_incoming_raw_package_router_summary.csv")
     priority_lsms_threshold_gap_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_gap_control_panel_summary.csv")
+    priority_lsms_manual_download_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_manual_download_packet_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -2635,6 +2654,9 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_threshold_gap_waves_if_minimum_passes", "value": csv_value(priority_lsms_threshold_gap_summary, "country_waves_if_minimum_remaining_passes", "0"), "interpretation": "Country-waves covered if all remaining minimum-batch downloads later pass verification."},
         {"metric": "priority_lsms_isa_threshold_gap_country_buffer", "value": csv_value(priority_lsms_threshold_gap_summary, "country_buffer_if_minimum_remaining_passes", "0"), "interpretation": "Country-count buffer above the 6-country threshold after the minimum batch passes."},
         {"metric": "priority_lsms_isa_threshold_gap_wave_buffer", "value": csv_value(priority_lsms_threshold_gap_summary, "country_wave_buffer_if_minimum_remaining_passes", "0"), "interpretation": "Country-wave buffer above the 10-wave threshold after the minimum batch passes."},
+        {"metric": "priority_lsms_isa_manual_download_packet_rows", "value": csv_value(priority_lsms_manual_download_packet_summary, "manual_download_packet_rows", "0"), "interpretation": "Remaining minimum-batch waves with per-wave manual download packets."},
+        {"metric": "priority_lsms_isa_manual_download_packet_core_rows", "value": csv_value(priority_lsms_manual_download_packet_summary, "manual_download_packet_core_file_rows", "0"), "interpretation": "Core-file rows listed across manual download packets."},
+        {"metric": "priority_lsms_isa_manual_download_packet_reports", "value": csv_value(priority_lsms_manual_download_packet_summary, "manual_download_packet_reports_written", "0"), "interpretation": "Per-IDNO markdown packet reports written."},
         {"metric": "priority_lsms_isa_promotion_gate_country_waves", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_country_wave_rows", "0"), "interpretation": "Country-waves tracked by the promotion gate dashboard."},
         {"metric": "priority_lsms_isa_promotion_gate_promoted_rows", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_promoted_rows", "0"), "interpretation": "Country-waves already promoted analysis-ready in the gate dashboard."},
         {"metric": "priority_lsms_isa_promotion_gate_blocked_raw_package_rows", "value": csv_value(priority_lsms_promotion_gate_summary, "priority_lsms_promotion_gate_blocked_raw_package_rows", "0"), "interpretation": "Country-waves still blocked at complete official raw package receipt."},
