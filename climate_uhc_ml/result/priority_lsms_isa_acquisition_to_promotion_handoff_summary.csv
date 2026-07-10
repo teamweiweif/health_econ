@@ -1,0 +1,9 @@
+﻿metric,value,interpretation
+acquisition_to_promotion_handoff_rows,19,Registry country-waves mapped to the next acquisition or promotion stage.
+acquisition_to_promotion_gate_rows,209,Verification-gate checklist rows across registry country-waves.
+acquisition_to_promotion_minimum_batch_acquire_rows,10,Minimum-batch rows still requiring official raw package acquisition.
+acquisition_to_promotion_promoted_keep_current_rows,1,Rows already promoted and held in place.
+acquisition_to_promotion_raw_validation_ready_rows,0,Rows with raw-like files present but validation still required.
+acquisition_to_promotion_acquire_raw_rows,18,Rows still blocked at raw acquisition.
+data_write_gate_status,blocked_no_new_data_write,No new promoted data writes are opened by this handoff.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."

@@ -184,6 +184,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_browser_download_starter.md",
     "priority_lsms_isa_first_canary_runbook.md",
     "priority_lsms_isa_local_raw_presence_audit.md",
+    "priority_lsms_isa_acquisition_to_promotion_handoff.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -388,6 +389,7 @@ REQUIRED_SCRIPTS = [
     "196_build_priority_lsms_isa_browser_download_starter.py",
     "197_build_priority_lsms_isa_first_canary_runbook.py",
     "198_build_priority_lsms_isa_local_raw_presence_audit.py",
+    "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -423,6 +425,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "196_build_priority_lsms_isa_browser_download_starter.py",
     "197_build_priority_lsms_isa_first_canary_runbook.py",
     "198_build_priority_lsms_isa_local_raw_presence_audit.py",
+    "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1034,6 +1037,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_local_raw_presence_audit": row_count(RESULT_DIR / "priority_lsms_isa_local_raw_presence_audit.csv"),
         "priority_lsms_isa_local_nonregistry_raw_files": row_count(RESULT_DIR / "priority_lsms_isa_local_nonregistry_raw_files.csv"),
         "priority_lsms_isa_local_raw_presence_summary": row_count(RESULT_DIR / "priority_lsms_isa_local_raw_presence_summary.csv"),
+        "priority_lsms_isa_acquisition_to_promotion_handoff": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff.csv"),
+        "priority_lsms_isa_acquisition_to_promotion_gate_checklist": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_gate_checklist.csv"),
+        "priority_lsms_isa_acquisition_to_promotion_handoff_summary": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6203,6 +6209,37 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_raw_presence_gate_ok),
         f"registry_rows={priority_lsms_raw_presence_registry_rows}; raw_present={priority_lsms_raw_presence_present}; raw_absent={priority_lsms_raw_presence_absent}; minimum_absent={priority_lsms_raw_presence_minimum_absent}; nonregistry_raw={priority_lsms_raw_presence_nonregistry}; diagnostic_albania={priority_lsms_raw_presence_albania}; data_write={priority_lsms_raw_presence_data_write}; modeling_gate={priority_lsms_raw_presence_modeling}",
         "" if priority_lsms_raw_presence_gate_ok else "Run script/198_build_priority_lsms_isa_local_raw_presence_audit.py after the promoted registry and raw target folders are current.",
+    )
+    priority_lsms_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff_summary.csv")
+    priority_lsms_handoff_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_handoff_summary if row.get("metric") == "acquisition_to_promotion_handoff_rows"), "0"), 0)
+    priority_lsms_handoff_gate_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_handoff_summary if row.get("metric") == "acquisition_to_promotion_gate_rows"), "0"), 0)
+    priority_lsms_handoff_minimum_acquire = safe_int(next((row.get("value", "0") for row in priority_lsms_handoff_summary if row.get("metric") == "acquisition_to_promotion_minimum_batch_acquire_rows"), "0"), 0)
+    priority_lsms_handoff_promoted_current = safe_int(next((row.get("value", "0") for row in priority_lsms_handoff_summary if row.get("metric") == "acquisition_to_promotion_promoted_keep_current_rows"), "0"), 0)
+    priority_lsms_handoff_raw_validation_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_handoff_summary if row.get("metric") == "acquisition_to_promotion_raw_validation_ready_rows"), "0"), 0)
+    priority_lsms_handoff_acquire_raw = safe_int(next((row.get("value", "0") for row in priority_lsms_handoff_summary if row.get("metric") == "acquisition_to_promotion_acquire_raw_rows"), "0"), 0)
+    priority_lsms_handoff_data_write = next((row.get("value", "") for row in priority_lsms_handoff_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_handoff_modeling = next((row.get("value", "") for row in priority_lsms_handoff_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_handoff_gate_ok = (
+        counts["priority_lsms_isa_acquisition_to_promotion_handoff"] == priority_lsms_handoff_rows
+        and counts["priority_lsms_isa_acquisition_to_promotion_gate_checklist"] == priority_lsms_handoff_gate_rows
+        and counts["priority_lsms_isa_acquisition_to_promotion_handoff_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff.md")
+        and priority_lsms_handoff_rows == counts["promoted_country_wave_registry"]
+        and priority_lsms_handoff_gate_rows == priority_lsms_handoff_rows * 11
+        and priority_lsms_handoff_minimum_acquire == 10
+        and priority_lsms_handoff_promoted_current == 1
+        and priority_lsms_handoff_raw_validation_ready == 0
+        and priority_lsms_handoff_acquire_raw == 18
+        and priority_lsms_handoff_data_write == "blocked_no_new_data_write"
+        and priority_lsms_handoff_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA acquisition-to-promotion handoff maps raw acquisition blockers into verification and promotion-refresh gates",
+        status(priority_lsms_handoff_gate_ok),
+        f"handoff_rows={priority_lsms_handoff_rows}; gate_rows={priority_lsms_handoff_gate_rows}; minimum_acquire={priority_lsms_handoff_minimum_acquire}; promoted_current={priority_lsms_handoff_promoted_current}; raw_validation_ready={priority_lsms_handoff_raw_validation_ready}; acquire_raw={priority_lsms_handoff_acquire_raw}; data_write={priority_lsms_handoff_data_write}; modeling_gate={priority_lsms_handoff_modeling}",
+        "" if priority_lsms_handoff_gate_ok else "Run script/199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py after the local raw presence audit and manual execution board are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)
