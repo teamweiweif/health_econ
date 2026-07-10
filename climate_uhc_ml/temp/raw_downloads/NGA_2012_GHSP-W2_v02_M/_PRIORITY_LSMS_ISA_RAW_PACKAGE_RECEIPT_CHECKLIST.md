@@ -10,6 +10,10 @@ Current receipt status: `blocked_no_original_package`
 
 Required package scope: Complete unchanged World Bank official package for this IDNO, including raw microdata modules, documentation, questionnaires, codebooks, DDI/XML, and any geography or timing supplements that the get-microdata package provides.
 
+Official public documentation status: `complete_core_public_documentation_receipt`
+
+Official public documentation snapshots: 7
+
 ## Receipt Fields To Fill
 
 - Download account/source:

@@ -12,6 +12,8 @@ QUEUE_PATH = TEMP_DIR / "priority_lsms_isa_refocused_acquisition_queue.csv"
 RAW_INTAKE_LEDGER_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger.csv"
 ARCHIVE_PREFLIGHT_PATH = TEMP_DIR / "priority_lsms_isa_archive_member_preflight.csv"
 REQUIREMENT_WORKBOOK_PATH = TEMP_DIR / "priority_lsms_isa_raw_value_requirement_workbook.csv"
+PUBLIC_DOC_DATASET_PATH = TEMP_DIR / "priority_lsms_isa_public_documentation_dataset_receipt.csv"
+PUBLIC_DOC_RESOURCE_PATH = TEMP_DIR / "priority_lsms_isa_public_documentation_receipt.csv"
 
 CHECKLIST_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_receipt_checklist.csv"
 REQUIREMENT_CHECKLIST_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_requirement_receipt_checklist.csv"
@@ -53,6 +55,9 @@ DATASET_COLUMNS = [
     "current_archive_file_count",
     "current_raw_tabular_file_count",
     "current_documentation_file_count",
+    "public_documentation_status",
+    "public_documentation_snapshot_count",
+    "public_documentation_snapshot_paths",
     "raw_package_status",
     "intake_acceptance_status",
     "archive_preflight_status",
@@ -118,6 +123,19 @@ def safe_int(value: Any, default: int = 0) -> int:
         return default
 
 
+def compact(values: list[str], limit: int = 6) -> str:
+    seen: set[str] = set()
+    out: list[str] = []
+    for value in values:
+        text = " ".join(clean(value).split())
+        if text and text not in seen:
+            out.append(text)
+            seen.add(text)
+        if len(out) >= limit:
+            break
+    return "; ".join(out)
+
+
 def rel(path: Path) -> str:
     try:
         return str(path.relative_to(PROJECT_ROOT)).replace("\\", "/")
@@ -150,12 +168,19 @@ def raw_folder_path(folder: str, idno: str) -> Path:
     return RAW_ROOT / idno
 
 
-def receipt_status(raw_row: dict[str, str], archive_row: dict[str, str]) -> str:
+def public_documentation_ready(row: dict[str, str]) -> bool:
+    status = clean(row.get("public_documentation_receipt_status"))
+    return status.startswith("complete_") and not clean(row.get("missing_core_resource_types"))
+
+
+def receipt_status(raw_row: dict[str, str], archive_row: dict[str, str], public_documentation_count: int) -> str:
     if safe_int(raw_row.get("original_file_count")) == 0:
         return "blocked_no_original_package"
-    if safe_int(raw_row.get("raw_tabular_file_count")) == 0:
+    raw_tabular_evidence = safe_int(raw_row.get("raw_tabular_file_count")) + safe_int(archive_row.get("archive_raw_tabular_member_rows"))
+    if raw_tabular_evidence == 0:
         return "blocked_no_raw_tabular_file"
-    if safe_int(raw_row.get("documentation_file_count")) == 0:
+    documentation_evidence = safe_int(raw_row.get("documentation_file_count")) + safe_int(archive_row.get("archive_documentation_member_rows")) + public_documentation_count
+    if documentation_evidence == 0:
         return "blocked_no_documentation_file"
     if clean(archive_row.get("archive_preflight_status")) != "ready_for_raw_receipt_schema_and_manual_review":
         return "receipt_candidate_needs_archive_preflight"
@@ -191,15 +216,21 @@ def build_dataset_rows(
     queue_rows: list[dict[str, str]],
     raw_by_id: dict[str, dict[str, str]],
     archive_by_id: dict[str, dict[str, str]],
+    public_by_id: dict[str, dict[str, str]],
+    public_resources_by_id: dict[str, list[dict[str, str]]],
 ) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     for wave in queue_rows:
         idno = clean(wave.get("idno"))
         raw = raw_by_id.get(idno, {})
         archive = archive_by_id.get(idno, {})
+        public = public_by_id.get(idno, {})
+        public_resources = public_resources_by_id.get(idno, [])
+        public_count = len(public_resources) if public_documentation_ready(public) else 0
+        public_paths = compact([row.get("saved_path", "") for row in public_resources], 8)
         folder = raw_folder_path(clean(wave.get("local_target_folder")), idno)
         handoff_path = folder / "_PRIORITY_LSMS_ISA_RAW_PACKAGE_RECEIPT_CHECKLIST.md"
-        status_value = receipt_status(raw, archive)
+        status_value = receipt_status(raw, archive, public_count)
         rows.append(
             {
                 "download_priority_order": clean(wave.get("download_priority_order")),
@@ -215,6 +246,9 @@ def build_dataset_rows(
                 "current_archive_file_count": str(safe_int(raw.get("archive_file_count"))),
                 "current_raw_tabular_file_count": str(safe_int(raw.get("raw_tabular_file_count"))),
                 "current_documentation_file_count": str(safe_int(raw.get("documentation_file_count"))),
+                "public_documentation_status": clean(public.get("public_documentation_receipt_status")) or "missing",
+                "public_documentation_snapshot_count": str(public_count),
+                "public_documentation_snapshot_paths": public_paths,
                 "raw_package_status": clean(raw.get("raw_package_status")) or "missing",
                 "intake_acceptance_status": clean(raw.get("intake_acceptance_status")) or "missing",
                 "archive_preflight_status": clean(archive.get("archive_preflight_status")) or "missing",
@@ -297,6 +331,10 @@ Current receipt status: `{row.get('current_receipt_status', '')}`
 
 Required package scope: {REQUIRED_PACKAGE_SCOPE}
 
+Official public documentation status: `{row.get('public_documentation_status', '')}`
+
+Official public documentation snapshots: {row.get('public_documentation_snapshot_count', '0')}
+
 ## Receipt Fields To Fill
 
 - Download account/source:
@@ -343,6 +381,7 @@ def build_summary(
         {"metric": "priority_lsms_receipt_checklist_dataset_rows", "value": str(len(dataset_rows)), "interpretation": "Refocused LSMS/ISA dataset-level raw package receipt checklist rows."},
         {"metric": "priority_lsms_receipt_checklist_requirement_rows", "value": str(len(requirement_rows)), "interpretation": "Requirement-level receipt checklist rows joined to raw-value workbook gates."},
         {"metric": "priority_lsms_receipt_checklist_package_received_rows", "value": str(package_received_rows), "interpretation": "Datasets with at least one original non-generated package or documentation file in the target folder."},
+        {"metric": "priority_lsms_receipt_checklist_public_documentation_snapshot_rows", "value": str(sum(safe_int(row.get("public_documentation_snapshot_count")) for row in dataset_rows)), "interpretation": "Saved official public documentation snapshots used as documentation evidence."},
         {"metric": "priority_lsms_receipt_checklist_complete_package_received_rows", "value": str(complete_package_received_rows), "interpretation": "Datasets whose local receipt appears complete enough for raw value review."},
         {"metric": "priority_lsms_receipt_checklist_ready_for_raw_value_review_rows", "value": str(complete_package_received_rows), "interpretation": "Dataset rows ready to proceed to raw value workbook review."},
         {"metric": "priority_lsms_receipt_checklist_blocked_no_original_package_rows", "value": str(dataset_status_counts.get("blocked_no_original_package", 0)), "interpretation": "Dataset rows still missing original official packages."},
@@ -382,7 +421,7 @@ This checklist does not verify raw values and does not promote data.
 
 ## Dataset Receipt Checklist Preview
 
-{markdown_table(dataset_rows, ['download_priority_order', 'idno', 'country', 'wave', 'current_original_file_count', 'current_raw_tabular_file_count', 'current_documentation_file_count', 'current_receipt_status', 'next_action'], 30)}
+{markdown_table(dataset_rows, ['download_priority_order', 'idno', 'country', 'wave', 'current_original_file_count', 'current_raw_tabular_file_count', 'current_documentation_file_count', 'public_documentation_snapshot_count', 'current_receipt_status', 'next_action'], 30)}
 
 ## Requirement Receipt Checklist Preview
 
@@ -410,9 +449,14 @@ def main() -> None:
     queue_rows = read_csv_dicts(QUEUE_PATH)
     raw_by_id = one_by_id(read_csv_dicts(RAW_INTAKE_LEDGER_PATH))
     archive_by_id = one_by_id(read_csv_dicts(ARCHIVE_PREFLIGHT_PATH))
+    public_by_id = one_by_id(read_csv_dicts(PUBLIC_DOC_DATASET_PATH))
+    public_resource_rows: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in read_csv_dicts(PUBLIC_DOC_RESOURCE_PATH):
+        if clean(row.get("receipt_status")) in {"saved", "saved_existing"}:
+            public_resource_rows[clean(row.get("idno"))].append(row)
     requirement_workbook_rows = read_csv_dicts(REQUIREMENT_WORKBOOK_PATH)
 
-    dataset_rows = build_dataset_rows(queue_rows, raw_by_id, archive_by_id)
+    dataset_rows = build_dataset_rows(queue_rows, raw_by_id, archive_by_id, public_by_id, public_resource_rows)
     requirement_rows = build_requirement_rows(requirement_workbook_rows, one_by_id(dataset_rows))
     handoff_count = write_handoffs(dataset_rows, by_id(requirement_rows))
     summary_rows = build_summary(dataset_rows, requirement_rows, handoff_count)

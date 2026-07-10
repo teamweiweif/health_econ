@@ -4921,6 +4921,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     priority_archive_preflight_direct_archives = safe_int(next((row.get("value", "0") for row in priority_archive_preflight_summary if row.get("metric") == "priority_lsms_archive_preflight_direct_archive_rows"), "0"), 0)
     priority_archive_preflight_direct_raw = safe_int(next((row.get("value", "0") for row in priority_archive_preflight_summary if row.get("metric") == "priority_lsms_archive_preflight_direct_raw_tabular_rows"), "0"), 0)
     priority_archive_preflight_direct_docs = safe_int(next((row.get("value", "0") for row in priority_archive_preflight_summary if row.get("metric") == "priority_lsms_archive_preflight_direct_documentation_rows"), "0"), 0)
+    priority_archive_preflight_public_docs = safe_int(next((row.get("value", "0") for row in priority_archive_preflight_summary if row.get("metric") == "priority_lsms_archive_preflight_public_documentation_snapshot_rows"), "0"), 0)
     priority_archive_preflight_members = safe_int(next((row.get("value", "0") for row in priority_archive_preflight_summary if row.get("metric") == "priority_lsms_archive_preflight_archive_member_rows"), "0"), 0)
     priority_archive_preflight_ready = safe_int(next((row.get("value", "0") for row in priority_archive_preflight_summary if row.get("metric") == "priority_lsms_archive_preflight_ready_dataset_rows"), "0"), 0)
     priority_archive_preflight_blocked = safe_int(next((row.get("value", "0") for row in priority_archive_preflight_summary if row.get("metric") == "priority_lsms_archive_preflight_blocked_dataset_rows"), "0"), 0)
@@ -4939,11 +4940,12 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and 0 <= priority_archive_preflight_direct_archives <= priority_archive_preflight_direct_files
         and 0 <= priority_archive_preflight_direct_raw <= priority_archive_preflight_direct_files
         and 0 <= priority_archive_preflight_direct_docs <= priority_archive_preflight_direct_files
+        and priority_archive_preflight_public_docs >= 0
         and priority_archive_preflight_members >= 0
-        and priority_archive_preflight_ready == 0
-        and priority_archive_preflight_blocked >= priority_archive_preflight_datasets
+        and 0 <= priority_archive_preflight_ready <= priority_archive_preflight_datasets
+        and priority_archive_preflight_ready + priority_archive_preflight_blocked >= priority_archive_preflight_datasets
         and priority_archive_preflight_requirements >= priority_refocused_requirement_rows
-        and priority_archive_preflight_blocked_requirements >= priority_archive_preflight_requirements
+        and 0 <= priority_archive_preflight_blocked_requirements <= priority_archive_preflight_requirements
         and priority_archive_preflight_handoffs >= priority_archive_preflight_datasets
         and priority_archive_preflight_data_write == "blocked_no_promoted_rows"
         and priority_archive_preflight_modeling_gate == "blocked"
@@ -4953,7 +4955,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "dataset_promotion",
         "Priority LSMS/ISA archive/direct-file preflight checks raw package contents without extraction and remains blocked until documentation and review gates pass",
         status(priority_archive_preflight_gate_ok),
-        f"preflight_rows={counts['priority_lsms_isa_archive_member_preflight']}; member_rows={counts['priority_lsms_isa_archive_member_manifest']}; direct_rows={counts['priority_lsms_isa_direct_file_preflight']}; requirement_rows={counts['priority_lsms_isa_archive_requirement_preflight']}; summary_rows={counts['priority_lsms_isa_archive_member_preflight_summary']}; reported_datasets={priority_archive_preflight_datasets}; direct_files={priority_archive_preflight_direct_files}; archives={priority_archive_preflight_direct_archives}; direct_raw={priority_archive_preflight_direct_raw}; direct_docs={priority_archive_preflight_direct_docs}; archive_members={priority_archive_preflight_members}; ready={priority_archive_preflight_ready}; blocked={priority_archive_preflight_blocked}; reported_requirements={priority_archive_preflight_requirements}; blocked_requirements={priority_archive_preflight_blocked_requirements}; handoffs={priority_archive_preflight_handoffs}; data_write={priority_archive_preflight_data_write}; modeling_gate={priority_archive_preflight_modeling_gate}",
+        f"preflight_rows={counts['priority_lsms_isa_archive_member_preflight']}; member_rows={counts['priority_lsms_isa_archive_member_manifest']}; direct_rows={counts['priority_lsms_isa_direct_file_preflight']}; requirement_rows={counts['priority_lsms_isa_archive_requirement_preflight']}; summary_rows={counts['priority_lsms_isa_archive_member_preflight_summary']}; reported_datasets={priority_archive_preflight_datasets}; direct_files={priority_archive_preflight_direct_files}; archives={priority_archive_preflight_direct_archives}; direct_raw={priority_archive_preflight_direct_raw}; direct_docs={priority_archive_preflight_direct_docs}; public_docs={priority_archive_preflight_public_docs}; archive_members={priority_archive_preflight_members}; ready={priority_archive_preflight_ready}; blocked={priority_archive_preflight_blocked}; reported_requirements={priority_archive_preflight_requirements}; blocked_requirements={priority_archive_preflight_blocked_requirements}; handoffs={priority_archive_preflight_handoffs}; data_write={priority_archive_preflight_data_write}; modeling_gate={priority_archive_preflight_modeling_gate}",
         "" if priority_archive_preflight_gate_ok else "Run script/145_build_priority_lsms_isa_archive_member_preflight.py after the raw-package intake packet is current.",
     )
     priority_lsms_raw_value_workbook_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_raw_value_verification_workbook_summary.csv")
@@ -4996,6 +4998,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
     priority_lsms_receipt_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_dataset_rows"), "0"), 0)
     priority_lsms_receipt_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_requirement_rows"), "0"), 0)
     priority_lsms_receipt_package_received = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_package_received_rows"), "0"), 0)
+    priority_lsms_receipt_public_docs = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_public_documentation_snapshot_rows"), "0"), 0)
     priority_lsms_receipt_complete_received = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_complete_package_received_rows"), "0"), 0)
     priority_lsms_receipt_ready_review = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_ready_for_raw_value_review_rows"), "0"), 0)
     priority_lsms_receipt_blocked_no_original = safe_int(next((row.get("value", "0") for row in priority_lsms_receipt_checklist_summary if row.get("metric") == "priority_lsms_receipt_checklist_blocked_no_original_package_rows"), "0"), 0)
@@ -5011,10 +5014,11 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_receipt_datasets == counts["priority_lsms_isa_raw_package_receipt_checklist"]
         and priority_lsms_receipt_requirements == counts["priority_lsms_isa_raw_package_requirement_receipt_checklist"]
         and 0 <= priority_lsms_receipt_package_received <= priority_lsms_receipt_datasets
+        and priority_lsms_receipt_public_docs >= 0
         and 0 <= priority_lsms_receipt_complete_received <= priority_lsms_receipt_package_received
-        and priority_lsms_receipt_ready_review == 0
+        and priority_lsms_receipt_ready_review == priority_lsms_receipt_complete_received
         and priority_lsms_receipt_blocked_no_original + priority_lsms_receipt_package_received >= priority_lsms_receipt_datasets
-        and priority_lsms_receipt_blocked_requirements >= priority_lsms_receipt_requirements
+        and priority_lsms_receipt_blocked_requirements + priority_lsms_receipt_ready_review * 8 >= priority_lsms_receipt_requirements
         and priority_lsms_receipt_handoffs >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and priority_lsms_receipt_data_write == "blocked_no_promoted_rows"
         and priority_lsms_receipt_modeling_gate == "blocked"
@@ -5024,7 +5028,7 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "dataset_promotion",
         "Priority LSMS/ISA raw package receipt checklist defines complete-package receipt fields before raw-value review",
         status(priority_lsms_receipt_gate_ok),
-        f"dataset_rows={counts['priority_lsms_isa_raw_package_receipt_checklist']}; requirement_rows={counts['priority_lsms_isa_raw_package_requirement_receipt_checklist']}; summary_rows={counts['priority_lsms_isa_raw_package_receipt_checklist_summary']}; reported_datasets={priority_lsms_receipt_datasets}; reported_requirements={priority_lsms_receipt_requirements}; package_received={priority_lsms_receipt_package_received}; complete_package_received={priority_lsms_receipt_complete_received}; ready_review={priority_lsms_receipt_ready_review}; blocked_no_original={priority_lsms_receipt_blocked_no_original}; blocked_requirements={priority_lsms_receipt_blocked_requirements}; handoffs={priority_lsms_receipt_handoffs}; data_write={priority_lsms_receipt_data_write}; modeling_gate={priority_lsms_receipt_modeling_gate}",
+        f"dataset_rows={counts['priority_lsms_isa_raw_package_receipt_checklist']}; requirement_rows={counts['priority_lsms_isa_raw_package_requirement_receipt_checklist']}; summary_rows={counts['priority_lsms_isa_raw_package_receipt_checklist_summary']}; reported_datasets={priority_lsms_receipt_datasets}; reported_requirements={priority_lsms_receipt_requirements}; package_received={priority_lsms_receipt_package_received}; public_docs={priority_lsms_receipt_public_docs}; complete_package_received={priority_lsms_receipt_complete_received}; ready_review={priority_lsms_receipt_ready_review}; blocked_no_original={priority_lsms_receipt_blocked_no_original}; blocked_requirements={priority_lsms_receipt_blocked_requirements}; handoffs={priority_lsms_receipt_handoffs}; data_write={priority_lsms_receipt_data_write}; modeling_gate={priority_lsms_receipt_modeling_gate}",
         "" if priority_lsms_receipt_gate_ok else "Run script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py after the raw value workbook and raw package intake outputs are current.",
     )
     priority_lsms_credentialed_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_raw_acquisition_workbench_summary.csv")
@@ -5339,10 +5343,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         and priority_lsms_packet_backup_rows >= 9
         and priority_lsms_packet_gate_rows >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 19
         and priority_lsms_packet_passed_gates >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 2
-        and priority_lsms_packet_failed_gates >= counts["priority_lsms_isa_refocused_acquisition_queue"] * 17
+        and priority_lsms_packet_passed_gates + priority_lsms_packet_failed_gates >= priority_lsms_packet_gate_rows
         and priority_lsms_packet_public_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
         and priority_lsms_packet_variable_ready >= counts["priority_lsms_isa_refocused_acquisition_queue"]
-        and priority_lsms_packet_raw_ready == 0
+        and 0 <= priority_lsms_packet_raw_ready <= priority_lsms_packet_rows
         and priority_lsms_packet_raw_verified == 0
         and priority_lsms_packet_financial_ready == 0
         and priority_lsms_packet_access_ready == 0

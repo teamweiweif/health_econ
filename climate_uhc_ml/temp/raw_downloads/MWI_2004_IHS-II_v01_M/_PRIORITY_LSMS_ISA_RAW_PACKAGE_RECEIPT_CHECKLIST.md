@@ -6,9 +6,13 @@ Official get-microdata URL: https://microdata.worldbank.org/catalog/2307/get-mic
 
 Target folder: `temp/raw_downloads/MWI_2004_IHS-II_v01_M/`
 
-Current receipt status: `blocked_no_raw_tabular_file`
+Current receipt status: `ready_for_raw_value_review`
 
 Required package scope: Complete unchanged World Bank official package for this IDNO, including raw microdata modules, documentation, questionnaires, codebooks, DDI/XML, and any geography or timing supplements that the get-microdata package provides.
+
+Official public documentation status: `complete_core_public_documentation_receipt`
+
+Official public documentation snapshots: 7
 
 ## Receipt Fields To Fill
 
@@ -25,14 +29,14 @@ Required package scope: Complete unchanged World Bank official package for this 
 
 | requirement | requirement_role | candidate_variable_rows | candidate_file_rows | current_receipt_status | current_verification_status |
 |---|---|---|---|---|---|
-| household_person_keys | merge_key_gate | 12 | 12 | blocked_no_raw_tabular_file | blocked_no_original_package |
-| weights_and_design | survey_design_gate | 12 | 12 | blocked_no_raw_tabular_file | blocked_no_original_package |
-| consumption_or_income | financial_denominator_gate | 12 | 3 | blocked_no_raw_tabular_file | blocked_no_original_package |
-| oop_health_expenditure | financial_outcome_gate | 12 | 1 | blocked_no_raw_tabular_file | blocked_no_original_package |
-| health_need_and_access | access_outcome_gate | 12 | 2 | blocked_no_raw_tabular_file | blocked_no_original_package |
-| survey_timing | climate_timing_gate | 12 | 7 | blocked_no_raw_tabular_file | blocked_no_original_package |
-| climate_geography | climate_geography_gate | 12 | 12 | blocked_no_raw_tabular_file | blocked_no_original_package |
-| missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | blocked_no_raw_tabular_file | blocked_no_original_package |
+| household_person_keys | merge_key_gate | 12 | 12 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
+| weights_and_design | survey_design_gate | 12 | 12 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
+| consumption_or_income | financial_denominator_gate | 12 | 3 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
+| oop_health_expenditure | financial_outcome_gate | 12 | 1 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
+| health_need_and_access | access_outcome_gate | 12 | 2 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
+| survey_timing | climate_timing_gate | 12 | 7 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
+| climate_geography | climate_geography_gate | 12 | 12 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
+| missing_codes_units_recall_skip_patterns | documentation_semantics_gate | 0 | 0 | ready_for_raw_value_review | ready_for_manual_raw_value_review |
 
 ## After Receipt
 

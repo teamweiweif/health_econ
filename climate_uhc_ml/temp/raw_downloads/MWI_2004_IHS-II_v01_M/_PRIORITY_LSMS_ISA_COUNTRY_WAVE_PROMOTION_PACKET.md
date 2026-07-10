@@ -6,7 +6,7 @@ Packet report: `report/priority_lsms_isa_country_wave_promotion_packets/MWI_2004
 
 Current status: blocked from `data/` promotion.
 
-Failed gates: 17
+Failed gates: 15
 
 Next required action: place the complete unchanged official raw package and
 all documentation in this folder, then rerun the LSMS/ISA raw intake, archive

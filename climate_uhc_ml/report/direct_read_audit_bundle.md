@@ -61,7 +61,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows | 11 | Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh. |
 | priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows | 0 | Raw download candidate endpoints detected by the minimum-batch endpoint refresh. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
-| priority_lsms_isa_country_wave_packet_failed_gates | 323 | Refocused LSMS/ISA packet gates still blocking promotion. |
+| priority_lsms_isa_country_wave_packet_failed_gates | 321 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 0 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
 | priority_archive_preflight_targets | 156 | Priority file targets checked against direct files and archive members. |
 | priority_archive_preflight_missing_targets | 156 | Priority file targets still missing after direct/archive member preflight. |
@@ -129,8 +129,8 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_archive_preflight_dataset_rows | 19 | Refocused targets covered by archive/direct-file preflight. |
 | priority_lsms_archive_preflight_direct_file_rows | 1 | Direct non-generated original files detected by archive preflight. |
 | priority_lsms_archive_preflight_archive_member_rows | 52 | Readable archive member rows detected without extraction. |
-| priority_lsms_archive_preflight_blocked_dataset_rows | 19 | Refocused targets still blocked before schema/manual raw review. |
-| priority_lsms_archive_preflight_blocked_requirement_rows | 152 | Archive preflight requirement rows still blocked. |
+| priority_lsms_archive_preflight_blocked_dataset_rows | 18 | Refocused targets still blocked before schema/manual raw review. |
+| priority_lsms_archive_preflight_blocked_requirement_rows | 144 | Archive preflight requirement rows still blocked. |
 | priority_lsms_archive_preflight_data_write_status | blocked_no_promoted_rows | Promoted-data write status for archive preflight. |
 | priority_synthesis_blueprint_schema_rows | 572 | Target output-column rows for promoted household-climate dataset synthesis. |
 | priority_synthesis_blueprint_blocked_required_rows | 325 | Required promoted-dataset output columns still blocked. |

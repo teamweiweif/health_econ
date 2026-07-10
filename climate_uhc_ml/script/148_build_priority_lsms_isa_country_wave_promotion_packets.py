@@ -214,17 +214,16 @@ def variable_evidence_ready(coverage_rows: list[dict[str, str]]) -> bool:
     return not no_candidate and candidate_rows > 0
 
 
-def raw_package_ready(row: dict[str, str]) -> bool:
-    return (
-        safe_int(row.get("original_file_count")) > 0
-        and (safe_int(row.get("archive_file_count")) > 0 or safe_int(row.get("raw_tabular_file_count")) > 0)
-        and safe_int(row.get("documentation_file_count")) > 0
-        and clean(row.get("intake_acceptance_status")) == "ready_for_schema_and_manual_value_review"
-    )
-
-
 def archive_ready(row: dict[str, str]) -> bool:
     return clean(row.get("archive_preflight_status")) == "ready_for_raw_receipt_schema_and_manual_review"
+
+
+def raw_package_ready(intake: dict[str, str], public: dict[str, str], archive: dict[str, str]) -> bool:
+    has_original_package = safe_int(intake.get("original_file_count")) > 0
+    has_raw_container = safe_int(intake.get("archive_file_count")) > 0 or safe_int(intake.get("raw_tabular_file_count")) > 0
+    has_public_docs = public_doc_ready(public)
+    has_package_docs = safe_int(intake.get("documentation_file_count")) > 0 or safe_int(archive.get("archive_documentation_member_rows")) > 0
+    return has_original_package and has_raw_container and archive_ready(archive) and (has_package_docs or has_public_docs)
 
 
 def requirement_verified(coverage_rows: list[dict[str, str]], requirement: str) -> bool:
@@ -421,7 +420,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         gates: list[dict[str, str]] = []
         public_ready = public_doc_ready(public)
         variable_ready = variable_evidence_ready(coverage_rows)
-        raw_ready = raw_package_ready(intake)
+        raw_ready = raw_package_ready(intake, public, archive)
         archive_ok = archive_ready(archive)
         raw_verified_count = sum(
             1
@@ -466,7 +465,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             wave,
             "complete_original_raw_package",
             raw_ready,
-            f"intake_status={intake.get('intake_acceptance_status', 'missing')}; original_files={intake.get('original_file_count', '0')}; archives={intake.get('archive_file_count', '0')}; raw_tabular={intake.get('raw_tabular_file_count', '0')}; documentation={intake.get('documentation_file_count', '0')}",
+            f"intake_status={intake.get('intake_acceptance_status', 'missing')}; original_files={intake.get('original_file_count', '0')}; archives={intake.get('archive_file_count', '0')}; raw_tabular={intake.get('raw_tabular_file_count', '0')}; package_docs={intake.get('documentation_file_count', '0')}; public_docs={public.get('public_documentation_receipt_status', 'missing')}; archive_status={archive.get('archive_preflight_status', 'missing')}",
             "Download/place the complete unchanged official raw package and all documentation in the target folder.",
         )
         add_gate(
@@ -578,7 +577,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "local_target_folder": clean(wave.get("local_target_folder")),
             "public_documentation_status": "ready_metadata_only" if public_ready else "blocked",
             "variable_evidence_status": "ready_metadata_only_raw_review_required" if variable_ready else "blocked",
-            "raw_package_status": clean(intake.get("raw_package_status")) or "missing",
+            "raw_package_status": "raw_archive_plus_official_public_documentation_ready_for_raw_review" if raw_ready else clean(intake.get("raw_package_status")) or "missing",
             "archive_preflight_status": clean(archive.get("archive_preflight_status")) or "missing",
             "raw_value_verification_status": "all_verified" if all_requirements_verified else "blocked_not_raw_value_verified",
             "financial_protection_status": "ready" if financial_ready else "blocked",

@@ -14,6 +14,8 @@ QUEUE_PATH = TEMP_DIR / "priority_lsms_isa_refocused_acquisition_queue.csv"
 INTAKE_LEDGER_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_intake_ledger.csv"
 FILE_MANIFEST_PATH = TEMP_DIR / "priority_lsms_isa_raw_package_file_manifest.csv"
 REQUIREMENT_MATRIX_PATH = TEMP_DIR / "priority_lsms_isa_refocused_requirement_matrix.csv"
+PUBLIC_DOC_DATASET_PATH = TEMP_DIR / "priority_lsms_isa_public_documentation_dataset_receipt.csv"
+PUBLIC_DOC_RESOURCE_PATH = TEMP_DIR / "priority_lsms_isa_public_documentation_receipt.csv"
 
 PREFLIGHT_PATH = TEMP_DIR / "priority_lsms_isa_archive_member_preflight.csv"
 ARCHIVE_MEMBER_PATH = TEMP_DIR / "priority_lsms_isa_archive_member_manifest.csv"
@@ -41,6 +43,9 @@ PREFLIGHT_COLUMNS = [
     "direct_archive_file_rows",
     "direct_raw_tabular_file_rows",
     "direct_documentation_file_rows",
+    "public_documentation_status",
+    "public_documentation_snapshot_rows",
+    "public_documentation_snapshot_paths",
     "archive_member_rows",
     "archive_raw_tabular_member_rows",
     "archive_documentation_member_rows",
@@ -114,6 +119,19 @@ def safe_int(value: Any, default: int = 0) -> int:
         return default
 
 
+def compact(values: list[str], limit: int = 6) -> str:
+    seen: set[str] = set()
+    out: list[str] = []
+    for value in values:
+        text = " ".join(clean(value).split())
+        if text and text not in seen:
+            out.append(text)
+            seen.add(text)
+        if len(out) >= limit:
+            break
+    return "; ".join(out)
+
+
 def rel(path: Path) -> str:
     try:
         return str(path.relative_to(PROJECT_ROOT)).replace("\\", "/")
@@ -155,6 +173,11 @@ def role_from_suffix(name: str) -> str:
 def is_archive_path(path: Path) -> bool:
     lower = path.name.lower()
     return path.suffix.lower() in ARCHIVE_EXTENSIONS or lower.endswith(".tar.gz")
+
+
+def public_documentation_ready(row: dict[str, str]) -> bool:
+    status = clean(row.get("public_documentation_receipt_status"))
+    return status.startswith("complete_") and not clean(row.get("missing_core_resource_types"))
 
 
 def archive_members(path: Path) -> tuple[str, list[dict[str, str]]]:
@@ -228,6 +251,10 @@ Archive members: {preflight_row.get('archive_member_rows', '0')}
 Raw tabular members: {preflight_row.get('archive_raw_tabular_member_rows', '0')}
 
 Documentation members: {preflight_row.get('archive_documentation_member_rows', '0')}
+
+Official public documentation snapshots: {preflight_row.get('public_documentation_snapshot_rows', '0')}
+
+Official public documentation status: `{preflight_row.get('public_documentation_status', '')}`
 
 ## Requirement Preflight
 
@@ -313,25 +340,41 @@ def build_direct_and_members(queue_rows: list[dict[str, str]], manifest_rows: li
     return direct_rows, member_rows
 
 
-def preflight_status(direct_archive: int, direct_raw: int, direct_doc: int, member_raw: int, member_doc: int, unreadable_archives: int) -> tuple[str, str]:
-    if direct_archive == 0 and direct_raw == 0 and direct_doc == 0 and member_raw == 0 and member_doc == 0:
+def preflight_status(
+    direct_archive: int,
+    direct_raw: int,
+    direct_doc: int,
+    public_doc: int,
+    member_raw: int,
+    member_doc: int,
+    unreadable_archives: int,
+) -> tuple[str, str]:
+    documentation_rows = direct_doc + public_doc + member_doc
+    if direct_archive == 0 and direct_raw == 0 and member_raw == 0:
         return "blocked_no_original_archive_or_direct_files", "Place the complete official archive/raw package and documentation in the target folder."
-    if direct_archive > 0 and unreadable_archives >= direct_archive and member_raw == 0 and member_doc == 0:
+    if direct_archive > 0 and unreadable_archives >= direct_archive and member_raw == 0:
         return "blocked_archive_present_but_unreadable_by_preflight", "Use a readable zip/tar package or manually list/archive-extract contents for schema inspection."
     if direct_raw + member_raw == 0:
         return "blocked_no_raw_tabular_candidate", "Confirm the official package contains raw Stata/SPSS/SAS/CSV/workbook files."
-    if direct_doc + member_doc == 0:
-        return "blocked_no_documentation_candidate", "Add or locate questionnaires, codebooks, basic information documents, and data dictionaries."
+    if documentation_rows == 0:
+        return "blocked_no_documentation_candidate", "Add or locate official questionnaires, codebooks, DDI/XML, basic information documents, and data dictionaries."
     return "ready_for_raw_receipt_schema_and_manual_review", "Run schema inspection and raw value/unit/key review before promotion."
 
 
 def build_preflight(
     queue_rows: list[dict[str, str]],
     ledger_rows: list[dict[str, str]],
+    public_dataset_rows: list[dict[str, str]],
+    public_resource_rows: list[dict[str, str]],
     direct_rows: list[dict[str, str]],
     member_rows: list[dict[str, str]],
 ) -> list[dict[str, str]]:
     ledger_by_id = {clean(row.get("idno")): row for row in ledger_rows}
+    public_by_id = {clean(row.get("idno")): row for row in public_dataset_rows}
+    public_resources_by_id: dict[str, list[dict[str, str]]] = {}
+    for row in public_resource_rows:
+        if clean(row.get("receipt_status")) in {"saved", "saved_existing"}:
+            public_resources_by_id.setdefault(clean(row.get("idno")), []).append(row)
     by_direct: dict[str, list[dict[str, str]]] = {}
     by_member: dict[str, list[dict[str, str]]] = {}
     for row in direct_rows:
@@ -348,9 +391,13 @@ def build_preflight(
         direct_doc = sum(1 for row in direct if row.get("file_role") == "documentation_candidate")
         member_raw = sum(1 for row in members if row.get("member_role") == "raw_tabular_candidate")
         member_doc = sum(1 for row in members if row.get("member_role") == "documentation_candidate")
+        public = public_by_id.get(idno, {})
+        public_resources = public_resources_by_id.get(idno, [])
+        public_doc = len(public_resources) if public_documentation_ready(public) else 0
+        public_paths = compact([row.get("saved_path", "") for row in public_resources], 8)
         readable_archive_names = {row["archive_file_name"] for row in members if clean(row.get("archive_read_status")).startswith("readable")}
         unreadable_archive_names = {row["archive_file_name"] for row in members if clean(row.get("archive_read_status")).startswith("unsupported")}
-        status, next_action = preflight_status(direct_archive, direct_raw, direct_doc, member_raw, member_doc, len(unreadable_archive_names))
+        status, next_action = preflight_status(direct_archive, direct_raw, direct_doc, public_doc, member_raw, member_doc, len(unreadable_archive_names))
         rows.append(
             {
                 "download_priority_order": clean(queue.get("download_priority_order")),
@@ -365,6 +412,9 @@ def build_preflight(
                 "direct_archive_file_rows": str(direct_archive),
                 "direct_raw_tabular_file_rows": str(direct_raw),
                 "direct_documentation_file_rows": str(direct_doc),
+                "public_documentation_status": clean(public.get("public_documentation_receipt_status")) or "missing",
+                "public_documentation_snapshot_rows": str(public_doc),
+                "public_documentation_snapshot_paths": public_paths,
                 "archive_member_rows": str(len([row for row in members if row.get("member_name")])),
                 "archive_raw_tabular_member_rows": str(member_raw),
                 "archive_documentation_member_rows": str(member_doc),
@@ -416,6 +466,7 @@ def build_summary(preflight_rows: list[dict[str, str]], direct_rows: list[dict[s
         {"metric": "priority_lsms_archive_preflight_direct_archive_rows", "value": str(sum(1 for row in direct_rows if row.get("file_role") == "official_archive_or_compressed_package_candidate")), "interpretation": "Direct archive/compressed package candidates found."},
         {"metric": "priority_lsms_archive_preflight_direct_raw_tabular_rows", "value": str(sum(1 for row in direct_rows if row.get("file_role") == "raw_tabular_or_workbook_candidate")), "interpretation": "Direct raw tabular/workbook candidates found."},
         {"metric": "priority_lsms_archive_preflight_direct_documentation_rows", "value": str(sum(1 for row in direct_rows if row.get("file_role") == "documentation_candidate")), "interpretation": "Direct documentation candidates found."},
+        {"metric": "priority_lsms_archive_preflight_public_documentation_snapshot_rows", "value": str(sum(safe_int(row.get("public_documentation_snapshot_rows")) for row in preflight_rows)), "interpretation": "Saved official public documentation snapshots accepted as documentation evidence."},
         {"metric": "priority_lsms_archive_preflight_archive_member_rows", "value": str(sum(1 for row in member_rows if row.get("member_name"))), "interpretation": "Readable archive member rows found without extraction."},
         {"metric": "priority_lsms_archive_preflight_archive_raw_tabular_member_rows", "value": str(sum(1 for row in member_rows if row.get("member_role") == "raw_tabular_candidate")), "interpretation": "Raw tabular-like archive members found."},
         {"metric": "priority_lsms_archive_preflight_archive_documentation_member_rows", "value": str(sum(1 for row in member_rows if row.get("member_role") == "documentation_candidate")), "interpretation": "Documentation-like archive members found."},
@@ -452,7 +503,7 @@ whether direct original files or readable archive members exist.
 
 ## Dataset Preflight
 
-{markdown_table(preflight_rows, ['download_priority_order', 'queue_role', 'country', 'wave', 'idno', 'direct_archive_file_rows', 'archive_member_rows', 'archive_preflight_status'], 25)}
+{markdown_table(preflight_rows, ['download_priority_order', 'queue_role', 'country', 'wave', 'idno', 'direct_archive_file_rows', 'archive_member_rows', 'public_documentation_snapshot_rows', 'archive_preflight_status'], 25)}
 
 ## Blocked Targets
 
@@ -476,9 +527,10 @@ whether direct original files or readable archive members exist.
 
 ## Guardrail
 
-Readable archive members or direct raw files are only preflight evidence. A wave
-still cannot enter `data/` until raw schema inspection, manual value/unit/key
-review, outcome readiness, and accepted CHIRPS/ERA5 linkage all pass.
+Readable archive members, direct raw files, and saved official public
+documentation snapshots are only preflight evidence. A wave still cannot enter
+`data/` until raw schema inspection, manual value/unit/key review, outcome
+readiness, and accepted CHIRPS/ERA5 linkage all pass.
 """,
         encoding="utf-8",
     )
@@ -490,8 +542,10 @@ def main() -> None:
     ledger_rows = read_csv_dicts(INTAKE_LEDGER_PATH)
     manifest_rows = read_csv_dicts(FILE_MANIFEST_PATH)
     requirement_rows = read_csv_dicts(REQUIREMENT_MATRIX_PATH)
+    public_dataset_rows = read_csv_dicts(PUBLIC_DOC_DATASET_PATH)
+    public_resource_rows = read_csv_dicts(PUBLIC_DOC_RESOURCE_PATH)
     direct_rows, member_rows = build_direct_and_members(queue_rows, manifest_rows)
-    preflight_rows = build_preflight(queue_rows, ledger_rows, direct_rows, member_rows)
+    preflight_rows = build_preflight(queue_rows, ledger_rows, public_dataset_rows, public_resource_rows, direct_rows, member_rows)
     requirement_preflight_rows = build_requirement_preflight(preflight_rows, requirement_rows)
     by_id_req: dict[str, list[dict[str, str]]] = {}
     by_id_member: dict[str, list[dict[str, str]]] = {}

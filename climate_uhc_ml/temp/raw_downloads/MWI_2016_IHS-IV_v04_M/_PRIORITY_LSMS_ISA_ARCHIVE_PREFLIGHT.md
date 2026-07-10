@@ -14,6 +14,10 @@ Raw tabular members: 0
 
 Documentation members: 0
 
+Official public documentation snapshots: 7
+
+Official public documentation status: `complete_core_public_documentation_receipt`
+
 ## Requirement Preflight
 
 | requirement | metadata_status | requirement_preflight_status |

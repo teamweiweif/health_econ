@@ -2,7 +2,7 @@
 
 Dataset: `MWI_2004_IHS-II_v01_M` - Malawi 2004-2005
 
-Current status: `blocked_no_documentation_candidate`
+Current status: `ready_for_raw_receipt_schema_and_manual_review`
 
 Target folder: `temp/raw_downloads/MWI_2004_IHS-II_v01_M/`
 
@@ -14,18 +14,22 @@ Raw tabular members: 52
 
 Documentation members: 0
 
+Official public documentation snapshots: 7
+
+Official public documentation status: `complete_core_public_documentation_receipt`
+
 ## Requirement Preflight
 
 | requirement | metadata_status | requirement_preflight_status |
 |---|---|---|
-| household_person_keys | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| weights_and_design | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| consumption_or_income | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| oop_health_expenditure | metadata_weak_or_proxy_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| health_need_and_access | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| survey_timing | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| climate_geography | metadata_hit_raw_review_required | blocked_no_archive_or_direct_raw_evidence |
-| missing_codes_units_recall_skip_patterns | raw_review_required | blocked_no_archive_or_direct_raw_evidence |
+| household_person_keys | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| weights_and_design | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| consumption_or_income | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| oop_health_expenditure | metadata_weak_or_proxy_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| health_need_and_access | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| survey_timing | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| climate_geography | metadata_hit_raw_review_required | ready_for_schema_and_manual_requirement_review |
+| missing_codes_units_recall_skip_patterns | raw_review_required | ready_for_schema_and_manual_requirement_review |
 
 ## Archive Member Preview
 
@@ -54,4 +58,4 @@ Documentation members: 0
 
 ## Next Action
 
-Add or locate questionnaires, codebooks, basic information documents, and data dictionaries.
+Run schema inspection and raw value/unit/key review before promotion.
