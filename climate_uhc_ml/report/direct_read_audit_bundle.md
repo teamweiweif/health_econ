@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 174 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 763 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 759 | Curated artifacts present and non-empty. |
+| bundle_rows | 175 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 768 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 764 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -135,6 +135,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_manual_download_execution_board_rows | 10 | Manual-download execution board rows. |
 | priority_lsms_isa_manual_download_execution_board_target_files | 0 | Files currently present under execution-board target folders. |
 | priority_lsms_isa_manual_download_execution_board_validation_ready | 0 | Execution-board rows ready for post-download validation. |
+| priority_lsms_isa_credentialed_download_handoff_rows | 10 | Credentialed World Bank download handoff rows. |
+| priority_lsms_isa_credentialed_download_handoff_attempted | 0 | Credentialed download handoff rows where /download was requested. |
+| priority_lsms_isa_credentialed_download_handoff_saved | 0 | Credentialed download handoff rows where raw payloads were saved. |
 | priority_lsms_isa_promotion_gate_country_waves | 19 | Country-waves tracked by the promotion gate dashboard. |
 | priority_lsms_isa_promotion_gate_promoted_rows | 1 | Country-waves already promoted analysis-ready in the gate dashboard. |
 | priority_lsms_isa_promotion_gate_blocked_raw_package_rows | 18 | Country-waves still blocked at complete official raw package receipt. |
@@ -590,7 +593,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 65 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 66 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -660,6 +663,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_complete | 4 | Direct-read bundle status count. |
 | bundle_status_core_public_documentation_saved_raw_gate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_core_wave_replacement_needed_before_download_execution | 1 | Direct-read bundle status count. |
+| bundle_status_credentialed_download_handoff_waiting_for_session | 1 | Direct-read bundle status count. |
 | bundle_status_credentialed_download_required_no_public_raw_route | 1 | Direct-read bundle status count. |
 | bundle_status_credentialed_workbench_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_documented_alb2002_consumption_aggregate_but_not_outcome_sdg_climate_ready | 2 | Direct-read bundle status count. |
@@ -741,7 +745,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 65 |
+| priority_bundle | 66 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -824,6 +828,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | manual_download_progress_current | 1 |
 | post_download_validation_dry_run_current | 1 |
 | manual_download_execution_board_current | 1 |
+| credentialed_download_handoff_waiting_for_session | 1 |
 | promotion_gate_dashboard_current | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
@@ -935,7 +940,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 759 |
+| present_nonempty | 764 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

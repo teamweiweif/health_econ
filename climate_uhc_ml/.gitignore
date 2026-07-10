@@ -1,0 +1,15 @@
+# Local-only credentials and session handoff files.
+temp/private/
+
+# Raw or bulky local data artifacts. Keep these out of the GitHub-readable package.
+temp/raw_downloads/
+temp/raw_extracted/
+temp/source_snapshots/
+temp/raw_schema_inventory/
+temp/raw_value_profile_work/
+
+# Python/runtime scratch.
+__pycache__/
+script/__pycache__/
+temp/pycache_*/
+*.pyc

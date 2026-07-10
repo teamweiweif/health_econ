@@ -22,6 +22,7 @@ the required thresholds.
 - `report/priority_lsms_isa_manual_download_progress_tracker.md` - local tracker showing whether packet folders contain files ready for validation.
 - `report/priority_lsms_isa_post_download_validation_runner.md` - dry-run/explicit-execute plan for post-download receipt/schema/value checks.
 - `report/priority_lsms_isa_manual_download_execution_board.md` - one-table download URL, target-folder, missing-file, and validation command board.
+- `report/priority_lsms_isa_credentialed_download_handoff.md` - local-only World Bank session handoff for credentialed get-microdata downloads.
 - `report/priority_lsms_isa_promotion_gate_dashboard.md` - current raw-receipt-to-promotion gate dashboard.
 - `report/country_wave_promotion_packets/` - one packet per target country-wave.
 - `report/direct_read_audit_bundle.md` - compact Web-GPT-readable audit bundle.
@@ -60,3 +61,5 @@ temporary scratch files are deliberately excluded from the GitHub-readable
 package. Put manual raw packages under `temp/raw_downloads/` locally, then rerun
 the promotion pipeline. If the target folder is uncertain, put files under
 `temp/raw_downloads/_incoming/` first and run the incoming raw package router.
+Credential/session files belong only under `temp/private/` and must never be
+committed.

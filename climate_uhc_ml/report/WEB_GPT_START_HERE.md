@@ -41,9 +41,11 @@ data gates.
    - Dry-run validation plan; explicit `--execute` only after target folders contain official raw files.
 13. `report/priority_lsms_isa_manual_download_execution_board.md`
    - One-table board with official URLs, target folders, missing-file counts, and post-download validation commands.
-14. `report/priority_lsms_isa_country_wave_promotion_packets/`
+14. `report/priority_lsms_isa_credentialed_download_handoff.md`
+   - Local-only cookie/header handoff for probing or executing World Bank get-microdata downloads after browser login.
+15. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-15. `report/mwi2004_requirement_acceptance_decisions.md`
+16. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -87,6 +89,7 @@ resume, read:
 - `report/priority_lsms_isa_manual_download_progress_tracker.md`
 - `report/priority_lsms_isa_post_download_validation_runner.md`
 - `report/priority_lsms_isa_manual_download_execution_board.md`
+- `report/priority_lsms_isa_credentialed_download_handoff.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -98,6 +101,18 @@ python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 Then review `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv`. The
 router only writes suggested copy commands; it does not move, delete, extract,
 or promote files.
+
+If a logged-in World Bank Microdata browser session has accepted the required
+terms, put a cookie export or raw `Cookie:` header in
+`temp/private/worldbank_session_cookies.txt` and run:
+
+```bash
+python script/180_build_priority_lsms_isa_credentialed_download_handoff.py --probe
+```
+
+Use `--execute` only after the probe indicates a raw payload; the handoff saves
+raw files under packet target folders but still does not extract, promote, or
+run models.
 
 ## Excluded From GitHub
 

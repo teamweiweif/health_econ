@@ -164,6 +164,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_manual_download_progress_tracker.md",
     "priority_lsms_isa_post_download_validation_runner.md",
     "priority_lsms_isa_manual_download_execution_board.md",
+    "priority_lsms_isa_credentialed_download_handoff.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -349,6 +350,7 @@ REQUIRED_SCRIPTS = [
     "177_build_priority_lsms_isa_manual_download_progress_tracker.py",
     "178_build_priority_lsms_isa_post_download_validation_runner.py",
     "179_build_priority_lsms_isa_manual_download_execution_board.py",
+    "180_build_priority_lsms_isa_credentialed_download_handoff.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -365,6 +367,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "177_build_priority_lsms_isa_manual_download_progress_tracker.py",
     "178_build_priority_lsms_isa_post_download_validation_runner.py",
     "179_build_priority_lsms_isa_manual_download_execution_board.py",
+    "180_build_priority_lsms_isa_credentialed_download_handoff.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -508,7 +511,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-179 dataset-promotion gate chain",
+        "One-command runners include the current 157-180 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -924,6 +927,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_post_download_validation_runner_summary": row_count(RESULT_DIR / "priority_lsms_isa_post_download_validation_runner_summary.csv"),
         "priority_lsms_isa_manual_download_execution_board": row_count(TEMP_DIR / "priority_lsms_isa_manual_download_execution_board.csv"),
         "priority_lsms_isa_manual_download_execution_board_summary": row_count(RESULT_DIR / "priority_lsms_isa_manual_download_execution_board_summary.csv"),
+        "priority_lsms_isa_credentialed_download_handoff_plan": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_download_handoff_plan.csv"),
+        "priority_lsms_isa_credentialed_download_handoff_log": row_count(TEMP_DIR / "priority_lsms_isa_credentialed_download_handoff_log.csv"),
+        "priority_lsms_isa_credentialed_download_handoff_summary": row_count(RESULT_DIR / "priority_lsms_isa_credentialed_download_handoff_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5541,6 +5547,41 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_manual_execution_gate_ok),
         f"board_rows={counts['priority_lsms_isa_manual_download_execution_board']}; summary_rows={counts['priority_lsms_isa_manual_download_execution_board_summary']}; priority_rows={priority_lsms_manual_execution_priority_rows}; sixth_country_rows={priority_lsms_manual_execution_sixth_rows}; target_files={priority_lsms_manual_execution_target_files}; incoming_routes={priority_lsms_manual_execution_incoming_routes}; validation_ready={priority_lsms_manual_execution_validation_ready}; missing_full={priority_lsms_manual_execution_missing_full}; missing_core={priority_lsms_manual_execution_missing_core}; official_urls={priority_lsms_manual_execution_official_urls}; countries_if_passes={priority_lsms_manual_execution_countries_if_passes}; waves_if_passes={priority_lsms_manual_execution_waves_if_passes}; data_write={priority_lsms_manual_execution_data_write}; modeling_gate={priority_lsms_manual_execution_modeling}",
         "" if priority_lsms_manual_execution_gate_ok else "Run script/179_build_priority_lsms_isa_manual_download_execution_board.py after progress and post-download validation runner outputs are current.",
+    )
+    priority_lsms_credentialed_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_credentialed_download_handoff_summary.csv")
+    priority_lsms_credentialed_handoff_mode = next((row.get("value", "") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_mode"), "")
+    priority_lsms_credentialed_handoff_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_rows"), "0"), 0)
+    priority_lsms_credentialed_handoff_cookie = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_cookie_file_present"), "0"), 0)
+    priority_lsms_credentialed_handoff_header = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_header_file_present"), "0"), 0)
+    priority_lsms_credentialed_handoff_attempted = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_request_attempted_rows"), "0"), 0)
+    priority_lsms_credentialed_handoff_raw_payload = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_raw_payload_detected_rows"), "0"), 0)
+    priority_lsms_credentialed_handoff_saved = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_saved_raw_file_rows"), "0"), 0)
+    priority_lsms_credentialed_handoff_missing_session = safe_int(next((row.get("value", "0") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "credentialed_download_handoff_missing_session_rows"), "0"), 0)
+    priority_lsms_credentialed_handoff_data_write = next((row.get("value", "") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_credentialed_handoff_modeling = next((row.get("value", "") for row in priority_lsms_credentialed_handoff_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_credentialed_handoff_gate_ok = (
+        counts["priority_lsms_isa_credentialed_download_handoff_summary"] > 0
+        and counts["priority_lsms_isa_credentialed_download_handoff_plan"] == priority_lsms_credentialed_handoff_rows
+        and counts["priority_lsms_isa_credentialed_download_handoff_log"] == priority_lsms_credentialed_handoff_rows
+        and file_ok(REPORT_DIR / "priority_lsms_isa_credentialed_download_handoff.md")
+        and priority_lsms_credentialed_handoff_mode == "dry_run"
+        and priority_lsms_credentialed_handoff_rows == priority_lsms_manual_execution_rows
+        and priority_lsms_credentialed_handoff_cookie == 0
+        and priority_lsms_credentialed_handoff_header == 0
+        and priority_lsms_credentialed_handoff_attempted == 0
+        and priority_lsms_credentialed_handoff_raw_payload == 0
+        and priority_lsms_credentialed_handoff_saved == 0
+        and priority_lsms_credentialed_handoff_missing_session == priority_lsms_manual_execution_rows
+        and priority_lsms_credentialed_handoff_data_write == "blocked_no_data_write"
+        and priority_lsms_credentialed_handoff_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA credentialed download handoff is fail-closed until a local World Bank session is provided",
+        status(priority_lsms_credentialed_handoff_gate_ok),
+        f"plan_rows={counts['priority_lsms_isa_credentialed_download_handoff_plan']}; log_rows={counts['priority_lsms_isa_credentialed_download_handoff_log']}; summary_rows={counts['priority_lsms_isa_credentialed_download_handoff_summary']}; mode={priority_lsms_credentialed_handoff_mode}; rows={priority_lsms_credentialed_handoff_rows}; cookie_file={priority_lsms_credentialed_handoff_cookie}; header_file={priority_lsms_credentialed_handoff_header}; attempted={priority_lsms_credentialed_handoff_attempted}; raw_payload={priority_lsms_credentialed_handoff_raw_payload}; saved={priority_lsms_credentialed_handoff_saved}; missing_session={priority_lsms_credentialed_handoff_missing_session}; data_write={priority_lsms_credentialed_handoff_data_write}; modeling_gate={priority_lsms_credentialed_handoff_modeling}",
+        "" if priority_lsms_credentialed_handoff_gate_ok else "Run script/180_build_priority_lsms_isa_credentialed_download_handoff.py in dry-run mode unless a local session is intentionally provided for --probe or --execute.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)
