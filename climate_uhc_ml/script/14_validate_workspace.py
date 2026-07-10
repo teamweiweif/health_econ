@@ -176,6 +176,7 @@ REQUIRED_REPORTS = [
     "mwi2004_sdg382_discretionary_budget_parameter_audit.md",
     "mwi2004_sdg382_external_parameter_source_ledger.md",
     "mwi2004_sdg382_candidate_classification_precheck.md",
+    "mwi2004_sdg382_official_denominator_rule_audit.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -356,6 +357,7 @@ REQUIRED_SCRIPTS = [
     "189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py",
     "190_build_mwi2004_sdg382_external_parameter_source_ledger.py",
     "191_build_mwi2004_sdg382_candidate_classification_precheck.py",
+    "192_build_mwi2004_sdg382_official_denominator_rule_audit.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
@@ -385,6 +387,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py",
     "190_build_mwi2004_sdg382_external_parameter_source_ledger.py",
     "191_build_mwi2004_sdg382_candidate_classification_precheck.py",
+    "192_build_mwi2004_sdg382_official_denominator_rule_audit.py",
     "172_build_priority_lsms_isa_next_raw_package_action_packet.py",
     "174_build_priority_lsms_isa_incoming_raw_package_router.py",
     "175_build_priority_lsms_isa_threshold_gap_control_panel.py",
@@ -544,7 +547,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-191 dataset-promotion gate chain",
+        "One-command runners include the current 157-192 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -947,6 +950,8 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "mwi2004_sdg382_external_parameter_candidate_summary": row_count(RESULT_DIR / "mwi2004_sdg382_external_parameter_candidate_summary.csv"),
         "mwi2004_sdg382_candidate_classification_precheck": row_count(RESULT_DIR / "mwi2004_sdg382_candidate_classification_precheck.csv"),
         "mwi2004_sdg382_candidate_classification_precheck_summary": row_count(RESULT_DIR / "mwi2004_sdg382_candidate_classification_precheck_summary.csv"),
+        "mwi2004_sdg382_official_denominator_rule_audit": row_count(RESULT_DIR / "mwi2004_sdg382_official_denominator_rule_audit.csv"),
+        "mwi2004_sdg382_official_denominator_rule_summary": row_count(RESULT_DIR / "mwi2004_sdg382_official_denominator_rule_summary.csv"),
         "priority_lsms_isa_next_raw_package_action_queue": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_action_queue.csv"),
         "priority_lsms_isa_next_raw_package_core_files": row_count(TEMP_DIR / "priority_lsms_isa_next_raw_package_core_files.csv"),
         "priority_lsms_isa_next_raw_package_action_summary": row_count(RESULT_DIR / "priority_lsms_isa_next_raw_package_action_summary.csv"),
@@ -6229,6 +6234,41 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(mwi2004_sdg382_precheck_gate_ok),
         f"precheck_rows={counts['mwi2004_sdg382_candidate_classification_precheck']}; summary_rows={counts['mwi2004_sdg382_candidate_classification_precheck_summary']}; household_rows={mwi2004_sdg382_precheck_rows}; nonpositive_discretionary={mwi2004_sdg382_precheck_nonpositive}; strict_candidate_rows={mwi2004_sdg382_precheck_strict_rows}; floor_candidate_rows={mwi2004_sdg382_precheck_floor_rows}; bridge_accepted={mwi2004_sdg382_precheck_bridge}; written_to_data={mwi2004_sdg382_precheck_written}; sdg382_ready={mwi2004_sdg382_precheck_ready}; data_write={mwi2004_sdg382_precheck_data_write}; modeling_gate={mwi2004_sdg382_precheck_modeling}",
         "" if mwi2004_sdg382_precheck_gate_ok else "Run script/191_build_mwi2004_sdg382_candidate_classification_precheck.py after the Malawi SDG 3.8.2 external parameter ledger is current.",
+    )
+    mwi2004_sdg382_denominator_summary = read_csv_dicts(RESULT_DIR / "mwi2004_sdg382_official_denominator_rule_summary.csv")
+    mwi2004_sdg382_denominator_households = safe_int(next((row.get("value", "0") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "household_rows"), "0"), 0)
+    mwi2004_sdg382_denominator_rule = next((row.get("value", "") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "official_denominator_rule_accepted"), "")
+    mwi2004_sdg382_denominator_nonpositive = safe_int(next((row.get("value", "0") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "nonpositive_discretionary_budget_rows"), "0"), 0)
+    mwi2004_sdg382_denominator_positive_oop_nonpositive = safe_int(next((row.get("value", "0") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "positive_oop_nonpositive_discretionary_rows"), "0"), 0)
+    mwi2004_sdg382_denominator_positive_discretionary_rows = safe_int(next((row.get("value", "0") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "positive_discretionary_candidate_sdg382_rows"), "0"), 0)
+    mwi2004_sdg382_denominator_official_rows = safe_int(next((row.get("value", "0") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "official_rule_candidate_sdg382_rows"), "0"), 0)
+    mwi2004_sdg382_denominator_bridge = next((row.get("value", "") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "external_parameter_bridge_accepted"), "")
+    mwi2004_sdg382_denominator_written = next((row.get("value", "") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "candidate_classification_written_to_data"), "")
+    mwi2004_sdg382_denominator_ready = next((row.get("value", "") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "sdg382_ready"), "")
+    mwi2004_sdg382_denominator_data_write = next((row.get("value", "") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "data_write_gate_status"), "")
+    mwi2004_sdg382_denominator_modeling = next((row.get("value", "") for row in mwi2004_sdg382_denominator_summary if row.get("metric") == "modeling_gate_status"), "")
+    mwi2004_sdg382_denominator_gate_ok = (
+        counts["mwi2004_sdg382_official_denominator_rule_summary"] > 0
+        and counts["mwi2004_sdg382_official_denominator_rule_audit"] >= 6
+        and file_ok(REPORT_DIR / "mwi2004_sdg382_official_denominator_rule_audit.md")
+        and mwi2004_sdg382_denominator_households == mwi2004_promoted_rows
+        and mwi2004_sdg382_denominator_rule == "1"
+        and mwi2004_sdg382_denominator_nonpositive >= 0
+        and mwi2004_sdg382_denominator_positive_oop_nonpositive >= 0
+        and mwi2004_sdg382_denominator_official_rows >= mwi2004_sdg382_denominator_positive_discretionary_rows
+        and mwi2004_sdg382_denominator_bridge == "0"
+        and mwi2004_sdg382_denominator_written == "0"
+        and mwi2004_sdg382_denominator_ready == "0"
+        and mwi2004_sdg382_denominator_data_write == "closed"
+        and mwi2004_sdg382_denominator_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Malawi 2004 SDG 3.8.2 official denominator rule is accepted while final SPL bridge remains blocked",
+        status(mwi2004_sdg382_denominator_gate_ok),
+        f"audit_rows={counts['mwi2004_sdg382_official_denominator_rule_audit']}; summary_rows={counts['mwi2004_sdg382_official_denominator_rule_summary']}; household_rows={mwi2004_sdg382_denominator_households}; official_rule_accepted={mwi2004_sdg382_denominator_rule}; nonpositive_discretionary={mwi2004_sdg382_denominator_nonpositive}; positive_oop_nonpositive={mwi2004_sdg382_denominator_positive_oop_nonpositive}; official_candidate_rows={mwi2004_sdg382_denominator_official_rows}; bridge_accepted={mwi2004_sdg382_denominator_bridge}; written_to_data={mwi2004_sdg382_denominator_written}; sdg382_ready={mwi2004_sdg382_denominator_ready}; data_write={mwi2004_sdg382_denominator_data_write}; modeling_gate={mwi2004_sdg382_denominator_modeling}",
+        "" if mwi2004_sdg382_denominator_gate_ok else "Run script/192_build_mwi2004_sdg382_official_denominator_rule_audit.py after the Malawi SDG 3.8.2 candidate classification precheck is current.",
     )
     promoted_data_gate_summary = read_csv_dicts(RESULT_DIR / "promoted_data_gate_summary.csv")
     promoted_registry_rows = safe_int(next((row.get("value", "0") for row in promoted_data_gate_summary if row.get("metric") == "registry_promoted_analysis_ready_rows"), "0"), 0)

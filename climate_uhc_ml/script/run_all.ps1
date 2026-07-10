@@ -74,6 +74,7 @@ $Python = if ($env:PYTHON) { $env:PYTHON } else { "python" }
 & $Python script/189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py
 & $Python script/190_build_mwi2004_sdg382_external_parameter_source_ledger.py
 & $Python script/191_build_mwi2004_sdg382_candidate_classification_precheck.py
+& $Python script/192_build_mwi2004_sdg382_official_denominator_rule_audit.py
 & $Python script/166_build_mwi2004_timing_geography_linkage_policy.py
 & $Python script/167_build_mwi2004_access_person_key_resolution_policy.py
 & $Python script/168_build_mwi2004_missing_units_recall_skip_policy.py

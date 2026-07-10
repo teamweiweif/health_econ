@@ -66,6 +66,7 @@ python script/165_build_mwi2004_financial_protection_construction_policy.py
 python script/189_build_mwi2004_sdg382_discretionary_budget_parameter_audit.py
 python script/190_build_mwi2004_sdg382_external_parameter_source_ledger.py
 python script/191_build_mwi2004_sdg382_candidate_classification_precheck.py
+python script/192_build_mwi2004_sdg382_official_denominator_rule_audit.py
 python script/166_build_mwi2004_timing_geography_linkage_policy.py
 python script/167_build_mwi2004_access_person_key_resolution_policy.py
 python script/168_build_mwi2004_missing_units_recall_skip_policy.py
@@ -164,6 +165,7 @@ Current status:
 - The Malawi 2004 SDG 3.8.2 parameter audit is `result/mwi2004_sdg382_discretionary_budget_parameter_summary.csv`; it checks current 2026 discretionary-budget metadata alignment and keeps SDG 3.8.2 fail-closed until PPP/CPI/SPL parameters are verified.
 - The Malawi 2004 SDG 3.8.2 external parameter source ledger is `result/mwi2004_sdg382_external_parameter_candidate_summary.csv`; it captures World Bank PPP/CPI candidates and keeps the CPI/base-period bridge unaccepted.
 - The Malawi 2004 SDG 3.8.2 candidate classification precheck is `result/mwi2004_sdg382_candidate_classification_precheck_summary.csv`; it reports aggregate-only candidate rates under strict and denominator-floor sensitivity variants without opening the SDG gate.
+- The Malawi 2004 SDG 3.8.2 official denominator rule audit is `result/mwi2004_sdg382_official_denominator_rule_summary.csv`; it accepts the official nonpositive-discretionary-budget rule but keeps the SDG gate closed because the Malawi local-currency SPL bridge is still candidate.
 - The priority LSMS/ISA promotion gate dashboard is `result/priority_lsms_isa_promotion_gate_dashboard_summary.csv`.
 - The priority analysis dataset synthesis blueprint is `result/priority_analysis_dataset_synthesis_blueprint_summary.csv`.
 - The priority country-wave promotion packets are indexed in `result/priority_country_wave_promotion_packet_summary.csv`.

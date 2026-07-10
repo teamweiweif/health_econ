@@ -51,8 +51,9 @@ scope. Survey timing and admin/EA geography are verified for the accepted
 CHIRPS ADM2 linkage route, and a promoted household-climate dataset exists for
 this one country-wave. SDG 3.8.2 has a focused discretionary-budget parameter
 audit, a World Bank PPP/CPI candidate source ledger, and an aggregate-only
-candidate classification precheck, but remains blocked until the
-CPI/base-period bridge and denominator policy are accepted. Multi-country
+candidate classification precheck. The official UNSD nonpositive-discretionary
+budget rule is now source-verified and accepted, but final SDG 3.8.2 remains
+blocked until the CPI/base-period and PPP/SPL bridge is accepted. Multi-country
 dataset synthesis remains blocked until additional raw packages pass the same
 gates.
 
