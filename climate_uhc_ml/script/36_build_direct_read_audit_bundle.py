@@ -292,6 +292,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.csv", "priority LSMS/ISA minimum-batch climate linkage review queue"),
     ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_climate_linkage_file_queue.csv", "priority LSMS/ISA minimum-batch climate linkage file queue"),
     ("dataset_promotion", "result/priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv", "priority LSMS/ISA minimum-batch climate linkage review summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_local_stray_raw_package_locator.md", "priority LSMS/ISA local stray raw package locator report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_local_stray_raw_package_candidates.csv", "priority LSMS/ISA local stray raw package candidates"),
+    ("dataset_promotion", "temp/priority_lsms_isa_local_stray_raw_package_route_plan.csv", "priority LSMS/ISA local stray raw package route plan"),
+    ("dataset_promotion", "result/priority_lsms_isa_local_stray_raw_package_locator_summary.csv", "priority LSMS/ISA local stray raw package locator summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -734,6 +738,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py", "priority LSMS/ISA target-folder receipt smoke-test generator"),
     ("reproducibility", "script/186_build_priority_lsms_isa_threshold_replacement_plan.py", "priority LSMS/ISA threshold replacement plan generator"),
     ("reproducibility", "script/187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py", "priority LSMS/ISA minimum-batch climate linkage review queue generator"),
+    ("reproducibility", "script/188_build_priority_lsms_isa_local_stray_raw_package_locator.py", "priority LSMS/ISA local stray raw package locator generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -991,6 +996,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_target_folder_smoke_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_target_folder_receipt_smoke_test_summary.csv")
     priority_lsms_threshold_replacement_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_threshold_replacement_plan_summary.csv")
     priority_lsms_minimum_climate_review_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv")
+    priority_lsms_local_stray_locator_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_stray_raw_package_locator_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1782,6 +1788,18 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"datasets={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_dataset_rows', '0')}; file_rows={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_file_rows', '0')}; timing_metadata_ready={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_timing_ready_metadata_rows', '0')}; geography_metadata_ready={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_geography_ready_metadata_rows', '0')}; point_routes={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_point_route_rows', '0')}; admin_routes={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_admin_route_rows', '0')}; raw_blocked={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_raw_blocked_rows', '0')}; source_ready={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_source_ready_rows', '0')}; accepted_routes={csv_value(priority_lsms_minimum_climate_review_summary, 'priority_lsms_minimum_climate_review_accepted_route_rows', '0')}; modeling_gate={csv_value(priority_lsms_minimum_climate_review_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.csv", TEMP_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_file_queue.csv", RESULT_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv", REPORT_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md"],
         "Minimum-batch climate linkage review queue maps the current 10 manual packets to timing/geography raw checks and CHIRPS/ERA5 route status before any climate extraction.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_local_stray_raw_package_locator",
+        "local_stray_raw_locator_current"
+        if csv_value(priority_lsms_local_stray_locator_summary, "priority_lsms_local_stray_raw_locator_dataset_rows", "0") == "10"
+        and csv_value(priority_lsms_local_stray_locator_summary, "priority_lsms_local_stray_raw_locator_data_write_status", "missing") == "blocked_no_data_write"
+        else "local_stray_raw_locator_needs_review",
+        f"datasets={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_dataset_rows', '0')}; scanned_files={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_scanned_file_rows', '0')}; considered_files={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_considered_file_rows', '0')}; candidates={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_candidate_file_rows', '0')}; matched_idnos={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_matched_idno_rows', '0')}; outside_target={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_outside_target_candidate_rows', '0')}; incoming={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_incoming_candidate_rows', '0')}; already_target={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_already_target_candidate_rows', '0')}; raw_status={csv_value(priority_lsms_local_stray_locator_summary, 'priority_lsms_local_stray_raw_locator_raw_promotion_status', 'missing')}; modeling_gate={csv_value(priority_lsms_local_stray_locator_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_local_stray_raw_package_candidates.csv", TEMP_DIR / "priority_lsms_isa_local_stray_raw_package_route_plan.csv", RESULT_DIR / "priority_lsms_isa_local_stray_raw_package_locator_summary.csv", REPORT_DIR / "priority_lsms_isa_local_stray_raw_package_locator.md"],
+        "Local stray raw package locator searches only file names, sizes, and archive member lists to find already-downloaded packages that may have been placed outside their expected target folders.",
     )
     add_bundle(
         rows,

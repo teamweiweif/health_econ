@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 182 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 803 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 799 | Curated artifacts present and non-empty. |
+| bundle_rows | 183 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 808 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 804 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -593,7 +593,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 73 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 74 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -682,6 +682,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_limited_core_financial_outcomes_climate_exposures_and_linked_diagnostics_promoted_models_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_limited_harmonized_household_core_promoted_outcome_climate_still_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_limited_nasa_admin2_centroid_climate_exposures_promoted_linkage_still_blocked | 1 | Direct-read bundle status count. |
+| bundle_status_local_stray_raw_locator_current | 1 | Direct-read bundle status count. |
 | bundle_status_local_target_readmes_current | 1 | Direct-read bundle status count. |
 | bundle_status_manual_download_execution_board_current | 1 | Direct-read bundle status count. |
 | bundle_status_manual_download_packets_current | 1 | Direct-read bundle status count. |
@@ -752,7 +753,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 73 |
+| priority_bundle | 74 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -843,6 +844,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | target_folder_receipt_smoke_current | 1 |
 | threshold_replacement_plan_current | 1 |
 | minimum_batch_climate_linkage_review_current | 1 |
+| local_stray_raw_locator_current | 1 |
 | promotion_gate_dashboard_current | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
@@ -954,7 +956,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 799 |
+| present_nonempty | 804 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

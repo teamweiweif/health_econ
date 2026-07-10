@@ -172,6 +172,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_target_folder_receipt_smoke_test.md",
     "priority_lsms_isa_threshold_replacement_plan.md",
     "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md",
+    "priority_lsms_isa_local_stray_raw_package_locator.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -365,6 +366,7 @@ REQUIRED_SCRIPTS = [
     "185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py",
     "186_build_priority_lsms_isa_threshold_replacement_plan.py",
     "187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py",
+    "188_build_priority_lsms_isa_local_stray_raw_package_locator.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -389,6 +391,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "185_build_priority_lsms_isa_target_folder_receipt_smoke_test.py",
     "186_build_priority_lsms_isa_threshold_replacement_plan.py",
     "187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py",
+    "188_build_priority_lsms_isa_local_stray_raw_package_locator.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -532,7 +535,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-187 dataset-promotion gate chain",
+        "One-command runners include the current 157-188 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -972,6 +975,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_minimum_batch_climate_linkage_review_queue": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_queue.csv"),
         "priority_lsms_isa_minimum_batch_climate_linkage_file_queue": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_file_queue.csv"),
         "priority_lsms_isa_minimum_batch_climate_linkage_review_summary": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_climate_linkage_review_summary.csv"),
+        "priority_lsms_isa_local_stray_raw_package_candidates": row_count(TEMP_DIR / "priority_lsms_isa_local_stray_raw_package_candidates.csv"),
+        "priority_lsms_isa_local_stray_raw_package_route_plan": row_count(TEMP_DIR / "priority_lsms_isa_local_stray_raw_package_route_plan.csv"),
+        "priority_lsms_isa_local_stray_raw_package_locator_summary": row_count(RESULT_DIR / "priority_lsms_isa_local_stray_raw_package_locator_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5887,6 +5893,38 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_climate_review_gate_ok),
         f"review_rows={counts['priority_lsms_isa_minimum_batch_climate_linkage_review_queue']}; file_rows={counts['priority_lsms_isa_minimum_batch_climate_linkage_file_queue']}; summary_rows={counts['priority_lsms_isa_minimum_batch_climate_linkage_review_summary']}; datasets={priority_lsms_climate_review_datasets}; timing_metadata_ready={priority_lsms_climate_review_timing_ready}; geography_metadata_ready={priority_lsms_climate_review_geography_ready}; point_routes={priority_lsms_climate_review_point}; admin_routes={priority_lsms_climate_review_admin}; manual_routes={priority_lsms_climate_review_manual}; raw_blocked={priority_lsms_climate_review_raw_blocked}; source_ready={priority_lsms_climate_review_source_ready}; accepted_routes={priority_lsms_climate_review_accepted}; data_write={priority_lsms_climate_review_data_write}; modeling_gate={priority_lsms_climate_review_modeling}",
         "" if priority_lsms_climate_review_gate_ok else "Run script/187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py after the manual board, target smoke test, and variable evidence matrix are current.",
+    )
+    priority_lsms_local_stray_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_stray_raw_package_locator_summary.csv")
+    priority_lsms_local_stray_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_dataset_rows"), "0"), 0)
+    priority_lsms_local_stray_candidates = safe_int(next((row.get("value", "0") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_candidate_file_rows"), "0"), 0)
+    priority_lsms_local_stray_route_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_route_plan_rows"), "0"), 0)
+    priority_lsms_local_stray_matched = safe_int(next((row.get("value", "0") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_matched_idno_rows"), "0"), 0)
+    priority_lsms_local_stray_outside = safe_int(next((row.get("value", "0") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_outside_target_candidate_rows"), "0"), 0)
+    priority_lsms_local_stray_incoming = safe_int(next((row.get("value", "0") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_incoming_candidate_rows"), "0"), 0)
+    priority_lsms_local_stray_already = safe_int(next((row.get("value", "0") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_already_target_candidate_rows"), "0"), 0)
+    priority_lsms_local_stray_data_write = next((row.get("value", "") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_data_write_status"), "")
+    priority_lsms_local_stray_raw_status = next((row.get("value", "") for row in priority_lsms_local_stray_summary if row.get("metric") == "priority_lsms_local_stray_raw_locator_raw_promotion_status"), "")
+    priority_lsms_local_stray_modeling = next((row.get("value", "") for row in priority_lsms_local_stray_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_local_stray_gate_ok = (
+        counts["priority_lsms_isa_local_stray_raw_package_locator_summary"] > 0
+        and counts["priority_lsms_isa_local_stray_raw_package_route_plan"] == priority_lsms_local_stray_route_rows
+        and counts["priority_lsms_isa_local_stray_raw_package_candidates"] == priority_lsms_local_stray_candidates
+        and file_ok(REPORT_DIR / "priority_lsms_isa_local_stray_raw_package_locator.md")
+        and priority_lsms_local_stray_datasets == priority_lsms_manual_execution_rows
+        and priority_lsms_local_stray_route_rows == priority_lsms_manual_execution_rows
+        and (priority_lsms_local_stray_outside + priority_lsms_local_stray_incoming + priority_lsms_local_stray_already) <= priority_lsms_local_stray_candidates
+        and priority_lsms_local_stray_matched <= priority_lsms_local_stray_datasets
+        and priority_lsms_local_stray_data_write == "blocked_no_data_write"
+        and priority_lsms_local_stray_raw_status in {"blocked_no_local_stray_raw_package_found", "blocked_pending_manual_review"}
+        and priority_lsms_local_stray_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA local stray raw package locator searches the workspace for already-downloaded packages outside target folders",
+        status(priority_lsms_local_stray_gate_ok),
+        f"route_rows={counts['priority_lsms_isa_local_stray_raw_package_route_plan']}; candidate_rows={counts['priority_lsms_isa_local_stray_raw_package_candidates']}; summary_rows={counts['priority_lsms_isa_local_stray_raw_package_locator_summary']}; datasets={priority_lsms_local_stray_datasets}; matched_idnos={priority_lsms_local_stray_matched}; outside_target={priority_lsms_local_stray_outside}; incoming={priority_lsms_local_stray_incoming}; already_target={priority_lsms_local_stray_already}; raw_status={priority_lsms_local_stray_raw_status}; data_write={priority_lsms_local_stray_data_write}; modeling_gate={priority_lsms_local_stray_modeling}",
+        "" if priority_lsms_local_stray_gate_ok else "Run script/188_build_priority_lsms_isa_local_stray_raw_package_locator.py after the manual board, acceptance matrix, and target smoke test are current.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)

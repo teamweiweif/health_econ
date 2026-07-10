@@ -30,6 +30,7 @@ the required thresholds.
 - `report/priority_lsms_isa_target_folder_receipt_smoke_test.md` - target-folder smoke test showing whether real raw files are present for receipt validation.
 - `report/priority_lsms_isa_threshold_replacement_plan.md` - backup/replacement plan for keeping 6 countries and 10 waves if a minimum-batch package fails.
 - `report/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md` - current 10-packet timing/geography review queue for CHIRPS/ERA5 linkage.
+- `report/priority_lsms_isa_local_stray_raw_package_locator.md` - local workspace scan for already-downloaded raw packages outside the expected target folders.
 - `report/priority_lsms_isa_promotion_gate_dashboard.md` - current raw-receipt-to-promotion gate dashboard.
 - `report/country_wave_promotion_packets/` - one packet per target country-wave.
 - `report/direct_read_audit_bundle.md` - compact Web-GPT-readable audit bundle.
@@ -69,6 +70,8 @@ package. Put manual raw packages under `temp/raw_downloads/` locally, then rerun
 the promotion pipeline. If the target folder is uncertain, put files under
 `temp/raw_downloads/_incoming/` first and run the incoming raw package router.
 If the target folder is known, use the target-folder receipt smoke test before
-running receipt/schema/value validation.
+running receipt/schema/value validation. If a package may already have been
+downloaded elsewhere in this workspace, run the local stray raw package locator
+to find candidate file paths without copying, extracting, or promoting them.
 Credential/session files belong only under `temp/private/` and must never be
 committed.

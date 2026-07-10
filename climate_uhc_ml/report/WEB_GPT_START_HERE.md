@@ -57,9 +57,11 @@ data gates.
    - Replacement plan explaining the sixth-country need and backup order if a minimum-batch package fails.
 21. `report/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md`
    - Current 10-packet timing/geography review queue for CHIRPS/ERA5 linkage after raw receipt.
-22. `report/priority_lsms_isa_country_wave_promotion_packets/`
+22. `report/priority_lsms_isa_local_stray_raw_package_locator.md`
+   - Non-destructive local workspace scan for already-downloaded raw packages outside the expected target folders.
+23. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-23. `report/mwi2004_requirement_acceptance_decisions.md`
+24. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -111,6 +113,7 @@ resume, read:
 - `report/priority_lsms_isa_target_folder_receipt_smoke_test.md`
 - `report/priority_lsms_isa_threshold_replacement_plan.md`
 - `report/priority_lsms_isa_minimum_batch_climate_linkage_review_queue.md`
+- `report/priority_lsms_isa_local_stray_raw_package_locator.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -179,6 +182,13 @@ run:
 
 ```bash
 python script/187_build_priority_lsms_isa_minimum_batch_climate_linkage_review_queue.py
+```
+
+To scan the local workspace for already-downloaded packages that were not placed
+in the expected target folders, run:
+
+```bash
+python script/188_build_priority_lsms_isa_local_stray_raw_package_locator.py
 ```
 
 ## Excluded From GitHub
