@@ -1,0 +1,11 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by this health exception audit.
+health_module_rows,51292,Rows in sec_d.dta read for aggregate exception audit.
+health_person_unmatched_to_roster,6,Health-module person keys absent from roster; raw IDs are not exported.
+roster_person_unmatched_to_health,2,Roster person keys absent from health module; raw IDs are not exported.
+d07a_skip_leakage_rows,6,d07a nonmissing rows where d04 is not Yes.
+d07a_skip_leakage_overlap_with_unmatched_health_rows,0,d07a leakage rows that are also absent from the roster.
+d07a_skip_leakage_explained_by_nonroster_rows,0,Whether all d07a leakage is exactly concentrated in nonroster health rows.
+other_skip_leakage_rows,0,"Combined d07b, d17, and d20 leakage rows."
+exception_policy_status,policy_pending_exception_unresolved,Exception status; still not final verification.
+data_write_gate_status,closed,This exception audit cannot write promoted data.

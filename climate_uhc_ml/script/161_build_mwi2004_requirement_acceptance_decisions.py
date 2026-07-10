@@ -25,6 +25,7 @@ SUMMARY_PATH = RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv"
 REPORT_PATH = REPORT_DIR / "mwi2004_requirement_acceptance_decisions.md"
 HANDOFF_PATH = RAW_DIR / "_MWI2004_REQUIREMENT_ACCEPTANCE_DECISIONS.md"
 HEALTH_ACCESS_LABEL_SKIP_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv"
+HEALTH_EXCEPTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_exception_summary.csv"
 
 DECISION_COLUMNS = [
     "country",
@@ -158,11 +159,15 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     if not ZIP_PATH.exists():
         raise FileNotFoundError(f"Missing raw package: {ZIP_PATH}")
     health_label_summary = read_csv_dicts(HEALTH_ACCESS_LABEL_SKIP_SUMMARY_PATH)
+    health_exception_summary = read_csv_dicts(HEALTH_EXCEPTION_SUMMARY_PATH)
     health_label_decision = summary_value(health_label_summary, "health_access_label_skip_decision")
     health_label_rows = summary_value(health_label_summary, "label_decision_rows", "0")
     health_manual_review_rows = summary_value(health_label_summary, "manual_review_rows", "0")
     health_no_money_rows = summary_value(health_label_summary, "financial_barrier_no_money_rows", "0")
     health_skip_leakage_rows = summary_value(health_label_summary, "total_skip_leakage_rows", "missing")
+    health_exception_status = summary_value(health_exception_summary, "exception_policy_status", "missing")
+    health_exception_overlap = summary_value(health_exception_summary, "d07a_skip_leakage_overlap_with_unmatched_health_rows", "missing")
+    health_exception_explained = summary_value(health_exception_summary, "d07a_skip_leakage_explained_by_nonroster_rows", "missing")
 
     household, _ = read_member(
         ZIP_PATH,
@@ -251,9 +256,9 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
             "requirement": "household_person_keys",
             "mechanical_raw_check_decision": "blocked_person_join_exception_review_required",
             "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"household/exp/pov case_id joins pass; health->roster unmatched={len(health_keys - individ_keys)}; roster->health unmatched={len(individ_keys - health_keys)}.",
-            "remaining_blocker": "Resolve or document the 6 health-module person keys unmatched to the individual roster before full double-failure person-level verification.",
-            "next_action": "Inspect questionnaire/roster rules and decide whether unmatched health rows are valid exclusions; do not export raw IDs.",
+            "acceptance_evidence": f"household/exp/pov case_id joins pass; health->roster unmatched={len(health_keys - individ_keys)}; roster->health unmatched={len(individ_keys - health_keys)}; exception_status={health_exception_status}.",
+            "remaining_blocker": "Resolve or document health-module person keys absent from the roster before full double-failure person-level verification; raw IDs are not exported.",
+            "next_action": "Use the health exception audit to decide whether nonroster health rows can be excluded, reconciled, or documented as valid exceptions.",
         },
         {
             "requirement": "weights_and_design",
@@ -287,9 +292,9 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
                 else "blocked_construct_label_skip_review_required"
             ),
             "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"d04 illness yes rows={illness_yes}; d07 no-money label hits={no_money_action}; label_decision_rows={health_label_rows}; no_money_rows={health_no_money_rows}; skip_leakage_rows={health_skip_leakage_rows}; d15/d17/d20/d26 are present.",
-            "remaining_blocker": f"Health/access label-skip artifact status={health_label_decision or 'missing'}; manual_review_rows={health_manual_review_rows}; resolve d07 skip leakage, double-counting, formal-vs-informal care grouping, and person-join exceptions.",
-            "next_action": "Resolve d07a skip leakage rows, classify remaining manual-review care-action labels, and set double-count/formal-care policy.",
+            "acceptance_evidence": f"d04 illness yes rows={illness_yes}; d07 no-money label hits={no_money_action}; label_decision_rows={health_label_rows}; no_money_rows={health_no_money_rows}; skip_leakage_rows={health_skip_leakage_rows}; d07a_leak_overlap_with_nonroster={health_exception_overlap}; explained_by_nonroster={health_exception_explained}; d15/d17/d20/d26 are present.",
+            "remaining_blocker": f"Health/access label-skip artifact status={health_label_decision or 'missing'}; exception_status={health_exception_status}; manual_review_rows={health_manual_review_rows}; d07 skip leakage is not resolved by person-join exceptions unless explained_by_nonroster=1.",
+            "next_action": "Resolve d07a skip leakage as a separate issue from person-key exceptions, classify remaining manual-review care-action labels, and set double-count/formal-care policy.",
         },
         {
             "requirement": "survey_timing",
