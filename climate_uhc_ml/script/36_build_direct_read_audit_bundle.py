@@ -274,6 +274,11 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/priority_lsms_isa_local_target_readmes.md", "priority LSMS/ISA local target readmes report"),
     ("dataset_promotion", "temp/priority_lsms_isa_local_target_readme_manifest.csv", "priority LSMS/ISA local target readme manifest"),
     ("dataset_promotion", "result/priority_lsms_isa_local_target_readme_summary.csv", "priority LSMS/ISA local target readme summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_minimum_batch_raw_value_queue.md", "priority LSMS/ISA minimum-batch raw-value review queue report"),
+    ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_raw_value_requirement_queue.csv", "priority LSMS/ISA minimum-batch requirement raw-value queue"),
+    ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_raw_value_variable_queue.csv", "priority LSMS/ISA minimum-batch variable raw-value queue"),
+    ("dataset_promotion", "temp/priority_lsms_isa_minimum_batch_raw_value_file_queue.csv", "priority LSMS/ISA minimum-batch file raw-value queue"),
+    ("dataset_promotion", "result/priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv", "priority LSMS/ISA minimum-batch raw-value queue summary"),
     ("dataset_promotion", "report/priority_lsms_isa_promotion_gate_dashboard.md", "priority LSMS/ISA promotion gate dashboard report"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_dashboard.csv", "priority LSMS/ISA country-wave promotion gate dashboard"),
     ("dataset_promotion", "temp/priority_lsms_isa_promotion_gate_requirement_dashboard.csv", "priority LSMS/ISA requirement-level promotion gate dashboard"),
@@ -712,6 +717,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/181_probe_priority_lsms_isa_resource_download_routes.py", "priority LSMS/ISA public resource download route probe"),
     ("reproducibility", "script/182_build_priority_lsms_isa_download_acceptance_matrix.py", "priority LSMS/ISA download acceptance matrix generator"),
     ("reproducibility", "script/183_build_priority_lsms_isa_local_target_readmes.py", "priority LSMS/ISA local target readme generator"),
+    ("reproducibility", "script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py", "priority LSMS/ISA minimum-batch raw-value queue generator"),
     ("reproducibility", "script/173_build_priority_lsms_isa_promotion_gate_dashboard.py", "priority LSMS/ISA promotion gate dashboard generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
@@ -965,6 +971,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_resource_download_route_probe_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_resource_download_route_probe_summary.csv")
     priority_lsms_download_acceptance_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_download_acceptance_matrix_summary.csv")
     priority_lsms_local_target_readme_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_target_readme_summary.csv")
+    priority_lsms_minimum_batch_raw_value_queue_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv")
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
@@ -1707,6 +1714,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"readmes={csv_value(priority_lsms_local_target_readme_summary, 'local_target_readme_rows', '0')}; expected_files={csv_value(priority_lsms_local_target_readme_summary, 'local_target_readme_expected_file_rows', '0')}; missing_files={csv_value(priority_lsms_local_target_readme_summary, 'local_target_readme_missing_expected_file_rows', '0')}; requirements={csv_value(priority_lsms_local_target_readme_summary, 'local_target_readme_requirement_rows', '0')}; blocked_requirements={csv_value(priority_lsms_local_target_readme_summary, 'local_target_readme_blocked_requirement_rows', '0')}; ready_requirements={csv_value(priority_lsms_local_target_readme_summary, 'local_target_readme_ready_requirement_rows', '0')}; modeling_gate={csv_value(priority_lsms_local_target_readme_summary, 'modeling_gate_status', 'missing')}",
         [TEMP_DIR / "priority_lsms_isa_local_target_readme_manifest.csv", RESULT_DIR / "priority_lsms_isa_local_target_readme_summary.csv", REPORT_DIR / "priority_lsms_isa_local_target_readmes.md"],
         "Local target readmes put the download acceptance checklist directly into each ignored temp/raw_downloads/<IDNO>/ target folder and expose a GitHub-readable manifest.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "priority_lsms_isa_minimum_batch_raw_value_queue",
+        "minimum_batch_raw_value_queue_current"
+        if csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, "minimum_batch_raw_value_queue_dataset_rows", "0") == "10"
+        and csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, "minimum_batch_raw_value_queue_requirement_rows", "0") == "80"
+        and csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, "data_write_gate_status", "missing") == "blocked_no_data_write"
+        else "minimum_batch_raw_value_queue_needs_review",
+        f"datasets={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_dataset_rows', '0')}; requirements={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_requirement_rows', '0')}; variables={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_variable_rows', '0')}; files={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_file_rows', '0')}; blocked_requirements={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_blocked_requirement_rows', '0')}; ready_requirements={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_ready_requirement_rows', '0')}; target_readmes={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'minimum_batch_raw_value_queue_local_target_readmes', '0')}; modeling_gate={csv_value(priority_lsms_minimum_batch_raw_value_queue_summary, 'modeling_gate_status', 'missing')}",
+        [TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_requirement_queue.csv", TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_variable_queue.csv", TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_file_queue.csv", RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv", REPORT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue.md"],
+        "Minimum-batch raw-value queue narrows the full 19-wave workbook to the 10 manual-download packets so receipt can move straight into requirement, file, and variable review.",
     )
     add_bundle(
         rows,

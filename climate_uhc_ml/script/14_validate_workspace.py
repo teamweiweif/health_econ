@@ -168,6 +168,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_resource_download_route_probe.md",
     "priority_lsms_isa_download_acceptance_matrix.md",
     "priority_lsms_isa_local_target_readmes.md",
+    "priority_lsms_isa_minimum_batch_raw_value_queue.md",
     "priority_lsms_isa_promotion_gate_dashboard.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
@@ -357,6 +358,7 @@ REQUIRED_SCRIPTS = [
     "181_probe_priority_lsms_isa_resource_download_routes.py",
     "182_build_priority_lsms_isa_download_acceptance_matrix.py",
     "183_build_priority_lsms_isa_local_target_readmes.py",
+    "184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py",
     "98_audit_analysis_dataset_promotion_barriers.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
@@ -377,6 +379,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "181_probe_priority_lsms_isa_resource_download_routes.py",
     "182_build_priority_lsms_isa_download_acceptance_matrix.py",
     "183_build_priority_lsms_isa_local_target_readmes.py",
+    "184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py",
     "173_build_priority_lsms_isa_promotion_gate_dashboard.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
@@ -520,7 +523,7 @@ def validate_required_files(rows: list[dict[str, Any]]) -> None:
     add(
         rows,
         "reproducibility",
-        "One-command runners include the current 157-183 dataset-promotion gate chain",
+        "One-command runners include the current 157-184 dataset-promotion gate chain",
         status(not missing_runner_scripts),
         f"checked_runners={len(runner_paths)}; required_scripts={len(PROMOTION_REPRODUCTION_SCRIPTS)}; missing={len(missing_runner_scripts)}",
         "" if not missing_runner_scripts else "; ".join(missing_runner_scripts[:20]),
@@ -946,6 +949,10 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_download_acceptance_matrix_summary": row_count(RESULT_DIR / "priority_lsms_isa_download_acceptance_matrix_summary.csv"),
         "priority_lsms_isa_local_target_readme_manifest": row_count(TEMP_DIR / "priority_lsms_isa_local_target_readme_manifest.csv"),
         "priority_lsms_isa_local_target_readme_summary": row_count(RESULT_DIR / "priority_lsms_isa_local_target_readme_summary.csv"),
+        "priority_lsms_isa_minimum_batch_raw_value_requirement_queue": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_requirement_queue.csv"),
+        "priority_lsms_isa_minimum_batch_raw_value_variable_queue": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_variable_queue.csv"),
+        "priority_lsms_isa_minimum_batch_raw_value_file_queue": row_count(TEMP_DIR / "priority_lsms_isa_minimum_batch_raw_value_file_queue.csv"),
+        "priority_lsms_isa_minimum_batch_raw_value_queue_summary": row_count(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv"),
         "priority_lsms_isa_promotion_gate_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_requirement_dashboard": row_count(TEMP_DIR / "priority_lsms_isa_promotion_gate_requirement_dashboard.csv"),
         "priority_lsms_isa_promotion_gate_dashboard_summary": row_count(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv"),
@@ -5704,6 +5711,43 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_local_target_gate_ok),
         f"manifest_rows={counts['priority_lsms_isa_local_target_readme_manifest']}; summary_rows={counts['priority_lsms_isa_local_target_readme_summary']}; readmes={priority_lsms_local_target_readmes}; expected_files={priority_lsms_local_target_expected_files}; missing_files={priority_lsms_local_target_missing_files}; requirements={priority_lsms_local_target_requirements}; blocked_requirements={priority_lsms_local_target_blocked_reqs}; ready_requirements={priority_lsms_local_target_ready_reqs}; data_write={priority_lsms_local_target_data_write}; modeling_gate={priority_lsms_local_target_modeling}",
         "" if priority_lsms_local_target_gate_ok else "Run script/183_build_priority_lsms_isa_local_target_readmes.py after the download acceptance matrix is current.",
+    )
+    priority_lsms_minimum_raw_value_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue_summary.csv")
+    priority_lsms_minimum_raw_value_datasets = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_dataset_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_requirements = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_requirement_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_variables = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_variable_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_files = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_file_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_blocked_reqs = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_blocked_requirement_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_ready_reqs = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_ready_requirement_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_blocked_vars = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_blocked_variable_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_blocked_files = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_blocked_file_rows"), "0"), 0)
+    priority_lsms_minimum_raw_value_readmes = safe_int(next((row.get("value", "0") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "minimum_batch_raw_value_queue_local_target_readmes"), "0"), 0)
+    priority_lsms_minimum_raw_value_data_write = next((row.get("value", "") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_minimum_raw_value_modeling = next((row.get("value", "") for row in priority_lsms_minimum_raw_value_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_minimum_raw_value_gate_ok = (
+        counts["priority_lsms_isa_minimum_batch_raw_value_queue_summary"] > 0
+        and counts["priority_lsms_isa_minimum_batch_raw_value_requirement_queue"] == priority_lsms_minimum_raw_value_requirements
+        and counts["priority_lsms_isa_minimum_batch_raw_value_variable_queue"] == priority_lsms_minimum_raw_value_variables
+        and counts["priority_lsms_isa_minimum_batch_raw_value_file_queue"] == priority_lsms_minimum_raw_value_files
+        and file_ok(REPORT_DIR / "priority_lsms_isa_minimum_batch_raw_value_queue.md")
+        and priority_lsms_minimum_raw_value_datasets == priority_lsms_manual_execution_rows
+        and priority_lsms_minimum_raw_value_requirements == priority_lsms_manual_execution_rows * 8
+        and priority_lsms_minimum_raw_value_files == priority_lsms_download_acceptance_core_files
+        and priority_lsms_minimum_raw_value_blocked_reqs == priority_lsms_minimum_raw_value_requirements
+        and priority_lsms_minimum_raw_value_ready_reqs == 0
+        and priority_lsms_minimum_raw_value_blocked_vars == priority_lsms_minimum_raw_value_variables
+        and priority_lsms_minimum_raw_value_blocked_files == priority_lsms_minimum_raw_value_files
+        and priority_lsms_minimum_raw_value_readmes == priority_lsms_local_target_readmes
+        and priority_lsms_minimum_raw_value_data_write == "blocked_no_data_write"
+        and priority_lsms_minimum_raw_value_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA minimum-batch raw-value queue narrows review rows to the 10 manual packets",
+        status(priority_lsms_minimum_raw_value_gate_ok),
+        f"requirement_rows={counts['priority_lsms_isa_minimum_batch_raw_value_requirement_queue']}; variable_rows={counts['priority_lsms_isa_minimum_batch_raw_value_variable_queue']}; file_rows={counts['priority_lsms_isa_minimum_batch_raw_value_file_queue']}; summary_rows={counts['priority_lsms_isa_minimum_batch_raw_value_queue_summary']}; datasets={priority_lsms_minimum_raw_value_datasets}; blocked_requirements={priority_lsms_minimum_raw_value_blocked_reqs}; ready_requirements={priority_lsms_minimum_raw_value_ready_reqs}; blocked_variables={priority_lsms_minimum_raw_value_blocked_vars}; blocked_files={priority_lsms_minimum_raw_value_blocked_files}; local_readmes={priority_lsms_minimum_raw_value_readmes}; data_write={priority_lsms_minimum_raw_value_data_write}; modeling_gate={priority_lsms_minimum_raw_value_modeling}",
+        "" if priority_lsms_minimum_raw_value_gate_ok else "Run script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py after local target readmes and raw value workbook outputs are current.",
     )
     priority_lsms_promotion_gate_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_promotion_gate_dashboard_summary.csv")
     priority_lsms_promotion_gate_country_waves = safe_int(next((row.get("value", "0") for row in priority_lsms_promotion_gate_summary if row.get("metric") == "priority_lsms_promotion_gate_country_wave_rows"), "0"), 0)

@@ -1,0 +1,12 @@
+﻿metric,value,interpretation
+minimum_batch_raw_value_queue_dataset_rows,10,Manual-download packet datasets covered by the raw-value review queue.
+minimum_batch_raw_value_queue_requirement_rows,80,Requirement-level raw-value review rows for the 10-packet batch.
+minimum_batch_raw_value_queue_variable_rows,811,Variable-level raw-value review rows for the 10-packet batch.
+minimum_batch_raw_value_queue_file_rows,323,File-level raw-value review rows for the 10-packet batch.
+minimum_batch_raw_value_queue_blocked_requirement_rows,80,Requirement rows blocked until package receipt.
+minimum_batch_raw_value_queue_ready_requirement_rows,0,Requirement rows ready for manual review after receipt.
+minimum_batch_raw_value_queue_blocked_variable_rows,811,Variable rows blocked until package receipt.
+minimum_batch_raw_value_queue_blocked_file_rows,323,File rows blocked until package receipt.
+minimum_batch_raw_value_queue_local_target_readmes,10,Local target readmes generated for this batch.
+data_write_gate_status,blocked_no_data_write,The queue is a review checklist only and never writes promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning until registry thresholds pass."

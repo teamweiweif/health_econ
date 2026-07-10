@@ -49,9 +49,11 @@ data gates.
    - Expected-file and requirement-level acceptance matrix for downloaded packages.
 17. `report/priority_lsms_isa_local_target_readmes.md`
    - Manifest of local target-folder README files written under ignored `temp/raw_downloads/<IDNO>/`.
-18. `report/priority_lsms_isa_country_wave_promotion_packets/`
+18. `report/priority_lsms_isa_minimum_batch_raw_value_queue.md`
+   - Requirement, file, and variable raw-value review queue for the 10 manual packets.
+19. `report/priority_lsms_isa_country_wave_promotion_packets/`
    - Per-wave promotion packets for the refocused LSMS/ISA campaign.
-19. `report/mwi2004_requirement_acceptance_decisions.md`
+20. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -99,6 +101,7 @@ resume, read:
 - `report/priority_lsms_isa_resource_download_route_probe.md`
 - `report/priority_lsms_isa_download_acceptance_matrix.md`
 - `report/priority_lsms_isa_local_target_readmes.md`
+- `report/priority_lsms_isa_minimum_batch_raw_value_queue.md`
 
 If a new official raw package has been downloaded but the target IDNO folder is
 uncertain, place it under `temp/raw_downloads/_incoming/` and run:
@@ -142,6 +145,12 @@ To refresh the local target-folder README files under ignored
 
 ```bash
 python script/183_build_priority_lsms_isa_local_target_readmes.py
+```
+
+To refresh the 10-packet raw-value review queue after package placement, run:
+
+```bash
+python script/184_build_priority_lsms_isa_minimum_batch_raw_value_queue.py
 ```
 
 ## Excluded From GitHub
