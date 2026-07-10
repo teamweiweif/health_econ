@@ -81,15 +81,17 @@ data gates.
    - Per-wave acquisition route decision showing that all 10 download-required waves currently require browser/manual World Bank terms acceptance and local file placement.
 33. `report/priority_lsms_isa_scoped_incoming_package_router.md`
    - Current 10-wave incoming-package router for files dropped into `temp/raw_downloads/_incoming/`.
-34. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
+34. `report/priority_lsms_isa_webgpt_download_control_manifest.md`
+   - One-table direct-read acquisition control board and expected core-file checklist for the 10 download-required waves.
+35. `report/mwi2004_sdg382_discretionary_budget_parameter_audit.md`
    - Malawi 2004 SDG 3.8.2 discretionary-budget parameter audit; raw inputs are present but PPP/CPI/SPL parameters remain blocked.
-35. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
+36. `report/mwi2004_sdg382_external_parameter_source_ledger.md`
    - World Bank PPP/CPI candidate source ledger for Malawi 2004; the final CPI/base-period bridge remains unaccepted.
-36. `report/mwi2004_sdg382_candidate_classification_precheck.md`
+37. `report/mwi2004_sdg382_candidate_classification_precheck.md`
    - Aggregate-only candidate SDG 3.8.2 denominator/classification stress test; not promoted data.
-37. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
+38. `report/mwi2004_sdg382_official_denominator_rule_audit.md`
    - Official UNSD nonpositive-discretionary-budget rule audit; rule accepted, final Malawi SPL bridge still blocked.
-38. `report/mwi2004_requirement_acceptance_decisions.md`
+39. `report/mwi2004_requirement_acceptance_decisions.md`
    - Malawi 2004 raw-backed requirement accept/block decisions.
 
 ## Current Status
@@ -152,11 +154,14 @@ uncertain, place it under `temp/raw_downloads/_incoming/` and run:
 
 ```bash
 python script/202_build_priority_lsms_isa_scoped_incoming_package_router.py
+python script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py
 python script/174_build_priority_lsms_isa_incoming_raw_package_router.py
 ```
 
 Then review `result/priority_lsms_isa_scoped_incoming_package_router.csv` for
-the current locked 10-wave scope, and
+the current locked 10-wave scope,
+`result/priority_lsms_isa_webgpt_download_control_manifest.csv` for one direct
+acquisition board, and
 `temp/priority_lsms_isa_incoming_raw_package_route_plan.csv` for the broader
 legacy queue. The routers only write suggested copy commands; they do not move,
 delete, extract, or promote files.

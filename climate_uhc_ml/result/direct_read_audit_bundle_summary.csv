@@ -1,7 +1,7 @@
 ﻿metric,value,interpretation
-bundle_rows,197,Rows in result/direct_read_audit_bundle.csv.
-manifest_rows,871,Curated artifact rows in result/direct_read_artifact_manifest.csv.
-manifest_present_nonempty,867,Curated artifacts present and non-empty.
+bundle_rows,198,Rows in result/direct_read_audit_bundle.csv.
+manifest_rows,876,Curated artifact rows in result/direct_read_artifact_manifest.csv.
+manifest_present_nonempty,872,Curated artifacts present and non-empty.
 manifest_missing_or_empty,4,Curated artifacts missing or empty.
 raw_file_inventory_rows,209,Raw tabular files inspected.
 raw_variable_catalog_rows,5410,Raw variables inspected.
@@ -188,6 +188,10 @@ priority_lsms_isa_scoped_incoming_router_targets,10,Locked download-required wav
 priority_lsms_isa_scoped_incoming_router_incoming_files,0,Files currently staged under temp/raw_downloads/_incoming for the scoped router.
 priority_lsms_isa_scoped_incoming_router_pending_drop_rows,10,Scoped target waves still waiting for an incoming package drop.
 priority_lsms_isa_scoped_incoming_router_copy_candidates,0,Scoped target waves with a suggested incoming file to copy after review.
+priority_lsms_isa_webgpt_download_control_rows,10,Download-required waves in the direct-read Web GPT control manifest.
+priority_lsms_isa_webgpt_download_expected_full_files,838,Expected official file rows in the Web GPT download control manifest.
+priority_lsms_isa_webgpt_download_expected_core_files,323,Expected core-file rows exported for direct review.
+priority_lsms_isa_webgpt_download_browser_manual_rows,10,Web GPT control rows still requiring browser/manual World Bank terms acceptance.
 priority_lsms_isa_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promotion packets built.
 priority_lsms_isa_country_wave_packet_failed_gates,306,Refocused LSMS/ISA packet gates still blocking promotion.
 priority_lsms_isa_country_wave_packet_analysis_ready_rows,1,Refocused LSMS/ISA packets currently approved for promoted data writes.
@@ -639,7 +643,7 @@ bundle_section_coverage,5,Direct-read bundle section count.
 bundle_section_design_gate,4,Direct-read bundle section count.
 bundle_section_go_no_go,1,Direct-read bundle section count.
 bundle_section_go_no_go_rule,8,Direct-read bundle section count.
-bundle_section_priority_bundle,88,Direct-read bundle section count.
+bundle_section_priority_bundle,89,Direct-read bundle section count.
 bundle_section_raw_access_gate,5,Direct-read bundle section count.
 bundle_section_raw_acquisition_gate,1,Direct-read bundle section count.
 bundle_section_raw_verification_gate,22,Direct-read bundle section count.
@@ -709,6 +713,7 @@ bundle_status_blocked_raw_timing_geography_not_verified,1,Direct-read bundle sta
 bundle_status_blocked_required_schema_columns_not_verified,1,Direct-read bundle status count.
 bundle_status_blocked_timing_geography_outcome_semantics_units_recall_skip_patterns,3,Direct-read bundle status count.
 bundle_status_browser_download_starter_ready_for_manual_terms_acceptance,1,Direct-read bundle status count.
+bundle_status_browser_manual_terms_acceptance_required,1,Direct-read bundle status count.
 bundle_status_complete,4,Direct-read bundle status count.
 bundle_status_core_public_documentation_saved_raw_gate_still_blocked,1,Direct-read bundle status count.
 bundle_status_core_wave_replacement_needed_before_download_execution,1,Direct-read bundle status count.

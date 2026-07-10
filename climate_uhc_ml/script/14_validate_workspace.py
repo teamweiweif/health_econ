@@ -188,6 +188,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_dataset_scope_lock.md",
     "priority_lsms_isa_acquisition_route_decision.md",
     "priority_lsms_isa_scoped_incoming_package_router.md",
+    "priority_lsms_isa_webgpt_download_control_manifest.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -396,6 +397,7 @@ REQUIRED_SCRIPTS = [
     "200_build_priority_lsms_isa_dataset_scope_lock.py",
     "201_build_priority_lsms_isa_acquisition_route_decision.py",
     "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
+    "203_build_priority_lsms_isa_webgpt_download_control_manifest.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -435,6 +437,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "200_build_priority_lsms_isa_dataset_scope_lock.py",
     "201_build_priority_lsms_isa_acquisition_route_decision.py",
     "202_build_priority_lsms_isa_scoped_incoming_package_router.py",
+    "203_build_priority_lsms_isa_webgpt_download_control_manifest.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1058,6 +1061,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_scoped_incoming_package_router": row_count(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router.csv"),
         "priority_lsms_isa_scoped_incoming_package_router_evidence": row_count(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_evidence.csv"),
         "priority_lsms_isa_scoped_incoming_package_router_summary": row_count(RESULT_DIR / "priority_lsms_isa_scoped_incoming_package_router_summary.csv"),
+        "priority_lsms_isa_webgpt_download_control_manifest": row_count(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_manifest.csv"),
+        "priority_lsms_isa_webgpt_expected_core_file_manifest": row_count(RESULT_DIR / "priority_lsms_isa_webgpt_expected_core_file_manifest.csv"),
+        "priority_lsms_isa_webgpt_download_control_summary": row_count(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6376,6 +6382,43 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_scoped_incoming_gate_ok),
         f"targets={priority_lsms_scoped_incoming_targets}; countries={priority_lsms_scoped_incoming_countries}; priority_rows={priority_lsms_scoped_incoming_priority_rows}; sixth_country_rows={priority_lsms_scoped_incoming_sixth_rows}; incoming_files={priority_lsms_scoped_incoming_files}; evidence_rows={priority_lsms_scoped_incoming_evidence}; expected_core_files={priority_lsms_scoped_incoming_core_rows}; copy_candidates={priority_lsms_scoped_incoming_copy}; pending_drop={priority_lsms_scoped_incoming_pending}; manual_review={priority_lsms_scoped_incoming_manual}; data_write={priority_lsms_scoped_incoming_data_write}; modeling_gate={priority_lsms_scoped_incoming_modeling}",
         "" if priority_lsms_scoped_incoming_gate_ok else "Run script/202_build_priority_lsms_isa_scoped_incoming_package_router.py after acquisition route decision is current and any incoming files are placed.",
+    )
+    priority_lsms_webgpt_download_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_webgpt_download_control_summary.csv")
+    priority_lsms_webgpt_download_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_rows"), "0"), 0)
+    priority_lsms_webgpt_download_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_country_rows"), "0"), 0)
+    priority_lsms_webgpt_download_priority_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_priority_country_rows"), "0"), 0)
+    priority_lsms_webgpt_download_sixth_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_sixth_country_rows"), "0"), 0)
+    priority_lsms_webgpt_download_full_files = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_expected_full_file_rows"), "0"), 0)
+    priority_lsms_webgpt_download_core_files = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_expected_core_file_rows"), "0"), 0)
+    priority_lsms_webgpt_download_target_files = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_target_file_rows"), "0"), 0)
+    priority_lsms_webgpt_download_incoming_files = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_incoming_file_rows"), "0"), 0)
+    priority_lsms_webgpt_download_browser_manual = safe_int(next((row.get("value", "0") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_browser_manual_rows"), "0"), 0)
+    priority_lsms_webgpt_download_data_write = next((row.get("value", "") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "webgpt_download_control_data_write_status"), "")
+    priority_lsms_webgpt_download_modeling = next((row.get("value", "") for row in priority_lsms_webgpt_download_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_webgpt_download_gate_ok = (
+        counts["priority_lsms_isa_webgpt_download_control_manifest"] == priority_lsms_webgpt_download_rows
+        and counts["priority_lsms_isa_webgpt_expected_core_file_manifest"] == priority_lsms_webgpt_download_core_files
+        and counts["priority_lsms_isa_webgpt_download_control_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_webgpt_download_control_manifest.md")
+        and priority_lsms_webgpt_download_rows == 10
+        and priority_lsms_webgpt_download_countries == 5
+        and priority_lsms_webgpt_download_priority_rows == 9
+        and priority_lsms_webgpt_download_sixth_rows == 1
+        and priority_lsms_webgpt_download_full_files >= priority_lsms_webgpt_download_core_files
+        and priority_lsms_webgpt_download_core_files == 323
+        and priority_lsms_webgpt_download_target_files == 0
+        and priority_lsms_webgpt_download_incoming_files == 0
+        and priority_lsms_webgpt_download_browser_manual == 10
+        and priority_lsms_webgpt_download_data_write == "blocked_no_data_write"
+        and priority_lsms_webgpt_download_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA Web GPT download control manifest consolidates official URLs, commands, target folders, and core-file checks for the 10 download-required waves",
+        status(priority_lsms_webgpt_download_gate_ok),
+        f"rows={priority_lsms_webgpt_download_rows}; countries={priority_lsms_webgpt_download_countries}; priority_rows={priority_lsms_webgpt_download_priority_rows}; sixth_country_rows={priority_lsms_webgpt_download_sixth_rows}; expected_full_files={priority_lsms_webgpt_download_full_files}; expected_core_files={priority_lsms_webgpt_download_core_files}; target_files={priority_lsms_webgpt_download_target_files}; incoming_files={priority_lsms_webgpt_download_incoming_files}; browser_manual={priority_lsms_webgpt_download_browser_manual}; data_write={priority_lsms_webgpt_download_data_write}; modeling_gate={priority_lsms_webgpt_download_modeling}",
+        "" if priority_lsms_webgpt_download_gate_ok else "Run script/203_build_priority_lsms_isa_webgpt_download_control_manifest.py after route, browser, credentialed, and scoped incoming artifacts are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

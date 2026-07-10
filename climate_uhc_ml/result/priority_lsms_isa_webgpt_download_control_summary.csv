@@ -1,0 +1,13 @@
+﻿metric,value,interpretation
+webgpt_download_control_rows,10,Download-required waves in the Web GPT control manifest.
+webgpt_download_control_country_rows,5,Countries covered by the download-required control manifest.
+webgpt_download_control_priority_country_rows,9,"Rows from Ethiopia, Nigeria, Malawi, Tanzania, or Uganda."
+webgpt_download_control_sixth_country_rows,1,Rows supplying the sixth country in the locked scope.
+webgpt_download_control_expected_full_file_rows,838,Expected official file rows across the 10 download-required waves.
+webgpt_download_control_expected_core_file_rows,323,Expected core-file requirement rows exported for direct review.
+webgpt_download_control_target_file_rows,0,Current files in exact target folders.
+webgpt_download_control_incoming_file_rows,0,Current files staged under temp/raw_downloads/_incoming.
+webgpt_download_control_browser_manual_rows,10,Rows still requiring browser/manual terms acceptance or session material.
+webgpt_download_control_data_write_status,blocked_no_data_write,The download control manifest does not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
+webgpt_download_control_status_browser_manual_terms_acceptance_required,10,Web GPT download control status count.
