@@ -186,6 +186,7 @@ REQUIRED_REPORTS = [
     "priority_lsms_isa_local_raw_presence_audit.md",
     "priority_lsms_isa_acquisition_to_promotion_handoff.md",
     "priority_lsms_isa_dataset_scope_lock.md",
+    "priority_lsms_isa_acquisition_route_decision.md",
     "priority_analysis_dataset_synthesis_blueprint.md",
     "priority_country_wave_promotion_packets.md",
     "priority_lsms_isa_country_wave_promotion_packets.md",
@@ -392,6 +393,7 @@ REQUIRED_SCRIPTS = [
     "198_build_priority_lsms_isa_local_raw_presence_audit.py",
     "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
     "200_build_priority_lsms_isa_dataset_scope_lock.py",
+    "201_build_priority_lsms_isa_acquisition_route_decision.py",
 ]
 PROMOTION_REPRODUCTION_SCRIPTS = [
     "157_build_priority_lsms_isa_received_raw_schema_audit.py",
@@ -429,6 +431,7 @@ PROMOTION_REPRODUCTION_SCRIPTS = [
     "198_build_priority_lsms_isa_local_raw_presence_audit.py",
     "199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py",
     "200_build_priority_lsms_isa_dataset_scope_lock.py",
+    "201_build_priority_lsms_isa_acquisition_route_decision.py",
 ]
 RAW_EXTENSIONS = {".dta", ".sav", ".por", ".sas7bdat", ".xpt", ".zip", ".tar", ".gz", ".tgz", ".rar", ".7z"}
 
@@ -1046,6 +1049,9 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         "priority_lsms_isa_dataset_scope_lock": row_count(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock.csv"),
         "priority_lsms_isa_dataset_scope_lock_gate_matrix": row_count(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_gate_matrix.csv"),
         "priority_lsms_isa_dataset_scope_lock_summary": row_count(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_summary.csv"),
+        "priority_lsms_isa_acquisition_route_decision": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision.csv"),
+        "priority_lsms_isa_acquisition_route_evidence": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_route_evidence.csv"),
+        "priority_lsms_isa_acquisition_route_decision_summary": row_count(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv"),
         "promoted_data_gate_manifest": row_count(TEMP_DIR / "promoted_data_gate_manifest.csv"),
         "promoted_data_gate_summary": row_count(RESULT_DIR / "promoted_data_gate_summary.csv"),
         "design_scorecard": row_count(RESULT_DIR / "design_scorecard.csv"),
@@ -6287,6 +6293,47 @@ def validate_artifacts(rows: list[dict[str, Any]]) -> None:
         status(priority_lsms_scope_gate_ok),
         f"scope_rows={priority_lsms_scope_rows}; countries={priority_lsms_scope_country_rows}; priority_countries={priority_lsms_scope_priority_countries}; priority_waves={priority_lsms_scope_priority_waves}; nonpriority_waves={priority_lsms_scope_nonpriority_waves}; download_required={priority_lsms_scope_download_required}; promoted_anchor={priority_lsms_scope_promoted_anchor}; raw_missing_download={priority_lsms_scope_raw_missing_download}; period={priority_lsms_scope_period_min}..{priority_lsms_scope_period_max}; gate_rows={priority_lsms_scope_gate_rows}; data_write={priority_lsms_scope_data_write}; modeling_gate={priority_lsms_scope_modeling}",
         "" if priority_lsms_scope_gate_ok else "Run script/200_build_priority_lsms_isa_dataset_scope_lock.py after the threshold batch, manual download board, raw presence audit, and unlock board are current.",
+    )
+    priority_lsms_acquisition_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv")
+    priority_lsms_acquisition_route_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_rows"), "0"), 0)
+    priority_lsms_acquisition_route_countries = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_country_rows"), "0"), 0)
+    priority_lsms_acquisition_route_priority_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_priority_country_rows"), "0"), 0)
+    priority_lsms_acquisition_route_sixth_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_sixth_country_rows"), "0"), 0)
+    priority_lsms_acquisition_route_local_files = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_local_files_present_rows"), "0"), 0)
+    priority_lsms_acquisition_route_public_raw = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_public_raw_candidate_rows"), "0"), 0)
+    priority_lsms_acquisition_route_probe_ready = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_credentialed_probe_ready_rows"), "0"), 0)
+    priority_lsms_acquisition_route_browser_manual = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_browser_manual_required_rows"), "0"), 0)
+    priority_lsms_acquisition_route_access_gate = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_access_gate_rows"), "0"), 0)
+    priority_lsms_acquisition_route_core_rows = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_expected_core_file_rows"), "0"), 0)
+    priority_lsms_acquisition_route_status_browser = safe_int(next((row.get("value", "0") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "acquisition_route_decision_status_browser_manual_terms_acceptance_required"), "0"), 0)
+    priority_lsms_acquisition_route_data_write = next((row.get("value", "") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "data_write_gate_status"), "")
+    priority_lsms_acquisition_route_modeling = next((row.get("value", "") for row in priority_lsms_acquisition_route_summary if row.get("metric") == "modeling_gate_status"), "")
+    priority_lsms_acquisition_route_gate_ok = (
+        counts["priority_lsms_isa_acquisition_route_decision"] == priority_lsms_acquisition_route_rows
+        and counts["priority_lsms_isa_acquisition_route_evidence"] == priority_lsms_acquisition_route_rows * 10
+        and counts["priority_lsms_isa_acquisition_route_decision_summary"] > 0
+        and file_ok(REPORT_DIR / "priority_lsms_isa_acquisition_route_decision.md")
+        and priority_lsms_acquisition_route_rows == 10
+        and priority_lsms_acquisition_route_countries == 5
+        and priority_lsms_acquisition_route_priority_rows == 9
+        and priority_lsms_acquisition_route_sixth_rows == 1
+        and priority_lsms_acquisition_route_local_files == 0
+        and priority_lsms_acquisition_route_public_raw == 0
+        and priority_lsms_acquisition_route_probe_ready == 0
+        and priority_lsms_acquisition_route_browser_manual == 10
+        and priority_lsms_acquisition_route_access_gate == 10
+        and priority_lsms_acquisition_route_core_rows == 323
+        and priority_lsms_acquisition_route_status_browser == 10
+        and priority_lsms_acquisition_route_data_write == "blocked_no_data_write"
+        and priority_lsms_acquisition_route_modeling == "blocked"
+    )
+    add(
+        rows,
+        "dataset_promotion",
+        "Priority LSMS/ISA acquisition route decision consolidates public route probes, session readiness, browser/manual commands, and local raw counts",
+        status(priority_lsms_acquisition_route_gate_ok),
+        f"route_rows={priority_lsms_acquisition_route_rows}; countries={priority_lsms_acquisition_route_countries}; priority_rows={priority_lsms_acquisition_route_priority_rows}; sixth_country_rows={priority_lsms_acquisition_route_sixth_rows}; local_files={priority_lsms_acquisition_route_local_files}; public_raw_candidates={priority_lsms_acquisition_route_public_raw}; credentialed_probe_ready={priority_lsms_acquisition_route_probe_ready}; browser_manual_required={priority_lsms_acquisition_route_browser_manual}; access_gate_rows={priority_lsms_acquisition_route_access_gate}; expected_core_files={priority_lsms_acquisition_route_core_rows}; data_write={priority_lsms_acquisition_route_data_write}; modeling_gate={priority_lsms_acquisition_route_modeling}",
+        "" if priority_lsms_acquisition_route_gate_ok else "Run script/201_build_priority_lsms_isa_acquisition_route_decision.py after endpoint, session, browser starter, scope lock, and unlock-board artifacts are current.",
     )
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_synthesis_schema_rows = safe_int(next((row.get("value", "0") for row in priority_synthesis_summary if row.get("metric") == "priority_synthesis_blueprint_schema_rows"), "0"), 0)

@@ -1,0 +1,14 @@
+﻿metric,value,interpretation
+acquisition_route_decision_rows,10,Download-required waves with a consolidated acquisition-route decision.
+acquisition_route_decision_country_rows,5,Countries covered by the download-required route decision rows.
+acquisition_route_decision_priority_country_rows,9,"Download-required rows from Ethiopia, Nigeria, Malawi, Tanzania, or Uganda."
+acquisition_route_decision_sixth_country_rows,1,Download-required rows that supply the sixth country.
+acquisition_route_decision_local_files_present_rows,0,Rows with local non-generated files ready for validation.
+acquisition_route_decision_public_raw_candidate_rows,0,Rows with public raw-route candidate evidence requiring terms review.
+acquisition_route_decision_credentialed_probe_ready_rows,0,Rows with local redacted session material available for credentialed probing.
+acquisition_route_decision_browser_manual_required_rows,10,Rows whose current route is browser/manual terms acceptance and local file placement.
+acquisition_route_decision_access_gate_rows,10,Rows with access-gate evidence from endpoint or resource-route probes.
+acquisition_route_decision_expected_core_file_rows,323,Expected core raw-file rows that will be checked after acquisition.
+data_write_gate_status,blocked_no_data_write,Route decision artifacts do not write promoted data.
+modeling_gate_status,blocked,"No predictive, reduced-form, causal ML, or policy learning is opened."
+acquisition_route_decision_status_browser_manual_terms_acceptance_required,10,Acquisition route decision status count.

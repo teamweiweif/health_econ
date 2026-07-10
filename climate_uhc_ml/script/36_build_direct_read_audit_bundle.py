@@ -341,6 +341,10 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "result/priority_lsms_isa_dataset_scope_lock.csv", "priority LSMS/ISA dataset scope lock rows"),
     ("dataset_promotion", "result/priority_lsms_isa_dataset_scope_lock_gate_matrix.csv", "priority LSMS/ISA dataset scope lock gate matrix"),
     ("dataset_promotion", "result/priority_lsms_isa_dataset_scope_lock_summary.csv", "priority LSMS/ISA dataset scope lock summary"),
+    ("dataset_promotion", "report/priority_lsms_isa_acquisition_route_decision.md", "priority LSMS/ISA acquisition route decision report"),
+    ("dataset_promotion", "result/priority_lsms_isa_acquisition_route_decision.csv", "priority LSMS/ISA acquisition route decision rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_acquisition_route_evidence.csv", "priority LSMS/ISA acquisition route evidence rows"),
+    ("dataset_promotion", "result/priority_lsms_isa_acquisition_route_decision_summary.csv", "priority LSMS/ISA acquisition route decision summary"),
     ("dataset_promotion", "report/priority_analysis_dataset_synthesis_blueprint.md", "priority promoted dataset synthesis blueprint report"),
     ("dataset_promotion", "temp/priority_analysis_dataset_synthesis_blueprint.csv", "priority target household-climate schema blueprint"),
     ("dataset_promotion", "temp/priority_analysis_dataset_join_plan.csv", "priority dataset-level join plan"),
@@ -793,6 +797,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/198_build_priority_lsms_isa_local_raw_presence_audit.py", "priority LSMS/ISA local raw presence audit generator"),
     ("reproducibility", "script/199_build_priority_lsms_isa_acquisition_to_promotion_handoff.py", "priority LSMS/ISA acquisition-to-promotion handoff generator"),
     ("reproducibility", "script/200_build_priority_lsms_isa_dataset_scope_lock.py", "priority LSMS/ISA dataset scope lock generator"),
+    ("reproducibility", "script/201_build_priority_lsms_isa_acquisition_route_decision.py", "priority LSMS/ISA acquisition route decision generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -1063,6 +1068,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     priority_lsms_raw_presence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_raw_presence_summary.csv")
     priority_lsms_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff_summary.csv")
     priority_lsms_scope_lock_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_summary.csv")
+    priority_lsms_acquisition_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -2030,6 +2036,19 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     add_bundle(
         rows,
         "priority_bundle",
+        "priority_lsms_isa_acquisition_route_decision",
+        "all_download_required_waves_need_browser_manual_terms_acceptance"
+        if csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_rows", "0") == "10"
+        and csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_browser_manual_required_rows", "0") == "10"
+        and csv_value(priority_lsms_acquisition_route_summary, "modeling_gate_status", "missing") == "blocked"
+        else "acquisition_route_decision_needs_review",
+        f"route_rows={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_rows', '0')}; countries={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_country_rows', '0')}; local_files={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_local_files_present_rows', '0')}; public_raw_candidates={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_public_raw_candidate_rows', '0')}; credentialed_probe_ready={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_credentialed_probe_ready_rows', '0')}; browser_manual_required={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_browser_manual_required_rows', '0')}; access_gate_rows={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_access_gate_rows', '0')}; expected_core_files={csv_value(priority_lsms_acquisition_route_summary, 'acquisition_route_decision_expected_core_file_rows', '0')}; modeling_gate={csv_value(priority_lsms_acquisition_route_summary, 'modeling_gate_status', 'missing')}",
+        [RESULT_DIR / "priority_lsms_isa_acquisition_route_decision.csv", RESULT_DIR / "priority_lsms_isa_acquisition_route_evidence.csv", RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv", REPORT_DIR / "priority_lsms_isa_acquisition_route_decision.md"],
+        "Acquisition route decision consolidates public route probes, access-gate evidence, session readiness, browser/manual commands, local raw counts, and post-download validation commands for the 10 download-required waves.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
         "priority_analysis_dataset_synthesis_blueprint",
         "blocked_required_schema_columns_not_verified" if csv_value(priority_synthesis_summary, "priority_synthesis_blueprint_join_ready_rows", "0") == "0" else "synthesis_join_candidates_ready",
         f"schema_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_schema_rows', '0')}; required_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_required_rows', '0')}; ready_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_ready_required_rows', '0')}; blocked_required={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_blocked_required_rows', '0')}; join_rows={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_plan_rows', '0')}; join_ready={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_join_ready_rows', '0')}; candidate_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_candidate_variable_rows', '0')}; manual_verified_variables={csv_value(priority_synthesis_summary, 'priority_synthesis_blueprint_manual_verified_variable_rows', '0')}",
@@ -2985,6 +3004,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     priority_lsms_raw_presence_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_local_raw_presence_summary.csv")
     priority_lsms_handoff_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_to_promotion_handoff_summary.csv")
     priority_lsms_scope_lock_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_dataset_scope_lock_summary.csv")
+    priority_lsms_acquisition_route_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_acquisition_route_decision_summary.csv")
     priority_synthesis_summary = read_csv_dicts(RESULT_DIR / "priority_analysis_dataset_synthesis_blueprint_summary.csv")
     priority_packet_summary = read_csv_dicts(RESULT_DIR / "priority_country_wave_promotion_packet_summary.csv")
     priority_lsms_packet_summary = read_csv_dicts(RESULT_DIR / "priority_lsms_isa_country_wave_promotion_packet_summary.csv")
@@ -3173,6 +3193,11 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "priority_lsms_isa_dataset_scope_lock_promoted_anchor_rows", "value": csv_value(priority_lsms_scope_lock_summary, "dataset_scope_lock_promoted_anchor_rows", "0"), "interpretation": "Locked target rows already promoted as current anchors."},
         {"metric": "priority_lsms_isa_dataset_scope_lock_wave_period_min", "value": csv_value(priority_lsms_scope_lock_summary, "dataset_scope_lock_wave_period_min", ""), "interpretation": "Earliest wave label in the locked target scope."},
         {"metric": "priority_lsms_isa_dataset_scope_lock_wave_period_max", "value": csv_value(priority_lsms_scope_lock_summary, "dataset_scope_lock_wave_period_max", ""), "interpretation": "Latest wave label in the locked target scope."},
+        {"metric": "priority_lsms_isa_acquisition_route_decision_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_rows", "0"), "interpretation": "Download-required waves with a consolidated acquisition-route decision."},
+        {"metric": "priority_lsms_isa_acquisition_route_decision_local_files_present_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_local_files_present_rows", "0"), "interpretation": "Download-required waves with local non-generated files ready for validation."},
+        {"metric": "priority_lsms_isa_acquisition_route_decision_public_raw_candidate_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_public_raw_candidate_rows", "0"), "interpretation": "Download-required waves with public raw-route candidate evidence requiring terms review."},
+        {"metric": "priority_lsms_isa_acquisition_route_decision_credentialed_probe_ready_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_credentialed_probe_ready_rows", "0"), "interpretation": "Download-required waves with local redacted session material available for credentialed probing."},
+        {"metric": "priority_lsms_isa_acquisition_route_decision_browser_manual_required_rows", "value": csv_value(priority_lsms_acquisition_route_summary, "acquisition_route_decision_browser_manual_required_rows", "0"), "interpretation": "Download-required waves currently requiring browser/manual World Bank terms acceptance."},
         {"metric": "priority_lsms_isa_country_wave_packet_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_rows", "0"), "interpretation": "Refocused LSMS/ISA country-wave promotion packets built."},
         {"metric": "priority_lsms_isa_country_wave_packet_failed_gates", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_failed_gate_rows", "0"), "interpretation": "Refocused LSMS/ISA packet gates still blocking promotion."},
         {"metric": "priority_lsms_isa_country_wave_packet_analysis_ready_rows", "value": csv_value(priority_lsms_packet_summary, "priority_lsms_country_wave_packet_analysis_ready_rows", "0"), "interpretation": "Refocused LSMS/ISA packets currently approved for promoted data writes."},

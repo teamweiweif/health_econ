@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 195 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 861 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 857 | Curated artifacts present and non-empty. |
+| bundle_rows | 196 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 866 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 862 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -192,6 +192,11 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_dataset_scope_lock_promoted_anchor_rows | 1 | Locked target rows already promoted as current anchors. |
 | priority_lsms_isa_dataset_scope_lock_wave_period_min | 2004-2005 | Earliest wave label in the locked target scope. |
 | priority_lsms_isa_dataset_scope_lock_wave_period_max | 2021-2022 | Latest wave label in the locked target scope. |
+| priority_lsms_isa_acquisition_route_decision_rows | 10 | Download-required waves with a consolidated acquisition-route decision. |
+| priority_lsms_isa_acquisition_route_decision_local_files_present_rows | 0 | Download-required waves with local non-generated files ready for validation. |
+| priority_lsms_isa_acquisition_route_decision_public_raw_candidate_rows | 0 | Download-required waves with public raw-route candidate evidence requiring terms review. |
+| priority_lsms_isa_acquisition_route_decision_credentialed_probe_ready_rows | 0 | Download-required waves with local redacted session material available for credentialed probing. |
+| priority_lsms_isa_acquisition_route_decision_browser_manual_required_rows | 10 | Download-required waves currently requiring browser/manual World Bank terms acceptance. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
 | priority_lsms_isa_country_wave_packet_failed_gates | 306 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 1 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
@@ -643,7 +648,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 86 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 87 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -651,6 +656,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_state | 3 | Direct-read bundle section count. |
 | bundle_section_traceability | 3 | Direct-read bundle section count. |
 | bundle_status_acquisition_to_promotion_handoff_current_raw_acquisition_blocked | 1 | Direct-read bundle status count. |
+| bundle_status_all_download_required_waves_need_browser_manual_terms_acceptance | 1 | Direct-read bundle status count. |
 | bundle_status_archive_preflight_needs_review | 1 | Direct-read bundle status count. |
 | bundle_status_available | 2 | Direct-read bundle status count. |
 | bundle_status_blocked_alb2002_access_candidate_not_promoted_due_denominator_skip_climate_gates | 1 | Direct-read bundle status count. |
@@ -815,7 +821,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 86 |
+| priority_bundle | 87 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -920,6 +926,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | local_raw_presence_current_only_mwi2004_registry_raw | 1 |
 | acquisition_to_promotion_handoff_current_raw_acquisition_blocked | 1 |
 | dataset_scope_locked_6_countries_11_waves_10_downloads_required | 1 |
+| all_download_required_waves_need_browser_manual_terms_acceptance | 1 |
 | blocked_required_schema_columns_not_verified | 1 |
 | blocked_fail_closed | 1 |
 | packet_candidates_ready_for_data_write | 1 |
@@ -1030,7 +1037,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 857 |
+| present_nonempty | 862 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

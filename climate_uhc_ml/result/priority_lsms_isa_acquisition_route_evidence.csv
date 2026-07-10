@@ -1,0 +1,101 @@
+﻿idno,evidence_source,evidence_metric,evidence_value,interpretation
+ETH_2021_ESPS-W5_v02_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+ETH_2021_ESPS-W5_v02_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+ETH_2021_ESPS-W5_v02_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+ETH_2021_ESPS-W5_v02_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+ETH_2021_ESPS-W5_v02_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+ETH_2021_ESPS-W5_v02_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+ETH_2021_ESPS-W5_v02_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+ETH_2021_ESPS-W5_v02_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+ETH_2021_ESPS-W5_v02_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+ETH_2021_ESPS-W5_v02_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+ETH_2018_ESS_v04_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+ETH_2018_ESS_v04_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+ETH_2018_ESS_v04_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+ETH_2018_ESS_v04_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+ETH_2018_ESS_v04_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+ETH_2018_ESS_v04_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+ETH_2018_ESS_v04_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+ETH_2018_ESS_v04_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+ETH_2018_ESS_v04_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+ETH_2018_ESS_v04_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+NGA_2012_GHSP-W2_v02_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+NGA_2012_GHSP-W2_v02_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+NGA_2012_GHSP-W2_v02_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+NGA_2012_GHSP-W2_v02_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+NGA_2012_GHSP-W2_v02_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+NGA_2012_GHSP-W2_v02_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+NGA_2012_GHSP-W2_v02_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+NGA_2012_GHSP-W2_v02_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+NGA_2012_GHSP-W2_v02_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+NGA_2012_GHSP-W2_v02_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+NGA_2015_GHSP-W3_v02_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+NGA_2015_GHSP-W3_v02_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+NGA_2015_GHSP-W3_v02_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+NGA_2015_GHSP-W3_v02_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+NGA_2015_GHSP-W3_v02_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+NGA_2015_GHSP-W3_v02_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+NGA_2015_GHSP-W3_v02_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+NGA_2015_GHSP-W3_v02_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+NGA_2015_GHSP-W3_v02_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+NGA_2015_GHSP-W3_v02_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+NGA_2010_GHSP-W1_v03_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+NGA_2010_GHSP-W1_v03_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+NGA_2010_GHSP-W1_v03_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+NGA_2010_GHSP-W1_v03_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+NGA_2010_GHSP-W1_v03_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+NGA_2010_GHSP-W1_v03_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+NGA_2010_GHSP-W1_v03_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+NGA_2010_GHSP-W1_v03_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+NGA_2010_GHSP-W1_v03_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+NGA_2010_GHSP-W1_v03_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+TZA_2008_NPS-R1_v03_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+TZA_2008_NPS-R1_v03_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+TZA_2008_NPS-R1_v03_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+TZA_2008_NPS-R1_v03_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+TZA_2008_NPS-R1_v03_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+TZA_2008_NPS-R1_v03_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+TZA_2008_NPS-R1_v03_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+TZA_2008_NPS-R1_v03_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+TZA_2008_NPS-R1_v03_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+TZA_2008_NPS-R1_v03_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+TZA_2010_NPS-R2_v03_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+TZA_2010_NPS-R2_v03_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+TZA_2010_NPS-R2_v03_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+TZA_2010_NPS-R2_v03_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+TZA_2010_NPS-R2_v03_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+TZA_2010_NPS-R2_v03_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+TZA_2010_NPS-R2_v03_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+TZA_2010_NPS-R2_v03_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+TZA_2010_NPS-R2_v03_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+TZA_2010_NPS-R2_v03_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+TZA_2012_NPS-R3_v01_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+TZA_2012_NPS-R3_v01_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+TZA_2012_NPS-R3_v01_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+TZA_2012_NPS-R3_v01_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+TZA_2012_NPS-R3_v01_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+TZA_2012_NPS-R3_v01_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+TZA_2012_NPS-R3_v01_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+TZA_2012_NPS-R3_v01_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+TZA_2012_NPS-R3_v01_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+TZA_2012_NPS-R3_v01_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+UGA_2019_UNPS_v03_M,scope_lock,scope_role,download_required_priority_country_wave,Role in the locked dataset-promotion scope.
+UGA_2019_UNPS_v03_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+UGA_2019_UNPS_v03_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+UGA_2019_UNPS_v03_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+UGA_2019_UNPS_v03_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+UGA_2019_UNPS_v03_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+UGA_2019_UNPS_v03_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+UGA_2019_UNPS_v03_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+UGA_2019_UNPS_v03_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+UGA_2019_UNPS_v03_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
+NPL_2010_LSS-III_v01_M,scope_lock,scope_role,download_required_sixth_country_candidate,Role in the locked dataset-promotion scope.
+NPL_2010_LSS-III_v01_M,scope_lock,raw_like_file_count,0,Local raw-like file count from the scope/raw-presence evidence.
+NPL_2010_LSS-III_v01_M,unlock_board,target_file_count,0,Non-generated files found in the target folder.
+NPL_2010_LSS-III_v01_M,endpoint_refresh,get_microdata_gate_endpoints,1,Official get-microdata endpoint access-gate evidence.
+NPL_2010_LSS-III_v01_M,endpoint_refresh,raw_download_candidate_endpoints,0,Raw download candidate endpoints detected by endpoint refresh.
+NPL_2010_LSS-III_v01_M,resource_route_probe,resource_raw_payload_candidate_rows,0,Resource-level route rows that looked like raw payload candidates.
+NPL_2010_LSS-III_v01_M,resource_route_probe,resource_access_gate_rows,8,Resource-level route rows with access-gate evidence.
+NPL_2010_LSS-III_v01_M,credentialed_packet,cookie_file_present,0,Redacted local cookie-file presence only; credential values are never exported.
+NPL_2010_LSS-III_v01_M,credentialed_packet,header_file_present,0,Redacted local header-file presence only; header values are never exported.
+NPL_2010_LSS-III_v01_M,browser_starter,starter_status,ready_for_browser_terms_acceptance,Whether browser/manual terms acceptance commands are ready.
