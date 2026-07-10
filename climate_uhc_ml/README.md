@@ -10,6 +10,7 @@ the required thresholds.
 
 ## Read First
 
+- `report/WEB_GPT_START_HERE.md` - shortest entry point for Web GPT / GitHub review.
 - `report/README.md` - current reproduction instructions and active guardrails.
 - `report/country_wave_promotion_registry.md` - human-readable promotion status.
 - `result/promoted_country_wave_registry.csv` - machine-readable gate registry.
@@ -19,15 +20,20 @@ the required thresholds.
 
 ## Current Status
 
-- Registry rows: 24 country-waves.
+- Registry rows: 19 country-waves.
 - Priority-country rows: 16 rows from Ethiopia, Nigeria, Malawi, Tanzania, and Uganda.
 - Promoted analysis-ready rows: 0.
-- Financial-protection-ready countries: 0 of 6 required.
+- Financial-protection-ready countries: 1 of 6 required.
 - Double-failure-ready country-waves: 0 of 10 required.
 - Accepted CHIRPS/ERA5 climate-linkage routes: 0 of 1 required.
 
-Albania 2002 remains a diagnostic template only. It is not the main empirical
-case unless its timing, geography, and outcome gates are resolved.
+Malawi 2004 is the current raw-backed audit row. CHE10/CHE25 financial inputs and
+survey timing/geography have been verified for their stated scope, but health
+access, SDG 3.8.2, accepted CHIRPS/ERA5 linkage, and promoted dataset synthesis
+remain blocked.
+
+Albania remains a diagnostic template only. It is not the main empirical case
+unless its timing, geography, and outcome gates are resolved.
 
 ## Included
 
