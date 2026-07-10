@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 154 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 665 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 661 | Curated artifacts present and non-empty. |
+| bundle_rows | 155 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 671 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 667 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -44,6 +44,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_received_raw_semantics_ddi_documented_variable_rows | 543 | Profiled variables matched to official DDI documentation. |
 | priority_lsms_isa_received_raw_semantics_requirement_rows | 8 | Requirement-level semantics review rows. |
 | priority_lsms_isa_received_raw_semantics_missing_codes_units_recall_skip_requirement_rows | 1 | Documentation-semantics gate rows backed by review evidence. |
+| mwi2004_raw_requirement_verification_requirements | 8 | Malawi 2004 promotion requirements with focused raw-backed verification evidence. |
+| mwi2004_raw_requirement_verification_key_or_join_checks | 10/11 | Malawi 2004 mechanical uniqueness and join checks passing in focused raw review. |
+| mwi2004_raw_requirement_verification_decision | not_final_verified | Focused Malawi 2004 decision; it should remain not_final_verified until manual construct and climate-linkage acceptance pass. |
 | priority_lsms_isa_receipt_checklist_dataset_rows | 19 | Dataset-level raw package receipt checklist rows. |
 | priority_lsms_isa_receipt_checklist_requirement_rows | 152 | Requirement-level raw package receipt checklist rows. |
 | priority_lsms_isa_receipt_checklist_package_received_rows | 1 | Refocused LSMS/ISA waves with original package receipt evidence. |
@@ -511,7 +514,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 45 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 46 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -605,6 +608,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_metadata_only_requires_raw_verification | 4 | Direct-read bundle status count. |
 | bundle_status_metadata_variable_candidates_ready_raw_review_required | 1 | Direct-read bundle status count. |
 | bundle_status_minimum_batch_intake_needs_review | 1 | Direct-read bundle status count. |
+| bundle_status_mwi2004_raw_backed_evidence_ready_not_final_verified | 1 | Direct-read bundle status count. |
 | bundle_status_not_available | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_outcome_semantics_climate_crosswalk_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_timing_geography_recall_blocked | 2 | Direct-read bundle status count. |
@@ -642,7 +646,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | Section | Count |
 |---|---:|
 | climate_outcome_gate | 50 |
-| priority_bundle | 45 |
+| priority_bundle | 46 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
 | readiness | 6 |
@@ -700,6 +704,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | received_raw_schema_ready_for_manual_value_review | 1 |
 | received_raw_value_profile_ready_for_manual_value_review | 1 |
 | received_raw_semantics_review_ready_for_manual_value_review | 1 |
+| mwi2004_raw_backed_evidence_ready_not_final_verified | 1 |
 | receipt_checklist_needs_review | 1 |
 | credentialed_workbench_needs_review | 1 |
 | official_file_receipt_needs_review | 1 |
@@ -814,7 +819,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 661 |
+| present_nonempty | 667 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

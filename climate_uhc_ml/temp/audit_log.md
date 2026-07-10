@@ -1685,3 +1685,9 @@
 - 2026-07-10T03:09:51+00:00 - Workspace validation complete=461 incomplete_or_failed=3.
 - 2026-07-10T03:11:40+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
 - 2026-07-10T03:11:42+00:00 - Direct-read audit bundle rows=154 manifest_rows=665.
+- 2026-07-10T03:26:18+00:00 - Built Malawi 2004 raw requirement verification evidence for MWI_2004_IHS-II_v01_M.
+- 2026-07-10T03:28:28+00:00 - Direct-read audit bundle rows=155 manifest_rows=671.
+- 2026-07-10T03:28:47+00:00 - Workspace validation complete=464 incomplete_or_failed=0.
+- 2026-07-10T03:30:11+00:00 - Built Malawi 2004 raw requirement verification evidence for MWI_2004_IHS-II_v01_M.
+- 2026-07-10T03:30:24+00:00 - Direct-read audit bundle rows=155 manifest_rows=671.
+- 2026-07-10T03:30:31+00:00 - Workspace validation complete=464 incomplete_or_failed=0.

@@ -1,0 +1,9 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Focused raw requirement verification evidence generated for this country-wave.
+source_raw_package,temp\raw_downloads\MWI_2004_IHS-II_v01_M\MWI_2004_IHS-II_v01_M_Stata8.zip,Original raw package read locally; raw package itself remains excluded from Git.
+members_read,6,Selected raw Stata members read from the received Malawi 2004 package.
+requirements_with_raw_backed_evidence,8,Promotion requirements with focused raw-backed evidence rows.
+key_or_join_checks_passing,10/11,Uniqueness and join checks whose mechanical raw-profile status passed.
+missing_requested_columns,0,Requested audit variables not found in selected raw members.
+raw_value_verification_decision,not_final_verified,This script strengthens evidence but does not promote the country-wave or open the data write gate.
+data_write_gate_status,closed,No output from this script is an analysis-ready household-climate dataset.
