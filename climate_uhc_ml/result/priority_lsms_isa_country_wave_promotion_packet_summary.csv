@@ -3,8 +3,8 @@ priority_lsms_country_wave_packet_rows,19,Refocused LSMS/ISA country-wave promot
 priority_lsms_country_wave_packet_core_rows,10,Core selected/refocused replacement packets.
 priority_lsms_country_wave_packet_backup_rows,9,Backup and sixth-country candidate packets.
 priority_lsms_country_wave_packet_gate_rows,361,Gate rows across LSMS/ISA promotion packets.
-priority_lsms_country_wave_packet_passed_gate_rows,44,Packet gates currently passing.
-priority_lsms_country_wave_packet_failed_gate_rows,317,Packet gates still blocking promotion.
+priority_lsms_country_wave_packet_passed_gate_rows,47,Packet gates currently passing.
+priority_lsms_country_wave_packet_failed_gate_rows,314,Packet gates still blocking promotion.
 priority_lsms_country_wave_packet_public_documentation_ready_rows,19,Packets with complete public documentation receipt.
 priority_lsms_country_wave_packet_variable_evidence_ready_rows,19,Packets with official variable evidence coverage ready for raw review.
 priority_lsms_country_wave_packet_raw_package_ready_rows,1,Packets with complete original raw package receipt and documentation.

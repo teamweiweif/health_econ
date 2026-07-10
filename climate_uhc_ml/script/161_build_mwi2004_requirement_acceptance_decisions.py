@@ -28,6 +28,7 @@ HEALTH_ACCESS_LABEL_SKIP_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_access_labe
 HEALTH_EXCEPTION_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_exception_summary.csv"
 HEALTH_ACCESS_CONSTRUCTION_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv"
 FINANCIAL_PROTECTION_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv"
+TIMING_GEOGRAPHY_POLICY_SUMMARY_PATH = RESULT_DIR / "mwi2004_timing_geography_linkage_policy_summary.csv"
 
 DECISION_COLUMNS = [
     "country",
@@ -164,6 +165,7 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     health_exception_summary = read_csv_dicts(HEALTH_EXCEPTION_SUMMARY_PATH)
     health_construction_summary = read_csv_dicts(HEALTH_ACCESS_CONSTRUCTION_POLICY_SUMMARY_PATH)
     financial_policy_summary = read_csv_dicts(FINANCIAL_PROTECTION_POLICY_SUMMARY_PATH)
+    timing_geography_summary = read_csv_dicts(TIMING_GEOGRAPHY_POLICY_SUMMARY_PATH)
     health_label_decision = summary_value(health_label_summary, "health_access_label_skip_decision")
     health_label_rows = summary_value(health_label_summary, "label_decision_rows", "0")
     health_manual_review_rows = summary_value(health_label_summary, "manual_review_rows", "0")
@@ -188,6 +190,15 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
     che10_candidate_rows = summary_value(financial_policy_summary, "che10_candidate_rows", "missing")
     che25_candidate_rows = summary_value(financial_policy_summary, "che25_candidate_rows", "missing")
     sdg382_ready = summary_value(financial_policy_summary, "sdg382_ready", "0")
+    timing_geography_status = summary_value(timing_geography_summary, "timing_geography_policy_status", "missing")
+    survey_timing_final_verified = summary_value(timing_geography_summary, "survey_timing_final_verified", "0")
+    climate_geography_final_verified = summary_value(timing_geography_summary, "climate_geography_final_verified", "0")
+    timing_geography_ready_for_climate = summary_value(timing_geography_summary, "timing_geography_ready_for_climate", "0")
+    accepted_chirps_era5_route = summary_value(timing_geography_summary, "accepted_chirps_era5_route", "0")
+    interview_date_min = summary_value(timing_geography_summary, "interview_date_min", "missing")
+    interview_date_max = summary_value(timing_geography_summary, "interview_date_max", "missing")
+    interview_month_count = summary_value(timing_geography_summary, "interview_month_count", "missing")
+    household_ea_matched = summary_value(timing_geography_summary, "household_ea_matched_to_ea_file", "missing")
 
     household, _ = read_member(
         ZIP_PATH,
@@ -320,19 +331,19 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         },
         {
             "requirement": "survey_timing",
-            "mechanical_raw_check_decision": "mechanical_raw_check_pass_climate_window_pending",
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"idate converts to {idate_min} through {idate_max}.",
-            "remaining_blocker": "Climate exposure window and aggregation month are not accepted.",
-            "next_action": "Choose interview-month exposure windows for rainfall/heat measures.",
+            "mechanical_raw_check_decision": "raw_value_verified_interview_month_policy_accepted" if survey_timing_final_verified == "1" else "mechanical_raw_check_pass_climate_window_pending",
+            "final_verification_decision": "raw_value_verified_for_climate_timing" if survey_timing_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"idate converts to {idate_min} through {idate_max}; policy_dates={interview_date_min} through {interview_date_max}; interview_month_count={interview_month_count}; timing_geography_status={timing_geography_status}.",
+            "remaining_blocker": "Interview-month timing is accepted for climate-window review; climate values still require an accepted CHIRPS/ERA5 route." if survey_timing_final_verified == "1" else "Climate exposure window and aggregation month are not accepted.",
+            "next_action": "Use interview-month anchors when defining CHIRPS/ERA5 exposure windows; do not run extraction until geography route is accepted." if survey_timing_final_verified == "1" else "Choose interview-month exposure windows for rainfall/heat measures.",
         },
         {
             "requirement": "climate_geography",
-            "mechanical_raw_check_decision": "admin_ea_raw_check_pass_climate_route_pending",
-            "final_verification_decision": "not_final_verified",
-            "acceptance_evidence": f"household dist+ta+ea keys={len(household_ea_keys)}; matched to EA file={len(household_ea_keys & ea_keys)}; no GPS coordinate field accepted.",
-            "remaining_blocker": "Accepted CHIRPS/ERA5 route is still missing; admin/EA geography needs boundary/crosswalk and exposure aggregation decision.",
-            "next_action": "Define EA/admin climate linkage route and required boundary/crosswalk source.",
+            "mechanical_raw_check_decision": "raw_value_verified_admin_ea_geography_route_blocked" if climate_geography_final_verified == "1" else "admin_ea_raw_check_pass_climate_route_pending",
+            "final_verification_decision": "raw_value_verified_for_admin_ea_geography" if climate_geography_final_verified == "1" else "not_final_verified",
+            "acceptance_evidence": f"household dist+ta+ea keys={len(household_ea_keys)}; matched to EA file={len(household_ea_keys & ea_keys)}; policy_household_ea_match={household_ea_matched}; no GPS coordinate field accepted; accepted_chirps_era5_route={accepted_chirps_era5_route}.",
+            "remaining_blocker": "Raw admin/EA geography is accepted, but CHIRPS/ERA5 route remains blocked until boundary/crosswalk and aggregation policy are documented." if climate_geography_final_verified == "1" else "Accepted CHIRPS/ERA5 route is still missing; admin/EA geography needs boundary/crosswalk and exposure aggregation decision.",
+            "next_action": "Define the boundary/crosswalk and exposure aggregation route for CHIRPS/ERA5 without treating EA/admin fields as coordinates." if climate_geography_final_verified == "1" else "Define EA/admin climate linkage route and required boundary/crosswalk source.",
         },
         {
             "requirement": "missing_codes_units_recall_skip_patterns",
@@ -365,6 +376,11 @@ def build_outputs() -> tuple[list[dict[str, str]], list[dict[str, str]], list[di
         {"metric": "sdg382_ready", "value": sdg382_ready, "interpretation": "Whether SDG 3.8.2 discretionary-budget inputs are ready; remains zero."},
         {"metric": "che10_candidate_rows", "value": che10_candidate_rows, "interpretation": "Candidate CHE10 rows from the accepted financial input policy."},
         {"metric": "che25_candidate_rows", "value": che25_candidate_rows, "interpretation": "Candidate CHE25 rows from the accepted financial input policy."},
+        {"metric": "timing_geography_policy_status", "value": timing_geography_status, "interpretation": "Timing/geography raw-value policy status."},
+        {"metric": "survey_timing_final_verified", "value": survey_timing_final_verified, "interpretation": "Whether survey timing is raw-value verified for climate-window anchoring."},
+        {"metric": "climate_geography_final_verified", "value": climate_geography_final_verified, "interpretation": "Whether admin/EA geography is raw-value verified for route review."},
+        {"metric": "timing_geography_ready_for_climate", "value": timing_geography_ready_for_climate, "interpretation": "Whether raw timing and geography are ready for climate-route review."},
+        {"metric": "accepted_chirps_era5_route", "value": accepted_chirps_era5_route, "interpretation": "Whether a CHIRPS/ERA5 route is accepted; remains zero."},
         {"metric": "health_access_construction_policy_status", "value": health_policy_status, "interpretation": "Candidate health/access construction policy status; still not final verification."},
         {"metric": "health_access_policy_acute_need_denominator_rows", "value": health_policy_denominator, "interpretation": "Roster-matched d04==Yes rows under the candidate access denominator."},
         {"metric": "health_access_policy_no_money_rows", "value": health_policy_no_money, "interpretation": "Candidate no-money forgone-care rows counted once per person row."},

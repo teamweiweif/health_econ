@@ -3,7 +3,7 @@ country_wave,MWI_2004_IHS-II_v01_M,Country-wave adjudicated in this focused acce
 decision_rows,8,Requirement-level acceptance decision rows.
 mechanical_raw_checks_pass_or_partial,5,Requirements with raw mechanical evidence that passes but still needs policy/documentation acceptance.
 hard_blocked_requirements,3,Requirements still blocked even before final climate/data promotion.
-final_verified_requirements,3,Requirements accepted as final raw-value verified for their stated scope.
+final_verified_requirements,5,Requirements accepted as final raw-value verified for their stated scope.
 health_person_unmatched_to_roster,6,Health-module person keys absent from roster; raw IDs intentionally not exported.
 oop_component_diff_le_0_01_rows,11280/11280,OOP aggregate-component numeric agreement under tolerance.
 financial_policy_status,che10_che25_financial_inputs_verified_sdg382_blocked,CHE10/CHE25 financial input policy status.
@@ -11,6 +11,11 @@ che10_che25_financial_inputs_ready,1,Whether financial-protection inputs are raw
 sdg382_ready,0,Whether SDG 3.8.2 discretionary-budget inputs are ready; remains zero.
 che10_candidate_rows,208,Candidate CHE10 rows from the accepted financial input policy.
 che25_candidate_rows,17,Candidate CHE25 rows from the accepted financial input policy.
+timing_geography_policy_status,raw_timing_admin_ea_geography_verified_climate_route_blocked,Timing/geography raw-value policy status.
+survey_timing_final_verified,1,Whether survey timing is raw-value verified for climate-window anchoring.
+climate_geography_final_verified,1,Whether admin/EA geography is raw-value verified for route review.
+timing_geography_ready_for_climate,1,Whether raw timing and geography are ready for climate-route review.
+accepted_chirps_era5_route,0,Whether a CHIRPS/ERA5 route is accepted; remains zero.
 health_access_construction_policy_status,candidate_policy_ready_active_skip_and_provider_blockers,Candidate health/access construction policy status; still not final verification.
 health_access_policy_acute_need_denominator_rows,14143,Roster-matched d04==Yes rows under the candidate access denominator.
 health_access_policy_no_money_rows,631,Candidate no-money forgone-care rows counted once per person row.

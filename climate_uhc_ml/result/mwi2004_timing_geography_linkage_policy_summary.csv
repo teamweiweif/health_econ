@@ -1,0 +1,20 @@
+﻿metric,value,interpretation
+country_wave,MWI_2004_IHS-II_v01_M,Country-wave covered by this timing/geography linkage policy.
+household_rows,11280,Household rows with raw timing/geography fields.
+idate_nonmissing_rows,11280,Rows with convertible interview date.
+interview_date_min,2004-03-08,Earliest converted household interview date.
+interview_date_max,2005-03-31,Latest converted household interview date.
+interview_month_count,13,Distinct interview months.
+interview_month_distribution,2004-03:915;2004-04:938;2004-05:825;2004-06:977;2004-07:728;2004-08:1141;2004-09:1045;2004-10:918;2004-11:770;2004-12:640;2005-01:545;2005-02:896;2005-03:942,Household counts by interview month.
+household_ea_distinct,564,Distinct household dist+ta+ea keys.
+household_ea_matched_to_ea_file,564/564,Household EA/admin keys matched to ihs2_ea_data.
+household_psu_distinct,564,Distinct household V51 EA/PSU identifiers.
+health_households_unmatched_to_household,0,Health-module households absent from household file.
+health_ea_unmatched_to_household_ea,0,Health-module dist+ta+ea keys absent from household EA set.
+survey_timing_final_verified,1,Raw survey timing is accepted for climate-window anchoring.
+climate_geography_final_verified,1,Raw admin/EA geography is accepted as the candidate climate-linkage geography.
+timing_geography_ready_for_climate,1,Raw timing and admin/EA geography are ready for climate-route review.
+gps_coordinate_ready,0,No GPS coordinate field is accepted.
+accepted_chirps_era5_route,0,A CHIRPS/ERA5 route is still blocked by boundary/crosswalk and aggregation policy.
+timing_geography_policy_status,raw_timing_admin_ea_geography_verified_climate_route_blocked,Timing/geography raw values accepted; climate route remains blocked.
+data_write_gate_status,closed,No promoted dataset may be written from this policy artifact alone.

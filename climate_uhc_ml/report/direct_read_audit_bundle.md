@@ -12,9 +12,9 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Metric | Value | Interpretation |
 |---|---:|---|
-| bundle_rows | 160 | Rows in result/direct_read_audit_bundle.csv. |
-| manifest_rows | 693 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
-| manifest_present_nonempty | 689 | Curated artifacts present and non-empty. |
+| bundle_rows | 161 | Rows in result/direct_read_audit_bundle.csv. |
+| manifest_rows | 697 | Curated artifact rows in result/direct_read_artifact_manifest.csv. |
+| manifest_present_nonempty | 693 | Curated artifacts present and non-empty. |
 | manifest_missing_or_empty | 4 | Curated artifacts missing or empty. |
 | raw_file_inventory_rows | 209 | Raw tabular files inspected. |
 | raw_variable_catalog_rows | 5410 | Raw variables inspected. |
@@ -49,12 +49,18 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_raw_requirement_verification_decision | not_final_verified | Focused Malawi 2004 decision; it should remain not_final_verified until manual construct and climate-linkage acceptance pass. |
 | mwi2004_requirement_acceptance_decision_rows | 8 | Malawi 2004 requirement-level accept/block decisions. |
 | mwi2004_requirement_acceptance_mechanical_pass_or_partial | 5 | Requirements with mechanical raw evidence that passes but remains short of final verification. |
-| mwi2004_requirement_acceptance_final_verified | 3 | Requirements accepted as final verified for their stated scope; this does not by itself open data writes. |
+| mwi2004_requirement_acceptance_final_verified | 5 | Requirements accepted as final verified for their stated scope; this does not by itself open data writes. |
 | mwi2004_financial_policy_status | che10_che25_financial_inputs_verified_sdg382_blocked | Malawi 2004 CHE10/CHE25 financial policy status. |
 | mwi2004_financial_policy_household_rows | 11280 | Household rows with verified financial inputs for CHE10/CHE25 candidates. |
 | mwi2004_financial_policy_che10_rows | 208 | Candidate CHE10 rows from accepted financial inputs. |
 | mwi2004_financial_policy_che25_rows | 17 | Candidate CHE25 rows from accepted financial inputs. |
 | mwi2004_financial_policy_sdg382_ready | 0 | Whether SDG 3.8.2 is ready; should remain zero. |
+| mwi2004_timing_geography_policy_status | raw_timing_admin_ea_geography_verified_climate_route_blocked | Malawi 2004 timing/geography raw-value policy status. |
+| mwi2004_timing_geography_idate_rows | 11280 | Rows with verified raw household interview date. |
+| mwi2004_timing_geography_months | 13 | Distinct interview months for climate-window anchoring. |
+| mwi2004_timing_geography_household_ea | 564 | Distinct household EA/admin keys. |
+| mwi2004_timing_geography_ready_for_route_review | 1 | Whether raw timing and geography are ready for climate-route review. |
+| mwi2004_timing_geography_accepted_chirps_era5_route | 0 | Whether CHIRPS/ERA5 route is accepted; should remain zero. |
 | mwi2004_health_access_label_rows | 127 | Health/access variable-value rows mapped into candidate construct decisions. |
 | mwi2004_health_access_no_money_rows | 660 | d07a/d07b rows mapped to no-money no-action candidate access failure. |
 | mwi2004_health_access_skip_leakage_rows | 6 | Aggregate skip leakage rows found in the health/access label-skip audit. |
@@ -82,7 +88,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | priority_lsms_isa_minimum_endpoint_credentialed_download_required_rows | 11 | Minimum-batch waves still requiring credentialed World Bank download after endpoint refresh. |
 | priority_lsms_isa_minimum_endpoint_raw_download_candidate_rows | 0 | Raw download candidate endpoints detected by the minimum-batch endpoint refresh. |
 | priority_lsms_isa_country_wave_packet_rows | 19 | Refocused LSMS/ISA country-wave promotion packets built. |
-| priority_lsms_isa_country_wave_packet_failed_gates | 317 | Refocused LSMS/ISA packet gates still blocking promotion. |
+| priority_lsms_isa_country_wave_packet_failed_gates | 314 | Refocused LSMS/ISA packet gates still blocking promotion. |
 | priority_lsms_isa_country_wave_packet_analysis_ready_rows | 0 | Refocused LSMS/ISA packets currently approved for promoted data writes. |
 | priority_archive_preflight_targets | 156 | Priority file targets checked against direct files and archive members. |
 | priority_archive_preflight_missing_targets | 156 | Priority file targets still missing after direct/archive member preflight. |
@@ -532,7 +538,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_section_design_gate | 4 | Direct-read bundle section count. |
 | bundle_section_go_no_go | 1 | Direct-read bundle section count. |
 | bundle_section_go_no_go_rule | 8 | Direct-read bundle section count. |
-| bundle_section_priority_bundle | 51 | Direct-read bundle section count. |
+| bundle_section_priority_bundle | 52 | Direct-read bundle section count. |
 | bundle_section_raw_access_gate | 5 | Direct-read bundle section count. |
 | bundle_section_raw_acquisition_gate | 1 | Direct-read bundle section count. |
 | bundle_section_raw_verification_gate | 22 | Direct-read bundle section count. |
@@ -632,6 +638,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | bundle_status_mwi2004_health_access_policy_ready_fail_closed | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_health_exceptions_unresolved | 1 | Direct-read bundle status count. |
 | bundle_status_mwi2004_raw_backed_evidence_ready_not_final_verified | 1 | Direct-read bundle status count. |
+| bundle_status_mwi2004_timing_admin_ea_verified_climate_route_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_available | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_outcome_semantics_climate_crosswalk_blocked | 1 | Direct-read bundle status count. |
 | bundle_status_not_final_outcomes_timing_geography_recall_blocked | 2 | Direct-read bundle status count. |
@@ -668,7 +675,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 
 | Section | Count |
 |---|---:|
-| priority_bundle | 51 |
+| priority_bundle | 52 |
 | climate_outcome_gate | 50 |
 | raw_verification_gate | 22 |
 | go_no_go_rule | 8 |
@@ -730,6 +737,7 @@ Status: reviewer/GPT-facing index only. Raw schemas and first-batch value/key su
 | mwi2004_raw_backed_evidence_ready_not_final_verified | 1 |
 | mwi2004_acceptance_decisions_fail_closed | 1 |
 | mwi2004_che10_che25_financial_inputs_verified_sdg_blocked | 1 |
+| mwi2004_timing_admin_ea_verified_climate_route_blocked | 1 |
 | mwi2004_health_access_label_skip_blockers_identified | 1 |
 | mwi2004_health_exceptions_unresolved | 1 |
 | mwi2004_health_access_policy_ready_fail_closed | 1 |
@@ -847,7 +855,7 @@ No incomplete completion criteria were found.
 
 | Artifact status | Count |
 |---|---:|
-| present_nonempty | 689 |
+| present_nonempty | 693 |
 | missing_or_empty | 4 |
 
 Missing or empty curated artifacts:

@@ -170,6 +170,9 @@ CURATED_ARTIFACTS = [
     ("dataset_promotion", "report/mwi2004_financial_protection_construction_policy.md", "Malawi 2004 financial-protection construction policy report"),
     ("dataset_promotion", "result/mwi2004_financial_protection_construction_policy.csv", "Malawi 2004 aggregate financial-protection construction policy"),
     ("dataset_promotion", "result/mwi2004_financial_protection_construction_policy_summary.csv", "Malawi 2004 financial-protection construction policy summary"),
+    ("dataset_promotion", "report/mwi2004_timing_geography_linkage_policy.md", "Malawi 2004 timing/geography linkage policy report"),
+    ("dataset_promotion", "result/mwi2004_timing_geography_linkage_policy.csv", "Malawi 2004 aggregate timing/geography linkage policy"),
+    ("dataset_promotion", "result/mwi2004_timing_geography_linkage_policy_summary.csv", "Malawi 2004 timing/geography linkage policy summary"),
     ("dataset_promotion", "report/mwi2004_health_access_label_skip_decisions.md", "Malawi 2004 health/access label and skip decision report"),
     ("dataset_promotion", "result/mwi2004_health_access_label_skip_decisions.csv", "Malawi 2004 health/access value-label construct decisions"),
     ("dataset_promotion", "temp/mwi2004_health_access_skip_consistency_metrics.csv", "Malawi 2004 health/access aggregate skip consistency metrics"),
@@ -625,6 +628,7 @@ CURATED_ARTIFACTS = [
     ("reproducibility", "script/163_build_mwi2004_health_exception_audit.py", "Malawi 2004 health person-key and skip exception audit generator"),
     ("reproducibility", "script/164_build_mwi2004_health_access_construction_policy.py", "Malawi 2004 candidate health/access construction policy generator"),
     ("reproducibility", "script/165_build_mwi2004_financial_protection_construction_policy.py", "Malawi 2004 financial-protection construction policy generator"),
+    ("reproducibility", "script/166_build_mwi2004_timing_geography_linkage_policy.py", "Malawi 2004 timing/geography linkage policy generator"),
     ("reproducibility", "script/150_build_priority_lsms_isa_raw_package_receipt_checklist.py", "priority LSMS/ISA raw package receipt checklist generator"),
     ("reproducibility", "script/152_build_priority_lsms_isa_credentialed_raw_acquisition_workbench.py", "priority LSMS/ISA credentialed raw acquisition workbench generator"),
     ("reproducibility", "script/153_validate_priority_lsms_isa_official_file_receipt.py", "priority LSMS/ISA official file receipt validator"),
@@ -851,6 +855,7 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
+    mwi2004_timing_geography_summary = read_csv_dicts(RESULT_DIR / "mwi2004_timing_geography_linkage_policy_summary.csv")
     mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     mwi2004_health_exception_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_exception_summary.csv")
     mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
@@ -1312,6 +1317,17 @@ def build_bundle(manifest: list[dict[str, str]]) -> list[dict[str, str]]:
         f"country_wave={csv_value(mwi2004_financial_policy_summary, 'country_wave', 'missing')}; household_rows={csv_value(mwi2004_financial_policy_summary, 'household_financial_rows', 'missing')}; che10_rows={csv_value(mwi2004_financial_policy_summary, 'che10_candidate_rows', 'missing')}; che10_weighted={csv_value(mwi2004_financial_policy_summary, 'che10_candidate_weighted_rate', 'missing')}; che25_rows={csv_value(mwi2004_financial_policy_summary, 'che25_candidate_rows', 'missing')}; che25_weighted={csv_value(mwi2004_financial_policy_summary, 'che25_candidate_weighted_rate', 'missing')}; financial_inputs_ready={csv_value(mwi2004_financial_policy_summary, 'che10_che25_financial_inputs_ready', '0')}; sdg382_ready={csv_value(mwi2004_financial_policy_summary, 'sdg382_ready', '0')}; data_write={csv_value(mwi2004_financial_policy_summary, 'data_write_gate_status', 'missing')}",
         [RESULT_DIR / "mwi2004_financial_protection_construction_policy.csv", RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv", REPORT_DIR / "mwi2004_financial_protection_construction_policy.md"],
         "Focused Malawi 2004 financial policy accepts household CHE10/CHE25 inputs from raw labels and numeric consistency checks while keeping SDG 3.8.2 and data writes blocked.",
+    )
+    add_bundle(
+        rows,
+        "priority_bundle",
+        "mwi2004_timing_geography_linkage_policy",
+        "mwi2004_timing_admin_ea_verified_climate_route_blocked"
+        if csv_value(mwi2004_timing_geography_summary, "timing_geography_policy_status", "missing") == "raw_timing_admin_ea_geography_verified_climate_route_blocked"
+        else "mwi2004_timing_geography_policy_missing",
+        f"country_wave={csv_value(mwi2004_timing_geography_summary, 'country_wave', 'missing')}; idate_rows={csv_value(mwi2004_timing_geography_summary, 'idate_nonmissing_rows', 'missing')}; date_min={csv_value(mwi2004_timing_geography_summary, 'interview_date_min', 'missing')}; date_max={csv_value(mwi2004_timing_geography_summary, 'interview_date_max', 'missing')}; months={csv_value(mwi2004_timing_geography_summary, 'interview_month_count', 'missing')}; household_ea={csv_value(mwi2004_timing_geography_summary, 'household_ea_distinct', 'missing')}; ea_match={csv_value(mwi2004_timing_geography_summary, 'household_ea_matched_to_ea_file', 'missing')}; timing_verified={csv_value(mwi2004_timing_geography_summary, 'survey_timing_final_verified', '0')}; geography_verified={csv_value(mwi2004_timing_geography_summary, 'climate_geography_final_verified', '0')}; accepted_route={csv_value(mwi2004_timing_geography_summary, 'accepted_chirps_era5_route', '0')}; data_write={csv_value(mwi2004_timing_geography_summary, 'data_write_gate_status', 'missing')}",
+        [RESULT_DIR / "mwi2004_timing_geography_linkage_policy.csv", RESULT_DIR / "mwi2004_timing_geography_linkage_policy_summary.csv", REPORT_DIR / "mwi2004_timing_geography_linkage_policy.md"],
+        "Focused Malawi 2004 timing/geography policy accepts raw interview-month timing and admin/EA geography for climate-route review while keeping CHIRPS/ERA5 route acceptance and data writes blocked.",
     )
     add_bundle(
         rows,
@@ -2322,6 +2338,7 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
     mwi2004_raw_requirement_summary = read_csv_dicts(RESULT_DIR / "mwi2004_raw_requirement_verification_summary.csv")
     mwi2004_acceptance_summary = read_csv_dicts(RESULT_DIR / "mwi2004_requirement_acceptance_summary.csv")
     mwi2004_financial_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_financial_protection_construction_policy_summary.csv")
+    mwi2004_timing_geography_summary = read_csv_dicts(RESULT_DIR / "mwi2004_timing_geography_linkage_policy_summary.csv")
     mwi2004_health_access_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_label_skip_summary.csv")
     mwi2004_health_exception_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_exception_summary.csv")
     mwi2004_health_policy_summary = read_csv_dicts(RESULT_DIR / "mwi2004_health_access_construction_policy_summary.csv")
@@ -2382,6 +2399,12 @@ def build_summary(bundle: list[dict[str, str]], manifest: list[dict[str, str]]) 
         {"metric": "mwi2004_financial_policy_che10_rows", "value": csv_value(mwi2004_financial_policy_summary, "che10_candidate_rows", "0"), "interpretation": "Candidate CHE10 rows from accepted financial inputs."},
         {"metric": "mwi2004_financial_policy_che25_rows", "value": csv_value(mwi2004_financial_policy_summary, "che25_candidate_rows", "0"), "interpretation": "Candidate CHE25 rows from accepted financial inputs."},
         {"metric": "mwi2004_financial_policy_sdg382_ready", "value": csv_value(mwi2004_financial_policy_summary, "sdg382_ready", "0"), "interpretation": "Whether SDG 3.8.2 is ready; should remain zero."},
+        {"metric": "mwi2004_timing_geography_policy_status", "value": csv_value(mwi2004_timing_geography_summary, "timing_geography_policy_status", "missing"), "interpretation": "Malawi 2004 timing/geography raw-value policy status."},
+        {"metric": "mwi2004_timing_geography_idate_rows", "value": csv_value(mwi2004_timing_geography_summary, "idate_nonmissing_rows", "0"), "interpretation": "Rows with verified raw household interview date."},
+        {"metric": "mwi2004_timing_geography_months", "value": csv_value(mwi2004_timing_geography_summary, "interview_month_count", "0"), "interpretation": "Distinct interview months for climate-window anchoring."},
+        {"metric": "mwi2004_timing_geography_household_ea", "value": csv_value(mwi2004_timing_geography_summary, "household_ea_distinct", "0"), "interpretation": "Distinct household EA/admin keys."},
+        {"metric": "mwi2004_timing_geography_ready_for_route_review", "value": csv_value(mwi2004_timing_geography_summary, "timing_geography_ready_for_climate", "0"), "interpretation": "Whether raw timing and geography are ready for climate-route review."},
+        {"metric": "mwi2004_timing_geography_accepted_chirps_era5_route", "value": csv_value(mwi2004_timing_geography_summary, "accepted_chirps_era5_route", "0"), "interpretation": "Whether CHIRPS/ERA5 route is accepted; should remain zero."},
         {"metric": "mwi2004_health_access_label_rows", "value": csv_value(mwi2004_health_access_summary, "label_decision_rows", "0"), "interpretation": "Health/access variable-value rows mapped into candidate construct decisions."},
         {"metric": "mwi2004_health_access_no_money_rows", "value": csv_value(mwi2004_health_access_summary, "financial_barrier_no_money_rows", "0"), "interpretation": "d07a/d07b rows mapped to no-money no-action candidate access failure."},
         {"metric": "mwi2004_health_access_skip_leakage_rows", "value": csv_value(mwi2004_health_access_summary, "total_skip_leakage_rows", "0"), "interpretation": "Aggregate skip leakage rows found in the health/access label-skip audit."},

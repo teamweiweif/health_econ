@@ -26,8 +26,8 @@ resolved.
 | accepted_chirps_era5_climate_linkage_rows | 0 | Country-waves with accepted CHIRPS or ERA5 linkage route. |
 | raw_package_received_rows | 1 | Registry rows with some non-generated raw package receipt evidence. |
 | raw_value_verified_rows | 0 | Registry rows with accepted raw-value verification. |
-| gate_pass_rows | 44 | Promotion gate rows passing in the refocused packet matrix. |
-| gate_fail_rows | 317 | Promotion gate rows failing in the refocused packet matrix. |
+| gate_pass_rows | 47 | Promotion gate rows passing in the refocused packet matrix. |
+| gate_fail_rows | 314 | Promotion gate rows failing in the refocused packet matrix. |
 | albania_main_case_rows | 0 | Albania rows in the main refocused promoted registry; should remain zero. |
 | promoted_registry_data_write_status | blocked_no_promoted_rows | Data write gate implied by the promoted registry. |
 | modeling_gate_status | blocked | Do not run predictive, reduced-form, causal ML, or policy-learning models until registry thresholds pass. |
@@ -38,7 +38,7 @@ resolved.
 |---|---|---|---|---|---|---|---|---|
 | Ethiopia | 2021-2022 | ETH_2021_ESPS-W5_v02_M | 1 | blocked_no_original_package | blocked_not_raw_value_verified | blocked_timing_geography_or_chirps_era5_route_not_verified | not_promoted | complete original raw package not received; failed_gates=17 (complete_original_raw_package; archive_or_direct_file_pr... |
 | Ethiopia | 2018-2019 | ETH_2018_ESS_v04_M | 1 | blocked_no_original_package | blocked_not_raw_value_verified | blocked_timing_geography_or_chirps_era5_route_not_verified | not_promoted | complete original raw package not received; failed_gates=17 (complete_original_raw_package; archive_or_direct_file_pr... |
-| Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 1 | ready_for_raw_value_review | blocked_not_raw_value_verified | blocked_timing_geography_or_chirps_era5_route_not_verified | not_promoted | failed_gates=11 (raw_value_verification_household_person_keys; raw_value_verification_health_need_and_access; raw_val... |
+| Malawi | 2004-2005 | MWI_2004_IHS-II_v01_M | 1 | ready_for_raw_value_review | blocked_not_raw_value_verified | blocked_timing_geography_or_chirps_era5_route_not_verified | not_promoted | failed_gates=8 (raw_value_verification_household_person_keys; raw_value_verification_health_need_and_access; raw_valu... |
 | Nigeria | 2012-2013 | NGA_2012_GHSP-W2_v02_M | 1 | blocked_no_original_package | blocked_not_raw_value_verified | blocked_timing_geography_or_chirps_era5_route_not_verified | not_promoted | complete original raw package not received; failed_gates=17 (complete_original_raw_package; archive_or_direct_file_pr... |
 | Nigeria | 2015-2016 | NGA_2015_GHSP-W3_v02_M | 1 | blocked_no_original_package | blocked_not_raw_value_verified | blocked_timing_geography_or_chirps_era5_route_not_verified | not_promoted | complete original raw package not received; failed_gates=17 (complete_original_raw_package; archive_or_direct_file_pr... |
 | Nigeria | 2010-2011 | NGA_2010_GHSP-W1_v03_M | 1 | blocked_no_original_package | blocked_not_raw_value_verified | blocked_timing_geography_or_chirps_era5_route_not_verified | not_promoted | complete original raw package not received; failed_gates=17 (complete_original_raw_package; archive_or_direct_file_pr... |
