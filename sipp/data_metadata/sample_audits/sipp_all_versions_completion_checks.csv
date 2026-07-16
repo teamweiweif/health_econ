@@ -1,0 +1,12 @@
+﻿check_id,requirement,passed,evidence
+official_directory_snapshots,Official Census directory snapshots exist for every 2018-2025 file year,True,years=2018-2025
+official_catalog,The official directory crawl contains all eight years and no duplicate URLs,True,"rows=371, years=[2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], duplicate_urls=0"
+product_matrix,The matrix contains exactly 50 unique official CSV products in the verified year/horizon pattern,True,"counts={'longitudinal_replicate_weights': 17, 'longitudinal_weights': 17, 'primary': 8, 'replicate_weights': 8}, expected={'primary': 8, 'replicate_weights': 8, 'longitudinal_weights': 17, 'longitudinal_replicate_weights': 17}"
+manifest_coverage,The raw manifest covers the same 50 products and all files exist,True,"manifest_rows=50, matrix_rows=50"
+no_partial_downloads,No interrupted .part downloads remain in the raw archive,True,partial_files=[]
+deep_raw_verification,"All 50 products pass SHA-256, full-stream CRC, ZIP size, schema/header, and official row-count checks",True,passed=50/50
+longitudinal_parquet_versions,All 17 longitudinal and 17 longitudinal-replicate products have link-ready Parquet copies,True,"longitudinal=17, replicate=17"
+longitudinal_weight_keys,Every longitudinal weight key matches its replicate file and REPWGT0 reproduces FINYR within audited CSV precision,True,"products=17, max_abs_difference=1.00000761449e-05"
+official_period_metadata_anomaly,The sole official internal period-label anomaly (2021 4-year replicate file) is surfaced without altering raw values,True,"mismatches=[{'file_year': 2021, 'horizon_years': 4}]"
+latest_longitudinal_panels,Latest 2/3/4-year panels contain only the base 97 columns plus the official FINYR weight and pass source-faithfulness checks,True,"2y:rows=436267,persons=18207,schema=True; 3y:rows=385350,persons=10717,schema=True; 4y:rows=293630,persons=6122,schema=True"
+raw_archive_size,The archived canonical raw products have a recorded nonzero byte total,True,"bytes=7537185902, GiB=7.020"

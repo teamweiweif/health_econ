@@ -1,0 +1,9 @@
+﻿check_id,requirement,passed,evidence
+included_files_present,Every inventory-included source file exists in the export,True,included=414; missing=0
+included_files_faithful,Every mirrored file is byte-identical or differs only by normalized trailing Python blank lines; README is publication-adapted,True,compared=413; newline_normalized=10; mismatched=[]
+no_prohibited_payloads,"Export contains no raw archives, Parquet, HTML snapshots, or caches",True,prohibited=[]
+no_large_files,No exported file exceeds 10 MiB,True,files=419; large_files=[]
+python_syntax,All exported Python scripts parse,True,scripts=68; errors=[]
+invalid_weight_fallback_removed,No exported script retains the TSSSAMT fallback,True,matching_files=[]
+gpt_reading_pack,"All current GPT entry-point, report, audit, result, and verifier files are present",True,required=10; missing=[]
+upstream_reaudit_pass,The local-source final re-audit remains 15/15 PASS,True,passed=15/15

@@ -56,8 +56,7 @@ def yes(s: pd.Series) -> pd.Series:
 
 def clean_weight(df: pd.DataFrame) -> pd.Series:
     w = pd.to_numeric(df.get("WPFINWGT"), errors="coerce")
-    w = w.where(w.gt(0), pd.to_numeric(df.get("TSSSAMT"), errors="coerce"))
-    return w.where(w.gt(0), 1.0)
+    return w.where(w.gt(0))
 
 
 def persons(s: pd.Series) -> int:

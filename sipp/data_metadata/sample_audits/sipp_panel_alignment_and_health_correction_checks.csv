@@ -1,0 +1,5 @@
+﻿check_id,requirement,passed,evidence
+v11_panel_alignment,All 2018-2021 panel income/poverty fields exactly reproduce current v1.1 raw values after the panel's float32 storage cast,True,passed=32/32
+health_source_panel_alignment,All original health fields used by the correction patch match the current selected panel,True,passed=42/42
+correction_patch_unique,The official-user-note correction patch has unique file-year/person-month keys,True,patch_rows=19625; patch_persons=2983
+official_scope,Corrections are applied only to affected 2018-2023 file years; original official values remain available,True,"file_years=[2018, 2019, 2020, 2021, 2022, 2023]"

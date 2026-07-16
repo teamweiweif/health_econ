@@ -100,8 +100,7 @@ def read_monthly() -> pd.DataFrame:
     df["oop_any"] = pd.to_numeric(df["TMDPAY"], errors="coerce").gt(0)
     df["doctor_any"] = pd.to_numeric(df["TVISDOC"], errors="coerce").gt(0)
     df["weight"] = pd.to_numeric(df["WPFINWGT"], errors="coerce")
-    df["weight"] = df["weight"].where(df["weight"].gt(0), pd.to_numeric(df["TSSSAMT"], errors="coerce"))
-    df["weight"] = df["weight"].where(df["weight"].gt(0), 1.0)
+    df["weight"] = df["weight"].where(df["weight"].gt(0))
     return df
 
 

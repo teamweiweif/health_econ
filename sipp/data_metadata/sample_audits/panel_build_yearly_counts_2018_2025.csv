@@ -1,0 +1,9 @@
+file_year,reference_year,rows,unique_persons_seen,duplicate_ssuid_pnum_monthcode_within_file,selected_variable_count,parquet_path,raw_zip_path,raw_zip_bytes
+2018,2017,763186,63915,0,86,temp\scratch\sipp_2018_selected.parquet,temp\raw_downloads\census_sipp\2018\primary\pu2018_csv.zip,164090517
+2019,2018,593604,50212,0,86,temp\scratch\sipp_2019_selected.parquet,temp\raw_downloads\census_sipp\2019\primary\pu2019_csv.zip,135068548
+2020,2019,622339,52572,0,86,temp\scratch\sipp_2020_selected.parquet,temp\raw_downloads\census_sipp\2020\primary\pu2020_csv.zip,139336635
+2021,2020,670678,56872,0,87,temp\scratch\sipp_2021_selected.parquet,temp\raw_downloads\census_sipp\2021\primary\pu2021_csv.zip,157173933
+2022,2021,487736,41070,0,89,temp\scratch\sipp_2022_selected.parquet,temp\raw_downloads\census_sipp\2022\primary\pu2022_csv.zip,116681072
+2023,2022,476744,40263,0,89,temp\scratch\sipp_2023_selected.parquet,temp\raw_downloads\census_sipp\2023\primary\pu2023_csv.zip,109036604
+2024,2023,437168,36915,0,89,temp\scratch\sipp_2024_selected.parquet,temp\raw_downloads\census_sipp\2024\primary\pu2024_csv.zip,102122301
+2025,2024,379215,32052,0,90,temp\scratch\sipp_2025_selected.parquet,temp\raw_downloads\census_sipp\2025\primary\pu2025_csv.zip,88088487

@@ -1,0 +1,5 @@
+post_year2021,above400,person_months,persons,any_health_patch_row,changed_uninsured_rows,changed_any_coverage_rows,changed_private_rows,changed_public_rows,changed_medicaid_rows
+0,False,75838,10616,286,111,111,0,257,247
+0,True,69115,9881,186,59,59,0,178,153
+1,False,38790,6168,101,16,16,3,84,82
+1,True,33627,5554,40,20,20,0,39,38

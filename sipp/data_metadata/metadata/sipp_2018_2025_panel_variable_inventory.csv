@@ -1,0 +1,98 @@
+column_name,parquet_type,column_origin,present_in_2025_schema,source_label_2025
+SSUID,string,census_source,True,"Sample unit identifier. This identifier is created by scrambling together PSU, Sequence #1, Sequence #2, and the Frame Indicator for a case. It may be used in matching sample units from different waves."
+PNUM,int64,census_source,True,Person number
+MONTHCODE,float,census_source,True,Value of reference month
+TSSSAMT,float,census_source,True,"How much did ... receive in Social Security benefit payment in this month (1-12), prior to any deductions for Medicare premiums?"
+SHHADID,string,census_source,True,Household ID at time of interview. Used to differentiate households spawned from an original sample household.
+SPANEL,float,census_source,True,Panel year
+SWAVE,float,census_source,True,Wave number of interview
+GHLFSAM,float,census_source,True,Half sample code. A code used to divide the sample into half sample replicates that are used for variance estimation.
+GVARSTR,float,census_source,True,Variance pseudo stratum code. Strata formed for half sample variance estimation
+RFOODR,float,census_source,True,Recode for the raw food security score that is a count of affirmative responses.
+RFOODS,float,census_source,True,Recode variable for food security status.
+EMS,float,census_source,True,"Is ... currently married, widowed, divorced, separated, or never married?"
+ESEX,float,census_source,True,Sex of this person
+EORIGIN,float,census_source,True,"Is ... of Hispanic, Latino, or Spanish origin?"
+ERACE,float,census_source,True,What race(s) does ... consider herself/himself to be?
+EEDUC,float,census_source,True,What is the highest level of school ... completed or the highest degree received by December of (reference year)?
+RSNAP_YRYN,float,census_source,True,Received SNAP benefits in at least one month of the reference period
+RWIC_YRYN,float,census_source,True,Received WIC benefits in at least one month of the reference period
+RTANF_YRYN,float,census_source,True,Received TANF benefits in at least one month of the reference period
+RSSI_YRYN,float,census_source,True,Received SSI benefits in at least one month of the reference period
+RDIS,float,census_source,True,"Summary measure that indicates whether individual has a disability, where disability is defined as a value of 1 ('yes') on any of six core disability items (EHEARING, ESEEING, ECOGNIT, EAMBULAT, ESELFCARE, EERRANDS)"
+RDIS_ALT,float,census_source,True,"Alternative summary disability measure, defined as value of 1 ('yes') for any core (EHEARING, ESEEING, ECOGNIT, EAMBULAT, ESELFCARE, EERRANDS), child (EPLAYDIF, ESCHOOLWK, EDDELAY), and/or work-limiting (EFINDJOB, EDISABL, EJOBCANT) disability items"
+EHLTSTAT,float,census_source,True,What is ... health status?
+EREFPAR,float,census_source,True,Child-level variable that identifies the PNUM of parent/guardian of the child.
+ERP,float,census_source,True,Identifies if adult is a reference parent to any household children under 18 years old
+EPNSPOUSE,float,census_source,True,Person number of spouse
+WPFINWGT,float,census_source,True,Final person weight
+ERESIDENCEID,string,census_source,True,"This field stores a six-digit identifier for residence addresses, unique within SSUID."
+RFAMREF,float,census_source,True,Person number of the family reference person
+RFAMNUM,float,census_source,True,Monthly family number for individuals in households
+RWKESR1,float,census_source,True,Employment status recode for week 1
+RWKESR2,float,census_source,True,Employment status recode for week 2
+RWKESR3,float,census_source,True,Employment status recode for week 3
+RWKESR4,float,census_source,True,Employment status recode for week 4
+RWKESR5,float,census_source,True,Employment status recode for week 5
+RMWKWJB,float,census_source,True,Number of weeks with a job during the month.
+RMESR,float,census_source,True,Recode for monthly employment status.
+ECRMTH,float,census_source,True,Edited monthly indicator for Medicare coverage
+EMD_BMONTH,float,census_source,True,Begin month of Medicaid/Medical Assistance health insurance coverage spell
+EMD_EMONTH,float,census_source,True,End month of Medicaid/Medical Assistance health insurance coverage spell
+EMDMTH,float,census_source,True,Edited monthly indicator for Medicaid/Medical Assistance
+EPRIEXCH1,float,census_source,True,Determines if private coverage is through a state-based Health Insurance Marketplace/Exchange.(Note: Appears under private health insurance (line 1) section)
+EPRIEXCH2,float,census_source,True,Determines if coverage is through a state-based Health Insurance Marketplace/Exchange.(Note: Appears under private health insurance (line 2) section)
+EPRIPREM1,float,census_source,True,Determines if the state-based Health Insurance Marketplace/Exchange plan had a premium (Note: Appears under Private health insurance (line 1) section)
+EPRIPREM2,float,census_source,True,Determines if the state-based Health Insurance Marketplace/Exchange plan had a premium (Note: Appears under Private health insurance (line 2) section)
+EPRISUBS1,float,census_source,True,Determines if cost of the state-based Health Insurance Marketplace/Exchange plan had a premium that is subsidized (Note: Appears under Private health insurance (line 1) section)
+EPRISUBS2,float,census_source,True,Determines if cost of the state-based Health Insurance Marketplace/Exchange plan had a premium that is subsidized (Note: Appears under Private health insurance (line 2) section)
+EMDEXCH,float,census_source,True,Medicaid/Medical Assistance health insurance is through the Health Insurance Marketplace/Exchange in this month
+EMDPREM,float,census_source,True,Medicaid/Medical Assistance health insurance through the Health Insurance Marketplace/Exchange had a premium in this month
+EMDSUBS,float,census_source,True,Medicaid/Medical Assistance health insurance through the Health Insurance Marketplace/Exchange had a premium that was subsidized in this month
+EUC1MNYN,float,census_source,True,"Received regular, government-provided Unemployment Compensation payments this month."
+EUC2MNYN,float,census_source,True,"Received supplemental, employer-provided Unemployment Compensation payments this month."
+EUC3MNYN,float,census_source,True,"Received other Unemployment Compensation payments, including union benefits, this month."
+RSNAP_MNYN,float,census_source,True,Received SNAP benefits this month
+RWIC_MNYN,float,census_source,True,Received WIC benefits this month
+RTANF_MNYN,float,census_source,True,Received TANF benefits this month
+RSSI_MNYN,float,census_source,True,Received SSI benefits this month
+RPRIMTH,float,census_source,True,Has Private health insurance coverage in the current month
+RPRITYPE1,float,census_source,True,Has Employer-related health insurance coverage (including TRICARE) in this month
+RPRITYPE2,float,census_source,True,Has Direct-Purchase health insurance coverage (includes school-based coverage) in this month
+RPUBMTH,float,census_source,True,Has Public health insurance coverage in this month
+RPUBTYPE1,float,census_source,True,Has Medicare health insurance in this month
+RPUBTYPE2,float,census_source,True,Has Medicaid/Medical Assistance health insurance coverage in this month
+RPUBTYPE3,float,census_source,True,Has Military health insurance coverage (CHAMPVA or VA Health Care) in this month
+RHLTHMTH,float,census_source,True,Has any health insurance coverage (private health insurance or public health coverage) in the current month
+RMARKTPLACE,float,census_source,True,"Private health insurance, Medicaid/Medical Assistance, or Other health insurance obtained through the Marketplace/Exchange in this month"
+TST_INTV,float,census_source,True,State of residence for the interview address
+TEHC_ST,float,census_source,True,Monthly state of residence
+TRESDUR,float,census_source,True,Recoded variable indicating the number of months the respondent resided in the unit
+TMOVER,float,census_source,True,Recoded variable indicating mover status
+THHLDSTATUS,float,census_source,True,Household status
+TMDPAY,float,census_source,True,How much did ... pay for non-premium medical out-of-pocket expenditures on medical care?
+TDAYSICK,float,census_source,True,How many days did illness or injury keep ... in bed more than half of the day?
+THOSPNIT,float,census_source,True,How many nights did ... spend in the hospital?
+TVISDENT,float,census_source,True,How many visits has ... made to a dentist or other dental professional?
+TVISDOC,float,census_source,True,"How many times did ... see or talk to a doctor, nurse, or any other type of medical provider about his/her health?"
+TAGE,float,census_source,True,Age as of last birthday
+TAGE_EHC,float,census_source,True,Monthly age during the reference period.
+TJB1_MSUM,float,census_source,True,"Monthly earnings from job 1, varying with the number of days in the month."
+TPEARN,float,census_source,True,"Sum of earnings and profits/losses from all jobs, varying with the number of days in the month (comparable to RPEARN in 1996, 2001, and 2014 SIPP panels)."
+TPTOTINC,float,census_source,True,"Sum of personal monthly earnings and income for people age 15 and older, as well as children under age 15 who received SSI payments"
+TFTOTINC,float,census_source,True,"Sum of monthly earnings and income received by family members age 15 and older, as well as SSI payments received by children under age 15"
+THTOTINC,float,census_source,True,"Sum of monthly earnings and income received by household members age 15 and older, as well as SSI payments received by children under age 15"
+TFINCPOV,float,census_source,True,"Family income-to-poverty ratio in this month, excluding Type 2 individuals"
+THINCPOV,float,census_source,True,"Household income-to-poverty ratio in this month, excluding Type 2 individuals"
+TFCYINCPOV,float,census_source,True,"Family income-to-poverty ratio in this calendar year, excluding Type 2 individuals"
+THCYINCPOV,float,census_source,True,"Household income-to-poverty ratio in this calendar year, excluding Type 2 individuals"
+file_year,int64,technical_harmonization,False,
+reference_year,int64,technical_harmonization,False,
+reference_month,int16,technical_harmonization,False,
+reference_date,timestamp[ns],technical_harmonization,False,
+state_fips,string,technical_harmonization,False,
+person_id,string,technical_harmonization,False,
+person_month_key,string,technical_harmonization,False,
+EHISPAN,float,census_source,True,Detailed Hispanic origin
+RDIRECTANN,float,census_source,True,Annual direct-purchase health insurance  coverage recode
+RMCAIDANN,float,census_source,True,Annual Medicaid/Medical Assistance health insurance coverage recode

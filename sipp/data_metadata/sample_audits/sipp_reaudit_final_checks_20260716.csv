@@ -1,0 +1,16 @@
+﻿check_id,requirement,passed,evidence
+remote_byte_identity,All 50 canonical ZIPs exactly match the current official remotes,True,rows=50; passed=50; bytes=7537185902
+remote_year_coverage,Current official re-audit covers file years 2018-2025,True,"years=[2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]"
+release_versions,Current releases are v1.1 for 2018-2021 and v1.0 for 2022-2025,True,"observed={2018: 1.1, 2019: 1.1, 2020: 1.1, 2021: 1.1, 2022: 1.0, 2023: 1.0, 2024: 1.0, 2025: 1.0}"
+official_core_documents,"Release notes, weight guide, latest users guide, and source/accuracy PDF match official bytes",True,required_roles=11; matched_roles=11
+v11_panel_alignment,All 32 audited v1.1 income/poverty year-variable comparisons match current raw,True,rows=32; mismatches=0
+health_source_panel_alignment,All 42 audited health source year-variable comparisons match current raw,True,rows=42; mismatches=0
+health_patch_unique,"The additive health correction patch has 19,625 unique person-month keys",True,rows=19625; duplicate_keys=0
+issue_register,The current issue register contains all 15 classified findings,True,rows=15
+invalid_weight_fallback_removed,No idea-screen script retains the TSSSAMT weight fallback,True,matching_files=[]
+idea_scan_syntax,All idea-screen Python files parse after the weight repair,True,syntax_errors=[]
+weight_ledger,"Weight ledger covers monthly, annual, and 2/3/4-year estimands with Fay-BRR replicates",True,"rows=5; estimands=['monthly cross-sectional', 'annual cross-sectional', 'two consecutive calendar years', 'three consecutive calendar years', 'four consecutive calendar years']"
+response_attrition_ledger,2025 response ledger records the official cross-sectional and FINYR2/3/4 rates,True,"rows=8; selected_rates={'2022-2025 panels': 42.63, 'SIPP 2022': 13.21, 'SIPP 2023': 19.21, 'SIPP 2024': 22.79, 'SIPP 2025': 35.17, 'FINYR2': 61.67, 'FINYR3': 42.42, 'FINYR4': 25.75}"
+arpa_corrected_sensitivity,Corrected ARPA uninsured sensitivity is present and remains below |t|=1.96 with person clustering,True,coef=-0.027105; person_t=-1.896
+current_reports,"Current sensitivity, comprehensive audit, and issue-register reports exist",True,report\107_arpa400_raw_data_quality_sensitivity.md|report\108_sipp_official_sources_versions_weights_raw_reaudit.md|report\109_sipp_raw_data_issue_register.md
+no_partial_downloads,No interrupted .part downloads remain,True,part_files=0

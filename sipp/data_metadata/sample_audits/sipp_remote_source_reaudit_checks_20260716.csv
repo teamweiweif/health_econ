@@ -1,0 +1,5 @@
+﻿check_id,requirement,passed,evidence
+live_year_directories,Fresh official directory snapshots cover every 2018-2025 file year,True,"years=[2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]; live_files=371"
+canonical_products_still_listed,All 50 canonical CSV ZIP products remain listed in the live official archive,True,expected=50; found=50
+remote_sizes_match,All current official remote Content-Length values match local ZIP byte sizes,True,passed=50/50
+remote_bytes_match,Every byte of all 50 local canonical ZIPs matches the current official remote file,True,passed=50/50; compared_bytes=7537185902

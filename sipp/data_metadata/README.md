@@ -10,8 +10,15 @@ Included files:
   years.
 - `metadata/concept_crosswalk_initial.csv`: initial concept-to-variable
   crosswalk.
+- `metadata/sipp_release_version_ledger_2018_2025.csv`: current release
+  versions and official correction provenance.
+- `metadata/sipp_weight_product_use_ledger.csv`: estimand-specific point and
+  replicate weight selection.
+- `metadata/sipp_2025_response_and_attrition_summary.csv`: official current
+  response and longitudinal attrition rates.
 - `policy/`: lightweight policy files used in screening.
-- `sample_audits/`: sample construction and missingness checks.
+- `sample_audits/`: sample construction, current-remote byte comparisons,
+  panel alignment, issue register, and final 15/15 re-audit checks.
 - `local_file_inventory.csv`: full local file inventory with inclusion status
   and GitHub destination paths for published files.
 - `excluded_file_inventory.csv`: local files excluded from GitHub, sorted by

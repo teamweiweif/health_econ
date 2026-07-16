@@ -1,0 +1,18 @@
+{
+  "old_panel_rows": 4051455,
+  "new_2025_rows": 379215,
+  "merged_rows": 4430670,
+  "merged_columns": 97,
+  "source_columns": 90,
+  "technical_columns": 7,
+  "new_2025_unique_persons": 32052,
+  "new_2025_states": 51,
+  "new_2025_duplicate_keys": 0,
+  "historical_rpritype1_key_match": true,
+  "historical_rpritype1_missing": 0,
+  "new_2025_rpritype1_missing": 0,
+  "merged_bytes": 97347506,
+  "new_panel_relative_path": "data\\analysis_ready\\sipp_2018_2025_person_month_panel.parquet",
+  "historical_panel_preserved": true,
+  "constructed_outcome_columns_added": false
+}

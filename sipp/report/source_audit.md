@@ -1,5 +1,7 @@
 # SIPP Source Audit
 
+> **Superseded status note (2026-07-16):** This 2026-07-09 staging memo is retained for provenance but no longer describes the workspace. The current archive includes 2018-2025 primary, annual replicate, longitudinal, and longitudinal replicate products. Use `report/108_sipp_official_sources_versions_weights_raw_reaudit.md` and `report/109_sipp_raw_data_issue_register.md` as the current source of truth.
+
 Audit date: 2026-07-09
 
 ## Scope

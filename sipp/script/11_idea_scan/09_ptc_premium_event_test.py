@@ -74,8 +74,7 @@ def read_data() -> pd.DataFrame:
     df["highpremium"] = df["high_pre_premium_burden"].fillna(0).astype(int)
     df["above_x_high"] = df["above400"] * df["highpremium"]
     df["weight"] = pd.to_numeric(df["WPFINWGT"], errors="coerce")
-    df["weight"] = df["weight"].where(df["weight"].gt(0), pd.to_numeric(df["TSSSAMT"], errors="coerce"))
-    df["weight"] = df["weight"].where(df["weight"].gt(0), 1.0)
+    df["weight"] = df["weight"].where(df["weight"].gt(0))
     df["direct_purchase"] = yes(df["RPRITYPE2"]) | yes(df["RMARKTPLACE"])
     df["marketplace"] = yes(df["RMARKTPLACE"]) | yes(df["EPRIEXCH1"]) | yes(df["EPRIEXCH2"]) | yes(df["EMDEXCH"])
     df["subsidized_private"] = yes(df["EPRISUBS1"]) | yes(df["EPRISUBS2"]) | yes(df["EMDSUBS"])
